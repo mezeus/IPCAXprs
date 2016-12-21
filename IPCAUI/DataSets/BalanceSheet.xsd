@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BalanceSheet" targetNamespace="http://tempuri.org/BalanceSheet.xsd" xmlns:mstns="http://tempuri.org/BalanceSheet.xsd" xmlns="http://tempuri.org/BalanceSheet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BalanceSheet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BalanceSheet" msprop:Generator_UserDSName="BalanceSheet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BalSheetDt" msprop:Generator_TableClassName="BalSheetDtDataTable" msprop:Generator_TableVarName="tableBalSheetDt" msprop:Generator_TablePropName="BalSheetDt" msprop:Generator_RowDeletingName="BalSheetDtRowDeleting" msprop:Generator_RowChangingName="BalSheetDtRowChanging" msprop:Generator_RowEvHandlerName="BalSheetDtRowChangeEventHandler" msprop:Generator_RowDeletedName="BalSheetDtRowDeleted" msprop:Generator_UserTableName="BalSheetDt" msprop:Generator_RowChangedName="BalSheetDtRowChanged" msprop:Generator_RowEvArgName="BalSheetDtRowChangeEvent" msprop:Generator_RowClassName="BalSheetDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Liabilities" msprop:Generator_ColumnVarNameInTable="columnLiabilities" msprop:Generator_ColumnPropNameInRow="Liabilities" msprop:Generator_ColumnPropNameInTable="LiabilitiesColumn" msprop:Generator_UserColumnName="Liabilities" type="xs:string" minOccurs="0" />
+              <xs:element name="Assests" msprop:Generator_ColumnVarNameInTable="columnAssests" msprop:Generator_ColumnPropNameInRow="Assests" msprop:Generator_ColumnPropNameInTable="AssestsColumn" msprop:Generator_UserColumnName="Assests" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

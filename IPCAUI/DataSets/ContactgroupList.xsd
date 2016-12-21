@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ContactgroupList" targetNamespace="http://tempuri.org/ContactgroupList.xsd" xmlns:mstns="http://tempuri.org/ContactgroupList.xsd" xmlns="http://tempuri.org/ContactgroupList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ContactgroupList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ContactgroupList" msprop:Generator_UserDSName="ContactgroupList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ContactgroupListDt" msprop:Generator_TableClassName="ContactgroupListDtDataTable" msprop:Generator_TableVarName="tableContactgroupListDt" msprop:Generator_TablePropName="ContactgroupListDt" msprop:Generator_RowDeletingName="ContactgroupListDtRowDeleting" msprop:Generator_RowChangingName="ContactgroupListDtRowChanging" msprop:Generator_RowEvHandlerName="ContactgroupListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="ContactgroupListDtRowDeleted" msprop:Generator_UserTableName="ContactgroupListDt" msprop:Generator_RowChangedName="ContactgroupListDtRowChanged" msprop:Generator_RowEvArgName="ContactgroupListDtRowChangeEvent" msprop:Generator_RowClassName="ContactgroupListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Group" msprop:Generator_ColumnVarNameInTable="columnGroup" msprop:Generator_ColumnPropNameInRow="Group" msprop:Generator_ColumnPropNameInTable="GroupColumn" msprop:Generator_UserColumnName="Group" type="xs:string" minOccurs="0" />
+              <xs:element name="Primary_x0020_Group" msprop:Generator_ColumnVarNameInTable="columnPrimary_Group" msprop:Generator_ColumnPropNameInRow="Primary_Group" msprop:Generator_ColumnPropNameInTable="Primary_GroupColumn" msprop:Generator_UserColumnName="Primary Group" type="xs:string" minOccurs="0" />
+              <xs:element name="Under_x0020_Group" msprop:Generator_ColumnVarNameInTable="columnUnder_Group" msprop:Generator_ColumnPropNameInRow="Under_Group" msprop:Generator_ColumnPropNameInTable="Under_GroupColumn" msprop:Generator_UserColumnName="Under Group" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

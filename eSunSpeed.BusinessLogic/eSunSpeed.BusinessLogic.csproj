@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4BABD10D-CAEC-4E15-B4BF-1A215D19DC40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eSunSpeed.BusinessLogic</RootNamespace>
+    <AssemblyName>eSunSpeed.BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.4\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExecutivegroupBL.cs" />
+    <Compile Include="ContactgroupBL.cs" />
+    <Compile Include="AccountMaster.cs" />
+    <Compile Include="Analytics.cs" />
+    <Compile Include="Arch.cs" />
+    <Compile Include="AuthorMaster.cs" />
+    <Compile Include="CompanyBL.cs" />
+    <Compile Include="MasterseriesBL.cs" />
+    <Compile Include="MatRcvdBL.cs" />
+    <Compile Include="IssuedVoucherBL.cs" />
+    <Compile Include="PhysicalStockVoucherBL.cs" />
+    <Compile Include="ReceviedVoucherBL.cs" />
+    <Compile Include="RecieptVoucherBL.cs" />
+    <Compile Include="PaymentVoucherBL.cs" />
+    <Compile Include="JournalVoucherBL.cs" />
+    <Compile Include="DebitNoteBL.cs" />
+    <Compile Include="CreditNoteBL.cs" />
+    <Compile Include="DataRestoration.cs" />
+    <Compile Include="ContraVoucherBL.cs" />
+    <Compile Include="MatIssuedPartyBL.cs" />
+    <Compile Include="VatJournalBL.cs" />
+    <Compile Include="UnassembleVoucherBL.cs" />
+    <Compile Include="StockTransferBL.cs" />
+    <Compile Include="ProductionVoucherBL.cs" />
+    <Compile Include="PurchaseVoucherBL.cs" />
+    <Compile Include="SalesManBL.cs" />
+    <Compile Include="BillsofMaterialBL.cs" />
+    <Compile Include="CostCentreMasterBL.cs" />
+    <Compile Include="CostCentreGroupBL.cs" />
+    <Compile Include="CurrencyBL.cs" />
+    <Compile Include="BillSundryMaster.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="CommonArch.cs" />
+    <Compile Include="GeoConfigBL.cs" />
+    <Compile Include="DataSecurity.cs" />
+    <Compile Include="DiscountStructure.cs" />
+    <Compile Include="Expense.cs" />
+    <Compile Include="ExpenseReport.cs" />
+    <Compile Include="FinalizeReport.cs" />
+    <Compile Include="HomePageReport.cs" />
+    <Compile Include="ItemAnalyticArch.cs" />
+    <Compile Include="ItemGroupMasterBL.cs" />
+    <Compile Include="ItemMasterBL.cs" />
+    <Compile Include="Items.cs" />
+    <Compile Include="ItemWiseAnalytics.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MaterialCentreGroupMaster.cs" />
+    <Compile Include="MaterialCentreMasterBL.cs" />
+    <Compile Include="MonthlyReport.cs" />
+    <Compile Include="Preferences.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportArchitecture.cs" />
+    <Compile Include="Sales.cs" />
+    <Compile Include="PurchaseReturnVoucherBL.cs" />
+    <Compile Include="SalesReturnVoucherBL.cs" />
+    <Compile Include="SalesVoucher.cs" />
+    <Compile Include="SaleType.cs" />
+    <Compile Include="SessionParameters.cs" />
+    <Compile Include="StdNarrationMasterBL.cs" />
+    <Compile Include="STFormMasterBL.cs" />
+    <Compile Include="TaxCategory.cs" />
+    <Compile Include="UnitConversion.cs" />
+    <Compile Include="UnitMaster.cs" />
+    <Compile Include="UserAuthentication.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eSunSpeed.Configurations\eSunSpeed.Configurations.csproj">
+      <Project>{e76506d8-a18f-47ef-8745-f72f98c5d753}</Project>
+      <Name>eSunSpeed.Configurations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eSunSpeed.DataAccess\eSunSpeed.DataAccess.csproj">
+      <Project>{1c3a9a49-b1f5-4af1-a4fa-b8df4a8a2c77}</Project>
+      <Name>eSunSpeed.DataAccess</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\eSunSpeed.Formatting\eSunSpeed.Formatting.csproj">
+      <Project>{b9c9cd17-57cb-4f0b-9408-d23f927c12a2}</Project>
+      <Name>eSunSpeed.Formatting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eSunSpeedDomain\eSunSpeedDomain.csproj">
+      <Project>{4cb6460e-8efe-4019-a9c0-711ecb1f6557}</Project>
+      <Name>eSunSpeedDomain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StdnarrationList" targetNamespace="http://tempuri.org/StdnarrationList.xsd" xmlns:mstns="http://tempuri.org/StdnarrationList.xsd" xmlns="http://tempuri.org/StdnarrationList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StdnarrationList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StdnarrationList" msprop:Generator_UserDSName="StdnarrationList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StdnarrationListDt" msprop:Generator_TableClassName="StdnarrationListDtDataTable" msprop:Generator_TableVarName="tableStdnarrationListDt" msprop:Generator_TablePropName="StdnarrationListDt" msprop:Generator_RowDeletingName="StdnarrationListDtRowDeleting" msprop:Generator_RowChangingName="StdnarrationListDtRowChanging" msprop:Generator_RowEvHandlerName="StdnarrationListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="StdnarrationListDtRowDeleted" msprop:Generator_UserTableName="StdnarrationListDt" msprop:Generator_RowChangedName="StdnarrationListDtRowChanged" msprop:Generator_RowEvArgName="StdnarrationListDtRowChangeEvent" msprop:Generator_RowClassName="StdnarrationListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Voucher_x0020_Type" msprop:Generator_ColumnVarNameInTable="columnVoucher_Type" msprop:Generator_ColumnPropNameInRow="Voucher_Type" msprop:Generator_ColumnPropNameInTable="Voucher_TypeColumn" msprop:Generator_UserColumnName="Voucher Type" type="xs:string" minOccurs="0" />
+              <xs:element name="Narration_x0020_Line1" msprop:Generator_ColumnVarNameInTable="columnNarration_Line1" msprop:Generator_ColumnPropNameInRow="Narration_Line1" msprop:Generator_ColumnPropNameInTable="Narration_Line1Column" msprop:Generator_UserColumnName="Narration Line1" type="xs:string" minOccurs="0" />
+              <xs:element name="Narration_x0020_Line2" msprop:Generator_ColumnVarNameInTable="columnNarration_Line2" msprop:Generator_ColumnPropNameInRow="Narration_Line2" msprop:Generator_ColumnPropNameInTable="Narration_Line2Column" msprop:Generator_UserColumnName="Narration Line2" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

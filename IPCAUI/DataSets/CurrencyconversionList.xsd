@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CurrencyconversionList" targetNamespace="http://tempuri.org/CurrencyconversionList.xsd" xmlns:mstns="http://tempuri.org/CurrencyconversionList.xsd" xmlns="http://tempuri.org/CurrencyconversionList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CurrencyconversionList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CurrencyconversionList" msprop:Generator_UserDSName="CurrencyconversionList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CurrencyconversionListDt" msprop:Generator_TableClassName="CurrencyconversionListDtDataTable" msprop:Generator_TableVarName="tableCurrencyconversionListDt" msprop:Generator_TablePropName="CurrencyconversionListDt" msprop:Generator_RowDeletingName="CurrencyconversionListDtRowDeleting" msprop:Generator_RowChangingName="CurrencyconversionListDtRowChanging" msprop:Generator_RowEvHandlerName="CurrencyconversionListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="CurrencyconversionListDtRowDeleted" msprop:Generator_UserTableName="CurrencyconversionListDt" msprop:Generator_RowChangedName="CurrencyconversionListDtRowChanged" msprop:Generator_RowEvArgName="CurrencyconversionListDtRowChangeEvent" msprop:Generator_RowClassName="CurrencyconversionListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="Currency_x0020_Symbol" msprop:Generator_ColumnVarNameInTable="columnCurrency_Symbol" msprop:Generator_ColumnPropNameInRow="Currency_Symbol" msprop:Generator_ColumnPropNameInTable="Currency_SymbolColumn" msprop:Generator_UserColumnName="Currency Symbol" type="xs:string" minOccurs="0" />
+              <xs:element name="Std._x0020_Rate" msprop:Generator_ColumnVarNameInTable="_columnStd__Rate" msprop:Generator_ColumnPropNameInRow="_Std__Rate" msprop:Generator_ColumnPropNameInTable="_Std__RateColumn" msprop:Generator_UserColumnName="Std. Rate" type="xs:string" minOccurs="0" />
+              <xs:element name="Selling_x0020_Rate" msprop:Generator_ColumnVarNameInTable="columnSelling_Rate" msprop:Generator_ColumnPropNameInRow="Selling_Rate" msprop:Generator_ColumnPropNameInTable="Selling_RateColumn" msprop:Generator_UserColumnName="Selling Rate" type="xs:string" minOccurs="0" />
+              <xs:element name="Buying_x0020_rate" msprop:Generator_ColumnVarNameInTable="columnBuying_rate" msprop:Generator_ColumnPropNameInRow="Buying_rate" msprop:Generator_ColumnPropNameInTable="Buying_rateColumn" msprop:Generator_UserColumnName="Buying rate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ContactmasterList" targetNamespace="http://tempuri.org/ContactmasterList.xsd" xmlns:mstns="http://tempuri.org/ContactmasterList.xsd" xmlns="http://tempuri.org/ContactmasterList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ContactmasterList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ContactmasterList" msprop:Generator_UserDSName="ContactmasterList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ContactmasterListDt" msprop:Generator_TableClassName="ContactmasterListDtDataTable" msprop:Generator_TableVarName="tableContactmasterListDt" msprop:Generator_TablePropName="ContactmasterListDt" msprop:Generator_RowDeletingName="ContactmasterListDtRowDeleting" msprop:Generator_RowChangingName="ContactmasterListDtRowChanging" msprop:Generator_RowEvHandlerName="ContactmasterListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="ContactmasterListDtRowDeleted" msprop:Generator_UserTableName="ContactmasterListDt" msprop:Generator_RowChangedName="ContactmasterListDtRowChanged" msprop:Generator_RowEvArgName="ContactmasterListDtRowChangeEvent" msprop:Generator_RowClassName="ContactmasterListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Alias" msprop:Generator_ColumnVarNameInTable="columnAlias" msprop:Generator_ColumnPropNameInRow="Alias" msprop:Generator_ColumnPropNameInTable="AliasColumn" msprop:Generator_UserColumnName="Alias" type="xs:string" minOccurs="0" />
+              <xs:element name="Print_x0020_Name" msprop:Generator_ColumnVarNameInTable="columnPrint_Name" msprop:Generator_ColumnPropNameInRow="Print_Name" msprop:Generator_ColumnPropNameInTable="Print_NameColumn" msprop:Generator_UserColumnName="Print Name" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

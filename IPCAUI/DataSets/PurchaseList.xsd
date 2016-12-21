@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PurchaseList" targetNamespace="http://tempuri.org/PurchaseList.xsd" xmlns:mstns="http://tempuri.org/PurchaseList.xsd" xmlns="http://tempuri.org/PurchaseList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PurchaseList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PurchaseList" msprop:Generator_UserDSName="PurchaseList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PurchaseListDt" msprop:Generator_TableClassName="PurchaseListDtDataTable" msprop:Generator_TableVarName="tablePurchaseListDt" msprop:Generator_TablePropName="PurchaseListDt" msprop:Generator_RowDeletingName="PurchaseListDtRowDeleting" msprop:Generator_RowChangingName="PurchaseListDtRowChanging" msprop:Generator_RowEvHandlerName="PurchaseListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseListDtRowDeleted" msprop:Generator_UserTableName="PurchaseListDt" msprop:Generator_RowChangedName="PurchaseListDtRowChanged" msprop:Generator_RowEvArgName="PurchaseListDtRowChangeEvent" msprop:Generator_RowClassName="PurchaseListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Primary" msprop:Generator_ColumnVarNameInTable="columnPrimary" msprop:Generator_ColumnPropNameInRow="Primary" msprop:Generator_ColumnPropNameInTable="PrimaryColumn" msprop:Generator_UserColumnName="Primary" type="xs:string" minOccurs="0" />
+              <xs:element name="Under_x0020_Group" msprop:Generator_ColumnVarNameInTable="columnUnder_Group" msprop:Generator_ColumnPropNameInRow="Under_Group" msprop:Generator_ColumnPropNameInTable="Under_GroupColumn" msprop:Generator_UserColumnName="Under Group" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

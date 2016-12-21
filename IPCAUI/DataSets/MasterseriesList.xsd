@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MasterseriesList" targetNamespace="http://tempuri.org/MasterseriesList.xsd" xmlns:mstns="http://tempuri.org/MasterseriesList.xsd" xmlns="http://tempuri.org/MasterseriesList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MasterseriesList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MasterseriesList" msprop:Generator_UserDSName="MasterseriesList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MasterseriesListDt" msprop:Generator_TableClassName="MasterseriesListDtDataTable" msprop:Generator_TableVarName="tableMasterseriesListDt" msprop:Generator_TablePropName="MasterseriesListDt" msprop:Generator_RowDeletingName="MasterseriesListDtRowDeleting" msprop:Generator_RowChangingName="MasterseriesListDtRowChanging" msprop:Generator_RowEvHandlerName="MasterseriesListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="MasterseriesListDtRowDeleted" msprop:Generator_UserTableName="MasterseriesListDt" msprop:Generator_RowChangedName="MasterseriesListDtRowChanged" msprop:Generator_RowEvArgName="MasterseriesListDtRowChangeEvent" msprop:Generator_RowClassName="MasterseriesListDtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
