@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactmasterBL.cs" />
+    <Compile Include="CurrencyConversionBL .cs" />
+    <Compile Include="EmployeeMasterBL.cs" />
     <Compile Include="ExecutivegroupBL.cs" />
     <Compile Include="ContactgroupBL.cs" />
     <Compile Include="AccountMaster.cs" />
@@ -57,6 +60,8 @@
     <Compile Include="MatRcvdBL.cs" />
     <Compile Include="IssuedVoucherBL.cs" />
     <Compile Include="PhysicalStockVoucherBL.cs" />
+    <Compile Include="PurchaseTypeBL.cs" />
+    <Compile Include="PurchaseVoucher.cs" />
     <Compile Include="ReceviedVoucherBL.cs" />
     <Compile Include="RecieptVoucherBL.cs" />
     <Compile Include="PaymentVoucherBL.cs" />
@@ -66,6 +71,9 @@
     <Compile Include="DataRestoration.cs" />
     <Compile Include="ContraVoucherBL.cs" />
     <Compile Include="MatIssuedPartyBL.cs" />
+    <Compile Include="ReferenceGroupBL.cs" />
+    <Compile Include="TdsCategory .cs" />
+    <Compile Include="TdsModelBL.cs" />
     <Compile Include="VatJournalBL.cs" />
     <Compile Include="UnassembleVoucherBL.cs" />
     <Compile Include="StockTransferBL.cs" />
@@ -106,7 +114,6 @@
     <Compile Include="SessionParameters.cs" />
     <Compile Include="StdNarrationMasterBL.cs" />
     <Compile Include="STFormMasterBL.cs" />
-    <Compile Include="TaxCategory.cs" />
     <Compile Include="UnitConversion.cs" />
     <Compile Include="UnitMaster.cs" />
     <Compile Include="UserAuthentication.cs" />

@@ -610,6 +610,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BillsundaryList.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\BillSundryDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillSundryDs.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ContactgroupList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -672,6 +677,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ExecutivemasterList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ItemGridDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemGridDs.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\ItemgroupList.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -4327,6 +4337,17 @@
     <None Include="DataSets\BillsundaryList.xss">
       <DependentUpon>BillsundaryList.xsd</DependentUpon>
     </None>
+    <None Include="DataSets\BillSundryDs.xsc">
+      <DependentUpon>BillSundryDs.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BillSundryDs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BillSundryDs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\BillSundryDs.xss">
+      <DependentUpon>BillSundryDs.xsd</DependentUpon>
+    </None>
     <None Include="DataSets\ContactgroupList.xsc">
       <DependentUpon>ContactgroupList.xsd</DependentUpon>
     </None>
@@ -4458,6 +4479,17 @@
     </None>
     <None Include="DataSets\ExecutivemasterList.xss">
       <DependentUpon>ExecutivemasterList.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridDs.xsc">
+      <DependentUpon>ItemGridDs.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridDs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemGridDs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ItemGridDs.xss">
+      <DependentUpon>ItemGridDs.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ItemgroupList.xsc">
       <DependentUpon>ItemgroupList.xsd</DependentUpon>

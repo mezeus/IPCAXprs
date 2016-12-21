@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactmasterModel.cs" />
+    <Compile Include="CurrencyConversionModel .cs" />
+    <Compile Include="EmployeeMasterModel.cs" />
     <Compile Include="ExecutiveModel.cs" />
     <Compile Include="ContactgroupModel.cs" />
     <Compile Include="AccountGroupModel.cs" />
@@ -57,7 +60,9 @@
     <Compile Include="MasterseriesModel.cs" />
     <Compile Include="PhysicalStockModel.cs" />
     <Compile Include="PurchaseTypeModel.cs" />
+    <Compile Include="ReferenceGroupModel.cs" />
     <Compile Include="StockItemsModel.cs" />
+    <Compile Include="TdsModel.cs" />
     <Compile Include="VatJournalInputTaxModel.cs" />
     <Compile Include="VatJournalModel.cs" />
     <Compile Include="VatJournalOutputTaxModel.cs" />

@@ -20,17 +20,17 @@ namespace IPCAUI.DataSets {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("AccountSummaryDs")]
+    [global::System.Xml.Serialization.XmlRootAttribute("BillSundryDs")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class AccountSummaryDs : global::System.Data.DataSet {
+    public partial class BillSundryDs : global::System.Data.DataSet {
         
-        private AccountSummaryDtDataTable tableAccountSummaryDt;
+        private BillSundryDtDataTable tableBillSundryDt;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public AccountSummaryDs() {
+        public BillSundryDs() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace IPCAUI.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected AccountSummaryDs(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected BillSundryDs(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace IPCAUI.DataSets {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["AccountSummaryDt"] != null)) {
-                    base.Tables.Add(new AccountSummaryDtDataTable(ds.Tables["AccountSummaryDt"]));
+                if ((ds.Tables["BillSundryDt"] != null)) {
+                    base.Tables.Add(new BillSundryDtDataTable(ds.Tables["BillSundryDt"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace IPCAUI.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public AccountSummaryDtDataTable AccountSummaryDt {
+        public BillSundryDtDataTable BillSundryDt {
             get {
-                return this.tableAccountSummaryDt;
+                return this.tableBillSundryDt;
             }
         }
         
@@ -127,7 +127,7 @@ namespace IPCAUI.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            AccountSummaryDs cln = ((AccountSummaryDs)(base.Clone()));
+            BillSundryDs cln = ((BillSundryDs)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace IPCAUI.DataSets {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["AccountSummaryDt"] != null)) {
-                    base.Tables.Add(new AccountSummaryDtDataTable(ds.Tables["AccountSummaryDt"]));
+                if ((ds.Tables["BillSundryDt"] != null)) {
+                    base.Tables.Add(new BillSundryDtDataTable(ds.Tables["BillSundryDt"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace IPCAUI.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableAccountSummaryDt = ((AccountSummaryDtDataTable)(base.Tables["AccountSummaryDt"]));
+            this.tableBillSundryDt = ((BillSundryDtDataTable)(base.Tables["BillSundryDt"]));
             if ((initTable == true)) {
-                if ((this.tableAccountSummaryDt != null)) {
-                    this.tableAccountSummaryDt.InitVars();
+                if ((this.tableBillSundryDt != null)) {
+                    this.tableBillSundryDt.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace IPCAUI.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "AccountSummaryDs";
+            this.DataSetName = "BillSundryDs";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/AccountSummaryDs.xsd";
+            this.Namespace = "http://tempuri.org/BillSundryDs.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableAccountSummaryDt = new AccountSummaryDtDataTable();
-            base.Tables.Add(this.tableAccountSummaryDt);
+            this.tableBillSundryDt = new BillSundryDtDataTable();
+            base.Tables.Add(this.tableBillSundryDt);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeAccountSummaryDt() {
+        private bool ShouldSerializeBillSundryDt() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace IPCAUI.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            AccountSummaryDs ds = new AccountSummaryDs();
+            BillSundryDs ds = new BillSundryDs();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,19 +270,27 @@ namespace IPCAUI.DataSets {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void AccountSummaryDtRowChangeEventHandler(object sender, AccountSummaryDtRowChangeEvent e);
+        public delegate void BillSundryDtRowChangeEventHandler(object sender, BillSundryDtRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class AccountSummaryDtDataTable : global::System.Data.TypedTableBase<AccountSummaryDtRow> {
+        public partial class BillSundryDtDataTable : global::System.Data.TypedTableBase<BillSundryDtRow> {
+            
+            private global::System.Data.DataColumn columnBillSundry;
+            
+            private global::System.Data.DataColumn columnPercentage;
+            
+            private global::System.Data.DataColumn columnExtra;
+            
+            private global::System.Data.DataColumn columnAmount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtDataTable() {
-                this.TableName = "AccountSummaryDt";
+            public BillSundryDtDataTable() {
+                this.TableName = "BillSundryDt";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -290,7 +298,7 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal AccountSummaryDtDataTable(global::System.Data.DataTable table) {
+            internal BillSundryDtDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -307,9 +315,41 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected AccountSummaryDtDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected BillSundryDtDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BillSundryColumn {
+                get {
+                    return this.columnBillSundry;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PercentageColumn {
+                get {
+                    return this.columnPercentage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExtraColumn {
+                get {
+                    return this.columnExtra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AmountColumn {
+                get {
+                    return this.columnAmount;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -323,44 +363,48 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtRow this[int index] {
+            public BillSundryDtRow this[int index] {
                 get {
-                    return ((AccountSummaryDtRow)(this.Rows[index]));
+                    return ((BillSundryDtRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event AccountSummaryDtRowChangeEventHandler AccountSummaryDtRowChanging;
+            public event BillSundryDtRowChangeEventHandler BillSundryDtRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event AccountSummaryDtRowChangeEventHandler AccountSummaryDtRowChanged;
+            public event BillSundryDtRowChangeEventHandler BillSundryDtRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event AccountSummaryDtRowChangeEventHandler AccountSummaryDtRowDeleting;
+            public event BillSundryDtRowChangeEventHandler BillSundryDtRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event AccountSummaryDtRowChangeEventHandler AccountSummaryDtRowDeleted;
+            public event BillSundryDtRowChangeEventHandler BillSundryDtRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddAccountSummaryDtRow(AccountSummaryDtRow row) {
+            public void AddBillSundryDtRow(BillSundryDtRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtRow AddAccountSummaryDtRow() {
-                AccountSummaryDtRow rowAccountSummaryDtRow = ((AccountSummaryDtRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowAccountSummaryDtRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowAccountSummaryDtRow);
-                return rowAccountSummaryDtRow;
+            public BillSundryDtRow AddBillSundryDtRow(string BillSundry, string Percentage, string Extra, string Amount) {
+                BillSundryDtRow rowBillSundryDtRow = ((BillSundryDtRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        BillSundry,
+                        Percentage,
+                        Extra,
+                        Amount};
+                rowBillSundryDtRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowBillSundryDtRow);
+                return rowBillSundryDtRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                AccountSummaryDtDataTable cln = ((AccountSummaryDtDataTable)(base.Clone()));
+                BillSundryDtDataTable cln = ((BillSundryDtDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -368,43 +412,55 @@ namespace IPCAUI.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new AccountSummaryDtDataTable();
+                return new BillSundryDtDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnBillSundry = base.Columns["BillSundry"];
+                this.columnPercentage = base.Columns["Percentage"];
+                this.columnExtra = base.Columns["Extra"];
+                this.columnAmount = base.Columns["Amount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnBillSundry = new global::System.Data.DataColumn("BillSundry", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBillSundry);
+                this.columnPercentage = new global::System.Data.DataColumn("Percentage", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPercentage);
+                this.columnExtra = new global::System.Data.DataColumn("Extra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExtra);
+                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtRow NewAccountSummaryDtRow() {
-                return ((AccountSummaryDtRow)(this.NewRow()));
+            public BillSundryDtRow NewBillSundryDtRow() {
+                return ((BillSundryDtRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new AccountSummaryDtRow(builder);
+                return new BillSundryDtRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(AccountSummaryDtRow);
+                return typeof(BillSundryDtRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.AccountSummaryDtRowChanged != null)) {
-                    this.AccountSummaryDtRowChanged(this, new AccountSummaryDtRowChangeEvent(((AccountSummaryDtRow)(e.Row)), e.Action));
+                if ((this.BillSundryDtRowChanged != null)) {
+                    this.BillSundryDtRowChanged(this, new BillSundryDtRowChangeEvent(((BillSundryDtRow)(e.Row)), e.Action));
                 }
             }
             
@@ -412,8 +468,8 @@ namespace IPCAUI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.AccountSummaryDtRowChanging != null)) {
-                    this.AccountSummaryDtRowChanging(this, new AccountSummaryDtRowChangeEvent(((AccountSummaryDtRow)(e.Row)), e.Action));
+                if ((this.BillSundryDtRowChanging != null)) {
+                    this.BillSundryDtRowChanging(this, new BillSundryDtRowChangeEvent(((BillSundryDtRow)(e.Row)), e.Action));
                 }
             }
             
@@ -421,8 +477,8 @@ namespace IPCAUI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.AccountSummaryDtRowDeleted != null)) {
-                    this.AccountSummaryDtRowDeleted(this, new AccountSummaryDtRowChangeEvent(((AccountSummaryDtRow)(e.Row)), e.Action));
+                if ((this.BillSundryDtRowDeleted != null)) {
+                    this.BillSundryDtRowDeleted(this, new BillSundryDtRowChangeEvent(((BillSundryDtRow)(e.Row)), e.Action));
                 }
             }
             
@@ -430,14 +486,14 @@ namespace IPCAUI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.AccountSummaryDtRowDeleting != null)) {
-                    this.AccountSummaryDtRowDeleting(this, new AccountSummaryDtRowChangeEvent(((AccountSummaryDtRow)(e.Row)), e.Action));
+                if ((this.BillSundryDtRowDeleting != null)) {
+                    this.BillSundryDtRowDeleting(this, new BillSundryDtRowChangeEvent(((BillSundryDtRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveAccountSummaryDtRow(AccountSummaryDtRow row) {
+            public void RemoveBillSundryDtRow(BillSundryDtRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -446,7 +502,7 @@ namespace IPCAUI.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AccountSummaryDs ds = new AccountSummaryDs();
+                BillSundryDs ds = new BillSundryDs();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -464,7 +520,7 @@ namespace IPCAUI.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "AccountSummaryDtDataTable";
+                attribute2.FixedValue = "BillSundryDtDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -508,15 +564,127 @@ namespace IPCAUI.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class AccountSummaryDtRow : global::System.Data.DataRow {
+        public partial class BillSundryDtRow : global::System.Data.DataRow {
             
-            private AccountSummaryDtDataTable tableAccountSummaryDt;
+            private BillSundryDtDataTable tableBillSundryDt;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal AccountSummaryDtRow(global::System.Data.DataRowBuilder rb) : 
+            internal BillSundryDtRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableAccountSummaryDt = ((AccountSummaryDtDataTable)(this.Table));
+                this.tableBillSundryDt = ((BillSundryDtDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BillSundry {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillSundryDt.BillSundryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BillSundry\' in table \'BillSundryDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillSundryDt.BillSundryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Percentage {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillSundryDt.PercentageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Percentage\' in table \'BillSundryDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillSundryDt.PercentageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Extra {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillSundryDt.ExtraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Extra\' in table \'BillSundryDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillSundryDt.ExtraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Amount {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillSundryDt.AmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'BillSundryDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillSundryDt.AmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBillSundryNull() {
+                return this.IsNull(this.tableBillSundryDt.BillSundryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBillSundryNull() {
+                this[this.tableBillSundryDt.BillSundryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPercentageNull() {
+                return this.IsNull(this.tableBillSundryDt.PercentageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPercentageNull() {
+                this[this.tableBillSundryDt.PercentageColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExtraNull() {
+                return this.IsNull(this.tableBillSundryDt.ExtraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExtraNull() {
+                this[this.tableBillSundryDt.ExtraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAmountNull() {
+                return this.IsNull(this.tableBillSundryDt.AmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAmountNull() {
+                this[this.tableBillSundryDt.AmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -524,22 +692,22 @@ namespace IPCAUI.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class AccountSummaryDtRowChangeEvent : global::System.EventArgs {
+        public class BillSundryDtRowChangeEvent : global::System.EventArgs {
             
-            private AccountSummaryDtRow eventRow;
+            private BillSundryDtRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtRowChangeEvent(AccountSummaryDtRow row, global::System.Data.DataRowAction action) {
+            public BillSundryDtRowChangeEvent(BillSundryDtRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountSummaryDtRow Row {
+            public BillSundryDtRow Row {
                 get {
                     return this.eventRow;
                 }

@@ -30,6 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceiptVoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gdvPayment = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Account = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -66,21 +77,15 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gdvPayment = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Account = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -100,12 +105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,6 +131,131 @@
             this.layoutControl1.Size = new System.Drawing.Size(1006, 593);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // textEdit3
+            // 
+            this.textEdit3.Location = new System.Drawing.Point(920, 12);
+            this.textEdit3.Name = "textEdit3";
+            this.textEdit3.Size = new System.Drawing.Size(74, 20);
+            this.textEdit3.StyleController = this.layoutControl1;
+            this.textEdit3.TabIndex = 28;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(168, 36);
+            this.gridControl1.MainView = this.gdvPayment;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemTextEdit1,
+            this.repositoryItemLookUpEdit1});
+            this.gridControl1.Size = new System.Drawing.Size(826, 453);
+            this.gridControl1.TabIndex = 27;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvPayment});
+            // 
+            // gdvPayment
+            // 
+            this.gdvPayment.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.gdvPayment.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSNo,
+            this.DC,
+            this.colQty,
+            this.colCredit,
+            this.colNarration,
+            this.Account});
+            this.gdvPayment.GridControl = this.gridControl1;
+            this.gdvPayment.Name = "gdvPayment";
+            this.gdvPayment.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gdvPayment.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
+            this.gdvPayment.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.gdvPayment.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
+            this.gdvPayment.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
+            this.gdvPayment.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.gdvPayment.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.gdvPayment.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.gdvPayment.OptionsNavigation.AutoFocusNewRow = true;
+            this.gdvPayment.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gdvPayment.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.gdvPayment.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gdvPayment.OptionsView.ShowFooter = true;
+            this.gdvPayment.OptionsView.ShowGroupPanel = false;
+            // 
+            // colSNo
+            // 
+            this.colSNo.Caption = "SNo";
+            this.colSNo.Name = "colSNo";
+            this.colSNo.OptionsColumn.ReadOnly = true;
+            this.colSNo.Visible = true;
+            this.colSNo.VisibleIndex = 0;
+            this.colSNo.Width = 58;
+            // 
+            // DC
+            // 
+            this.DC.Caption = "D/C";
+            this.DC.FieldName = "DC";
+            this.DC.Name = "DC";
+            this.DC.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.DC.Visible = true;
+            this.DC.VisibleIndex = 1;
+            this.DC.Width = 45;
+            // 
+            // colQty
+            // 
+            this.colQty.Caption = "Debit(Rs.)";
+            this.colQty.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colQty.FieldName = "Debit";
+            this.colQty.Name = "colQty";
+            this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
+            this.colQty.Visible = true;
+            this.colQty.VisibleIndex = 3;
+            this.colQty.Width = 64;
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Strong;
+            this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // colCredit
+            // 
+            this.colCredit.Caption = "Credit(Rs.)";
+            this.colCredit.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colCredit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colCredit.FieldName = "Credit";
+            this.colCredit.Name = "colCredit";
+            this.colCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
+            this.colCredit.Visible = true;
+            this.colCredit.VisibleIndex = 4;
+            this.colCredit.Width = 64;
+            // 
+            // colNarration
+            // 
+            this.colNarration.Caption = "Short Narration";
+            this.colNarration.FieldName = "Narration";
+            this.colNarration.Name = "colNarration";
+            this.colNarration.Visible = true;
+            this.colNarration.VisibleIndex = 5;
+            this.colNarration.Width = 378;
+            // 
+            // Account
+            // 
+            this.Account.Caption = "Account";
+            this.Account.FieldName = "Account";
+            this.Account.Name = "Account";
+            this.Account.Visible = true;
+            this.Account.VisibleIndex = 2;
+            this.Account.Width = 199;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
             // textEdit1
             // 
@@ -459,123 +584,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // gridControl1
-            // 
-            this.gridControl1.Location = new System.Drawing.Point(168, 36);
-            this.gridControl1.MainView = this.gdvPayment;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1,
-            this.repositoryItemLookUpEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(826, 453);
-            this.gridControl1.TabIndex = 27;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvPayment});
-            // 
-            // gdvPayment
-            // 
-            this.gdvPayment.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.gdvPayment.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colSNo,
-            this.DC,
-            this.colQty,
-            this.colCredit,
-            this.colNarration,
-            this.Account});
-            this.gdvPayment.GridControl = this.gridControl1;
-            this.gdvPayment.Name = "gdvPayment";
-            this.gdvPayment.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gdvPayment.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.gdvPayment.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
-            this.gdvPayment.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
-            this.gdvPayment.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
-            this.gdvPayment.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
-            this.gdvPayment.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.gdvPayment.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.gdvPayment.OptionsNavigation.AutoFocusNewRow = true;
-            this.gdvPayment.OptionsNavigation.EnterMoveNextColumn = true;
-            this.gdvPayment.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.gdvPayment.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.gdvPayment.OptionsView.ShowFooter = true;
-            this.gdvPayment.OptionsView.ShowGroupPanel = false;
-            // 
-            // colSNo
-            // 
-            this.colSNo.Caption = "SNo";
-            this.colSNo.Name = "colSNo";
-            this.colSNo.OptionsColumn.ReadOnly = true;
-            this.colSNo.Visible = true;
-            this.colSNo.VisibleIndex = 0;
-            this.colSNo.Width = 58;
-            // 
-            // DC
-            // 
-            this.DC.Caption = "D/C";
-            this.DC.FieldName = "DC";
-            this.DC.Name = "DC";
-            this.DC.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
-            this.DC.Visible = true;
-            this.DC.VisibleIndex = 1;
-            this.DC.Width = 45;
-            // 
-            // colQty
-            // 
-            this.colQty.Caption = "Debit(Rs.)";
-            this.colQty.ColumnEdit = this.repositoryItemTextEdit1;
-            this.colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colQty.FieldName = "Debit";
-            this.colQty.Name = "colQty";
-            this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
-            this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 3;
-            this.colQty.Width = 64;
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Strong;
-            this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
-            // colCredit
-            // 
-            this.colCredit.Caption = "Credit(Rs.)";
-            this.colCredit.ColumnEdit = this.repositoryItemTextEdit1;
-            this.colCredit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colCredit.FieldName = "Credit";
-            this.colCredit.Name = "colCredit";
-            this.colCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
-            this.colCredit.Visible = true;
-            this.colCredit.VisibleIndex = 4;
-            this.colCredit.Width = 64;
-            // 
-            // colNarration
-            // 
-            this.colNarration.Caption = "Short Narration";
-            this.colNarration.FieldName = "Narration";
-            this.colNarration.Name = "colNarration";
-            this.colNarration.Visible = true;
-            this.colNarration.VisibleIndex = 5;
-            this.colNarration.Width = 378;
-            // 
-            // Account
-            // 
-            this.Account.Caption = "Account";
-            this.Account.FieldName = "Account";
-            this.Account.Name = "Account";
-            this.Account.Visible = true;
-            this.Account.VisibleIndex = 2;
-            this.Account.Width = 199;
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.gridControl1;
@@ -584,14 +592,6 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(830, 457);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.Location = new System.Drawing.Point(920, 12);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(74, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 28;
             // 
             // layoutControlItem6
             // 
@@ -613,6 +613,11 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -632,12 +637,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             this.ResumeLayout(false);
 
