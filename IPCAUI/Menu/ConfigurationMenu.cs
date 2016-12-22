@@ -40,5 +40,21 @@ namespace IPCAUI.Menu
         {
 
         }
+
+        private void ribbonControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Inventory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Settings.Inventorysettings frm;
+            frm = new Settings.Inventorysettings(); //generate new instance 
+            //frm.Owner = this;
+            //frm.TopLevel = false;
+
+            //spli.Panel2.Controls.Add(frm);
+            frm.ShowDialog();
+        }
     }
 }

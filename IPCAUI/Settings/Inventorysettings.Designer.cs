@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.cbxItemwisemarkup = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxDontMaintainStockBalance = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.chkEnableScheme = new DevExpress.XtraEditors.CheckEdit();
+            this.cbxTagstockAccwith = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxSalePurcAcc = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxStockvalmethod = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxItemwisetype = new DevExpress.XtraEditors.ComboBoxEdit();
             this.chkEnablepackingDetails = new DevExpress.XtraEditors.CheckEdit();
             this.chkUpdatePrices = new DevExpress.XtraEditors.CheckEdit();
             this.chkCalculateItemsale = new DevExpress.XtraEditors.CheckEdit();
@@ -128,22 +135,22 @@
             this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem49 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.cbxItemwisetype = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem52 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxStockvalmethod = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxSalePurcAcc = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxTagstockAccwith = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkEnableScheme = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxDontMaintainStockBalance = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxItemwisemarkup = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem50 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisemarkup.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDontMaintainStockBalance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEnableScheme.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTagstockAccwith.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSalePurcAcc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxStockvalmethod.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisetype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnablepackingDetails.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkUpdatePrices.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCalculateItemsale.Properties)).BeginInit();
@@ -240,20 +247,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisetype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStockvalmethod.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSalePurcAcc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTagstockAccwith.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnableScheme.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDontMaintainStockBalance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisemarkup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -320,8 +320,109 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // cbxItemwisemarkup
+            // 
+            this.cbxItemwisemarkup.EnterMoveNextControl = true;
+            this.cbxItemwisemarkup.Location = new System.Drawing.Point(638, 573);
+            this.cbxItemwisemarkup.Name = "cbxItemwisemarkup";
+            this.cbxItemwisemarkup.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxItemwisemarkup.Properties.Appearance.Options.UseFont = true;
+            this.cbxItemwisemarkup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxItemwisemarkup.Properties.Items.AddRange(new object[] {
+            "Not Requried"});
+            this.cbxItemwisemarkup.Size = new System.Drawing.Size(288, 20);
+            this.cbxItemwisemarkup.StyleController = this.layoutControl1;
+            this.cbxItemwisemarkup.TabIndex = 93;
+            // 
+            // cbxDontMaintainStockBalance
+            // 
+            this.cbxDontMaintainStockBalance.EnterMoveNextControl = true;
+            this.cbxDontMaintainStockBalance.Location = new System.Drawing.Point(638, 549);
+            this.cbxDontMaintainStockBalance.Name = "cbxDontMaintainStockBalance";
+            this.cbxDontMaintainStockBalance.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxDontMaintainStockBalance.Properties.Appearance.Options.UseFont = true;
+            this.cbxDontMaintainStockBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxDontMaintainStockBalance.Properties.Items.AddRange(new object[] {
+            "At Item Level"});
+            this.cbxDontMaintainStockBalance.Size = new System.Drawing.Size(288, 20);
+            this.cbxDontMaintainStockBalance.StyleController = this.layoutControl1;
+            this.cbxDontMaintainStockBalance.TabIndex = 92;
+            // 
+            // chkEnableScheme
+            // 
+            this.chkEnableScheme.EnterMoveNextControl = true;
+            this.chkEnableScheme.Location = new System.Drawing.Point(471, 135);
+            this.chkEnableScheme.Name = "chkEnableScheme";
+            this.chkEnableScheme.Properties.Caption = "Enable Scheme";
+            this.chkEnableScheme.Size = new System.Drawing.Size(455, 19);
+            this.chkEnableScheme.StyleController = this.layoutControl1;
+            this.chkEnableScheme.TabIndex = 91;
+            // 
+            // cbxTagstockAccwith
+            // 
+            this.cbxTagstockAccwith.EnterMoveNextControl = true;
+            this.cbxTagstockAccwith.Location = new System.Drawing.Point(639, 88);
+            this.cbxTagstockAccwith.Name = "cbxTagstockAccwith";
+            this.cbxTagstockAccwith.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTagstockAccwith.Properties.Appearance.Options.UseFont = true;
+            this.cbxTagstockAccwith.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxTagstockAccwith.Properties.Items.AddRange(new object[] {
+            "Material Center"});
+            this.cbxTagstockAccwith.Size = new System.Drawing.Size(287, 20);
+            this.cbxTagstockAccwith.StyleController = this.layoutControl1;
+            this.cbxTagstockAccwith.TabIndex = 90;
+            // 
+            // cbxSalePurcAcc
+            // 
+            this.cbxSalePurcAcc.EnterMoveNextControl = true;
+            this.cbxSalePurcAcc.Location = new System.Drawing.Point(640, 64);
+            this.cbxSalePurcAcc.Name = "cbxSalePurcAcc";
+            this.cbxSalePurcAcc.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxSalePurcAcc.Properties.Appearance.Options.UseFont = true;
+            this.cbxSalePurcAcc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSalePurcAcc.Properties.Items.AddRange(new object[] {
+            "Sale/Purc Type"});
+            this.cbxSalePurcAcc.Size = new System.Drawing.Size(286, 20);
+            this.cbxSalePurcAcc.StyleController = this.layoutControl1;
+            this.cbxSalePurcAcc.TabIndex = 89;
+            // 
+            // cbxStockvalmethod
+            // 
+            this.cbxStockvalmethod.EnterMoveNextControl = true;
+            this.cbxStockvalmethod.Location = new System.Drawing.Point(640, 40);
+            this.cbxStockvalmethod.Name = "cbxStockvalmethod";
+            this.cbxStockvalmethod.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxStockvalmethod.Properties.Appearance.Options.UseFont = true;
+            this.cbxStockvalmethod.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxStockvalmethod.Properties.Items.AddRange(new object[] {
+            "Weighted Average"});
+            this.cbxStockvalmethod.Size = new System.Drawing.Size(286, 20);
+            this.cbxStockvalmethod.StyleController = this.layoutControl1;
+            this.cbxStockvalmethod.TabIndex = 88;
+            // 
+            // cbxItemwisetype
+            // 
+            this.cbxItemwisetype.EnterMoveNextControl = true;
+            this.cbxItemwisetype.Location = new System.Drawing.Point(180, 549);
+            this.cbxItemwisetype.Name = "cbxItemwisetype";
+            this.cbxItemwisetype.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxItemwisetype.Properties.Appearance.Options.UseFont = true;
+            this.cbxItemwisetype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxItemwisetype.Properties.Items.AddRange(new object[] {
+            "Simple Discount"});
+            this.cbxItemwisetype.Size = new System.Drawing.Size(286, 20);
+            this.cbxItemwisetype.StyleController = this.layoutControl1;
+            this.cbxItemwisetype.TabIndex = 87;
+            // 
             // chkEnablepackingDetails
             // 
+            this.chkEnablepackingDetails.EnterMoveNextControl = true;
             this.chkEnablepackingDetails.Location = new System.Drawing.Point(470, 526);
             this.chkEnablepackingDetails.Name = "chkEnablepackingDetails";
             this.chkEnablepackingDetails.Properties.Caption = "Enable Packing Details in Vouchers";
@@ -331,6 +432,7 @@
             // 
             // chkUpdatePrices
             // 
+            this.chkUpdatePrices.EnterMoveNextControl = true;
             this.chkUpdatePrices.Location = new System.Drawing.Point(470, 503);
             this.chkUpdatePrices.Name = "chkUpdatePrices";
             this.chkUpdatePrices.Properties.Caption = "Update Prices in Item Master";
@@ -340,6 +442,7 @@
             // 
             // chkCalculateItemsale
             // 
+            this.chkCalculateItemsale.EnterMoveNextControl = true;
             this.chkCalculateItemsale.Location = new System.Drawing.Point(470, 480);
             this.chkCalculateItemsale.Name = "chkCalculateItemsale";
             this.chkCalculateItemsale.Properties.Caption = "Calculate Item Sale  Price From Purchase Price";
@@ -349,6 +452,7 @@
             // 
             // chkEnableDatewiseItemPricing
             // 
+            this.chkEnableDatewiseItemPricing.EnterMoveNextControl = true;
             this.chkEnableDatewiseItemPricing.Location = new System.Drawing.Point(470, 457);
             this.chkEnableDatewiseItemPricing.Name = "chkEnableDatewiseItemPricing";
             this.chkEnableDatewiseItemPricing.Properties.Caption = "Enable Date Wise Item Pricing";
@@ -358,6 +462,7 @@
             // 
             // chkMaintaindurgLice
             // 
+            this.chkMaintaindurgLice.EnterMoveNextControl = true;
             this.chkMaintaindurgLice.Location = new System.Drawing.Point(470, 434);
             this.chkMaintaindurgLice.Name = "chkMaintaindurgLice";
             this.chkMaintaindurgLice.Properties.Caption = "Maintain Durg Licence";
@@ -367,6 +472,7 @@
             // 
             // chkShowItemscurrentBalance
             // 
+            this.chkShowItemscurrentBalance.EnterMoveNextControl = true;
             this.chkShowItemscurrentBalance.Location = new System.Drawing.Point(470, 411);
             this.chkShowItemscurrentBalance.Name = "chkShowItemscurrentBalance";
             this.chkShowItemscurrentBalance.Properties.Caption = "Show Items Current Balance During Voucher Entry";
@@ -376,6 +482,7 @@
             // 
             // chkMaintainimage
             // 
+            this.chkMaintainimage.EnterMoveNextControl = true;
             this.chkMaintainimage.Location = new System.Drawing.Point(470, 388);
             this.chkMaintainimage.Name = "chkMaintainimage";
             this.chkMaintainimage.Properties.Caption = "Maintain Images/Notes With Masters/Vouchers";
@@ -385,6 +492,7 @@
             // 
             // chkAllowExpensetoItems
             // 
+            this.chkAllowExpensetoItems.EnterMoveNextControl = true;
             this.chkAllowExpensetoItems.Location = new System.Drawing.Point(470, 365);
             this.chkAllowExpensetoItems.Name = "chkAllowExpensetoItems";
             this.chkAllowExpensetoItems.Properties.Caption = "Allocate Expense/Purc. to Items  ";
@@ -394,6 +502,7 @@
             // 
             // chkAllowExpensesVoucherwise
             // 
+            this.chkAllowExpensesVoucherwise.EnterMoveNextControl = true;
             this.chkAllowExpensesVoucherwise.Location = new System.Drawing.Point(470, 342);
             this.chkAllowExpensesVoucherwise.Name = "chkAllowExpensesVoucherwise";
             this.chkAllowExpensesVoucherwise.Properties.Caption = "Allocate Aditional Expenses Voucher-Wise";
@@ -403,6 +512,7 @@
             // 
             // chkTransDuringPurchase
             // 
+            this.chkTransDuringPurchase.EnterMoveNextControl = true;
             this.chkTransDuringPurchase.Location = new System.Drawing.Point(470, 319);
             this.chkTransDuringPurchase.Name = "chkTransDuringPurchase";
             this.chkTransDuringPurchase.Properties.Caption = "Show Last Transaction During Purchase";
@@ -412,6 +522,7 @@
             // 
             // chkTransationduringsales
             // 
+            this.chkTransationduringsales.EnterMoveNextControl = true;
             this.chkTransationduringsales.Location = new System.Drawing.Point(470, 296);
             this.chkTransationduringsales.Name = "chkTransationduringsales";
             this.chkTransationduringsales.Properties.Caption = "Show Last Transaction  During Sales";
@@ -421,6 +532,7 @@
             // 
             // chkEnablefreeQuantity
             // 
+            this.chkEnablefreeQuantity.EnterMoveNextControl = true;
             this.chkEnablefreeQuantity.Location = new System.Drawing.Point(470, 273);
             this.chkEnablefreeQuantity.Name = "chkEnablefreeQuantity";
             this.chkEnablefreeQuantity.Properties.Caption = "Enable Free Quantity in Vouchers";
@@ -430,6 +542,7 @@
             // 
             // chkItemdefaultPrise
             // 
+            this.chkItemdefaultPrise.EnterMoveNextControl = true;
             this.chkItemdefaultPrise.Location = new System.Drawing.Point(470, 250);
             this.chkItemdefaultPrise.Name = "chkItemdefaultPrise";
             this.chkItemdefaultPrise.Properties.Caption = "Skip Items Default Prise During Voucher Modification";
@@ -439,6 +552,7 @@
             // 
             // chkMrpWise
             // 
+            this.chkMrpWise.EnterMoveNextControl = true;
             this.chkMrpWise.Location = new System.Drawing.Point(470, 227);
             this.chkMrpWise.Name = "chkMrpWise";
             this.chkMrpWise.Properties.Caption = "MRP-Wise Details";
@@ -448,6 +562,7 @@
             // 
             // chkSerialnoWise
             // 
+            this.chkSerialnoWise.EnterMoveNextControl = true;
             this.chkSerialnoWise.Location = new System.Drawing.Point(470, 204);
             this.chkSerialnoWise.Name = "chkSerialnoWise";
             this.chkSerialnoWise.Properties.Caption = "Serial No.-Wise Details";
@@ -457,6 +572,7 @@
             // 
             // chkBatchwise
             // 
+            this.chkBatchwise.EnterMoveNextControl = true;
             this.chkBatchwise.Location = new System.Drawing.Point(470, 181);
             this.chkBatchwise.Name = "chkBatchwise";
             this.chkBatchwise.Properties.Caption = "Batch-Wise datails";
@@ -466,6 +582,7 @@
             // 
             // chkParmeterrized
             // 
+            this.chkParmeterrized.EnterMoveNextControl = true;
             this.chkParmeterrized.Location = new System.Drawing.Point(470, 158);
             this.chkParmeterrized.Name = "chkParmeterrized";
             this.chkParmeterrized.Properties.Caption = "Parameterized Details ";
@@ -475,6 +592,7 @@
             // 
             // chkEnablejobwork
             // 
+            this.chkEnablejobwork.EnterMoveNextControl = true;
             this.chkEnablejobwork.Location = new System.Drawing.Point(471, 112);
             this.chkEnablejobwork.Name = "chkEnablejobwork";
             this.chkEnablejobwork.Properties.Caption = "Enable Job Work";
@@ -484,6 +602,7 @@
             // 
             // chkInvoicebarcodePrinting
             // 
+            this.chkInvoicebarcodePrinting.EnterMoveNextControl = true;
             this.chkInvoicebarcodePrinting.Location = new System.Drawing.Point(12, 526);
             this.chkInvoicebarcodePrinting.Name = "chkInvoicebarcodePrinting";
             this.chkInvoicebarcodePrinting.Properties.Caption = "Invoice Bar Code Printing(2D)";
@@ -493,6 +612,7 @@
             // 
             // chkEnableBillsudarynarration
             // 
+            this.chkEnableBillsudarynarration.EnterMoveNextControl = true;
             this.chkEnableBillsudarynarration.Location = new System.Drawing.Point(12, 503);
             this.chkEnableBillsudarynarration.Name = "chkEnableBillsudarynarration";
             this.chkEnableBillsudarynarration.Properties.Caption = "Enable Bill Sundary Narration";
@@ -502,6 +622,7 @@
             // 
             // chkValidatePurcwithOp
             // 
+            this.chkValidatePurcwithOp.EnterMoveNextControl = true;
             this.chkValidatePurcwithOp.Location = new System.Drawing.Point(12, 480);
             this.chkValidatePurcwithOp.Name = "chkValidatePurcwithOp";
             this.chkValidatePurcwithOp.Properties.Caption = "Validation Purc. Return With Orginal Purchase";
@@ -511,6 +632,7 @@
             // 
             // chkValidatesaleswithos
             // 
+            this.chkValidatesaleswithos.EnterMoveNextControl = true;
             this.chkValidatesaleswithos.Location = new System.Drawing.Point(12, 457);
             this.chkValidatesaleswithos.Name = "chkValidatesaleswithos";
             this.chkValidatesaleswithos.Properties.Caption = "Validation Sales Return With Orginal Sales";
@@ -520,6 +642,7 @@
             // 
             // chkAllowPurchaseReturninpv
             // 
+            this.chkAllowPurchaseReturninpv.EnterMoveNextControl = true;
             this.chkAllowPurchaseReturninpv.Location = new System.Drawing.Point(12, 434);
             this.chkAllowPurchaseReturninpv.Name = "chkAllowPurchaseReturninpv";
             this.chkAllowPurchaseReturninpv.Properties.Caption = "Allow Purchase Return in Purchase Voucher";
@@ -529,22 +652,31 @@
             // 
             // tbxItemwiseDp
             // 
+            this.tbxItemwiseDp.EditValue = "2";
+            this.tbxItemwiseDp.EnterMoveNextControl = true;
             this.tbxItemwiseDp.Location = new System.Drawing.Point(180, 64);
             this.tbxItemwiseDp.Name = "tbxItemwiseDp";
+            this.tbxItemwiseDp.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tbxItemwiseDp.Properties.Appearance.Options.UseFont = true;
             this.tbxItemwiseDp.Size = new System.Drawing.Size(288, 20);
             this.tbxItemwiseDp.StyleController = this.layoutControl1;
             this.tbxItemwiseDp.TabIndex = 56;
             // 
             // tbxDecimalpla
             // 
+            this.tbxDecimalpla.EditValue = "2";
+            this.tbxDecimalpla.EnterMoveNextControl = true;
             this.tbxDecimalpla.Location = new System.Drawing.Point(180, 40);
             this.tbxDecimalpla.Name = "tbxDecimalpla";
+            this.tbxDecimalpla.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tbxDecimalpla.Properties.Appearance.Options.UseFont = true;
             this.tbxDecimalpla.Size = new System.Drawing.Size(288, 20);
             this.tbxDecimalpla.StyleController = this.layoutControl1;
             this.tbxDecimalpla.TabIndex = 55;
             // 
             // chkAllowsalesreturnSalesvoucher
             // 
+            this.chkAllowsalesreturnSalesvoucher.EnterMoveNextControl = true;
             this.chkAllowsalesreturnSalesvoucher.Location = new System.Drawing.Point(12, 411);
             this.chkAllowsalesreturnSalesvoucher.Name = "chkAllowsalesreturnSalesvoucher";
             this.chkAllowsalesreturnSalesvoucher.Properties.Caption = "Allow Sales Return in Sales Voucher";
@@ -554,6 +686,7 @@
             // 
             // chkEnablePartywiseItems
             // 
+            this.chkEnablePartywiseItems.EnterMoveNextControl = true;
             this.chkEnablePartywiseItems.Location = new System.Drawing.Point(12, 388);
             this.chkEnablePartywiseItems.Name = "chkEnablePartywiseItems";
             this.chkEnablePartywiseItems.Properties.Caption = "Enable Party-Wise Items Codes";
@@ -563,6 +696,7 @@
             // 
             // chkAccountinginPureInventory
             // 
+            this.chkAccountinginPureInventory.EnterMoveNextControl = true;
             this.chkAccountinginPureInventory.Location = new System.Drawing.Point(12, 365);
             this.chkAccountinginPureInventory.Name = "chkAccountinginPureInventory";
             this.chkAccountinginPureInventory.Properties.Caption = "Accounting in Pure Inventory Vouchers";
@@ -572,6 +706,7 @@
             // 
             // chkSeparatestockvalation
             // 
+            this.chkSeparatestockvalation.EnterMoveNextControl = true;
             this.chkSeparatestockvalation.Location = new System.Drawing.Point(12, 342);
             this.chkSeparatestockvalation.Name = "chkSeparatestockvalation";
             this.chkSeparatestockvalation.Properties.Caption = "Separate Stock Valuation Method for Items";
@@ -581,6 +716,7 @@
             // 
             // chkSeparateStockUpdationDual
             // 
+            this.chkSeparateStockUpdationDual.EnterMoveNextControl = true;
             this.chkSeparateStockUpdationDual.Location = new System.Drawing.Point(12, 319);
             this.chkSeparateStockUpdationDual.Name = "chkSeparateStockUpdationDual";
             this.chkSeparateStockUpdationDual.Properties.Caption = "Separate Stock Updation Date in Dual Vouchers ";
@@ -590,6 +726,7 @@
             // 
             // chkPickItemSizeingInformation
             // 
+            this.chkPickItemSizeingInformation.EnterMoveNextControl = true;
             this.chkPickItemSizeingInformation.Location = new System.Drawing.Point(12, 296);
             this.chkPickItemSizeingInformation.Name = "chkPickItemSizeingInformation";
             this.chkPickItemSizeingInformation.Properties.Caption = "Pick Item Sizing Information From Item Description";
@@ -599,6 +736,7 @@
             // 
             // chkCarrymaterialIssued
             // 
+            this.chkCarrymaterialIssued.EnterMoveNextControl = true;
             this.chkCarrymaterialIssued.Location = new System.Drawing.Point(12, 273);
             this.chkCarrymaterialIssued.Name = "chkCarrymaterialIssued";
             this.chkCarrymaterialIssued.Properties.Caption = "Carry Pending Material Issued/Reciept Next F.Y";
@@ -608,6 +746,7 @@
             // 
             // chkEnableSalPurcChallan
             // 
+            this.chkEnableSalPurcChallan.EnterMoveNextControl = true;
             this.chkEnableSalPurcChallan.Location = new System.Drawing.Point(12, 250);
             this.chkEnableSalPurcChallan.Name = "chkEnableSalPurcChallan";
             this.chkEnableSalPurcChallan.Properties.Caption = "Enable Sale / Purchase Challan";
@@ -617,6 +756,7 @@
             // 
             // chkEnableOrderProc
             // 
+            this.chkEnableOrderProc.EnterMoveNextControl = true;
             this.chkEnableOrderProc.Location = new System.Drawing.Point(12, 227);
             this.chkEnableOrderProc.Name = "chkEnableOrderProc";
             this.chkEnableOrderProc.Properties.Caption = "Enable Order Processing";
@@ -626,6 +766,7 @@
             // 
             // chkEnablePurQuation
             // 
+            this.chkEnablePurQuation.EnterMoveNextControl = true;
             this.chkEnablePurQuation.Location = new System.Drawing.Point(12, 204);
             this.chkEnablePurQuation.Name = "chkEnablePurQuation";
             this.chkEnablePurQuation.Properties.Caption = "Enable Purchase Quotation";
@@ -635,6 +776,7 @@
             // 
             // chkEnableSalesquation
             // 
+            this.chkEnableSalesquation.EnterMoveNextControl = true;
             this.chkEnableSalesquation.Location = new System.Drawing.Point(12, 181);
             this.chkEnableSalesquation.Name = "chkEnableSalesquation";
             this.chkEnableSalesquation.Properties.Caption = "Enable Sales Quotation";
@@ -644,6 +786,7 @@
             // 
             // chkMultifeature
             // 
+            this.chkMultifeature.EnterMoveNextControl = true;
             this.chkMultifeature.Location = new System.Drawing.Point(12, 158);
             this.chkMultifeature.Name = "chkMultifeature";
             this.chkMultifeature.Properties.Caption = "Enable Manufaturing Features";
@@ -653,6 +796,7 @@
             // 
             // chkEnablemultiGowon
             // 
+            this.chkEnablemultiGowon.EnterMoveNextControl = true;
             this.chkEnablemultiGowon.Location = new System.Drawing.Point(12, 134);
             this.chkEnablemultiGowon.Name = "chkEnablemultiGowon";
             this.chkEnablemultiGowon.Properties.Caption = "Enable Multi-Godwon Inventory";
@@ -662,6 +806,7 @@
             // 
             // chkBudgets
             // 
+            this.chkBudgets.EnterMoveNextControl = true;
             this.chkBudgets.Location = new System.Drawing.Point(12, 111);
             this.chkBudgets.Name = "chkBudgets";
             this.chkBudgets.Properties.Caption = "Budgets";
@@ -671,6 +816,7 @@
             // 
             // chkUnititems
             // 
+            this.chkUnititems.EnterMoveNextControl = true;
             this.chkUnititems.Location = new System.Drawing.Point(12, 88);
             this.chkUnititems.Name = "chkUnititems";
             this.chkUnititems.Properties.Caption = "Altenate Units Of Items";
@@ -1258,16 +1404,6 @@
             this.emptySpaceItem9.Size = new System.Drawing.Size(918, 10);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // cbxItemwisetype
-            // 
-            this.cbxItemwisetype.Location = new System.Drawing.Point(180, 549);
-            this.cbxItemwisetype.Name = "cbxItemwisetype";
-            this.cbxItemwisetype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxItemwisetype.Size = new System.Drawing.Size(286, 20);
-            this.cbxItemwisetype.StyleController = this.layoutControl1;
-            this.cbxItemwisetype.TabIndex = 87;
-            // 
             // layoutControlItem52
             // 
             this.layoutControlItem52.Control = this.cbxItemwisetype;
@@ -1276,16 +1412,6 @@
             this.layoutControlItem52.Size = new System.Drawing.Size(458, 48);
             this.layoutControlItem52.Text = "Item-Wise Discount Type";
             this.layoutControlItem52.TextSize = new System.Drawing.Size(165, 13);
-            // 
-            // cbxStockvalmethod
-            // 
-            this.cbxStockvalmethod.Location = new System.Drawing.Point(640, 40);
-            this.cbxStockvalmethod.Name = "cbxStockvalmethod";
-            this.cbxStockvalmethod.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxStockvalmethod.Size = new System.Drawing.Size(286, 20);
-            this.cbxStockvalmethod.StyleController = this.layoutControl1;
-            this.cbxStockvalmethod.TabIndex = 88;
             // 
             // layoutControlItem29
             // 
@@ -1296,16 +1422,6 @@
             this.layoutControlItem29.Text = "Stock Val. Method";
             this.layoutControlItem29.TextSize = new System.Drawing.Size(165, 13);
             // 
-            // cbxSalePurcAcc
-            // 
-            this.cbxSalePurcAcc.Location = new System.Drawing.Point(640, 64);
-            this.cbxSalePurcAcc.Name = "cbxSalePurcAcc";
-            this.cbxSalePurcAcc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSalePurcAcc.Size = new System.Drawing.Size(286, 20);
-            this.cbxSalePurcAcc.StyleController = this.layoutControl1;
-            this.cbxSalePurcAcc.TabIndex = 89;
-            // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.cbxSalePurcAcc;
@@ -1314,53 +1430,6 @@
             this.layoutControlItem22.Size = new System.Drawing.Size(458, 24);
             this.layoutControlItem22.Text = "Tag Sale/Purc Acc. With";
             this.layoutControlItem22.TextSize = new System.Drawing.Size(165, 13);
-            // 
-            // cbxTagstockAccwith
-            // 
-            this.cbxTagstockAccwith.Location = new System.Drawing.Point(639, 88);
-            this.cbxTagstockAccwith.Name = "cbxTagstockAccwith";
-            this.cbxTagstockAccwith.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxTagstockAccwith.Size = new System.Drawing.Size(287, 20);
-            this.cbxTagstockAccwith.StyleController = this.layoutControl1;
-            this.cbxTagstockAccwith.TabIndex = 90;
-            // 
-            // layoutControlItem23
-            // 
-            this.layoutControlItem23.Control = this.cbxTagstockAccwith;
-            this.layoutControlItem23.Location = new System.Drawing.Point(459, 76);
-            this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(459, 24);
-            this.layoutControlItem23.Text = "Tag Stock Acc. With";
-            this.layoutControlItem23.TextSize = new System.Drawing.Size(165, 13);
-            // 
-            // chkEnableScheme
-            // 
-            this.chkEnableScheme.Location = new System.Drawing.Point(471, 135);
-            this.chkEnableScheme.Name = "chkEnableScheme";
-            this.chkEnableScheme.Properties.Caption = "Enable Scheme";
-            this.chkEnableScheme.Size = new System.Drawing.Size(455, 19);
-            this.chkEnableScheme.StyleController = this.layoutControl1;
-            this.chkEnableScheme.TabIndex = 91;
-            // 
-            // layoutControlItem30
-            // 
-            this.layoutControlItem30.Control = this.chkEnableScheme;
-            this.layoutControlItem30.Location = new System.Drawing.Point(459, 123);
-            this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(459, 23);
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem30.TextVisible = false;
-            // 
-            // cbxDontMaintainStockBalance
-            // 
-            this.cbxDontMaintainStockBalance.Location = new System.Drawing.Point(638, 549);
-            this.cbxDontMaintainStockBalance.Name = "cbxDontMaintainStockBalance";
-            this.cbxDontMaintainStockBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxDontMaintainStockBalance.Size = new System.Drawing.Size(288, 20);
-            this.cbxDontMaintainStockBalance.StyleController = this.layoutControl1;
-            this.cbxDontMaintainStockBalance.TabIndex = 92;
             // 
             // layoutControlItem31
             // 
@@ -1371,16 +1440,6 @@
             this.layoutControlItem31.Text = "Do Not Maintain Stock Balance";
             this.layoutControlItem31.TextSize = new System.Drawing.Size(165, 13);
             // 
-            // cbxItemwisemarkup
-            // 
-            this.cbxItemwisemarkup.Location = new System.Drawing.Point(638, 573);
-            this.cbxItemwisemarkup.Name = "cbxItemwisemarkup";
-            this.cbxItemwisemarkup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxItemwisemarkup.Size = new System.Drawing.Size(288, 20);
-            this.cbxItemwisemarkup.StyleController = this.layoutControl1;
-            this.cbxItemwisemarkup.TabIndex = 93;
-            // 
             // layoutControlItem50
             // 
             this.layoutControlItem50.Control = this.cbxItemwisemarkup;
@@ -1389,6 +1448,24 @@
             this.layoutControlItem50.Size = new System.Drawing.Size(460, 24);
             this.layoutControlItem50.Text = "Item-Wise Markup Type";
             this.layoutControlItem50.TextSize = new System.Drawing.Size(165, 13);
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.cbxTagstockAccwith;
+            this.layoutControlItem23.Location = new System.Drawing.Point(459, 76);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(459, 24);
+            this.layoutControlItem23.Text = "Tag Stock Acc. With";
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(165, 13);
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.chkEnableScheme;
+            this.layoutControlItem30.Location = new System.Drawing.Point(459, 123);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(459, 23);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
             // 
             // Inventorysettings
             // 
@@ -1402,6 +1479,13 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisemarkup.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDontMaintainStockBalance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEnableScheme.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTagstockAccwith.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSalePurcAcc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxStockvalmethod.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisetype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnablepackingDetails.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkUpdatePrices.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCalculateItemsale.Properties)).EndInit();
@@ -1498,20 +1582,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisetype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStockvalmethod.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSalePurcAcc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTagstockAccwith.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnableScheme.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDontMaintainStockBalance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxItemwisemarkup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             this.ResumeLayout(false);
 
         }

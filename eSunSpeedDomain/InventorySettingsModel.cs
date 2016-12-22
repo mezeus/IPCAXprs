@@ -54,8 +54,8 @@ namespace eSunSpeedDomain
         public bool CalItemSalePricePurchasePrice { get; set; }
         public bool PackingDetailsinVouchers { get; set; }
         public bool UpdatePricesItemMaster { get; set; }
-        public bool DonotMaintainStockBala { get; set; }
-        public bool ItemwiseMarkupType { get; set; }
+        public string DonotMaintainStockBala { get; set; }
+        public string ItemwiseMarkupType { get; set; }
         public bool DatewiseItemPricing { get; set; }
 
     }
