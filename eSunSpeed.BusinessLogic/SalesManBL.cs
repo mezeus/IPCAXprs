@@ -14,7 +14,7 @@ namespace eSunSpeed.BusinessLogic
     {
         private DBHelper _dbHelper = new DBHelper();
 
-        /*
+       
         //Save
         public bool SaveSalesMan(SalesManModel objModel)
         {
@@ -25,23 +25,25 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@BOMName", objModel.BOMName));
-                paramCollection.Add(new DBParameter("@ItemProduct", objModel.ItemProduct));
-                paramCollection.Add(new DBParameter("@Quantity", objModel.Quantity, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ItemUnit", objModel.ItemUnit));
-                paramCollection.Add(new DBParameter("@Expenses", objModel.Expenses, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@SpecifyMCGenerated", objModel.SpecifyMCGenerated, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@SpecifyDefaultMCforItemConsumed", objModel.SpecifyDefaultMCforItemConsumed, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@AppMc", objModel.AppMc));
-                paramCollection.Add(new DBParameter("@SNo", objModel.SNo));
-                paramCollection.Add(new DBParameter("@ItemName", objModel.ItemName));
-                paramCollection.Add(new DBParameter("@Qty", objModel.Qty, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@Unit", objModel.Unit, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objModel.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@Name", objModel.SM_Name));
+                paramCollection.Add(new DBParameter("@Alias", objModel.SM_Alias));
+                paramCollection.Add(new DBParameter("@Printname", objModel.SM_PrintName));
+                paramCollection.Add(new DBParameter("@Enabledef", objModel.EnableDefCommision));
+                paramCollection.Add(new DBParameter("@Commissionmode", objModel.Commision_Mode));
+                paramCollection.Add(new DBParameter("@Defcommission", objModel.DefCommision));
+                paramCollection.Add(new DBParameter("@Freezecommission", objModel.FreezeCommision));
+                paramCollection.Add(new DBParameter("@Saledebit", objModel.Sales_DebitMode));
+                paramCollection.Add(new DBParameter("@SaleaccDebit", objModel.Sales_AccDebited));
+                paramCollection.Add(new DBParameter("@purchasedebit", objModel.Purchase_DebitMode));
+                paramCollection.Add(new DBParameter("@purchaseaccdebit", objModel.Purchase_AccDebited));
+                paramCollection.Add(new DBParameter("@Address", objModel.Address));
+                paramCollection.Add(new DBParameter("@mobile", objModel.Mobile));
+                paramCollection.Add(new DBParameter("@email", objModel.Email));
+                //paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objModel.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
-                Query = "INSERT INTO BillsofMaterial([BomName],[ItemProduct],[Quantity],[ItemUnit],[Expenses],[SpecifyMCGenerated],[SpecifyDefaultMCforItemConsumed],[AppMc],[SNo],[ItemName],[Qty],[Unit],[TotalofConsumedqtyUnit],[CreatedBy]) " +
-                    "VALUES(@BOMName,@ItemProduct,@Quantity,@ItemUnit,@Expenses,@SpecifyMCGenerated,@SpecifyDefaultMCforItemConsumed,@AppMc,@SNo,@ItemName,@Qty,@Unit,@TotalofConsumedqtyUnit,@CreatedBy)";
+                 Query = "INSERT INTO salesmanmaster(`SM_Name`,`SM_Alias`,`SM_PrintName`,`EnableDefCommision`,`Commision_Mode`,`DefCommision`,`FreezeCommision`,`Sales_DebitMode`,`Sales_AccDebited`,`Purchase_DebitMode`,`Purchase_AccDebited`,`Address`,`Mobile`,`Email`,`CreatedBy`) " +
+                    "VALUES(@Name,@Alias,@Printname,@Enabledef,@Commissionmode,@Defcommission,@Freezecommission,@Saledebit,@SaleaccDebit,@purchasedebit,@purchaseaccdebit,@Address,@mobile,@email,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;
@@ -55,52 +57,52 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
         //updatebom
-        public bool UpdateSalesMan(SalesManModel objModel)
-        {
-            string Query = string.Empty;
-            bool isUpdated = true;
-            try
-            {
-                DBParameterCollection paramCollection = new DBParameterCollection();
+        //public bool UpdateSalesMan(SalesManModel objModel)
+        //{
+        //    string Query = string.Empty;
+        //    bool isUpdated = true;
+        //    try
+        //    {
+        //        DBParameterCollection paramCollection = new DBParameterCollection();
 
 
-                paramCollection.Add(new DBParameter("@BOMName", objModel.SM_Name));
-                paramCollection.Add(new DBParameter("@ItemProduct", objModel.ItemProduct));
-                paramCollection.Add(new DBParameter("@Quantity", objModel.Quantity, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ItemUnit", objModel.ItemUnit));
-                paramCollection.Add(new DBParameter("@Expenses", objModel.Expenses, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@SpecifyMCGenerated", objModel.SpecifyMCGenerated, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@SpecifyDefaultMCforItemConsumed", objModel.SpecifyDefaultMCforItemConsumed, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@AppMc", objModel.AppMc));
-                paramCollection.Add(new DBParameter("@SNo", objModel.SNo));
-                paramCollection.Add(new DBParameter("@ItemName", objModel.ItemName));
-                paramCollection.Add(new DBParameter("@Qty", objModel.Qty, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@Unit", objModel.Unit, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objModel.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@Bom_Id", objModel.Bom_Id));
+        //        paramCollection.Add(new DBParameter("@BOMName", objModel.SM_Name));
+        //        paramCollection.Add(new DBParameter("@ItemProduct", objModel.ItemProduct));
+        //        paramCollection.Add(new DBParameter("@Quantity", objModel.Quantity, System.Data.DbType.Decimal));
+        //        paramCollection.Add(new DBParameter("@ItemUnit", objModel.ItemUnit));
+        //        paramCollection.Add(new DBParameter("@Expenses", objModel.Expenses, System.Data.DbType.Decimal));
+        //        paramCollection.Add(new DBParameter("@SpecifyMCGenerated", objModel.SpecifyMCGenerated, System.Data.DbType.Boolean));
+        //        paramCollection.Add(new DBParameter("@SpecifyDefaultMCforItemConsumed", objModel.SpecifyDefaultMCforItemConsumed, System.Data.DbType.Boolean));
+        //        paramCollection.Add(new DBParameter("@AppMc", objModel.AppMc));
+        //        paramCollection.Add(new DBParameter("@SNo", objModel.SNo));
+        //        paramCollection.Add(new DBParameter("@ItemName", objModel.ItemName));
+        //        paramCollection.Add(new DBParameter("@Qty", objModel.Qty, System.Data.DbType.Decimal));
+        //        paramCollection.Add(new DBParameter("@Unit", objModel.Unit, System.Data.DbType.Decimal));
+        //        paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objModel.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
+        //        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+        //        paramCollection.Add(new DBParameter("@Bom_Id", objModel.Bom_Id));
 
 
-                Query = "UPDATE BillsofMaterial SET [BOMName]=@BOMName,[ItemProduct]=@ItemProduct,[Quantity]=@Quantity,[ItemUnit]=@ItemUnit,[Expenses]=@Expenses,[SpecifyMCGenerated]=@SpecifyMCGenerated, " +
-                   "[SpecifyDefaultMCforItemConsumed]=@SpecifyDefaultMCforItemConsumed,[AppMc]=@AppMc,[SNo]=@SNo,[ItemName]=@ItemName, " +
-                   "[Qty]=@Qty,[Unit]=@Unit,[TotalofConsumedqtyUnit]=@TotalofConsumedqtyUnit,[ModifiedBy]=@ModifiedBy " +
-                   "WHERE BOM_Id=@BOM_Id";
+        //        Query = "UPDATE BillsofMaterial SET [BOMName]=@BOMName,[ItemProduct]=@ItemProduct,[Quantity]=@Quantity,[ItemUnit]=@ItemUnit,[Expenses]=@Expenses,[SpecifyMCGenerated]=@SpecifyMCGenerated, " +
+        //           "[SpecifyDefaultMCforItemConsumed]=@SpecifyDefaultMCforItemConsumed,[AppMc]=@AppMc,[SNo]=@SNo,[ItemName]=@ItemName, " +
+        //           "[Qty]=@Qty,[Unit]=@Unit,[TotalofConsumedqtyUnit]=@TotalofConsumedqtyUnit,[ModifiedBy]=@ModifiedBy " +
+        //           "WHERE BOM_Id=@BOM_Id";
 
 
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isUpdated = true;
-            }
-            catch (Exception ex)
-            {
-                isUpdated = false;
-                throw ex;
-            }
+        //        if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+        //            isUpdated = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        isUpdated = false;
+        //        throw ex;
+        //    }
 
-            return isUpdated;
-        }
+        //    return isUpdated;
+        //}
 
-    */
+    
         //Delete
         public bool DeleteSalesMan(List<int> lstIds)
         {

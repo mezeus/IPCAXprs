@@ -83,5 +83,42 @@ namespace IPCAUI.Administration
             //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
             //d.ShowDialog();
         }
+
+        private void Author_Load(object sender, EventArgs e)
+        {
+            cbxContactwithAccount.SelectedIndex = 0;
+            cbxState.SelectedIndex = 0;
+        }
+
+        private void tbxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxGroupName.Focus();
+                //    return;
+                //}
+                if (this.ActiveControl == null)
+                {
+                    MessageBox.Show("Author Name Can Not Be Blank!");
+                    return;
+                    this.ActiveControl = tbxName;
+
+                }
+                //e.Handled = true; // Mark the event as handled
+            }
+        }
+
+        private void tbxName_Leave(object sender, EventArgs e)
+        {
+            if (tbxName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Author Name can not be blank!");
+                tbxName.Focus();
+                return;
+            }
+        }
     }
 }

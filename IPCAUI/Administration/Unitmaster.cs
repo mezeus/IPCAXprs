@@ -43,7 +43,7 @@ namespace IPCAUI.Administration
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objunm.SaveUM(objModel);
-            if(isSuccess)
+            if (isSuccess)
             {
                 MessageBox.Show("Saved Successfuly!");
             }
@@ -61,6 +61,34 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void tbxUnitName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxGroupName.Focus();
+                //    return;
+                //}
+                if (tbxUnitName.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Unit Name Can Not Be Blank!");
+                    this.ActiveControl = tbxUnitName;
+                    return;
+                }
+                //e.Handled = true; // Mark the event as handled
+            }
         }
     }
 }

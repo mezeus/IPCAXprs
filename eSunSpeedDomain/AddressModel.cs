@@ -14,5 +14,6 @@ namespace eSunSpeedDomain
         public string State { get; set; }
         public string Country { get; set; }
         public string Mobile { get; set; }
+        public string Email { get; set; }
     }
 }

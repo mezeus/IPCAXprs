@@ -35,7 +35,7 @@ namespace IPCAUI.Administration
             //    return;
             //}
             objUnitCon.MainUnit = cbxMainunit.Text.Trim();
-            objUnitCon.SubUnit = tbxSubunit.Text.Trim();
+            objUnitCon.SubUnit = cbxSubunit.Text.Trim();
             objUnitCon.ConFactor = Convert.ToDecimal(cbxConfactor.Text.Trim());
 
             bool isSuccess = objunc.SaveUC(objUnitCon);
@@ -56,6 +56,12 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+
+        private void Unitconversion_Load(object sender, EventArgs e)
+        {
+            cbxMainunit.SelectedIndex = 0;
+            cbxSubunit.SelectedIndex = 1;
         }
     }
 }

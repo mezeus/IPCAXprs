@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ContactmasterBL.cs" />
     <Compile Include="CurrencyConversionBL .cs" />
+    <Compile Include="EmployeeGroupBL.cs" />
     <Compile Include="EmployeeMasterBL.cs" />
     <Compile Include="ExecutivegroupBL.cs" />
     <Compile Include="ContactgroupBL.cs" />

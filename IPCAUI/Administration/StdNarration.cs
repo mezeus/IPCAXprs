@@ -73,5 +73,10 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void StdNarration_Load(object sender, EventArgs e)
+        {
+            cbxVouchertype.SelectedIndex = 0;
+        }
     }
 }

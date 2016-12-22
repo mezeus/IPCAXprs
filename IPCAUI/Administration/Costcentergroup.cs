@@ -70,5 +70,50 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void Costcentergroup_Load(object sender, EventArgs e)
+        {
+            cbxPrimarygroup.SelectedIndex = 1;
+            cbxUndergroup.SelectedIndex = 0;
+        }
+
+        private void tbxGroupName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxGroupName.Focus();
+                //    return;
+                //}
+                if (this.ActiveControl == null)
+                {
+                    MessageBox.Show("Account Name Can Not Be Blank!");
+                    return;
+                    this.ActiveControl = tbxGroupName;
+
+                }
+                //e.Handled = true; // Mark the event as handled
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void tbxGroupName_Leave(object sender, EventArgs e)
+        {
+            if (tbxGroupName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Group Name can not be blank!");
+                tbxGroupName.Focus();
+                return;
+            }
+        }
     }
 }

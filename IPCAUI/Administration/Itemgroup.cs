@@ -51,5 +51,46 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void Itemgroup_Load(object sender, EventArgs e)
+        {
+            cbxPrimarygroup.SelectedIndex = 0;
+            cbxPurchaseAccount.SelectedIndex = 0;
+            cbxSalesaccount.SelectedIndex = 0;
+            cbxStockaccount.SelectedIndex = 0;
+            cbxUndergroup.SelectedIndex = 0;
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tbxGroupName_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void tbxGroupName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxGroupName.Focus();
+                //    return;
+                //}
+                if (tbxGroupName.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Item Group Can Not Be Blank!");
+                    this.ActiveControl = tbxGroupName;
+                    return;
+                    
+
+                }
+                //e.Handled = true; // Mark the event as handled
+            }
+        }
     }
 }

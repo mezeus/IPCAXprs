@@ -29,5 +29,10 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void tbxSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -95,6 +95,12 @@ namespace IPCAUI.Administration
                     this.SelectNextControl(this.ActiveControl, true, true, true, true);
 
                 }
+                if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+                {
+                    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                    tbxGroupName.Focus();
+                    return;
+                }
                 e.Handled = true; // Mark the event as handled
             }
         }
@@ -114,6 +120,13 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+
+        private void Accountgroup_Load(object sender, EventArgs e)
+        {
+            cbxPrimarygroup.SelectedIndex = 0;
+            cbxUndergroup.SelectedIndex = 0;
+            cbxNaturegroup.SelectedIndex = 0;
         }
     }
 }

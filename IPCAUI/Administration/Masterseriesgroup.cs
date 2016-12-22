@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 
 namespace IPCAUI.Administration
@@ -25,7 +27,6 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
         }
 
         private void ListItemmaster_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
