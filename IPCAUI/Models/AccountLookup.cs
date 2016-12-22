@@ -50,4 +50,14 @@ namespace IPCAUI.Models
         public string CategoryName { get; set; }
         public string Description { get; set; }
     }
+
+    public class SeriesLookup
+    {
+        public List<string> Series;
+
+        public SeriesLookup()
+        {
+            Series = new List<string> { "Main"};
+        }
+    }
 }
