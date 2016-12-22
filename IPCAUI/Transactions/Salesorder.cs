@@ -12,12 +12,13 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
+using IPCAUI.Models;
 
 namespace IPCAUI.Transactions
 {
     public partial class Salesorder : Form
     {
-        SalesPurchasVoucherBL objSales;
+        SalesVoucherBL objSalesVoucher;
         public Salesorder()
         {
             InitializeComponent();
@@ -38,9 +39,12 @@ namespace IPCAUI.Transactions
         }
         private void Salesorder_Load(object sender, EventArgs e)
         {
+             
+           this.tbxSeries.Enter += new System.EventHandler(this.tbxSeries_Enter);
+
             Models.AccountLookup acc = new Models.AccountLookup();
 
-            //gdvItem.DataSource = DataSets.JournalDs.;
+        
             // Create an in-place LookupEdit control.
             RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
 
@@ -70,8 +74,26 @@ namespace IPCAUI.Transactions
             gdvItem.Columns["Item"].ColumnEdit = riLookup;
             gdvItem.BestFitColumns();
 
+            //Bill Sundry Lookup Edit
             gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
             gridBs.BestFitColumns();
+
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();            
+            tbxSeries.Properties.DataSource = objSeries.Series;
+
+            //Sales Type Lookup Edit
+            tbxSalesType.Properties.DataSource = objSeries.Series;
+
+            //Party Lookup Edit
+            tbxParty.Properties.DataSource = acc.Categories;
+            tbxParty.Properties.DisplayMember = "CategoryName";
+            tbxParty.Properties.ValueMember = "CategoryName";
+
+            //Mat Centre Lookup Edit
+            tbxMatCentre.Properties.DataSource = acc.Categories;
+            tbxMatCentre.Properties.DisplayMember = "CategoryName";
+            tbxMatCentre.Properties.ValueMember = "CategoryName";
 
         }
        
@@ -130,13 +152,13 @@ namespace IPCAUI.Transactions
                 MessageBox.Show("Voucher Number Can Not Be Blank!");
                 return;
             }
+
             objSales.Series = tbxSeries.Text.Trim();
-            //objSales.SalesType = tbxSalesType.SelectedItem.ToString();
+            objSales.SalesType = tbxSalesType.Text.Trim();
             objSales.SaleDate = Convert.ToDateTime(dtDate.Text);
-         //   objSales.VoucherNumber = Convert.ToInt32(tbxVchNo.Text.Trim());
-          //  objSales.BillNo = Convert.ToInt32(tbxBillNo.Text.Trim());
-            //objSales.Party = cbxParty.SelectedItem.ToString();
-           // objSales.MatCentre = cbxMatCentre.SelectedItem.ToString();
+            objSales.VoucherNumber = Convert.ToInt32(tbxVchNo.Text.Trim());          
+            objSales.Party = tbxParty.Text.Trim();
+            objSales.MatCentre = tbxMatCentre.Text.Trim();
             objSales.Narration = tbxNarration.Text.Trim();
 
             objSales.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
@@ -155,71 +177,58 @@ namespace IPCAUI.Transactions
                                 
                 objItem = new Item_VoucherModel();
                 objItem.Item = row["Item"].ToString();
-            //    objItem.Batch = dr.Cells[1].Value == null ? string.Empty : dr.Cells[1].Value.ToString();
+            
                 objItem.Qty = Convert.ToDecimal(row["Qty"]);
                 objItem.Unit = row["Unit"].ToString();
                 objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
-                objItem.Price =Convert.ToDecimal(row["Price"].ToString());
-              //  objItem.DiscountPercentage = dr.Cells[9].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[9].Value);
-                //objItem.DiscountAmount = dr.Cells[10].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[10].Value);
-                //objItem.VATPercentage = dr.Cells[11].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[11].Value);
-                //objItem.VAT = dr.Cells[12].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[12].Value);
-                //objItem.Amount = dr.Cells[13].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[13].Value);
-
+                objItem.Price =Convert.ToDecimal(row["Price"].ToString());            
                 lstItems.Add(objItem);
             }
-            
-           
-            /*
-            foreach (DataGridViewRow dr in gdvItem.Rows)
-            {
-                objItem = new Item_VoucherModel();
-                if (dr.Cells[0].Value == null)
-                    continue;
-
-                objItem.Item = dr.Cells[0].Value.ToString();
-                objItem.Batch = dr.Cells[1].Value == null ? string.Empty : dr.Cells[1].Value.ToString();
-                objItem.Qty = dr.Cells[5].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[5].Value);
-                objItem.Unit = dr.Cells[6].Value == null ? string.Empty : dr.Cells[6].Value.ToString();
-                objItem.BasicAmt = dr.Cells[7].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[7].Value);
-                objItem.Price = dr.Cells[8].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[8].Value);
-                objItem.DiscountPercentage = dr.Cells[9].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[9].Value);
-                objItem.DiscountAmount = dr.Cells[10].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[10].Value);
-                objItem.VATPercentage = dr.Cells[11].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[11].Value);
-                objItem.VAT = dr.Cells[12].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[12].Value);
-                objItem.Amount = dr.Cells[13].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[13].Value);
-
-                lstItems.Add(objItem);
-            }
-            */
+                                  
             objSales.SalesItem_Voucher = lstItems;
 
             //Bill Sundry
             BillSundry_VoucherModel objBS;
             List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
+
+            for (int i = 0; i < gridBs.DataRowCount; i++)
+            {
+                DataRow row = gridBs.GetDataRow(i);
+
+                objBS = new BillSundry_VoucherModel();
+                objBS.BillSundry = row["BillSundry"].ToString();
+                objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
+                objBS.Amount = Convert.ToDecimal(row["Amount"]);
+                objBS.Type = row["Extra"].ToString();
+
+                lstBS.Add(objBS);
+            }
+
+            objSales.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
             
-
-            //foreach (DataGridViewRow dr in dvgBS.Rows)
-            //{
-            //    objBS = new BillSundry_VoucherModel();
-            //    if (dr.Cells[0].Value == null)
-            //        continue;
-
-            //    objBS.BillSundry = dr.Cells[0].Value.ToString();
-            //    objBS.Percentage = dr.Cells[1].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[1].Value);
-            //    objBS.Amount = dr.Cells[3].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[3].Value);
-
-            //    lstBS.Add(objBS);
-            //}
-
             objSales.SalesBillSundry_Voucher = lstBS;
-           // bool isSuccess = objSaleVoucher.SaveSalesVoucher(objSales);
+
+            objSalesVoucher = new SalesVoucherBL();
+
+            bool isSuccess = objSalesVoucher.SaveSalesVoucher(objSales);
             //if (isSuccess)
             //{
             // //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
             //   // d.ShowDialog();
             //}
 
+        }
+
+        private void tbxSeries_Enter(object sender, EventArgs e)
+        {
+
+            tbxSeries.Properties.ImmediatePopup=true;
+         
+        }
+
+        private void tbxSeries_Properties_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            tbxSeries.Properties.ImmediatePopup = true;
         }
     }
 }

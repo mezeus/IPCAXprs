@@ -22,9 +22,10 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
+                paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
                 paramCollection.Add(new DBParameter("@Series", objSales.Series));
                 paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate));
-                paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
+                
                 //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
                 //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
                 paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
@@ -32,8 +33,9 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
 
                 paramCollection.Add(new DBParameter("@Narration", objSales.Narration));
-                paramCollection.Add(new DBParameter("@TotalQty", objSales.TotalQty));
-                paramCollection.Add(new DBParameter("@TotalAmount", objSales.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalAmount", objSales.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalQty", objSales.TotalQty));
+                
                 paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
@@ -59,7 +61,7 @@ namespace eSunSpeed.BusinessLogic
             catch (Exception ex)
             {
                 isSaved = false;
-                throw ex;
+               // throw ex;
             }
 
             return isSaved;
