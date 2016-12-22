@@ -8,9 +8,10 @@ using System.Text;
 
 namespace eSunSpeed.BusinessLogic
 {
-    public class SalesVoucher
+    public class SalesVoucherBL
     {
         private DBHelper _dbHelper = new DBHelper();
+
         #region SAVE SALE VOUCHER
         public bool SaveSalesVoucher(TransSalesModel objSales)
         {
@@ -24,8 +25,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Series", objSales.Series));
                 paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate));
                 paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
-                paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
-                paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
+                //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
+                //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
                 paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
                 paramCollection.Add(new DBParameter("@Party", objSales.Party));
                 paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
@@ -38,16 +39,22 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
 
-                Query = "INSERT INTO Trans_Sales([Series],[SaleDate],[VoucherNumber],[BillNumber],[DueDate],[SalesType],[Party]," +
-                "[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount],[CreatedBy]) VALUES " +
-                "(@Series,@SaleDate,@VoucherNumber,@BillNo,@DueDate,@SalesType,@Party,@MatCentre,@Narration,@TotalQty,@TotalAmount,@BSTotalAmount,@CreatedBy)";
+                System.Data.IDataReader dr = 
+                    _dbHelper.ExecuteDataReader("spInsertSalesVoucher", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveSalesVoucherItems(objSales.SalesItem_Voucher);
-                    SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher);
-                    isSaved = true;
-                }
+                //Query = "INSERT INTO Trans_Sales([Series],[SaleDate],[VoucherNumber],[BillNumber],[DueDate],[SalesType],[Party]," +
+                //"[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount],[CreatedBy]) VALUES " +
+                //"(@Series,@SaleDate,@VoucherNumber,@BillNo,@DueDate,@SalesType,@Party,@MatCentre,@Narration,@TotalQty,@TotalAmount,@BSTotalAmount,@CreatedBy)";
+
+                //if (_dbHelper.ExecuteScalar(Query, paramCollection) > 0)
+                //{
+                //    SaveSalesVoucherItems(objSales.SalesItem_Voucher);
+                //    SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher);
+                //    isSaved = true;
+                //}
+
+
             }
             catch (Exception ex)
             {

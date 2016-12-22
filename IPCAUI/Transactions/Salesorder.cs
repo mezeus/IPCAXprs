@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Transactions
 {
@@ -122,7 +123,103 @@ namespace IPCAUI.Transactions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            TransSalesModel objSales = new TransSalesModel();
+
+            if (tbxVchNo.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+            objSales.Series = tbxSeries.Text.Trim();
+            //objSales.SalesType = tbxSalesType.SelectedItem.ToString();
+            objSales.SaleDate = Convert.ToDateTime(dtDate.Text);
+         //   objSales.VoucherNumber = Convert.ToInt32(tbxVchNo.Text.Trim());
+          //  objSales.BillNo = Convert.ToInt32(tbxBillNo.Text.Trim());
+            //objSales.Party = cbxParty.SelectedItem.ToString();
+           // objSales.MatCentre = cbxMatCentre.SelectedItem.ToString();
+            objSales.Narration = tbxNarration.Text.Trim();
+
+            objSales.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            objSales.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Bill Number and Due date not captured- check with Ravi if these are required
+
+
+            //Items
+            Item_VoucherModel objItem;
+            List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
+
+            for (int i = 0; i < gdvItem.DataRowCount; i++)
+            {
+                DataRow row = gdvItem.GetDataRow(i);
+                                
+                objItem = new Item_VoucherModel();
+                objItem.Item = row["Item"].ToString();
+            //    objItem.Batch = dr.Cells[1].Value == null ? string.Empty : dr.Cells[1].Value.ToString();
+                objItem.Qty = Convert.ToDecimal(row["Qty"]);
+                objItem.Unit = row["Unit"].ToString();
+                objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
+                objItem.Price =Convert.ToDecimal(row["Price"].ToString());
+              //  objItem.DiscountPercentage = dr.Cells[9].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[9].Value);
+                //objItem.DiscountAmount = dr.Cells[10].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[10].Value);
+                //objItem.VATPercentage = dr.Cells[11].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[11].Value);
+                //objItem.VAT = dr.Cells[12].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[12].Value);
+                //objItem.Amount = dr.Cells[13].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[13].Value);
+
+                lstItems.Add(objItem);
+            }
             
+           
+            /*
+            foreach (DataGridViewRow dr in gdvItem.Rows)
+            {
+                objItem = new Item_VoucherModel();
+                if (dr.Cells[0].Value == null)
+                    continue;
+
+                objItem.Item = dr.Cells[0].Value.ToString();
+                objItem.Batch = dr.Cells[1].Value == null ? string.Empty : dr.Cells[1].Value.ToString();
+                objItem.Qty = dr.Cells[5].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[5].Value);
+                objItem.Unit = dr.Cells[6].Value == null ? string.Empty : dr.Cells[6].Value.ToString();
+                objItem.BasicAmt = dr.Cells[7].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[7].Value);
+                objItem.Price = dr.Cells[8].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[8].Value);
+                objItem.DiscountPercentage = dr.Cells[9].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[9].Value);
+                objItem.DiscountAmount = dr.Cells[10].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[10].Value);
+                objItem.VATPercentage = dr.Cells[11].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[11].Value);
+                objItem.VAT = dr.Cells[12].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[12].Value);
+                objItem.Amount = dr.Cells[13].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[13].Value);
+
+                lstItems.Add(objItem);
+            }
+            */
+            objSales.SalesItem_Voucher = lstItems;
+
+            //Bill Sundry
+            BillSundry_VoucherModel objBS;
+            List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
+            
+
+            //foreach (DataGridViewRow dr in dvgBS.Rows)
+            //{
+            //    objBS = new BillSundry_VoucherModel();
+            //    if (dr.Cells[0].Value == null)
+            //        continue;
+
+            //    objBS.BillSundry = dr.Cells[0].Value.ToString();
+            //    objBS.Percentage = dr.Cells[1].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[1].Value);
+            //    objBS.Amount = dr.Cells[3].Value == null ? 0.00M : Convert.ToDecimal(dr.Cells[3].Value);
+
+            //    lstBS.Add(objBS);
+            //}
+
+            objSales.SalesBillSundry_Voucher = lstBS;
+           // bool isSuccess = objSaleVoucher.SaveSalesVoucher(objSales);
+            //if (isSuccess)
+            //{
+            // //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+            //   // d.ShowDialog();
+            //}
+
         }
     }
 }

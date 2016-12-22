@@ -407,6 +407,8 @@
             this.Amount.Caption = "Amount(Rs.)";
             this.Amount.FieldName = "Amount";
             this.Amount.Name = "Amount";
+            this.Amount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.Amount.Visible = true;
             this.Amount.VisibleIndex = 5;
             this.Amount.Width = 73;

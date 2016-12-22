@@ -112,7 +112,7 @@
     <Compile Include="Sales.cs" />
     <Compile Include="PurchaseReturnVoucherBL.cs" />
     <Compile Include="SalesReturnVoucherBL.cs" />
-    <Compile Include="SalesVoucher.cs" />
+    <Compile Include="SalesVoucherBL.cs" />
     <Compile Include="SaleType.cs" />
     <Compile Include="SessionParameters.cs" />
     <Compile Include="StdNarrationMasterBL.cs" />
