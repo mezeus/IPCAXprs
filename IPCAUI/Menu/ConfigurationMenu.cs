@@ -27,7 +27,13 @@ namespace IPCAUI.Menu
 
         private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Settings.Accountsettings frm;
+            frm = new Settings.Accountsettings(); //generate new instance 
+            //frm.Owner = this;
+            //frm.TopLevel = false;
 
+            //spli.Panel2.Controls.Add(frm);
+            frm.ShowDialog();
         }
 
         private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

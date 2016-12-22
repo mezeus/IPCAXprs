@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InventorySettingsBL.cs" />
+    <Compile Include="AccountSettingsBL.cs" />
     <Compile Include="ContactmasterBL.cs" />
     <Compile Include="CurrencyConversionBL .cs" />
     <Compile Include="EmployeeGroupBL.cs" />
