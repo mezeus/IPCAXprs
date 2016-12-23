@@ -8,9 +8,10 @@ using System.Text;
 
 namespace eSunSpeed.BusinessLogic
 {
-    public class SalesVoucher
+    public class SalesVoucherBL
     {
         private DBHelper _dbHelper = new DBHelper();
+
         #region SAVE SALE VOUCHER
         public bool SaveSalesVoucher(TransSalesModel objSales)
         {
@@ -21,49 +22,62 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objSales.Series));
-                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate));
                 paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
-                paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
-                paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
+                paramCollection.Add(new DBParameter("@Series", objSales.Series));
+                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate,System.Data.DbType.DateTime));
+                
+                //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
+                //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
                 paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
                 paramCollection.Add(new DBParameter("@Party", objSales.Party));
                 paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
 
                 paramCollection.Add(new DBParameter("@Narration", objSales.Narration));
-                paramCollection.Add(new DBParameter("@TotalQty", objSales.TotalQty));
-                paramCollection.Add(new DBParameter("@TotalAmount", objSales.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalAmount", objSales.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalQty", objSales.TotalQty));
+                
                 paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
 
-                Query = "INSERT INTO Trans_Sales([Series],[SaleDate],[VoucherNumber],[BillNumber],[DueDate],[SalesType],[Party]," +
-                "[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount],[CreatedBy]) VALUES " +
-                "(@Series,@SaleDate,@VoucherNumber,@BillNo,@DueDate,@SalesType,@Party,@MatCentre,@Narration,@TotalQty,@TotalAmount,@BSTotalAmount,@CreatedBy)";
+                System.Data.IDataReader dr = 
+                    _dbHelper.ExecuteDataReader("spInsertSalesVoucher", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveSalesVoucherItems(objSales.SalesItem_Voucher);
-                    SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher);
-                    isSaved = true;
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+
+                SaveSalesVoucherItems(objSales.SalesItem_Voucher,id);
+                SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher,id);
+                //Query = "INSERT INTO Trans_Sales([Series],[SaleDate],[VoucherNumber],[BillNumber],[DueDate],[SalesType],[Party]," +
+                //"[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount],[CreatedBy]) VALUES " +
+                //"(@Series,@SaleDate,@VoucherNumber,@BillNo,@DueDate,@SalesType,@Party,@MatCentre,@Narration,@TotalQty,@TotalAmount,@BSTotalAmount,@CreatedBy)";
+
+                //if (_dbHelper.ExecuteScalar(Query, paramCollection) > 0)
+                //{
+                //    SaveSalesVoucherItems(objSales.SalesItem_Voucher);
+                //    SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher);
+                //    isSaved = true;
+                //}
+
+
             }
             catch (Exception ex)
             {
                 isSaved = false;
-                throw ex;
+               // throw ex;
             }
 
             return isSaved;
         }
 
-        public bool SaveSalesVoucherItems(List<Item_VoucherModel> lstSales)
+        public bool SaveSalesVoucherItems(List<Item_VoucherModel> lstSales,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetSalesId();
+           // int ParentId = GetSalesId();
 
             foreach (Item_VoucherModel item in lstSales)
             {
@@ -73,25 +87,27 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@SalesVoucher_ID", item.ParentId));
-                    paramCollection.Add(new DBParameter("@Sales_Item", item.Item));
-                    paramCollection.Add(new DBParameter("@Sales_Batch", item.Batch));
-                    paramCollection.Add(new DBParameter("@Sales_Qty", item.Qty));
-                    paramCollection.Add(new DBParameter("@Sales_Unit", item.Unit));
-                    paramCollection.Add(new DBParameter("@Sales_Price", item.Price));
-                    paramCollection.Add(new DBParameter("@Sales_Amount", item.Amount));
-                    paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
-                    paramCollection.Add(new DBParameter("@TotalAmount", item.TotalAmount));
+                    paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
+                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                    paramCollection.Add(new DBParameter("@Item", item.Item));                  
+                    paramCollection.Add(new DBParameter("@Qty", item.Qty));
+                    paramCollection.Add(new DBParameter("@Unit", item.Unit));
+                    paramCollection.Add(new DBParameter("@Price", item.Price));
+                    paramCollection.Add(new DBParameter("@Amount", item.Amount));
+                    //paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", item.TotalAmount));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
 
-                    Query = "INSERT INTO Trans_Sales_Item([Trans_Sales_Id],[Item],[Qty],[Unit]," +
-                    "[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy]) VALUES " +
-                    "(@SalesVoucher_ID,@Sales_Item,@Sales_Qty,@Sales_Unit,@Sales_Price,@Sales_Amount,@TotalQty,@TotalAmount,@CreatedBy)";
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertSalesItem", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    //Query = "INSERT INTO Trans_Sales_Item([Trans_Sales_Id],[Item],[Qty],[Unit]," +
+                    //   "[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy]) VALUES " +
+                    //   "(@SalesVoucher_ID,@Sales_Item,@Sales_Qty,@Sales_Unit,@Sales_Price,@Sales_Amount,@TotalQty,@TotalAmount,@CreatedBy)";
 
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {
@@ -140,12 +156,12 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveSalesBillSundryVoucher(List<BillSundry_VoucherModel> lstBS)
+        public bool SaveSalesBillSundryVoucher(List<BillSundry_VoucherModel> lstBS, int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetSalesId();
+            //int ParentId = GetSalesId();
 
             foreach (BillSundry_VoucherModel bs in lstBS)
             {
@@ -155,19 +171,22 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@SalesVoucher_ID", bs.ParentId));
-                    paramCollection.Add(new DBParameter("@SalesBillSundry_Name", bs.BillSundry));
-                    paramCollection.Add(new DBParameter("@SalesBillSundry_Amount", bs.Amount));
+                    paramCollection.Add(new DBParameter("@Trans_Sales_Id", bs.ParentId));
+                    paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
                     paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
+                    paramCollection.Add(new DBParameter("@Amount", bs.Amount));
                     paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
-                    Query = "INSERT INTO Trans_Sales_BS([Trans_Sales_Id],[BillSundry],[Amount]," +
-                    "[Percentage],[TotalAmount],[CreatedBy]) VALUES " +
-                    "(@SalesVoucher_ID,@SalesBillSundry_Name,@SalesBillSundry_Amount,@Percentage,@TotalAmount,@CreatedBy)";
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertBillSundryMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //Query = "INSERT INTO Trans_Sales_BS([Trans_Sales_Id],[BillSundry],[Amount]," +
+                    //"[Percentage],[TotalAmount],[CreatedBy]) VALUES " +
+                    //"(@SalesVoucher_ID,@SalesBillSundry_Name,@SalesBillSundry_Amount,@Percentage,@TotalAmount,@CreatedBy)";
+
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {

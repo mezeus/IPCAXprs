@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InventorySettingsModel.cs" />
+    <Compile Include="AccountSettingsModel.cs" />
     <Compile Include="ContactmasterModel.cs" />
     <Compile Include="CurrencyConversionModel .cs" />
     <Compile Include="EmployeeGroupModel.cs" />

@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InventorySettingsBL.cs" />
+    <Compile Include="AccountSettingsBL.cs" />
     <Compile Include="ContactmasterBL.cs" />
     <Compile Include="CurrencyConversionBL .cs" />
     <Compile Include="EmployeeGroupBL.cs" />
@@ -110,7 +112,7 @@
     <Compile Include="Sales.cs" />
     <Compile Include="PurchaseReturnVoucherBL.cs" />
     <Compile Include="SalesReturnVoucherBL.cs" />
-    <Compile Include="SalesVoucher.cs" />
+    <Compile Include="SalesVoucherBL.cs" />
     <Compile Include="SaleType.cs" />
     <Compile Include="SessionParameters.cs" />
     <Compile Include="StdNarrationMasterBL.cs" />
