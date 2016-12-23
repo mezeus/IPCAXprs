@@ -287,6 +287,8 @@ namespace IPCAUI.DataSets {
             
             private global::System.Data.DataColumn columnAmount;
             
+            private global::System.Data.DataColumn columnNarration;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BillSundryDtDataTable() {
@@ -354,6 +356,14 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NarrationColumn {
+                get {
+                    return this.columnNarration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +399,14 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BillSundryDtRow AddBillSundryDtRow(string BillSundry, string Percentage, string Extra, string Amount) {
+            public BillSundryDtRow AddBillSundryDtRow(string BillSundry, string Percentage, string Extra, string Amount, string Narration) {
                 BillSundryDtRow rowBillSundryDtRow = ((BillSundryDtRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BillSundry,
                         Percentage,
                         Extra,
-                        Amount};
+                        Amount,
+                        Narration};
                 rowBillSundryDtRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBillSundryDtRow);
                 return rowBillSundryDtRow;
@@ -422,6 +433,7 @@ namespace IPCAUI.DataSets {
                 this.columnPercentage = base.Columns["Percentage"];
                 this.columnExtra = base.Columns["Extra"];
                 this.columnAmount = base.Columns["Amount"];
+                this.columnNarration = base.Columns["Narration"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +447,8 @@ namespace IPCAUI.DataSets {
                 base.Columns.Add(this.columnExtra);
                 this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAmount);
+                this.columnNarration = new global::System.Data.DataColumn("Narration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNarration);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -641,6 +655,22 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Narration {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillSundryDt.NarrationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Narration\' in table \'BillSundryDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillSundryDt.NarrationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsBillSundryNull() {
                 return this.IsNull(this.tableBillSundryDt.BillSundryColumn);
             }
@@ -685,6 +715,18 @@ namespace IPCAUI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAmountNull() {
                 this[this.tableBillSundryDt.AmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNarrationNull() {
+                return this.IsNull(this.tableBillSundryDt.NarrationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNarrationNull() {
+                this[this.tableBillSundryDt.NarrationColumn] = global::System.Convert.DBNull;
             }
         }
         

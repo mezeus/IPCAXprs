@@ -15,6 +15,10 @@ namespace eSunSpeedDomain
         public string PurchaseVoucher_PurchaseType { get; set; }
         public string PurchaseVoucher_Party { get; set; }
         public string PurchaseVoucher_MatCenter { get; set; }
+        public string Narration { get; set; }
+        public decimal TotalQty { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal BSTotalAmount { get; set; }
 
         public List<Item_VoucherModel> PurchaseItem_Voucher { get; set; }
         public List<BillSundry_VoucherModel> BillSundry_Voucher { get; set; }

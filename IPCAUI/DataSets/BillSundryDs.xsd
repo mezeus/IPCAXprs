@@ -12,13 +12,14 @@
   <xs:element name="BillSundryDs" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BillSundryDs" msprop:Generator_UserDSName="BillSundryDs">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BillSundryDt" msprop:Generator_TableClassName="BillSundryDtDataTable" msprop:Generator_TableVarName="tableBillSundryDt" msprop:Generator_TablePropName="BillSundryDt" msprop:Generator_RowDeletingName="BillSundryDtRowDeleting" msprop:Generator_RowChangingName="BillSundryDtRowChanging" msprop:Generator_RowEvHandlerName="BillSundryDtRowChangeEventHandler" msprop:Generator_RowDeletedName="BillSundryDtRowDeleted" msprop:Generator_UserTableName="BillSundryDt" msprop:Generator_RowChangedName="BillSundryDtRowChanged" msprop:Generator_RowEvArgName="BillSundryDtRowChangeEvent" msprop:Generator_RowClassName="BillSundryDtRow">
+        <xs:element name="BillSundryDt" msprop:Generator_TableClassName="BillSundryDtDataTable" msprop:Generator_TableVarName="tableBillSundryDt" msprop:Generator_RowChangedName="BillSundryDtRowChanged" msprop:Generator_TablePropName="BillSundryDt" msprop:Generator_RowDeletingName="BillSundryDtRowDeleting" msprop:Generator_RowChangingName="BillSundryDtRowChanging" msprop:Generator_RowEvHandlerName="BillSundryDtRowChangeEventHandler" msprop:Generator_RowDeletedName="BillSundryDtRowDeleted" msprop:Generator_RowClassName="BillSundryDtRow" msprop:Generator_UserTableName="BillSundryDt" msprop:Generator_RowEvArgName="BillSundryDtRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BillSundry" msprop:Generator_ColumnVarNameInTable="columnBillSundry" msprop:Generator_ColumnPropNameInRow="BillSundry" msprop:Generator_ColumnPropNameInTable="BillSundryColumn" msprop:Generator_UserColumnName="BillSundry" type="xs:string" minOccurs="0" />
               <xs:element name="Percentage" msprop:Generator_ColumnVarNameInTable="columnPercentage" msprop:Generator_ColumnPropNameInRow="Percentage" msprop:Generator_ColumnPropNameInTable="PercentageColumn" msprop:Generator_UserColumnName="Percentage" type="xs:string" minOccurs="0" />
               <xs:element name="Extra" msprop:Generator_ColumnVarNameInTable="columnExtra" msprop:Generator_ColumnPropNameInRow="Extra" msprop:Generator_ColumnPropNameInTable="ExtraColumn" msprop:Generator_UserColumnName="Extra" type="xs:string" minOccurs="0" />
               <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+              <xs:element name="Narration" msprop:Generator_ColumnVarNameInTable="columnNarration" msprop:Generator_ColumnPropNameInRow="Narration" msprop:Generator_ColumnPropNameInTable="NarrationColumn" msprop:Generator_UserColumnName="Narration" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

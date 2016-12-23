@@ -18,6 +18,7 @@ namespace IPCAUI.Transactions
 {
     public partial class Purchaseorder : Form
     {
+        PurchaseOrderBL objbl = new PurchaseOrderBL();
         public Purchaseorder()
         {
             InitializeComponent();
@@ -65,12 +66,12 @@ namespace IPCAUI.Transactions
 
             // Assign the in-place LookupEdit control to the grid's CategoryID column.
             //// Note that the data types of the "ID" and "CategoryID" fields match.
-            //gdvItem.Columns["Item"].ColumnEdit = riLookup;
-            //gdvItem.BestFitColumns();
+            gdvItem.Columns["Item"].ColumnEdit = riLookup;
+            gdvItem.BestFitColumns();
 
             ////Bill Sundry Lookup Edit
-            //gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
-            //gridBs.BestFitColumns();
+            gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
+            gridBs.BestFitColumns();
 
             //Series Lookup Edit
             SeriesLookup objSeries = new SeriesLookup();
@@ -104,6 +105,118 @@ namespace IPCAUI.Transactions
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        private void gridBs_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void gdvItem_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void gdvItem_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            if (e.FocusedColumn.FieldName == "Item")
+            {
+                gdvItem.ShowEditor();
+                ((LookUpEdit)gdvItem.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            PurchaseVoucherMainModel objPurc = new PurchaseVoucherMainModel();
+
+            if (tbxVoucherNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objPurc.PurchaseVoucher_Series = tbxSeries.Text.Trim();
+            objPurc.PurchaseVoucher_PurchaseType = tbxPurchaseType.Text.Trim();
+            objPurc.PurchaseVoucher_Date = Convert.ToDateTime(dtDate.Text);
+            objPurc.PurchaseVoucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
+            objPurc.PurchaseVoucher_Party = tbxParty.Text.Trim();
+            objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
+            objPurc.Narration = tbxNarration.Text.Trim();
+
+            objPurc.TotalAmount= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Bill Number and Due date not captured- check with Ravi if these are required
+
+
+            //Items
+            Item_VoucherModel objItem;
+            List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
+
+            for (int i = 0; i < gdvItem.DataRowCount; i++)
+            {
+                DataRow row = gdvItem.GetDataRow(i);
+
+                objItem = new Item_VoucherModel();
+                objItem.Item = row["Item"].ToString();
+
+                objItem.Qty = Convert.ToDecimal(row["Qty"]);
+                objItem.Unit = row["Unit"].ToString();
+                objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
+                objItem.Price = Convert.ToDecimal(row["Price"].ToString());
+                lstItems.Add(objItem);
+            }
+
+            objPurc.PurchaseItem_Voucher = lstItems;
+
+            //Bill Sundry
+            BillSundry_VoucherModel objBS;
+            List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
+
+            for (int i = 0; i < gridBs.DataRowCount; i++)
+            {
+                DataRow row = gridBs.GetDataRow(i);
+
+                objBS = new BillSundry_VoucherModel();
+                objBS.BillSundry = row["BillSundry"].ToString();
+                objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
+                objBS.Amount = Convert.ToDecimal(row["Amount"]);
+                objBS.Type = row["Extra"].ToString();
+
+                lstBS.Add(objBS);
+            }
+
+            objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
+
+            objPurc.BillSundry_Voucher = lstBS;
+
+            //objSalesVoucher = new SalesVoucherBL();
+
+            bool isSuccess = objbl.SavePurchaseOrder(objPurc);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
+            }
         }
     }
 }

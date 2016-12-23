@@ -64,6 +64,7 @@
     <Compile Include="IssuedVoucherBL.cs" />
     <Compile Include="PhysicalStockVoucherBL.cs" />
     <Compile Include="PurchaseTypeBL.cs" />
+    <Compile Include="PurchaseOrderBL.cs" />
     <Compile Include="PurchaseVoucher.cs" />
     <Compile Include="ReceviedVoucherBL.cs" />
     <Compile Include="RecieptVoucherBL.cs" />

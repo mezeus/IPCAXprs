@@ -22,33 +22,41 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-
-                paramCollection.Add(new DBParameter("@PRSeries", objPRRet.Series));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objPRRet.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objPRRet.Series));
                 paramCollection.Add(new DBParameter("@PRType", objPRRet.PurchaseType));
-                paramCollection.Add(new DBParameter("@PR_Date", objPRRet.PR_Date,System.Data.DbType.DateTime));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objPRRet.Voucher_Number));
-                paramCollection.Add(new DBParameter("@PRBillNo", objPRRet.BillNo));
-                paramCollection.Add(new DBParameter("@PRDueDate", objPRRet.DueDate,System.Data.DbType.DateTime));
-
-                paramCollection.Add(new DBParameter("@PRV_Party", objPRRet.Party));
-                paramCollection.Add(new DBParameter("@PRV_MatCenter", objPRRet.MatCenter));
-                paramCollection.Add(new DBParameter("@PRNarration", objPRRet.Narration));
-
+                paramCollection.Add(new DBParameter("@PRDate", objPRRet.PR_Date,System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Party", objPRRet.Party));
+                paramCollection.Add(new DBParameter("@MatCentre", objPRRet.MatCenter));
+                paramCollection.Add(new DBParameter("@Narration", objPRRet.Narration));
+                paramCollection.Add(new DBParameter("@ItemTotalAmount", objPRRet.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalQty", objPRRet.TotalQty));
+                paramCollection.Add(new DBParameter("@BSTotalAmount", objPRRet.BSTotalAmount));
+                //paramCollection.Add(new DBParameter("@PRBillNo", objPRRet.BillNo));
+                //paramCollection.Add(new DBParameter("@PRDueDate", objPRRet.DueDate,System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertPurchaseReturn", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                Query = "INSERT INTO Trans_PurchaseReturn([Series],[PurchaseType],[PR_Date],[VoucherNo],[BillNo],[DueDate],[Party],[MatCenter],[Narration]," +
-                "[CreatedBy]) VALUES " +
-                "(@PRSeries,@PRType,@PR_Date,@Voucher_Number,@PRBillNo,@PRDueDate, " +
-                " @PRV_Party,@PRV_MatCenter,@PRNarration,@CreatedBy)";
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SavePRItems(objPRRet.Item_Voucher);
-                    SavePRBillSundry(objPRRet.BillSundry_Voucher);
-                    isSaved = true;
-                }
+                SavePRItems(objPRRet.Item_Voucher, id);
+                SavePRBillSundry(objPRRet.BillSundry_Voucher, id);
+                //Query = "INSERT INTO Trans_PurchaseReturn([Series],[PurchaseType],[PR_Date],[VoucherNo],[BillNo],[DueDate],[Party],[MatCenter],[Narration]," +
+                //"[CreatedBy]) VALUES " +
+                //"(@PRSeries,@PRType,@PR_Date,@Voucher_Number,@PRBillNo,@PRDueDate, " +
+                //" @PRV_Party,@PRV_MatCenter,@PRNarration,@CreatedBy)";
+
+                //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                //{
+                //    SavePRItems(objPRRet.Item_Voucher);
+                //    SavePRBillSundry(objPRRet.BillSundry_Voucher);
+                //    isSaved = true;
+                //}
             }
             catch (Exception ex)
             {
@@ -59,14 +67,14 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SavePRItems(List<Item_VoucherModel> lstSales)
+        public bool SavePRItems(List<Item_VoucherModel> lstItems, int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetPurchaseReturnId();
+            //int ParentId = GetPurchaseReturnId();
 
-            foreach (Item_VoucherModel item in lstSales)
+            foreach (Item_VoucherModel item in lstItems)
             {
                 item.ParentId = ParentId;
 
@@ -74,26 +82,27 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@PR_ID",( item.ParentId)));
-                    paramCollection.Add(new DBParameter("@PR_Item", item.Item));
-                    paramCollection.Add(new DBParameter("@PR_Batch", item.Batch));
-                    paramCollection.Add(new DBParameter("@PR_Qty", item.Qty));
-                    paramCollection.Add(new DBParameter("@PR_Unit", (item.Unit)));
-                    paramCollection.Add(new DBParameter("@PR_Price", Convert.ToDecimal( item.Price)));
-                    paramCollection.Add(new DBParameter("@PR_Amount", Convert.ToDecimal(item.Amount)));
-                    paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
-                    paramCollection.Add(new DBParameter("@TotalAmount", Convert.ToDecimal(item.TotalAmount)));
+                    paramCollection.Add(new DBParameter("@TransPRId", ( item.ParentId)));
+                    paramCollection.Add(new DBParameter("@Item", item.Item));
+                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                    paramCollection.Add(new DBParameter("@Qty", item.Qty));
+                    paramCollection.Add(new DBParameter("@Unit", (item.Unit)));
+                    paramCollection.Add(new DBParameter("@Price", Convert.ToDecimal( item.Price)));
+                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(item.Amount)));
+                    //paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", Convert.ToDecimal(item.TotalAmount)));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertPRItem", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    //Query = "INSERT INTO Trans_PR_Items([TransPRId],[Item],[Batch],[Qty],[Unit]," +
+                    //"[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
+                    //"(@PR_ID,@PR_Item,@PR_Batch,@PR_Qty,@PR_Unit,@PR_Price,@PR_Amount,@TotalQty,@TotalAmount,@CreatedBy,@CreatedDate)";
 
-                    Query = "INSERT INTO Trans_PR_Items([TransPRId],[Item],[Batch],[Qty],[Unit]," +
-                    "[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@PR_ID,@PR_Item,@PR_Batch,@PR_Qty,@PR_Unit,@PR_Price,@PR_Amount,@TotalQty,@TotalAmount,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {
@@ -104,12 +113,12 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SavePRBillSundry(List<BillSundry_VoucherModel> lstBS)
+        public bool SavePRBillSundry(List<BillSundry_VoucherModel> lstBS, int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetPurchaseReturnId();
+            //int ParentId = GetPurchaseReturnId();
 
             foreach (BillSundry_VoucherModel bs in lstBS)
             {
@@ -119,20 +128,22 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@PR_ID", bs.ParentId));
-                    paramCollection.Add(new DBParameter("@PRB_Name", bs.BillSundry));
+                    paramCollection.Add(new DBParameter("@TransPRId", bs.ParentId));
+                    paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
                     paramCollection.Add(new DBParameter("@Percentage", Convert.ToDecimal(bs.Percentage)));
-                    paramCollection.Add(new DBParameter("@PRB_Amount", Convert.ToDecimal(bs.Amount)));
+                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(bs.Amount)));
                     paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                    Query = "INSERT INTO Trans_PR_BS([TransPRId],[BillSundry],[Percentage]," +
-                    "[Amount],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@PR_ID,@PRB_Name,@Percentage,@PRB_Amount,@TotalAmount,@CreatedBy,@CreatedDate)";
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertPRBillSundry", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    //Query = "INSERT INTO Trans_PR_BS([TransPRId],[BillSundry],[Percentage]," +
+                    //"[Amount],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
+                    //"(@PR_ID,@PRB_Name,@Percentage,@PRB_Amount,@TotalAmount,@CreatedBy,@CreatedDate)";
 
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {

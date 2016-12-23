@@ -13,51 +13,61 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE CREDIT NOTE
-        public int SaveCreditNote(CreditNoteModel objCredit)
+        public bool SaveCreditNote(CreditNoteModel objCredit)
         {
             string Query = string.Empty;
-            int creditid = 0;          
-
+            //int creditid = 0;          
+            bool isSaved = true;
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-
+                paramCollection.Add(new DBParameter("@VoucherNumber", objCredit.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objCredit.Voucher_Series));             
-                paramCollection.Add(new DBParameter("@Date", objCredit.CN_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objCredit.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objCredit.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objCredit.PDCDate));
-                //paramCollection.Add(new DBParameter("@LongNarrtion",objCredit.l))
+                paramCollection.Add(new DBParameter("@CNDate", objCredit.CN_Date,System.Data.DbType.DateTime));
+                
+                paramCollection.Add(new DBParameter("@CNType", objCredit.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objCredit.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objCredit.Narration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                Query = "INSERT INTO Credit_Note([Series],[CN_Date],[VoucherNo],[Type],[PDC_Date]," +
-                "[CreatedBy]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                " @CreatedBy)";
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertCreditNoteMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveCreditAccounts(objCredit.CreditAccountModel);
-                    creditid = GetCreditId();                   
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveCreditAccounts(objCredit.CreditAccountModel, id);
+                //Query = "INSERT INTO Credit_Note([Series],[CN_Date],[VoucherNo],[Type],[PDC_Date]," +
+                //"[CreatedBy]) VALUES " +
+                //"(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
+                //" @CreatedBy)";
+
+                //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                //{
+                //    SaveCreditAccounts(objCredit.CreditAccountModel);
+                //    creditid = GetCreditId();                   
+                //}
             }
             catch (Exception ex)
             {
-                creditid = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return creditid;
+            return isSaved;
         }
 
-        public bool SaveCreditAccounts(List<AccountModel> lstAcc)
+        public bool SaveCreditAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetCreditId();
+            //int ParentId = GetCreditId();
 
             foreach (AccountModel Acc in lstAcc)
             {
@@ -67,23 +77,24 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@CN_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@CreditId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
                     
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                     paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertCreditDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    //Query = "INSERT INTO Credit_Note_Accounts([Credit_Id],[DC],[Account],[Debit],[Credit]," +
+                    //"[Narration],[CreatedBy],[CreatedDate]) VALUES " +
+                    //"(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
 
-                    Query = "INSERT INTO Credit_Note_Accounts([Credit_Id],[DC],[Account],[Debit],[Credit]," +
-                    "[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {
@@ -133,23 +144,32 @@ namespace eSunSpeed.BusinessLogic
                 //UPDATE CREDIT NOTE TABLE - PARENT TABLE
 
                 DBParameterCollection paramCollection = new DBParameterCollection();
-                
+
+                paramCollection.Add(new DBParameter("@VoucherNumber", objCredit.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objCredit.Voucher_Series));
-                paramCollection.Add(new DBParameter("@Date", objCredit.CN_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objCredit.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objCredit.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objCredit.PDCDate));
+                paramCollection.Add(new DBParameter("@CNDate", objCredit.CN_Date));
+                
+                paramCollection.Add(new DBParameter("@CNType", objCredit.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objCredit.PDCDate));
+
                 paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
                 paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
 
-                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@id", objCredit.CN_Id));
-               
-                Query = "UPDATE Credit_Note SET [Series]=@Series,[CN_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                         "[Type]=@Type,[PDC_Date]=@PDDate,[TotalCreditAmt]=@TotalCreditAmt,[TotalDebitAmt]=@TotalDebitAmt,[ModifiedBy]=@ModifiedBy," +
-                        "[ModifiedDate]=@ModifiedDate " +
-                        "WHERE Credit_Id=@id";
+                //paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                //paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                //paramCollection.Add(new DBParameter("@id", objCredit.CN_Id));
+
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertCreditNoteMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+
+                //Query = "UPDATE Credit_Note SET [Series]=@Series,[CN_Date]=@Date,[VoucherNo]=@Voucher_Number," +
+                //         "[Type]=@Type,[PDC_Date]=@PDDate,[TotalCreditAmt]=@TotalCreditAmt,[TotalDebitAmt]=@TotalDebitAmt,[ModifiedBy]=@ModifiedBy," +
+                //        "[ModifiedDate]=@ModifiedDate " +
+                //        "WHERE Credit_Id=@id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
