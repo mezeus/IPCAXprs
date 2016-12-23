@@ -16,5 +16,10 @@ namespace IPCAUI.Transactions
         {
             InitializeComponent();
         }
+
+        private void PurhcaseReturnvoucher_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
