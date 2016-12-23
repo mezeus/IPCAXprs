@@ -47,7 +47,7 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@enablebillsundary", objInventory.BillSundryNarration, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@invoicebarcode", objInventory.InvoiceBarcode, System.Data.DbType.Boolean));
 
-            //paramCollection.Add(new DBParameter("@itemwisediscount", objInventory.StockValMethod));
+            paramCollection.Add(new DBParameter("@itemwisediscount", objInventory.ItemwiseDiscountType));
             paramCollection.Add(new DBParameter("@stockvalmethod", objInventory.StockValMethod));
             paramCollection.Add(new DBParameter("@tagsalacc", objInventory.TagSalePurcAcc));
             paramCollection.Add(new DBParameter("@tagstockacc", objInventory.TagStockAccWith));
@@ -67,26 +67,26 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@Matainimages", objInventory.ImagesNoteswithMaster, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@Showitemcurrentblancevoucher", objInventory.ItemsCurrentBalVchEntry, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@DurgLicence", objInventory.DrugLicence, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@datewiseItemprising", objInventory.DatewiseItemPricing, System.Data.DbType.Boolean));
+            
             paramCollection.Add(new DBParameter("@calItemsaleprcfrompurcprc", objInventory.CalItemSalePricePurchasePrice, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@updatepriceinit", objInventory.UpdatePricesItemMaster, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@enablepackingdetails", objInventory.PackingDetailsinVouchers, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@donotmaintainstockbal", objInventory.DonotMaintainStockBala, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@itemwisemarkuptype", objInventory.ItemwiseMarkupType, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@donotmaintainstockbal", objInventory.DonotMaintainStockBala));
+            paramCollection.Add(new DBParameter("@itemwisemarkuptype", objInventory.ItemwiseMarkupType));
+            paramCollection.Add(new DBParameter("@datewiseItemprising", objInventory.DatewiseItemPricing, System.Data.DbType.Boolean));
             //paramCollection.Add(new DBParameter("@companyact", objInventory.CreatedBy));
 
 
-            Query = "INSERT INTO accountsettings (`qtydecimalplaces`,`ItemwiseDecPlaces`,`AlternateUnitsofItems`,`MultiGodownInventory`,`ManufacturingFeatures`,`SalesQuotation`," +
+            Query = "INSERT INTO inventorysettings (`qtydecimalplaces`,`ItemwiseDecPlaces`,`AlternateUnitsofItems`,`MultiGodownInventory`,`ManufacturingFeatures`,`SalesQuotation`," +
                 "`PurchaseQuotation`,`OrderProcessing`,`SalePurchaseChallan`,`MaterialIssuedReceiptNextFY`,`ItenSizingInformationfromItemDescp`," +
-                "`multicurrency`,`currencycondecimalplaces`,`maintainsubledgers`,`postingaccountssalespurchasereturn`,`doubleentrysystemforpaymentreceiptvoucher`," +
                 "`StockUpdationdateinDualVouchers`,`StockValuatioriforItems`,`AccountingPureInventory`,`PartyWiseItemcode`,`SalesReturninsalesVoucher`,`PurchaseReturninPurchase`," +
                 "`ValidateSalesReturnWithOrginal`,`ValidatePurcReturnWithOrginal`,`BillSundryNarration`,`InvoiceBarcode`,`ItemwiseDiscountType`,`StockValMethod`,`TagSalePurcAcc`," +
                 "`TagStockAccWith`,`Scheme`,`JobWork`,`ParameterizedDetails`,`BatchWiseDetails`,`Serialno.wiseDetails`,`MRPwiseDetails`,`ItemDefaultPrisceDuringvchModifi`," +
                 "`FreeQuantityinVouchers`,`LastTransactionSales`,`LastTransactionPurchase`,`AdditionalExpensesVchwise`,`ExpensePurctoItems`,`ImagesNoteswithMaster`,`ItemsCurrentBalVchEntry`,`DrugLicence`,`CalItemSalePricePurchasePrice`,`UpdatePricesItemMaster`,`PackingDetailsinVouchers`,`DonotMaintainStockBala`,`ItemwiseMarkupType`,`DatewiseItemPricing`)" +
                 "VALUES (@DecemalPlaces,@IwDecPlaces,@altunits,@multigodown,@manufacturing,@salequotation,@Purchasequotation,@orderprocessing,@salesbypurchasechall," +
                 "@carrypendingmat,@pickitemWSizing,@separatestockUpdation,@separatestockvalidation,@Accountinginpure,@enablepartwise,@allowsalesreturn,@allowpurchasereturn," +
-                "@validatesalesreturn,@validatepurchasereturn,@enablebillsundary,@invoicebarcode,@stockvalmethod,@tagsalacc,@tagstockacc,@enablescheme,@enablejobwork,@parameterizeddetail,@batchwisedetails,@serialnowise,@mrpwise," +
-                "@skipitems,@enablefreequantity,@SLTSales,@SLTPurchase,@AAEvoucher,@Matainimages,@Showitemcurrentblancevoucher,@DurgLicence,@datewiseItemprising,@calItemsaleprcfrompurcprc,@updatepriceinit,@enablepackingdetails,@donotmaintainstockbal,@itemwisemarkuptype)";
+                "@validatesalesreturn,@validatepurchasereturn,@enablebillsundary,@invoicebarcode,@itemwisediscount,@stockvalmethod,@tagsalacc,@tagstockacc,@enablescheme,@enablejobwork,@parameterizeddetail,@batchwisedetails,@serialnowise,@mrpwise," +
+                "@skipitems,@enablefreequantity,@SLTSales,@SLTPurchase,@AAEvoucher,@AEPurchase,@Matainimages,@Showitemcurrentblancevoucher,@DurgLicence,@calItemsaleprcfrompurcprc,@updatepriceinit,@enablepackingdetails,@donotmaintainstockbal,@itemwisemarkuptype,@datewiseItemprising)";
                 //"@decimalplac,@maitainsubled,@postingaccounts,@doubleentery,@showaccountbal,@maintainimages,@balancesheet,@ledgerrecon,@chekprinting,@interestrate,@enableparty,@showparydashbord)";
 
             return _dbHelper.ExecuteNonQuery(Query,paramCollection) > 0;                  

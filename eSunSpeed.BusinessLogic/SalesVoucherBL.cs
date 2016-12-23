@@ -24,7 +24,7 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
                 paramCollection.Add(new DBParameter("@Series", objSales.Series));
-                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate));
+                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate,System.Data.DbType.DateTime));
                 
                 //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
                 //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
@@ -61,7 +61,7 @@ namespace eSunSpeed.BusinessLogic
             catch (Exception ex)
             {
                 isSaved = false;
-               // throw ex;
+                //throw ex;
             }
 
             return isSaved;
