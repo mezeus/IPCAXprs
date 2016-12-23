@@ -55,21 +55,22 @@ namespace IPCAUI.Administration
             objconmas.Name = tbxName.Text.Trim();
             objconmas.AliasName = tbxAlias.Text.Trim();
             objconmas.PrintName = tbxPrintname.Text.Trim();
-         //   objconmas.Connectwithledger = cbxConnectledger.SelectedItem.ToString() == "Y" ? true : false;
+           objconmas.Connectwithledger = cbxConnectledger.SelectedItem.ToString() == "Y" ? true : false;
             objconmas.Organisation = tbxOrgination.Text.Trim();
             objconmas.MobileNo = tbxMobileno.Text.Trim();
             objconmas.Email = tbxEmail.Text.Trim();
-            objconmas.TypeofTrade = cbxTrade.Text.Trim();
+            objconmas.TypeofTrade = cbxTrade.SelectedItem.ToString();
             objconmas.Group = cbxGroup.Text.Trim();
             objconmas.Area = tbxArea.Text.Trim();
             objconmas.Department = tbxDepartment.Text.Trim();
-           // objconmas.SpecifyDateofBirth = Convert.ToDateTime(dtDatebirth);
-          //  objconmas.SpecifyDateofAnniversary = cbxDateAnnversary.SelectedItem.ToString() == "Y" ? true : false;
+            objconmas.SpecifyDateofBirth = cbxSpecifyDateofBirth.SelectedItem.ToString() == "Y" ? true : false; ;
+            objconmas.SpecifyDateofAnniversary = cbxDateAnnversary.SelectedItem.ToString() == "Y" ? true : false;
             objconmas.Address = tbxAddress.Text.Trim();
-            objconmas.Address2 = tbxEsino.Text.Trim();
-            objconmas.Address3 = tbxEmailQuery.Text.Trim();
-            objconmas.PhoneNo = tbxSMSQuery.Text.Trim();
-            objconmas.FaxNo = tbxContactPerson.Text.Trim();
+            objconmas.Address1 = tbxAddress1.Text.Trim();
+            objconmas.Address2 = tbxAddress2.Text.Trim();
+            objconmas.Address3 = tbxAddress3.Text.Trim();
+            objconmas.PhoneNo = tbxPhoneNo.Text.Trim();
+            objconmas.FaxNo = tbxFaxNo.Text.Trim();
 
 
 
@@ -86,6 +87,12 @@ namespace IPCAUI.Administration
 
         private void navBarControl1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void tbxName_EditValueChanged(object sender, EventArgs e)
+        {
+
 
         }
     }
