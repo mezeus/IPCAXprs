@@ -5,6 +5,8 @@ using System.Text;
 using eSunSpeedDomain;
 using eSunSpeed.DataAccess;
 using System.Data;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace eSunSpeed.BusinessLogic
 {

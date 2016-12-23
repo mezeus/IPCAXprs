@@ -9,6 +9,7 @@ namespace eSunSpeed.BusinessLogic
 {
    public class CurrencyConversionBL
     {
+        CurrencyConversionModel objccmod = new CurrencyConversionModel();
         private DBHelper _dbHelper = new DBHelper();
 
         //Save

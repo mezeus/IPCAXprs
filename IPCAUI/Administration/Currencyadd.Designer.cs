@@ -676,8 +676,8 @@
             this.tbxCurrencysymbol.Size = new System.Drawing.Size(306, 20);
             this.tbxCurrencysymbol.StyleController = this.layoutControl1;
             this.tbxCurrencysymbol.TabIndex = 5;
-            this.tbxCurrencysymbol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCurrencysymbol_KeyPress);
-            this.tbxCurrencysymbol.Leave += new System.EventHandler(this.tbxCurrencysymbol_Leave);
+           // this.tbxCurrencysymbol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCurrencysymbol_KeyPress);
+            //this.tbxCurrencysymbol.Leave += new System.EventHandler(this.tbxCurrencysymbol_Leave);
             // 
             // labelControl1
             // 
@@ -1073,7 +1073,7 @@
             this.Name = "Currencyadd";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Currencyadd_Load);
+          //  this.Load += new System.EventHandler(this.Currencyadd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();

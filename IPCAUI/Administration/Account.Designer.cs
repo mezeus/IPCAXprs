@@ -1240,9 +1240,9 @@
             this.tbxName.Size = new System.Drawing.Size(272, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 4;
-            this.tbxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxName_KeyDown);
-            this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
-            this.tbxName.Leave += new System.EventHandler(this.tbxName_Leave);
+           // this.tbxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxName_KeyDown);
+         ////   this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
+           // this.tbxName.Leave += new System.EventHandler(this.tbxName_Leave);
             // 
             // tbxAddress
             // 
@@ -1996,7 +1996,7 @@
             this.Name = "Account";
             this.Text = "Account";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Account_Load);
+       //     this.Load += new System.EventHandler(this.Account_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();

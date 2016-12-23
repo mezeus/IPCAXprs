@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using eSunSpeedDomain;
 using eSunSpeed.DataAccess;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace eSunSpeed.BusinessLogic
 {
   public  class MasterseriesBL
     {
+        MasterseriesModel objmasmod = new MasterseriesModel();
         private DBHelper _dbHelper = new DBHelper();
 
         //Save
-        public bool SaveMasterSeries(MasterseriesModel objIGM)
+        public bool SaveMasterSeries(MasterseriesModel objmasmod)
         {
             string Query = string.Empty;
             bool isSaved = true;
@@ -21,10 +24,10 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@MasterName", objIGM.MasterName));
+                paramCollection.Add(new DBParameter("@MasterName", objmasmod.MasterName));
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
                 
-                Query = "INSERT INTO Masterseriesgroup (`MS_Name`) " +
+                Query = "INSERT INTO Masterseriesgroup (`Name`) " +
                     "VALUES(@MasterName)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)

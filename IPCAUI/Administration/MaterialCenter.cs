@@ -14,7 +14,7 @@ namespace IPCAUI.Administration
 {
     public partial class MaterialCenter : Form
     {
-        MaterialCentreMasterBL objbal = new MaterialCentreMasterBL();
+        MaterialCentreMasterBL objmatcenbl = new MaterialCentreMasterBL();
         public MaterialCenter()
         {
             InitializeComponent();
@@ -30,72 +30,26 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MaterialCentreMasterModel objMaster = new MaterialCentreMasterModel();
+            MaterialCentreMasterModel objGroup = new MaterialCentreMasterModel();
 
-            objMaster.Name = tbxGroupName.Text.Trim();
-            objMaster.Alias = tbxAliasname.Text.Trim();
-            objMaster.PrintName = tbxPrintname.Text.Trim();
-            objMaster.Group = cbxGroupname.SelectedItem.ToString();
-            objMaster.StockAccount = cbxStockaccount.SelectedItem.ToString();
-            objMaster.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
-            objMaster.SalesAccount = cbxSaleAccount.SelectedItem.ToString();
-            //objMaster.EnableStockinBal = cbxSalesAccount.SelectedItem.ToString() == "Y" ? true : false;
-            //objMaster.EnableAccinTransfer = cbxStockTrans.SelectedItem.ToString() == "Y" ? true : false;
-            objMaster.Address = tbxAddress.Text.Trim();
-            //objMaster.Street = tbxStreet.Text.Trim();
+            objGroup.Group = tbxGroupName.Text.TrimEnd();
+            objGroup.Alias = tbxAliasname.Text.Trim();
+            objGroup.StockAccount = cbxStockaccount.Text.Trim();
+        //    objGroup.EnableStockinBal = cbxstockinbal.SelectedItem.ToString() == "Y" ? true : false;
+          //  objGroup.SalesAccount = tbxSalesAccount.Text.Trim();
+            //objGroup.PurchaseAccount = tbxPurcaccount.Text.Trim();
+            objGroup.EnableAccinTransfer = tbxAccStocktransfer.Text.Trim() == "Y" ? true : false; 
 
-            //CityModel objCity = (CityModel)cbxCity.SelectedItem;
-            //objMaster.City = objCity.City_Name.ToString();
 
-            //StateModel objState = (StateModel)cbxState.SelectedItem;
-            //objMaster.State = objState.State_Name;
 
-            //objMaster.Country = cbxCountry.SelectedItem.ToString();
-            //objMaster.PinCode = tbxPincode.Text.Trim();
-            //objMaster.Mobile = tbxMobile.Text.Trim();
-            objMaster.CreatedBy = "Admin";
+           // objGroup.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
+           // objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            objGroup.CreatedBy = "Admin";
 
-            bool isSuccess = objbal.SaveMaterialMaster(objMaster);
-            if(isSuccess)
+            bool isSuccess = objmatcenbl.SaveMaterialMaster(objGroup);
+            if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
-            }
-
-        //    List<MaterialCentreMasterModel> lstMC = accObj.GetAllMaterials();
-        //    dgvList.DataSource = lstMC;
-
-        //    Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-        //    d.ShowDialog();
-        }
-
-        private void MaterialCenter_Load(object sender, EventArgs e)
-        {
-            cbxPurchaseAccount.SelectedIndex = 0;
-            cbxSaleAccount.SelectedIndex = 0;
-            cbxStockaccount.SelectedIndex = 0;
-            cbxUndergroup.SelectedIndex = 0;
-            cbxGroupname.SelectedIndex = 0;
-        }
-
-        private void tbxGroupName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
-                if (tbxGroupName.Text.Trim() == string.Empty)
-                {
-                    MessageBox.Show("Material Center Can Not Be Blank!");
-                    this.ActiveControl = tbxGroupName;
-                    return;
-                    
-
-                }
-                //e.Handled = true; // Mark the event as handled
             }
         }
     }

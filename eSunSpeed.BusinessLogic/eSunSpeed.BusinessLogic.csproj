@@ -73,7 +73,7 @@
     <Compile Include="ContraVoucherBL.cs" />
     <Compile Include="MatIssuedPartyBL.cs" />
     <Compile Include="ReferenceGroupBL.cs" />
-    <Compile Include="TdsCategory .cs" />
+    <Compile Include="TaxCategory .cs" />
     <Compile Include="TdsModelBL.cs" />
     <Compile Include="VatJournalBL.cs" />
     <Compile Include="UnassembleVoucherBL.cs" />

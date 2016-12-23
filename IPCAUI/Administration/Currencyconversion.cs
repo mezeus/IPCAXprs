@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration
 {
     public partial class Currencyconversion : Form
     {
+        CurrencyConversionBL objCurcov = new CurrencyConversionBL();
         public Currencyconversion()
         {
             InitializeComponent();
@@ -34,14 +37,42 @@ namespace IPCAUI.Administration
             frmList.ShowDialog();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void btnsave(object sender, EventArgs e)
         {
+            if (Date.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Date can not be blank!");
+                return;
+            }
 
+            CurrencyConversionModel  objcurconv = new CurrencyConversionModel();
+
+            objcurconv.Date = Convert.ToDateTime(Date.Text.Trim());
+
+            bool isSuccess = objCurcov.SaveCurrencyconversion(objcurconv);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (Date.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Date can not be blank!");
+                return;
+            }
+
+            CurrencyConversionModel objcurconv = new CurrencyConversionModel();
+
+            objcurconv.Date = Convert.ToDateTime(Date.Text.Trim());
+
+            bool isSuccess = objCurcov.SaveCurrencyconversion(objcurconv);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
         }
     }
 }

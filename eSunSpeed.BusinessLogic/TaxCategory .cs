@@ -10,6 +10,7 @@ namespace eSunSpeed.BusinessLogic
 {
     public class TaxCategory
     {
+        TaxCategoryModel objtaxmod = new TaxCategoryModel();
         private DBHelper _dbHelper = new DBHelper();
         
         public bool SaveTaxCategory(eSunSpeedDomain.TaxCategoryModel objTaxCat)

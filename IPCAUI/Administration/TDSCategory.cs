@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration
 {
+    
     public partial class TDSCategory : Form
     {
+        TdsModelBL objtdsmodbl = new TdsModelBL();
         public TDSCategory()
         {
             InitializeComponent();
@@ -23,6 +27,38 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            
+            TdsModel objtds = new TdsModel();
+
+            objtds.TdsCategoryName = tbxTdsName.Text.Trim();
+            objtds.Selectcode = tbxSelectcode.Text.Trim();
+
+
+            bool isSuccess = objtdsmodbl.SaveTdsModel(objtds);
+                if (isSuccess)
+            {
+               MessageBox.Show("Saved Successfully!");
+            }
+           
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+            TdsModel objtds = new TdsModel();
+
+            objtds.TdsCategoryName = tbxTdsName.Text.Trim();
+            objtds.Selectcode = tbxSelectcode.Text.Trim();
+
+
+            bool isSuccess = objtdsmodbl.SaveTdsModel(objtds);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
         }
     }
 }

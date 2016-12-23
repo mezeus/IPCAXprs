@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
 {
     public partial class Masterseriesgroup : Form
     {
+        MasterseriesBL objmasbl = new MasterseriesBL();
         public Masterseriesgroup()
         {
             InitializeComponent();
@@ -27,6 +28,23 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (tbxName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Name can not be blank!");
+                return;
+            }
+
+            Masterseriesgroup objmastser = new Masterseriesgroup();
+
+          
+            objmastser.Name = tbxName.Text.Trim();
+
+            MasterseriesModel objmas = null;
+            bool isSuccess = objmasbl.SaveMasterSeries(objmas);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
         }
 
         private void ListItemmaster_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -35,6 +53,11 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+
+        private void tbxName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

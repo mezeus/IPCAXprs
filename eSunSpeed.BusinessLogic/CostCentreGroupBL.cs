@@ -9,6 +9,7 @@ namespace eSunSpeed.BusinessLogic
 {
    public class CostCentreGroupBL
     {
+        CostCentreMasterModel objccmod = new CostCentreMasterModel();
         private DBHelper _dbHelper = new DBHelper();
 
         public object ParamCollection { get; private set; }

@@ -48,7 +48,6 @@ namespace IPCAUI.Administration
 
             objModel.Name = tbxName.Text.Trim();
             objModel.Alias = tbxAliasname.Text.Trim();
-
             objModel.Group = cbxPrimarygroup.SelectedItem.ToString();
             objModel.opBal = Convert.ToDecimal(tbxOpbal.Text.Trim());
             objModel.DrCr = cbxDrCr.SelectedItem.ToString();
@@ -72,43 +71,6 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-        }
-
-        private void tbxName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
-                if (this.ActiveControl == null)
-                {
-                    MessageBox.Show("Cost Center Can Not Be Blank!");
-                    return;
-                    this.ActiveControl = tbxName;
-
-                }
-                //e.Handled = true; // Mark the event as handled
-            }
-        }
-
-        private void tbxName_Leave(object sender, EventArgs e)
-        {
-            if (tbxName.Text.Equals(string.Empty))
-            {
-                MessageBox.Show("Cost Center can not be blank!");
-                tbxName.Focus();
-                return;
-            }
-        }
-
-        private void Costcenter_Load(object sender, EventArgs e)
-        {
-            cbxDrCr.SelectedIndex = 0;
-            cbxPrimarygroup.SelectedIndex = 0;
         }
     }
 }
