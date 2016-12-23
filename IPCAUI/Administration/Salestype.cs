@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration
 {
     public partial class Salestype : DevExpress.XtraEditors.XtraForm
     {
+        SaleTypeModel objstypemod = new SaleTypeModel();
+       
         public Salestype()
         {
             InitializeComponent();
@@ -24,5 +28,24 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+      
+        private void btnsave_ClientSizeChanged(object sender, EventArgs e)
+        {
+            SaleType objstype = new SaleType();
+
+          objstypemod.SalesType= tbxsaletype.Text.Trim(); 
+            
+            
+
+
+            bool isSuccess =objstype.SaveStype(objstypemod);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
+        }
+
+        
     }
 }

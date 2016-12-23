@@ -58,6 +58,7 @@ namespace IPCAUI.Administration
             objMaster.SubString = tbxCurrencySubstring.Text.Trim();
             objMaster.CreatedBy = "Admin";
 
+         
             bool isSuccess = objCurr.SaveCurrency(objMaster);
             if(isSuccess)
             {
@@ -76,42 +77,6 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-        }
-
-        private void tbxCurrencysymbol_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
-                if (this.ActiveControl == null)
-                {
-                    MessageBox.Show("Master Name Can Not Be Blank!");
-                    return;
-                    this.ActiveControl = tbxCurrencysymbol;
-
-                }
-                //e.Handled = true; // Mark the event as handled
-            }
-        }
-
-        private void tbxCurrencysymbol_Leave(object sender, EventArgs e)
-        {
-            if (tbxCurrencysymbol.Text.Equals(string.Empty))
-            {
-                MessageBox.Show("Master Name can not be blank!");
-                tbxCurrencysymbol.Focus();
-                return;
-            }
-        }
-
-        private void Currencyadd_Load(object sender, EventArgs e)
-        {
-            cbxCurrencyconvMode.SelectedIndex = 0;
         }
     }
 }

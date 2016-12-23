@@ -8,7 +8,9 @@ using eSunSpeed.DataAccess;
 namespace eSunSpeed.BusinessLogic
 {
    public class MaterialCentreMasterBL
-    {
+       {
+        MaterialCentreGroupMasterModel objmatceng = new MaterialCentreGroupMasterModel();
+
         private DBHelper _dbHelper = new DBHelper();
        
        public bool SaveMaterialMaster(MaterialCentreMasterModel objMCM)

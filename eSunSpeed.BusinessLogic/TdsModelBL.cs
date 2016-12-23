@@ -13,6 +13,8 @@ namespace eSunSpeed.BusinessLogic
 {
     public class TdsModelBL
     {
+        TdsModel objtds = new TdsModel();
+
         
         private DBHelper _dbHelper = new DBHelper();
 

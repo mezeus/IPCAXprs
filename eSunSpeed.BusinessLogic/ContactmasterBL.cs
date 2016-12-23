@@ -11,6 +11,7 @@ namespace eSunSpeed.BusinessLogic
 {
     public class ContactmasterBL
     {
+        ContactmasterModel objconmas = new ContactmasterModel();
         private DBHelper _dbHelper = new DBHelper();
 
         #region Save Account Group

@@ -919,7 +919,7 @@
             this.Name = "Accountgroup";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Accountgroup_Load);
+       //     this.Load += new System.EventHandler(this.Accountgroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkGrossProfit.Properties)).EndInit();

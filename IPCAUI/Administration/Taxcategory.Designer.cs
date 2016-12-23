@@ -91,7 +91,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.tbxRateoftatxx = new DevExpress.XtraEditors.TextEdit();
             this.tbxRateoftax = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxtype = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.cbxStregtype = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -153,7 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftatxx.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStregtype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxStockaccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -216,7 +216,7 @@
             this.layoutControl1.Controls.Add(this.labelControl2);
             this.layoutControl1.Controls.Add(this.tbxRateoftatxx);
             this.layoutControl1.Controls.Add(this.tbxRateoftax);
-            this.layoutControl1.Controls.Add(this.comboBoxEdit1);
+            this.layoutControl1.Controls.Add(this.cbxtype);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.cbxStregtype);
@@ -728,15 +728,18 @@
             this.tbxRateoftax.StyleController = this.layoutControl1;
             this.tbxRateoftax.TabIndex = 14;
             // 
-            // comboBoxEdit1
+            // cbxtype
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(516, 30);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxtype.Location = new System.Drawing.Point(516, 30);
+            this.cbxtype.Name = "cbxtype";
+            this.cbxtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(94, 20);
-            this.comboBoxEdit1.StyleController = this.layoutControl1;
-            this.comboBoxEdit1.TabIndex = 13;
+            this.cbxtype.Properties.Items.AddRange(new object[] {
+            "local",
+            "central"});
+            this.cbxtype.Size = new System.Drawing.Size(94, 20);
+            this.cbxtype.StyleController = this.layoutControl1;
+            this.cbxtype.TabIndex = 13;
             // 
             // btnQuit
             // 
@@ -757,6 +760,7 @@
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // cbxStregtype
             // 
@@ -984,7 +988,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.comboBoxEdit1;
+            this.layoutControlItem6.Control = this.cbxtype;
             this.layoutControlItem6.Location = new System.Drawing.Point(395, 18);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(207, 24);
@@ -1190,7 +1194,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftatxx.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStregtype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxStockaccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -1262,7 +1266,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraEditors.TextEdit tbxName;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxtype;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.TextEdit textEdit12;
         private DevExpress.XtraEditors.TextEdit textEdit11;

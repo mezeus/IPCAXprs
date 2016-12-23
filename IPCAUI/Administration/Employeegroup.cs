@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
+using eSunSpeed.BusinessLogic;
 
 namespace IPCAUI.Administration
 {
     public partial class Employeegroup : Form
     {
         EmployeeGroupBL objbl = new EmployeeGroupBL();
+
         public Employeegroup()
         {
             InitializeComponent();
@@ -65,13 +66,8 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
-                
 
-            //List<eSunSpeedDomain.AccountGroupModel> lstGroups = accObj.GetListofAccountsGroups();
-            //dgvList.DataSource = lstGroups;
 
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
         }
     }
 }
