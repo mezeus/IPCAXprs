@@ -211,11 +211,12 @@ namespace IPCAUI.Transactions
             objSalesVoucher = new SalesVoucherBL();
 
             bool isSuccess = objSalesVoucher.SaveSalesVoucher(objSales);
-            //if (isSuccess)
-            //{
-            // //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //   // d.ShowDialog();
-            //}
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
+            }
 
         }
 
