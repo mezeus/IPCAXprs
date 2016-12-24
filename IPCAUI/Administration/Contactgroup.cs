@@ -49,11 +49,11 @@ namespace IPCAUI.Administration
 
             objContGroup.AliasName = tbxAliasname.Text;
 
-
-
-            objContGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
+            objContGroup.Primary = cbxPrimarygroup.SelectedItem.ToString() == "Yes" ? true : false;
 
             objContGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            objContGroup.Natureofgroup = cbxNaturegroup.SelectedItem.ToString();
+            objContGroup.Affectgrossprofit = chkGrossProfit.Checked;
 
             objContGroup.CreatedBy = "Admin";
 
