@@ -42,7 +42,7 @@
             this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Account = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxLongNarratin = new DevExpress.XtraEditors.TextEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -61,9 +61,9 @@
             this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
-            this.tbxVchNo = new DevExpress.XtraEditors.TextEdit();
-            this.tbxVoucherSeries = new DevExpress.XtraEditors.TextEdit();
+            this.tbxVchNumber = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
+            this.tbxVoucherSeries = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -84,11 +84,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.debitDs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvDebit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarratin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -107,13 +107,13 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.gridControl1);
-            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.tbxLongNarratin);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.tbxVchNo);
-            this.layoutControl1.Controls.Add(this.tbxVoucherSeries);
+            this.layoutControl1.Controls.Add(this.tbxVchNumber);
             this.layoutControl1.Controls.Add(this.dtDate);
+            this.layoutControl1.Controls.Add(this.tbxVoucherSeries);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -247,13 +247,14 @@
             this.Account.VisibleIndex = 2;
             this.Account.Width = 178;
             // 
-            // textEdit1
+            // tbxLongNarratin
             // 
-            this.textEdit1.Location = new System.Drawing.Point(180, 523);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(802, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 22;
+            this.tbxLongNarratin.EnterMoveNextControl = true;
+            this.tbxLongNarratin.Location = new System.Drawing.Point(180, 523);
+            this.tbxLongNarratin.Name = "tbxLongNarratin";
+            this.tbxLongNarratin.Size = new System.Drawing.Size(802, 20);
+            this.tbxLongNarratin.StyleController = this.layoutControl1;
+            this.tbxLongNarratin.TabIndex = 22;
             // 
             // btnQuit
             // 
@@ -273,6 +274,7 @@
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // navBarControl1
             // 
@@ -413,23 +415,14 @@
             this.navBarItem9.Name = "navBarItem9";
             this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
             // 
-            // tbxVchNo
+            // tbxVchNumber
             // 
-            this.tbxVchNo.EnterMoveNextControl = true;
-            this.tbxVchNo.Location = new System.Drawing.Point(725, 12);
-            this.tbxVchNo.Name = "tbxVchNo";
-            this.tbxVchNo.Size = new System.Drawing.Size(269, 20);
-            this.tbxVchNo.StyleController = this.layoutControl1;
-            this.tbxVchNo.TabIndex = 3;
-            // 
-            // tbxVoucherSeries
-            // 
-            this.tbxVoucherSeries.EnterMoveNextControl = true;
-            this.tbxVoucherSeries.Location = new System.Drawing.Point(242, 12);
-            this.tbxVoucherSeries.Name = "tbxVoucherSeries";
-            this.tbxVoucherSeries.Size = new System.Drawing.Size(179, 20);
-            this.tbxVoucherSeries.StyleController = this.layoutControl1;
-            this.tbxVoucherSeries.TabIndex = 0;
+            this.tbxVchNumber.EnterMoveNextControl = true;
+            this.tbxVchNumber.Location = new System.Drawing.Point(725, 12);
+            this.tbxVchNumber.Name = "tbxVchNumber";
+            this.tbxVchNumber.Size = new System.Drawing.Size(269, 20);
+            this.tbxVchNumber.StyleController = this.layoutControl1;
+            this.tbxVchNumber.TabIndex = 3;
             // 
             // dtDate
             // 
@@ -445,6 +438,18 @@
             this.dtDate.Size = new System.Drawing.Size(148, 20);
             this.dtDate.StyleController = this.layoutControl1;
             this.dtDate.TabIndex = 2;
+            // 
+            // tbxVoucherSeries
+            // 
+            this.tbxVoucherSeries.EnterMoveNextControl = true;
+            this.tbxVoucherSeries.Location = new System.Drawing.Point(242, 12);
+            this.tbxVoucherSeries.Name = "tbxVoucherSeries";
+            this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxVoucherSeries.Properties.NullText = "";
+            this.tbxVoucherSeries.Size = new System.Drawing.Size(179, 20);
+            this.tbxVoucherSeries.StyleController = this.layoutControl1;
+            this.tbxVoucherSeries.TabIndex = 0;
             // 
             // layoutControlItem8
             // 
@@ -483,7 +488,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.tbxVchNo;
+            this.layoutControlItem5.Control = this.tbxVchNumber;
             this.layoutControlItem5.Location = new System.Drawing.Point(639, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(347, 24);
@@ -553,7 +558,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.textEdit1;
+            this.layoutControlItem1.Control = this.tbxLongNarratin;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(806, 24);
@@ -587,11 +592,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.debitDs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvDebit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarratin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -613,8 +618,7 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit tbxVchNo;
-        private DevExpress.XtraEditors.TextEdit tbxVoucherSeries;
+        private DevExpress.XtraEditors.TextEdit tbxVchNumber;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
@@ -643,7 +647,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxLongNarratin;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -658,5 +662,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Account;
         private System.Windows.Forms.BindingSource debitDtBindingSource;
         private DataSets.DebitDs debitDs;
+        private DevExpress.XtraEditors.LookUpEdit tbxVoucherSeries;
     }
 }

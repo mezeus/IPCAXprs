@@ -54,7 +54,7 @@
     <Compile Include="EmployeeMasterBL.cs" />
     <Compile Include="ExecutivegroupBL.cs" />
     <Compile Include="ContactgroupBL.cs" />
-    <Compile Include="AccountMaster.cs" />
+    <Compile Include="AccountMasterBL.cs" />
     <Compile Include="Analytics.cs" />
     <Compile Include="Arch.cs" />
     <Compile Include="AuthorMaster.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="IssuedVoucherBL.cs" />
     <Compile Include="PhysicalStockVoucherBL.cs" />
     <Compile Include="PurchaseTypeBL.cs" />
+    <Compile Include="PurchaseOrderBL.cs" />
     <Compile Include="PurchaseVoucher.cs" />
     <Compile Include="ReceviedVoucherBL.cs" />
     <Compile Include="RecieptVoucherBL.cs" />

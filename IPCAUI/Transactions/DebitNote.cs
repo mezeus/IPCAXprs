@@ -10,11 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPCAUI.Models;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Transactions
 {
     public partial class DebitNote : Form
     {
+        DebitNoteBL objDNbl = new DebitNoteBL();
         public DebitNote()
         {
             InitializeComponent();
@@ -70,6 +74,9 @@ namespace IPCAUI.Transactions
 
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             riDCLookup.AutoSearchColumnIndex = 1;
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();
+            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
 
             riDCLookup.DropDownRows = 0;
             //riDCLookup.ValueMember = "ID";
@@ -137,6 +144,60 @@ namespace IPCAUI.Transactions
             {
                 gdvDebit.ShowEditor();
                 ((LookUpEdit)gdvDebit.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DebitNoteModel objdebit = new DebitNoteModel();
+
+            if (tbxVchNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
+            objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
+            objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+           
+            //objcredit.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
+            //objcredit.Narration = tbxLogNarration.Text.Trim();
+            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
+            //objPurc.Narration = tbxNarration.Text.Trim();
+            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Bill Number and Due date not captured- check with Ravi if these are required
+
+
+            //Items
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+
+            for (int i = 0; i < gdvDebit.DataRowCount; i++)
+            {
+                DataRow row = gdvDebit.GetDataRow(i);
+
+                objacc = new AccountModel();
+                objacc.DC = row["DC"].ToString();
+
+                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+                //objacc.Unit = row["Unit"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString();
+                lstAccounts.Add(objacc);
+            }
+
+            objdebit.DebitAccountModel = lstAccounts;
+           
+            bool isSuccess = objDNbl.SaveDebitNote(objdebit);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
             }
         }
     }

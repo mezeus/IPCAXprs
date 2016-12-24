@@ -12,12 +12,13 @@
   <xs:element name="AccountgroupList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AccountgroupList" msprop:Generator_UserDSName="AccountgroupList">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="AccountgroupListDt" msprop:Generator_TableClassName="AccountgroupListDtDataTable" msprop:Generator_TableVarName="tableAccountgroupListDt" msprop:Generator_TablePropName="AccountgroupListDt" msprop:Generator_RowDeletingName="AccountgroupListDtRowDeleting" msprop:Generator_RowChangingName="AccountgroupListDtRowChanging" msprop:Generator_RowEvHandlerName="AccountgroupListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountgroupListDtRowDeleted" msprop:Generator_UserTableName="AccountgroupListDt" msprop:Generator_RowChangedName="AccountgroupListDtRowChanged" msprop:Generator_RowEvArgName="AccountgroupListDtRowChangeEvent" msprop:Generator_RowClassName="AccountgroupListDtRow">
+        <xs:element name="AccountgroupListDt" msprop:Generator_TableClassName="AccountgroupListDtDataTable" msprop:Generator_TableVarName="tableAccountgroupListDt" msprop:Generator_RowChangedName="AccountgroupListDtRowChanged" msprop:Generator_TablePropName="AccountgroupListDt" msprop:Generator_RowDeletingName="AccountgroupListDtRowDeleting" msprop:Generator_RowChangingName="AccountgroupListDtRowChanging" msprop:Generator_RowEvHandlerName="AccountgroupListDtRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountgroupListDtRowDeleted" msprop:Generator_RowClassName="AccountgroupListDtRow" msprop:Generator_UserTableName="AccountgroupListDt" msprop:Generator_RowEvArgName="AccountgroupListDtRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="Primary" msprop:Generator_ColumnVarNameInTable="columnPrimary" msprop:Generator_ColumnPropNameInRow="Primary" msprop:Generator_ColumnPropNameInTable="PrimaryColumn" msprop:Generator_UserColumnName="Primary" type="xs:string" minOccurs="0" />
               <xs:element name="Under_x0020_Group" msprop:Generator_ColumnVarNameInTable="columnUnder_Group" msprop:Generator_ColumnPropNameInRow="Under_Group" msprop:Generator_ColumnPropNameInTable="Under_GroupColumn" msprop:Generator_UserColumnName="Under Group" type="xs:string" minOccurs="0" />
+              <xs:element name="AGId" msprop:Generator_ColumnVarNameInTable="columnAGId" msprop:Generator_ColumnPropNameInRow="AGId" msprop:Generator_ColumnPropNameInTable="AGIdColumn" msprop:Generator_UserColumnName="AGId" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
