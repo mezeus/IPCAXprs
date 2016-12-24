@@ -13,6 +13,9 @@ namespace IPCAUI.Administration
 {
     public partial class Account : Form
     {
+
+        AccountMasterBL accMaster = new AccountMasterBL();
+
         public Account()
         {
             InitializeComponent();
@@ -54,59 +57,69 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            /*
+            
             //TODO: 1. Check whether the account name exists or not
             //2. if exist then do not allow to save with the same account name
             //3. Prompt user to change the account name as it already exists
 
-            if (tbxAccountName.Text.Equals(string.Empty))
+            if (tbxName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Account Name can not be blank!");
                 return;
             }
 
-            if (accObj.IsAccountExists(tbxAccountName.Text.Trim()))
+            if (accMaster.IsAccountExists(tbxName.Text.Trim()))
             {
                 MessageBox.Show("Account Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                tbxAccountName.Focus();
+                tbxName.Focus();
                 return;
             }
 
             AccountMasterModel obj = new AccountMasterModel();
 
-            obj.AccountName = tbxAccountName.Text.Trim();
-            obj.PrintName = tbxPrintNameAccount.Text.Trim();
-            obj.ShortName = tbxShortNameAccount.Text;
+            obj.AccountName = tbxName.Text.Trim();
+            obj.PrintName = tbxPrintname.Text.Trim();
+            obj.ShortName = tbxAlias.Text;
             //obj.LedgerType = cbxLederyType.SelectedItem==null?string.Empty: cbxLederyType.SelectedItem.ToString();
 
-            obj.Group = cbxAccountGroup.SelectedItem == null ? string.Empty : cbxAccountGroup.SelectedItem.ToString();
+            obj.Group = cbxGroupname.SelectedItem == null ? string.Empty : cbxGroupname.SelectedItem.ToString();
 
-            obj.OPBal = Convert.ToDecimal(tbxAccountOpeningBalace.Text);
-            obj.PrevYearBal = Convert.ToDecimal(tbxPrevBalance.Text);
-            obj.DrCrOpeningBal = cbxAccountDrCrOpeningBalance.SelectedItem.ToString();
-            obj.DrCrPrevBal = cbxAccountDrCrPrevYearBalance.SelectedItem.ToString();
+            obj.OPBal = Convert.ToDecimal(tbxOpbal.Text);
+            obj.PrevYearBal = Convert.ToDecimal(tbxPrevyearbal.Text);
+            obj.DrCrOpeningBal = cbxCrDr.SelectedItem.ToString();
+            obj.DrCrPrevBal = cbxPrevCrDr.SelectedItem.ToString();
 
-            obj.CreditDays = tbxCreditDaysAccount.Text;
+            obj.CreditDaysforSale = Convert.ToInt32(tbxCreditdaysforSale.Text);
+            obj.CreditDaysforPurchase= Convert.ToInt32(tbxCreditdaysforPurc.Text);
             //obj.CreditLimit = tbxCreditLimitAccount.Text;
 
             obj.Transport = tbxTransport.Text;
             obj.Station = tbxStation.Text;
 
+            obj.specifyDefaultSaleType = cbxSpecifydefaultSale.SelectedItem.ToString()=="Y"?true:false;
+            obj.DefaultSaleType = cbxDefaultsaletype.SelectedItem.ToString();
+            obj.FreezeSaleType = cbxFreezesaletype.SelectedItem.ToString() == "Y" ? true : false;
 
-            //obj.State = cbxAccountState.SelectedItem==null?string.Empty:cbxAccountState.SelectedItem.ToString();
-            //obj.DefaultPurcType = cbxDefaultPurchaseTypeAccount.SelectedItem==null?string.Empty: cbxDefaultPurchaseTypeAccount.SelectedItem.ToString();
-            //obj.DefaultSaleType = cbxDefaultSaleTypeAccount.SelectedItem==null?string.Empty: cbxDefaultSaleTypeAccount.SelectedItem.ToString();
+            obj.SpecifyDefaultPurType = cbxSpecifydefaultPurcType.SelectedItem.ToString().Equals("Y") ? true : false;
+            obj.specifyDefaultSaleType = cbxSpecifydefaultPurcType.SelectedItem.ToString().Equals("Y") ? true : false;
+            obj.DefaultPurcType = DefaultPurcType.SelectedItem==null?string.Empty: DefaultPurcType.SelectedItem.ToString();
+
+            obj.FreezePurcType = cbxFreezePurcType.SelectedItem.ToString() == "Y" ? true : false;
+            obj.InterestRatePayable = Convert.ToInt32(tbxInterestPay.Text);
+            obj.InterestRateReceivable = Convert.ToInt32(tbxInterestrateReceviable.Text);
+
+            obj.State = cbxState.SelectedItem.ToString();
+            
             //obj.LockSalesType = cbxLockSalesType.SelectedItem.ToString().Equals("Y") ? true : false;
             // cbxLockSaleTypeAccount.Text = obj.
 
             //obj.MultiCurrency = cbxMultiCurrency.SelectedItem.ToString().Equals("Y") ? true : false;
-            //obj.SpecifyDefaultPurType = cbxSpecifyDefaultPurcTypeAccount.SelectedItem.ToString().Equals("Y") ? true : false;
-            //obj.specifyDefaultSaleType = cbxSpecifyDefaultSaleTypeAccount.SelectedItem.ToString().Equals("Y") ? true : false;
+
             //obj.TypeofBuissness = cbxTypeofBusinessAccount.SelectedItem==null?string.Empty:cbxTypeofBusinessAccount.SelectedItem.ToString();
             //obj.ActivateInterestCal = cbxYesNoActivateInterestCalculation.SelectedItem.ToString().Equals("Y") ? true : false;
 
             //continue
-            obj.MaintainBillwiseAccounts = cbxYesNoMaintainBillwiseAccounts.SelectedItem.ToString().Equals("Y") ? true : false;
+           // obj.MaintainBillwiseAccounts = cbxYesNoMaintainBillwiseAccounts.SelectedItem.ToString().Equals("Y") ? true : false;
             //obj.address1 = tbxAccountAddress.Text.Trim();
             //obj.address2 = tbxAccountAddressLine1.Text.Trim();
             //obj.address3 = tbxAccountAddressLine2.Text.Trim();
@@ -124,28 +137,28 @@ namespace IPCAUI.Administration
             //obj.LstNumber = tbxAccountLstNo.Text;
             //obj.MobileNumber = tbxAccountMobileNo.Text;
 
-            obj.BankAccountNumber = string.Empty;
-            obj.ChequePrintName = string.Empty;
-            obj.FreezeSaleType = string.Empty;
-            obj.Ward = string.Empty;
-            obj.TelephoneNumber = string.Empty;
-            obj.ServiceTaxNumber = string.Empty;
-            obj.TIN = string.Empty;
-            obj.TypeofDealer = string.Empty;
-            obj.LBTNumber = string.Empty;
-            obj.WebSite = string.Empty;
+            //obj.BankAccountNumber = string.Empty;
+            //obj.ChequePrintName = string.Empty;
+            //obj.FreezeSaleType = string.Empty;
+            //obj.Ward = string.Empty;
+            //obj.TelephoneNumber = string.Empty;
+            //obj.ServiceTaxNumber = string.Empty;
+            //obj.TIN = string.Empty;
+            //obj.TypeofDealer = string.Empty;
+            //obj.LBTNumber = string.Empty;
+            //obj.WebSite = string.Empty;
 
-            string message = string.Empty;
+            //string message = string.Empty;
 
-            bool isSuccess = accObj.SaveAccount(obj);
+            //bool isSuccess = accObj.SaveAccount(obj);
 
-            List<AccountMasterModel> lstAccounts = accObj.GetListofAccount();
-            dgvList.DataSource = lstAccounts;
+            //List<AccountMasterModel> lstAccounts = accObj.GetListofAccount();
+            //dgvList.DataSource = lstAccounts;
 
-            Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            d.ShowDialog();
+            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+            //d.ShowDialog();
 
-    */
+    
         }
 
         private void ListAccount_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)

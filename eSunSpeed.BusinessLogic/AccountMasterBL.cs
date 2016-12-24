@@ -8,7 +8,7 @@ using System.Data;
 
 namespace eSunSpeed.BusinessLogic
 {
-    public class AccountMaster
+    public class AccountMasterBL
     {
         private DBHelper _dbHelper = new DBHelper();
 
@@ -18,7 +18,7 @@ namespace eSunSpeed.BusinessLogic
         /// </summary>
         /// <param name="objAccountGrp"></param>
         /// <returns>True/False</returns>
-        public bool SaveAccountGroup(eSunSpeedDomain.AccountGroupModel objAccountGrp)
+        public bool SaveAccountGroup(AccountGroupModel objAccountGrp)
         {
             string Query = string.Empty;           
 
@@ -26,11 +26,13 @@ namespace eSunSpeed.BusinessLogic
             
             paramCollection.Add(new DBParameter("@GroupName", objAccountGrp.GroupName));
             paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
-            paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary));
+            paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary=="Yes"?1:0));
             paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
+            paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
+            paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit?1:0,DbType.Int16));
             paramCollection.Add(new DBParameter("@CreatedBy", objAccountGrp.CreatedBy));
                        
-            Query = "INSERT INTO AccountGroups(`AG_ID`,`GroupName`,`AliasName`,`Primary`,`UnderGroup`,`CreatedBy`) VALUES (2,@GroupName,@AliasName,@Primary,@UnderGroup,@CreatedBy)";
+            Query = "INSERT INTO AccountGroups(GroupName,AliasName,`Primary`,UnderGroup,NatureGroup,IsAffectGrossProfit,CreatedBy) VALUES (@GroupName,@AliasName,@Primary,@UnderGroup,@NatureGroup,@IsAffectGrossProfit,@CreatedBy)";
 
             return _dbHelper.ExecuteNonQuery(Query,paramCollection) > 0;                  
         }
@@ -230,7 +232,7 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
             eSunSpeedDomain.AccountGroupModel accountGroup;
 
-            string Query = "SELECT DISTINCT AG_ID,CanDelete,GroupName,AliasName,primary, UnderGroup FROM AccountGroups where UnderGroup<>''";
+            string Query = "SELECT DISTINCT AG_ID,GroupName,AliasName,`primary`, UnderGroup FROM `AccountGroups`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -238,7 +240,7 @@ namespace eSunSpeed.BusinessLogic
                 accountGroup = new eSunSpeedDomain.AccountGroupModel();
 
                 accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
-                accountGroup.CanDelete = Convert.ToBoolean(dr["CanDelete"]); 
+                //accountGroup.CanDelete = Convert.ToBoolean(dr["CanDelete"]); 
                 accountGroup.GroupName = dr["GroupName"].ToString();
                 accountGroup.AliasName = dr["AliasName"].ToString();
                 accountGroup.UnderGroup = dr["UnderGroup"].ToString();
@@ -302,7 +304,7 @@ namespace eSunSpeed.BusinessLogic
         /// </summary>
         /// <param name="objAccountGroup"></param>
         /// <returns>True/False</returns>
-        public bool UpdateAccountGroup(eSunSpeedDomain.AccountGroupModel objAccountGroup)
+        public bool UpdateAccountGroup(eSunSpeedDomain.AccountGroupModel objAccountGrp)
         {
             string Query = string.Empty;
             bool isUpdated = true;
@@ -311,15 +313,18 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
 
-                paramCollection.Add(new DBParameter("@GroupName", objAccountGroup.GroupName));
-                paramCollection.Add(new DBParameter("@AliasName", objAccountGroup.AliasName));
-                paramCollection.Add(new DBParameter("@Primary", objAccountGroup.Primary));
-                paramCollection.Add(new DBParameter("@UnderGroup", objAccountGroup.UnderGroup));
-                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@GroupId", objAccountGroup.GroupId));
+                paramCollection.Add(new DBParameter("@GroupName", objAccountGrp.GroupName));
+                paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
+                paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary == "Yes" ? 1 : 0));
+                paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
+                paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
+                paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit ? 1 : 0, DbType.Int16));
+                paramCollection.Add(new DBParameter("@ModifiedBy", objAccountGrp.ModifiedBy));
 
-                Query = "UPDATE AccountGroups SET [GroupName]=@GroupName,[AliasName]=@AliasName,[Primary]=@Primay,[UnderGroup]=@UnderGroup,[ModifiedBy]=@ModifiedBy " +
-                        "WHERE [AG_ID]=@GroupId";
+                paramCollection.Add(new DBParameter("@GroupId", objAccountGrp.GroupId));
+
+                Query = "UPDATE AccountGroups SET GroupName=@GroupName,AliasName=@AliasName,`Primary`=@Primary,UnderGroup=@UnderGroup,NatureGroup=@NatureGroup,IsAffectGrossProfit=@IsAffectGrossProfit,ModifiedBy=@ModifiedBy " +
+                        "WHERE AG_ID=@GroupId";
 
 
 
@@ -464,7 +469,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.Station = dr["ACC_Station"].ToString();
                     _acctMaster.specifyDefaultSaleType = Convert.ToBoolean(dr["ACC_SpecifyDefaultSaleType"]) == false ? false : true;
                     _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
-                    _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
+                   // _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
                     _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
 
                     _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]) == false ? false : true;
@@ -476,7 +481,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.Station = dr["ACC_State"].ToString();
                     _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
                     _acctMaster.Fax = dr["ACC_Fax"].ToString();
-                    _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
+                 //   _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
                     _acctMaster.email = dr["ACC_email"].ToString();
 
                     _acctMaster.WebSite = dr["ACC_Website"].ToString();
@@ -547,7 +552,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.Station = dr["ACC_Station"].ToString();
                     _acctMaster.specifyDefaultSaleType = Convert.ToBoolean(dr["ACC_SpecifyDefaultSaleType"]) == false ? false : true;
                     _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
-                    _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
+                   // _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
                     _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
 
                     _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]) == false ? false : true;
@@ -559,7 +564,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.Station = dr["ACC_State"].ToString();
                     _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
                     _acctMaster.Fax = dr["ACC_Fax"].ToString();
-                    _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
+                   // _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
                     _acctMaster.email = dr["ACC_email"].ToString();
 
                     _acctMaster.WebSite = dr["ACC_Website"].ToString();
@@ -592,7 +597,37 @@ namespace eSunSpeed.BusinessLogic
 
             return _acctMaster;
         }
-      
+
+        #region Get Account Group by Group Id
+        /// <summary>
+        /// Get Account Groups
+        /// </summary>
+        /// <returns>Get Groups</returns>
+        public AccountGroupModel GetAccountGroupByGroupId(int groupId)
+        {
+            AccountGroupModel accountGroup = new AccountGroupModel();
+
+            string Query = "SELECT  AG_ID,GroupName,AliasName,`primary`, UnderGroup,NatureGroup,IsAffectGrossProfit FROM `AccountGroups` where AG_Id="+groupId;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {               
+                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
+                //accountGroup.CanDelete = Convert.ToBoolean(dr["CanDelete"]); 
+                accountGroup.GroupName = dr["GroupName"].ToString();
+                accountGroup.AliasName = dr["AliasName"].ToString();
+                accountGroup.UnderGroup = dr["UnderGroup"].ToString();
+                accountGroup.Primary = dr["Primary"].ToString();
+                accountGroup.NatureGroup = dr["NatureGroup"].ToString();
+                accountGroup.IsAffectGrossProfit = Convert.ToBoolean( dr["IsAffectGrossProfit"]);
+
+            }
+
+            return accountGroup;
+
+        }
+
+        #endregion  
     }
 
 }

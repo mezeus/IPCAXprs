@@ -10,5 +10,7 @@
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public bool CanDelete { get; set; }
+        public string NatureGroup { get; set; }
+        public bool IsAffectGrossProfit { get; set; }
     }
 }
