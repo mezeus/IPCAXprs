@@ -60,4 +60,14 @@ namespace IPCAUI.Models
             Series = new List<string> { "Main"};
         }
     }
+
+    public class GroupLookup
+    {
+        public List<string> Group;
+
+        public GroupLookup()
+        {
+            Group = new List<string> { "Main" };
+        }
+    }
 }

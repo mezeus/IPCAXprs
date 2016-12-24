@@ -75,17 +75,16 @@
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
-            this.dtDatebirth = new DevExpress.XtraEditors.DateEdit();
             this.cbxSubledger = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxQuit = new DevExpress.XtraEditors.SimpleButton();
             this.tbxSave = new DevExpress.XtraEditors.SimpleButton();
-            this.tbxContactPerson = new DevExpress.XtraEditors.TextEdit();
-            this.tbxSMSQuery = new DevExpress.XtraEditors.TextEdit();
-            this.tbxEmailQuery = new DevExpress.XtraEditors.TextEdit();
+            this.tbxFaxNo = new DevExpress.XtraEditors.TextEdit();
+            this.tbxPhoneNo = new DevExpress.XtraEditors.TextEdit();
+            this.tbxAddress3 = new DevExpress.XtraEditors.TextEdit();
             this.tbxEmail = new DevExpress.XtraEditors.TextEdit();
             this.tbxMobileno = new DevExpress.XtraEditors.TextEdit();
-            this.tbxEsino = new DevExpress.XtraEditors.TextEdit();
-            this.tbxPfno = new DevExpress.XtraEditors.TextEdit();
+            this.tbxAddress2 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxAddress1 = new DevExpress.XtraEditors.TextEdit();
             this.cbxTrade = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxConnectledger = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxPrintname = new DevExpress.XtraEditors.TextEdit();
@@ -124,7 +123,6 @@
             this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -143,19 +141,19 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.grpCreditdays = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.cbxSpecifyDateofBirth = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.SpecifyDateofBirth = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDatebirth.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDatebirth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubledger.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxContactPerson.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSMSQuery.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxEmailQuery.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxFaxNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPhoneNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMobileno.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxEsino.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxPfno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTrade.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxConnectledger.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).BeginInit();
@@ -193,7 +191,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
@@ -212,22 +209,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSpecifyDateofBirth.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecifyDateofBirth)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.cbxSpecifyDateofBirth);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.dtDatebirth);
             this.layoutControl1.Controls.Add(this.cbxSubledger);
             this.layoutControl1.Controls.Add(this.tbxQuit);
             this.layoutControl1.Controls.Add(this.tbxSave);
-            this.layoutControl1.Controls.Add(this.tbxContactPerson);
-            this.layoutControl1.Controls.Add(this.tbxSMSQuery);
-            this.layoutControl1.Controls.Add(this.tbxEmailQuery);
+            this.layoutControl1.Controls.Add(this.tbxFaxNo);
+            this.layoutControl1.Controls.Add(this.tbxPhoneNo);
+            this.layoutControl1.Controls.Add(this.tbxAddress3);
             this.layoutControl1.Controls.Add(this.tbxEmail);
             this.layoutControl1.Controls.Add(this.tbxMobileno);
-            this.layoutControl1.Controls.Add(this.tbxEsino);
-            this.layoutControl1.Controls.Add(this.tbxPfno);
+            this.layoutControl1.Controls.Add(this.tbxAddress2);
+            this.layoutControl1.Controls.Add(this.tbxAddress1);
             this.layoutControl1.Controls.Add(this.cbxTrade);
             this.layoutControl1.Controls.Add(this.cbxConnectledger);
             this.layoutControl1.Controls.Add(this.tbxPrintname);
@@ -612,25 +611,17 @@
             this.navBarItem6.Name = "navBarItem6";
             this.navBarItem6.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem6.SmallImage")));
             // 
-            // dtDatebirth
-            // 
-            this.dtDatebirth.EditValue = null;
-            this.dtDatebirth.Location = new System.Drawing.Point(325, 337);
-            this.dtDatebirth.Name = "dtDatebirth";
-            this.dtDatebirth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtDatebirth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtDatebirth.Size = new System.Drawing.Size(200, 20);
-            this.dtDatebirth.StyleController = this.layoutControl1;
-            this.dtDatebirth.TabIndex = 62;
-            // 
             // cbxSubledger
             // 
+            this.cbxSubledger.EnterMoveNextControl = true;
             this.cbxSubledger.Location = new System.Drawing.Point(379, 145);
             this.cbxSubledger.Name = "cbxSubledger";
             this.cbxSubledger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSubledger.Properties.Items.AddRange(new object[] {
+            "Busy infotech pvt ltd",
+            "tcs",
+            "virtusa"});
             this.cbxSubledger.Size = new System.Drawing.Size(146, 20);
             this.cbxSubledger.StyleController = this.layoutControl1;
             this.cbxSubledger.TabIndex = 61;
@@ -657,32 +648,36 @@
             this.tbxSave.Text = "Save";
             this.tbxSave.Click += new System.EventHandler(this.tbxSave_Click);
             // 
-            // tbxContactPerson
+            // tbxFaxNo
             // 
-            this.tbxContactPerson.Location = new System.Drawing.Point(691, 193);
-            this.tbxContactPerson.Name = "tbxContactPerson";
-            this.tbxContactPerson.Size = new System.Drawing.Size(160, 20);
-            this.tbxContactPerson.StyleController = this.layoutControl1;
-            this.tbxContactPerson.TabIndex = 40;
+            this.tbxFaxNo.EnterMoveNextControl = true;
+            this.tbxFaxNo.Location = new System.Drawing.Point(691, 193);
+            this.tbxFaxNo.Name = "tbxFaxNo";
+            this.tbxFaxNo.Size = new System.Drawing.Size(160, 20);
+            this.tbxFaxNo.StyleController = this.layoutControl1;
+            this.tbxFaxNo.TabIndex = 40;
             // 
-            // tbxSMSQuery
+            // tbxPhoneNo
             // 
-            this.tbxSMSQuery.Location = new System.Drawing.Point(691, 169);
-            this.tbxSMSQuery.Name = "tbxSMSQuery";
-            this.tbxSMSQuery.Size = new System.Drawing.Size(160, 20);
-            this.tbxSMSQuery.StyleController = this.layoutControl1;
-            this.tbxSMSQuery.TabIndex = 39;
+            this.tbxPhoneNo.EnterMoveNextControl = true;
+            this.tbxPhoneNo.Location = new System.Drawing.Point(691, 169);
+            this.tbxPhoneNo.Name = "tbxPhoneNo";
+            this.tbxPhoneNo.Size = new System.Drawing.Size(160, 20);
+            this.tbxPhoneNo.StyleController = this.layoutControl1;
+            this.tbxPhoneNo.TabIndex = 39;
             // 
-            // tbxEmailQuery
+            // tbxAddress3
             // 
-            this.tbxEmailQuery.Location = new System.Drawing.Point(691, 145);
-            this.tbxEmailQuery.Name = "tbxEmailQuery";
-            this.tbxEmailQuery.Size = new System.Drawing.Size(160, 20);
-            this.tbxEmailQuery.StyleController = this.layoutControl1;
-            this.tbxEmailQuery.TabIndex = 38;
+            this.tbxAddress3.EnterMoveNextControl = true;
+            this.tbxAddress3.Location = new System.Drawing.Point(691, 145);
+            this.tbxAddress3.Name = "tbxAddress3";
+            this.tbxAddress3.Size = new System.Drawing.Size(160, 20);
+            this.tbxAddress3.StyleController = this.layoutControl1;
+            this.tbxAddress3.TabIndex = 38;
             // 
             // tbxEmail
             // 
+            this.tbxEmail.EnterMoveNextControl = true;
             this.tbxEmail.Location = new System.Drawing.Point(325, 217);
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(200, 20);
@@ -691,50 +686,61 @@
             // 
             // tbxMobileno
             // 
+            this.tbxMobileno.EnterMoveNextControl = true;
             this.tbxMobileno.Location = new System.Drawing.Point(325, 193);
             this.tbxMobileno.Name = "tbxMobileno";
             this.tbxMobileno.Size = new System.Drawing.Size(200, 20);
             this.tbxMobileno.StyleController = this.layoutControl1;
             this.tbxMobileno.TabIndex = 36;
             // 
-            // tbxEsino
+            // tbxAddress2
             // 
-            this.tbxEsino.Location = new System.Drawing.Point(691, 121);
-            this.tbxEsino.Name = "tbxEsino";
-            this.tbxEsino.Size = new System.Drawing.Size(160, 20);
-            this.tbxEsino.StyleController = this.layoutControl1;
-            this.tbxEsino.TabIndex = 34;
+            this.tbxAddress2.EnterMoveNextControl = true;
+            this.tbxAddress2.Location = new System.Drawing.Point(691, 121);
+            this.tbxAddress2.Name = "tbxAddress2";
+            this.tbxAddress2.Size = new System.Drawing.Size(160, 20);
+            this.tbxAddress2.StyleController = this.layoutControl1;
+            this.tbxAddress2.TabIndex = 34;
             // 
-            // tbxPfno
+            // tbxAddress1
             // 
-            this.tbxPfno.Location = new System.Drawing.Point(691, 97);
-            this.tbxPfno.Name = "tbxPfno";
-            this.tbxPfno.Size = new System.Drawing.Size(160, 20);
-            this.tbxPfno.StyleController = this.layoutControl1;
-            this.tbxPfno.TabIndex = 33;
+            this.tbxAddress1.EnterMoveNextControl = true;
+            this.tbxAddress1.Location = new System.Drawing.Point(691, 97);
+            this.tbxAddress1.Name = "tbxAddress1";
+            this.tbxAddress1.Size = new System.Drawing.Size(160, 20);
+            this.tbxAddress1.StyleController = this.layoutControl1;
+            this.tbxAddress1.TabIndex = 33;
             // 
             // cbxTrade
             // 
+            this.cbxTrade.EnterMoveNextControl = true;
             this.cbxTrade.Location = new System.Drawing.Point(325, 241);
             this.cbxTrade.Name = "cbxTrade";
             this.cbxTrade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxTrade.Properties.Items.AddRange(new object[] {
+            "others"});
             this.cbxTrade.Size = new System.Drawing.Size(200, 20);
             this.cbxTrade.StyleController = this.layoutControl1;
             this.cbxTrade.TabIndex = 16;
             // 
             // cbxConnectledger
             // 
+            this.cbxConnectledger.EnterMoveNextControl = true;
             this.cbxConnectledger.Location = new System.Drawing.Point(325, 145);
             this.cbxConnectledger.Name = "cbxConnectledger";
             this.cbxConnectledger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxConnectledger.Properties.Items.AddRange(new object[] {
+            "yes",
+            "no"});
             this.cbxConnectledger.Size = new System.Drawing.Size(50, 20);
             this.cbxConnectledger.StyleController = this.layoutControl1;
             this.cbxConnectledger.TabIndex = 11;
             // 
             // tbxPrintname
             // 
+            this.tbxPrintname.EnterMoveNextControl = true;
             this.tbxPrintname.Location = new System.Drawing.Point(325, 121);
             this.tbxPrintname.Name = "tbxPrintname";
             this.tbxPrintname.Size = new System.Drawing.Size(200, 20);
@@ -769,14 +775,17 @@
             // 
             // tbxName
             // 
+            this.tbxName.EnterMoveNextControl = true;
             this.tbxName.Location = new System.Drawing.Point(325, 73);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(200, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 4;
+            this.tbxName.EditValueChanged += new System.EventHandler(this.tbxName_EditValueChanged);
             // 
             // tbxDepartment
             // 
+            this.tbxDepartment.EnterMoveNextControl = true;
             this.tbxDepartment.Location = new System.Drawing.Point(325, 313);
             this.tbxDepartment.Name = "tbxDepartment";
             this.tbxDepartment.Size = new System.Drawing.Size(200, 20);
@@ -785,6 +794,7 @@
             // 
             // tbxAlias
             // 
+            this.tbxAlias.EnterMoveNextControl = true;
             this.tbxAlias.Location = new System.Drawing.Point(325, 97);
             this.tbxAlias.Name = "tbxAlias";
             this.tbxAlias.Size = new System.Drawing.Size(200, 20);
@@ -793,6 +803,7 @@
             // 
             // tbxOrgination
             // 
+            this.tbxOrgination.EnterMoveNextControl = true;
             this.tbxOrgination.Location = new System.Drawing.Point(325, 169);
             this.tbxOrgination.Name = "tbxOrgination";
             this.tbxOrgination.Size = new System.Drawing.Size(200, 20);
@@ -801,44 +812,54 @@
             // 
             // tbxAddress
             // 
+            this.tbxAddress.EnterMoveNextControl = true;
             this.tbxAddress.Location = new System.Drawing.Point(691, 73);
             this.tbxAddress.Name = "tbxAddress";
             this.tbxAddress.Properties.DisplayFormat.FormatString = "d";
             this.tbxAddress.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.tbxAddress.Properties.EditFormat.FormatString = "d";
             this.tbxAddress.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.tbxAddress.Properties.Mask.EditMask = "d";
-            this.tbxAddress.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
             this.tbxAddress.Size = new System.Drawing.Size(160, 20);
             this.tbxAddress.StyleController = this.layoutControl1;
             this.tbxAddress.TabIndex = 58;
             // 
             // cbxGroup
             // 
+            this.cbxGroup.EnterMoveNextControl = true;
             this.cbxGroup.Location = new System.Drawing.Point(325, 265);
             this.cbxGroup.Name = "cbxGroup";
             this.cbxGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxGroup.Properties.Items.AddRange(new object[] {
+            "General"});
             this.cbxGroup.Size = new System.Drawing.Size(200, 20);
             this.cbxGroup.StyleController = this.layoutControl1;
             this.cbxGroup.TabIndex = 12;
             // 
             // tbxArea
             // 
+            this.tbxArea.EnterMoveNextControl = true;
             this.tbxArea.Location = new System.Drawing.Point(325, 289);
             this.tbxArea.Name = "tbxArea";
             this.tbxArea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxArea.Properties.Items.AddRange(new object[] {
+            "itc",
+            "hitech"});
             this.tbxArea.Size = new System.Drawing.Size(200, 20);
             this.tbxArea.StyleController = this.layoutControl1;
             this.tbxArea.TabIndex = 14;
             // 
             // cbxDateAnnversary
             // 
+            this.cbxDateAnnversary.EnterMoveNextControl = true;
             this.cbxDateAnnversary.Location = new System.Drawing.Point(325, 361);
             this.cbxDateAnnversary.Name = "cbxDateAnnversary";
             this.cbxDateAnnversary.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxDateAnnversary.Properties.Items.AddRange(new object[] {
+            "yes",
+            "no"});
             this.cbxDateAnnversary.Size = new System.Drawing.Size(200, 20);
             this.cbxDateAnnversary.StyleController = this.layoutControl1;
             this.cbxDateAnnversary.TabIndex = 7;
@@ -972,7 +993,7 @@
             this.layoutControlItem36,
             this.layoutControlItem37,
             this.layoutControlItem15,
-            this.layoutControlItem5});
+            this.SpecifyDateofBirth});
             this.layoutControlGroup2.Location = new System.Drawing.Point(163, 31);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(366, 354);
@@ -1142,18 +1163,6 @@
             this.layoutControlItem15.Text = "Type of Trade";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(135, 13);
             // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.dtDatebirth;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 264);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(342, 24);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(342, 24);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(342, 24);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "Specify Date of Birth";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(135, 13);
-            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1183,7 +1192,7 @@
             // 
             // layoutControlItem34
             // 
-            this.layoutControlItem34.Control = this.tbxEsino;
+            this.layoutControlItem34.Control = this.tbxAddress2;
             this.layoutControlItem34.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem34.MaxSize = new System.Drawing.Size(302, 24);
             this.layoutControlItem34.MinSize = new System.Drawing.Size(302, 24);
@@ -1195,7 +1204,7 @@
             // 
             // layoutControlItem33
             // 
-            this.layoutControlItem33.Control = this.tbxPfno;
+            this.layoutControlItem33.Control = this.tbxAddress1;
             this.layoutControlItem33.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem33.MaxSize = new System.Drawing.Size(302, 24);
             this.layoutControlItem33.MinSize = new System.Drawing.Size(302, 24);
@@ -1207,7 +1216,7 @@
             // 
             // layoutControlItem39
             // 
-            this.layoutControlItem39.Control = this.tbxSMSQuery;
+            this.layoutControlItem39.Control = this.tbxPhoneNo;
             this.layoutControlItem39.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem39.MaxSize = new System.Drawing.Size(302, 24);
             this.layoutControlItem39.MinSize = new System.Drawing.Size(302, 24);
@@ -1219,7 +1228,7 @@
             // 
             // layoutControlItem38
             // 
-            this.layoutControlItem38.Control = this.tbxEmailQuery;
+            this.layoutControlItem38.Control = this.tbxAddress3;
             this.layoutControlItem38.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem38.MaxSize = new System.Drawing.Size(302, 24);
             this.layoutControlItem38.MinSize = new System.Drawing.Size(302, 24);
@@ -1231,7 +1240,7 @@
             // 
             // layoutControlItem40
             // 
-            this.layoutControlItem40.Control = this.tbxContactPerson;
+            this.layoutControlItem40.Control = this.tbxFaxNo;
             this.layoutControlItem40.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem40.MaxSize = new System.Drawing.Size(302, 24);
             this.layoutControlItem40.MinSize = new System.Drawing.Size(302, 24);
@@ -1334,6 +1343,27 @@
             this.grpCreditdays.Size = new System.Drawing.Size(464, 66);
             this.grpCreditdays.Text = "Credit Days";
             // 
+            // cbxSpecifyDateofBirth
+            // 
+            this.cbxSpecifyDateofBirth.Location = new System.Drawing.Point(325, 337);
+            this.cbxSpecifyDateofBirth.Name = "cbxSpecifyDateofBirth";
+            this.cbxSpecifyDateofBirth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSpecifyDateofBirth.Properties.Items.AddRange(new object[] {
+            "yes",
+            "no"});
+            this.cbxSpecifyDateofBirth.Size = new System.Drawing.Size(200, 20);
+            this.cbxSpecifyDateofBirth.StyleController = this.layoutControl1;
+            this.cbxSpecifyDateofBirth.TabIndex = 64;
+            // 
+            // SpecifyDateofBirth
+            // 
+            this.SpecifyDateofBirth.Control = this.cbxSpecifyDateofBirth;
+            this.SpecifyDateofBirth.Location = new System.Drawing.Point(0, 264);
+            this.SpecifyDateofBirth.Name = "SpecifyDateofBirth";
+            this.SpecifyDateofBirth.Size = new System.Drawing.Size(342, 24);
+            this.SpecifyDateofBirth.TextSize = new System.Drawing.Size(135, 13);
+            // 
             // Contactmaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1347,16 +1377,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDatebirth.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDatebirth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubledger.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxContactPerson.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSMSQuery.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxEmailQuery.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxFaxNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPhoneNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMobileno.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxEsino.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxPfno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTrade.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxConnectledger.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).EndInit();
@@ -1394,7 +1422,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
@@ -1413,6 +1440,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSpecifyDateofBirth.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecifyDateofBirth)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1442,13 +1471,13 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxTrade;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private DevExpress.XtraEditors.TextEdit tbxContactPerson;
-        private DevExpress.XtraEditors.TextEdit tbxSMSQuery;
-        private DevExpress.XtraEditors.TextEdit tbxEmailQuery;
+        private DevExpress.XtraEditors.TextEdit tbxFaxNo;
+        private DevExpress.XtraEditors.TextEdit tbxPhoneNo;
+        private DevExpress.XtraEditors.TextEdit tbxAddress3;
         private DevExpress.XtraEditors.TextEdit tbxEmail;
         private DevExpress.XtraEditors.TextEdit tbxMobileno;
-        private DevExpress.XtraEditors.TextEdit tbxEsino;
-        private DevExpress.XtraEditors.TextEdit tbxPfno;
+        private DevExpress.XtraEditors.TextEdit tbxAddress2;
+        private DevExpress.XtraEditors.TextEdit tbxAddress1;
         private DevExpress.XtraEditors.SimpleButton tbxQuit;
         private DevExpress.XtraEditors.SimpleButton tbxSave;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem53;
@@ -1482,8 +1511,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraEditors.ComboBoxEdit cbxGroup;
         private DevExpress.XtraEditors.ComboBoxEdit tbxArea;
-        private DevExpress.XtraEditors.DateEdit dtDatebirth;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.ComboBoxEdit cbxDateAnnversary;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
@@ -1533,5 +1560,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxSpecifyDateofBirth;
+        private DevExpress.XtraLayout.LayoutControlItem SpecifyDateofBirth;
     }
 }

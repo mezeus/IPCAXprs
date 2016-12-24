@@ -10,11 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPCAUI.Models;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
+
 
 namespace IPCAUI.Transactions
 {
     public partial class CreditNote : Form
     {
+        CreditNoteBL objBl = new CreditNoteBL();
         public CreditNote()
         {
             InitializeComponent();
@@ -37,6 +42,7 @@ namespace IPCAUI.Transactions
         private void CreditNote_Load(object sender, EventArgs e)
         {
             InitData();
+            Models.AccountLookup acc = new Models.AccountLookup();
 
             // Create an in-place LookupEdit control.
             RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
@@ -71,7 +77,16 @@ namespace IPCAUI.Transactions
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             riDCLookup.AutoSearchColumnIndex = 1;
 
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();
+            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
+
+            //Party Lookup Edit
+            tbxType.Properties.DataSource = acc.Categories;
+            tbxType.Properties.DisplayMember = "CategoryName";
+            tbxType.Properties.ValueMember = "CategoryName";
             riDCLookup.DropDownRows = 0;
+
             //riDCLookup.ValueMember = "ID";
             //riDCLookup.DisplayMember = "CategoryName";
         }
@@ -137,6 +152,83 @@ namespace IPCAUI.Transactions
             {
                 gdvCredit.ShowEditor();
                 ((LookUpEdit)gdvCredit.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            CreditNoteModel objcredit = new CreditNoteModel();
+
+            if (tbxVoucherNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objcredit.Voucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
+            objcredit.CN_Date = Convert.ToDateTime(dtDate.Text);
+            objcredit.Type = tbxType.Text.Trim();
+            objcredit.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
+            objcredit.Narration = tbxLogNarration.Text.Trim();
+            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
+            //objPurc.Narration = tbxNarration.Text.Trim();
+
+            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Bill Number and Due date not captured- check with Ravi if these are required
+
+
+            //Items
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+
+            for (int i = 0; i < gdvCredit.DataRowCount; i++)
+            {
+                DataRow row = gdvCredit.GetDataRow(i);
+
+                objacc = new AccountModel();
+                objacc.DC = row["DC"].ToString();
+
+                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+                //objacc.Unit = row["Unit"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString();
+                lstAccounts.Add(objacc);
+            }
+
+            objcredit.CreditAccountModel = lstAccounts;
+            objcredit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            ////Bill Sundry
+            //BillSundry_VoucherModel objBS;
+            //List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
+
+            //for (int i = 0; i < gridBs.DataRowCount; i++)
+            //{
+            //    DataRow row = gridBs.GetDataRow(i);
+
+            //    objBS = new BillSundry_VoucherModel();
+            //    objBS.BillSundry = row["BillSundry"].ToString();
+            //    objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
+            //    objBS.Amount = Convert.ToDecimal(row["Amount"]);
+            //    objBS.Type = row["Extra"].ToString();
+
+            //    lstBS.Add(objBS);
+            //}
+
+            //objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
+
+            //objPurc.BillSundry_Voucher = lstBS;
+
+            //objSalesVoucher = new SalesVoucherBL();
+
+            bool isSuccess = objBl.SaveCreditNote(objcredit);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
             }
         }
     }

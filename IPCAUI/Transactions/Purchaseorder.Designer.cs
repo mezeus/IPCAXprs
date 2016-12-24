@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Purchaseorder));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl3 = new DevExpress.XtraGrid.GridControl();
+            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billSundryDs = new IPCAUI.DataSets.BillSundryDs();
             this.gridBs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BillSundry = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -82,8 +84,8 @@
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tbxVoucherN = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxVoucherNumber = new DevExpress.XtraEditors.TextEdit();
+            this.tbxNarration = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
             this.tbxSeries = new DevExpress.XtraEditors.LookUpEdit();
             this.tbxPurchaseType = new DevExpress.XtraEditors.LookUpEdit();
@@ -109,6 +111,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billSundryDtBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billSundryDs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridBs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -122,8 +126,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherN.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNarration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPurchaseType.Properties)).BeginInit();
@@ -157,8 +161,8 @@
             this.layoutControl1.Controls.Add(this.groupBox1);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.gridControl2);
-            this.layoutControl1.Controls.Add(this.tbxVoucherN);
-            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.tbxVoucherNumber);
+            this.layoutControl1.Controls.Add(this.tbxNarration);
             this.layoutControl1.Controls.Add(this.dtDate);
             this.layoutControl1.Controls.Add(this.tbxSeries);
             this.layoutControl1.Controls.Add(this.tbxPurchaseType);
@@ -177,6 +181,7 @@
             // 
             // gridControl3
             // 
+            this.gridControl3.DataSource = this.billSundryDtBindingSource;
             this.gridControl3.Location = new System.Drawing.Point(526, 373);
             this.gridControl3.MainView = this.gridBs;
             this.gridControl3.Name = "gridControl3";
@@ -187,6 +192,16 @@
             this.gridControl3.TabIndex = 23;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridBs});
+            // 
+            // billSundryDtBindingSource
+            // 
+            this.billSundryDtBindingSource.DataMember = "BillSundryDt";
+            this.billSundryDtBindingSource.DataSource = this.billSundryDs;
+            // 
+            // billSundryDs
+            // 
+            this.billSundryDs.DataSetName = "BillSundryDs";
+            this.billSundryDs.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gridBs
             // 
@@ -331,6 +346,8 @@
             this.gdvItem.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gdvItem.OptionsView.ShowFooter = true;
             this.gdvItem.OptionsView.ShowGroupPanel = false;
+            this.gdvItem.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.gdvItem_FocusedColumnChanged);
+            this.gdvItem.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gdvItem_CustomColumnDisplayText);
             // 
             // colSNo
             // 
@@ -428,6 +445,7 @@
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox1
             // 
@@ -673,23 +691,23 @@
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             // 
-            // tbxVoucherN
+            // tbxVoucherNumber
             // 
-            this.tbxVoucherN.EnterMoveNextControl = true;
-            this.tbxVoucherN.Location = new System.Drawing.Point(697, 12);
-            this.tbxVoucherN.Name = "tbxVoucherN";
-            this.tbxVoucherN.Size = new System.Drawing.Size(141, 20);
-            this.tbxVoucherN.StyleController = this.layoutControl1;
-            this.tbxVoucherN.TabIndex = 3;
+            this.tbxVoucherNumber.EnterMoveNextControl = true;
+            this.tbxVoucherNumber.Location = new System.Drawing.Point(697, 12);
+            this.tbxVoucherNumber.Name = "tbxVoucherNumber";
+            this.tbxVoucherNumber.Size = new System.Drawing.Size(141, 20);
+            this.tbxVoucherNumber.StyleController = this.layoutControl1;
+            this.tbxVoucherNumber.TabIndex = 3;
             // 
-            // textEdit1
+            // tbxNarration
             // 
-            this.textEdit1.EnterMoveNextControl = true;
-            this.textEdit1.Location = new System.Drawing.Point(214, 60);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(780, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 7;
+            this.tbxNarration.EnterMoveNextControl = true;
+            this.tbxNarration.Location = new System.Drawing.Point(214, 60);
+            this.tbxNarration.Name = "tbxNarration";
+            this.tbxNarration.Size = new System.Drawing.Size(780, 20);
+            this.tbxNarration.StyleController = this.layoutControl1;
+            this.tbxNarration.TabIndex = 7;
             // 
             // dtDate
             // 
@@ -790,7 +808,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.textEdit1;
+            this.layoutControlItem1.Control = this.tbxNarration;
             this.layoutControlItem1.Location = new System.Drawing.Point(141, 48);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(845, 24);
@@ -817,7 +835,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.tbxVoucherN;
+            this.layoutControlItem5.Control = this.tbxVoucherNumber;
             this.layoutControlItem5.Location = new System.Drawing.Point(624, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(206, 24);
@@ -935,6 +953,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billSundryDtBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billSundryDs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridBs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
@@ -949,8 +969,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherN.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNarration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPurchaseType.Properties)).EndInit();
@@ -981,9 +1001,9 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxNarration;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.TextEdit tbxVoucherN;
+        private DevExpress.XtraEditors.TextEdit tbxVoucherNumber;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
@@ -1055,5 +1075,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private System.Windows.Forms.BindingSource itemGridDtBindingSource;
         private DataSets.ItemGridDs itemGridDs;
+        private System.Windows.Forms.BindingSource billSundryDtBindingSource;
+        private DataSets.BillSundryDs billSundryDs;
     }
 }

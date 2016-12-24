@@ -13,56 +13,61 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE DEBIT NOTE
-        public int SaveDebitNote(DebitNoteModel objdebit)
+        public bool SaveDebitNote(DebitNoteModel objdebit)
         {
             string Query = string.Empty;
-            int debitId = 0;
+            bool isSaved = true;
 
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objdebit.Voucher_Series));             
-                paramCollection.Add(new DBParameter("@Date", objdebit.DN_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objdebit.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objdebit.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objdebit.PDCDate));
-                paramCollection.Add(new DBParameter("@Long", objdebit.LongNarration));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objdebit.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objdebit.Voucher_Series));
+                paramCollection.Add(new DBParameter("@DNDate", objdebit.DN_Date, System.Data.DbType.DateTime));
 
-                //paramCollection.Add(new DBParameter("@Party", objProd.Party));
-                //paramCollection.Add(new DBParameter("@MatCenter", objProd.MatCenter));
-                //paramCollection.Add(new DBParameter("@Narration", objProd.Narration));
+                paramCollection.Add(new DBParameter("@DNType", objdebit.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objdebit.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objdebit.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertDebitNoteMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                Query = "INSERT INTO Debit_Note([Series],[DN_Date],[VoucherNo],[Type],[PDC_Date]," +
-                "[CreatedBy]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                " @CreatedBy)";
-                                
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveDebitAccounts(objdebit.DebitAccountModel);
-                   debitId=  GetDebitId();                    
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveDebitAccounts(objdebit.DebitAccountModel, id);
+                //Query = "INSERT INTO Debit_Note([Series],[DN_Date],[VoucherNo],[Type],[PDC_Date]," +
+                //"[CreatedBy]) VALUES " +
+                //"(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
+                //" @CreatedBy)";
+
+                //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                //{
+                //    SaveDebitAccounts(objdebit.DebitAccountModel);
+                //   debitId=  GetDebitId();                    
+                //}
             }
             catch (Exception ex)
             {
-                debitId = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return debitId;
+            return isSaved;
         }
 
-        public bool SaveDebitAccounts(List<AccountModel> lstAcc)
+        public bool SaveDebitAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetDebitId();
+            //int ParentId = GetDebitId();
 
             foreach (AccountModel Acc in lstAcc)
             {
@@ -72,23 +77,25 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@DN_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@CreditId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
-                    
+
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                     paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertDebitDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    
+                    //Query = "INSERT INTO Debit_Note_Accounts([Debit_Id],[DC],[Account],[Debit]," +
+                    //"[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
+                    //"(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
 
-                    Query = "INSERT INTO Debit_Note_Accounts([Debit_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {
@@ -158,7 +165,7 @@ namespace eSunSpeed.BusinessLogic
 
             try
             {
-                //UPDATE CREDIT NOTE TABLE - PARENT TABLE
+                //UPDATE Debit NOTE TABLE - PARENT TABLE
 
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
