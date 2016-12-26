@@ -91,7 +91,7 @@ namespace IPCAUI.Administration
 
             obj.CreditDaysforSale = Convert.ToInt32(tbxCreditdaysforSale.Text);
             obj.CreditDaysforPurchase= Convert.ToInt32(tbxCreditdaysforPurc.Text);
-            //obj.CreditLimit = tbxCreditLimitAccount.Text;
+            //obj.CreditLimit = tbxcred.Text;
 
             obj.Transport = tbxTransport.Text;
             obj.Station = tbxStation.Text;
