@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
+
 
 namespace IPCAUI.Administration.List
 {
     public partial class AuthorList : Form
     {
+        eSunSpeed.BusinessLogic.AuthorMaster objautbl = new AuthorMaster();
         public AuthorList()
         {
             InitializeComponent();
@@ -19,7 +23,8 @@ namespace IPCAUI.Administration.List
 
         private void AuthorList_Load(object sender, EventArgs e)
         {
-            Fill();
+            List<eSunSpeedDomain.AuthorModel> lstAuthor = objautbl.GetAllAuthors();
+            dvgAuthorList.DataSource = lstAuthor;
         }
 
         private void Fill()

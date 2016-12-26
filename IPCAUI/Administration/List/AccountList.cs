@@ -49,5 +49,10 @@ namespace IPCAUI.Administration.List
             accountListDtBindingSource.DataSource = src;
             
         }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

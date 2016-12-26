@@ -115,7 +115,7 @@ namespace eSunSpeed.BusinessLogic
             List<CurrencyMasterModel> lstCurr = new List<CurrencyMasterModel>();
             CurrencyMasterModel objCurr;
            
-            string Query = "SELECT * FROM CurrencyMaster";
+            string Query = "SELECT DISTINCT CM_ID,Symbol,CString,`SubString`, ConversionMode FROM `CurrencyMaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
