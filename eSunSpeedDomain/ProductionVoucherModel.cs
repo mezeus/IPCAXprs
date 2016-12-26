@@ -9,17 +9,20 @@ namespace eSunSpeedDomain
     {
         public int Production_Id { get; set; }
 
-        public string ProductionType { get; set; }
+        public string BOMName { get; set; }
         public string Series { get; set; }
         public int Voucher_Number { get; set; }
         public int BillNo { get; set; }
         public DateTime DueDate { get; set; }        
         public DateTime PV_Date { get; set; }                        
         public string Party { get; set; }
-        public string MatCenter { get; set; }
+        public string MatCenterIC { get; set; }
+        public string MatCenterIG { get; set; }
         public string Narration { get; set; }
-        public decimal TotalQty { get; set; }
-        public decimal TotalAmount { get; set; }
+        public decimal TotalQtyIG { get; set; }
+        public decimal TotalQtyIC { get; set; }
+        public decimal TotalAmountIG { get; set; }
+        public decimal TotalAmountIC { get; set; }
         public decimal BSTotalAmount { get; set; }
 
         public bool IsDeleted { get; set; }
@@ -27,7 +30,7 @@ namespace eSunSpeedDomain
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
 
-        public List<Item_VoucherModel> Item_Voucher { get; set; }
-        public List<BillSundry_VoucherModel> BillSundry_Voucher { get; set; }
+        public List<Item_VoucherModel> Item_Generated { get; set; }
+        public List<ItemConsumedModel> Item_Consumed { get; set; }
     }
 }

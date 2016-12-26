@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(purchaseQuotation));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gdvMainPurcbs = new DevExpress.XtraGrid.GridControl();
-            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource();
             this.billSundryDs = new IPCAUI.DataSets.BillSundryDs();
             this.gridBs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +43,7 @@
             this.Narration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gdvMainPurcQuota = new DevExpress.XtraGrid.GridControl();
-            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridDs = new IPCAUI.DataSets.ItemGridDs();
             this.gdvItem = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -741,8 +740,6 @@
             this.tbxSeries.EnterMoveNextControl = true;
             this.tbxSeries.Location = new System.Drawing.Point(214, 12);
             this.tbxSeries.Name = "tbxSeries";
-            this.tbxSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxSeries.Properties.NullText = "";
             this.tbxSeries.Size = new System.Drawing.Size(192, 20);
             this.tbxSeries.StyleController = this.layoutControl1;
@@ -753,8 +750,6 @@
             this.tbxPurcType.EnterMoveNextControl = true;
             this.tbxPurcType.Location = new System.Drawing.Point(903, 12);
             this.tbxPurcType.Name = "tbxPurcType";
-            this.tbxPurcType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxPurcType.Properties.NullText = "";
             this.tbxPurcType.Size = new System.Drawing.Size(91, 20);
             this.tbxPurcType.StyleController = this.layoutControl1;
@@ -765,8 +760,6 @@
             this.tbxParty.EnterMoveNextControl = true;
             this.tbxParty.Location = new System.Drawing.Point(214, 36);
             this.tbxParty.Name = "tbxParty";
-            this.tbxParty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxParty.Properties.NullText = "";
             this.tbxParty.Size = new System.Drawing.Size(260, 20);
             this.tbxParty.StyleController = this.layoutControl1;
@@ -777,8 +770,6 @@
             this.tbxMatCenter.EnterMoveNextControl = true;
             this.tbxMatCenter.Location = new System.Drawing.Point(539, 36);
             this.tbxMatCenter.Name = "tbxMatCenter";
-            this.tbxMatCenter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxMatCenter.Properties.NullText = "";
             this.tbxMatCenter.Size = new System.Drawing.Size(455, 20);
             this.tbxMatCenter.StyleController = this.layoutControl1;
