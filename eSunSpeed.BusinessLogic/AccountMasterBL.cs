@@ -641,7 +641,7 @@ namespace eSunSpeed.BusinessLogic
                 accountGroup.UnderGroup = dr["UnderGroup"].ToString();
                 accountGroup.Primary = dr["Primary"].ToString();
                 accountGroup.NatureGroup = dr["NatureGroup"].ToString();
-                accountGroup.IsAffectGrossProfit = Convert.ToBoolean( dr["IsAffectGrossProfit"]);
+                accountGroup.IsAffectGrossProfit = dr["IsAffectGrossProfit"].ToString()==""?false:Convert.ToBoolean( dr["IsAffectGrossProfit"]);
 
             }
 

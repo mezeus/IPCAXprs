@@ -29,60 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MastersMenu));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.ShortCuts = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem31 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem32 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem39 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem40 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem42 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem43 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem12 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem13 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem17 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem18 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem19 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem20 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem22 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem23 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem24 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem25 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem26 = new DevExpress.XtraNavBar.NavBarItem();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.lblDay = new DevExpress.XtraEditors.LabelControl();
+            this.lblDate = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.sptCtrlMastermenu = new DevExpress.XtraEditors.SplitContainerControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -167,26 +125,47 @@
             this.ribbonPageGroup34 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage10 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.PhysicalStock = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.sptCtrlMastermenu = new DevExpress.XtraEditors.SplitContainerControl();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
+            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sptCtrlMastermenu)).BeginInit();
             this.sptCtrlMastermenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.backstageViewControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.navBarControl1);
+            this.layoutControl1.Controls.Add(this.panelControl3);
+            this.layoutControl1.Controls.Add(this.panelControl2);
+            this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.ribbonStatusBar1);
             this.layoutControl1.Controls.Add(this.sptCtrlMastermenu);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -197,375 +176,97 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // navBarControl1
-            // 
-            this.navBarControl1.ActiveGroup = this.ShortCuts;
-            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.ShortCuts});
-            this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.navBarItem1,
-            this.navBarItem2,
-            this.navBarItem3,
-            this.navBarItem4,
-            this.navBarItem5,
-            this.navBarItem6,
-            this.navBarItem7,
-            this.navBarItem8,
-            this.navBarItem9,
-            this.navBarItem10,
-            this.navBarItem11,
-            this.navBarItem12,
-            this.navBarItem13,
-            this.navBarItem14,
-            this.navBarItem15,
-            this.navBarItem16,
-            this.navBarItem17,
-            this.navBarItem18,
-            this.navBarItem19,
-            this.navBarItem20,
-            this.navBarItem21,
-            this.navBarItem22,
-            this.navBarItem23,
-            this.navBarItem24,
-            this.navBarItem25,
-            this.navBarItem26,
-            this.navBarItem27,
-            this.navBarItem28,
-            this.navBarItem29,
-            this.navBarItem30,
-            this.navBarItem31,
-            this.navBarItem32,
-            this.navBarItem33,
-            this.navBarItem34,
-            this.navBarItem35,
-            this.navBarItem36,
-            this.navBarItem37,
-            this.navBarItem38,
-            this.navBarItem39,
-            this.navBarItem40,
-            this.navBarItem41,
-            this.navBarItem42,
-            this.navBarItem43,
-            this.navBarItem44});
-            this.navBarControl1.Location = new System.Drawing.Point(847, 12);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 127;
-            this.navBarControl1.Size = new System.Drawing.Size(127, 377);
-            this.navBarControl1.TabIndex = 8;
-            this.navBarControl1.Text = "navBarControl1";
-            this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.VSToolBoxViewInfoRegistrator();
-            // 
-            // ShortCuts
-            // 
-            this.ShortCuts.Caption = "ShortCuts";
-            this.ShortCuts.Expanded = true;
-            this.ShortCuts.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
-            this.ShortCuts.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem27),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem38),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem39),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem40),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem41),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem42),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem43),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem44)});
-            this.ShortCuts.Name = "ShortCuts";
-            // 
-            // navBarItem27
-            // 
-            this.navBarItem27.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarItem27.Appearance.Options.UseFont = true;
-            this.navBarItem27.Caption = "F1 Online Help";
-            this.navBarItem27.Name = "navBarItem27";
-            // 
-            // navBarItem28
-            // 
-            this.navBarItem28.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarItem28.Appearance.Options.UseFont = true;
-            this.navBarItem28.Caption = "F1 Add Account";
-            this.navBarItem28.Name = "navBarItem28";
-            // 
-            // navBarItem29
-            // 
-            this.navBarItem29.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarItem29.Appearance.Options.UseFont = true;
-            this.navBarItem29.Caption = "F2 Add Item";
-            this.navBarItem29.Name = "navBarItem29";
-            // 
-            // navBarItem30
-            // 
-            this.navBarItem30.Caption = "navBarItem30";
-            this.navBarItem30.Name = "navBarItem30";
-            // 
-            // navBarItem31
-            // 
-            this.navBarItem31.Caption = "navBarItem31";
-            this.navBarItem31.Name = "navBarItem31";
-            // 
-            // navBarItem32
-            // 
-            this.navBarItem32.Caption = "navBarItem32";
-            this.navBarItem32.Name = "navBarItem32";
-            // 
-            // navBarItem33
-            // 
-            this.navBarItem33.Caption = "navBarItem33";
-            this.navBarItem33.Name = "navBarItem33";
-            // 
-            // navBarItem34
-            // 
-            this.navBarItem34.Caption = "navBarItem34";
-            this.navBarItem34.Name = "navBarItem34";
-            // 
-            // navBarItem35
-            // 
-            this.navBarItem35.Caption = "navBarItem35";
-            this.navBarItem35.Name = "navBarItem35";
-            // 
-            // navBarItem36
-            // 
-            this.navBarItem36.Caption = "navBarItem36";
-            this.navBarItem36.Name = "navBarItem36";
-            // 
-            // navBarItem37
-            // 
-            this.navBarItem37.Caption = "navBarItem37";
-            this.navBarItem37.Name = "navBarItem37";
-            // 
-            // navBarItem38
-            // 
-            this.navBarItem38.Caption = "navBarItem38";
-            this.navBarItem38.Name = "navBarItem38";
-            // 
-            // navBarItem39
-            // 
-            this.navBarItem39.Caption = "navBarItem39";
-            this.navBarItem39.Name = "navBarItem39";
-            // 
-            // navBarItem40
-            // 
-            this.navBarItem40.Caption = "navBarItem40";
-            this.navBarItem40.Name = "navBarItem40";
-            // 
-            // navBarItem41
-            // 
-            this.navBarItem41.Caption = "navBarItem41";
-            this.navBarItem41.Name = "navBarItem41";
-            // 
-            // navBarItem42
-            // 
-            this.navBarItem42.Caption = "navBarItem42";
-            this.navBarItem42.Name = "navBarItem42";
-            // 
-            // navBarItem43
-            // 
-            this.navBarItem43.Caption = "navBarItem43";
-            this.navBarItem43.Name = "navBarItem43";
-            // 
-            // navBarItem44
-            // 
-            this.navBarItem44.Caption = "navBarItem44";
-            this.navBarItem44.Name = "navBarItem44";
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "navBarItem1";
-            this.navBarItem1.Name = "navBarItem1";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "navBarItem2";
-            this.navBarItem2.Name = "navBarItem2";
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "navBarItem3";
-            this.navBarItem3.Name = "navBarItem3";
-            // 
-            // navBarItem4
-            // 
-            this.navBarItem4.Caption = "navBarItem4";
-            this.navBarItem4.Name = "navBarItem4";
-            // 
-            // navBarItem5
-            // 
-            this.navBarItem5.Caption = "navBarItem5";
-            this.navBarItem5.Name = "navBarItem5";
-            // 
-            // navBarItem6
-            // 
-            this.navBarItem6.Caption = "navBarItem6";
-            this.navBarItem6.Name = "navBarItem6";
-            // 
-            // navBarItem7
-            // 
-            this.navBarItem7.Caption = "navBarItem7";
-            this.navBarItem7.Name = "navBarItem7";
-            // 
-            // navBarItem8
-            // 
-            this.navBarItem8.Caption = "navBarItem8";
-            this.navBarItem8.Name = "navBarItem8";
-            // 
-            // navBarItem9
-            // 
-            this.navBarItem9.Caption = "navBarItem9";
-            this.navBarItem9.Name = "navBarItem9";
-            // 
-            // navBarItem10
-            // 
-            this.navBarItem10.Caption = "navBarItem10";
-            this.navBarItem10.Name = "navBarItem10";
-            // 
-            // navBarItem11
-            // 
-            this.navBarItem11.Caption = "navBarItem11";
-            this.navBarItem11.Name = "navBarItem11";
-            // 
-            // navBarItem12
-            // 
-            this.navBarItem12.Caption = "navBarItem12";
-            this.navBarItem12.Name = "navBarItem12";
-            // 
-            // navBarItem13
-            // 
-            this.navBarItem13.Caption = "navBarItem13";
-            this.navBarItem13.Name = "navBarItem13";
-            // 
-            // navBarItem14
-            // 
-            this.navBarItem14.Caption = "navBarItem14";
-            this.navBarItem14.Name = "navBarItem14";
-            // 
-            // navBarItem15
-            // 
-            this.navBarItem15.Caption = "navBarItem15";
-            this.navBarItem15.Name = "navBarItem15";
-            // 
-            // navBarItem16
-            // 
-            this.navBarItem16.Caption = "navBarItem16";
-            this.navBarItem16.Name = "navBarItem16";
-            // 
-            // navBarItem17
-            // 
-            this.navBarItem17.Caption = "navBarItem17";
-            this.navBarItem17.Name = "navBarItem17";
-            // 
-            // navBarItem18
-            // 
-            this.navBarItem18.Caption = "navBarItem18";
-            this.navBarItem18.Name = "navBarItem18";
-            // 
-            // navBarItem19
-            // 
-            this.navBarItem19.Caption = "navBarItem19";
-            this.navBarItem19.Name = "navBarItem19";
-            // 
-            // navBarItem20
-            // 
-            this.navBarItem20.Caption = "navBarItem20";
-            this.navBarItem20.Name = "navBarItem20";
-            // 
-            // navBarItem21
-            // 
-            this.navBarItem21.Caption = "navBarItem21";
-            this.navBarItem21.Name = "navBarItem21";
-            // 
-            // navBarItem22
-            // 
-            this.navBarItem22.Caption = "navBarItem22";
-            this.navBarItem22.Name = "navBarItem22";
-            // 
-            // navBarItem23
-            // 
-            this.navBarItem23.Caption = "navBarItem23";
-            this.navBarItem23.Name = "navBarItem23";
-            // 
-            // navBarItem24
-            // 
-            this.navBarItem24.Caption = "navBarItem24";
-            this.navBarItem24.Name = "navBarItem24";
-            // 
-            // navBarItem25
-            // 
-            this.navBarItem25.Caption = "navBarItem25";
-            this.navBarItem25.Name = "navBarItem25";
-            // 
-            // navBarItem26
-            // 
-            this.navBarItem26.Caption = "navBarItem26";
-            this.navBarItem26.Name = "navBarItem26";
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.lblDay);
+            this.panelControl3.Controls.Add(this.lblDate);
+            this.panelControl3.Location = new System.Drawing.Point(846, 305);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(128, 34);
+            this.panelControl3.TabIndex = 13;
+            // 
+            // lblDay
+            // 
+            this.lblDay.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblDay.Appearance.Options.UseFont = true;
+            this.lblDay.Location = new System.Drawing.Point(61, 5);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(5, 13);
+            this.lblDay.TabIndex = 3;
+            this.lblDay.Text = "t";
+            // 
+            // lblDate
+            // 
+            this.lblDate.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Appearance.Options.UseFont = true;
+            this.lblDate.Location = new System.Drawing.Point(60, 19);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(7, 16);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "d";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Location = new System.Drawing.Point(12, 305);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(131, 34);
+            this.panelControl2.TabIndex = 12;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Location = new System.Drawing.Point(147, 305);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(695, 34);
+            this.panelControl1.TabIndex = 11;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(173, 12);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(69, 13);
+            this.labelControl3.TabIndex = 4;
+            this.labelControl3.Text = "TIN Number:";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(506, 12);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(182, 13);
+            this.labelControl2.TabIndex = 3;
+            this.labelControl2.Text = "IPCA Software Solutions Pvt Ltd.";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(24, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(91, 13);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "Company Name:";
             // 
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.Dock = System.Windows.Forms.DockStyle.None;
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(12, 369);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(12, 362);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = null;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(831, 20);
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(962, 27);
             // 
-            // sptCtrlMastermenu
+            // barStaticItem1
             // 
-            this.sptCtrlMastermenu.Location = new System.Drawing.Point(12, 12);
-            this.sptCtrlMastermenu.Name = "sptCtrlMastermenu";
-            this.sptCtrlMastermenu.Panel1.Text = "Panel1";
-            this.sptCtrlMastermenu.Panel2.Text = "Panel2";
-            this.sptCtrlMastermenu.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
-            this.sptCtrlMastermenu.Size = new System.Drawing.Size(831, 331);
-            this.sptCtrlMastermenu.SplitterPosition = 144;
-            this.sptCtrlMastermenu.TabIndex = 4;
-            this.sptCtrlMastermenu.Text = "splitContainerControl1";
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 401);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.sptCtrlMastermenu;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(835, 335);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.ribbonStatusBar1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 335);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(835, 46);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.navBarControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(835, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(131, 381);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
+            this.barStaticItem1.Caption = "IPCA Software Solutions";
+            this.barStaticItem1.Id = 3;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ribbonControl1
             // 
@@ -627,6 +328,7 @@
             this.ribbonPage10});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.TabletOffice;
             this.ribbonControl1.Size = new System.Drawing.Size(986, 96);
+            this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barButtonItem1
             // 
@@ -928,12 +630,12 @@
             this.ribbonPage1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage1.Image")));
             this.ribbonPage1.KeyTip = "SA";
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
             this.ribbonPage1.Text = "Accounts";
             // 
             // NewSales
@@ -1216,6 +918,79 @@
             this.PhysicalStock.Name = "PhysicalStock";
             this.PhysicalStock.Text = "Physical Stock";
             // 
+            // sptCtrlMastermenu
+            // 
+            this.sptCtrlMastermenu.Location = new System.Drawing.Point(12, 12);
+            this.sptCtrlMastermenu.Name = "sptCtrlMastermenu";
+            this.sptCtrlMastermenu.Panel1.Text = "Panel1";
+            this.sptCtrlMastermenu.Panel2.Text = "Panel2";
+            this.sptCtrlMastermenu.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+            this.sptCtrlMastermenu.Size = new System.Drawing.Size(830, 289);
+            this.sptCtrlMastermenu.SplitterPosition = 144;
+            this.sptCtrlMastermenu.TabIndex = 4;
+            this.sptCtrlMastermenu.Text = "splitContainerControl1";
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.layoutControlItem4,
+            this.layoutControlItem5,
+            this.layoutControlItem6,
+            this.layoutControlItem3});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 401);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.sptCtrlMastermenu;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(834, 293);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.ribbonStatusBar1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 331);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(966, 50);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.panelControl1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(135, 293);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(699, 38);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.panelControl2;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 293);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(135, 38);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.panelControl3;
+            this.layoutControlItem6.Location = new System.Drawing.Point(834, 293);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(132, 38);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
             // backstageViewControl1
             // 
             this.backstageViewControl1.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Yellow;
@@ -1241,6 +1016,32 @@
             this.backstageViewTabItem1.Name = "backstageViewTabItem1";
             this.backstageViewTabItem1.Selected = false;
             // 
+            // navBarControl1
+            // 
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroup1});
+            this.navBarControl1.Location = new System.Drawing.Point(846, 12);
+            this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.Size = new System.Drawing.Size(128, 289);
+            this.navBarControl1.TabIndex = 15;
+            this.navBarControl1.Text = "navBarControl1";
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.navBarControl1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(834, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(132, 293);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "navBarGroup1";
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.Name = "navBarGroup1";
+            // 
             // MastersMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1258,16 +1059,26 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MastersMenu_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sptCtrlMastermenu)).EndInit();
             this.sptCtrlMastermenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
             this.backstageViewControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1320,8 +1131,6 @@
         private DevExpress.XtraBars.BarButtonItem barbtEmployeegrp;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem18;
         private DevExpress.XtraBars.BarButtonItem barbtnCostgroup;
         private DevExpress.XtraBars.BarButtonItem barbtnCurrency;
@@ -1368,52 +1177,22 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup32;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup33;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup34;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl lblDay;
+        private DevExpress.XtraEditors.LabelControl lblDate;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraNavBar.NavBarGroup ShortCuts;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem27;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem28;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem29;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem30;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem31;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem4;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem5;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem6;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem10;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem11;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem12;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem13;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem14;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem15;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem16;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem17;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem18;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem19;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem20;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem21;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem22;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem23;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem24;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem25;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem26;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem32;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem33;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem34;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem35;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem36;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem37;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem38;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem39;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem40;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem41;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem42;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem43;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem44;
     }
 }

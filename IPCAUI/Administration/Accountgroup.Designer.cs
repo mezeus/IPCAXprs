@@ -187,6 +187,7 @@
             this.btnUpdate.TabIndex = 58;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // chkGrossProfit
             // 
@@ -398,6 +399,7 @@
             this.ListAccountgroup.Caption = "List";
             this.ListAccountgroup.Name = "ListAccountgroup";
             this.ListAccountgroup.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListAccountgroup.SmallImage")));
+            this.ListAccountgroup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListAccountgroup_LinkClicked);
             // 
             // navBarItem8
             // 

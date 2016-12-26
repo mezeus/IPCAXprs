@@ -25,6 +25,9 @@ namespace IPCAUI
             treeList1.OptionsView.ShowIndicator = false;
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
+
+            lblDay.Text = DateTime.Today.DayOfWeek.ToString();
+            lblDate.Text = DateTime.Now.ToShortDateString();
         }
 
         private void windowsUIView1_QueryControl(object sender, DevExpress.XtraBars.Docking2010.Views.QueryControlEventArgs e)
