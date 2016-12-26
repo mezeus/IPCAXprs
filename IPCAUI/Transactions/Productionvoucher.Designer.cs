@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productionvoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gdvMainItemIc = new DevExpress.XtraGrid.GridControl();
-            this.itemGridICDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridICDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridIC = new IPCAUI.DataSets.ItemGridIC();
             this.gdvItemIC = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +44,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gdvMainItemIg = new DevExpress.XtraGrid.GridControl();
-            this.itemGridIGDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridIGDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridIG = new IPCAUI.DataSets.ItemGridIG();
             this.gdvItemIG = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -173,6 +173,9 @@
             // gdvMainItemIc
             // 
             this.gdvMainItemIc.DataSource = this.itemGridICDtBindingSource;
+            gridLevelNode1.RelationName = "Level1";
+            this.gdvMainItemIc.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
             this.gdvMainItemIc.Location = new System.Drawing.Point(153, 310);
             this.gdvMainItemIc.MainView = this.gdvItemIC;
             this.gdvMainItemIc.Name = "gdvMainItemIc";
@@ -220,6 +223,8 @@
             this.gdvItemIC.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gdvItemIC.OptionsView.ShowFooter = true;
             this.gdvItemIC.OptionsView.ShowGroupPanel = false;
+            this.gdvItemIC.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.gdvItemIC_FocusedColumnChanged);
+            this.gdvItemIC.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gdvItemIC_CustomColumnDisplayText);
             // 
             // gridColumn1
             // 
@@ -450,6 +455,7 @@
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tbxBomName
             // 

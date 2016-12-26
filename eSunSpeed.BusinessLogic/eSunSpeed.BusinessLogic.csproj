@@ -78,6 +78,7 @@
     <Compile Include="MatIssuedPartyBL.cs" />
     <Compile Include="ReferenceGroupBL.cs" />
     <Compile Include="SalesQuotationBL.cs" />
+    <Compile Include="StockJournalBL.cs" />
     <Compile Include="TaxCategory .cs" />
     <Compile Include="TdsModelBL.cs" />
     <Compile Include="VatJournalBL.cs" />
