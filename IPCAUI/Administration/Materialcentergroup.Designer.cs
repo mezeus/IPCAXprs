@@ -560,6 +560,9 @@
             this.cbxNaturegroup.Properties.Appearance.Options.UseFont = true;
             this.cbxNaturegroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxNaturegroup.Properties.Items.AddRange(new object[] {
+            "general",
+            "local"});
             this.cbxNaturegroup.Size = new System.Drawing.Size(412, 20);
             this.cbxNaturegroup.StyleController = this.layoutControl1;
             this.cbxNaturegroup.TabIndex = 9;

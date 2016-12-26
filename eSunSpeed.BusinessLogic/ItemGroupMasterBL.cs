@@ -9,6 +9,7 @@ namespace eSunSpeed.BusinessLogic
 {
   public  class ItemGroupMasterBL
     {
+        ItemGroupMasterModel objitmmod = new ItemGroupMasterModel();
         private DBHelper _dbHelper = new DBHelper();
 
         //Save
@@ -30,7 +31,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objIGM.PurchaseAccount));
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
                 
-                Query = "INSERT INTO ItemGroupMaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`CreatedBy`) " +
+                Query = "INSERT INTO itemgroupmaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`CreatedBy`) " +
                     "VALUES(@ItemGroup,@Alias,@PrimaryGroup,@UnderGroup,@StockAccount,@SalesAccount,@PurchaseAccount,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)

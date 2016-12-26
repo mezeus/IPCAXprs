@@ -105,11 +105,48 @@ namespace IPCAUI.Administration
             obj.DefaultPurcType = DefaultPurcType.SelectedItem==null?string.Empty: DefaultPurcType.SelectedItem.ToString();
 
             obj.FreezePurcType = cbxFreezePurcType.SelectedItem.ToString() == "Y" ? true : false;
-            obj.InterestRatePayable = Convert.ToInt32(tbxInterestPay.Text);
-            obj.InterestRateReceivable = Convert.ToInt32(tbxInterestrateReceviable.Text);
+            obj.InterestRatePayable = Convert.ToDecimal(tbxInterestPay.Text);
+            obj.InterestRateReceivable = Convert.ToDecimal(tbxInterestrateReceviable.Text);
 
+            obj.address = tbxAddress.Text.Trim();
+            obj.address1 = tbxAddress1.Text.Trim();
+            obj.address2 = tbxAddress2.Text.Trim();
+            obj.address3 = tbxAddress3.Text.Trim();
             obj.State = cbxState.SelectedItem.ToString();
-            
+            obj.area = tbxArea.Text.Trim();
+            obj.TelephoneNumber = tbxTelno.Text.Trim();
+
+            obj.Fax = tbxFax.Text;
+            obj.MobileNumber = tbxMobileno.Text;
+            obj.email = tbxEmail.Text;
+
+            obj.enablemailquery = Convert.ToBoolean(tbxEmailQuery.Text.Trim().Equals("Y") ? true : false);
+            obj.enableSMSquery = Convert.ToBoolean(tbxSMSQuery.Text.Trim().Equals("Y") ? true : false);
+
+            obj.contactperson = tbxContactPerson.Text;
+            obj.ITPanNumber = tbxITpan.Text;
+            obj.Ward = string.Empty;
+            obj.LstNumber = tbxLstno.Text;
+            obj.CSTNumber = tbxCstno.Text;
+            obj.TIN = string.Empty;
+            obj.LBTNumber = string.Empty;
+            obj.ServiceTaxNumber = string.Empty;
+            obj.IECode = tbxIecode.Text;
+            obj.DLNO1 = tbxDlno1.Text.Trim();
+            obj.No1 = tbxNo1.SelectedText.ToString();
+            obj.ChequePrintName = string.Empty;
+            obj.allowwebbasedreporting = tbxWebBasedReporting.ToString();
+
+            string message = string.Empty;
+
+            bool isSuccess = accMaster.SaveAccount(obj);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
+
+
+
             //obj.LockSalesType = cbxLockSalesType.SelectedItem.ToString().Equals("Y") ? true : false;
             // cbxLockSaleTypeAccount.Text = obj.
 
@@ -119,38 +156,22 @@ namespace IPCAUI.Administration
             //obj.ActivateInterestCal = cbxYesNoActivateInterestCalculation.SelectedItem.ToString().Equals("Y") ? true : false;
 
             //continue
-           // obj.MaintainBillwiseAccounts = cbxYesNoMaintainBillwiseAccounts.SelectedItem.ToString().Equals("Y") ? true : false;
-            //obj.address1 = tbxAccountAddress.Text.Trim();
-            //obj.address2 = tbxAccountAddressLine1.Text.Trim();
-            //obj.address3 = tbxAccountAddressLine2.Text.Trim();
-            //obj.address4 = tbxAccountAddressLine3.Text.Trim();
-
-            //obj.contactperson = tbxAccountContactPerson.Text;
-            //obj.CSTNumber = tbxAccountCSTNo.Text;
-            //obj.email = tbxAccountEMail.Text;
-            //obj.enablemailquery = cbxEnableEmail.SelectedItem.ToString().Equals("Y") ? true : false;
-            //obj.enableSMSquery = cbxEnableSMS.SelectedItem.ToString().Equals("Y") ? true : false;
+            // obj.MaintainBillwiseAccounts = cbxYesNoMaintainBillwiseAccounts.SelectedItem.ToString().Equals("Y") ? true : false;
 
             //obj.Fax = tbxAccountFax.Text;
-            //obj.IECode = tbxAccountIECode.Text;
-            //obj.ITPanNumber = tbxAccountITPAN.Text;
-            //obj.LstNumber = tbxAccountLstNo.Text;
-            //obj.MobileNumber = tbxAccountMobileNo.Text;
 
             //obj.BankAccountNumber = string.Empty;
-            //obj.ChequePrintName = string.Empty;
+
             //obj.FreezeSaleType = string.Empty;
-            //obj.Ward = string.Empty;
+
             //obj.TelephoneNumber = string.Empty;
-            //obj.ServiceTaxNumber = string.Empty;
-            //obj.TIN = string.Empty;
+
+
             //obj.TypeofDealer = string.Empty;
-            //obj.LBTNumber = string.Empty;
+
             //obj.WebSite = string.Empty;
 
-            //string message = string.Empty;
 
-            //bool isSuccess = accObj.SaveAccount(obj);
 
             //List<AccountMasterModel> lstAccounts = accObj.GetListofAccount();
             //dgvList.DataSource = lstAccounts;
@@ -158,7 +179,7 @@ namespace IPCAUI.Administration
             //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
             //d.ShowDialog();
 
-    
+
         }
 
         private void ListAccount_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)

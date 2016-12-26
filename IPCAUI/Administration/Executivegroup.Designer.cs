@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Executivegroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.ListExecutivemaster = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
@@ -68,10 +72,6 @@
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.ListExecutivemaster = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
@@ -82,7 +82,7 @@
             this.tbxAddress2 = new DevExpress.XtraEditors.TextEdit();
             this.tbxAddress1 = new DevExpress.XtraEditors.TextEdit();
             this.tbxAddress = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxhandlescalltype = new DevExpress.XtraEditors.TextEdit();
             this.tbxPrintname = new DevExpress.XtraEditors.TextEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -126,7 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxhandlescalltype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAliasname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).BeginInit();
@@ -169,7 +169,7 @@
             this.layoutControl1.Controls.Add(this.tbxAddress2);
             this.layoutControl1.Controls.Add(this.tbxAddress1);
             this.layoutControl1.Controls.Add(this.tbxAddress);
-            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.tbxhandlescalltype);
             this.layoutControl1.Controls.Add(this.tbxPrintname);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
@@ -250,6 +250,36 @@
             this.navBarControl1.TabIndex = 61;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
+            // 
+            // navBarGroup5
+            // 
+            this.navBarGroup5.Caption = "Add/Modify";
+            this.navBarGroup5.Expanded = true;
+            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ListExecutivemaster),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            this.navBarGroup5.Name = "navBarGroup5";
+            this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
+            // 
+            // ListExecutivemaster
+            // 
+            this.ListExecutivemaster.Caption = "List";
+            this.ListExecutivemaster.Name = "ListExecutivemaster";
+            this.ListExecutivemaster.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListExecutivemaster.SmallImage")));
+            this.ListExecutivemaster.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListExecutivemaster_LinkClicked);
+            // 
+            // navBarItem8
+            // 
+            this.navBarItem8.Caption = "Modify";
+            this.navBarItem8.Name = "navBarItem8";
+            this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
+            // 
+            // navBarItem9
+            // 
+            this.navBarItem9.Caption = "New Entry";
+            this.navBarItem9.Name = "navBarItem9";
+            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
             // 
             // navBarGroup1
             // 
@@ -500,36 +530,6 @@
             this.navBarItem3.Name = "navBarItem3";
             this.navBarItem3.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.SmallImage")));
             // 
-            // navBarGroup5
-            // 
-            this.navBarGroup5.Caption = "Add/Modify";
-            this.navBarGroup5.Expanded = true;
-            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.ListExecutivemaster),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
-            this.navBarGroup5.Name = "navBarGroup5";
-            this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
-            // 
-            // ListExecutivemaster
-            // 
-            this.ListExecutivemaster.Caption = "List";
-            this.ListExecutivemaster.Name = "ListExecutivemaster";
-            this.ListExecutivemaster.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListExecutivemaster.SmallImage")));
-            this.ListExecutivemaster.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListExecutivemaster_LinkClicked);
-            // 
-            // navBarItem8
-            // 
-            this.navBarItem8.Caption = "Modify";
-            this.navBarItem8.Name = "navBarItem8";
-            this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
-            // 
-            // navBarItem9
-            // 
-            this.navBarItem9.Caption = "New Entry";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
-            // 
             // navBarItem4
             // 
             this.navBarItem4.Caption = "Party Dashboard";
@@ -550,6 +550,7 @@
             // 
             // tbxEmail
             // 
+            this.tbxEmail.EnterMoveNextControl = true;
             this.tbxEmail.Location = new System.Drawing.Point(235, 294);
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(334, 20);
@@ -558,6 +559,7 @@
             // 
             // tbxMobileno
             // 
+            this.tbxMobileno.EnterMoveNextControl = true;
             this.tbxMobileno.Location = new System.Drawing.Point(235, 270);
             this.tbxMobileno.Name = "tbxMobileno";
             this.tbxMobileno.Size = new System.Drawing.Size(334, 20);
@@ -566,6 +568,7 @@
             // 
             // tbxTelnumber
             // 
+            this.tbxTelnumber.EnterMoveNextControl = true;
             this.tbxTelnumber.Location = new System.Drawing.Point(235, 246);
             this.tbxTelnumber.Name = "tbxTelnumber";
             this.tbxTelnumber.Size = new System.Drawing.Size(334, 20);
@@ -574,6 +577,7 @@
             // 
             // tbxAddress3
             // 
+            this.tbxAddress3.EnterMoveNextControl = true;
             this.tbxAddress3.Location = new System.Drawing.Point(235, 222);
             this.tbxAddress3.Name = "tbxAddress3";
             this.tbxAddress3.Size = new System.Drawing.Size(334, 20);
@@ -582,6 +586,7 @@
             // 
             // tbxAddress2
             // 
+            this.tbxAddress2.EnterMoveNextControl = true;
             this.tbxAddress2.Location = new System.Drawing.Point(235, 198);
             this.tbxAddress2.Name = "tbxAddress2";
             this.tbxAddress2.Size = new System.Drawing.Size(334, 20);
@@ -590,6 +595,7 @@
             // 
             // tbxAddress1
             // 
+            this.tbxAddress1.EnterMoveNextControl = true;
             this.tbxAddress1.Location = new System.Drawing.Point(235, 174);
             this.tbxAddress1.Name = "tbxAddress1";
             this.tbxAddress1.Size = new System.Drawing.Size(334, 20);
@@ -598,22 +604,25 @@
             // 
             // tbxAddress
             // 
+            this.tbxAddress.EnterMoveNextControl = true;
             this.tbxAddress.Location = new System.Drawing.Point(235, 150);
             this.tbxAddress.Name = "tbxAddress";
             this.tbxAddress.Size = new System.Drawing.Size(334, 20);
             this.tbxAddress.StyleController = this.layoutControl1;
             this.tbxAddress.TabIndex = 15;
             // 
-            // textEdit1
+            // tbxhandlescalltype
             // 
-            this.textEdit1.Location = new System.Drawing.Point(235, 102);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(334, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 13;
+            this.tbxhandlescalltype.EnterMoveNextControl = true;
+            this.tbxhandlescalltype.Location = new System.Drawing.Point(235, 102);
+            this.tbxhandlescalltype.Name = "tbxhandlescalltype";
+            this.tbxhandlescalltype.Size = new System.Drawing.Size(334, 20);
+            this.tbxhandlescalltype.StyleController = this.layoutControl1;
+            this.tbxhandlescalltype.TabIndex = 13;
             // 
             // tbxPrintname
             // 
+            this.tbxPrintname.EnterMoveNextControl = true;
             this.tbxPrintname.Location = new System.Drawing.Point(235, 78);
             this.tbxPrintname.Name = "tbxPrintname";
             this.tbxPrintname.Size = new System.Drawing.Size(334, 20);
@@ -643,6 +652,7 @@
             // 
             // tbxAliasname
             // 
+            this.tbxAliasname.EnterMoveNextControl = true;
             this.tbxAliasname.Location = new System.Drawing.Point(235, 54);
             this.tbxAliasname.Name = "tbxAliasname";
             this.tbxAliasname.Size = new System.Drawing.Size(334, 20);
@@ -651,6 +661,7 @@
             // 
             // tbxName
             // 
+            this.tbxName.EnterMoveNextControl = true;
             this.tbxName.Location = new System.Drawing.Point(235, 30);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(334, 20);
@@ -685,10 +696,15 @@
             // 
             // cbxArea
             // 
+            this.cbxArea.EnterMoveNextControl = true;
             this.cbxArea.Location = new System.Drawing.Point(235, 126);
             this.cbxArea.Name = "cbxArea";
             this.cbxArea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxArea.Properties.Items.AddRange(new object[] {
+            "miyapur",
+            "hitechcity",
+            "chandanagar"});
             this.cbxArea.Size = new System.Drawing.Size(334, 20);
             this.cbxArea.StyleController = this.layoutControl1;
             this.cbxArea.TabIndex = 14;
@@ -836,7 +852,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.textEdit1;
+            this.layoutControlItem5.Control = this.tbxhandlescalltype;
             this.layoutControlItem5.Location = new System.Drawing.Point(135, 90);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(426, 24);
@@ -944,7 +960,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxhandlescalltype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAliasname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).EndInit();
@@ -1002,7 +1018,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxhandlescalltype;
         private DevExpress.XtraEditors.TextEdit tbxPrintname;
         private DevExpress.XtraEditors.ComboBoxEdit cbxArea;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

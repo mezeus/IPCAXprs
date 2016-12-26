@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accountgroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.chkGrossProfit = new DevExpress.XtraEditors.CheckEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -108,11 +109,10 @@
             this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnUpdateCtrl = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnUpdateCtrl = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkGrossProfit.Properties)).BeginInit();
@@ -146,10 +146,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateCtrl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateCtrl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -176,6 +176,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(710, 207);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(479, 173);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(67, 22);
+            this.btnUpdate.StyleController = this.layoutControl1;
+            this.btnUpdate.TabIndex = 58;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Visible = false;
             // 
             // chkGrossProfit
             // 
@@ -387,7 +398,6 @@
             this.ListAccountgroup.Caption = "List";
             this.ListAccountgroup.Name = "ListAccountgroup";
             this.ListAccountgroup.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListAccountgroup.SmallImage")));
-            this.ListAccountgroup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListAccountgroup_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -908,27 +918,15 @@
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnUpdate
+            // btnUpdateCtrl
             // 
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(479, 173);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(67, 22);
-            this.btnUpdate.StyleController = this.layoutControl1;
-            this.btnUpdate.TabIndex = 58;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.Visible = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.btnUpdate;
-            this.layoutControlItem11.Location = new System.Drawing.Point(467, 161);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(71, 26);
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem11.TextVisible = false;
-            this.layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            this.btnUpdateCtrl.Control = this.btnUpdate;
+            this.btnUpdateCtrl.Location = new System.Drawing.Point(467, 161);
+            this.btnUpdateCtrl.Name = "btnUpdateCtrl";
+            this.btnUpdateCtrl.Size = new System.Drawing.Size(71, 26);
+            this.btnUpdateCtrl.TextSize = new System.Drawing.Size(0, 0);
+            this.btnUpdateCtrl.TextVisible = false;
+            this.btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // emptySpaceItem4
             // 
@@ -946,15 +944,15 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(11, 26);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnUpdateCtrl
+            // layoutControlItem11
             // 
-            this.btnUpdateCtrl.Control = this.btnUpdate;
-            this.btnUpdateCtrl.Location = new System.Drawing.Point(467, 161);
-            this.btnUpdateCtrl.Name = "btnUpdateCtrl";
-            this.btnUpdateCtrl.Size = new System.Drawing.Size(71, 26);
-            this.btnUpdateCtrl.TextSize = new System.Drawing.Size(0, 0);
-            this.btnUpdateCtrl.TextVisible = false;
-            this.btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            this.layoutControlItem11.Control = this.btnUpdate;
+            this.layoutControlItem11.Location = new System.Drawing.Point(467, 161);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(71, 26);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
+            this.layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // Accountgroup
             // 
@@ -999,10 +997,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateCtrl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateCtrl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -538,6 +538,7 @@
             // 
             // Date
             // 
+            this.Date.EnterMoveNextControl = true;
             this.Date.Location = new System.Drawing.Point(169, 29);
             this.Date.Name = "Date";
             this.Date.Properties.DisplayFormat.FormatString = "d";

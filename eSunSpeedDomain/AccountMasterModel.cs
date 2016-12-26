@@ -35,14 +35,15 @@ namespace eSunSpeedDomain
         public bool FreezePurcType { get; set; }
         public bool SpecifyDefaultPurType { get; set; }
 
-        public int InterestRatePayable { get; set; }
-        public int InterestRateReceivable { get; set; }
+        public decimal InterestRatePayable { get; set; }
+        public decimal InterestRateReceivable { get; set; }
 
         public string DefaultPurcType { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
+        public string address { get; set; }
+        public string address1{ get; set; }
+        public string address2{ get; set; }
         public string address3 { get; set; }
-        public string address4 { get; set; }
+        public string area { get; set; }
         public string State { get; set; }
 
         public string TelephoneNumber { get; set; }
@@ -79,6 +80,9 @@ namespace eSunSpeedDomain
 
         public string TypeofBuissness { get; set; }
         public string WebSite { get; set; }
+        public string DLNO1 { get; set; }
+        public string No1 { get; set; }
+        public string allowwebbasedreporting { get; set; }
 
         public string CreatedBy { get; set; }        
         public string ModifiedBy { get; set; }
