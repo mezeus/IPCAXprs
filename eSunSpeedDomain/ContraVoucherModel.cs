@@ -24,7 +24,7 @@ namespace eSunSpeedDomain
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
 
-        public List<AccountModel> AccountModel { get; set; }
+        public List<AccountModel> ContraAccountModel { get; set; }
         //public List<Item_VoucherModel> Item_Voucher { get; set; }
         //public List<BillSundry_VoucherModel> BillSundry_Voucher { get; set; }
     }

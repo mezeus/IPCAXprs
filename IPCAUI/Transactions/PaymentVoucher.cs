@@ -10,11 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPCAUI.Models;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Transactions
 {
     public partial class PaymentVoucher : Form
     {
+        PaymentVoucherBL objpaybl = new PaymentVoucherBL();
         public PaymentVoucher()
         {
             InitializeComponent();
@@ -64,6 +68,10 @@ namespace IPCAUI.Transactions
             // riLookup.PopulateColumns();
             // riLookup.Columns["Description"].Visible = false;
 
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();
+            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
+
             // Assign the in-place LookupEdit control to the grid's CategoryID column.
             // Note that the data types of the "ID" and "CategoryID" fields match.
             gdvPayment.Columns["Account"].ColumnEdit = riLookup;
@@ -100,6 +108,66 @@ namespace IPCAUI.Transactions
             {
                 gdvPayment.ShowEditor();
                 ((LookUpEdit)gdvPayment.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void gdvMainPayment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            PaymentVoucherModel objPayment = new PaymentVoucherModel();
+
+            if (tbxVchNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+            objPayment.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objPayment.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
+            objPayment.Pay_Date = Convert.ToDateTime(dtDate.Text);
+            objPayment.Type = tbxType.Text.Trim();
+            objPayment.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
+            objPayment.LongNarration = tbxLongNarration.Text.Trim();
+            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
+            //objPurc.Narration = tbxNarration.Text.Trim();
+
+            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Bill Number and Due date not captured- check with Ravi if these are required
+
+
+            //Items
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+
+            for (int i = 0; i < gdvPayment.DataRowCount; i++)
+            {
+                DataRow row = gdvPayment.GetDataRow(i);
+
+                objacc = new AccountModel();
+                objacc.DC = row["DC"].ToString();
+
+                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+                //objacc.Unit = row["Unit"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString();
+                lstAccounts.Add(objacc);
+            }
+
+            objPayment.PaymentAccountModel = lstAccounts;
+           
+
+            bool isSuccess = objpaybl.SavePaymentVoucher(objPayment);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
             }
         }
     }

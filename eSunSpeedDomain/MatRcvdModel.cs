@@ -11,7 +11,7 @@ namespace eSunSpeedDomain
         public string Series { get; set; }
         public int Voucher_Number { get; set; } 
         public DateTime Rcvd_Date { get; set; } 
-        public string type { get; set; }                       
+        public string Type { get; set; }                       
         public string Party { get; set; }
         public string MatCenter { get; set; }
         public string Narration { get; set; }

@@ -10,11 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPCAUI.Models;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Transactions
 {
     public partial class ContraVoucher : Form
     {
+        ContraVoucherBL objconBL = new ContraVoucherBL();
         public ContraVoucher()
         {
             InitializeComponent();
@@ -50,6 +54,10 @@ namespace IPCAUI.Transactions
             // Note that the data types of the "ID" and "CategoryID" fields match.
             gdvContra.Columns["Account"].ColumnEdit = riLookup;
             gdvContra.BestFitColumns();
+
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();
+            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
 
             RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
             riDCLookup.DataSource = new string[] {"D", "C"};
@@ -176,6 +184,46 @@ namespace IPCAUI.Transactions
                 gdvContra.ShowEditor();
                 ((LookUpEdit)gdvContra.ActiveEditor).ShowPopup();
             }           
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            ContraVoucherModel objcontra = new ContraVoucherModel();
+
+            if (tbxVoucherNo.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+            objcontra.Voucher_Number = Convert.ToInt32(tbxVoucherNo.Text.Trim());
+            objcontra.CV_Date = Convert.ToDateTime(dtDate.Text);
+            objcontra.LongNarration = tbxLongNarration.Text.Trim();
+
+            //Contra Account Details
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+            for (int i = 0; i < gdvContra.DataRowCount; i++)
+            {
+                DataRow row = gdvContra.GetDataRow(i);
+
+                objacc = new AccountModel();
+                objacc.DC = row["DC"].ToString();
+                objacc.Account = row["Account"].ToString();          
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Narration = row["ShortNarration"].ToString();
+                lstAccounts.Add(objacc);
+            }
+
+            objcontra.ContraAccountModel = lstAccounts;
+
+            bool isSuccess = objconBL.SaveContraVoucher(objcontra);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
+            }
         }
     }
 }

@@ -13,54 +13,52 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE PAYMENT VOUCHER
-        public int SavePaymentVoucher(PaymentVoucherModel obpaybl)
+        public bool SavePaymentVoucher(PaymentVoucherModel objpaymod)
         {
             string Query = string.Empty;
-            int payid = 0;
-
+            //int payid = 0;
+            bool isSaved = true;
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
 
-                paramCollection.Add(new DBParameter("@Series", obpaybl.Voucher_Series));             
-                paramCollection.Add(new DBParameter("@Date", obpaybl.Pay_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", obpaybl.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", obpaybl.Type));
-                paramCollection.Add(new DBParameter("@PDDate", obpaybl.PDCDate));
-                //paramCollection.Add(new DBParameter("@Long", obpaybl.LongNarration));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objpaymod.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objpaymod.Voucher_Series));
+                paramCollection.Add(new DBParameter("@PayDate", objpaymod.Pay_Date, System.Data.DbType.DateTime));
+
+                paramCollection.Add(new DBParameter("@Type", objpaymod.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objpaymod.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objpaymod.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertPaymentMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                Query = "INSERT INTO Payment_Voucher([Series],[Pay_Date],[VoucherNo],[Type],[PDC_Date]," +
-                "[CreatedBy],[CreatedDate]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                " @CreatedBy,@CreatedDate)";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SavePaymentAccounts(obpaybl.PaymentAccountModel);
-                    payid = GetPaymentId();
-                    
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SavePaymentAccounts(objpaymod.PaymentAccountModel, id);
             }
             catch (Exception ex)
             {
-                payid = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return payid;
+            return isSaved;
         }
 
-        public bool SavePaymentAccounts(List<AccountModel> lstAcc)
+        public bool SavePaymentAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetPaymentId();
+            //int ParentId = GetPaymentId();
 
             foreach (AccountModel Acc in lstAcc)
             {
@@ -70,23 +68,19 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@Pay_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@PaymentId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Payment_Voucher_Accounts([Payment_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@Pay_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                  _dbHelper.ExecuteDataReader("spInsertPaymentDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                   
                 }
                 catch (Exception ex)
                 {

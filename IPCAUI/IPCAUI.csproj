@@ -683,6 +683,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemGridDs.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\ItemGridIC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemGridIC.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ItemGridIG.cs">
+      <DependentUpon>ItemGridIG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ItemGridIG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemGridIG.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ItemgroupList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4490,6 +4503,28 @@
     </None>
     <None Include="DataSets\ItemGridDs.xss">
       <DependentUpon>ItemGridDs.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridIC.xsc">
+      <DependentUpon>ItemGridIC.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridIC.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemGridIC.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ItemGridIC.xss">
+      <DependentUpon>ItemGridIC.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridIG.xsc">
+      <DependentUpon>ItemGridIG.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemGridIG.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemGridIG.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ItemGridIG.xss">
+      <DependentUpon>ItemGridIG.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ItemgroupList.xsc">
       <DependentUpon>ItemgroupList.xsd</DependentUpon>

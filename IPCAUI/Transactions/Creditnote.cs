@@ -169,17 +169,9 @@ namespace IPCAUI.Transactions
             objcredit.CN_Date = Convert.ToDateTime(dtDate.Text);
             objcredit.Type = tbxType.Text.Trim();
             objcredit.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objcredit.Narration = tbxLogNarration.Text.Trim();
-            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
-            //objPurc.Narration = tbxNarration.Text.Trim();
+            objcredit.Narration = tbxLogNarration.Text.Trim();  
 
-            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
-
-            //Bill Number and Due date not captured- check with Ravi if these are required
-
-
-            //Items
+            //Credit Note Account details
             AccountModel objacc;
             List<AccountModel> lstAccounts = new List<AccountModel>();
 
@@ -190,7 +182,7 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
 
-                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+                objacc.Account = row["Account"].ToString(); 
                 //objacc.Unit = row["Unit"].ToString();
                 objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
                 objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
@@ -200,28 +192,6 @@ namespace IPCAUI.Transactions
 
             objcredit.CreditAccountModel = lstAccounts;
             objcredit.Voucher_Series = tbxVoucherSeries.Text.Trim();
-            ////Bill Sundry
-            //BillSundry_VoucherModel objBS;
-            //List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
-
-            //for (int i = 0; i < gridBs.DataRowCount; i++)
-            //{
-            //    DataRow row = gridBs.GetDataRow(i);
-
-            //    objBS = new BillSundry_VoucherModel();
-            //    objBS.BillSundry = row["BillSundry"].ToString();
-            //    objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
-            //    objBS.Amount = Convert.ToDecimal(row["Amount"]);
-            //    objBS.Type = row["Extra"].ToString();
-
-            //    lstBS.Add(objBS);
-            //}
-
-            //objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
-
-            //objPurc.BillSundry_Voucher = lstBS;
-
-            //objSalesVoucher = new SalesVoucherBL();
 
             bool isSuccess = objBl.SaveCreditNote(objcredit);
             if (isSuccess)

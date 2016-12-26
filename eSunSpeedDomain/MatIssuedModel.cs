@@ -13,6 +13,7 @@ namespace eSunSpeedDomain
         public int Voucher_Number { get; set; } 
         public DateTime Issued_Date { get; set; }                        
         public string Party { get; set; }
+        public string Type { get; set; }
         public string MatCenter { get; set; }
         public string Narration { get; set; }
         public decimal TotalQty { get; set; }

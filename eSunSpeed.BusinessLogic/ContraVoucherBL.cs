@@ -13,52 +13,49 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE CONTRA VOUCHER
-        public int SaveContraVoucher(ContraVoucherModel objCon)
+        public bool SaveContraVoucher(ContraVoucherModel objCon)
         {
             string Query = string.Empty;
-            int conid = 0;
+            bool isSaved = true;
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
+                paramCollection.Add(new DBParameter("@VoucherNumber", objCon.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objCon.Voucher_Series));
-                paramCollection.Add(new DBParameter("@Date", objCon.CV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objCon.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objCon.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objCon.PDCDate));
-                paramCollection.Add(new DBParameter("@Long", objCon.LongNarration));
+                paramCollection.Add(new DBParameter("@CVDate", objCon.CV_Date, System.Data.DbType.DateTime));
+
+                //paramCollection.Add(new DBParameter("@Type", objCon.Type));
+                //paramCollection.Add(new DBParameter("@PDCDate", objCon.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objCon.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertContraMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                Query = "INSERT INTO Contra_Voucher([Series],[CV_Date],[VoucherNo],[Type],[PDC_Date],[LongNarration]" +
-                "[CreatedBy],[CreatedDate]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate,@Long " +
-                " @CreatedBy,@CreatedDate)";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                   SaveAcconuts(objCon.AccountModel);
-                    conid = GetContraId();
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveContraAcconuts(objCon.ContraAccountModel, id);
             }
             catch (Exception ex)
             {
-                conid = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return conid;
+            return isSaved;
         }
 
-        public bool SaveAcconuts(List<AccountModel> lstAcc)
+        public bool SaveContraAcconuts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetContraId();
-
+            //int ParentId = GetContraId();
             foreach (AccountModel Acc in lstAcc)
             {
                 Acc.ParentId = ParentId;
@@ -67,22 +64,18 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@CV_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@ContraID", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                    Query = "INSERT INTO Contra_Voucher_Accounts ([Contra_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@CV_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertContraDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -138,7 +131,7 @@ namespace eSunSpeed.BusinessLogic
                     List<AccountModel> lstAcct = new List<AccountModel>();
 
                     //UPDATE CREDIT NOTE ACCOUNT -CHILD TABLE UPDATES
-                    foreach (AccountModel act in objContra.AccountModel)
+                    foreach (AccountModel act in objContra.ContraAccountModel)
                     {
                         if (act.AC_Id > 0)
                         {
@@ -294,7 +287,7 @@ namespace eSunSpeed.BusinessLogic
                 string itemQuery = "SELECT * FROM Contra_Voucher_Accounts WHERE Contra_Id=" + objcontra.CV_Id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
-                objcontra.AccountModel = new List<AccountModel>();
+                objcontra.ContraAccountModel = new List<AccountModel>();
                 AccountModel objAcc;
 
                 while (drAcc.Read())
@@ -309,7 +302,7 @@ namespace eSunSpeed.BusinessLogic
                     objAcc.Credit = Convert.ToDecimal(drAcc["Credit"]);
                     objAcc.Narration = drAcc["Narration"].ToString();
 
-                    objcontra.AccountModel.Add(objAcc);
+                    objcontra.ContraAccountModel.Add(objAcc);
 
                 }
 

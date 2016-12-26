@@ -13,51 +13,49 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE JOURNAL VOUCHER
-        public int SaveJournalVoucher(JournalVoucherModel objjcbl)
+        public bool SaveJournalVoucher(JournalVoucherModel objjvmodel)
         {
             string Query = string.Empty;
-            int jvid = 0;
+            bool isSaved = true;
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objjcbl.Voucher_Series));             
-                paramCollection.Add(new DBParameter("@Date", objjcbl.JV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objjcbl.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objjcbl.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objjcbl.PDCDate));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objjvmodel.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objjvmodel.Voucher_Series));
+                paramCollection.Add(new DBParameter("@JVDate", objjvmodel.JV_Date, System.Data.DbType.DateTime));
+
+                paramCollection.Add(new DBParameter("@Type", objjvmodel.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objjvmodel.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objjvmodel.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                Query = "INSERT INTO Journal_Voucher([Series],[JV_Date],[VoucherNo],[Type],[PDC_Date]," +
-                "[CreatedBy],[CreatedDate]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                " @CreatedBy,@CreatedDate)";
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertJournalMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveJVAccounts(objjcbl.JournalAccountModel);
-                    jvid = GetJournalId();
-
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveJVAccounts(objjvmodel.JournalAccountModel, id);
+               
             }
             catch (Exception ex)
             {
-                jvid = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return jvid;
+            return isSaved;
         }
 
-        public bool SaveJVAccounts(List<AccountModel> lstAcc)
+        public bool SaveJVAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetJournalId();
-
             foreach (AccountModel Acc in lstAcc)
             {
                 Acc.ParentId = ParentId;
@@ -66,23 +64,19 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@JV_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@JournalId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Journal_Voucher_Accounts([JV_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@JV_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertJournalDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -91,55 +85,7 @@ namespace eSunSpeed.BusinessLogic
                 }
             }
             return isSaved;
-        }
-
-        //public bool SaveProductionBillSundry(List<BillSundry_VoucherModel> lstBS)
-        //{
-        //    string Query = string.Empty;
-        //    bool isSaved = true;
-
-        //    int ParentId = GetContraId();
-
-        //    foreach (BillSundry_VoucherModel bs in lstBS)
-        //    {
-        //        bs.ParentId = ParentId;
-
-        //        try
-        //        {
-        //            DBParameterCollection paramCollection = new DBParameterCollection();
-
-        //            paramCollection.Add(new DBParameter("@PV_ID", bs.ParentId));
-        //            paramCollection.Add(new DBParameter("@Name", bs.BillSundry));
-        //            paramCollection.Add(new DBParameter("@Percentage", Convert.ToDecimal(bs.Percentage)));
-        //            paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(bs.Amount)));
-        //            paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
-        //            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-        //            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
-
-        //            Query = "INSERT INTO Trans_Production_BS([TransPVId],[BillSundry],[Percentage]," +
-        //            "[Amount],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-        //            "(@PV_ID,@Name,@Percentage,@Amount,@TotalAmount,@CreatedBy,@CreatedDate)";
-
-        //            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-        //                isSaved = true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            isSaved = false;
-        //            throw ex;
-        //        }
-        //    }
-        //    return isSaved;
-        //}
-
-        public int GetJournalId()
-        {
-            string Query = "SELECT MAX(JV_Id) FROM Journal_Voucher";
-
-            int id = Convert.ToInt32(_dbHelper.ExecuteScalar(Query));
-
-            return id;
-        }
+        }    
 
 
         #endregion
