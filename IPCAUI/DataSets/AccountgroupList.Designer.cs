@@ -285,6 +285,8 @@ namespace IPCAUI.DataSets {
             
             private global::System.Data.DataColumn columnUnder_Group;
             
+            private global::System.Data.DataColumn columnAGId;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public AccountgroupListDtDataTable() {
@@ -344,6 +346,14 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AGIdColumn {
+                get {
+                    return this.columnAGId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +389,13 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountgroupListDtRow AddAccountgroupListDtRow(string Name, string Primary, string Under_Group) {
+            public AccountgroupListDtRow AddAccountgroupListDtRow(string Name, string Primary, string Under_Group, string AGId) {
                 AccountgroupListDtRow rowAccountgroupListDtRow = ((AccountgroupListDtRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Name,
                         Primary,
-                        Under_Group};
+                        Under_Group,
+                        AGId};
                 rowAccountgroupListDtRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAccountgroupListDtRow);
                 return rowAccountgroupListDtRow;
@@ -410,6 +421,7 @@ namespace IPCAUI.DataSets {
                 this.columnName = base.Columns["Name"];
                 this.columnPrimary = base.Columns["Primary"];
                 this.columnUnder_Group = base.Columns["Under Group"];
+                this.columnAGId = base.Columns["AGId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,6 +433,8 @@ namespace IPCAUI.DataSets {
                 base.Columns.Add(this.columnPrimary);
                 this.columnUnder_Group = new global::System.Data.DataColumn("Under Group", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUnder_Group);
+                this.columnAGId = new global::System.Data.DataColumn("AGId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAGId);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -611,6 +625,22 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AGId {
+                get {
+                    try {
+                        return ((string)(this[this.tableAccountgroupListDt.AGIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AGId\' in table \'AccountgroupListDt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAccountgroupListDt.AGIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNameNull() {
                 return this.IsNull(this.tableAccountgroupListDt.NameColumn);
             }
@@ -643,6 +673,18 @@ namespace IPCAUI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetUnder_GroupNull() {
                 this[this.tableAccountgroupListDt.Under_GroupColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAGIdNull() {
+                return this.IsNull(this.tableAccountgroupListDt.AGIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAGIdNull() {
+                this[this.tableAccountgroupListDt.AGIdColumn] = global::System.Convert.DBNull;
             }
         }
         

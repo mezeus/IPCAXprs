@@ -54,7 +54,7 @@
     <Compile Include="EmployeeMasterBL.cs" />
     <Compile Include="ExecutivegroupBL.cs" />
     <Compile Include="ContactgroupBL.cs" />
-    <Compile Include="AccountMaster.cs" />
+    <Compile Include="AccountMasterBL.cs" />
     <Compile Include="Analytics.cs" />
     <Compile Include="Arch.cs" />
     <Compile Include="AuthorMaster.cs" />

@@ -528,6 +528,7 @@
             // 
             // chkGrossProfit
             // 
+            this.chkGrossProfit.EnterMoveNextControl = true;
             this.chkGrossProfit.Location = new System.Drawing.Point(152, 150);
             this.chkGrossProfit.Name = "chkGrossProfit";
             this.chkGrossProfit.Properties.Caption = "Affect Gross Profit";
@@ -559,6 +560,7 @@
             // 
             // cbxNaturegroup
             // 
+            this.cbxNaturegroup.EnterMoveNextControl = true;
             this.cbxNaturegroup.Location = new System.Drawing.Point(248, 126);
             this.cbxNaturegroup.Name = "cbxNaturegroup";
             this.cbxNaturegroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -572,6 +574,7 @@
             // 
             // cbxUndergroup
             // 
+            this.cbxUndergroup.EnterMoveNextControl = true;
             this.cbxUndergroup.Location = new System.Drawing.Point(248, 102);
             this.cbxUndergroup.Name = "cbxUndergroup";
             this.cbxUndergroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

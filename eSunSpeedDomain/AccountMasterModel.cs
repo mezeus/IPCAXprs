@@ -23,13 +23,20 @@ namespace eSunSpeedDomain
         public decimal PrevYearBal { get; set; }
         public string TypeofDealer { get; set; }
 
+        public int CreditDaysforSale { get; set; }
+        public int CreditDaysforPurchase { get; set; }
+
         public string Transport { get; set; }
         public string Station { get; set; }
         public bool specifyDefaultSaleType { get; set; }
 
         public string DefaultSaleType { get; set; }
-        public string FreezeSaleType { get; set; }
+        public bool FreezeSaleType { get; set; }
+        public bool FreezePurcType { get; set; }
         public bool SpecifyDefaultPurType { get; set; }
+
+        public int InterestRatePayable { get; set; }
+        public int InterestRateReceivable { get; set; }
 
         public string DefaultPurcType { get; set; }
         public string address1 { get; set; }

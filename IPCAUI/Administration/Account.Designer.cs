@@ -124,10 +124,10 @@
             this.tbxAlias = new DevExpress.XtraEditors.TextEdit();
             this.tbxAddress1 = new DevExpress.XtraEditors.TextEdit();
             this.tbxAddress2 = new DevExpress.XtraEditors.TextEdit();
-            this.cbxOpbal = new DevExpress.XtraEditors.TextEdit();
-            this.cbxPrevyearbal = new DevExpress.XtraEditors.TextEdit();
-            this.cbxCreditdaysforSale = new DevExpress.XtraEditors.TextEdit();
-            this.cbxCreditdaysforPurc = new DevExpress.XtraEditors.TextEdit();
+            this.tbxOpbal = new DevExpress.XtraEditors.TextEdit();
+            this.tbxPrevyearbal = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCreditdaysforSale = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCreditdaysforPurc = new DevExpress.XtraEditors.TextEdit();
             this.tbxInterestrateReceviable = new DevExpress.XtraEditors.TextEdit();
             this.tbxInterestPay = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -242,10 +242,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAlias.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxOpbal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxPrevyearbal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxCreditdaysforSale.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxCreditdaysforPurc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOpbal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPrevyearbal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCreditdaysforSale.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCreditdaysforPurc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInterestrateReceviable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInterestPay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
@@ -363,10 +363,10 @@
             this.layoutControl1.Controls.Add(this.tbxAlias);
             this.layoutControl1.Controls.Add(this.tbxAddress1);
             this.layoutControl1.Controls.Add(this.tbxAddress2);
-            this.layoutControl1.Controls.Add(this.cbxOpbal);
-            this.layoutControl1.Controls.Add(this.cbxPrevyearbal);
-            this.layoutControl1.Controls.Add(this.cbxCreditdaysforSale);
-            this.layoutControl1.Controls.Add(this.cbxCreditdaysforPurc);
+            this.layoutControl1.Controls.Add(this.tbxOpbal);
+            this.layoutControl1.Controls.Add(this.tbxPrevyearbal);
+            this.layoutControl1.Controls.Add(this.tbxCreditdaysforSale);
+            this.layoutControl1.Controls.Add(this.tbxCreditdaysforPurc);
             this.layoutControl1.Controls.Add(this.tbxInterestrateReceviable);
             this.layoutControl1.Controls.Add(this.tbxInterestPay);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1240,9 +1240,6 @@
             this.tbxName.Size = new System.Drawing.Size(272, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 4;
-           // this.tbxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxName_KeyDown);
-         ////   this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
-           // this.tbxName.Leave += new System.EventHandler(this.tbxName_Leave);
             // 
             // tbxAddress
             // 
@@ -1280,47 +1277,47 @@
             this.tbxAddress2.StyleController = this.layoutControl1;
             this.tbxAddress2.TabIndex = 7;
             // 
-            // cbxOpbal
+            // tbxOpbal
             // 
-            this.cbxOpbal.EditValue = "0.00";
-            this.cbxOpbal.EnterMoveNextControl = true;
-            this.cbxOpbal.Location = new System.Drawing.Point(327, 186);
-            this.cbxOpbal.Name = "cbxOpbal";
-            this.cbxOpbal.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.cbxOpbal.Properties.Appearance.Options.UseFont = true;
-            this.cbxOpbal.Size = new System.Drawing.Size(78, 20);
-            this.cbxOpbal.StyleController = this.layoutControl1;
-            this.cbxOpbal.TabIndex = 14;
+            this.tbxOpbal.EditValue = "0.00";
+            this.tbxOpbal.EnterMoveNextControl = true;
+            this.tbxOpbal.Location = new System.Drawing.Point(327, 186);
+            this.tbxOpbal.Name = "tbxOpbal";
+            this.tbxOpbal.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tbxOpbal.Properties.Appearance.Options.UseFont = true;
+            this.tbxOpbal.Size = new System.Drawing.Size(78, 20);
+            this.tbxOpbal.StyleController = this.layoutControl1;
+            this.tbxOpbal.TabIndex = 14;
             // 
-            // cbxPrevyearbal
+            // tbxPrevyearbal
             // 
-            this.cbxPrevyearbal.EditValue = "0.00";
-            this.cbxPrevyearbal.EnterMoveNextControl = true;
-            this.cbxPrevyearbal.Location = new System.Drawing.Point(327, 210);
-            this.cbxPrevyearbal.Name = "cbxPrevyearbal";
-            this.cbxPrevyearbal.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.cbxPrevyearbal.Properties.Appearance.Options.UseFont = true;
-            this.cbxPrevyearbal.Size = new System.Drawing.Size(78, 20);
-            this.cbxPrevyearbal.StyleController = this.layoutControl1;
-            this.cbxPrevyearbal.TabIndex = 16;
+            this.tbxPrevyearbal.EditValue = "0.00";
+            this.tbxPrevyearbal.EnterMoveNextControl = true;
+            this.tbxPrevyearbal.Location = new System.Drawing.Point(327, 210);
+            this.tbxPrevyearbal.Name = "tbxPrevyearbal";
+            this.tbxPrevyearbal.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tbxPrevyearbal.Properties.Appearance.Options.UseFont = true;
+            this.tbxPrevyearbal.Size = new System.Drawing.Size(78, 20);
+            this.tbxPrevyearbal.StyleController = this.layoutControl1;
+            this.tbxPrevyearbal.TabIndex = 16;
             // 
-            // cbxCreditdaysforSale
+            // tbxCreditdaysforSale
             // 
-            this.cbxCreditdaysforSale.EnterMoveNextControl = true;
-            this.cbxCreditdaysforSale.Location = new System.Drawing.Point(339, 288);
-            this.cbxCreditdaysforSale.Name = "cbxCreditdaysforSale";
-            this.cbxCreditdaysforSale.Size = new System.Drawing.Size(53, 20);
-            this.cbxCreditdaysforSale.StyleController = this.layoutControl1;
-            this.cbxCreditdaysforSale.TabIndex = 19;
+            this.tbxCreditdaysforSale.EnterMoveNextControl = true;
+            this.tbxCreditdaysforSale.Location = new System.Drawing.Point(339, 288);
+            this.tbxCreditdaysforSale.Name = "tbxCreditdaysforSale";
+            this.tbxCreditdaysforSale.Size = new System.Drawing.Size(53, 20);
+            this.tbxCreditdaysforSale.StyleController = this.layoutControl1;
+            this.tbxCreditdaysforSale.TabIndex = 19;
             // 
-            // cbxCreditdaysforPurc
+            // tbxCreditdaysforPurc
             // 
-            this.cbxCreditdaysforPurc.EnterMoveNextControl = true;
-            this.cbxCreditdaysforPurc.Location = new System.Drawing.Point(533, 288);
-            this.cbxCreditdaysforPurc.Name = "cbxCreditdaysforPurc";
-            this.cbxCreditdaysforPurc.Size = new System.Drawing.Size(54, 20);
-            this.cbxCreditdaysforPurc.StyleController = this.layoutControl1;
-            this.cbxCreditdaysforPurc.TabIndex = 20;
+            this.tbxCreditdaysforPurc.EnterMoveNextControl = true;
+            this.tbxCreditdaysforPurc.Location = new System.Drawing.Point(533, 288);
+            this.tbxCreditdaysforPurc.Name = "tbxCreditdaysforPurc";
+            this.tbxCreditdaysforPurc.Size = new System.Drawing.Size(54, 20);
+            this.tbxCreditdaysforPurc.StyleController = this.layoutControl1;
+            this.tbxCreditdaysforPurc.TabIndex = 20;
             // 
             // tbxInterestrateReceviable
             // 
@@ -1481,7 +1478,7 @@
             // 
             // layoutControlItem13
             // 
-            this.layoutControlItem13.Control = this.cbxOpbal;
+            this.layoutControlItem13.Control = this.tbxOpbal;
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(219, 24);
@@ -1508,7 +1505,7 @@
             // 
             // layoutControlItem15
             // 
-            this.layoutControlItem15.Control = this.cbxPrevyearbal;
+            this.layoutControlItem15.Control = this.tbxPrevyearbal;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(219, 24);
@@ -1536,7 +1533,7 @@
             // 
             // layoutControlItem18
             // 
-            this.layoutControlItem18.Control = this.cbxCreditdaysforSale;
+            this.layoutControlItem18.Control = this.tbxCreditdaysforSale;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(194, 24);
@@ -1545,7 +1542,7 @@
             // 
             // layoutControlItem19
             // 
-            this.layoutControlItem19.Control = this.cbxCreditdaysforPurc;
+            this.layoutControlItem19.Control = this.tbxCreditdaysforPurc;
             this.layoutControlItem19.Location = new System.Drawing.Point(194, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Size = new System.Drawing.Size(195, 24);
@@ -1996,7 +1993,6 @@
             this.Name = "Account";
             this.Text = "Account";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-       //     this.Load += new System.EventHandler(this.Account_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
@@ -2046,10 +2042,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAlias.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxOpbal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxPrevyearbal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxCreditdaysforSale.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxCreditdaysforPurc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOpbal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPrevyearbal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCreditdaysforSale.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCreditdaysforPurc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInterestrateReceviable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInterestPay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
@@ -2277,10 +2273,10 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraEditors.TextEdit cbxOpbal;
-        private DevExpress.XtraEditors.TextEdit cbxPrevyearbal;
-        private DevExpress.XtraEditors.TextEdit cbxCreditdaysforSale;
-        private DevExpress.XtraEditors.TextEdit cbxCreditdaysforPurc;
+        private DevExpress.XtraEditors.TextEdit tbxOpbal;
+        private DevExpress.XtraEditors.TextEdit tbxPrevyearbal;
+        private DevExpress.XtraEditors.TextEdit tbxCreditdaysforSale;
+        private DevExpress.XtraEditors.TextEdit tbxCreditdaysforPurc;
         private DevExpress.XtraEditors.TextEdit tbxInterestrateReceviable;
         private DevExpress.XtraEditors.TextEdit tbxInterestPay;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
