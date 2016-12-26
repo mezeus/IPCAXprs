@@ -14,7 +14,7 @@ namespace IPCAUI.Administration
 {
     public partial class Executivegroup : Form
     {
-        ExecutivegroupBL objexe = new ExecutivegroupBL();
+        ExecutivegroupBL objexebl = new ExecutivegroupBL();
         public Executivegroup()
         {
             InitializeComponent();
@@ -49,33 +49,27 @@ namespace IPCAUI.Administration
 
             eSunSpeedDomain.ExecutiveModel objexe = new ExecutiveModel();
 
-            //objexe.Name = tbxName.Text;
-            
+            objexe.GroupName = tbxName.Text;
+            objexe.AliasName = tbxAliasname.Text;
+            objexe.PrintName=tbxPrintname.Text;
+            objexe.Handlescalltype = tbxhandlescalltype.Text;
+            objexe.Area = cbxArea.SelectedItem.ToString();
+            objexe.Address = tbxAddress.Text;
+            objexe.Address1 = tbxAddress1.Text;
+            objexe.Address2 = tbxAddress2.Text;
+            objexe.Address3 = tbxAddress3.Text;
+            objexe.Telephone = Convert.ToInt32(tbxTelnumber.Text.Trim());
+            objexe.MobileNo= Convert.ToInt32(tbxMobileno.Text.Trim());
+            objexe.Email= tbxEmail.Text;
+
+            string message = string.Empty;
+
+            bool isSuccess = objexebl.SaveExecutiveGroup(objexe);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
            
-
-            //objContGroup.AliasName = tbxAliasname.Text;
-
-
-
-            //objContGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
-
-            //objContGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-
-            //objContGroup.CreatedBy = "Admin";
-
-            //string message = string.Empty;
-
-            //bool isSuccess = objcont.SaveContactGroup(objContGroup);
-            //if (isSuccess)
-            //{
-            //    MessageBox.Show("Saved Successfully!");
-            //}
-            //List<eSunSpeedDomain.AccountGroupModel> lstGroups = accObj.GetListofAccountsGroups();
-            //dgvList.DataSource = lstGroups;
-
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
-
 
         }
 

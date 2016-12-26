@@ -562,6 +562,7 @@
             // 
             // tbxSelectcode
             // 
+            this.tbxSelectcode.EnterMoveNextControl = true;
             this.tbxSelectcode.Location = new System.Drawing.Point(241, 54);
             this.tbxSelectcode.Name = "tbxSelectcode";
             this.tbxSelectcode.Size = new System.Drawing.Size(539, 20);
@@ -596,6 +597,7 @@
             // 
             // tbxTdsName
             // 
+            this.tbxTdsName.EnterMoveNextControl = true;
             this.tbxTdsName.Location = new System.Drawing.Point(241, 30);
             this.tbxTdsName.Name = "tbxTdsName";
             this.tbxTdsName.Size = new System.Drawing.Size(539, 20);

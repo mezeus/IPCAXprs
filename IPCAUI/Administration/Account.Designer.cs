@@ -80,7 +80,7 @@
             this.btnConfig = new DevExpress.XtraEditors.SimpleButton();
             this.tbxWebBasedReporting = new DevExpress.XtraEditors.TextEdit();
             this.tbxChequePrintName = new DevExpress.XtraEditors.TextEdit();
-            this.tbxDlno2 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxNo1 = new DevExpress.XtraEditors.TextEdit();
             this.tbxDlno1 = new DevExpress.XtraEditors.TextEdit();
             this.tbxIecode = new DevExpress.XtraEditors.TextEdit();
             this.tbxServicetax = new DevExpress.XtraEditors.TextEdit();
@@ -198,7 +198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxWebBasedReporting.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxChequePrintName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxDlno2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNo1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxDlno1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxIecode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxServicetax.Properties)).BeginInit();
@@ -320,7 +320,7 @@
             this.layoutControl1.Controls.Add(this.btnConfig);
             this.layoutControl1.Controls.Add(this.tbxWebBasedReporting);
             this.layoutControl1.Controls.Add(this.tbxChequePrintName);
-            this.layoutControl1.Controls.Add(this.tbxDlno2);
+            this.layoutControl1.Controls.Add(this.tbxNo1);
             this.layoutControl1.Controls.Add(this.tbxDlno1);
             this.layoutControl1.Controls.Add(this.tbxIecode);
             this.layoutControl1.Controls.Add(this.tbxServicetax);
@@ -791,14 +791,14 @@
             this.tbxChequePrintName.StyleController = this.layoutControl1;
             this.tbxChequePrintName.TabIndex = 51;
             // 
-            // tbxDlno2
+            // tbxNo1
             // 
-            this.tbxDlno2.EnterMoveNextControl = true;
-            this.tbxDlno2.Location = new System.Drawing.Point(958, 498);
-            this.tbxDlno2.Name = "tbxDlno2";
-            this.tbxDlno2.Size = new System.Drawing.Size(54, 20);
-            this.tbxDlno2.StyleController = this.layoutControl1;
-            this.tbxDlno2.TabIndex = 50;
+            this.tbxNo1.EnterMoveNextControl = true;
+            this.tbxNo1.Location = new System.Drawing.Point(958, 498);
+            this.tbxNo1.Name = "tbxNo1";
+            this.tbxNo1.Size = new System.Drawing.Size(54, 20);
+            this.tbxNo1.StyleController = this.layoutControl1;
+            this.tbxNo1.TabIndex = 50;
             // 
             // tbxDlno1
             // 
@@ -1912,7 +1912,7 @@
             // 
             // layoutControlItem50
             // 
-            this.layoutControlItem50.Control = this.tbxDlno2;
+            this.layoutControlItem50.Control = this.tbxNo1;
             this.layoutControlItem50.Location = new System.Drawing.Point(194, 456);
             this.layoutControlItem50.Name = "layoutControlItem50";
             this.layoutControlItem50.Size = new System.Drawing.Size(195, 24);
@@ -1998,7 +1998,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxWebBasedReporting.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxChequePrintName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxDlno2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNo1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxDlno1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxIecode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxServicetax.Properties)).EndInit();
@@ -2186,7 +2186,7 @@
         private DevExpress.XtraEditors.TextEdit tbxArea;
         private DevExpress.XtraEditors.TextEdit tbxWebBasedReporting;
         private DevExpress.XtraEditors.TextEdit tbxChequePrintName;
-        private DevExpress.XtraEditors.TextEdit tbxDlno2;
+        private DevExpress.XtraEditors.TextEdit tbxNo1;
         private DevExpress.XtraEditors.TextEdit tbxDlno1;
         private DevExpress.XtraEditors.TextEdit tbxIecode;
         private DevExpress.XtraEditors.TextEdit tbxServicetax;

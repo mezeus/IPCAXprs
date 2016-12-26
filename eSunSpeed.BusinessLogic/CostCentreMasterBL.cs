@@ -9,6 +9,7 @@ namespace eSunSpeed.BusinessLogic
 {
    public class CostCentreMasterBL
     {
+        CostCentreMasterModel objccmod = new CostCentreMasterModel();
         private DBHelper _dbHelper = new DBHelper();
 
         public object ParamCollection { get; private set; }
@@ -24,7 +25,7 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
                 
                 paramCollection.Add(new DBParameter("@Name", objCCM.Name));
-                paramCollection.Add(new DBParameter("@Alia", objCCM.Alias));
+                paramCollection.Add(new DBParameter("@Alias", objCCM.Alias));
                 paramCollection.Add(new DBParameter("@Group", objCCM.Group));
                 paramCollection.Add(new DBParameter("@opBal", objCCM.opBal));
                 paramCollection.Add(new DBParameter("@DrCr", objCCM.DrCr));
