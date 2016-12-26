@@ -151,36 +151,36 @@ namespace eSunSpeed.BusinessLogic
 
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Acc_DbName", "SunSpped"));
+                //paramCollection.Add(new DBParameter("@Acc_DbName", "SunSpped"));
                 paramCollection.Add(new DBParameter("@ACC_NAME", objAcctMaster.AccountName));
                 paramCollection.Add(new DBParameter("@ACC_SHORTNAME", objAcctMaster.ShortName));
                 paramCollection.Add(new DBParameter("@ACC_PRINTNAME", objAcctMaster.PrintName));
                 paramCollection.Add(new DBParameter("@ACC_LedgerType", objAcctMaster.LedgerType));
 
-                paramCollection.Add(new DBParameter("@ACC_MultiCurr", objAcctMaster.MultiCurrency, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ACC_MultiCurr", objAcctMaster.MultiCurrency?1:0, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ACC_Group", objAcctMaster.Group));
-                paramCollection.Add(new DBParameter("@ACC_OpBal", objAcctMaster.OPBal, System.Data.DbType.Int32));
+                paramCollection.Add(new DBParameter("@ACC_OpBal", objAcctMaster.OPBal));
                 paramCollection.Add(new DBParameter("@ACC_PrevYearBal", objAcctMaster.PrevYearBal));
                 paramCollection.Add(new DBParameter("@ACC_DrCrOpenBal", objAcctMaster.DrCrOpeningBal));
 
 
                 paramCollection.Add(new DBParameter("@ACC_DrCrPrevBal", objAcctMaster.DrCrOpeningBal));
-                paramCollection.Add(new DBParameter("@ACC_MaintainBitwise", objAcctMaster.MaintainBillwiseAccounts, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ACC_ActivateInterestCal", objAcctMaster.ActivateInterestCal, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ACC_CreditDays", objAcctMaster.CreditDays));
-                paramCollection.Add(new DBParameter("@ACC_CreditLimit", objAcctMaster.CreditLimit));
+                paramCollection.Add(new DBParameter("@ACC_MaintainBitwise", objAcctMaster.MaintainBillwiseAccounts ? 1 : 0));
+                paramCollection.Add(new DBParameter("@ACC_ActivateInterestCal", objAcctMaster.ActivateInterestCal ? 1 : 0));
+                paramCollection.Add(new DBParameter("@ACC_CreditDays_ForSale", objAcctMaster.CreditDaysforSale));
+                paramCollection.Add(new DBParameter("@ACC_CreditDays_ForPurch", objAcctMaster.CreditDaysforPurchase));
 
-                paramCollection.Add(new DBParameter("@ACC_TypeofBuissness", objAcctMaster.TypeofBuissness));
+                //paramCollection.Add(new DBParameter("@ACC_TypeofBuissness", objAcctMaster.TypeofBuissness));
                 paramCollection.Add(new DBParameter("@ACC_Transport", objAcctMaster.Transport));
                 paramCollection.Add(new DBParameter("@ACC_Station", objAcctMaster.Station));
-                paramCollection.Add(new DBParameter("@ACC_SpecifyDefaultSaleType", objAcctMaster.specifyDefaultSaleType, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ACC_SpecifyDefaultSaleType", objAcctMaster.specifyDefaultSaleType ? 1 : 0));
                 paramCollection.Add(new DBParameter("@ACC_DefaultSaleType", objAcctMaster.DefaultSaleType));
 
-                paramCollection.Add(new DBParameter("@ACC_FreezeSaleType", objAcctMaster.FreezeSaleType));
-                paramCollection.Add(new DBParameter("@ACC_SpecifyDefaultPurType", objAcctMaster.SpecifyDefaultPurType, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ACC_FreezeSaleType", objAcctMaster.FreezeSaleType ? 1 : 0));
+                paramCollection.Add(new DBParameter("@ACC_SpecifyDefaultPurType", objAcctMaster.SpecifyDefaultPurType ? 1 : 0));
                 paramCollection.Add(new DBParameter("@ACC_DefaultPurcType", objAcctMaster.DefaultPurcType));
-                paramCollection.Add(new DBParameter("@ACC_LockSalesType", objAcctMaster.LockSalesType, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ACC_LockPurcType", objAcctMaster.LockPurchaseType, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ACC_LockSalesType", objAcctMaster.LockSalesType ? 1 : 0));
+                paramCollection.Add(new DBParameter("@ACC_LockPurcType", objAcctMaster.LockPurchaseType ? 1 : 0));
 
                 paramCollection.Add(new DBParameter("@ACC_address1", objAcctMaster.address));
                 paramCollection.Add(new DBParameter("@ACC_address2", objAcctMaster.address1));
@@ -194,8 +194,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ACC_email", objAcctMaster.email));
                 paramCollection.Add(new DBParameter("@ACC_Website", objAcctMaster.WebSite));
 
-                paramCollection.Add(new DBParameter("@ACC_enablemailquery", objAcctMaster.enablemailquery, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ACC_enableSMSquery", objAcctMaster.enableSMSquery, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ACC_enablemailquery", objAcctMaster.enablemailquery ? 1 : 0));
+                paramCollection.Add(new DBParameter("@ACC_enableSMSquery", objAcctMaster.enableSMSquery ? 1 : 0));
                 paramCollection.Add(new DBParameter("@ACC_contactperson", objAcctMaster.contactperson));
                 paramCollection.Add(new DBParameter("@ACC_ITPanNumber", objAcctMaster.ITPanNumber));
                 paramCollection.Add(new DBParameter("@ACC_LSTNumber", objAcctMaster.LstNumber));
@@ -207,28 +207,31 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ACC_IECode", objAcctMaster.IECode));
 
                 paramCollection.Add(new DBParameter("@ACC_CreatedBy", "admin"));
-                paramCollection.Add(new DBParameter("@ACC_CreatedDate", "Date"));
-                paramCollection.Add(new DBParameter("@ACC_ModifiedBy", "admin"));
-                paramCollection.Add(new DBParameter("@ACC_ModifiedDate", "Date"));
-                paramCollection.Add(new DBParameter("@ACC_DEFAULT_CHEQUE_FORMAT", ""));
-                paramCollection.Add(new DBParameter("@ENABLE_CHEQUE_PRINTING", true, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));
 
+                //paramCollection.Add(new DBParameter("@ACC_CreatedDate", "Date"));
+                //paramCollection.Add(new DBParameter("@ACC_ModifiedBy", "admin"));
+                //paramCollection.Add(new DBParameter("@ACC_ModifiedDate", "Date"));
+                //paramCollection.Add(new DBParameter("@ACC_DEFAULT_CHEQUE_FORMAT", ""));
+                //paramCollection.Add(new DBParameter("@ENABLE_CHEQUE_PRINTING", 1, System.Data.DbType.Boolean));
+                //paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));
 
+                
                 Query =
                 "INSERT INTO accountmaster(`ACC_NAME`,`ACC_SHORTNAME`,`ACC_PRINTNAME`,`ACC_LedgerType`,`ACC_MultiCurr`,`ACC_Group`,`ACC_OpBal`," +
-                                "`ACC_PrevYearBal`,`ACC_DrCrOpenBal`,`ACC_DrCrPrevBal`,`ACC_MaintainBitwise`,`ACC_ActivateInterestCal`,`ACC_CreditDays`,`ACC_CreditLimit`,`ACC_TypeofBuissness`," +
+                                "`ACC_PrevYearBal`,`ACC_DrCrOpenBal`,`ACC_DrCrPrevBal`,`ACC_MaintainBitwise`,`ACC_ActivateInterestCal`,`ACC_CreditDays_ForSale`,`ACC_CreditDays_ForPurch`," +
                                 "`ACC_Transport`,`ACC_Station`,`ACC_SpecifyDefaultSaleType`,`ACC_DefaultSaleType`,`ACC_FreezeSaleType`,`ACC_SpecifyDefaultPurType`,`ACC_DefaultPurcType`," +
-                                "`ACC_LockSalesType`,`ACC_LockPurcType`,`ACC_address1`,`ACC_address2`,`ACC_Address3`,`ACC_Address4`,`ACC_State`,`ACC_TelephoneNumber,`ACC_Fax`,`ACC_MobileNumber`," +
+                                "`ACC_LockSalesType`,`ACC_LockPurcType`,`ACC_address1`,`ACC_address2`,`ACC_Address3`,`ACC_Address4`,`ACC_State`,`ACC_TelephoneNumber`,`ACC_Fax`,`ACC_MobileNumber`," +
                                 "`ACC_email`,`ACC_Website`,`ACC_enablemailquery`,`ACC_enableSMSquery`,`ACC_contactperson`,`ACC_ITPanNumber`,`ACC_LSTNumber`,`ACC_CSTNumber`,`ACC_TIN`," +
-                                "`ACC_ServiceTax`,`ACC_BankAccountNumber`,`ACC_IECode`,`ACC_CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`,`ACC_DEFAULT_CHEQUE_FORMAT`,`ENABLE_CHEQUE_PRINTING`,`ACC_Cheque_PrintName`)" +
-                                "VALUES(@Acc_DbName,@ACC_NAME,@ACC_SHORTNAME,@ACC_PRINTNAME,@ACC_LedgerType,@ACC_MultiCurr,@ACC_Group,@ACC_OpBal,@ACC_PrevYearBal,@ACC_DrCrOpenBal," +
-                                "@ACC_DrCrPrevBal,@ACC_MaintainBitwise,@ACC_ActivateInterestCal,@ACC_CreditDays,@ACC_CreditLimit,@ACC_TypeofBuissness," +
+                                "`ACC_ServiceTax`,`ACC_BankAccountNumber`,`ACC_IECode`,`ACC_CreatedBy`)" +
+                                "VALUES(@ACC_NAME,@ACC_SHORTNAME,@ACC_PRINTNAME,@ACC_LedgerType,@ACC_MultiCurr,@ACC_Group,@ACC_OpBal,@ACC_PrevYearBal,@ACC_DrCrOpenBal," +
+                                "@ACC_DrCrPrevBal,@ACC_MaintainBitwise,@ACC_ActivateInterestCal,@ACC_CreditDays_ForSale,@ACC_CreditDays_ForPurch," +
                                 "@ACC_Transport,@ACC_Station,@ACC_SpecifyDefaultSaleType,@ACC_DefaultSaleType,@ACC_FreezeSaleType,@ACC_SpecifyDefaultPurType,@ACC_DefaultPurcType," +
                                 "@ACC_LockSalesType,@ACC_LockPurcType,@ACC_address1,@ACC_address2,@ACC_Address3,@ACC_Address4,@ACC_State,@ACC_TelephoneNumber,@ACC_Fax,@ACC_MobileNumber," +
                                 "@ACC_email,@ACC_Website,@ACC_enablemailquery,@ACC_enableSMSquery,@ACC_contactperson,@ACC_ITPanNumber,@ACC_LSTNumber,@ACC_CSTNumber,@ACC_TIN," +
-                                "@ACC_ServiceTax,@ACC_BankAccountNumber,@ACC_IECode,@ACC_CreatedBy,@ACC_DEFAULT_CHEQUE_FORMAT,@ENABLE_CHEQUE_PRINTING,@ACC_Cheque_PrintName)";
-            
+                                "@ACC_ServiceTax,@ACC_BankAccountNumber,@ACC_IECode,@ACC_CreatedBy)";
+
+                _dbHelper.ExecuteNonQuery(Query, paramCollection);
+
             }
             catch (Exception ex)
             {
@@ -236,7 +239,7 @@ namespace eSunSpeed.BusinessLogic
             }
 
 
-            return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;
+            return true;
             }
         
 
