@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentVoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.tbxType = new DevExpress.XtraEditors.TextEdit();
+            this.gdvMainPayment = new DevExpress.XtraGrid.GridControl();
             this.paymentVoucherDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentVoucherDs = new IPCAUI.DataSets.PaymentVoucherDs();
             this.gdvPayment = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -61,9 +62,10 @@
             this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.dateEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxVchNumber = new DevExpress.XtraEditors.TextEdit();
+            this.dtDate = new DevExpress.XtraEditors.TextEdit();
+            this.tbxLongNarration = new DevExpress.XtraEditors.TextEdit();
+            this.tbxVoucherSeries = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -75,25 +77,25 @@
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dtPDCDate = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvMainPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDtBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -105,27 +107,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPDCDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.textEdit5);
-            this.layoutControl1.Controls.Add(this.textEdit3);
-            this.layoutControl1.Controls.Add(this.gridControl1);
+            this.layoutControl1.Controls.Add(this.tbxType);
+            this.layoutControl1.Controls.Add(this.gdvMainPayment);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.textEdit4);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.dateEdit1);
-            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.tbxVchNumber);
+            this.layoutControl1.Controls.Add(this.dtDate);
+            this.layoutControl1.Controls.Add(this.tbxLongNarration);
+            this.layoutControl1.Controls.Add(this.tbxVoucherSeries);
+            this.layoutControl1.Controls.Add(this.dtPDCDate);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -137,19 +137,29 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // gridControl1
+            // tbxType
             // 
-            this.gridControl1.DataSource = this.paymentVoucherDtBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(147, 52);
-            this.gridControl1.MainView = this.gdvPayment;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.tbxType.EnterMoveNextControl = true;
+            this.tbxType.Location = new System.Drawing.Point(698, 28);
+            this.tbxType.Name = "tbxType";
+            this.tbxType.Size = new System.Drawing.Size(128, 20);
+            this.tbxType.StyleController = this.layoutControl1;
+            this.tbxType.TabIndex = 28;
+            // 
+            // gdvMainPayment
+            // 
+            this.gdvMainPayment.DataSource = this.paymentVoucherDtBindingSource;
+            this.gdvMainPayment.Location = new System.Drawing.Point(147, 52);
+            this.gdvMainPayment.MainView = this.gdvPayment;
+            this.gdvMainPayment.Name = "gdvMainPayment";
+            this.gdvMainPayment.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(847, 437);
-            this.gridControl1.TabIndex = 26;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvMainPayment.Size = new System.Drawing.Size(847, 437);
+            this.gdvMainPayment.TabIndex = 26;
+            this.gdvMainPayment.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvPayment});
+            this.gdvMainPayment.Click += new System.EventHandler(this.gdvMainPayment_Click);
             // 
             // paymentVoucherDtBindingSource
             // 
@@ -171,7 +181,7 @@
             this.colCredit,
             this.colNarration,
             this.Account});
-            this.gdvPayment.GridControl = this.gridControl1;
+            this.gdvPayment.GridControl = this.gdvMainPayment;
             this.gdvPayment.Name = "gdvPayment";
             this.gdvPayment.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gdvPayment.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
@@ -269,9 +279,9 @@
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(807, 559);
+            this.btnQuit.Location = new System.Drawing.Point(917, 559);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(187, 22);
+            this.btnQuit.Size = new System.Drawing.Size(77, 22);
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
@@ -279,12 +289,13 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(713, 559);
+            this.btnSave.Location = new System.Drawing.Point(816, 559);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(67, 22);
+            this.btnSave.Size = new System.Drawing.Size(78, 22);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // navBarControl1
             // 
@@ -425,38 +436,50 @@
             this.navBarItem9.Name = "navBarItem9";
             this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
             // 
-            // textEdit4
+            // tbxVchNumber
             // 
-            this.textEdit4.EnterMoveNextControl = true;
-            this.textEdit4.Location = new System.Drawing.Point(542, 28);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(152, 20);
-            this.textEdit4.StyleController = this.layoutControl1;
-            this.textEdit4.TabIndex = 3;
+            this.tbxVchNumber.EnterMoveNextControl = true;
+            this.tbxVchNumber.Location = new System.Drawing.Point(542, 28);
+            this.tbxVchNumber.Name = "tbxVchNumber";
+            this.tbxVchNumber.Size = new System.Drawing.Size(152, 20);
+            this.tbxVchNumber.StyleController = this.layoutControl1;
+            this.tbxVchNumber.TabIndex = 3;
             // 
-            // textEdit2
+            // dtDate
             // 
-            this.textEdit2.EnterMoveNextControl = true;
-            this.textEdit2.Location = new System.Drawing.Point(147, 28);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(241, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 0;
+            this.dtDate.EnterMoveNextControl = true;
+            this.dtDate.Location = new System.Drawing.Point(392, 28);
+            this.dtDate.Name = "dtDate";
+            this.dtDate.Properties.DisplayFormat.FormatString = "d";
+            this.dtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDate.Properties.EditFormat.FormatString = "d";
+            this.dtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDate.Properties.Mask.EditMask = "d";
+            this.dtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtDate.Size = new System.Drawing.Size(146, 20);
+            this.dtDate.StyleController = this.layoutControl1;
+            this.dtDate.TabIndex = 2;
             // 
-            // dateEdit1
+            // tbxLongNarration
             // 
-            this.dateEdit1.EnterMoveNextControl = true;
-            this.dateEdit1.Location = new System.Drawing.Point(392, 28);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.DisplayFormat.FormatString = "d";
-            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.EditFormat.FormatString = "d";
-            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.Mask.EditMask = "d";
-            this.dateEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dateEdit1.Size = new System.Drawing.Size(146, 20);
-            this.dateEdit1.StyleController = this.layoutControl1;
-            this.dateEdit1.TabIndex = 2;
+            this.tbxLongNarration.EnterMoveNextControl = true;
+            this.tbxLongNarration.Location = new System.Drawing.Point(159, 523);
+            this.tbxLongNarration.Name = "tbxLongNarration";
+            this.tbxLongNarration.Size = new System.Drawing.Size(823, 20);
+            this.tbxLongNarration.StyleController = this.layoutControl1;
+            this.tbxLongNarration.TabIndex = 22;
+            // 
+            // tbxVoucherSeries
+            // 
+            this.tbxVoucherSeries.EnterMoveNextControl = true;
+            this.tbxVoucherSeries.Location = new System.Drawing.Point(147, 28);
+            this.tbxVoucherSeries.Name = "tbxVoucherSeries";
+            this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxVoucherSeries.Properties.NullText = "";
+            this.tbxVoucherSeries.Size = new System.Drawing.Size(241, 20);
+            this.tbxVoucherSeries.StyleController = this.layoutControl1;
+            this.tbxVoucherSeries.TabIndex = 0;
             // 
             // layoutControlItem8
             // 
@@ -479,8 +502,8 @@
             this.emptySpaceItem6,
             this.layoutControlItem3,
             this.layoutControlGroup3,
-            this.layoutControlItem6,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem6});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1006, 593);
@@ -488,7 +511,7 @@
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.textEdit2;
+            this.layoutControlItem2.Control = this.tbxVoucherSeries;
             this.layoutControlItem2.Location = new System.Drawing.Point(135, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(245, 40);
@@ -498,7 +521,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.textEdit4;
+            this.layoutControlItem5.Control = this.tbxVchNumber;
             this.layoutControlItem5.Location = new System.Drawing.Point(530, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(156, 40);
@@ -517,7 +540,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.dateEdit1;
+            this.layoutControlItem4.Control = this.dtDate;
             this.layoutControlItem4.Location = new System.Drawing.Point(380, 0);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(150, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -532,51 +555,43 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(135, 547);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(566, 26);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(669, 26);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.btnSave;
-            this.layoutControlItem14.Location = new System.Drawing.Point(701, 547);
+            this.layoutControlItem14.Location = new System.Drawing.Point(804, 547);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(71, 26);
+            this.layoutControlItem14.Size = new System.Drawing.Size(82, 26);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.btnQuit;
-            this.layoutControlItem15.Location = new System.Drawing.Point(795, 547);
+            this.layoutControlItem15.Location = new System.Drawing.Point(905, 547);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(191, 26);
+            this.layoutControlItem15.Size = new System.Drawing.Size(81, 26);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(772, 547);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(886, 547);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(23, 26);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(19, 26);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.gridControl1;
+            this.layoutControlItem3.Control = this.gdvMainPayment;
             this.layoutControlItem3.Location = new System.Drawing.Point(135, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(851, 441);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(159, 523);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(823, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 22;
             // 
             // layoutControlGroup3
             // 
@@ -590,50 +605,48 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.textEdit1;
+            this.layoutControlItem1.Control = this.tbxLongNarration;
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(827, 24);
-            this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // textEdit3
+            // layoutControlItem7
             // 
-            this.textEdit3.Location = new System.Drawing.Point(848, 28);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(146, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 27;
+            this.layoutControlItem7.Control = this.tbxType;
+            this.layoutControlItem7.Location = new System.Drawing.Point(686, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(132, 40);
+            this.layoutControlItem7.Text = "Type";
+            this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(71, 13);
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.textEdit3;
-            this.layoutControlItem6.Location = new System.Drawing.Point(836, 0);
+            this.layoutControlItem6.Control = this.dtPDCDate;
+            this.layoutControlItem6.Location = new System.Drawing.Point(818, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(150, 40);
+            this.layoutControlItem6.Size = new System.Drawing.Size(168, 40);
             this.layoutControlItem6.Text = "PDC Date";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // textEdit5
+            // dtPDCDate
             // 
-            this.textEdit5.Location = new System.Drawing.Point(698, 28);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(146, 20);
-            this.textEdit5.StyleController = this.layoutControl1;
-            this.textEdit5.TabIndex = 28;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.textEdit5;
-            this.layoutControlItem7.Location = new System.Drawing.Point(686, 0);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(150, 40);
-            this.layoutControlItem7.Text = "Type";
-            this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(71, 13);
+            this.dtPDCDate.EnterMoveNextControl = true;
+            this.dtPDCDate.Location = new System.Drawing.Point(830, 28);
+            this.dtPDCDate.Name = "dtPDCDate";
+            this.dtPDCDate.Properties.DisplayFormat.FormatString = "d";
+            this.dtPDCDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtPDCDate.Properties.EditFormat.FormatString = "d";
+            this.dtPDCDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtPDCDate.Properties.Mask.EditMask = "d";
+            this.dtPDCDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtPDCDate.Size = new System.Drawing.Size(164, 20);
+            this.dtPDCDate.StyleController = this.layoutControl1;
+            this.dtPDCDate.TabIndex = 29;
             // 
             // PaymentVoucher
             // 
@@ -648,16 +661,18 @@
             this.Load += new System.EventHandler(this.PaymentVoucher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvMainPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDtBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -669,13 +684,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPDCDate.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -684,8 +697,7 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit tbxVchNumber;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
@@ -706,7 +718,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem11;
         private DevExpress.XtraNavBar.NavBarItem navBarItem12;
         private DevExpress.XtraNavBar.NavBarItem navBarItem16;
-        private DevExpress.XtraEditors.TextEdit dateEdit1;
+        private DevExpress.XtraEditors.TextEdit dtDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraEditors.SimpleButton btnQuit;
@@ -714,7 +726,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gdvMainPayment;
         private System.Windows.Forms.BindingSource paymentVoucherDtBindingSource;
         private DataSets.PaymentVoucherDs paymentVoucherDs;
         private DevExpress.XtraGrid.Views.Grid.GridView gdvPayment;
@@ -727,12 +739,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn Account;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxLongNarration;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
+        private DevExpress.XtraEditors.TextEdit tbxType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraEditors.LookUpEdit tbxVoucherSeries;
+        private DevExpress.XtraEditors.TextEdit dtPDCDate;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }
 }

@@ -13,6 +13,7 @@ namespace eSunSpeedDomain
                                           //Sales, Sales return, purchase, purchase return etc
 
         public string BillSundry { get; set; }
+        public string Narration { get; set; }
         public string Type { get; set; }
         public decimal Percentage { get; set; }
         public decimal Amount { get; set; }

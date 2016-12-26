@@ -63,6 +63,7 @@
     <Compile Include="MatRcvdBL.cs" />
     <Compile Include="IssuedVoucherBL.cs" />
     <Compile Include="PhysicalStockVoucherBL.cs" />
+    <Compile Include="PurchaseQuotationBL.cs" />
     <Compile Include="PurchaseTypeBL.cs" />
     <Compile Include="PurchaseOrderBL.cs" />
     <Compile Include="PurchaseVoucher.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="ContraVoucherBL.cs" />
     <Compile Include="MatIssuedPartyBL.cs" />
     <Compile Include="ReferenceGroupBL.cs" />
+    <Compile Include="SalesQuotationBL.cs" />
     <Compile Include="TaxCategory .cs" />
     <Compile Include="TdsModelBL.cs" />
     <Compile Include="VatJournalBL.cs" />

@@ -15,8 +15,7 @@ namespace eSunSpeed.BusinessLogic
         #region SAVE CREDIT NOTE
         public bool SaveCreditNote(CreditNoteModel objCredit)
         {
-            string Query = string.Empty;
-            //int creditid = 0;          
+            string Query = string.Empty;     
             bool isSaved = true;
             try
             {
@@ -42,16 +41,7 @@ namespace eSunSpeed.BusinessLogic
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
                 SaveCreditAccounts(objCredit.CreditAccountModel, id);
-                //Query = "INSERT INTO Credit_Note([Series],[CN_Date],[VoucherNo],[Type],[PDC_Date]," +
-                //"[CreatedBy]) VALUES " +
-                //"(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                //" @CreatedBy)";
-
-                //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                //{
-                //    SaveCreditAccounts(objCredit.CreditAccountModel);
-                //    creditid = GetCreditId();                   
-                //}
+                
             }
             catch (Exception ex)
             {

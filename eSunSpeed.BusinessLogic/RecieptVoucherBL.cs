@@ -13,51 +13,50 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE RECIEPT VOUCHER
-        public int SaveRecieptVoucher(RecieptVoucherModel objReciept)
+        public bool SaveRecieptVoucher(RecieptVoucherModel objReciept)
         {
             string Query = string.Empty;
-            int recid = 0;
+            bool isSaved = true;
 
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objReciept.Voucher_Series));             
-                paramCollection.Add(new DBParameter("@Date", objReciept.RV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objReciept.Voucher_Number));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objReciept.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objReciept.Voucher_Series));
+                paramCollection.Add(new DBParameter("@RecieptDate", objReciept.RV_Date, System.Data.DbType.DateTime));
+
                 paramCollection.Add(new DBParameter("@Type", objReciept.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objReciept.PDCDate));
-                //paramCollection.Add(new DBParameter("@Long", objReciept.LongNarration));
+                paramCollection.Add(new DBParameter("@PDCDate", objReciept.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objReciept.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                Query = "INSERT INTO Reciept_Voucher([Series],[Reciept_Date],[VoucherNo],[Type],[PDC_Date]," +
-                "[CreatedBy],[CreatedDate]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                " @CreatedBy,@CreatedDate)";
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertRecieptMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveRecieptAccounts(objReciept.RecieptAccountModel);
-                    recid = GetRecieptId();                   
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveRecieptAccounts(objReciept.RecieptAccountModel, id);
             }
             catch (Exception ex)
             {
-                recid = 0;
+                isSaved = false;
                 throw ex;
             }
 
-            return recid;
+            return isSaved;
         }
 
-        public bool SaveRecieptAccounts(List<AccountModel> lstAcc)
+        public bool SaveRecieptAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetRecieptId();
+            //int ParentId = GetRecieptId();
 
             foreach (AccountModel Acc in lstAcc)
             {
@@ -66,24 +65,18 @@ namespace eSunSpeed.BusinessLogic
                 try
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
-
-                    paramCollection.Add(new DBParameter("@RV_ID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@RecieptId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@Debit", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@Credit", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Reciept_Voucher_Accounts([Reciept_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@RV_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertRecieptDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -116,7 +109,7 @@ namespace eSunSpeed.BusinessLogic
 
             try
             {
-                //UPDATE CREDIT NOTE TABLE - PARENT TABLE
+        
 
                 DBParameterCollection paramCollection = new DBParameterCollection();
 

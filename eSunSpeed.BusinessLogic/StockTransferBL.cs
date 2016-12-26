@@ -12,7 +12,7 @@ namespace eSunSpeed.BusinessLogic
     {
         private DBHelper _dbHelper = new DBHelper();
 
-        #region SAVE SALE PURCHASE VOUCHER
+        #region SAVE Stock Transfer
         public bool SaveStockVoucher(StockTransferModel objStock)
         {
             string Query = string.Empty;
@@ -22,30 +22,27 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objStock.Series));           
-                paramCollection.Add(new DBParameter("@Date",objStock.ST_Date,System.Data.DbType.DateTime));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objStock.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Fromdate", objStock.FromDate, System.Data.DbType.DateTime));
-                paramCollection.Add(new DBParameter("@Todate", objStock.ToDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objStock.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objStock.Series));
+                paramCollection.Add(new DBParameter("@Date", objStock.ST_Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@StockFrom", objStock.FromDate));
+                paramCollection.Add(new DBParameter("@StockTo", objStock.ToDate));
                 paramCollection.Add(new DBParameter("@Narration", objStock.Narration));
-                paramCollection.Add(new DBParameter("@TotalQty", objStock.TotalQty));
-                paramCollection.Add(new DBParameter("@TotalAmount", objStock.TotalAmount));
-                paramCollection.Add(new DBParameter("@TotalBS", objStock.TotalBSAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalAmount", objStock.TotalAmount));
+                paramCollection.Add(new DBParameter("@ItemTotalQty", objStock.TotalQty));
 
+                paramCollection.Add(new DBParameter("@BSTotalAmount", objStock.BSTotalAmount));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now,System.Data.DbType.DateTime));
 
-                Query = "INSERT INTO Stock_Transfer_Voucher ([Series],[ST_Date],[VoucherNo],[FromDate],[ToDate],[Narration],[TotalQty]" +
-                "[TotalAmount],[TotalBSTotal],[CreatedBy]) VALUES " +
-                "(@Series,@Date,@Voucher_Number,@Fromdate,@Todate, " +
-                "@Narration,@TotalQty,@TotalAmount,@TotalBS,@CreatedBy)";
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertStockTransMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveStockItems(objStock.StockItem_Voucher);
-                    SaveStockBillSundry(objStock.StockBillSundry_Voucher);
-                    isSaved = true;
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+
+                SaveStockItems(objStock.StockItem_Voucher, id);
+                SaveStockBillSundry(objStock.StockBillSundry_Voucher, id);
             }
             catch (Exception ex)
             {
@@ -56,12 +53,10 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveStockItems(List<Item_VoucherModel> lstSales)
+        public bool SaveStockItems(List<Item_VoucherModel> lstSales,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetStockId();
 
             foreach (Item_VoucherModel item in lstSales)
             {
@@ -71,26 +66,19 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@ST_ID",( item.ParentId)));
+                    paramCollection.Add(new DBParameter("@StockId", item.ParentId));
+                    //paramCollection.Add(new DBParameter("@Batch", item.Batch));
                     paramCollection.Add(new DBParameter("@Item", item.Item));
-                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
                     paramCollection.Add(new DBParameter("@Qty", item.Qty));
-                    paramCollection.Add(new DBParameter("@Unit", (item.Unit)));
-                    paramCollection.Add(new DBParameter("@Price", Convert.ToDecimal( item.Price)));
-                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(item.Amount)));
-                    paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
-                    paramCollection.Add(new DBParameter("@TotalAmount", Convert.ToDecimal(item.TotalAmount)));
-
+                    paramCollection.Add(new DBParameter("@Unit", item.Unit));
+                    paramCollection.Add(new DBParameter("@Price", item.Price));
+                    paramCollection.Add(new DBParameter("@Amount", item.Amount));
+                    //paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", item.TotalAmount));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Stock_Transfer_Items([Stock_Id],[Item],[Batch],[Qty],[Unit]," +
-                    "[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy]) VALUES " +
-                    "(@ST_ID,@Item,@Batch,@Qty,@Unit,@Price,@Amount,@TotalQty,@TotalAmount,@CreatedBy)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertStockTransferItem", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -101,12 +89,10 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveStockBillSundry(List<BillSundry_VoucherModel> lstBS)
+        public bool SaveStockBillSundry(List<BillSundry_VoucherModel> lstBS,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetStockId();
 
             foreach (BillSundry_VoucherModel bs in lstBS)
             {
@@ -116,20 +102,16 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@ST_ID", bs.ParentId));
-                    paramCollection.Add(new DBParameter("@Name", bs.BillSundry));
-                    paramCollection.Add(new DBParameter("@Percentage", Convert.ToDecimal(bs.Percentage)));
-                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(bs.Amount)));
-                    paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
+                    paramCollection.Add(new DBParameter("@StockId", bs.ParentId));
+                    paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
+                    paramCollection.Add(new DBParameter("@Narration", bs.Narration));
+                    paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
+                    paramCollection.Add(new DBParameter("@TotalAmount", bs.Amount));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                    Query = "INSERT INTO Stock_Transfer_BS([Stock_Id],[BillSundry],[Percentage]," +
-                    "[Amount],[TotalAmount],[CreatedBy]) VALUES " +
-                    "(@ST_ID,@Name,@Percentage,@Amount,@TotalAmount,@CreatedBy)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertStockBillSundry", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -569,8 +551,8 @@ namespace eSunSpeed.BusinessLogic
                 objstock.Series = dr["series"].ToString();
                 objstock.ST_Date = DataFormat.GetDateTime(dr["ST_Date"]);
                 objstock.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
-                objstock.FromDate = Convert.ToDateTime(dr["FromDate"]);
-                objstock.ToDate = Convert.ToDateTime(dr["ToDate"]);               
+                //objstock.FromDate = Convert.ToDateTime(dr["FromDate"]);
+                //objstock.ToDate = Convert.ToDateTime(dr["ToDate"]);               
                 objstock.Narration = dr["Narration"].ToString();
 
                 //objSalesReturn.TotalQty = Convert.ToDecimal(dr["TotalQty"]);

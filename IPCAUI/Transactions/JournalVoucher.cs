@@ -10,11 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPCAUI.Models;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Transactions
 {
     public partial class JournalVoucher : Form
     {
+        JournalVoucherModelBL objJVbal = new JournalVoucherModelBL();
         public JournalVoucher()
         {
             InitializeComponent();
@@ -68,6 +72,11 @@ namespace IPCAUI.Transactions
             gdvJournal.Columns["Account"].ColumnEdit = riLookup;
             gdvJournal.BestFitColumns();
 
+            //Series Lookup Edit
+            SeriesLookup objSeries = new SeriesLookup();
+            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
+
+
             RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
             riDCLookup.DataSource = new string[] { "D", "C" };
             gdvJournal.Columns["DC"].ColumnEdit = riDCLookup;
@@ -99,6 +108,55 @@ namespace IPCAUI.Transactions
             {
                 gdvJournal.ShowEditor();
                 ((LookUpEdit)gdvJournal.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            JournalVoucherModel objJVmodel = new JournalVoucherModel();
+
+            if (tbxVchNo.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+            objJVmodel.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objJVmodel.Voucher_Number = Convert.ToInt32(tbxVchNo.Text.Trim());
+            objJVmodel.JV_Date = Convert.ToDateTime(dtDate.Text);
+            objJVmodel.Type = tbxType.Text.Trim();
+            objJVmodel.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
+            objJVmodel.LongNarration = tbxLongNarration.Text.Trim();
+            
+            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Accounts Grid
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+
+            for (int i = 0; i < gdvJournal.DataRowCount; i++)
+            {
+                DataRow row = gdvJournal.GetDataRow(i);
+
+                objacc = new AccountModel();
+                objacc.DC = row["DC"].ToString();
+
+                objacc.Account = row["Account"].ToString(); 
+                //objacc.Unit = row["Unit"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString();
+                lstAccounts.Add(objacc);
+            }
+
+            objJVmodel.JournalAccountModel = lstAccounts;
+
+            bool isSuccess = objJVbal.SaveJournalVoucher(objJVmodel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
             }
         }
     }
