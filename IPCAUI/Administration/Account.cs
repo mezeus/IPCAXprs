@@ -15,6 +15,9 @@ namespace IPCAUI.Administration
     {
 
         AccountMasterBL accMaster = new AccountMasterBL();
+        AccountSettingsBL objacbl = new AccountSettingsBL();
+
+        AccountSettingsModel lstSettings;
 
         public Account()
         {
@@ -50,9 +53,9 @@ namespace IPCAUI.Administration
 
         private void navbtnAccountsettings_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Settings.AccountsDemo frm = new Settings.AccountsDemo();
+            Settings.Accountsettings frm = new Settings.Accountsettings();
             frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ShowDialog(this);
+            frm.ShowDialog();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -91,7 +94,7 @@ namespace IPCAUI.Administration
 
             obj.CreditDaysforSale = Convert.ToInt32(tbxCreditdaysforSale.Text);
             obj.CreditDaysforPurchase= Convert.ToInt32(tbxCreditdaysforPurc.Text);
-            //obj.CreditLimit = tbxCreditLimitAccount.Text;
+            //obj.CreditLimit = tbxcred.Text;
 
             obj.Transport = tbxTransport.Text;
             obj.Station = tbxStation.Text;
@@ -188,6 +191,151 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+        }
+
+        private void Account_Load(object sender, EventArgs e)
+        {
+            layoutLedger.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            Accountsettings();
+            Defaultscreen();
+        }
+
+        public void Defaultscreen()
+        {
+            cbxMulticurrency.SelectedIndex = 0;
+            cbxPrevCrDr.SelectedIndex = 1;
+            cbxCrDr.SelectedIndex = 1;
+            cbxMaintainbatchwise.SelectedIndex = 1;
+            cbxState.SelectedIndex = 0;
+            cbxMaintainbatchwise.SelectedIndex = 1;
+            cbxMaintainBalancing.SelectedIndex = 1;
+
+            lblMulticurrency.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            layoutSubledger.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;           
+            lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDLNo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDLNo1.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblIPayable.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblIReceviable.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblChequePrinting.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblAllocateAmont.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+        public void Accountsettings()
+        {
+            AccountSettingsModel lstSettings = objacbl.GetListofAccountSettings(2);
+            if(lstSettings.Billbybilldetails)
+            {
+                //lblMaintainbillbybill.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            if(lstSettings.chequeprinting)
+            {
+                lblChequePrinting.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            
+        }
+
+        private void cbxGroupname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //TODO: Conditions
+            if (cbxGroupname.SelectedItem.ToString() == "Unsecured Loans")
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                cbxCrDr.SelectedIndex = 0;
+                cbxPrevCrDr.SelectedIndex = 0;
+            }
+            else
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            if (cbxGroupname.SelectedItem.ToString()=="Sundry Creditors")
+            {
+              
+                //enable fields
+            }
+            if(cbxGroupname.SelectedItem.ToString()=="Bank Account")
+            {
+                lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                cbxSpecifydefaultSale.SelectedIndex = 1;
+                cbxSpecifydefaultPurcType.SelectedIndex = 1;
+                cbxFreezesaletype.SelectedIndex = 1;
+                cbxFreezePurcType.SelectedIndex = 1;
+                
+            }
+            else
+            {
+                lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            if(cbxGroupname.SelectedItem.ToString()== "Suspence Account")
+            {
+                cbxCrDr.SelectedIndex = 1;
+                cbxPrevCrDr.SelectedIndex = 1;
+            }
+            if(cbxGroupname.SelectedItem.ToString()== "Sunday Debitors")
+            {
+                cbxCrDr.SelectedIndex = 1;
+                cbxPrevCrDr.SelectedIndex = 1;
+                cbxMaintainBalancing.SelectedIndex = 0;
+            }
+
+        }
+
+        private void cbxSpecifydefaultSale_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxSpecifydefaultSale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           if(cbxSpecifydefaultSale.SelectedItem.ToString() == "N")
+            {
+                lblDefaultSaleType.Enabled = false;
+            }
+           else
+            {
+                lblDefaultSaleType.Enabled = true;
+            }
+        }
+
+        private void cbxSpecifydefaultPurcType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSpecifydefaultPurcType.SelectedItem.ToString() == "N")
+            {
+                lblDefaultPurcType.Enabled = false;
+            }
+            else
+            {
+                lblDefaultPurcType.Enabled = true;
+            }
+           
+        }
+
+        private void cbxMaintainBalancing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxMaintainBalancing.SelectedItem.ToString()=="Y")
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            else
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
         }
     }
 }

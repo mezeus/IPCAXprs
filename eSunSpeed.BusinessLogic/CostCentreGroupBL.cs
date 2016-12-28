@@ -128,7 +128,7 @@ namespace eSunSpeed.BusinessLogic
                 objCCG.Alias = dr["Alias"].ToString();
                 objCCG.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
                 objCCG.underGroup = dr["underGroup"].ToString();
-                objCCG.ModifiedBy = dr["ModifiedBy"].ToString();
+                //objCCG.ModifiedBy = dr["ModifiedBy"].ToString();
                 
                lstCCG.Add(objCCG);
                 

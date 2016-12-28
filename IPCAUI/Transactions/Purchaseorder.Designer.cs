@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Purchaseorder));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl3 = new DevExpress.XtraGrid.GridControl();
-            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource();
             this.billSundryDs = new IPCAUI.DataSets.BillSundryDs();
             this.gridBs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,7 +42,7 @@
             this.Percentage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gdvMainItem = new DevExpress.XtraGrid.GridControl();
-            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridDs = new IPCAUI.DataSets.ItemGridDs();
             this.gdvItem = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -182,13 +181,13 @@
             // gridControl3
             // 
             this.gridControl3.DataSource = this.billSundryDtBindingSource;
-            this.gridControl3.Location = new System.Drawing.Point(526, 373);
+            this.gridControl3.Location = new System.Drawing.Point(526, 368);
             this.gridControl3.MainView = this.gridBs;
             this.gridControl3.Name = "gridControl3";
             this.gridControl3.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit2,
             this.repositoryItemLookUpEdit2});
-            this.gridControl3.Size = new System.Drawing.Size(468, 182);
+            this.gridControl3.Size = new System.Drawing.Size(468, 187);
             this.gridControl3.TabIndex = 23;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridBs});
@@ -305,7 +304,7 @@
             this.gdvMainItem.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1});
-            this.gdvMainItem.Size = new System.Drawing.Size(841, 285);
+            this.gdvMainItem.Size = new System.Drawing.Size(841, 280);
             this.gdvMainItem.TabIndex = 22;
             this.gdvMainItem.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvItem});
@@ -452,9 +451,9 @@
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl1);
-            this.groupBox1.Location = new System.Drawing.Point(153, 373);
+            this.groupBox1.Location = new System.Drawing.Point(153, 368);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(369, 182);
+            this.groupBox1.Size = new System.Drawing.Size(369, 187);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "VAT/CTS Summary";
@@ -729,8 +728,6 @@
             this.tbxSeries.EnterMoveNextControl = true;
             this.tbxSeries.Location = new System.Drawing.Point(214, 12);
             this.tbxSeries.Name = "tbxSeries";
-            this.tbxSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxSeries.Properties.NullText = "";
             this.tbxSeries.Size = new System.Drawing.Size(197, 20);
             this.tbxSeries.StyleController = this.layoutControl1;
@@ -742,8 +739,6 @@
             this.tbxPurchaseType.EnterMoveNextControl = true;
             this.tbxPurchaseType.Location = new System.Drawing.Point(903, 12);
             this.tbxPurchaseType.Name = "tbxPurchaseType";
-            this.tbxPurchaseType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxPurchaseType.Properties.NullText = "";
             this.tbxPurchaseType.Size = new System.Drawing.Size(91, 20);
             this.tbxPurchaseType.StyleController = this.layoutControl1;
@@ -754,8 +749,6 @@
             this.tbxParty.EnterMoveNextControl = true;
             this.tbxParty.Location = new System.Drawing.Point(214, 36);
             this.tbxParty.Name = "tbxParty";
-            this.tbxParty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxParty.Properties.NullText = "";
             this.tbxParty.Size = new System.Drawing.Size(260, 20);
             this.tbxParty.StyleController = this.layoutControl1;
@@ -767,8 +760,6 @@
             this.tbxMatCentre.EnterMoveNextControl = true;
             this.tbxMatCentre.Location = new System.Drawing.Point(539, 36);
             this.tbxMatCentre.Name = "tbxMatCentre";
-            this.tbxMatCentre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxMatCentre.Properties.NullText = "";
             this.tbxMatCentre.Size = new System.Drawing.Size(455, 20);
             this.tbxMatCentre.StyleController = this.layoutControl1;
@@ -881,9 +872,9 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.groupBox1;
-            this.layoutControlItem10.Location = new System.Drawing.Point(141, 361);
+            this.layoutControlItem10.Location = new System.Drawing.Point(141, 356);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(373, 186);
+            this.layoutControlItem10.Size = new System.Drawing.Size(373, 191);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -926,16 +917,16 @@
             this.layoutControlItem12.Control = this.gdvMainItem;
             this.layoutControlItem12.Location = new System.Drawing.Point(141, 72);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(845, 289);
+            this.layoutControlItem12.Size = new System.Drawing.Size(845, 284);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.gridControl3;
-            this.layoutControlItem7.Location = new System.Drawing.Point(514, 361);
+            this.layoutControlItem7.Location = new System.Drawing.Point(514, 356);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(472, 186);
+            this.layoutControlItem7.Size = new System.Drawing.Size(472, 191);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 

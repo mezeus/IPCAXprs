@@ -141,7 +141,7 @@ namespace eSunSpeed.BusinessLogic
             List<SalesManModel> lstSaleMan = new List<SalesManModel>();
             SalesManModel objModel;
 
-            string Query = "SELECT * FROM SalesManMaster";
+            string Query = "SELECT DISTINCT SalesMan_Id,SM_Name,SM_Alias FROM `SalesManMaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -152,25 +152,24 @@ namespace eSunSpeed.BusinessLogic
                 objModel.SalesMan_Id = Convert.ToInt32(dr["SalesMan_Id"]);
                 objModel.SM_Name = dr["SM_Name"].ToString();
                 objModel.SM_Alias = dr["SM_Alias"].ToString();
-                objModel.SM_PrintName = dr["SM_PrintName"].ToString();
-                objModel.EnableDefCommision = Convert.ToBoolean(dr["EnableDefCommision"]);
-                objModel.Commision_Mode = dr["Commision_Mode"].ToString();
 
-                objModel.DefCommision = Convert.ToDecimal(dr["DefCommision"]);
-                objModel.FreezeCommision = Convert.ToBoolean(dr["FreezeCommision"]);
-                objModel.Sales_DebitMode = dr["Sales_DebitMode"].ToString();
-                objModel.Sales_ACCredited = dr["Sales_ACCredited"].ToString();
-                objModel.Sales_AccDebited = dr["Sales_AccDebited"].ToString();
-                objModel.Purchase_DebitMode = dr["Purchase_DebitMode"].ToString();
-                objModel.Purchase_AccCredited = dr["Purchase_DebitMode"].ToString();
-                objModel.Purchase_AccDebited = dr["Purchase_AccDebited"].ToString();
-                objModel.Address = dr["Address"].ToString();
-
-                objModel.City = dr["City"].ToString();
-                objModel.State = dr["State"].ToString();
-                objModel.Country = dr["Country"].ToString();
-                objModel.State = dr["State"].ToString();
-                objModel.Mobile = dr["Mobile"].ToString();
+                //objModel.SM_PrintName = dr["SM_PrintName"].ToString();
+                //objModel.EnableDefCommision = Convert.ToBoolean(dr["EnableDefCommision"]);
+                //objModel.Commision_Mode = dr["Commision_Mode"].ToString();
+                //objModel.DefCommision = Convert.ToDecimal(dr["DefCommision"]);
+                //objModel.FreezeCommision = Convert.ToBoolean(dr["FreezeCommision"]);
+                //objModel.Sales_DebitMode = dr["Sales_DebitMode"].ToString();
+                //objModel.Sales_ACCredited = dr["Sales_ACCredited"].ToString();
+                //objModel.Sales_AccDebited = dr["Sales_AccDebited"].ToString();
+                //objModel.Purchase_DebitMode = dr["Purchase_DebitMode"].ToString();
+                //objModel.Purchase_AccCredited = dr["Purchase_DebitMode"].ToString();
+                //objModel.Purchase_AccDebited = dr["Purchase_AccDebited"].ToString();
+                //objModel.Address = dr["Address"].ToString();
+                //objModel.City = dr["City"].ToString();
+                //objModel.State = dr["State"].ToString();
+                //objModel.Country = dr["Country"].ToString();
+                //objModel.State = dr["State"].ToString();
+                //objModel.Mobile = dr["Mobile"].ToString();
 
 
                 lstSaleMan.Add(objModel);

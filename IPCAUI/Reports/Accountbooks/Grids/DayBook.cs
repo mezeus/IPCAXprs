@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
+using eSunSpeed.BusinessLogic.Reports;
 
 namespace IPCAUI.Reports.Accountbooks.Grids
 {
@@ -26,7 +27,8 @@ namespace IPCAUI.Reports.Accountbooks.Grids
 
         private void DayBook_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'iPCADataSet.Approvers' table. You can move, or remove it, as needed.
+            DaybookBL objBL = new DaybookBL();
+            gdvCtrlDaybook.DataSource= objBL.GetAllDayBooks().ToList();
             
 
         }

@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
     public partial class CostcenterList : Form
     {
+        CostCentreMasterBL objccBL = new CostCentreMasterBL(); 
         public CostcenterList()
         {
             InitializeComponent();
@@ -19,7 +22,8 @@ namespace IPCAUI.Administration.List
 
         private void CostcenterList_Load(object sender, EventArgs e)
         {
-            Fill();
+            List<eSunSpeedDomain.CostCentreMasterModel> lstccmaster = objccBL.GetAllCostCentreMaster();
+            dvgCostcenter.DataSource = lstccmaster;
         }
 
         private void Fill()
@@ -52,7 +56,25 @@ namespace IPCAUI.Administration.List
 
         private void dvgCostcenter_KeyDown(object sender, KeyEventArgs e)
         {
-            this.Close();
+            //this.Close();
+        }
+
+        private void dvgCostcenterDetails_DoubleClick(object sender, EventArgs e)
+        {
+            CostCentreMasterModel lstItems;
+
+            lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
+            string cellValue = lstItems.CCM_ID.ToString();
+        }
+
+        private void dvgCostcenterDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //CostCentreMasterModel lstItems;
+
+            //lstItems = (CostCentreGroupModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
+            //costcenter.groupId = lstItems.GroupId;
+
+            //this.Close();
         }
     }
 }

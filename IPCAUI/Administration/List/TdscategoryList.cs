@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
     public partial class TdscategoryList : Form
     {
+        TdsModelBL objtdsbl = new TdsModelBL();
         public TdscategoryList()
         {
             InitializeComponent();
@@ -19,35 +22,8 @@ namespace IPCAUI.Administration.List
 
         private void TdscategoryList_Load(object sender, EventArgs e)
         {
-            Fill();
-        }
-
-        private void Fill()
-        {
-            DataSets.TdscategoryList.TdscategoryListDtDataTable dt = new DataSets.TdscategoryList.TdscategoryListDtDataTable();
-
-            for (int i = 0; i <= 50; i++)
-            {
-                DataSets.TdscategoryList.TdscategoryListDtRow dr = dt.NewTdscategoryListDtRow();
-
-                dr[0] = "TDS Catogary" + i;
-                dr[1] = "Alias Name" +i ;
-                //dr[2] = "Parent Group test data" +i;
-                //dr[3] = "12.56" +i;
-                //dr[4] = "10.45" +i;
-
-                dt.AddTdscategoryListDtRow(dr);
-            }
-            DataSets.TdscategoryList ds = new DataSets.TdscategoryList();
-            ds.Tables.Clear();
-
-            ds.Tables.Add(dt);
-
-            BindingSource src = new BindingSource();
-            src.DataSource = ds.Tables[0];
-
-            tdscategoryListDtBindingSource.DataSource = src;
-            
+            List<eSunSpeedDomain.TdsModel> lstTDS = objtdsbl.GetListofTDS();
+            dvgTdscategoryList.DataSource = lstTDS;
         }
 
         private void dvgTaxcategoryList_Click(object sender, EventArgs e)

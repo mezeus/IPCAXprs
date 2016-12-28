@@ -81,7 +81,7 @@ namespace eSunSpeed.BusinessLogic
             List<MaterialCentreGroupMasterModel> lstMCG = new List<MaterialCentreGroupMasterModel>();
             MaterialCentreGroupMasterModel objMCG;
 
-            string Query = "SELECT * FROM MaterialCentreGroupMaster";
+            string Query = "SELECT DISTINCT MCG_ID,Group,PrimaryGroup,UnderGroup FROM `MaterialCentreGroupMaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -91,7 +91,6 @@ namespace eSunSpeed.BusinessLogic
 
                 objMCG.MCG_ID = Convert.ToInt32(dr["MCG_ID"]);
                 objMCG.Group = dr["Group"].ToString();
-                objMCG.Alias = dr["Alias"].ToString();
                 objMCG.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
                 objMCG.UnderGroup = dr["UnderGroup"].ToString();              
 

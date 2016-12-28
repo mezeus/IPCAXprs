@@ -283,7 +283,7 @@ namespace IPCAUI.DataSets {
             
             private global::System.Data.DataColumn columnAlias;
             
-            private global::System.Data.DataColumn columnParent_Group;
+            private global::System.Data.DataColumn columnGroup;
             
             private global::System.Data.DataColumn _columnOp__Bal___Dr_;
             
@@ -340,9 +340,9 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Parent_GroupColumn {
+            public global::System.Data.DataColumn GroupColumn {
                 get {
-                    return this.columnParent_Group;
+                    return this.columnGroup;
                 }
             }
             
@@ -399,12 +399,12 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CostcenterListDtRow AddCostcenterListDtRow(string Name, string Alias, string Parent_Group, string _Op__Bal___Dr_, string _Op__Bal___Cr_) {
+            public CostcenterListDtRow AddCostcenterListDtRow(string Name, string Alias, string Group, string _Op__Bal___Dr_, string _Op__Bal___Cr_) {
                 CostcenterListDtRow rowCostcenterListDtRow = ((CostcenterListDtRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Name,
                         Alias,
-                        Parent_Group,
+                        Group,
                         _Op__Bal___Dr_,
                         _Op__Bal___Cr_};
                 rowCostcenterListDtRow.ItemArray = columnValuesArray;
@@ -431,7 +431,7 @@ namespace IPCAUI.DataSets {
             internal void InitVars() {
                 this.columnName = base.Columns["Name"];
                 this.columnAlias = base.Columns["Alias"];
-                this.columnParent_Group = base.Columns["Parent Group"];
+                this.columnGroup = base.Columns["Group"];
                 this._columnOp__Bal___Dr_ = base.Columns["Op. Bal. (Dr)"];
                 this._columnOp__Bal___Cr_ = base.Columns["Op. Bal. (Cr)"];
             }
@@ -443,8 +443,8 @@ namespace IPCAUI.DataSets {
                 base.Columns.Add(this.columnName);
                 this.columnAlias = new global::System.Data.DataColumn("Alias", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAlias);
-                this.columnParent_Group = new global::System.Data.DataColumn("Parent Group", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnParent_Group);
+                this.columnGroup = new global::System.Data.DataColumn("Group", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroup);
                 this._columnOp__Bal___Dr_ = new global::System.Data.DataColumn("Op. Bal. (Dr)", typeof(string), null, global::System.Data.MappingType.Element);
                 this._columnOp__Bal___Dr_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnOp__Bal___Dr_");
                 this._columnOp__Bal___Dr_.ExtendedProperties.Add("Generator_UserColumnName", "Op. Bal. (Dr)");
@@ -627,17 +627,17 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Parent_Group {
+            public string Group {
                 get {
                     try {
-                        return ((string)(this[this.tableCostcenterListDt.Parent_GroupColumn]));
+                        return ((string)(this[this.tableCostcenterListDt.GroupColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Parent Group\' in table \'CostcenterListDt\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Group\' in table \'CostcenterListDt\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCostcenterListDt.Parent_GroupColumn] = value;
+                    this[this.tableCostcenterListDt.GroupColumn] = value;
                 }
             }
             
@@ -699,14 +699,14 @@ namespace IPCAUI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsParent_GroupNull() {
-                return this.IsNull(this.tableCostcenterListDt.Parent_GroupColumn);
+            public bool IsGroupNull() {
+                return this.IsNull(this.tableCostcenterListDt.GroupColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetParent_GroupNull() {
-                this[this.tableCostcenterListDt.Parent_GroupColumn] = global::System.Convert.DBNull;
+            public void SetGroupNull() {
+                this[this.tableCostcenterListDt.GroupColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

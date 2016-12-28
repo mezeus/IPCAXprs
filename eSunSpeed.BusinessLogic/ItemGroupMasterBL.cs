@@ -89,7 +89,7 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.ItemGroupMasterModel> lstIGM = new List<ItemGroupMasterModel>();
             eSunSpeedDomain.ItemGroupMasterModel objIGM;
 
-            string Query = "SELECT * FROM ItemGroupMaster";
+            string Query = "SELECT DISTINCT IGM_ID,ItemGroup,PrimaryGroup,UnderGroup FROM `ItemGroupMaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -99,18 +99,10 @@ namespace eSunSpeed.BusinessLogic
 
                 objIGM.IGM_id = Convert.ToInt32(dr["IGM_ID"]);
                 objIGM.ItemGroup = dr["ItemGroup"].ToString();
-                objIGM.Alias = dr["Alias"].ToString();
                 objIGM.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
                 objIGM.UnderGroup = dr["UnderGroup"].ToString();
-                objIGM.StockAccount = dr["StockAccount"].ToString();
-                objIGM.SalesAccount = dr["SalesAccount"].ToString();
-                objIGM.PurchaseAccount = dr["PurchaseAccount"].ToString();
-
 
                 lstIGM.Add(objIGM);
-
-
-
             }
 
             return lstIGM;

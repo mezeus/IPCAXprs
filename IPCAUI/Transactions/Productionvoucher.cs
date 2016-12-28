@@ -18,6 +18,7 @@ namespace IPCAUI.Transactions
 {
     public partial class Productionvoucher : Form
     {
+        eSunSpeed.BusinessLogic.ProductionVoucherBL objPruBl = new ProductionVoucherBL();
         public Productionvoucher()
         {
             InitializeComponent();
@@ -70,6 +71,9 @@ namespace IPCAUI.Transactions
             //// Note that the data types of the "ID" and "CategoryID" fields match.
             gdvItemIG.Columns["Item"].ColumnEdit = riLookup;
             gdvItemIG.BestFitColumns();
+
+            gdvItemIC.Columns["Item"].ColumnEdit = riLookup;
+            gdvItemIC.BestFitColumns();
 
             //Bill Sundry Lookup Edit
             //gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
@@ -137,6 +141,80 @@ namespace IPCAUI.Transactions
             {
                 gdvItemIC.ShowEditor();
                 ((LookUpEdit)gdvItemIC.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            eSunSpeedDomain.ProductionVoucherModel objProdu = new eSunSpeedDomain.ProductionVoucherModel();
+
+            if (tbxVoucherNo.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objProdu.Series = tbxSeries.Text.Trim();
+            objProdu.PV_Date = Convert.ToDateTime(dtDate.Text);
+            objProdu.Voucher_Number = Convert.ToInt32(tbxVoucherNo.Text.Trim());
+            objProdu.BOMName = tbxBomName.Text.Trim();
+            objProdu.MatCenterIC = tbxMatcenterIC.Text.Trim();
+            objProdu.MatCenterIG = tbxMatcenterIG.Text.Trim();
+            objProdu.Narration = tbxNarration.Text.Trim();
+
+            objProdu.TotalAmountIG = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            objProdu.TotalQtyIG = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+
+            //Item Generated Details
+            Item_VoucherModel objItem;
+            List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
+
+            for (int i = 0; i < gdvItemIG.DataRowCount; i++)
+            {
+                DataRow row = gdvItemIG.GetDataRow(i);
+
+                objItem = new Item_VoucherModel();
+                objItem.Item = row["Item"].ToString();
+
+                objItem.Qty = Convert.ToDecimal(row["Qty"]);
+                objItem.Unit = row["Unit"].ToString();
+                objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
+                objItem.Price = Convert.ToDecimal(row["Price"].ToString());
+                lstItems.Add(objItem);
+            }
+
+            objProdu.Item_Generated = lstItems;
+
+            //Item Consumed Details
+            ItemConsumedModel objItemCon;
+            List<ItemConsumedModel> lstItemConsumed = new List<ItemConsumedModel>();
+
+            for (int i = 0; i < gdvItemIG.DataRowCount; i++)
+            {
+                DataRow row = gdvItemIG.GetDataRow(i);
+
+                objItemCon = new ItemConsumedModel();
+
+                objItemCon.Item = row["Item"].ToString();
+                objItemCon.Qty = Convert.ToDecimal(row["Qty"]);
+                objItemCon.Unit = row["Unit"].ToString();
+                objItemCon.Amount = Convert.ToDecimal(row["Amount"].ToString());
+                objItemCon.Price = Convert.ToDecimal(row["Price"].ToString());
+                lstItemConsumed.Add(objItemCon);
+            }
+
+            objProdu.Item_Consumed = lstItemConsumed;
+
+            //objProdu.TotalQtyIG = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
+
+            //objSales.SalesBillSundry_Voucher = lstBS;
+
+            bool isSuccess = objPruBl.SaveProductionVoucher(objProdu);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+                // d.ShowDialog();
             }
         }
     }

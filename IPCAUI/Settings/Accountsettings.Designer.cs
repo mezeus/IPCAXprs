@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnConfig = new DevExpress.XtraEditors.SimpleButton();
@@ -94,19 +99,14 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -229,6 +229,51 @@
             this.layoutControl1.Size = new System.Drawing.Size(763, 489);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Location = new System.Drawing.Point(188, 405);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(56, 22);
+            this.simpleButton5.StyleController = this.layoutControl1;
+            this.simpleButton5.TabIndex = 73;
+            this.simpleButton5.Text = "Configure";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(179, 104);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(56, 22);
+            this.simpleButton2.StyleController = this.layoutControl1;
+            this.simpleButton2.TabIndex = 72;
+            this.simpleButton2.Text = "Configure";
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Location = new System.Drawing.Point(620, 29);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(56, 22);
+            this.simpleButton4.StyleController = this.layoutControl1;
+            this.simpleButton4.TabIndex = 71;
+            this.simpleButton4.Text = "Configure";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(389, 286);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(76, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 70;
+            this.simpleButton1.Text = "Configure";
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(179, 55);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(56, 22);
+            this.simpleButton3.StyleController = this.layoutControl1;
+            this.simpleButton3.TabIndex = 69;
+            this.simpleButton3.Text = "Configure";
             // 
             // btnQuit
             // 
@@ -873,15 +918,6 @@
             this.emptySpaceItem8.Size = new System.Drawing.Size(227, 26);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Location = new System.Drawing.Point(179, 55);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(56, 22);
-            this.simpleButton3.StyleController = this.layoutControl1;
-            this.simpleButton3.TabIndex = 69;
-            this.simpleButton3.Text = "Configure";
-            // 
             // layoutControlItem31
             // 
             this.layoutControlItem31.Control = this.simpleButton3;
@@ -898,15 +934,6 @@
             this.emptySpaceItem9.Name = "emptySpaceItem9";
             this.emptySpaceItem9.Size = new System.Drawing.Size(161, 26);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(389, 286);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(76, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 70;
-            this.simpleButton1.Text = "Configure";
             // 
             // layoutControlItem32
             // 
@@ -925,15 +952,6 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(286, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // simpleButton4
-            // 
-            this.simpleButton4.Location = new System.Drawing.Point(620, 29);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(56, 22);
-            this.simpleButton4.StyleController = this.layoutControl1;
-            this.simpleButton4.TabIndex = 71;
-            this.simpleButton4.Text = "Configure";
-            // 
             // layoutControlItem33
             // 
             this.layoutControlItem33.Control = this.simpleButton4;
@@ -951,15 +969,6 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(75, 26);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(179, 104);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(56, 22);
-            this.simpleButton2.StyleController = this.layoutControl1;
-            this.simpleButton2.TabIndex = 72;
-            this.simpleButton2.Text = "Configure";
-            // 
             // layoutControlItem28
             // 
             this.layoutControlItem28.Control = this.simpleButton2;
@@ -976,15 +985,6 @@
             this.emptySpaceItem10.Name = "emptySpaceItem10";
             this.emptySpaceItem10.Size = new System.Drawing.Size(161, 26);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButton5
-            // 
-            this.simpleButton5.Location = new System.Drawing.Point(188, 405);
-            this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(56, 22);
-            this.simpleButton5.StyleController = this.layoutControl1;
-            this.simpleButton5.TabIndex = 73;
-            this.simpleButton5.Text = "Configure";
             // 
             // layoutControlItem34
             // 

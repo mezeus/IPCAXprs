@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salesorder));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl3 = new DevExpress.XtraGrid.GridControl();
-            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource();
             this.billSundryDs = new IPCAUI.DataSets.BillSundryDs();
             this.gridBs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,7 +42,7 @@
             this.Percentage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridDs = new IPCAUI.DataSets.ItemGridDs();
             this.gdvItem = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -377,8 +376,6 @@
             this.Unit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Unit.FieldName = "Unit";
             this.Unit.Name = "Unit";
-            this.Unit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
             this.Unit.Visible = true;
             this.Unit.VisibleIndex = 3;
             this.Unit.Width = 69;
@@ -397,8 +394,6 @@
             this.Price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Price.FieldName = "Price";
             this.Price.Name = "Price";
-            this.Price.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
             this.Price.Visible = true;
             this.Price.VisibleIndex = 4;
             this.Price.Width = 73;
@@ -409,7 +404,7 @@
             this.Amount.FieldName = "Amount";
             this.Amount.Name = "Amount";
             this.Amount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "Total={0:0.##}")});
             this.Amount.Visible = true;
             this.Amount.VisibleIndex = 5;
             this.Amount.Width = 73;
@@ -419,6 +414,8 @@
             this.Qty.Caption = "Qty";
             this.Qty.FieldName = "Qty";
             this.Qty.Name = "Qty";
+            this.Qty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Qty", "Total ={0}")});
             this.Qty.Visible = true;
             this.Qty.VisibleIndex = 2;
             this.Qty.Width = 56;

@@ -23,32 +23,30 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
 
-                paramCollection.Add(new DBParameter("@ProductiopnSeries", objProduction.Series));
-                paramCollection.Add(new DBParameter("@ProductionType", objProduction.ProductionType));
-                paramCollection.Add(new DBParameter("@Date", objProduction.PV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objProduction.Voucher_Number));
-                paramCollection.Add(new DBParameter("@BillNo", objProduction.BillNo));
-                paramCollection.Add(new DBParameter("@DueDate", objProduction.DueDate));
-
-                paramCollection.Add(new DBParameter("@Party", objProduction.Party));
-                paramCollection.Add(new DBParameter("@MatCenter", objProduction.MatCenter));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objProduction.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objProduction.Series));
+                paramCollection.Add(new DBParameter("@ProductionDate", objProduction.PV_Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@BOMName", objProduction.BOMName));
+                paramCollection.Add(new DBParameter("@MatCentreIG", objProduction.MatCenterIG));
+                paramCollection.Add(new DBParameter("@MatCentreIC", objProduction.MatCenterIC));
                 paramCollection.Add(new DBParameter("@Narration", objProduction.Narration));
+                //paramCollection.Add(new DBParameter("@ItemTotalAmount", objSales.TotalAmount));
+                //paramCollection.Add(new DBParameter("@ItemTotalQty", objSales.TotalQty));
+
+                //paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
 
-                Query = "INSERT INTO Trans_Production_Voucher ([Series],[Production_Type],[Production_Date],[VoucherNo],[BillNo],[DueDate],[Party],[MatCenter],[Narration]," +
-                "[CreatedBy],[CreatedDate]) VALUES " +
-                "(@ProductiopnSeries,@ProductionType,@Date,@Voucher_Number,@BillNo,@DueDate, " +
-                " @Party,@MatCenter,@Narration,@CreatedBy,@CreatedDate)";
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertProductionMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveProductionItems(objProduction.Item_Voucher);
-                    SaveProductionBillSundry(objProduction.BillSundry_Voucher);
-                    isSaved = true;
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+
+                SaveProductionItemgenerated(objProduction.Item_Generated, id);
+                SaveProductionItemconsumed(objProduction.Item_Consumed, id);
             }
             catch (Exception ex)
             {
@@ -59,12 +57,10 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveProductionItems(List<Item_VoucherModel> lstItems)
+        public bool SaveProductionItemgenerated(List<Item_VoucherModel> lstItems,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetProductonReturnId();
 
             foreach (Item_VoucherModel item in lstItems)
             {
@@ -74,26 +70,21 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@PV_ID",( item.ParentId)));
-                    paramCollection.Add(new DBParameter("@Item", item.Item));
+                    paramCollection.Add(new DBParameter("@ProductionId", item.ParentId));
                     paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                    paramCollection.Add(new DBParameter("@Item", item.Item));
                     paramCollection.Add(new DBParameter("@Qty", item.Qty));
-                    paramCollection.Add(new DBParameter("@Unit", (item.Unit)));
-                    paramCollection.Add(new DBParameter("@Price", Convert.ToDecimal( item.Price)));
-                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(item.Amount)));
-                    paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
-                    paramCollection.Add(new DBParameter("@TotalAmount", Convert.ToDecimal(item.TotalAmount)));
+                    paramCollection.Add(new DBParameter("@Unit", item.Unit));
+                    paramCollection.Add(new DBParameter("@Price", item.Price));
+                    paramCollection.Add(new DBParameter("@Amount", item.Amount));
+                    //paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", item.TotalAmount));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
 
-                    Query = "INSERT INTO Trans_Production_Items([Production_Id],[Item],[Batch],[Qty],[Unit]," +
-                    "[Price],[Amount],[TotalQty],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@PV_ID,@Item,@Batch,@Qty,@Unit,@Price,@Amount,@TotalQty,@TotalAmount,@CreatedBy,@CreatedDate)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertProductionItemgenerated", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -104,35 +95,34 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveProductionBillSundry(List<BillSundry_VoucherModel> lstBS)
+        public bool SaveProductionItemconsumed(List<ItemConsumedModel> lstConsumed, int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            int ParentId = GetProductonReturnId();
-
-            foreach (BillSundry_VoucherModel bs in lstBS)
+            foreach (ItemConsumedModel itemcon in lstConsumed)
             {
-                bs.ParentId = ParentId;
+                itemcon.ParentId = ParentId;
 
                 try
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@PV_ID", bs.ParentId));
-                    paramCollection.Add(new DBParameter("@Name", bs.BillSundry));
-                    paramCollection.Add(new DBParameter("@Percentage", Convert.ToDecimal(bs.Percentage)));
-                    paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(bs.Amount)));
-                    paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
+                    paramCollection.Add(new DBParameter("@ProductionId", itemcon.ParentId));
+                    paramCollection.Add(new DBParameter("@Batch", itemcon.Batch));
+                    paramCollection.Add(new DBParameter("@Item", itemcon.Item));
+                    paramCollection.Add(new DBParameter("@Qty", itemcon.Qty));
+                    paramCollection.Add(new DBParameter("@Unit", itemcon.Unit));
+                    paramCollection.Add(new DBParameter("@Price", itemcon.Price));
+                    paramCollection.Add(new DBParameter("@Amount", itemcon.Amount));
+                    //paramCollection.Add(new DBParameter("@TotalQty", item.TotalQty));
+                    //paramCollection.Add(new DBParameter("@TotalAmount", item.TotalAmount));
+
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                    Query = "INSERT INTO Trans_Production_BS ([Production_id],[BillSundry],[Percentage]," +
-                    "[Amount],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@PV_ID,@Name,@Percentage,@Amount,@TotalAmount,@CreatedBy,@CreatedDate)";
 
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertProductionItemconsumed", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -169,18 +159,18 @@ namespace eSunSpeed.BusinessLogic
                 
                
                 paramCollection.Add(new DBParameter("@Series", objProduction.Series));
-                paramCollection.Add(new DBParameter("@PVType", objProduction.ProductionType));
+                //paramCollection.Add(new DBParameter("@PVType", objProduction.ProductionType));
                 paramCollection.Add(new DBParameter("@PVDate", objProduction.PV_Date));
                 paramCollection.Add(new DBParameter("@VoucherNumber", objProduction.Voucher_Number));
                 paramCollection.Add(new DBParameter("@BillNo", objProduction.BillNo));
 
                 paramCollection.Add(new DBParameter("@Duedate", objProduction.DueDate));
                 paramCollection.Add(new DBParameter("@Party", objProduction.Party));
-                paramCollection.Add(new DBParameter("@MatCentre", objProduction.MatCenter));
+                //paramCollection.Add(new DBParameter("@MatCentre", objProduction.MatCenter));
 
                 paramCollection.Add(new DBParameter("@Narration", objProduction.Narration));
-                paramCollection.Add(new DBParameter("@TotalQty", objProduction.TotalQty, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalAmount", objProduction.TotalAmount, System.Data.DbType.Decimal));
+                //paramCollection.Add(new DBParameter("@TotalQty", objProduction.TotalQty, System.Data.DbType.Decimal));
+                //paramCollection.Add(new DBParameter("@TotalAmount", objProduction.TotalAmount, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@BSTotalAmount", objProduction.BSTotalAmount, System.Data.DbType.Decimal));
 
 
@@ -196,7 +186,7 @@ namespace eSunSpeed.BusinessLogic
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
-                    UpdateItemandBS(objProduction);
+                    //UpdateItemandBS(objProduction);
                     isUpdated = true;
                 }
 
@@ -210,45 +200,45 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
 
-        private bool UpdateItemandBS(ProductionVoucherModel objproduction)
-        {
-            try
-            {
-                //UPDATE Item voucher -CHILD TABLE UPDATES
-                foreach (Item_VoucherModel item in objproduction.Item_Voucher)
-                {
-                    if (item.Item_ID > 0)
-                    {
-                        UpdateProductionVoucherItems(item);
+        //private bool UpdateItemandBS(ProductionVoucherModel objproduction)
+        //{
+        //    try
+        //    {
+        //        //UPDATE Item voucher -CHILD TABLE UPDATES
+        //        foreach (Item_VoucherModel item in objproduction.Item_Voucher)
+        //        {
+        //            if (item.Item_ID > 0)
+        //            {
+        //                UpdateProductionVoucherItems(item);
 
-                    }
-                    else
-                    {
-                        SaveProductionVoucherItems(item);
-                    }
-                }
+        //            }
+        //            else
+        //            {
+        //                SaveProductionVoucherItems(item);
+        //            }
+        //        }
 
-                //Update Bill Sundry Items
-                foreach (BillSundry_VoucherModel bs in objproduction.BillSundry_Voucher)
-                {
-                    if (bs.BSId > 0)
-                    {
-                        UpdateProductionBillSundryVoucher(bs);
+        //        //Update Bill Sundry Items
+        //        foreach (BillSundry_VoucherModel bs in objproduction.BillSundry_Voucher)
+        //        {
+        //            if (bs.BSId > 0)
+        //            {
+        //                UpdateProductionBillSundryVoucher(bs);
 
-                    }
-                    else
-                    {
-                        SaveProductionBillSundryVoucher(bs);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+        //            }
+        //            else
+        //            {
+        //                SaveProductionBillSundryVoucher(bs);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public bool UpdateProductionVoucherItems(Item_VoucherModel objProItem)
         {
@@ -526,12 +516,12 @@ namespace eSunSpeed.BusinessLogic
                 objProduction.Voucher_Number= DataFormat.GetInteger(dr["VoucherNo"]);
                 objProduction.BillNo = Convert.ToInt32(dr["BillNo"].ToString());
                 objProduction.DueDate = Convert.ToDateTime(dr["DueDate"]);
-                objProduction.ProductionType = dr["Production_Type"].ToString();
+                //objProduction.ProductionType = dr["Production_Type"].ToString();
                 objProduction.Party = dr["party"].ToString();
-                objProduction.MatCenter = dr["MatCenter"].ToString();
+                //objProduction.MatCenter = dr["MatCenter"].ToString();
                 objProduction.Narration = dr["Narration"].ToString();
-                objProduction.TotalQty = Convert.ToDecimal(dr["TotalQty"]);
-                objProduction.TotalAmount = Convert.ToDecimal(dr["TotalAmount"].ToString());
+                //objProduction.TotalQty = Convert.ToDecimal(dr["TotalQty"]);
+                //objProduction.TotalAmount = Convert.ToDecimal(dr["TotalAmount"].ToString());
                 objProduction.BSTotalAmount = Convert.ToDecimal(dr["BSTotalAmount"]);
 
                 //SELECT Credit Note Accounts
@@ -539,7 +529,7 @@ namespace eSunSpeed.BusinessLogic
                 string itemQuery = "SELECT * FROM Trans_Production_Items WHERE Production_Id=" + id;
                 System.Data.IDataReader drItems = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
-                objProduction.Item_Voucher = new List<Item_VoucherModel>();
+                //objProduction.Item_Voucher = new List<Item_VoucherModel>();
                 Item_VoucherModel objitem;
 
                 while (drItems.Read())
@@ -557,14 +547,14 @@ namespace eSunSpeed.BusinessLogic
                     objitem.TotalAmount = Convert.ToDecimal(drItems["TotalAmount"]);
                     objitem.TotalQty = Convert.ToInt32(drItems["TotalQty"].ToString());
 
-                    objProduction.Item_Voucher.Add(objitem);
+                    //objProduction.Item_Voucher.Add(objitem);
 
                 }
 
                 string BSQuery = "SELECT * FROM Trans_Production_BS WHERE Production_Id=" + id;
                 System.Data.IDataReader drbs = _dbHelper.ExecuteDataReader(BSQuery, _dbHelper.GetConnObject());
 
-                objProduction.BillSundry_Voucher = new List<BillSundry_VoucherModel>();
+                //objProduction.BillSundry_Voucher = new List<BillSundry_VoucherModel>();
                 BillSundry_VoucherModel objbs;
 
                 while (drbs.Read())
@@ -578,7 +568,7 @@ namespace eSunSpeed.BusinessLogic
                     objbs.Amount = Convert.ToDecimal((drbs["Amount"].ToString()));
                     objbs.TotalAmount = Convert.ToDecimal(drbs["TotalAmount"].ToString());
 
-                    objProduction.BillSundry_Voucher.Add(objbs);
+                    //objProduction.BillSundry_Voucher.Add(objbs);
 
                 }
 

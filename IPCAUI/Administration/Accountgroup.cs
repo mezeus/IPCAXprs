@@ -111,77 +111,77 @@ namespace IPCAUI.Administration
             }
         }
 
-        //private void ListAccountgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        //{
-        //    Administration.List.AccountgroupList frmList = new Administration.List.AccountgroupList();
-        //    frmList.StartPosition = FormStartPosition.CenterScreen;
+        private void ListAccountgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Administration.List.AccountgroupList frmList = new Administration.List.AccountgroupList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
 
-        //    frmList.ShowDialog();
+            frmList.ShowDialog();
 
-        //    layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-        //    btnSave.Visible = false;
+            btnSave.Visible = false;
+            btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-        //    tbxGroupName.Focus();
+            tbxGroupName.Focus();
+            tbxGroupName.ReadOnly = true;
+
+            FillAccountInfo();
+
+        }
+
+        private void FillAccountInfo()
+        {
+            AccountGroupModel objMaster = objaccbl.GetAccountGroupByGroupId(groupId);
+
+            tbxGroupName.Text = objMaster.GroupName;
+            tbxAliasname.Text = objMaster.AliasName;
+            cbxPrimarygroup.SelectedItem = objMaster.Primary == "True" ? "Yes" : "No";
+            cbxUndergroup.SelectedItem = objMaster.UnderGroup;
+            cbxNaturegroup.SelectedItem = objMaster.NatureGroup;
+
+            chkGrossProfit.Checked = objMaster.IsAffectGrossProfit ? true : false;
 
 
-        //    FillAccountInfo();          
-              
+        }
 
-        //}
+    private void btnUpdate_Click(object sender, EventArgs e)
+    {
+        if (tbxGroupName.Text.Equals(string.Empty))
+        {
+            MessageBox.Show("Group Name can not be blank!");
+            return;
+        }
 
-        ////private void FillAccountInfo()
-        ////{
-        ////    AccountGroupModel objMaster= accobj.GetAccountGroupByGroupId(groupId);
+        if (objaccbl.IsGroupExists(tbxGroupName.Text.Trim()))
+        {
+            MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+            // cbxUnderGrp.Focus();
+            return;
+        }
 
-        ////    tbxGroupName.Text = objMaster.GroupName;
-        ////    tbxAliasname.Text = objMaster.AliasName;
-        ////    cbxPrimarygroup.SelectedItem = objMaster.Primary=="True"?"Yes":"No";
-        ////    cbxUndergroup.SelectedItem = objMaster.UnderGroup;
-        ////    cbxNaturegroup.SelectedItem = objMaster.NatureGroup;
+        eSunSpeedDomain.AccountGroupModel objAccGroup = new eSunSpeedDomain.AccountGroupModel();
 
-        ////    chkGrossProfit.Checked = objMaster.IsAffectGrossProfit ? true : false;
-            
-            
-        //}
+        objAccGroup.GroupName = tbxGroupName.Text;
 
-        //private void btnUpdate_Click(object sender, EventArgs e)
-        //{
-        //    if (tbxGroupName.Text.Equals(string.Empty))
-        //    {
-        //        MessageBox.Show("Group Name can not be blank!");
-        //        return;
-        //    }
+        objAccGroup.AliasName = tbxAliasname.Text;
+        objAccGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
 
-        //    if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-        //    {
-        //        MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-        //        // cbxUnderGrp.Focus();
-        //        return;
-        //    }
+        objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+        objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
+        objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
 
-        //    eSunSpeedDomain.AccountGroupModel objAccGroup = new eSunSpeedDomain.AccountGroupModel();
+        objAccGroup.CreatedBy = "Admin";
 
-        //    objAccGroup.GroupName = tbxGroupName.Text;
+        objAccGroup.GroupId = groupId;
 
-        //    objAccGroup.AliasName = tbxAliasname.Text;
-        //    objAccGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
+        string message = string.Empty;
 
-        //    objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-        //    objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
-        //    objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
+        bool isSuccess = objaccbl.UpdateAccountGroup(objAccGroup);
 
-        //    objAccGroup.CreatedBy = "Admin";
+        if (isSuccess)
+            MessageBox.Show("Updated Successfully!");
 
-        //    objAccGroup.GroupId = groupId;
-
-        //    string message = string.Empty;
-
-        //    bool isSuccess = accObj.UpdateAccountGroup(objAccGroup);
-
-        //    if (isSuccess)
-        //        MessageBox.Show("Upda Successfully!");
-
-        //}
     }
+}
 }

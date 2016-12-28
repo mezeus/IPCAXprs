@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesQuotation));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl4 = new DevExpress.XtraGrid.GridControl();
-            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billSundryDtBindingSource = new System.Windows.Forms.BindingSource();
             this.billSundryDs = new IPCAUI.DataSets.BillSundryDs();
             this.gridBs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +43,7 @@
             this.Narration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gdvMainPurchaseIndent = new DevExpress.XtraGrid.GridControl();
-            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGridDtBindingSource = new System.Windows.Forms.BindingSource();
             this.itemGridDs = new IPCAUI.DataSets.ItemGridDs();
             this.gdvItem = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -738,10 +737,9 @@
             // 
             // tbxSeries
             // 
+            this.tbxSeries.EnterMoveNextControl = true;
             this.tbxSeries.Location = new System.Drawing.Point(214, 12);
             this.tbxSeries.Name = "tbxSeries";
-            this.tbxSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxSeries.Properties.NullText = "";
             this.tbxSeries.Size = new System.Drawing.Size(192, 20);
             this.tbxSeries.StyleController = this.layoutControl1;
@@ -749,10 +747,9 @@
             // 
             // tbxSaleType
             // 
+            this.tbxSaleType.EnterMoveNextControl = true;
             this.tbxSaleType.Location = new System.Drawing.Point(903, 12);
             this.tbxSaleType.Name = "tbxSaleType";
-            this.tbxSaleType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxSaleType.Properties.NullText = "";
             this.tbxSaleType.Size = new System.Drawing.Size(91, 20);
             this.tbxSaleType.StyleController = this.layoutControl1;
@@ -760,10 +757,9 @@
             // 
             // tbxParty
             // 
+            this.tbxParty.EnterMoveNextControl = true;
             this.tbxParty.Location = new System.Drawing.Point(214, 36);
             this.tbxParty.Name = "tbxParty";
-            this.tbxParty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxParty.Properties.NullText = "";
             this.tbxParty.Size = new System.Drawing.Size(260, 20);
             this.tbxParty.StyleController = this.layoutControl1;
@@ -771,10 +767,9 @@
             // 
             // tbxMatcenter
             // 
+            this.tbxMatcenter.EnterMoveNextControl = true;
             this.tbxMatcenter.Location = new System.Drawing.Point(539, 36);
             this.tbxMatcenter.Name = "tbxMatcenter";
-            this.tbxMatcenter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxMatcenter.Properties.NullText = "";
             this.tbxMatcenter.Size = new System.Drawing.Size(455, 20);
             this.tbxMatcenter.StyleController = this.layoutControl1;

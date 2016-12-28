@@ -249,29 +249,17 @@ namespace eSunSpeed.BusinessLogic
             List<TaxCategoryModel> lstTaxCategories = new List<TaxCategoryModel>();
             TaxCategoryModel objTax;
 
-            string Query = "SELECT * FROM TaxCategory";
+            string Query = "SELECT DISTINCT TaxCat_Id,Name FROM TaxCategory";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
                 objTax = new  TaxCategoryModel();
 
-                objTax.TaxCat_Id = DataFormat.GetInteger(dr["TaxCat_Id"]);
-                
+                objTax.TaxCat_Id = DataFormat.GetInteger(dr["TaxCat_Id"]);              
                 objTax.Name =  dr["Name"].ToString();
-                objTax.CentralTax = Convert.ToDecimal(dr["CentralTax"]);
-                objTax.Local_Tax = Convert.ToDecimal(dr["Local_Tax"]);
-                objTax.Tax_Desc = dr["Tax_Desc"].ToString();
-                objTax.Taxation_Type = dr["Taxation_Type"].ToString();
-                objTax.TaxCat_Type = dr["TaxCat_Type"].ToString();
-                objTax.TaxonMRP = Convert.ToBoolean(dr["TaxonMRP"]);
-                objTax.TaxonMRPMode = dr["TaxonMRPMode"].ToString();
-
-                objTax.HSNCode = dr["HSNCode"].ToString();
-                objTax.CalculatedTaxon = Convert.ToDecimal(dr["CalculatedTaxon"]);
 
                 lstTaxCategories.Add(objTax);
-
             }
             return lstTaxCategories;
         }
