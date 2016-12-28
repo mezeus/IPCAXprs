@@ -35,51 +35,58 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit25 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit24 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcstno = new DevExpress.XtraEditors.TextEdit();
+            this.tbxtin = new DevExpress.XtraEditors.TextEdit();
+            this.tbxdefaulttexrate2 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
+            this.tbxDefaultTaxRate1 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit23 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit22 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.cbxtype = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxcaption = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxenablevat = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxenabletaxschg = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit21 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit20 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit19 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit18 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit17 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcurrencycharater = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcurrencyfont = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcurrencysubstring = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcurrencystring = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcurrencysymbol = new DevExpress.XtraEditors.TextEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit16 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxfax = new DevExpress.XtraEditors.TextEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit15 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxward = new DevExpress.XtraEditors.TextEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit11 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit12 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit13 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit14 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxemail = new DevExpress.XtraEditors.TextEdit();
+            this.tbxtelno = new DevExpress.XtraEditors.TextEdit();
+            this.tbxitpan = new DevExpress.XtraEditors.TextEdit();
+            this.tbxcin = new DevExpress.XtraEditors.TextEdit();
+            this.tbxaddress2 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxaddress1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxaddress = new DevExpress.XtraEditors.TextEdit();
+            this.tbxstate = new DevExpress.XtraEditors.TextEdit();
+            this.tbxshortname = new DevExpress.XtraEditors.TextEdit();
+            this.tbxprintname = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -88,15 +95,15 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.tbxName = new DevExpress.XtraEditors.TextEdit();
+            this.cbxcountry = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.defybeginingform = new DevExpress.XtraEditors.DateEdit();
+            this.debokscommincingfrom = new DevExpress.XtraEditors.DateEdit();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -105,41 +112,47 @@
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit25.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit24.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit23.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit22.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcstno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxtin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxdefaulttexrate2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDefaultTaxRate1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxcaption.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxenablevat.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxenabletaxschg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit21.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit20.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit17.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencycharater.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencyfont.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencysubstring.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencystring.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencysymbol.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit15.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit13.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit14.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxward.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxemail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxtelno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxitpan.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxstate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxshortname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxprintname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxcountry.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defybeginingform.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defybeginingform.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.debokscommincingfrom.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.debokscommincingfrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControlGroup1
@@ -207,35 +220,83 @@
             // 
             // groupControl5
             // 
-            this.groupControl5.Controls.Add(this.textEdit25);
-            this.groupControl5.Controls.Add(this.textEdit24);
+            this.groupControl5.Controls.Add(this.tbxcstno);
+            this.groupControl5.Controls.Add(this.tbxtin);
+            this.groupControl5.Controls.Add(this.tbxdefaulttexrate2);
+            this.groupControl5.Controls.Add(this.labelControl33);
+            this.groupControl5.Controls.Add(this.tbxDefaultTaxRate1);
+            this.groupControl5.Controls.Add(this.labelControl32);
+            this.groupControl5.Controls.Add(this.labelControl31);
             this.groupControl5.Controls.Add(this.labelControl30);
             this.groupControl5.Controls.Add(this.labelControl29);
             this.groupControl5.Controls.Add(this.labelControl28);
             this.groupControl5.Controls.Add(this.labelControl27);
-            this.groupControl5.Controls.Add(this.textEdit23);
             this.groupControl5.Controls.Add(this.labelControl26);
-            this.groupControl5.Controls.Add(this.textEdit22);
             this.groupControl5.Controls.Add(this.labelControl25);
+            this.groupControl5.Controls.Add(this.cbxtype);
+            this.groupControl5.Controls.Add(this.cbxcaption);
+            this.groupControl5.Controls.Add(this.cbxenablevat);
+            this.groupControl5.Controls.Add(this.cbxenabletaxschg);
             this.groupControl5.Location = new System.Drawing.Point(444, 44);
             this.groupControl5.Name = "groupControl5";
             this.groupControl5.Size = new System.Drawing.Size(404, 243);
             this.groupControl5.TabIndex = 60;
             this.groupControl5.Text = "VAT/GST Information";
             // 
-            // textEdit25
+            // tbxcstno
             // 
-            this.textEdit25.Location = new System.Drawing.Point(313, 78);
-            this.textEdit25.Name = "textEdit25";
-            this.textEdit25.Size = new System.Drawing.Size(83, 20);
-            this.textEdit25.TabIndex = 37;
+            this.tbxcstno.EnterMoveNextControl = true;
+            this.tbxcstno.Location = new System.Drawing.Point(134, 143);
+            this.tbxcstno.Name = "tbxcstno";
+            this.tbxcstno.Size = new System.Drawing.Size(262, 20);
+            this.tbxcstno.TabIndex = 44;
             // 
-            // textEdit24
+            // tbxtin
             // 
-            this.textEdit24.Location = new System.Drawing.Point(134, 76);
-            this.textEdit24.Name = "textEdit24";
-            this.textEdit24.Size = new System.Drawing.Size(83, 20);
-            this.textEdit24.TabIndex = 36;
+            this.tbxtin.EnterMoveNextControl = true;
+            this.tbxtin.Location = new System.Drawing.Point(134, 111);
+            this.tbxtin.Name = "tbxtin";
+            this.tbxtin.Size = new System.Drawing.Size(262, 20);
+            this.tbxtin.TabIndex = 43;
+            // 
+            // tbxdefaulttexrate2
+            // 
+            this.tbxdefaulttexrate2.EnterMoveNextControl = true;
+            this.tbxdefaulttexrate2.Location = new System.Drawing.Point(133, 215);
+            this.tbxdefaulttexrate2.Name = "tbxdefaulttexrate2";
+            this.tbxdefaulttexrate2.Size = new System.Drawing.Size(100, 20);
+            this.tbxdefaulttexrate2.TabIndex = 42;
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Location = new System.Drawing.Point(11, 215);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(85, 13);
+            this.labelControl33.TabIndex = 41;
+            this.labelControl33.Text = "Default TaxRate2";
+            // 
+            // tbxDefaultTaxRate1
+            // 
+            this.tbxDefaultTaxRate1.EnterMoveNextControl = true;
+            this.tbxDefaultTaxRate1.Location = new System.Drawing.Point(133, 182);
+            this.tbxDefaultTaxRate1.Name = "tbxDefaultTaxRate1";
+            this.tbxDefaultTaxRate1.Size = new System.Drawing.Size(100, 20);
+            this.tbxDefaultTaxRate1.TabIndex = 40;
+            // 
+            // labelControl32
+            // 
+            this.labelControl32.Location = new System.Drawing.Point(11, 186);
+            this.labelControl32.Name = "labelControl32";
+            this.labelControl32.Size = new System.Drawing.Size(85, 13);
+            this.labelControl32.TabIndex = 39;
+            this.labelControl32.Text = "Default TaxRate1";
+            // 
+            // labelControl31
+            // 
+            this.labelControl31.Location = new System.Drawing.Point(11, 182);
+            this.labelControl31.Name = "labelControl31";
+            this.labelControl31.Size = new System.Drawing.Size(0, 13);
+            this.labelControl31.TabIndex = 38;
             // 
             // labelControl30
             // 
@@ -269,27 +330,13 @@
             this.labelControl27.TabIndex = 32;
             this.labelControl27.Text = "Enable Add. Tax / Schg.";
             // 
-            // textEdit23
-            // 
-            this.textEdit23.Location = new System.Drawing.Point(313, 45);
-            this.textEdit23.Name = "textEdit23";
-            this.textEdit23.Size = new System.Drawing.Size(83, 20);
-            this.textEdit23.TabIndex = 31;
-            // 
             // labelControl26
             // 
             this.labelControl26.Location = new System.Drawing.Point(226, 49);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(77, 13);
+            this.labelControl26.Size = new System.Drawing.Size(24, 13);
             this.labelControl26.TabIndex = 30;
-            this.labelControl26.Text = "Enable VAT/GST";
-            // 
-            // textEdit22
-            // 
-            this.textEdit22.Location = new System.Drawing.Point(133, 43);
-            this.textEdit22.Name = "textEdit22";
-            this.textEdit22.Size = new System.Drawing.Size(83, 20);
-            this.textEdit22.TabIndex = 29;
+            this.labelControl26.Text = "Type";
             // 
             // labelControl25
             // 
@@ -299,17 +346,65 @@
             this.labelControl25.TabIndex = 24;
             this.labelControl25.Text = "Enable VAT/GST";
             // 
+            // cbxtype
+            // 
+            this.cbxtype.Location = new System.Drawing.Point(313, 45);
+            this.cbxtype.Name = "cbxtype";
+            this.cbxtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxtype.Properties.Items.AddRange(new object[] {
+            "VAT",
+            "GST"});
+            this.cbxtype.Size = new System.Drawing.Size(83, 20);
+            this.cbxtype.TabIndex = 31;
+            // 
+            // cbxcaption
+            // 
+            this.cbxcaption.EnterMoveNextControl = true;
+            this.cbxcaption.Location = new System.Drawing.Point(313, 78);
+            this.cbxcaption.Name = "cbxcaption";
+            this.cbxcaption.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxcaption.Properties.Items.AddRange(new object[] {
+            "schg"});
+            this.cbxcaption.Size = new System.Drawing.Size(83, 20);
+            this.cbxcaption.TabIndex = 37;
+            // 
+            // cbxenablevat
+            // 
+            this.cbxenablevat.Location = new System.Drawing.Point(133, 43);
+            this.cbxenablevat.Name = "cbxenablevat";
+            this.cbxenablevat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxenablevat.Properties.Items.AddRange(new object[] {
+            "yes",
+            "no"});
+            this.cbxenablevat.Size = new System.Drawing.Size(83, 20);
+            this.cbxenablevat.TabIndex = 29;
+            // 
+            // cbxenabletaxschg
+            // 
+            this.cbxenabletaxschg.Location = new System.Drawing.Point(134, 76);
+            this.cbxenabletaxschg.Name = "cbxenabletaxschg";
+            this.cbxenabletaxschg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxenabletaxschg.Properties.Items.AddRange(new object[] {
+            "YES",
+            "NO"});
+            this.cbxenabletaxschg.Size = new System.Drawing.Size(83, 20);
+            this.cbxenabletaxschg.TabIndex = 36;
+            // 
             // groupControl4
             // 
             this.groupControl4.Controls.Add(this.labelControl24);
             this.groupControl4.Controls.Add(this.labelControl23);
             this.groupControl4.Controls.Add(this.labelControl22);
             this.groupControl4.Controls.Add(this.labelControl16);
-            this.groupControl4.Controls.Add(this.textEdit21);
-            this.groupControl4.Controls.Add(this.textEdit20);
-            this.groupControl4.Controls.Add(this.textEdit19);
-            this.groupControl4.Controls.Add(this.textEdit18);
-            this.groupControl4.Controls.Add(this.textEdit17);
+            this.groupControl4.Controls.Add(this.tbxcurrencycharater);
+            this.groupControl4.Controls.Add(this.tbxcurrencyfont);
+            this.groupControl4.Controls.Add(this.tbxcurrencysubstring);
+            this.groupControl4.Controls.Add(this.tbxcurrencystring);
+            this.groupControl4.Controls.Add(this.tbxcurrencysymbol);
             this.groupControl4.Controls.Add(this.labelControl17);
             this.groupControl4.Controls.Add(this.labelControl18);
             this.groupControl4.Controls.Add(this.labelControl19);
@@ -353,40 +448,45 @@
             this.labelControl16.TabIndex = 33;
             this.labelControl16.Text = "Currency Symbol";
             // 
-            // textEdit21
+            // tbxcurrencycharater
             // 
-            this.textEdit21.Location = new System.Drawing.Point(134, 179);
-            this.textEdit21.Name = "textEdit21";
-            this.textEdit21.Size = new System.Drawing.Size(160, 20);
-            this.textEdit21.TabIndex = 32;
+            this.tbxcurrencycharater.EnterMoveNextControl = true;
+            this.tbxcurrencycharater.Location = new System.Drawing.Point(134, 179);
+            this.tbxcurrencycharater.Name = "tbxcurrencycharater";
+            this.tbxcurrencycharater.Size = new System.Drawing.Size(160, 20);
+            this.tbxcurrencycharater.TabIndex = 32;
             // 
-            // textEdit20
+            // tbxcurrencyfont
             // 
-            this.textEdit20.Location = new System.Drawing.Point(134, 148);
-            this.textEdit20.Name = "textEdit20";
-            this.textEdit20.Size = new System.Drawing.Size(160, 20);
-            this.textEdit20.TabIndex = 31;
+            this.tbxcurrencyfont.EnterMoveNextControl = true;
+            this.tbxcurrencyfont.Location = new System.Drawing.Point(134, 148);
+            this.tbxcurrencyfont.Name = "tbxcurrencyfont";
+            this.tbxcurrencyfont.Size = new System.Drawing.Size(160, 20);
+            this.tbxcurrencyfont.TabIndex = 31;
             // 
-            // textEdit19
+            // tbxcurrencysubstring
             // 
-            this.textEdit19.Location = new System.Drawing.Point(134, 116);
-            this.textEdit19.Name = "textEdit19";
-            this.textEdit19.Size = new System.Drawing.Size(160, 20);
-            this.textEdit19.TabIndex = 30;
+            this.tbxcurrencysubstring.EnterMoveNextControl = true;
+            this.tbxcurrencysubstring.Location = new System.Drawing.Point(134, 116);
+            this.tbxcurrencysubstring.Name = "tbxcurrencysubstring";
+            this.tbxcurrencysubstring.Size = new System.Drawing.Size(160, 20);
+            this.tbxcurrencysubstring.TabIndex = 30;
             // 
-            // textEdit18
+            // tbxcurrencystring
             // 
-            this.textEdit18.Location = new System.Drawing.Point(134, 81);
-            this.textEdit18.Name = "textEdit18";
-            this.textEdit18.Size = new System.Drawing.Size(160, 20);
-            this.textEdit18.TabIndex = 29;
+            this.tbxcurrencystring.EnterMoveNextControl = true;
+            this.tbxcurrencystring.Location = new System.Drawing.Point(134, 81);
+            this.tbxcurrencystring.Name = "tbxcurrencystring";
+            this.tbxcurrencystring.Size = new System.Drawing.Size(160, 20);
+            this.tbxcurrencystring.TabIndex = 29;
             // 
-            // textEdit17
+            // tbxcurrencysymbol
             // 
-            this.textEdit17.Location = new System.Drawing.Point(134, 46);
-            this.textEdit17.Name = "textEdit17";
-            this.textEdit17.Size = new System.Drawing.Size(160, 20);
-            this.textEdit17.TabIndex = 28;
+            this.tbxcurrencysymbol.EnterMoveNextControl = true;
+            this.tbxcurrencysymbol.Location = new System.Drawing.Point(134, 46);
+            this.tbxcurrencysymbol.Name = "tbxcurrencysymbol";
+            this.tbxcurrencysymbol.Size = new System.Drawing.Size(160, 20);
+            this.tbxcurrencysymbol.TabIndex = 28;
             // 
             // labelControl17
             // 
@@ -432,26 +532,25 @@
             // 
             this.groupControl2.Appearance.BackColor = System.Drawing.Color.Chocolate;
             this.groupControl2.Appearance.Options.UseBackColor = true;
-            this.groupControl2.Controls.Add(this.textEdit1);
-            this.groupControl2.Controls.Add(this.textEdit16);
+            this.groupControl2.Controls.Add(this.tbxfax);
             this.groupControl2.Controls.Add(this.labelControl15);
-            this.groupControl2.Controls.Add(this.textEdit15);
+            this.groupControl2.Controls.Add(this.tbxward);
             this.groupControl2.Controls.Add(this.labelControl14);
             this.groupControl2.Controls.Add(this.labelControl13);
             this.groupControl2.Controls.Add(this.labelControl12);
             this.groupControl2.Controls.Add(this.labelControl11);
             this.groupControl2.Controls.Add(this.labelControl10);
             this.groupControl2.Controls.Add(this.labelControl9);
-            this.groupControl2.Controls.Add(this.textEdit8);
-            this.groupControl2.Controls.Add(this.textEdit9);
-            this.groupControl2.Controls.Add(this.textEdit10);
-            this.groupControl2.Controls.Add(this.textEdit11);
-            this.groupControl2.Controls.Add(this.textEdit12);
-            this.groupControl2.Controls.Add(this.textEdit13);
-            this.groupControl2.Controls.Add(this.textEdit14);
-            this.groupControl2.Controls.Add(this.textEdit5);
-            this.groupControl2.Controls.Add(this.textEdit3);
-            this.groupControl2.Controls.Add(this.textEdit2);
+            this.groupControl2.Controls.Add(this.tbxemail);
+            this.groupControl2.Controls.Add(this.tbxtelno);
+            this.groupControl2.Controls.Add(this.tbxitpan);
+            this.groupControl2.Controls.Add(this.tbxcin);
+            this.groupControl2.Controls.Add(this.tbxaddress2);
+            this.groupControl2.Controls.Add(this.tbxaddress1);
+            this.groupControl2.Controls.Add(this.tbxaddress);
+            this.groupControl2.Controls.Add(this.tbxstate);
+            this.groupControl2.Controls.Add(this.tbxshortname);
+            this.groupControl2.Controls.Add(this.tbxprintname);
             this.groupControl2.Controls.Add(this.labelControl7);
             this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -460,21 +559,22 @@
             this.groupControl2.Controls.Add(this.labelControl2);
             this.groupControl2.Controls.Add(this.labelControl8);
             this.groupControl2.Controls.Add(this.tbxName);
-            this.groupControl2.Controls.Add(this.dateEdit1);
-            this.groupControl2.Controls.Add(this.comboBoxEdit1);
+            this.groupControl2.Controls.Add(this.cbxcountry);
+            this.groupControl2.Controls.Add(this.defybeginingform);
+            this.groupControl2.Controls.Add(this.debokscommincingfrom);
             this.groupControl2.Location = new System.Drawing.Point(0, 3);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(865, 268);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Company Information";
-            this.groupControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl2_Paint);
             // 
-            // textEdit16
+            // tbxfax
             // 
-            this.textEdit16.Location = new System.Drawing.Point(732, 186);
-            this.textEdit16.Name = "textEdit16";
-            this.textEdit16.Size = new System.Drawing.Size(93, 20);
-            this.textEdit16.TabIndex = 43;
+            this.tbxfax.EnterMoveNextControl = true;
+            this.tbxfax.Location = new System.Drawing.Point(732, 186);
+            this.tbxfax.Name = "tbxfax";
+            this.tbxfax.Size = new System.Drawing.Size(93, 20);
+            this.tbxfax.TabIndex = 43;
             // 
             // labelControl15
             // 
@@ -484,12 +584,13 @@
             this.labelControl15.TabIndex = 42;
             this.labelControl15.Text = "Fax";
             // 
-            // textEdit15
+            // tbxward
             // 
-            this.textEdit15.Location = new System.Drawing.Point(732, 154);
-            this.textEdit15.Name = "textEdit15";
-            this.textEdit15.Size = new System.Drawing.Size(93, 20);
-            this.textEdit15.TabIndex = 41;
+            this.tbxward.EnterMoveNextControl = true;
+            this.tbxward.Location = new System.Drawing.Point(732, 154);
+            this.tbxward.Name = "tbxward";
+            this.tbxward.Size = new System.Drawing.Size(93, 20);
+            this.tbxward.TabIndex = 41;
             // 
             // labelControl14
             // 
@@ -540,75 +641,83 @@
             this.labelControl9.TabIndex = 35;
             this.labelControl9.Text = "Address";
             // 
-            // textEdit8
+            // tbxemail
             // 
-            this.textEdit8.Location = new System.Drawing.Point(571, 226);
-            this.textEdit8.Name = "textEdit8";
-            this.textEdit8.Size = new System.Drawing.Size(254, 20);
-            this.textEdit8.TabIndex = 34;
+            this.tbxemail.EnterMoveNextControl = true;
+            this.tbxemail.Location = new System.Drawing.Point(571, 226);
+            this.tbxemail.Name = "tbxemail";
+            this.tbxemail.Size = new System.Drawing.Size(254, 20);
+            this.tbxemail.TabIndex = 34;
             // 
-            // textEdit9
+            // tbxtelno
             // 
-            this.textEdit9.Location = new System.Drawing.Point(571, 190);
-            this.textEdit9.Name = "textEdit9";
-            this.textEdit9.Size = new System.Drawing.Size(93, 20);
-            this.textEdit9.TabIndex = 33;
+            this.tbxtelno.Location = new System.Drawing.Point(571, 190);
+            this.tbxtelno.Name = "tbxtelno";
+            this.tbxtelno.Size = new System.Drawing.Size(93, 20);
+            this.tbxtelno.TabIndex = 33;
             // 
-            // textEdit10
+            // tbxitpan
             // 
-            this.textEdit10.Location = new System.Drawing.Point(571, 157);
-            this.textEdit10.Name = "textEdit10";
-            this.textEdit10.Size = new System.Drawing.Size(93, 20);
-            this.textEdit10.TabIndex = 32;
+            this.tbxitpan.EnterMoveNextControl = true;
+            this.tbxitpan.Location = new System.Drawing.Point(571, 157);
+            this.tbxitpan.Name = "tbxitpan";
+            this.tbxitpan.Size = new System.Drawing.Size(93, 20);
+            this.tbxitpan.TabIndex = 32;
             // 
-            // textEdit11
+            // tbxcin
             // 
-            this.textEdit11.Location = new System.Drawing.Point(571, 128);
-            this.textEdit11.Name = "textEdit11";
-            this.textEdit11.Size = new System.Drawing.Size(254, 20);
-            this.textEdit11.TabIndex = 31;
+            this.tbxcin.EnterMoveNextControl = true;
+            this.tbxcin.Location = new System.Drawing.Point(571, 128);
+            this.tbxcin.Name = "tbxcin";
+            this.tbxcin.Size = new System.Drawing.Size(254, 20);
+            this.tbxcin.TabIndex = 31;
             // 
-            // textEdit12
+            // tbxaddress2
             // 
-            this.textEdit12.Location = new System.Drawing.Point(571, 92);
-            this.textEdit12.Name = "textEdit12";
-            this.textEdit12.Size = new System.Drawing.Size(254, 20);
-            this.textEdit12.TabIndex = 30;
+            this.tbxaddress2.EnterMoveNextControl = true;
+            this.tbxaddress2.Location = new System.Drawing.Point(571, 92);
+            this.tbxaddress2.Name = "tbxaddress2";
+            this.tbxaddress2.Size = new System.Drawing.Size(254, 20);
+            this.tbxaddress2.TabIndex = 30;
             // 
-            // textEdit13
+            // tbxaddress1
             // 
-            this.textEdit13.Location = new System.Drawing.Point(571, 58);
-            this.textEdit13.Name = "textEdit13";
-            this.textEdit13.Size = new System.Drawing.Size(254, 20);
-            this.textEdit13.TabIndex = 29;
+            this.tbxaddress1.EnterMoveNextControl = true;
+            this.tbxaddress1.Location = new System.Drawing.Point(571, 58);
+            this.tbxaddress1.Name = "tbxaddress1";
+            this.tbxaddress1.Size = new System.Drawing.Size(254, 20);
+            this.tbxaddress1.TabIndex = 29;
             // 
-            // textEdit14
+            // tbxaddress
             // 
-            this.textEdit14.Location = new System.Drawing.Point(571, 27);
-            this.textEdit14.Name = "textEdit14";
-            this.textEdit14.Size = new System.Drawing.Size(254, 20);
-            this.textEdit14.TabIndex = 28;
+            this.tbxaddress.EnterMoveNextControl = true;
+            this.tbxaddress.Location = new System.Drawing.Point(571, 27);
+            this.tbxaddress.Name = "tbxaddress";
+            this.tbxaddress.Size = new System.Drawing.Size(254, 20);
+            this.tbxaddress.TabIndex = 28;
             // 
-            // textEdit5
+            // tbxstate
             // 
-            this.textEdit5.Location = new System.Drawing.Point(135, 157);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(254, 20);
-            this.textEdit5.TabIndex = 25;
+            this.tbxstate.Location = new System.Drawing.Point(135, 157);
+            this.tbxstate.Name = "tbxstate";
+            this.tbxstate.Size = new System.Drawing.Size(254, 20);
+            this.tbxstate.TabIndex = 25;
             // 
-            // textEdit3
+            // tbxshortname
             // 
-            this.textEdit3.Location = new System.Drawing.Point(135, 92);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(254, 20);
-            this.textEdit3.TabIndex = 5;
+            this.tbxshortname.EnterMoveNextControl = true;
+            this.tbxshortname.Location = new System.Drawing.Point(135, 92);
+            this.tbxshortname.Name = "tbxshortname";
+            this.tbxshortname.Size = new System.Drawing.Size(254, 20);
+            this.tbxshortname.TabIndex = 5;
             // 
-            // textEdit2
+            // tbxprintname
             // 
-            this.textEdit2.Location = new System.Drawing.Point(135, 58);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(254, 20);
-            this.textEdit2.TabIndex = 4;
+            this.tbxprintname.EnterMoveNextControl = true;
+            this.tbxprintname.Location = new System.Drawing.Point(135, 58);
+            this.tbxprintname.Name = "tbxprintname";
+            this.tbxprintname.Size = new System.Drawing.Size(254, 20);
+            this.tbxprintname.TabIndex = 4;
             // 
             // labelControl7
             // 
@@ -668,10 +777,53 @@
             // 
             // tbxName
             // 
+            this.tbxName.EnterMoveNextControl = true;
             this.tbxName.Location = new System.Drawing.Point(135, 27);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(254, 20);
             this.tbxName.TabIndex = 3;
+            // 
+            // cbxcountry
+            // 
+            this.cbxcountry.EnterMoveNextControl = true;
+            this.cbxcountry.Location = new System.Drawing.Point(135, 123);
+            this.cbxcountry.Name = "cbxcountry";
+            this.cbxcountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxcountry.Properties.Items.AddRange(new object[] {
+            "India",
+            "Nepal",
+            "Nigeria",
+            "Indonesia",
+            "america",
+            "japan"});
+            this.cbxcountry.Size = new System.Drawing.Size(254, 20);
+            this.cbxcountry.TabIndex = 46;
+            // 
+            // defybeginingform
+            // 
+            this.defybeginingform.EditValue = null;
+            this.defybeginingform.Location = new System.Drawing.Point(135, 192);
+            this.defybeginingform.Name = "defybeginingform";
+            this.defybeginingform.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.defybeginingform.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.defybeginingform.Size = new System.Drawing.Size(254, 20);
+            this.defybeginingform.TabIndex = 44;
+            // 
+            // debokscommincingfrom
+            // 
+            this.debokscommincingfrom.EditValue = null;
+            this.debokscommincingfrom.EnterMoveNextControl = true;
+            this.debokscommincingfrom.Location = new System.Drawing.Point(135, 224);
+            this.debokscommincingfrom.Name = "debokscommincingfrom";
+            this.debokscommincingfrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.debokscommincingfrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.debokscommincingfrom.Size = new System.Drawing.Size(254, 20);
+            this.debokscommincingfrom.TabIndex = 45;
             // 
             // emptySpaceItem1
             // 
@@ -730,39 +882,6 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // dateEdit1
-            // 
-            this.dateEdit1.Location = new System.Drawing.Point(135, 192);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.DisplayFormat.FormatString = "d";
-            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.EditFormat.FormatString = "d";
-            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.Mask.EditMask = "d";
-            this.dateEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dateEdit1.Size = new System.Drawing.Size(254, 20);
-            this.dateEdit1.TabIndex = 44;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(135, 224);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.DisplayFormat.FormatString = "d";
-            this.textEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.textEdit1.Properties.EditFormat.FormatString = "d";
-            this.textEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.textEdit1.Properties.Mask.EditMask = "d";
-            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.textEdit1.Size = new System.Drawing.Size(254, 20);
-            this.textEdit1.TabIndex = 45;
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(135, 123);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Size = new System.Drawing.Size(254, 20);
-            this.comboBoxEdit1.TabIndex = 46;
-            // 
             // Companycreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -775,7 +894,6 @@
             this.KeyPreview = true;
             this.Name = "Companycreate";
             this.Text = "Companycreate";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Companycreate_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -785,43 +903,49 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             this.groupControl5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit25.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit24.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit23.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit22.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcstno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxtin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxdefaulttexrate2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDefaultTaxRate1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxcaption.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxenablevat.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxenabletaxschg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.groupControl4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit21.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit20.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit17.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencycharater.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencyfont.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencysubstring.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencystring.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcurrencysymbol.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit15.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit11.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit12.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit13.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit14.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxward.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxemail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxtelno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxitpan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxcin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxaddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxstate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxshortname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxprintname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxcountry.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defybeginingform.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defybeginingform.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.debokscommincingfrom.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.debokscommincingfrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -839,9 +963,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit tbxstate;
+        private DevExpress.XtraEditors.TextEdit tbxshortname;
+        private DevExpress.XtraEditors.TextEdit tbxprintname;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -850,21 +974,21 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.TextEdit tbxName;
-        private DevExpress.XtraEditors.TextEdit textEdit8;
-        private DevExpress.XtraEditors.TextEdit textEdit9;
-        private DevExpress.XtraEditors.TextEdit textEdit10;
-        private DevExpress.XtraEditors.TextEdit textEdit11;
-        private DevExpress.XtraEditors.TextEdit textEdit12;
-        private DevExpress.XtraEditors.TextEdit textEdit13;
-        private DevExpress.XtraEditors.TextEdit textEdit14;
+        private DevExpress.XtraEditors.TextEdit tbxemail;
+        private DevExpress.XtraEditors.TextEdit tbxtelno;
+        private DevExpress.XtraEditors.TextEdit tbxitpan;
+        private DevExpress.XtraEditors.TextEdit tbxcin;
+        private DevExpress.XtraEditors.TextEdit tbxaddress2;
+        private DevExpress.XtraEditors.TextEdit tbxaddress1;
+        private DevExpress.XtraEditors.TextEdit tbxaddress;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.TextEdit textEdit16;
+        private DevExpress.XtraEditors.TextEdit tbxfax;
         private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.TextEdit textEdit15;
+        private DevExpress.XtraEditors.TextEdit tbxward;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.GroupControl groupControl5;
         private DevExpress.XtraEditors.GroupControl groupControl4;
@@ -873,29 +997,36 @@
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.LabelControl labelControl21;
-        private DevExpress.XtraEditors.TextEdit textEdit21;
-        private DevExpress.XtraEditors.TextEdit textEdit20;
-        private DevExpress.XtraEditors.TextEdit textEdit19;
-        private DevExpress.XtraEditors.TextEdit textEdit18;
-        private DevExpress.XtraEditors.TextEdit textEdit17;
+        private DevExpress.XtraEditors.TextEdit tbxcurrencycharater;
+        private DevExpress.XtraEditors.TextEdit tbxcurrencyfont;
+        private DevExpress.XtraEditors.TextEdit tbxcurrencysubstring;
+        private DevExpress.XtraEditors.TextEdit tbxcurrencystring;
+        private DevExpress.XtraEditors.TextEdit tbxcurrencysymbol;
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.LabelControl labelControl16;
         private DevExpress.XtraEditors.LabelControl labelControl24;
-        private DevExpress.XtraEditors.TextEdit textEdit22;
         private DevExpress.XtraEditors.LabelControl labelControl25;
-        private DevExpress.XtraEditors.TextEdit textEdit23;
         private DevExpress.XtraEditors.LabelControl labelControl26;
         private DevExpress.XtraEditors.LabelControl labelControl27;
-        private DevExpress.XtraEditors.TextEdit textEdit25;
-        private DevExpress.XtraEditors.TextEdit textEdit24;
         private DevExpress.XtraEditors.LabelControl labelControl30;
         private DevExpress.XtraEditors.LabelControl labelControl29;
         private DevExpress.XtraEditors.LabelControl labelControl28;
         private DevExpress.XtraEditors.SimpleButton btnQuit;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.TextEdit dateEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxDefaultTaxRate1;
+        private DevExpress.XtraEditors.LabelControl labelControl32;
+        private DevExpress.XtraEditors.LabelControl labelControl31;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxtype;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxcaption;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxenablevat;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxenabletaxschg;
+        private DevExpress.XtraEditors.TextEdit tbxdefaulttexrate2;
+        private DevExpress.XtraEditors.LabelControl labelControl33;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxcountry;
+        private DevExpress.XtraEditors.DateEdit defybeginingform;
+        private DevExpress.XtraEditors.DateEdit debokscommincingfrom;
+        private DevExpress.XtraEditors.TextEdit tbxcstno;
+        private DevExpress.XtraEditors.TextEdit tbxtin;
     }
 }

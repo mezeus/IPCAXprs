@@ -81,11 +81,11 @@
             this.tbxAddress2 = new DevExpress.XtraEditors.TextEdit();
             this.tbxAddress = new DevExpress.XtraEditors.TextEdit();
             this.tbxAccStocktransfer = new DevExpress.XtraEditors.TextEdit();
-            this.cbxGroupname = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxGroup = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxPrintname = new DevExpress.XtraEditors.TextEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.cbxUndergroup = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxreflectstockinbalancesheet = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxStockaccount = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxAliasname = new DevExpress.XtraEditors.TextEdit();
             this.tbxGroupName = new DevExpress.XtraEditors.TextEdit();
@@ -133,9 +133,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAccStocktransfer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxGroupname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxGroup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxUndergroup.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxreflectstockinbalancesheet.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStockaccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAliasname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxGroupName.Properties)).BeginInit();
@@ -184,11 +184,11 @@
             this.layoutControl1.Controls.Add(this.tbxAddress2);
             this.layoutControl1.Controls.Add(this.tbxAddress);
             this.layoutControl1.Controls.Add(this.tbxAccStocktransfer);
-            this.layoutControl1.Controls.Add(this.cbxGroupname);
+            this.layoutControl1.Controls.Add(this.cbxGroup);
             this.layoutControl1.Controls.Add(this.tbxPrintname);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.cbxUndergroup);
+            this.layoutControl1.Controls.Add(this.cbxreflectstockinbalancesheet);
             this.layoutControl1.Controls.Add(this.cbxStockaccount);
             this.layoutControl1.Controls.Add(this.tbxAliasname);
             this.layoutControl1.Controls.Add(this.tbxGroupName);
@@ -639,23 +639,23 @@
             this.tbxAccStocktransfer.StyleController = this.layoutControl1;
             this.tbxAccStocktransfer.TabIndex = 16;
             // 
-            // cbxGroupname
+            // cbxGroup
             // 
-            this.cbxGroupname.EnterMoveNextControl = true;
-            this.cbxGroupname.Location = new System.Drawing.Point(366, 132);
-            this.cbxGroupname.Name = "cbxGroupname";
-            this.cbxGroupname.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.cbxGroupname.Properties.Appearance.Options.UseFont = true;
-            this.cbxGroupname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxGroup.EnterMoveNextControl = true;
+            this.cbxGroup.Location = new System.Drawing.Point(366, 132);
+            this.cbxGroup.Name = "cbxGroup";
+            this.cbxGroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.cbxGroup.Properties.Appearance.Options.UseFont = true;
+            this.cbxGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxGroupname.Properties.Items.AddRange(new object[] {
+            this.cbxGroup.Properties.Items.AddRange(new object[] {
             "Godowns",
             "Production Floors",
             "Stores",
             ""});
-            this.cbxGroupname.Size = new System.Drawing.Size(310, 20);
-            this.cbxGroupname.StyleController = this.layoutControl1;
-            this.cbxGroupname.TabIndex = 14;
+            this.cbxGroup.Size = new System.Drawing.Size(310, 20);
+            this.cbxGroup.StyleController = this.layoutControl1;
+            this.cbxGroup.TabIndex = 14;
             // 
             // tbxPrintname
             // 
@@ -689,21 +689,21 @@
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // cbxUndergroup
+            // cbxreflectstockinbalancesheet
             // 
-            this.cbxUndergroup.EnterMoveNextControl = true;
-            this.cbxUndergroup.Location = new System.Drawing.Point(366, 180);
-            this.cbxUndergroup.Name = "cbxUndergroup";
-            this.cbxUndergroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.cbxUndergroup.Properties.Appearance.Options.UseFont = true;
-            this.cbxUndergroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxreflectstockinbalancesheet.EnterMoveNextControl = true;
+            this.cbxreflectstockinbalancesheet.Location = new System.Drawing.Point(366, 180);
+            this.cbxreflectstockinbalancesheet.Name = "cbxreflectstockinbalancesheet";
+            this.cbxreflectstockinbalancesheet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.cbxreflectstockinbalancesheet.Properties.Appearance.Options.UseFont = true;
+            this.cbxreflectstockinbalancesheet.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxUndergroup.Properties.Items.AddRange(new object[] {
+            this.cbxreflectstockinbalancesheet.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.cbxUndergroup.Size = new System.Drawing.Size(310, 20);
-            this.cbxUndergroup.StyleController = this.layoutControl1;
-            this.cbxUndergroup.TabIndex = 8;
+            this.cbxreflectstockinbalancesheet.Size = new System.Drawing.Size(310, 20);
+            this.cbxreflectstockinbalancesheet.StyleController = this.layoutControl1;
+            this.cbxreflectstockinbalancesheet.TabIndex = 8;
             // 
             // cbxStockaccount
             // 
@@ -741,7 +741,6 @@
             this.tbxGroupName.Size = new System.Drawing.Size(310, 20);
             this.tbxGroupName.StyleController = this.layoutControl1;
             this.tbxGroupName.TabIndex = 5;
-           // this.tbxGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
             // 
             // labelControl1
             // 
@@ -1041,7 +1040,7 @@
             // 
             // layoutControlItem12
             // 
-            this.layoutControlItem12.Control = this.cbxGroupname;
+            this.layoutControlItem12.Control = this.cbxGroup;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(497, 24);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(497, 24);
@@ -1065,7 +1064,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.cbxUndergroup;
+            this.layoutControlItem5.Control = this.cbxreflectstockinbalancesheet;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(497, 24);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(497, 24);
@@ -1123,7 +1122,6 @@
             this.Name = "MaterialCenter";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-          //  this.Load += new System.EventHandler(this.MaterialCenter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cbxSaleAccount.Properties)).EndInit();
@@ -1133,9 +1131,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAccStocktransfer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxGroupname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxGroup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPrintname.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxUndergroup.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxreflectstockinbalancesheet.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStockaccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAliasname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxGroupName.Properties)).EndInit();
@@ -1184,7 +1182,7 @@
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxUndergroup;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxreflectstockinbalancesheet;
         private DevExpress.XtraEditors.ComboBoxEdit cbxStockaccount;
         private DevExpress.XtraEditors.TextEdit tbxAliasname;
         private DevExpress.XtraEditors.TextEdit tbxGroupName;
@@ -1204,7 +1202,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxGroupname;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxGroup;
         private DevExpress.XtraEditors.TextEdit tbxPrintname;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;

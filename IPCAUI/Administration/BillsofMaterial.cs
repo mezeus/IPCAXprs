@@ -38,15 +38,15 @@ namespace IPCAUI.Administration
             BillofMaterialModel objBMmodl = new BillofMaterialModel();
 
             objBMmodl.BOMName = tbxBomName.Text.Trim();
-            objBMmodl.ItemProduct = cbxItemproduce.Text.Trim();
+            objBMmodl.Itemtoproduce = cbxItemproduce.Text.Trim();
             objBMmodl.Quantity = Convert.ToInt32(tbxQuanty.Text.Trim());
             objBMmodl.ItemUnit = cbxUnit.SelectedItem.ToString();
             objBMmodl.Expenses = Convert.ToDecimal(tbxExpensespcs.Text.Trim());
             objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxItemgenerated.SelectedItem.ToString().Equals("Yes") ? true : false);
-            objBMmodl.SourceMC = string.Empty;
+         //   objBMmodl.SourceMC = string.Empty;
             objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString().Equals("Yes") ? true : false);
             objBMmodl.AppMc = string.Empty;
-            //objBMmodl.ItemName = cbxRawItemName.Text.Trim();
+            //objBMmodl.ItemName = Text.Trim();
             //objBMmodl.Qty = Convert.ToInt32(tbxRawQty.Text.Trim());
             //objBMmodl.Unit = Convert.ToDecimal(tbxRawUnit.Text.Trim());
 
