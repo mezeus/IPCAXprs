@@ -482,12 +482,6 @@
     <Compile Include="Company\Backupdata.Designer.cs">
       <DependentUpon>Backupdata.cs</DependentUpon>
     </Compile>
-    <Compile Include="Company\Company.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Company\Company.Designer.cs">
-      <DependentUpon>Company.cs</DependentUpon>
-    </Compile>
     <Compile Include="Company\Getsoftlocklicence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3175,9 +3169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Backupdata.resx">
       <DependentUpon>Backupdata.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Company\Company.resx">
-      <DependentUpon>Company.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Getsoftlocklicence.resx">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>

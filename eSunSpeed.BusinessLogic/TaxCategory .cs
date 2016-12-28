@@ -24,7 +24,7 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Name", objTaxCat.Name));
                 paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
-                paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax),System.Data.DbType.Decimal);
+                paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax,System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon, System.Data.DbType.Decimal));
