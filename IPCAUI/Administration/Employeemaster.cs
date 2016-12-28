@@ -14,6 +14,7 @@ namespace IPCAUI.Administration
 {
     public partial class Employeemaster : Form
     {
+        EmployeeGroupBL objegrpbl = new EmployeeGroupBL();
         EmployeeMasterBL objempbl = new EmployeeMasterBL();
         public Employeemaster()
         {
@@ -80,5 +81,19 @@ namespace IPCAUI.Administration
             }
 
         }
+
+        private void Employeemaster_Load(object sender, EventArgs e)
+        {
+            LodaGroups();
+        }
+        public void LodaGroups()
+        {
+            List<EmployeeGroupModel> objmodel = objegrpbl.GetListofEmployeeGroups();
+            foreach (EmployeeGroupModel objgroup in objmodel)
+            {
+                cbxGroupname.Properties.Items.Add(objgroup.GroupName);
+            }
+        }
+
     }
 }

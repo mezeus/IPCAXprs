@@ -103,7 +103,7 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.AuthorModel> lstAuthors = new List<eSunSpeedDomain.AuthorModel>();
             eSunSpeedDomain.AuthorModel objModel;
 
-            string Query = "SELECT DISTINCT Author_Id,Author_Name,Author_Alias FROM `AuthorMaster`";
+            string Query = "SELECT DISTINCT Author_Id,Author_Name,Author_Alias,Author_PName FROM AuthorMaster";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -114,7 +114,7 @@ namespace eSunSpeed.BusinessLogic
                 
                 objModel.Name = dr["Author_Name"].ToString();
                 objModel.Alias = dr["Author_Alias"].ToString();
-                //objModel.PrintName = dr["Author_PName"].ToString();
+                objModel.PrintName = dr["Author_PName"].ToString();
                 //objModel.ConnectAcc = Convert.ToBoolean(dr["Author_Connect"]);
                 //objModel.MobileNo = dr["Author_Mobile"].ToString();
                 //objModel.Address = dr["Author_Address"].ToString();

@@ -250,7 +250,7 @@
             this.cbxPurchaseDebited.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxPurchaseDebited.Size = new System.Drawing.Size(141, 20);
+            this.cbxPurchaseDebited.Size = new System.Drawing.Size(168, 20);
             this.cbxPurchaseDebited.StyleController = this.layoutControl1;
             this.cbxPurchaseDebited.TabIndex = 65;
             // 
@@ -266,7 +266,7 @@
             this.cbxPurchaseDebitMode.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxPurchaseDebitMode.Size = new System.Drawing.Size(141, 20);
+            this.cbxPurchaseDebitMode.Size = new System.Drawing.Size(168, 20);
             this.cbxPurchaseDebitMode.StyleController = this.layoutControl1;
             this.cbxPurchaseDebitMode.TabIndex = 64;
             // 
@@ -282,7 +282,7 @@
             this.cbxSalesDebited.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxSalesDebited.Size = new System.Drawing.Size(141, 20);
+            this.cbxSalesDebited.Size = new System.Drawing.Size(168, 20);
             this.cbxSalesDebited.StyleController = this.layoutControl1;
             this.cbxSalesDebited.TabIndex = 63;
             // 
@@ -298,7 +298,7 @@
             this.cbxSaleDebitMode.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxSaleDebitMode.Size = new System.Drawing.Size(141, 20);
+            this.cbxSaleDebitMode.Size = new System.Drawing.Size(168, 20);
             this.cbxSaleDebitMode.StyleController = this.layoutControl1;
             this.cbxSaleDebitMode.TabIndex = 62;
             // 
@@ -314,7 +314,7 @@
             this.cbxDefFreeze.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxDefFreeze.Size = new System.Drawing.Size(141, 20);
+            this.cbxDefFreeze.Size = new System.Drawing.Size(168, 20);
             this.cbxDefFreeze.StyleController = this.layoutControl1;
             this.cbxDefFreeze.TabIndex = 61;
             // 
@@ -325,7 +325,7 @@
             this.tbxDefComm.Name = "tbxDefComm";
             this.tbxDefComm.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxDefComm.Properties.Appearance.Options.UseFont = true;
-            this.tbxDefComm.Size = new System.Drawing.Size(141, 20);
+            this.tbxDefComm.Size = new System.Drawing.Size(168, 20);
             this.tbxDefComm.StyleController = this.layoutControl1;
             this.tbxDefComm.TabIndex = 60;
             // 
@@ -341,7 +341,7 @@
             this.cbxDefCommMode.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxDefCommMode.Size = new System.Drawing.Size(141, 20);
+            this.cbxDefCommMode.Size = new System.Drawing.Size(168, 20);
             this.cbxDefCommMode.StyleController = this.layoutControl1;
             this.cbxDefCommMode.TabIndex = 59;
             // 
@@ -357,9 +357,10 @@
             this.cbxEnableDefComm.Properties.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cbxEnableDefComm.Size = new System.Drawing.Size(165, 20);
+            this.cbxEnableDefComm.Size = new System.Drawing.Size(192, 20);
             this.cbxEnableDefComm.StyleController = this.layoutControl1;
             this.cbxEnableDefComm.TabIndex = 58;
+            this.cbxEnableDefComm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbxEnableDefComm_KeyDown);
             // 
             // navBarControl1
             // 
@@ -728,7 +729,7 @@
             this.tbxSalesAccountCredited.Name = "tbxSalesAccountCredited";
             this.tbxSalesAccountCredited.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxSalesAccountCredited.Properties.Appearance.Options.UseFont = true;
-            this.tbxSalesAccountCredited.Size = new System.Drawing.Size(165, 20);
+            this.tbxSalesAccountCredited.Size = new System.Drawing.Size(192, 20);
             this.tbxSalesAccountCredited.StyleController = this.layoutControl1;
             this.tbxSalesAccountCredited.TabIndex = 43;
             // 
@@ -821,7 +822,7 @@
             this.tbxAddress.Properties.Appearance.Options.UseFont = true;
             this.tbxAddress.Size = new System.Drawing.Size(102, 20);
             this.tbxAddress.StyleController = this.layoutControl1;
-            this.tbxAddress.TabIndex = 5;
+            this.tbxAddress.TabIndex = 4;
             // 
             // tbxAddress2
             // 
@@ -832,7 +833,7 @@
             this.tbxAddress2.Properties.Appearance.Options.UseFont = true;
             this.tbxAddress2.Size = new System.Drawing.Size(102, 20);
             this.tbxAddress2.StyleController = this.layoutControl1;
-            this.tbxAddress2.TabIndex = 7;
+            this.tbxAddress2.TabIndex = 6;
             // 
             // tbxAddress1
             // 
@@ -843,7 +844,7 @@
             this.tbxAddress1.Properties.Appearance.Options.UseFont = true;
             this.tbxAddress1.Size = new System.Drawing.Size(102, 20);
             this.tbxAddress1.StyleController = this.layoutControl1;
-            this.tbxAddress1.TabIndex = 7;
+            this.tbxAddress1.TabIndex = 5;
             // 
             // tbxAddress3
             // 
@@ -854,7 +855,7 @@
             this.tbxAddress3.Properties.Appearance.Options.UseFont = true;
             this.tbxAddress3.Size = new System.Drawing.Size(102, 20);
             this.tbxAddress3.StyleController = this.layoutControl1;
-            this.tbxAddress3.TabIndex = 31;
+            this.tbxAddress3.TabIndex = 7;
             // 
             // tbxTelephone
             // 
@@ -865,7 +866,7 @@
             this.tbxTelephone.Properties.Appearance.Options.UseFont = true;
             this.tbxTelephone.Size = new System.Drawing.Size(102, 20);
             this.tbxTelephone.StyleController = this.layoutControl1;
-            this.tbxTelephone.TabIndex = 34;
+            this.tbxTelephone.TabIndex = 8;
             // 
             // tbxMobile
             // 
@@ -876,7 +877,7 @@
             this.tbxMobile.Properties.Appearance.Options.UseFont = true;
             this.tbxMobile.Size = new System.Drawing.Size(102, 20);
             this.tbxMobile.StyleController = this.layoutControl1;
-            this.tbxMobile.TabIndex = 36;
+            this.tbxMobile.TabIndex = 9;
             // 
             // tbxEmail
             // 
@@ -887,7 +888,7 @@
             this.tbxEmail.Properties.Appearance.Options.UseFont = true;
             this.tbxEmail.Size = new System.Drawing.Size(102, 20);
             this.tbxEmail.StyleController = this.layoutControl1;
-            this.tbxEmail.TabIndex = 37;
+            this.tbxEmail.TabIndex = 10;
             // 
             // layoutControlItem8
             // 
@@ -950,7 +951,7 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(499, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(270, 18);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(297, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
@@ -958,7 +959,7 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(132, 386);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(637, 147);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(664, 147);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
@@ -1012,7 +1013,7 @@
             this.emptySpaceItem7.AllowHotTrack = false;
             this.emptySpaceItem7.Location = new System.Drawing.Point(562, 360);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(207, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(234, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
@@ -1050,7 +1051,7 @@
             this.layoutControlItem15.Control = this.tbxSalesAccountCredited;
             this.layoutControlItem15.Location = new System.Drawing.Point(431, 156);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(338, 24);
+            this.layoutControlItem15.Size = new System.Drawing.Size(365, 24);
             this.layoutControlItem15.Text = "Salesman Account To be Credited";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1062,7 +1063,7 @@
             this.layoutControlItem5});
             this.layoutControlGroup3.Location = new System.Drawing.Point(431, 42);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(338, 114);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(365, 114);
             this.layoutControlGroup3.Text = "Set Default Commission Details";
             // 
             // layoutControlItem20
@@ -1070,7 +1071,7 @@
             this.layoutControlItem20.Control = this.cbxDefCommMode;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem20.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem20.Text = "Commision Mode";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1079,7 +1080,7 @@
             this.layoutControlItem4.Control = this.tbxDefComm;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem4.Text = "Commission";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1088,7 +1089,7 @@
             this.layoutControlItem5.Control = this.cbxDefFreeze;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem5.Text = "Freeze Commission";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1099,7 +1100,7 @@
             this.layoutControlItem16});
             this.layoutControlGroup4.Location = new System.Drawing.Point(431, 180);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(338, 90);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(365, 90);
             this.layoutControlGroup4.Text = "Commission Posting For sales";
             // 
             // layoutControlItem14
@@ -1107,7 +1108,7 @@
             this.layoutControlItem14.Control = this.cbxSaleDebitMode;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem14.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem14.Text = "Commission Debit Mode";
             this.layoutControlItem14.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1116,7 +1117,7 @@
             this.layoutControlItem16.Control = this.cbxSalesDebited;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem16.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem16.Text = "Commission Account to Debited";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1127,7 +1128,7 @@
             this.layoutControlItem2});
             this.layoutControlGroup5.Location = new System.Drawing.Point(431, 270);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(338, 90);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(365, 90);
             this.layoutControlGroup5.Text = "Commission Posting For Purcahse";
             // 
             // layoutControlItem17
@@ -1135,7 +1136,7 @@
             this.layoutControlItem17.Control = this.cbxPurchaseDebitMode;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem17.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem17.Text = "Commission Debit Mode";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1144,7 +1145,7 @@
             this.layoutControlItem2.Control = this.cbxPurchaseDebited;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(314, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(341, 24);
             this.layoutControlItem2.Text = "Commission Account to Debited";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1264,9 +1265,9 @@
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(769, 0);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(796, 0);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(164, 533);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(137, 533);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
@@ -1274,7 +1275,7 @@
             this.layoutControlItem3.Control = this.cbxEnableDefComm;
             this.layoutControlItem3.Location = new System.Drawing.Point(431, 18);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(338, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(365, 24);
             this.layoutControlItem3.Text = "Specify Default Commission Details";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(166, 13);
             // 
@@ -1285,10 +1286,12 @@
             this.ClientSize = new System.Drawing.Size(953, 553);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "Salesman";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Salesman_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Salesman_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cbxPurchaseDebited.Properties)).EndInit();

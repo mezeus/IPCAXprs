@@ -105,7 +105,7 @@ namespace IPCAUI.Administration
 
         private void cbxPrimarygroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxPrimarygroup.SelectedItem.ToString().Equals("Y"))
+            if (cbxPrimarygroup.SelectedItem.ToString().Equals("N"))
             {
                 
             }
@@ -183,5 +183,10 @@ namespace IPCAUI.Administration
             MessageBox.Show("Updated Successfully!");
 
     }
-}
+
+        private void Accountgroup_Load(object sender, EventArgs e)
+        {
+            cbxPrimarygroup.SelectedIndex = 1;
+        }
+    }
 }

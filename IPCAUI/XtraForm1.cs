@@ -128,14 +128,25 @@ namespace IPCAUI
 
         private void ribbonControl1_SelectedPageChanged(object sender, EventArgs e)
         {
+           
+
+        }
+
+        private void XtraForm1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainRibbonControl_Click(object sender, EventArgs e)
+        {
             string selectedPage = (sender as RibbonControl).SelectedPage.Name.ToString();
 
             switch (selectedPage)
             {
                 case "Reports":
-                    this.Hide();                     
-                    IPCAUI.Menu.ReportMenu frmReport = new IPCAUI.Menu.ReportMenu(this);                                    
-                    frmReport.Show();                   
+                    this.Hide();
+                    IPCAUI.Menu.ReportMenu frmReport = new IPCAUI.Menu.ReportMenu(this);
+                    frmReport.Show();
                     break;
                 case "Transactions":
                     this.Hide();
@@ -163,12 +174,6 @@ namespace IPCAUI
                 default:
                     break;
             }
-
-        }
-
-        private void XtraForm1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

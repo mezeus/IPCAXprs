@@ -111,21 +111,24 @@
             // 
             // colName
             // 
-            this.colName.FieldName = "Name";
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "GroupName";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             // 
             // colEmployeeCode
             // 
-            this.colEmployeeCode.FieldName = "Employee Code";
+            this.colEmployeeCode.Caption = "Primary";
+            this.colEmployeeCode.FieldName = "Primary";
             this.colEmployeeCode.Name = "colEmployeeCode";
             this.colEmployeeCode.Visible = true;
             this.colEmployeeCode.VisibleIndex = 1;
             // 
             // colParentGroup
             // 
-            this.colParentGroup.FieldName = "Parent Group";
+            this.colParentGroup.Caption = "Under Group";
+            this.colParentGroup.FieldName = "UnderGroup";
             this.colParentGroup.Name = "colParentGroup";
             this.colParentGroup.Visible = true;
             this.colParentGroup.VisibleIndex = 2;
@@ -134,8 +137,6 @@
             // 
             this.colJoiningdate.FieldName = "Joining date";
             this.colJoiningdate.Name = "colJoiningdate";
-            this.colJoiningdate.Visible = true;
-            this.colJoiningdate.VisibleIndex = 3;
             // 
             // navBarControl1
             // 

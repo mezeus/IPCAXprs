@@ -31,9 +31,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgAuthorList = new DevExpress.XtraGrid.GridControl();
-            this.authorListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.authorList1 = new IPCAUI.DataSets.AuthorList();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgAutorDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrintName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,14 +45,12 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgAuthorList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgAutorDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -63,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -85,7 +81,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(441, 12);
+            this.labelControl1.Location = new System.Drawing.Point(377, 12);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(121, 14);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -94,37 +90,28 @@
             // 
             // dvgAuthorList
             // 
-            this.dvgAuthorList.DataSource = this.authorListDtBindingSource;
-            this.dvgAuthorList.Location = new System.Drawing.Point(157, 30);
-            this.dvgAuthorList.MainView = this.gridView1;
+            this.dvgAuthorList.Location = new System.Drawing.Point(47, 30);
+            this.dvgAuthorList.MainView = this.dvgAutorDetails;
             this.dvgAuthorList.Name = "dvgAuthorList";
-            this.dvgAuthorList.Size = new System.Drawing.Size(672, 438);
+            this.dvgAuthorList.Size = new System.Drawing.Size(782, 438);
             this.dvgAuthorList.TabIndex = 9;
             this.dvgAuthorList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgAutorDetails});
             // 
-            // authorListDtBindingSource
+            // dvgAutorDetails
             // 
-            this.authorListDtBindingSource.DataMember = "AuthorListDt";
-            this.authorListDtBindingSource.DataSource = this.authorList1;
-            // 
-            // authorList1
-            // 
-            this.authorList1.DataSetName = "AuthorList";
-            this.authorList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgAutorDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colAlias,
             this.colPrintName});
-            this.gridView1.GridControl = this.dvgAuthorList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgAutorDetails.GridControl = this.dvgAuthorList;
+            this.dvgAutorDetails.Name = "dvgAutorDetails";
+            this.dvgAutorDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgAutorDetails.OptionsView.ShowGroupPanel = false;
             // 
             // colName
             // 
+            this.colName.Caption = "Name";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
@@ -132,6 +119,7 @@
             // 
             // colAlias
             // 
+            this.colAlias.Caption = "Alias";
             this.colAlias.FieldName = "Alias";
             this.colAlias.Name = "colAlias";
             this.colAlias.Visible = true;
@@ -139,7 +127,8 @@
             // 
             // colPrintName
             // 
-            this.colPrintName.FieldName = "Print Name";
+            this.colPrintName.Caption = "Print Name";
+            this.colPrintName.FieldName = "PrintName";
             this.colPrintName.Name = "colPrintName";
             this.colPrintName.Visible = true;
             this.colPrintName.VisibleIndex = 2;
@@ -155,7 +144,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 141;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(141, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -233,43 +222,43 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(145, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgAuthorList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(145, 18);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 18);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(676, 442);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 442);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.labelControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(429, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(365, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(125, 18);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(554, 0);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(267, 18);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(145, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(284, 18);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(330, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(490, 0);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(331, 18);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // AuthorList
             // 
@@ -284,9 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgAuthorList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgAutorDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -295,8 +282,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,10 +300,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgAuthorList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgAutorDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource authorListDtBindingSource;
-        private DataSets.AuthorList authorList1;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colAlias;
         private DevExpress.XtraGrid.Columns.GridColumn colPrintName;

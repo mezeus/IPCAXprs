@@ -85,7 +85,33 @@ namespace eSunSpeed.BusinessLogic
         }
         #endregion
 
-             
+        //public List<eSunSpeedDomain.EmployeeMasterModel> GetListofallEmployees()
+        //{
+        //    List<eSunSpeedDomain.EmployeeMasterModel> lstallemployees = new List<eSunSpeedDomain.EmployeeMasterModel>();
+        //    eSunSpeedDomain.EmployeeMasterModel objemployees;
+
+        //    string Query = "SELECT DISTINCT ,GroupName,AliasName,`primary`, UnderGroup FROM `AccountGroups`";
+        //    System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+        //    while (dr.Read())
+        //    {
+        //        objemployees = new eSunSpeedDomain.EmployeeMasterModel();
+
+        //        objemployees.EmployeeId = Convert.ToInt32(dr["Em_ID"]);
+        //        objemployees.EmployeeName = dr["Name"].ToString();
+        //        objemployees.EmployeeCode = dr["AliasName"].ToString();
+        //        objemployees.UnderGroup = dr["UnderGroup"].ToString();
+        //        objemployees.Primary = dr["Primary"].ToString();
+
+        //        lstAccountGroups.Add(accountGroup);
+
+        //    }
+
+        //    return lstAccountGroups;
+
+        //}
+
+
     }
 
 }

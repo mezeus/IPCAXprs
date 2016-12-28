@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Itemgroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbnSeparteConfig = new System.Windows.Forms.RadioButton();
+            this.rbnDefaultconfig = new System.Windows.Forms.RadioButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.ListItemgroup = new DevExpress.XtraNavBar.NavBarItem();
@@ -160,8 +160,8 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.radioButton2);
-            this.layoutControl1.Controls.Add(this.radioButton1);
+            this.layoutControl1.Controls.Add(this.rbnSeparteConfig);
+            this.layoutControl1.Controls.Add(this.rbnDefaultconfig);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.btnConfig);
             this.layoutControl1.Controls.Add(this.tbxParameters);
@@ -187,25 +187,25 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // radioButton2
+            // rbnSeparteConfig
             // 
-            this.radioButton2.Location = new System.Drawing.Point(301, 228);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(133, 25);
-            this.radioButton2.TabIndex = 60;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Use Separate Default";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbnSeparteConfig.Location = new System.Drawing.Point(301, 228);
+            this.rbnSeparteConfig.Name = "rbnSeparteConfig";
+            this.rbnSeparteConfig.Size = new System.Drawing.Size(133, 25);
+            this.rbnSeparteConfig.TabIndex = 60;
+            this.rbnSeparteConfig.TabStop = true;
+            this.rbnSeparteConfig.Text = "Use Separate Default";
+            this.rbnSeparteConfig.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbnDefaultconfig
             // 
-            this.radioButton1.Location = new System.Drawing.Point(154, 228);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(143, 25);
-            this.radioButton1.TabIndex = 59;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Use Default Config";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbnDefaultconfig.Location = new System.Drawing.Point(154, 228);
+            this.rbnDefaultconfig.Name = "rbnDefaultconfig";
+            this.rbnDefaultconfig.Size = new System.Drawing.Size(143, 25);
+            this.rbnDefaultconfig.TabIndex = 59;
+            this.rbnDefaultconfig.TabStop = true;
+            this.rbnDefaultconfig.Text = "Use Default Config";
+            this.rbnDefaultconfig.UseVisualStyleBackColor = true;
             // 
             // navBarControl1
             // 
@@ -971,7 +971,7 @@
             // 
             // layoutControlItem10
             // 
-            this.layoutControlItem10.Control = this.radioButton1;
+            this.layoutControlItem10.Control = this.rbnDefaultconfig;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(147, 29);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(147, 29);
@@ -983,7 +983,7 @@
             // 
             // layoutControlItem13
             // 
-            this.layoutControlItem13.Control = this.radioButton2;
+            this.layoutControlItem13.Control = this.rbnSeparteConfig;
             this.layoutControlItem13.Location = new System.Drawing.Point(147, 0);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(137, 29);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(137, 29);
@@ -1172,8 +1172,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxStockaccount;
         private DevExpress.XtraEditors.ComboBoxEdit cbxSalesaccount;
         private DevExpress.XtraEditors.ComboBoxEdit cbxPurchaseAccount;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbnSeparteConfig;
+        private System.Windows.Forms.RadioButton rbnDefaultconfig;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;

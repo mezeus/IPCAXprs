@@ -15,6 +15,9 @@ namespace eSunSpeedDomain
         public string StockAccount { get; set; }
         public string SalesAccount { get; set; }
         public string PurchaseAccount { get; set; }
+        public bool DefaultConfig { get; set; }
+        public bool SeparateConfig { get; set; }
+        public int Parameters { get; set; }
 
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }

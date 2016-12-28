@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgStdnarration = new DevExpress.XtraGrid.GridControl();
-            this.stdnarrationListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.stdnarrationList1 = new IPCAUI.DataSets.StdnarrationList();
             this.dvgStdnarrationDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colVoucherType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNarrationLine1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,14 +46,11 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgStdnarration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stdnarrationListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stdnarrationList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgStdnarrationDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
@@ -81,27 +78,27 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(375, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(148, 14);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 10;
+            this.labelControl1.Text = "List Of Std. Narrations";
+            // 
             // dvgStdnarration
             // 
-            this.dvgStdnarration.DataSource = this.stdnarrationListDtBindingSource;
-            this.dvgStdnarration.Location = new System.Drawing.Point(162, 30);
+            this.dvgStdnarration.Location = new System.Drawing.Point(47, 30);
             this.dvgStdnarration.MainView = this.dvgStdnarrationDetails;
             this.dvgStdnarration.Name = "dvgStdnarration";
-            this.dvgStdnarration.Size = new System.Drawing.Size(667, 438);
+            this.dvgStdnarration.Size = new System.Drawing.Size(782, 438);
             this.dvgStdnarration.TabIndex = 9;
             this.dvgStdnarration.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgStdnarrationDetails});
             this.dvgStdnarration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgStdnarration_KeyDown);
-            // 
-            // stdnarrationListDtBindingSource
-            // 
-            this.stdnarrationListDtBindingSource.DataMember = "StdnarrationListDt";
-            this.stdnarrationListDtBindingSource.DataSource = this.stdnarrationList1;
-            // 
-            // stdnarrationList1
-            // 
-            this.stdnarrationList1.DataSetName = "StdnarrationList";
-            this.stdnarrationList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dvgStdnarrationDetails
             // 
@@ -111,18 +108,19 @@
             this.colNarrationLine2});
             this.dvgStdnarrationDetails.GridControl = this.dvgStdnarration;
             this.dvgStdnarrationDetails.Name = "dvgStdnarrationDetails";
+            this.dvgStdnarrationDetails.OptionsBehavior.ReadOnly = true;
             this.dvgStdnarrationDetails.OptionsView.ShowGroupPanel = false;
             // 
             // colVoucherType
             // 
-            this.colVoucherType.FieldName = "Voucher Type";
+            this.colVoucherType.FieldName = "Vouchertype";
             this.colVoucherType.Name = "colVoucherType";
             this.colVoucherType.Visible = true;
             this.colVoucherType.VisibleIndex = 0;
             // 
             // colNarrationLine1
             // 
-            this.colNarrationLine1.FieldName = "Narration Line1";
+            this.colNarrationLine1.FieldName = "Narration";
             this.colNarrationLine1.Name = "colNarrationLine1";
             this.colNarrationLine1.Visible = true;
             this.colNarrationLine1.VisibleIndex = 1;
@@ -145,7 +143,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 146;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(146, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -223,42 +221,31 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(150, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgStdnarration;
-            this.layoutControlItem3.Location = new System.Drawing.Point(150, 18);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 18);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(671, 442);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 442);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(150, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(280, 18);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(328, 18);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(442, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(148, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "List Of Std. Narrations";
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.labelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(430, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(363, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(152, 18);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -267,9 +254,9 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(582, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(515, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(239, 18);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(306, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // StdnarrationList
@@ -285,8 +272,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgStdnarration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stdnarrationListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stdnarrationList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgStdnarrationDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
@@ -316,8 +301,6 @@
         private DevExpress.XtraGrid.GridControl dvgStdnarration;
         private DevExpress.XtraGrid.Views.Grid.GridView dvgStdnarrationDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource stdnarrationListDtBindingSource;
-        private DataSets.StdnarrationList stdnarrationList1;
         private DevExpress.XtraGrid.Columns.GridColumn colVoucherType;
         private DevExpress.XtraGrid.Columns.GridColumn colNarrationLine1;
         private DevExpress.XtraGrid.Columns.GridColumn colNarrationLine2;

@@ -82,8 +82,8 @@ namespace eSunSpeed.BusinessLogic
                 objNarr = new StdNarrationMasterModel();
 
                 objNarr.SN_Id = Convert.ToInt32(dr["SN_ID"]);
-                objNarr.Narration = dr["Narration"].ToString();
                 objNarr.Vouchertype = dr["Vouchertype"].ToString();
+                objNarr.Narration = dr["Narration"].ToString();             
                 //objNarr.CreatedBy = dr["CreatedBy"].ToString();
 
                 lstNarration.Add(objNarr);

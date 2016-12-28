@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgAccountList = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgAccountDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,14 +46,13 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgAccountList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgAccountDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -79,54 +79,69 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(346, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(58, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 10;
+            this.labelControl1.Text = "Account List";
+            // 
             // dvgAccountList
             // 
-            this.dvgAccountList.Location = new System.Drawing.Point(160, 29);
-            this.dvgAccountList.MainView = this.gridView1;
+            this.dvgAccountList.Location = new System.Drawing.Point(47, 29);
+            this.dvgAccountList.MainView = this.dvgAccountDetails;
             this.dvgAccountList.Name = "dvgAccountList";
-            this.dvgAccountList.Size = new System.Drawing.Size(669, 439);
+            this.dvgAccountList.Size = new System.Drawing.Size(782, 439);
             this.dvgAccountList.TabIndex = 9;
             this.dvgAccountList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgAccountDetails});
             this.dvgAccountList.Click += new System.EventHandler(this.gridControl1_Click);
+            this.dvgAccountList.DoubleClick += new System.EventHandler(this.dvgAccountList_DoubleClick);
+            this.dvgAccountList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgAccountList_KeyPress);
             // 
-            // gridView1
+            // dvgAccountDetails
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgAccountDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colAlias,
             this.colParentGroup,
             this.colOpBalDr,
             this.colOpBalCr});
-            this.gridView1.GridControl = this.dvgAccountList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowFooter = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgAccountDetails.GridControl = this.dvgAccountList;
+            this.dvgAccountDetails.Name = "dvgAccountDetails";
+            this.dvgAccountDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgAccountDetails.OptionsView.ShowFooter = true;
+            this.dvgAccountDetails.OptionsView.ShowGroupPanel = false;
             // 
             // colName
             // 
-            this.colName.FieldName = "Name";
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "AccountName";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             // 
             // colAlias
             // 
-            this.colAlias.FieldName = "Alias";
+            this.colAlias.Caption = "Alias";
+            this.colAlias.FieldName = "ShortName";
             this.colAlias.Name = "colAlias";
             this.colAlias.Visible = true;
             this.colAlias.VisibleIndex = 1;
             // 
             // colParentGroup
             // 
-            this.colParentGroup.FieldName = "ParentGroup";
+            this.colParentGroup.Caption = "Parent Group";
+            this.colParentGroup.FieldName = "Group";
             this.colParentGroup.Name = "colParentGroup";
             this.colParentGroup.Visible = true;
             this.colParentGroup.VisibleIndex = 2;
             // 
             // colOpBalDr
             // 
-            this.colOpBalDr.FieldName = "OpBalDr";
+            this.colOpBalDr.FieldName = "OpBal";
             this.colOpBalDr.Name = "colOpBalDr";
             this.colOpBalDr.Visible = true;
             this.colOpBalDr.VisibleIndex = 3;
@@ -149,7 +164,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 144;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(144, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -227,32 +242,23 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(148, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgAccountList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(148, 17);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 17);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(673, 443);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 443);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(416, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(58, 13);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "Account List";
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.labelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(404, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(334, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(62, 17);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -261,17 +267,17 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(148, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(256, 17);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(299, 17);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(466, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(396, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(355, 17);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(425, 17);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // AccountList
@@ -287,7 +293,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgAccountList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgAccountDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -307,7 +313,7 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl dvgAccountList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgAccountDetails;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;

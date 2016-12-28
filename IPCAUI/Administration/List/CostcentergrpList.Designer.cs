@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgCCgrpList = new DevExpress.XtraGrid.GridControl();
-            this.costcentergrpListDtBindingSource = new System.Windows.Forms.BindingSource();
+            this.costcentergrpListDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.costcentergrpList1 = new IPCAUI.DataSets.CostcentergrpList();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,7 +47,6 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -81,13 +82,24 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(375, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(149, 14);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 10;
+            this.labelControl1.Text = "Cost Center Group List";
+            // 
             // dvgCCgrpList
             // 
             this.dvgCCgrpList.DataSource = this.costcentergrpListDtBindingSource;
-            this.dvgCCgrpList.Location = new System.Drawing.Point(160, 30);
+            this.dvgCCgrpList.Location = new System.Drawing.Point(47, 30);
             this.dvgCCgrpList.MainView = this.gridView1;
             this.dvgCCgrpList.Name = "dvgCCgrpList";
-            this.dvgCCgrpList.Size = new System.Drawing.Size(669, 438);
+            this.dvgCCgrpList.Size = new System.Drawing.Size(782, 438);
             this.dvgCCgrpList.TabIndex = 9;
             this.dvgCCgrpList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -116,21 +128,21 @@
             // colName
             // 
             this.colName.Caption = "GroupName";
-            this.colName.FieldName = "Name";
+            this.colName.FieldName = "GroupName";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             // 
             // colPrimary
             // 
-            this.colPrimary.FieldName = "Primary";
+            this.colPrimary.FieldName = "PrimaryGroup";
             this.colPrimary.Name = "colPrimary";
             this.colPrimary.Visible = true;
             this.colPrimary.VisibleIndex = 1;
             // 
             // colUnderGroup
             // 
-            this.colUnderGroup.FieldName = "Under Group";
+            this.colUnderGroup.FieldName = "underGroup";
             this.colUnderGroup.Name = "colUnderGroup";
             this.colUnderGroup.Visible = true;
             this.colUnderGroup.VisibleIndex = 2;
@@ -146,7 +158,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 144;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(144, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -224,34 +236,23 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(148, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgCCgrpList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(148, 18);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 18);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(673, 442);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 442);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(441, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(149, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "Cost Center Group List";
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.labelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(429, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(363, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(153, 18);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -260,17 +261,17 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(148, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(281, 18);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(328, 18);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(582, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(516, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(239, 18);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(305, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // CostcentergrpList

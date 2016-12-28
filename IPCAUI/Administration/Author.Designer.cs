@@ -666,8 +666,8 @@
             this.cbxContactwithAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxContactwithAccount.Properties.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
+            "Y",
+            "N"});
             this.cbxContactwithAccount.Size = new System.Drawing.Size(259, 20);
             this.cbxContactwithAccount.StyleController = this.layoutControl1;
             this.cbxContactwithAccount.TabIndex = 9;

@@ -52,9 +52,9 @@ namespace IPCAUI.Administration
             objempmodel.GroupName = tbxGroupName.Text;
 
             objempmodel.AliasName = tbxAliasname.Text;
-            objempmodel.Primary = cbxPrimarygroup.SelectedItem.ToString();
-
-            objempmodel.UnderGroup = cbxPrimarygroup.SelectedItem.ToString().Equals("Yes") ? "" : cbxUndergroup.SelectedItem.ToString();
+            objempmodel.Primary = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
+            objempmodel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            objempmodel.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
 
             objempmodel.CreatedBy = "Admin";
 
@@ -68,6 +68,13 @@ namespace IPCAUI.Administration
             }
 
 
+        }
+
+        private void Employeegroup_Load(object sender, EventArgs e)
+        {
+            cbxNaturegroup.SelectedIndex = 0;
+            cbxPrimarygroup.SelectedIndex = 1;
+            cbxUndergroup.SelectedIndex = 0;
         }
     }
 }

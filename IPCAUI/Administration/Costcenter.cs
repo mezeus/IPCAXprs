@@ -72,5 +72,11 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void Costcenter_Load(object sender, EventArgs e)
+        {
+            cbxDrCr.SelectedIndex = 0;
+            cbxPrimarygroup.SelectedIndex = 0;
+        }
     }
 }

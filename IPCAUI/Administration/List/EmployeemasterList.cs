@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
 
 namespace IPCAUI.Administration.List
 {
     public partial class EmployeemasterList : Form
     {
+        EmployeeMasterBL objmasterbl = new EmployeeMasterBL();
         public EmployeemasterList()
         {
             InitializeComponent();
@@ -19,35 +21,8 @@ namespace IPCAUI.Administration.List
 
         private void EmployeemasterList_Load(object sender, EventArgs e)
         {
-            Fill();
-        }
-
-        private void Fill()
-        {
-            DataSets.EmployeemstList.EmployeemstListDtDataTable dt = new DataSets.EmployeemstList.EmployeemstListDtDataTable();
-
-            for (int i = 0; i <= 50; i++)
-            {
-                DataSets.EmployeemstList.EmployeemstListDtRow dr = dt.NewEmployeemstListDtRow();
-
-                dr[0] = "Raju" + i;
-                dr[1] = "Raju D" +i ;
-                dr[2] = "Bank group" +i;
-                dr[3] = "16-08-2016" +i;
-                //dr[4] = "10.45" +i;
-
-                dt.AddEmployeemstListDtRow(dr);
-            }
-            DataSets.EmployeemstList ds = new DataSets.EmployeemstList();
-            ds.Tables.Clear();
-
-            ds.Tables.Add(dt);
-
-            BindingSource src = new BindingSource();
-            src.DataSource = ds.Tables[0];
-
-            employeemstListDtBindingSource.DataSource = src;
-            
+            //List<eSunSpeedDomain.EmployeeMasterModel> lstemployeemaster = objmasterbl.grt();
+            //dvgAccList.DataSource = lstGroups;
         }
 
         private void dvgEmployeemstList_KeyDown(object sender, KeyEventArgs e)

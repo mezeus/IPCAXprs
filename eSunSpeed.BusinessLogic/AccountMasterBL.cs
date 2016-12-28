@@ -33,11 +33,11 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
             paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary=="Yes"?1:0));
             paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
-           // paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
-            //paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit?1:0,DbType.Int16));
+            paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
+            paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit,System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@CreatedBy", objAccountGrp.CreatedBy));
                        
-            Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UnderGroup`,`CreatedBy`) VALUES (@GroupName,@AliasName,@Primary,@UnderGroup,@CreatedBy)";
+            Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UnderGroup`,`NatureGroup`,`IsAffectGrossProfit`,`CreatedBy`) VALUES (@GroupName,@AliasName,@Primary,@UnderGroup,@NatureGroup,@IsAffectGrossProfit,@CreatedBy)";
 
             return _dbHelper.ExecuteNonQuery(Query,paramCollection) > 0;                  
         }
@@ -463,7 +463,7 @@ namespace eSunSpeed.BusinessLogic
             AccountMasterModel _acctMaster;
 
             try {
-                string Query = "SELECT DISTINCT Ac_ID,ACC_NAME,ACC_SHORTNAME,`ACC_Group`,ACC_OpBal,ACC_DrCrOpenBal FROM `ACCOUNTMaster`";
+                string Query = "SELECT DISTINCT Ac_ID,ACC_NAME,ACC_SHORTNAME,`ACC_Group`,ACC_OpBal,ACC_DrCrOpenBal FROM `accountmaster`";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
                 while (dr.Read())
@@ -474,61 +474,59 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.AccountId = Convert.ToInt32(dr["Ac_ID"]);
                     _acctMaster.AccountName = dr["ACC_NAME"].ToString();
                     _acctMaster.ShortName = dr["ACC_SHORTNAME"].ToString();
-                    _acctMaster.PrintName = dr["ACC_PRINTNAME"].ToString();
-                    _acctMaster.LedgerType = dr["ACC_LedgerType"].ToString();
-                    _acctMaster.MultiCurrency = Convert.ToBoolean(dr["ACC_MultiCurr"])?true:false;
+                    //_acctMaster.LedgerType = dr["ACC_LedgerType"].ToString();
                     _acctMaster.Group = dr["ACC_Group"].ToString();
-                    _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToInt32(dr["ACC_OpBal"].ToString());
-                   // _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString();
-                    _acctMaster.DrCrOpeningBal = dr["ACC_DrCrOpenBal"].ToString();
-                    _acctMaster.DrCrPrevBal = dr["ACC_DrCrPrevBal"].ToString();
-                    _acctMaster.MaintainBillwiseAccounts = Convert.ToBoolean(dr["ACC_MaintainBitwise"])? true : false;
+                    _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_OpBal"].ToString());
+                    // _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString();
+                    //_acctMaster.DrCrOpeningBal = dr["ACC_DrCrOpenBal"].ToString();
+                    //_acctMaster.DrCrPrevBal = dr["ACC_DrCrPrevBal"].ToString();
+                    //_acctMaster.MaintainBillwiseAccounts = Convert.ToBoolean(dr["ACC_MaintainBitwise"])? true : false;
 
-                    _acctMaster.ActivateInterestCal = Convert.ToBoolean(dr["ACC_ActivateInterestCal"]) == false ? false : true;
-                    _acctMaster.CreditDays = dr["ACC_CreditDays"].ToString();
-                    _acctMaster.CreditLimit = dr["ACC_CreditLimit"].ToString();
-                    _acctMaster.TypeofDealer = dr["ACC_TypeofDealer"].ToString();
-                    _acctMaster.TypeofBuissness = dr["ACC_TypeofBuissness"].ToString();
-                    _acctMaster.Transport = dr["ACC_Transport"].ToString();
-                    _acctMaster.Station = dr["ACC_Station"].ToString();
-                    _acctMaster.specifyDefaultSaleType = Convert.ToBoolean(dr["ACC_SpecifyDefaultSaleType"]) == false ? false : true;
-                    _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
-                   // _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
-                    _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
+                 //   _acctMaster.ActivateInterestCal = Convert.ToBoolean(dr["ACC_ActivateInterestCal"]) == false ? false : true;
+                 //   _acctMaster.CreditDays = dr["ACC_CreditDays"].ToString();
+                 //   _acctMaster.CreditLimit = dr["ACC_CreditLimit"].ToString();
+                 //   _acctMaster.TypeofDealer = dr["ACC_TypeofDealer"].ToString();
+                 //   _acctMaster.TypeofBuissness = dr["ACC_TypeofBuissness"].ToString();
+                 //   _acctMaster.Transport = dr["ACC_Transport"].ToString();
+                 //   _acctMaster.Station = dr["ACC_Station"].ToString();
+                 //   _acctMaster.specifyDefaultSaleType = Convert.ToBoolean(dr["ACC_SpecifyDefaultSaleType"]) == false ? false : true;
+                 //   _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
+                 //  // _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
+                 //   _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
 
-                    _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]) == false ? false : true;
-                    _acctMaster.LockPurchaseType = Convert.ToBoolean(dr["ACC_LockPurcType"]) == false ? false : true;
-                    _acctMaster.address1 = dr["ACC_address1"].ToString();
-                    _acctMaster.address2 = dr["ACC_address2"].ToString();
-                    _acctMaster.address3 = dr["ACC_Address3"].ToString();
-                    _acctMaster.Transport = dr["ACC_Address4"].ToString();
-                    _acctMaster.Station = dr["ACC_State"].ToString();
-                    _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
-                    _acctMaster.Fax = dr["ACC_Fax"].ToString();
-                 //   _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
-                    _acctMaster.email = dr["ACC_email"].ToString();
+                 //   _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]) == false ? false : true;
+                 //   _acctMaster.LockPurchaseType = Convert.ToBoolean(dr["ACC_LockPurcType"]) == false ? false : true;
+                 //   _acctMaster.address1 = dr["ACC_address1"].ToString();
+                 //   _acctMaster.address2 = dr["ACC_address2"].ToString();
+                 //   _acctMaster.address3 = dr["ACC_Address3"].ToString();
+                 //   _acctMaster.Transport = dr["ACC_Address4"].ToString();
+                 //   _acctMaster.Station = dr["ACC_State"].ToString();
+                 //   _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
+                 //   _acctMaster.Fax = dr["ACC_Fax"].ToString();
+                 ////   _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();
+                 //   _acctMaster.email = dr["ACC_email"].ToString();
 
-                    _acctMaster.WebSite = dr["ACC_Website"].ToString();
-                    _acctMaster.enablemailquery = Convert.ToBoolean(dr["ACC_enablemailquery"]) == false ? false : true;
-                    _acctMaster.enableSMSquery = Convert.ToBoolean(dr["ACC_enableSMSquery"]) == false ? false : true;
-                   // _acctMaster.address2 = dr["ACC_address2"].ToString();
-                    //_acctMaster.address3 = dr["ACC_Address3"].ToString();
-                    //_acctMaster.address4 = dr["ACC_Address4"].ToString();
-                    _acctMaster.State = dr["ACC_State"].ToString();
-                    _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
-                    _acctMaster.Fax = dr["ACC_Fax"].ToString();
-                    _acctMaster.MobileNumber = dr["ACC_MobileNumber"].ToString();
-                    _acctMaster.email = dr["ACC_email"].ToString();
+                 //   _acctMaster.WebSite = dr["ACC_Website"].ToString();
+                 //   _acctMaster.enablemailquery = Convert.ToBoolean(dr["ACC_enablemailquery"]) == false ? false : true;
+                 //   _acctMaster.enableSMSquery = Convert.ToBoolean(dr["ACC_enableSMSquery"]) == false ? false : true;
+                 //  // _acctMaster.address2 = dr["ACC_address2"].ToString();
+                 //   //_acctMaster.address3 = dr["ACC_Address3"].ToString();
+                 //   //_acctMaster.address4 = dr["ACC_Address4"].ToString();
+                 //   _acctMaster.State = dr["ACC_State"].ToString();
+                 //   _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
+                 //   _acctMaster.Fax = dr["ACC_Fax"].ToString();
+                 //   _acctMaster.MobileNumber = dr["ACC_MobileNumber"].ToString();
+                 //   _acctMaster.email = dr["ACC_email"].ToString();
 
-                    _acctMaster.contactperson = dr["ACC_contactperson"].ToString();
-                    _acctMaster.ITPanNumber = dr["ACC_ITPanNumber"].ToString();
-                    _acctMaster.LstNumber = dr["ACC_LSTNumber"].ToString();
-                    _acctMaster.CSTNumber = dr["ACC_CSTNumber"].ToString();
-                    _acctMaster.TIN = dr["ACC_TIN"].ToString();
-                    _acctMaster.ServiceTaxNumber = dr["ACC_ServiceTax"].ToString();
-                    _acctMaster.LBTNumber = dr["ACC_LBTNumber"].ToString();
-                    _acctMaster.BankAccountNumber = dr["ACC_BankAccountNumber"].ToString();
-                    _acctMaster.IECode = dr["ACC_IECode"].ToString();
+                 //   _acctMaster.contactperson = dr["ACC_contactperson"].ToString();
+                 //   _acctMaster.ITPanNumber = dr["ACC_ITPanNumber"].ToString();
+                 //   _acctMaster.LstNumber = dr["ACC_LSTNumber"].ToString();
+                 //   _acctMaster.CSTNumber = dr["ACC_CSTNumber"].ToString();
+                 //   _acctMaster.TIN = dr["ACC_TIN"].ToString();
+                 //   _acctMaster.ServiceTaxNumber = dr["ACC_ServiceTax"].ToString();
+                 //   _acctMaster.LBTNumber = dr["ACC_LBTNumber"].ToString();
+                 //   _acctMaster.BankAccountNumber = dr["ACC_BankAccountNumber"].ToString();
+                 //   _acctMaster.IECode = dr["ACC_IECode"].ToString();
 
                     lstAccountMaster.Add(_acctMaster);
                 }
@@ -541,14 +539,14 @@ namespace eSunSpeed.BusinessLogic
             return lstAccountMaster;
         }
         #endregion
-        public AccountMasterModel GetListofAccountByAccountName(string accountname)
+        public AccountMasterModel GetListofAccountByAccountName(int id)
         {           
             AccountMasterModel _acctMaster=new AccountMasterModel();
             
             try
             {
                 
-                string Query = "SELECT * from ACCOUNTMaster WHERE ACC_NAME='" + accountname +"'";
+                string Query = "SELECT * from accountmaster WHERE Ac_ID='" + id +"'";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
                
                 while (dr.Read())
@@ -561,7 +559,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.LedgerType = dr["ACC_LedgerType"].ToString();
                     _acctMaster.MultiCurrency = Convert.ToBoolean(dr["ACC_MultiCurr"]) ? true : false;
                     _acctMaster.Group = dr["ACC_Group"].ToString();
-                    _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToInt32(dr["ACC_OpBal"].ToString());
+                    _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_OpBal"].ToString());
                     // _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString();
                     _acctMaster.DrCrOpeningBal = dr["ACC_DrCrOpenBal"].ToString();
                     _acctMaster.DrCrPrevBal = dr["ACC_DrCrPrevBal"].ToString();
@@ -585,7 +583,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.address2 = dr["ACC_address2"].ToString();
                     _acctMaster.address3 = dr["ACC_Address3"].ToString();
                     _acctMaster.Transport = dr["ACC_Address4"].ToString();
-                    _acctMaster.Station = dr["ACC_State"].ToString();
+                    _acctMaster.Station = dr["ACC_Station"].ToString();
                     _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
                     _acctMaster.Fax = dr["ACC_Fax"].ToString();
                    // _acctMaster.FreezeSaleType = dr["ACC_MobileNumber"].ToString();

@@ -29,10 +29,13 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@StockAccount", objIGM.StockAccount));
                 paramCollection.Add(new DBParameter("@SalesAccount", objIGM.SalesAccount));
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objIGM.PurchaseAccount));
+                paramCollection.Add(new DBParameter("@DefaultConfig", objIGM.DefaultConfig, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@SeparateConfig", objIGM.SeparateConfig, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@Parameters", objIGM.Parameters));
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
                 
-                Query = "INSERT INTO itemgroupmaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`CreatedBy`) " +
-                    "VALUES(@ItemGroup,@Alias,@PrimaryGroup,@UnderGroup,@StockAccount,@SalesAccount,@PurchaseAccount,@CreatedBy)";
+                Query = "INSERT INTO itemgroupmaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`DefaultConfig`,`SeparateConfig`,`Parameters`,`CreatedBy`) " +
+                    "VALUES(@ItemGroup,@Alias,@PrimaryGroup,@UnderGroup,@StockAccount,@SalesAccount,@PurchaseAccount,@DefaultConfig,@SeparateConfig,@Parameters,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;

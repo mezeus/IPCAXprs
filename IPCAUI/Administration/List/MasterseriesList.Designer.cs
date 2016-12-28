@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgMasterSeriesList = new DevExpress.XtraGrid.GridControl();
-            this.masterseriesListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.masterseriesList1 = new IPCAUI.DataSets.MasterseriesList();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgMasterseries = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -43,16 +43,13 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMasterSeriesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterseriesListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterseriesList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMasterseries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -79,38 +76,38 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(372, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(136, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 10;
+            this.labelControl1.Text = "List Of Master Series Groups";
+            // 
             // dvgMasterSeriesList
             // 
-            this.dvgMasterSeriesList.DataSource = this.masterseriesListDtBindingSource;
-            this.dvgMasterSeriesList.Location = new System.Drawing.Point(160, 29);
-            this.dvgMasterSeriesList.MainView = this.gridView1;
+            this.dvgMasterSeriesList.Location = new System.Drawing.Point(47, 29);
+            this.dvgMasterSeriesList.MainView = this.dvgMasterseries;
             this.dvgMasterSeriesList.Name = "dvgMasterSeriesList";
-            this.dvgMasterSeriesList.Size = new System.Drawing.Size(669, 439);
+            this.dvgMasterSeriesList.Size = new System.Drawing.Size(782, 439);
             this.dvgMasterSeriesList.TabIndex = 9;
             this.dvgMasterSeriesList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgMasterseries});
             // 
-            // masterseriesListDtBindingSource
+            // dvgMasterseries
             // 
-            this.masterseriesListDtBindingSource.DataMember = "MasterseriesListDt";
-            this.masterseriesListDtBindingSource.DataSource = this.masterseriesList1;
-            // 
-            // masterseriesList1
-            // 
-            this.masterseriesList1.DataSetName = "MasterseriesList";
-            this.masterseriesList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgMasterseries.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName});
-            this.gridView1.GridControl = this.dvgMasterSeriesList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgMasterseries.GridControl = this.dvgMasterSeriesList;
+            this.dvgMasterseries.Name = "dvgMasterseries";
+            this.dvgMasterseries.OptionsBehavior.ReadOnly = true;
+            this.dvgMasterseries.OptionsView.ShowGroupPanel = false;
             // 
             // colName
             // 
-            this.colName.FieldName = "Name";
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "MasterName";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
@@ -126,7 +123,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 146;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(144, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -204,32 +201,23 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(148, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgMasterSeriesList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(148, 17);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 17);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(673, 443);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 443);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(438, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(136, 13);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "List Of Master Series Groups";
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.labelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(426, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(360, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(140, 17);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -238,17 +226,17 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(148, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(278, 17);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(325, 17);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(566, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(500, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(255, 17);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(321, 17);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // MasterseriesList
@@ -264,9 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgMasterSeriesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterseriesListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterseriesList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMasterseries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -293,10 +279,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgMasterSeriesList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgMasterseries;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource masterseriesListDtBindingSource;
-        private DataSets.MasterseriesList masterseriesList1;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

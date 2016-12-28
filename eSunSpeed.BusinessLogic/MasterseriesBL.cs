@@ -27,7 +27,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@MasterName", objmasmod.MasterName));
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
                 
-                Query = "INSERT INTO Masterseriesgroup (`Name`) " +
+                Query = "INSERT INTO masterseriesgroup (`Name`) " +
                     "VALUES(@MasterName)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -114,15 +114,15 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.MasterseriesModel> lstmasterseries = new List<eSunSpeedDomain.MasterseriesModel>();
             eSunSpeedDomain.MasterseriesModel masterseries;
 
-            string Query = "SELECT DISTINCT MS_Id,MS_Name FROM `Masterseriesgroup`";
+            string Query = "SELECT DISTINCT masid,Name FROM `masterseriesgroup`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
                 masterseries = new eSunSpeedDomain.MasterseriesModel();
 
-                masterseries.MasterId = Convert.ToInt32(dr["MS_Id"]);
-                masterseries.MasterName = dr["MS_Name"].ToString();
+                masterseries.MasterId = Convert.ToInt32(dr["masid"]);
+                masterseries.MasterName = dr["Name"].ToString();
 
                 lstmasterseries.Add(masterseries);
 

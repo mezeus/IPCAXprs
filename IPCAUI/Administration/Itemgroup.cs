@@ -30,6 +30,9 @@ namespace IPCAUI.Administration
             objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
             objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
             objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
+            objModel.SeparateConfig = rbnSeparteConfig.Checked ? true : false;
+            objModel.DefaultConfig = rbnDefaultconfig.Checked ? true : false;
+            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objItemBL.SaveIGM(objModel);

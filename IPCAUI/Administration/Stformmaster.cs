@@ -62,5 +62,10 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
         }
+
+        private void Stformmaster_Load(object sender, EventArgs e)
+        {
+            cbxStregtype.SelectedIndex = 0;
+        }
     }
 }

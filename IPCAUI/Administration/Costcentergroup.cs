@@ -108,12 +108,12 @@ namespace IPCAUI.Administration
         }
         private void tbxGroupName_Leave(object sender, EventArgs e)
         {
-            if (tbxGroupName.Text.Equals(string.Empty))
-            {
-                MessageBox.Show("Group Name can not be blank!");
-                tbxGroupName.Focus();
-                return;
-            }
+            //if (tbxGroupName.Text.Equals(string.Empty))
+            //{
+            //    MessageBox.Show("Group Name can not be blank!");
+            //    tbxGroupName.Focus();
+            //    return;
+            //}
         }
     }
 }

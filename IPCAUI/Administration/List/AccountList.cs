@@ -33,5 +33,23 @@ namespace IPCAUI.Administration.List
         {
 
         }
+
+        private void dvgAccountList_DoubleClick(object sender, EventArgs e)
+        {
+            AccountMasterModel lstMasters;
+
+            lstMasters = (AccountMasterModel)dvgAccountDetails.GetRow(dvgAccountDetails.FocusedRowHandle);
+            string cellValue = lstMasters.AccountId.ToString();
+        }
+
+        private void dvgAccountList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AccountMasterModel lstMasters;
+
+            lstMasters = (AccountMasterModel)dvgAccountDetails.GetRow(dvgAccountDetails.FocusedRowHandle);
+            Account.groupId = lstMasters.AccountId;
+
+            this.Close();
+        }
     }
 }

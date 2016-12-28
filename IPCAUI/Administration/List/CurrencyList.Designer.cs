@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgCurrencyList = new DevExpress.XtraGrid.GridControl();
-            this.currencyListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.currencyList1 = new IPCAUI.DataSets.CurrencyList();
             this.dvgCurrencyDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCurrencySymbol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrencystring = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,14 +46,11 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCurrencyList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCurrencyDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
@@ -82,27 +78,27 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(367, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(115, 14);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 10;
+            this.labelControl1.Text = "List Of Currencys";
+            // 
             // dvgCurrencyList
             // 
-            this.dvgCurrencyList.DataSource = this.currencyListDtBindingSource;
-            this.dvgCurrencyList.Location = new System.Drawing.Point(162, 30);
+            this.dvgCurrencyList.Location = new System.Drawing.Point(47, 30);
             this.dvgCurrencyList.MainView = this.dvgCurrencyDetails;
             this.dvgCurrencyList.Name = "dvgCurrencyList";
-            this.dvgCurrencyList.Size = new System.Drawing.Size(667, 438);
+            this.dvgCurrencyList.Size = new System.Drawing.Size(782, 438);
             this.dvgCurrencyList.TabIndex = 9;
             this.dvgCurrencyList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgCurrencyDetails});
             this.dvgCurrencyList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCurrencyList_KeyDown);
-            // 
-            // currencyListDtBindingSource
-            // 
-            this.currencyListDtBindingSource.DataMember = "CurrencyListDt";
-            this.currencyListDtBindingSource.DataSource = this.currencyList1;
-            // 
-            // currencyList1
-            // 
-            this.currencyList1.DataSetName = "CurrencyList";
-            this.currencyList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dvgCurrencyDetails
             // 
@@ -117,28 +113,28 @@
             // 
             // colCurrencySymbol
             // 
-            this.colCurrencySymbol.FieldName = "Currency Symbol";
+            this.colCurrencySymbol.FieldName = "Symbol";
             this.colCurrencySymbol.Name = "colCurrencySymbol";
             this.colCurrencySymbol.Visible = true;
             this.colCurrencySymbol.VisibleIndex = 0;
             // 
             // colCurrencystring
             // 
-            this.colCurrencystring.FieldName = "Currency string";
+            this.colCurrencystring.FieldName = "CString";
             this.colCurrencystring.Name = "colCurrencystring";
             this.colCurrencystring.Visible = true;
             this.colCurrencystring.VisibleIndex = 1;
             // 
             // colCurrencySubString
             // 
-            this.colCurrencySubString.FieldName = "Currency Sub String";
+            this.colCurrencySubString.FieldName = "SubString";
             this.colCurrencySubString.Name = "colCurrencySubString";
             this.colCurrencySubString.Visible = true;
             this.colCurrencySubString.VisibleIndex = 2;
             // 
             // colCurrencyConversionMode
             // 
-            this.colCurrencyConversionMode.FieldName = "Currency Conversion Mode";
+            this.colCurrencyConversionMode.FieldName = "ConvertionMode";
             this.colCurrencyConversionMode.Name = "colCurrencyConversionMode";
             this.colCurrencyConversionMode.Visible = true;
             this.colCurrencyConversionMode.VisibleIndex = 3;
@@ -154,7 +150,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 146;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
-            this.navBarControl1.Size = new System.Drawing.Size(146, 456);
+            this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -232,42 +228,31 @@
             this.layoutControlItem5.Control = this.navBarControl1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(150, 460);
+            this.layoutControlItem5.Size = new System.Drawing.Size(35, 460);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgCurrencyList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(150, 18);
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 18);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(671, 442);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 442);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(150, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(273, 18);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(320, 18);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(435, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(115, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "List Of Currencys";
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.labelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(423, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(355, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(119, 18);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -276,9 +261,9 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(542, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(474, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(279, 18);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(347, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // CurrencyList
@@ -294,8 +279,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgCurrencyList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCurrencyDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
@@ -325,8 +308,6 @@
         private DevExpress.XtraGrid.GridControl dvgCurrencyList;
         private DevExpress.XtraGrid.Views.Grid.GridView dvgCurrencyDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource currencyListDtBindingSource;
-        private DataSets.CurrencyList currencyList1;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencySymbol;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencystring;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencySubString;

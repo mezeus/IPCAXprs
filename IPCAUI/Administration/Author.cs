@@ -113,12 +113,12 @@ namespace IPCAUI.Administration
 
         private void tbxName_Leave(object sender, EventArgs e)
         {
-            if (tbxName.Text.Equals(string.Empty))
-            {
-                MessageBox.Show("Author Name can not be blank!");
-                tbxName.Focus();
-                return;
-            }
+            //if (tbxName.Text.Equals(string.Empty))
+            //{
+            //    MessageBox.Show("Author Name can not be blank!");
+            //    tbxName.Focus();
+            //    return;
+            //}
         }
     }
 }

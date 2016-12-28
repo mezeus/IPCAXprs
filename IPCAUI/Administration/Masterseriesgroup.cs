@@ -34,13 +34,11 @@ namespace IPCAUI.Administration
                 return;
             }
 
-            Masterseriesgroup objmastser = new Masterseriesgroup();
+            MasterseriesModel objmaster = new MasterseriesModel();
 
-          
-            objmastser.Name = tbxName.Text.Trim();
+            objmaster.MasterName = tbxName.Text.Trim();
 
-            MasterseriesModel objmas = null;
-            bool isSuccess = objmasbl.SaveMasterSeries(objmas);
+            bool isSuccess = objmasbl.SaveMasterSeries(objmaster);
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");

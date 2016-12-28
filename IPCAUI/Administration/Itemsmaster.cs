@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Itemsmaster : Form
     {
         ItemMasterBL objIMBL = new ItemMasterBL();
+        ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
         public Itemsmaster()
         {
             InitializeComponent();
@@ -128,6 +129,16 @@ namespace IPCAUI.Administration
         }
 
         private void Itemsmaster_Load(object sender, EventArgs e)
+        {
+            List<ItemGroupMasterModel> lstgroupmodel = objgrpbl.GetAllItemGroup();
+            foreach(ItemGroupMasterModel objgroup in lstgroupmodel)
+            {
+                cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
+            }
+            LoadDefaultValues();
+            
+        }
+        public void LoadDefaultValues()
         {
             cbxAltUnit.SelectedIndex = 0;
             cbxTaxCat.SelectedIndex = 0;

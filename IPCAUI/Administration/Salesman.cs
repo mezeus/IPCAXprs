@@ -116,5 +116,18 @@ namespace IPCAUI.Administration
             cbxSalesDebited.SelectedIndex = 0;
 
         }
+
+        private void cbxEnableDefComm_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void Salesman_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyData == Keys.Enter))
+            {
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+        }
     }
 }

@@ -110,6 +110,11 @@
             this.tbxFname = new DevExpress.XtraEditors.TextEdit();
             this.tbxSpousename = new DevExpress.XtraEditors.TextEdit();
             this.tbxPhone = new DevExpress.XtraEditors.TextEdit();
+            this.dtDob = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCurrentStatus = new DevExpress.XtraEditors.TextEdit();
+            this.tbxBonusapplicable = new DevExpress.XtraEditors.TextEdit();
+            this.dtDoj = new DevExpress.XtraEditors.TextEdit();
+            this.dtlwd = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -137,6 +142,7 @@
             this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem41 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -154,6 +160,8 @@
             this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem49 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -162,14 +170,6 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.grpCreditdays = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dtDob = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tbxCurrentStatus = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tbxBonusapplicable = new DevExpress.XtraEditors.TextEdit();
-            this.dtDoj = new DevExpress.XtraEditors.TextEdit();
-            this.dtlwd = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -205,6 +205,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxFname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSpousename.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPhone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDob.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCurrentStatus.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxBonusapplicable.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDoj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlwd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -232,6 +237,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
@@ -249,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
@@ -257,14 +265,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDob.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCurrentStatus.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxBonusapplicable.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDoj.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtlwd.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -1007,6 +1007,69 @@
             this.tbxPhone.StyleController = this.layoutControl1;
             this.tbxPhone.TabIndex = 18;
             // 
+            // dtDob
+            // 
+            this.dtDob.EnterMoveNextControl = true;
+            this.dtDob.Location = new System.Drawing.Point(255, 324);
+            this.dtDob.Name = "dtDob";
+            this.dtDob.Properties.DisplayFormat.FormatString = "d";
+            this.dtDob.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDob.Properties.EditFormat.FormatString = "d";
+            this.dtDob.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDob.Properties.Mask.EditMask = "d";
+            this.dtDob.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtDob.Size = new System.Drawing.Size(313, 20);
+            this.dtDob.StyleController = this.layoutControl1;
+            this.dtDob.TabIndex = 65;
+            // 
+            // tbxCurrentStatus
+            // 
+            this.tbxCurrentStatus.EnterMoveNextControl = true;
+            this.tbxCurrentStatus.Location = new System.Drawing.Point(691, 84);
+            this.tbxCurrentStatus.Name = "tbxCurrentStatus";
+            this.tbxCurrentStatus.Size = new System.Drawing.Size(291, 20);
+            this.tbxCurrentStatus.StyleController = this.layoutControl1;
+            this.tbxCurrentStatus.TabIndex = 32;
+            // 
+            // tbxBonusapplicable
+            // 
+            this.tbxBonusapplicable.EnterMoveNextControl = true;
+            this.tbxBonusapplicable.Location = new System.Drawing.Point(691, 180);
+            this.tbxBonusapplicable.Name = "tbxBonusapplicable";
+            this.tbxBonusapplicable.Size = new System.Drawing.Size(291, 20);
+            this.tbxBonusapplicable.StyleController = this.layoutControl1;
+            this.tbxBonusapplicable.TabIndex = 60;
+            // 
+            // dtDoj
+            // 
+            this.dtDoj.EnterMoveNextControl = true;
+            this.dtDoj.Location = new System.Drawing.Point(691, 60);
+            this.dtDoj.Name = "dtDoj";
+            this.dtDoj.Properties.DisplayFormat.FormatString = "d";
+            this.dtDoj.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDoj.Properties.EditFormat.FormatString = "d";
+            this.dtDoj.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDoj.Properties.Mask.EditMask = "d";
+            this.dtDoj.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtDoj.Size = new System.Drawing.Size(291, 20);
+            this.dtDoj.StyleController = this.layoutControl1;
+            this.dtDoj.TabIndex = 66;
+            // 
+            // dtlwd
+            // 
+            this.dtlwd.EnterMoveNextControl = true;
+            this.dtlwd.Location = new System.Drawing.Point(691, 108);
+            this.dtlwd.Name = "dtlwd";
+            this.dtlwd.Properties.DisplayFormat.FormatString = "d";
+            this.dtlwd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtlwd.Properties.EditFormat.FormatString = "d";
+            this.dtlwd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtlwd.Properties.Mask.EditMask = "d";
+            this.dtlwd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtlwd.Size = new System.Drawing.Size(291, 20);
+            this.dtlwd.StyleController = this.layoutControl1;
+            this.dtlwd.TabIndex = 67;
+            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.gridControl2;
@@ -1282,6 +1345,15 @@
             this.layoutControlItem41.Text = "IT PAN";
             this.layoutControlItem41.TextSize = new System.Drawing.Size(92, 13);
             // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.dtDob;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 264);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(412, 24);
+            this.layoutControlItem14.Text = "Date of Birth";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(92, 13);
+            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1452,6 +1524,24 @@
             this.layoutControlItem51.Text = "Cheque Print Name";
             this.layoutControlItem51.TextSize = new System.Drawing.Size(92, 13);
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.dtDoj;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(390, 24);
+            this.layoutControlItem9.Text = "Date of Joining";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(92, 13);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.dtlwd;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(390, 24);
+            this.layoutControlItem12.Text = "Last Working Date";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(92, 13);
+            // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
@@ -1518,96 +1608,6 @@
             this.grpCreditdays.Size = new System.Drawing.Size(464, 66);
             this.grpCreditdays.Text = "Credit Days";
             // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.dtDob;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 264);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(412, 24);
-            this.layoutControlItem14.Text = "Date of Birth";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(92, 13);
-            // 
-            // dtDob
-            // 
-            this.dtDob.EnterMoveNextControl = true;
-            this.dtDob.Location = new System.Drawing.Point(255, 324);
-            this.dtDob.Name = "dtDob";
-            this.dtDob.Properties.DisplayFormat.FormatString = "d";
-            this.dtDob.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtDob.Properties.EditFormat.FormatString = "d";
-            this.dtDob.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtDob.Properties.Mask.EditMask = "d";
-            this.dtDob.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dtDob.Size = new System.Drawing.Size(313, 20);
-            this.dtDob.StyleController = this.layoutControl1;
-            this.dtDob.TabIndex = 65;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.dtDoj;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(390, 24);
-            this.layoutControlItem9.Text = "Date of Joining";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(92, 13);
-            // 
-            // tbxCurrentStatus
-            // 
-            this.tbxCurrentStatus.EnterMoveNextControl = true;
-            this.tbxCurrentStatus.Location = new System.Drawing.Point(691, 84);
-            this.tbxCurrentStatus.Name = "tbxCurrentStatus";
-            this.tbxCurrentStatus.Size = new System.Drawing.Size(291, 20);
-            this.tbxCurrentStatus.StyleController = this.layoutControl1;
-            this.tbxCurrentStatus.TabIndex = 32;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.dtlwd;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(390, 24);
-            this.layoutControlItem12.Text = "Last Working Date";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(92, 13);
-            // 
-            // tbxBonusapplicable
-            // 
-            this.tbxBonusapplicable.EnterMoveNextControl = true;
-            this.tbxBonusapplicable.Location = new System.Drawing.Point(691, 180);
-            this.tbxBonusapplicable.Name = "tbxBonusapplicable";
-            this.tbxBonusapplicable.Size = new System.Drawing.Size(291, 20);
-            this.tbxBonusapplicable.StyleController = this.layoutControl1;
-            this.tbxBonusapplicable.TabIndex = 60;
-            // 
-            // dtDoj
-            // 
-            this.dtDoj.EnterMoveNextControl = true;
-            this.dtDoj.Location = new System.Drawing.Point(691, 60);
-            this.dtDoj.Name = "dtDoj";
-            this.dtDoj.Properties.DisplayFormat.FormatString = "d";
-            this.dtDoj.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtDoj.Properties.EditFormat.FormatString = "d";
-            this.dtDoj.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtDoj.Properties.Mask.EditMask = "d";
-            this.dtDoj.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dtDoj.Size = new System.Drawing.Size(291, 20);
-            this.dtDoj.StyleController = this.layoutControl1;
-            this.dtDoj.TabIndex = 66;
-            // 
-            // dtlwd
-            // 
-            this.dtlwd.EnterMoveNextControl = true;
-            this.dtlwd.Location = new System.Drawing.Point(691, 108);
-            this.dtlwd.Name = "dtlwd";
-            this.dtlwd.Properties.DisplayFormat.FormatString = "d";
-            this.dtlwd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtlwd.Properties.EditFormat.FormatString = "d";
-            this.dtlwd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtlwd.Properties.Mask.EditMask = "d";
-            this.dtlwd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dtlwd.Size = new System.Drawing.Size(291, 20);
-            this.dtlwd.StyleController = this.layoutControl1;
-            this.dtlwd.TabIndex = 67;
-            // 
             // Employeemaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1618,6 +1618,7 @@
             this.Name = "Employeemaster";
             this.Text = "Account";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Employeemaster_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
@@ -1653,6 +1654,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxFname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSpousename.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPhone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDob.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCurrentStatus.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxBonusapplicable.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDoj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlwd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1680,6 +1686,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
@@ -1697,6 +1704,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
@@ -1705,14 +1714,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDob.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCurrentStatus.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxBonusapplicable.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDoj.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtlwd.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

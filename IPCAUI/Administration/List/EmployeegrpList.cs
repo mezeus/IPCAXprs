@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
     public partial class EmployeegrpList : Form
     {
+        EmployeeGroupBL objegrpbl = new EmployeeGroupBL();
         public EmployeegrpList()
         {
             InitializeComponent();
@@ -19,7 +22,8 @@ namespace IPCAUI.Administration.List
 
         private void EmployeegrpList_Load(object sender, EventArgs e)
         {
-           
+            List<eSunSpeedDomain.EmployeeGroupModel> lstGroups = objegrpbl.GetListofEmployeeGroups();
+            dvgEmployeeList.DataSource = lstGroups;
         }
 
 
