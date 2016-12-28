@@ -65,6 +65,7 @@
     <Compile Include="PhysicalStockModel.cs" />
     <Compile Include="PurchaseTypeModel.cs" />
     <Compile Include="ReferenceGroupModel.cs" />
+    <Compile Include="Reports\DayBookModel.cs" />
     <Compile Include="StockItemsModel.cs" />
     <Compile Include="StockJournalModel.cs" />
     <Compile Include="TdsModel.cs" />
