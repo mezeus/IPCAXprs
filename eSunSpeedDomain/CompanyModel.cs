@@ -9,7 +9,7 @@ namespace eSunSpeedDomain
     {
         public int CompanyId { get; set; }
 
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
         public string PrintName { get; set; }
         public string ShortName { get; set; }
         public string Country { get; set; }

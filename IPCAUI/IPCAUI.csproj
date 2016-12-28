@@ -506,6 +506,12 @@
     <Compile Include="Company\Deletecompany.Designer.cs">
       <DependentUpon>Deletecompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\NewCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\NewCompany.Designer.cs">
+      <DependentUpon>NewCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\Reindexdatabase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -853,6 +859,12 @@
     </Compile>
     <Compile Include="MDIParent1.Designer.cs">
       <DependentUpon>MDIParent1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.Designer.cs">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\ConfigurationMenu.cs">
       <SubType>Form</SubType>
@@ -3170,6 +3182,9 @@
     <EmbeddedResource Include="Company\Deletecompany.resx">
       <DependentUpon>Deletecompany.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Company\NewCompany.resx">
+      <DependentUpon>NewCompany.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Company\Reindexdatabase.resx">
       <DependentUpon>Reindexdatabase.cs</DependentUpon>
     </EmbeddedResource>
@@ -3220,6 +3235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\CompanyMenu.resx">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>

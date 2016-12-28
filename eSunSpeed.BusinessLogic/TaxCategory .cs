@@ -24,21 +24,19 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Name", objTaxCat.Name));
                 paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
-                paramCollection.Add(new DBParameter("@Taxation_Type", objTaxCat.Taxation_Type));
-                paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax));
-                paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax));
+                paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax,System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon, System.Data.DbType.Decimal));
-
                 paramCollection.Add(new DBParameter("@TaxonMRPMode", objTaxCat.TaxonMRPMode));
+                paramCollection.Add(new DBParameter("@Taxation_Type", objTaxCat.Taxation_Type));
                 paramCollection.Add(new DBParameter("@HSNCode", objTaxCat.HSNCode));
                 paramCollection.Add(new DBParameter("@Tax_Desc", objTaxCat.Tax_Desc));
-
                 paramCollection.Add(new DBParameter("@CreatedBy", objTaxCat.CreatedBy));
 
-                Query = "INSERT INTO TaxCategory([Name],[TaxCat_Type],[Taxation_Type],[Local_Tax],[CentralTax],[TaxonMRP],[CalculatedTaxon],[TaxonMRPMode]," +
-                        "[HSNCode],[Tax_Desc],[CreatedBy]) VALUES " +
-                        "(@Name,@TaxCat_Type,@Taxation_Type,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@HSNCode,@Tax_Desc,@CreatedBy)";
+                Query = "INSERT INTO taxcategory(`Name`,`TaxCat_Type`,`Local_Tax`,`Central_Tax`,`TaxonMRP`,`CalculatedTaxon`,`TaxonMRPMode`,`Taxation_Type`," +
+                        "`HSNCode`,`Tax_Desc`,`CreatedBy`) VALUES " +
+                        "(@Name,@TaxCat_Type,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@Taxation_Type,@HSNCode,@Tax_Desc,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;

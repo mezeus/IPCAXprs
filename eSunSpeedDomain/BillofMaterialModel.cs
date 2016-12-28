@@ -10,7 +10,7 @@ namespace eSunSpeedDomain
         public int Bom_Id { get; set; }
         public string BOMName { get; set; }
         //This is ComboBox
-        public string ItemProduct { get; set; }
+        public string Itemtoproduce { get; set; }
         public decimal Quantity { get; set; }
         //This is ComboboxofUnitMasterList
         public string ItemUnit { get; set; }

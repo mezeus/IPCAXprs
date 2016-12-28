@@ -32,15 +32,17 @@ namespace IPCAUI.Administration
         {
             MaterialCentreMasterModel objGroup = new MaterialCentreMasterModel();
 
-            objGroup.Group = tbxGroupName.Text.TrimEnd();
+            objGroup.GroupName = tbxGroupName.Text.TrimEnd();
             objGroup.Alias = tbxAliasname.Text.Trim();
+            objGroup.PrintName = tbxPrintname.Text.Trim();
+            objGroup.Group = cbxGroup.Text.Trim();
             objGroup.StockAccount = cbxStockaccount.Text.Trim();
-        //    objGroup.EnableStockinBal = cbxstockinbal.SelectedItem.ToString() == "Y" ? true : false;
-          //  objGroup.SalesAccount = tbxSalesAccount.Text.Trim();
-            //objGroup.PurchaseAccount = tbxPurcaccount.Text.Trim();
-            objGroup.EnableAccinTransfer = tbxAccStocktransfer.Text.Trim() == "Y" ? true : false; 
-
-
+        objGroup.EnableStockinBal =cbxreflectstockinbalancesheet.SelectedItem.ToString() == "Y" ? true : false;
+            objGroup.SalesAccount = cbxSaleAccount.Text.Trim();
+            objGroup.PurchaseAccount = cbxPurchaseAccount.Text.Trim();
+            objGroup.EnableAccinTransfer = tbxAccStocktransfer.Text.Trim() == "Y" ? true : false;
+            objGroup.Address = tbxAddress.Text.Trim();
+            
 
            // objGroup.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
            // objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();

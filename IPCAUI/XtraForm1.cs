@@ -143,6 +143,11 @@ namespace IPCAUI
 
             switch (selectedPage)
             {
+                case "Company":
+                    this.Hide();
+                    IPCAUI.Menu.CompanyMenu frmCompanyMenu = new IPCAUI.Menu.CompanyMenu(this);
+                    frmCompanyMenu.Show();
+                    break;
                 case "Reports":
                     this.Hide();
                     IPCAUI.Menu.ReportMenu frmReport = new IPCAUI.Menu.ReportMenu(this);

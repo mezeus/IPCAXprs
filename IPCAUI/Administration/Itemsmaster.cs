@@ -60,7 +60,7 @@ namespace IPCAUI.Administration
             objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
             objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
             objModel.ConType = tbxConType.Text.Trim();
-            objModel.AltOpQty = Convert.ToDouble(tbxAltOpQty.Text.Trim());
+           objModel.AltOpQty = Convert.ToDouble(tbxAltOpQty.Text.Trim());
             objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString() == "Y" ? true : false;
             objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SalePrice = Convert.ToDouble(tbxSalesPrice.Text.Trim());

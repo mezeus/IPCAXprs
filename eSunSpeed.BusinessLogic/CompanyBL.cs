@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using eSunSpeedDomain;
 using eSunSpeed.DataAccess;
+using eSunSpeed.BusinessLogic;
+
+
 
 namespace eSunSpeed.BusinessLogic
 {
     public class CompanyBL
     {
+        CompanyModel objcommod = new CompanyModel();
         private DBHelper _dbHelper = new DBHelper();
 
         public int GetDiscountStructId()
@@ -29,40 +33,37 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@CompanyName", objCompany.CompanyName));
+                paramCollection.Add(new DBParameter("@Name", objCompany.Name));
                 paramCollection.Add(new DBParameter("@PrintName", objCompany.PrintName));
                 paramCollection.Add(new DBParameter("@ShortName", objCompany.ShortName));
                 paramCollection.Add(new DBParameter("@Country", objCompany.Country));
                 paramCollection.Add(new DBParameter("@State", objCompany.State));
+                paramCollection.Add(new DBParameter("@FYBeginning", objCompany.FYBegining));
+                paramCollection.Add(new DBParameter("@BooksCommencing", objCompany.BooksCommencing));
+                paramCollection.Add(new DBParameter("@Address", objCompany.Address));
+                paramCollection.Add(new DBParameter("@CIN", objCompany.CIN));
+                paramCollection.Add(new DBParameter("@PAN", objCompany.PAN));
+                paramCollection.Add(new DBParameter("@Ward", objCompany.Ward));
+                paramCollection.Add(new DBParameter("@Telephone", objCompany.Telephone));
+                paramCollection.Add(new DBParameter("@Fax", objCompany.Fax));
+                paramCollection.Add(new DBParameter("@Email", objCompany.Email));
+                paramCollection.Add(new DBParameter("@CurrencySymbol", objCompany.CurrencySymbol));
                 paramCollection.Add(new DBParameter("@CurrencyString", objCompany.CurrencyString));
                 paramCollection.Add(new DBParameter("@CurrencySubString", objCompany.CurrencySubString));
                 paramCollection.Add(new DBParameter("@CurrencyFont", objCompany.CurrencyFont));
                 paramCollection.Add(new DBParameter("@CurrencyCharacter", objCompany.CurrencyCharacter));
-                paramCollection.Add(new DBParameter("@CurrencySymbol", objCompany.CurrencySymbol));
-                paramCollection.Add(new DBParameter("@Telephone", objCompany.Telephone));
-                paramCollection.Add(new DBParameter("@TIN", objCompany.TIN));
-                paramCollection.Add(new DBParameter("@Type", objCompany.Type));
                 paramCollection.Add(new DBParameter("@VAT", objCompany.VAT));
-                paramCollection.Add(new DBParameter("@Ward", objCompany.Ward));
-                paramCollection.Add(new DBParameter("@Email", objCompany.Email));
-                paramCollection.Add(new DBParameter("@WebSite", objCompany.WebSite));
-                paramCollection.Add(new DBParameter("@PAN", objCompany.PAN));
-                paramCollection.Add(new DBParameter("@FYBegining", objCompany.FYBegining));
-                paramCollection.Add(new DBParameter("@BooksCommencing", objCompany.BooksCommencing));
+                paramCollection.Add(new DBParameter("@Type", objCompany.Type));
+                paramCollection.Add(new DBParameter("@EnableTaxSchg", objCompany.EnableTaxSchg ? 1 : 0));
+                paramCollection.Add(new DBParameter("@TIN", objCompany.TIN));
                 paramCollection.Add(new DBParameter("@CSTNo", objCompany.CSTNo));
-                
-                paramCollection.Add(new DBParameter("@Address", objCompany.Address));
-                paramCollection.Add(new DBParameter("@EnableTaxSchg", objCompany.EnableTaxSchg));
-
                 paramCollection.Add(new DBParameter("@CreatedBy", objCompany.CreatedBy));
 
-                Query = "INSERT INTO Company ([CompanyName],[PrintName],[ShortName]," +
-                    "[Country],[State],[CurrencyString],[CurrencySubString],[CurrencyFont]," +
-                    "[CurrencyCharacter],[CurrencySymbol],[Telephone],[TIN],[Type],[VAT],[Ward],[Email],[WebSite],[PAN],[FYBegining],[BooksCommencing],[CSTNo], "+
-                    "[Address],[EnableTaxSchg],[CreatedBy]) " +
-                    "VALUES(@CompanyName,@PrintName,@ShortName,@Country," +
-                    "@State,@CurrencyString,@CurrencySubString,@CurrencyFont,@CurrencyCharacter,@CurrencySymbol,@Telephone," +
-                    "@TIN,@Type,@VAT,@Ward,@Email,@WebSite,@PAN,@FYBegining,@BooksCommencing,@CSTNo,@Address,@EnableTaxSchg,@CreatedBy)";
+                Query = "INSERT INTO company (`Name`,`PrintName`,`ShortName`," +
+                    "`Country`,`State`,`FYBeginning`,`Bookscommencing`,`Address`,`CIN`,`PAN`,`Ward`,`Telephone`,`Fax`,`Email`,`CurrencySymbol`,`CurrencyString`,`CurrencySubString`,`CurrencyFont`," +
+                    "`CurrencyCharacter`,`VAT`,`Type`,`EnableTaxSchg`,`TIN`,`CSTNo`,`CreatedBy "+
+                    "VALUES(@Name,@PrintName,@ShortName,@Country,@State,@FYBeginning,@BooksCommencing,@Address,@CIN,@PAN,@Ward,@Telephone,@Fax,@Email,@CurrencySymbol,@CurrencyString,@CurrencySubString,@CurrencyFont,@CurrencyCharacter," +
+                    "@VAT,@Type,@EnableTaxSchg,@TIN,@CSTNo,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;
