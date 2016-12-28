@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportMenu));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.rptBalanceSheet = new DevExpress.XtraBars.BarButtonItem();
@@ -65,6 +64,27 @@
             this.barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnAccountBooks = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem33 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem35 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem37 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem38 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem39 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem40 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem41 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem42 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem43 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem44 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem45 = new DevExpress.XtraBars.BarButtonItem();
             this.rpgAccountBooks = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -73,6 +93,10 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup28 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup29 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup30 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -88,12 +112,29 @@
             this.ribbonPageGroup22 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup23 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup24 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage10 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage9 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup31 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup32 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage10 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup33 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup34 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup35 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup36 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage11 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup37 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup38 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup39 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup40 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup41 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup42 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage12 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.ribbonPageGroup43 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup44 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage13 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup45 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup46 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
             this.ShortCuts = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
@@ -156,48 +197,6 @@
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup28 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup29 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup30 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup31 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup32 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup33 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup34 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup35 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup36 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem33 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem35 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage13 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup37 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup38 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup39 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup40 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup41 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup42 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem37 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem38 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem39 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem40 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem41 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup43 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup44 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem42 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem43 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup45 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup46 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem44 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem45 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -249,7 +248,7 @@
             this.barButtonItem22,
             this.barButtonItem23,
             this.barButtonItem24,
-            this.barButtonItem25,
+            this.barbtnAccountBooks,
             this.barButtonItem26,
             this.barButtonItem27,
             this.barButtonItem28,
@@ -514,6 +513,135 @@
             this.barButtonItem24.Id = 25;
             this.barButtonItem24.Name = "barButtonItem24";
             // 
+            // barbtnAccountBooks
+            // 
+            this.barbtnAccountBooks.Caption = "Account Books";
+            this.barbtnAccountBooks.Id = 26;
+            this.barbtnAccountBooks.Name = "barbtnAccountBooks";
+            this.barbtnAccountBooks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnAccountBooks_ItemClick);
+            // 
+            // barButtonItem26
+            // 
+            this.barButtonItem26.Caption = "Account Summary";
+            this.barButtonItem26.Id = 27;
+            this.barButtonItem26.Name = "barButtonItem26";
+            // 
+            // barButtonItem27
+            // 
+            this.barButtonItem27.Caption = "Bank Reconciliation";
+            this.barButtonItem27.Id = 28;
+            this.barButtonItem27.Name = "barButtonItem27";
+            this.barButtonItem27.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem27_ItemClick);
+            // 
+            // barButtonItem28
+            // 
+            this.barButtonItem28.Caption = "barButtonItem28";
+            this.barButtonItem28.Id = 29;
+            this.barButtonItem28.Name = "barButtonItem28";
+            // 
+            // barButtonItem29
+            // 
+            this.barButtonItem29.Caption = "Sales Analysis";
+            this.barButtonItem29.Id = 30;
+            this.barButtonItem29.Name = "barButtonItem29";
+            // 
+            // barButtonItem30
+            // 
+            this.barButtonItem30.Caption = "Purchase Analysis";
+            this.barButtonItem30.Id = 31;
+            this.barButtonItem30.Name = "barButtonItem30";
+            // 
+            // barButtonItem31
+            // 
+            this.barButtonItem31.Caption = "Issue Receipt Analysis";
+            this.barButtonItem31.Id = 32;
+            this.barButtonItem31.Name = "barButtonItem31";
+            // 
+            // barButtonItem32
+            // 
+            this.barButtonItem32.Caption = "Job Work";
+            this.barButtonItem32.Id = 33;
+            this.barButtonItem32.Name = "barButtonItem32";
+            // 
+            // barButtonItem33
+            // 
+            this.barButtonItem33.Caption = "Production";
+            this.barButtonItem33.Id = 34;
+            this.barButtonItem33.Name = "barButtonItem33";
+            // 
+            // barButtonItem34
+            // 
+            this.barButtonItem34.Caption = "Consumption Analysis";
+            this.barButtonItem34.Id = 35;
+            this.barButtonItem34.Name = "barButtonItem34";
+            // 
+            // barButtonItem35
+            // 
+            this.barButtonItem35.Caption = "Item Receivable/Issuable";
+            this.barButtonItem35.Id = 36;
+            this.barButtonItem35.Name = "barButtonItem35";
+            this.barButtonItem35.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem35_ItemClick);
+            // 
+            // barButtonItem36
+            // 
+            this.barButtonItem36.Caption = "VAT";
+            this.barButtonItem36.Id = 37;
+            this.barButtonItem36.Name = "barButtonItem36";
+            // 
+            // barButtonItem37
+            // 
+            this.barButtonItem37.Caption = "GST";
+            this.barButtonItem37.Id = 38;
+            this.barButtonItem37.Name = "barButtonItem37";
+            // 
+            // barButtonItem38
+            // 
+            this.barButtonItem38.Caption = "CST";
+            this.barButtonItem38.Id = 39;
+            this.barButtonItem38.Name = "barButtonItem38";
+            // 
+            // barButtonItem39
+            // 
+            this.barButtonItem39.Caption = "Service Tax";
+            this.barButtonItem39.Id = 40;
+            this.barButtonItem39.Name = "barButtonItem39";
+            // 
+            // barButtonItem40
+            // 
+            this.barButtonItem40.Caption = "Excercise";
+            this.barButtonItem40.Id = 41;
+            this.barButtonItem40.Name = "barButtonItem40";
+            // 
+            // barButtonItem41
+            // 
+            this.barButtonItem41.Caption = "TDS";
+            this.barButtonItem41.Id = 42;
+            this.barButtonItem41.Name = "barButtonItem41";
+            // 
+            // barButtonItem42
+            // 
+            this.barButtonItem42.Caption = "MIS";
+            this.barButtonItem42.Id = 43;
+            this.barButtonItem42.Name = "barButtonItem42";
+            // 
+            // barButtonItem43
+            // 
+            this.barButtonItem43.Caption = "Check List";
+            this.barButtonItem43.Id = 44;
+            this.barButtonItem43.Name = "barButtonItem43";
+            // 
+            // barButtonItem44
+            // 
+            this.barButtonItem44.Caption = "Payroll";
+            this.barButtonItem44.Id = 45;
+            this.barButtonItem44.Name = "barButtonItem44";
+            // 
+            // barButtonItem45
+            // 
+            this.barButtonItem45.Caption = "Call Management";
+            this.barButtonItem45.Id = 46;
+            this.barButtonItem45.Name = "barButtonItem45";
+            // 
             // rpgAccountBooks
             // 
             this.rpgAccountBooks.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -571,6 +699,33 @@
             this.ribbonPageGroup9.ItemLinks.Add(this.barButtonItem1);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             this.ribbonPageGroup9.Text = "Interest Calculations";
+            // 
+            // ribbonPage3
+            // 
+            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup28,
+            this.ribbonPageGroup29,
+            this.ribbonPageGroup30});
+            this.ribbonPage3.Name = "ribbonPage3";
+            this.ribbonPage3.Text = "Accounts";
+            // 
+            // ribbonPageGroup28
+            // 
+            this.ribbonPageGroup28.ItemLinks.Add(this.barbtnAccountBooks);
+            this.ribbonPageGroup28.Name = "ribbonPageGroup28";
+            this.ribbonPageGroup28.Text = "ribbonPageGroup28";
+            // 
+            // ribbonPageGroup29
+            // 
+            this.ribbonPageGroup29.ItemLinks.Add(this.barButtonItem26);
+            this.ribbonPageGroup29.Name = "ribbonPageGroup29";
+            this.ribbonPageGroup29.Text = "Account Summary";
+            // 
+            // ribbonPageGroup30
+            // 
+            this.ribbonPageGroup30.ItemLinks.Add(this.barButtonItem27);
+            this.ribbonPageGroup30.Name = "ribbonPageGroup30";
+            this.ribbonPageGroup30.Text = "ribbonPageGroup30";
             // 
             // ribbonPage4
             // 
@@ -678,17 +833,6 @@
             this.ribbonPageGroup24.Name = "ribbonPageGroup24";
             this.ribbonPageGroup24.Text = "ribbonPageGroup24";
             // 
-            // ribbonPage10
-            // 
-            this.ribbonPage10.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup33,
-            this.ribbonPageGroup34,
-            this.ribbonPageGroup35,
-            this.ribbonPageGroup36});
-            this.ribbonPage10.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage10.Image")));
-            this.ribbonPage10.Name = "ribbonPage10";
-            this.ribbonPage10.Text = "Prod and Job Work";
-            // 
             // ribbonPage9
             // 
             this.ribbonPage9.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -705,6 +849,53 @@
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "ribbonPageGroup7";
             // 
+            // ribbonPageGroup31
+            // 
+            this.ribbonPageGroup31.ItemLinks.Add(this.barButtonItem30);
+            this.ribbonPageGroup31.Name = "ribbonPageGroup31";
+            this.ribbonPageGroup31.Text = "ribbonPageGroup31";
+            // 
+            // ribbonPageGroup32
+            // 
+            this.ribbonPageGroup32.ItemLinks.Add(this.barButtonItem31);
+            this.ribbonPageGroup32.Name = "ribbonPageGroup32";
+            this.ribbonPageGroup32.Text = "ribbonPageGroup32";
+            // 
+            // ribbonPage10
+            // 
+            this.ribbonPage10.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup33,
+            this.ribbonPageGroup34,
+            this.ribbonPageGroup35,
+            this.ribbonPageGroup36});
+            this.ribbonPage10.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage10.Image")));
+            this.ribbonPage10.Name = "ribbonPage10";
+            this.ribbonPage10.Text = "Prod and Job Work";
+            // 
+            // ribbonPageGroup33
+            // 
+            this.ribbonPageGroup33.ItemLinks.Add(this.barButtonItem32);
+            this.ribbonPageGroup33.Name = "ribbonPageGroup33";
+            this.ribbonPageGroup33.Text = "ribbonPageGroup33";
+            // 
+            // ribbonPageGroup34
+            // 
+            this.ribbonPageGroup34.ItemLinks.Add(this.barButtonItem33);
+            this.ribbonPageGroup34.Name = "ribbonPageGroup34";
+            this.ribbonPageGroup34.Text = "ribbonPageGroup34";
+            // 
+            // ribbonPageGroup35
+            // 
+            this.ribbonPageGroup35.ItemLinks.Add(this.barButtonItem34);
+            this.ribbonPageGroup35.Name = "ribbonPageGroup35";
+            this.ribbonPageGroup35.Text = "ribbonPageGroup35";
+            // 
+            // ribbonPageGroup36
+            // 
+            this.ribbonPageGroup36.ItemLinks.Add(this.barButtonItem35);
+            this.ribbonPageGroup36.Name = "ribbonPageGroup36";
+            this.ribbonPageGroup36.Text = "ribbonPageGroup36";
+            // 
             // ribbonPage11
             // 
             this.ribbonPage11.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -718,6 +909,42 @@
             this.ribbonPage11.Name = "ribbonPage11";
             this.ribbonPage11.Text = "Taxes";
             // 
+            // ribbonPageGroup37
+            // 
+            this.ribbonPageGroup37.ItemLinks.Add(this.barButtonItem36);
+            this.ribbonPageGroup37.Name = "ribbonPageGroup37";
+            this.ribbonPageGroup37.Text = "ribbonPageGroup37";
+            // 
+            // ribbonPageGroup38
+            // 
+            this.ribbonPageGroup38.ItemLinks.Add(this.barButtonItem37);
+            this.ribbonPageGroup38.Name = "ribbonPageGroup38";
+            this.ribbonPageGroup38.Text = "ribbonPageGroup38";
+            // 
+            // ribbonPageGroup39
+            // 
+            this.ribbonPageGroup39.ItemLinks.Add(this.barButtonItem38);
+            this.ribbonPageGroup39.Name = "ribbonPageGroup39";
+            this.ribbonPageGroup39.Text = "ribbonPageGroup39";
+            // 
+            // ribbonPageGroup40
+            // 
+            this.ribbonPageGroup40.ItemLinks.Add(this.barButtonItem39);
+            this.ribbonPageGroup40.Name = "ribbonPageGroup40";
+            this.ribbonPageGroup40.Text = "ribbonPageGroup40";
+            // 
+            // ribbonPageGroup41
+            // 
+            this.ribbonPageGroup41.ItemLinks.Add(this.barButtonItem40);
+            this.ribbonPageGroup41.Name = "ribbonPageGroup41";
+            this.ribbonPageGroup41.Text = "ribbonPageGroup41";
+            // 
+            // ribbonPageGroup42
+            // 
+            this.ribbonPageGroup42.ItemLinks.Add(this.barButtonItem41);
+            this.ribbonPageGroup42.Name = "ribbonPageGroup42";
+            this.ribbonPageGroup42.Text = "ribbonPageGroup42";
+            // 
             // ribbonPage12
             // 
             this.ribbonPage12.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -726,6 +953,38 @@
             this.ribbonPage12.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage12.Image")));
             this.ribbonPage12.Name = "ribbonPage12";
             this.ribbonPage12.Text = "MIS";
+            // 
+            // ribbonPageGroup43
+            // 
+            this.ribbonPageGroup43.ItemLinks.Add(this.barButtonItem42);
+            this.ribbonPageGroup43.Name = "ribbonPageGroup43";
+            this.ribbonPageGroup43.Text = "ribbonPageGroup43";
+            // 
+            // ribbonPageGroup44
+            // 
+            this.ribbonPageGroup44.ItemLinks.Add(this.barButtonItem43);
+            this.ribbonPageGroup44.Name = "ribbonPageGroup44";
+            this.ribbonPageGroup44.Text = "ribbonPageGroup44";
+            // 
+            // ribbonPage13
+            // 
+            this.ribbonPage13.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup45,
+            this.ribbonPageGroup46});
+            this.ribbonPage13.Name = "ribbonPage13";
+            this.ribbonPage13.Text = "Payroll/Call";
+            // 
+            // ribbonPageGroup45
+            // 
+            this.ribbonPageGroup45.ItemLinks.Add(this.barButtonItem44);
+            this.ribbonPageGroup45.Name = "ribbonPageGroup45";
+            this.ribbonPageGroup45.Text = "ribbonPageGroup45";
+            // 
+            // ribbonPageGroup46
+            // 
+            this.ribbonPageGroup46.ItemLinks.Add(this.barButtonItem45);
+            this.ribbonPageGroup46.Name = "ribbonPageGroup46";
+            this.ribbonPageGroup46.Text = "ribbonPageGroup46";
             // 
             // dockManager1
             // 
@@ -1261,265 +1520,6 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Accounts";
             // 
-            // ribbonPage3
-            // 
-            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup28,
-            this.ribbonPageGroup29,
-            this.ribbonPageGroup30});
-            this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Accounts";
-            // 
-            // ribbonPageGroup28
-            // 
-            this.ribbonPageGroup28.ItemLinks.Add(this.barButtonItem25);
-            this.ribbonPageGroup28.Name = "ribbonPageGroup28";
-            this.ribbonPageGroup28.Text = "ribbonPageGroup28";
-            // 
-            // ribbonPageGroup29
-            // 
-            this.ribbonPageGroup29.ItemLinks.Add(this.barButtonItem26);
-            this.ribbonPageGroup29.Name = "ribbonPageGroup29";
-            this.ribbonPageGroup29.Text = "Account Summary";
-            // 
-            // ribbonPageGroup30
-            // 
-            this.ribbonPageGroup30.ItemLinks.Add(this.barButtonItem27);
-            this.ribbonPageGroup30.Name = "ribbonPageGroup30";
-            this.ribbonPageGroup30.Text = "ribbonPageGroup30";
-            // 
-            // barButtonItem25
-            // 
-            this.barButtonItem25.Caption = "Account Books";
-            this.barButtonItem25.Id = 26;
-            this.barButtonItem25.Name = "barButtonItem25";
-            // 
-            // barButtonItem26
-            // 
-            this.barButtonItem26.Caption = "Account Summary";
-            this.barButtonItem26.Id = 27;
-            this.barButtonItem26.Name = "barButtonItem26";
-            // 
-            // barButtonItem27
-            // 
-            this.barButtonItem27.Caption = "Bank Reconciliation";
-            this.barButtonItem27.Id = 28;
-            this.barButtonItem27.Name = "barButtonItem27";
-            this.barButtonItem27.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem27_ItemClick);
-            // 
-            // barButtonItem28
-            // 
-            this.barButtonItem28.Caption = "barButtonItem28";
-            this.barButtonItem28.Id = 29;
-            this.barButtonItem28.Name = "barButtonItem28";
-            // 
-            // ribbonPageGroup31
-            // 
-            this.ribbonPageGroup31.ItemLinks.Add(this.barButtonItem30);
-            this.ribbonPageGroup31.Name = "ribbonPageGroup31";
-            this.ribbonPageGroup31.Text = "ribbonPageGroup31";
-            // 
-            // ribbonPageGroup32
-            // 
-            this.ribbonPageGroup32.ItemLinks.Add(this.barButtonItem31);
-            this.ribbonPageGroup32.Name = "ribbonPageGroup32";
-            this.ribbonPageGroup32.Text = "ribbonPageGroup32";
-            // 
-            // barButtonItem29
-            // 
-            this.barButtonItem29.Caption = "Sales Analysis";
-            this.barButtonItem29.Id = 30;
-            this.barButtonItem29.Name = "barButtonItem29";
-            // 
-            // barButtonItem30
-            // 
-            this.barButtonItem30.Caption = "Purchase Analysis";
-            this.barButtonItem30.Id = 31;
-            this.barButtonItem30.Name = "barButtonItem30";
-            // 
-            // barButtonItem31
-            // 
-            this.barButtonItem31.Caption = "Issue Receipt Analysis";
-            this.barButtonItem31.Id = 32;
-            this.barButtonItem31.Name = "barButtonItem31";
-            // 
-            // ribbonPageGroup33
-            // 
-            this.ribbonPageGroup33.ItemLinks.Add(this.barButtonItem32);
-            this.ribbonPageGroup33.Name = "ribbonPageGroup33";
-            this.ribbonPageGroup33.Text = "ribbonPageGroup33";
-            // 
-            // ribbonPageGroup34
-            // 
-            this.ribbonPageGroup34.ItemLinks.Add(this.barButtonItem33);
-            this.ribbonPageGroup34.Name = "ribbonPageGroup34";
-            this.ribbonPageGroup34.Text = "ribbonPageGroup34";
-            // 
-            // ribbonPageGroup35
-            // 
-            this.ribbonPageGroup35.ItemLinks.Add(this.barButtonItem34);
-            this.ribbonPageGroup35.Name = "ribbonPageGroup35";
-            this.ribbonPageGroup35.Text = "ribbonPageGroup35";
-            // 
-            // ribbonPageGroup36
-            // 
-            this.ribbonPageGroup36.ItemLinks.Add(this.barButtonItem35);
-            this.ribbonPageGroup36.Name = "ribbonPageGroup36";
-            this.ribbonPageGroup36.Text = "ribbonPageGroup36";
-            // 
-            // barButtonItem32
-            // 
-            this.barButtonItem32.Caption = "Job Work";
-            this.barButtonItem32.Id = 33;
-            this.barButtonItem32.Name = "barButtonItem32";
-            // 
-            // barButtonItem33
-            // 
-            this.barButtonItem33.Caption = "Production";
-            this.barButtonItem33.Id = 34;
-            this.barButtonItem33.Name = "barButtonItem33";
-            // 
-            // barButtonItem34
-            // 
-            this.barButtonItem34.Caption = "Consumption Analysis";
-            this.barButtonItem34.Id = 35;
-            this.barButtonItem34.Name = "barButtonItem34";
-            // 
-            // barButtonItem35
-            // 
-            this.barButtonItem35.Caption = "Item Receivable/Issuable";
-            this.barButtonItem35.Id = 36;
-            this.barButtonItem35.Name = "barButtonItem35";
-            this.barButtonItem35.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem35_ItemClick);
-            // 
-            // ribbonPage13
-            // 
-            this.ribbonPage13.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup45,
-            this.ribbonPageGroup46});
-            this.ribbonPage13.Name = "ribbonPage13";
-            this.ribbonPage13.Text = "Payroll/Call";
-            // 
-            // ribbonPageGroup37
-            // 
-            this.ribbonPageGroup37.ItemLinks.Add(this.barButtonItem36);
-            this.ribbonPageGroup37.Name = "ribbonPageGroup37";
-            this.ribbonPageGroup37.Text = "ribbonPageGroup37";
-            // 
-            // ribbonPageGroup38
-            // 
-            this.ribbonPageGroup38.ItemLinks.Add(this.barButtonItem37);
-            this.ribbonPageGroup38.Name = "ribbonPageGroup38";
-            this.ribbonPageGroup38.Text = "ribbonPageGroup38";
-            // 
-            // ribbonPageGroup39
-            // 
-            this.ribbonPageGroup39.ItemLinks.Add(this.barButtonItem38);
-            this.ribbonPageGroup39.Name = "ribbonPageGroup39";
-            this.ribbonPageGroup39.Text = "ribbonPageGroup39";
-            // 
-            // ribbonPageGroup40
-            // 
-            this.ribbonPageGroup40.ItemLinks.Add(this.barButtonItem39);
-            this.ribbonPageGroup40.Name = "ribbonPageGroup40";
-            this.ribbonPageGroup40.Text = "ribbonPageGroup40";
-            // 
-            // ribbonPageGroup41
-            // 
-            this.ribbonPageGroup41.ItemLinks.Add(this.barButtonItem40);
-            this.ribbonPageGroup41.Name = "ribbonPageGroup41";
-            this.ribbonPageGroup41.Text = "ribbonPageGroup41";
-            // 
-            // ribbonPageGroup42
-            // 
-            this.ribbonPageGroup42.ItemLinks.Add(this.barButtonItem41);
-            this.ribbonPageGroup42.Name = "ribbonPageGroup42";
-            this.ribbonPageGroup42.Text = "ribbonPageGroup42";
-            // 
-            // barButtonItem36
-            // 
-            this.barButtonItem36.Caption = "VAT";
-            this.barButtonItem36.Id = 37;
-            this.barButtonItem36.Name = "barButtonItem36";
-            // 
-            // barButtonItem37
-            // 
-            this.barButtonItem37.Caption = "GST";
-            this.barButtonItem37.Id = 38;
-            this.barButtonItem37.Name = "barButtonItem37";
-            // 
-            // barButtonItem38
-            // 
-            this.barButtonItem38.Caption = "CST";
-            this.barButtonItem38.Id = 39;
-            this.barButtonItem38.Name = "barButtonItem38";
-            // 
-            // barButtonItem39
-            // 
-            this.barButtonItem39.Caption = "Service Tax";
-            this.barButtonItem39.Id = 40;
-            this.barButtonItem39.Name = "barButtonItem39";
-            // 
-            // barButtonItem40
-            // 
-            this.barButtonItem40.Caption = "Excercise";
-            this.barButtonItem40.Id = 41;
-            this.barButtonItem40.Name = "barButtonItem40";
-            // 
-            // barButtonItem41
-            // 
-            this.barButtonItem41.Caption = "TDS";
-            this.barButtonItem41.Id = 42;
-            this.barButtonItem41.Name = "barButtonItem41";
-            // 
-            // ribbonPageGroup43
-            // 
-            this.ribbonPageGroup43.ItemLinks.Add(this.barButtonItem42);
-            this.ribbonPageGroup43.Name = "ribbonPageGroup43";
-            this.ribbonPageGroup43.Text = "ribbonPageGroup43";
-            // 
-            // ribbonPageGroup44
-            // 
-            this.ribbonPageGroup44.ItemLinks.Add(this.barButtonItem43);
-            this.ribbonPageGroup44.Name = "ribbonPageGroup44";
-            this.ribbonPageGroup44.Text = "ribbonPageGroup44";
-            // 
-            // barButtonItem42
-            // 
-            this.barButtonItem42.Caption = "MIS";
-            this.barButtonItem42.Id = 43;
-            this.barButtonItem42.Name = "barButtonItem42";
-            // 
-            // barButtonItem43
-            // 
-            this.barButtonItem43.Caption = "Check List";
-            this.barButtonItem43.Id = 44;
-            this.barButtonItem43.Name = "barButtonItem43";
-            // 
-            // ribbonPageGroup45
-            // 
-            this.ribbonPageGroup45.ItemLinks.Add(this.barButtonItem44);
-            this.ribbonPageGroup45.Name = "ribbonPageGroup45";
-            this.ribbonPageGroup45.Text = "ribbonPageGroup45";
-            // 
-            // ribbonPageGroup46
-            // 
-            this.ribbonPageGroup46.ItemLinks.Add(this.barButtonItem45);
-            this.ribbonPageGroup46.Name = "ribbonPageGroup46";
-            this.ribbonPageGroup46.Text = "ribbonPageGroup46";
-            // 
-            // barButtonItem44
-            // 
-            this.barButtonItem44.Caption = "Payroll";
-            this.barButtonItem44.Id = 45;
-            this.barButtonItem44.Name = "barButtonItem44";
-            // 
-            // barButtonItem45
-            // 
-            this.barButtonItem45.Caption = "Call Management";
-            this.barButtonItem45.Id = 46;
-            this.barButtonItem45.Name = "barButtonItem45";
-            // 
             // ReportMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1679,7 +1679,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem25;
+        private DevExpress.XtraBars.BarButtonItem barbtnAccountBooks;
         private DevExpress.XtraBars.BarButtonItem barButtonItem26;
         private DevExpress.XtraBars.BarButtonItem barButtonItem27;
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;

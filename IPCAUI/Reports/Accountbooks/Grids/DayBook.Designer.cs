@@ -37,8 +37,8 @@
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gdvCtrlDaybook = new DevExpress.XtraGrid.GridControl();
+            this.gdvDayBook = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
@@ -48,13 +48,19 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -62,8 +68,8 @@
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvCtrlDaybook)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvDayBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
@@ -73,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -105,7 +110,7 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.gridControl1);
+            this.layoutControl1.Controls.Add(this.gdvCtrlDaybook);
             this.layoutControl1.Controls.Add(this.textEdit5);
             this.layoutControl1.Controls.Add(this.textEdit6);
             this.layoutControl1.Controls.Add(this.textEdit2);
@@ -168,21 +173,29 @@
             this.navBarGroup2.Caption = "navBarGroup2";
             this.navBarGroup2.Name = "navBarGroup2";
             // 
-            // gridControl1
+            // gdvCtrlDaybook
             // 
-            this.gridControl1.Location = new System.Drawing.Point(173, 63);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(756, 400);
-            this.gridControl1.TabIndex = 3;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gdvCtrlDaybook.Location = new System.Drawing.Point(173, 63);
+            this.gdvCtrlDaybook.MainView = this.gdvDayBook;
+            this.gdvCtrlDaybook.Name = "gdvCtrlDaybook";
+            this.gdvCtrlDaybook.Size = new System.Drawing.Size(756, 434);
+            this.gdvCtrlDaybook.TabIndex = 3;
+            this.gdvCtrlDaybook.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvDayBook});
             // 
-            // gridView1
+            // gdvDayBook
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowFooter = true;
+            this.gdvDayBook.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7});
+            this.gdvDayBook.GridControl = this.gdvCtrlDaybook;
+            this.gdvDayBook.Name = "gdvDayBook";
+            this.gdvDayBook.OptionsView.ShowFooter = true;
             // 
             // textEdit5
             // 
@@ -204,15 +217,15 @@
             // 
             this.textEdit2.Location = new System.Drawing.Point(230, 29);
             this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(490, 20);
+            this.textEdit2.Size = new System.Drawing.Size(324, 20);
             this.textEdit2.StyleController = this.layoutControl1;
             this.textEdit2.TabIndex = 0;
             // 
             // textEdit9
             // 
-            this.textEdit9.Location = new System.Drawing.Point(781, 29);
+            this.textEdit9.Location = new System.Drawing.Point(615, 29);
             this.textEdit9.Name = "textEdit9";
-            this.textEdit9.Size = new System.Drawing.Size(148, 20);
+            this.textEdit9.Size = new System.Drawing.Size(314, 20);
             this.textEdit9.StyleController = this.layoutControl1;
             this.textEdit9.TabIndex = 2;
             // 
@@ -243,7 +256,6 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.emptySpaceItem3,
             this.emptySpaceItem2,
             this.layoutControlItem1,
             this.emptySpaceItem1,
@@ -260,7 +272,7 @@
             this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
             this.layoutControlItem5.Location = new System.Drawing.Point(161, 17);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(551, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(385, 24);
             this.layoutControlItem5.Text = "From Date:";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(54, 13);
@@ -269,20 +281,12 @@
             // 
             this.layoutControlItem6.Control = this.textEdit9;
             this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
-            this.layoutControlItem6.Location = new System.Drawing.Point(712, 17);
+            this.layoutControlItem6.Location = new System.Drawing.Point(546, 17);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(209, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(375, 24);
             this.layoutControlItem6.Text = "To Date:";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(54, 13);
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(161, 455);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(760, 34);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
@@ -294,10 +298,10 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gridControl1;
+            this.layoutControlItem1.Control = this.gdvCtrlDaybook;
             this.layoutControlItem1.Location = new System.Drawing.Point(161, 51);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(760, 404);
+            this.layoutControlItem1.Size = new System.Drawing.Size(760, 438);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -306,15 +310,15 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(161, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(551, 17);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(385, 17);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem1
             // 
             this.simpleLabelItem1.AllowHotTrack = false;
-            this.simpleLabelItem1.Location = new System.Drawing.Point(712, 0);
+            this.simpleLabelItem1.Location = new System.Drawing.Point(546, 0);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(209, 17);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(375, 17);
             this.simpleLabelItem1.Text = "Day Book";
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(54, 13);
             // 
@@ -330,6 +334,69 @@
             // treeListColumn2
             // 
             this.treeListColumn2.Name = "treeListColumn2";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Date";
+            this.gridColumn1.FieldName = "Date";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 51;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Type";
+            this.gridColumn2.FieldName = "Type";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 73;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Vch/Bill No";
+            this.gridColumn3.FieldName = "VchNo";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 67;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Account";
+            this.gridColumn4.FieldName = "Account";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 179;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Debit";
+            this.gridColumn5.FieldName = "Debit";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.Width = 62;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Credit";
+            this.gridColumn6.FieldName = "Credit";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.Width = 73;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Short Narration";
+            this.gridColumn7.FieldName = "Narration";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.Width = 233;
             // 
             // DayBook
             // 
@@ -350,8 +417,8 @@
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvCtrlDaybook)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvDayBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
@@ -361,7 +428,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -385,9 +451,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraGrid.GridControl gdvCtrlDaybook;
+        private DevExpress.XtraGrid.Views.Grid.GridView gdvDayBook;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
@@ -399,5 +464,12 @@
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }
