@@ -139,5 +139,15 @@ namespace IPCAUI.Menu
         {
 
         }
+
+        private void barbtnAccountBooks_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Reports.Accountbooks.Grids.DayBook frm;
+            frm = new Reports.Accountbooks.Grids.DayBook(); //generate new instance
+            frm.Owner = this;
+            frm.TopLevel = false;
+            splitContainerControl1.Panel2.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace eSunSpeedDomain
         public decimal Amount { get; set; }
         public int ParentId { get; set; }
         public int BillNo { get; set;}
-        public string BillDate { get; set; }
+        public int BillDate { get; set; }
     }
 }

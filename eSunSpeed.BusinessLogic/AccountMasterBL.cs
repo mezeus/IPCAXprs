@@ -213,8 +213,7 @@ namespace eSunSpeed.BusinessLogic
                 //paramCollection.Add(new DBParameter("@ACC_ModifiedDate", "Date"));
                 //paramCollection.Add(new DBParameter("@ACC_DEFAULT_CHEQUE_FORMAT", ""));
                 //paramCollection.Add(new DBParameter("@ENABLE_CHEQUE_PRINTING", 1, System.Data.DbType.Boolean));
-                //paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));
-
+                //paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));                
                 
                 Query =
                 "INSERT INTO accountmaster(`ACC_NAME`,`ACC_SHORTNAME`,`ACC_PRINTNAME`,`ACC_LedgerType`,`ACC_MultiCurr`,`ACC_Group`,`ACC_OpBal`," +

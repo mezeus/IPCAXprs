@@ -679,6 +679,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExecutivemasterList.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\FormsIssuedDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormsIssuedDs.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ItemGridDs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4493,6 +4498,17 @@
     </None>
     <None Include="DataSets\ExecutivemasterList.xss">
       <DependentUpon>ExecutivemasterList.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\FormsIssuedDs.xsc">
+      <DependentUpon>FormsIssuedDs.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\FormsIssuedDs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FormsIssuedDs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\FormsIssuedDs.xss">
+      <DependentUpon>FormsIssuedDs.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ItemGridDs.xsc">
       <DependentUpon>ItemGridDs.xsd</DependentUpon>
