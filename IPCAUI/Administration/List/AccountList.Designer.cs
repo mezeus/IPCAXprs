@@ -30,7 +30,14 @@
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.accountListDtBindingSource = new System.Windows.Forms.BindingSource();
+            this.accountList1 = new IPCAUI.DataSets.AccountList();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colParentGroup = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOpBalDr = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOpBalCr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -44,16 +51,11 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.accountList1 = new IPCAUI.DataSets.AccountList();
-            this.accountListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colParentGroup = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOpBalDr = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOpBalCr = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountListDtBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
@@ -66,8 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountListDtBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -95,6 +95,17 @@
             this.gridControl1.TabIndex = 9;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
+            // 
+            // accountListDtBindingSource
+            // 
+            this.accountListDtBindingSource.DataMember = "AccountListDt";
+            this.accountListDtBindingSource.DataSource = this.accountList1;
+            // 
+            // accountList1
+            // 
+            this.accountList1.DataSetName = "AccountList";
+            this.accountList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gridView1
             // 
@@ -107,6 +118,42 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowFooter = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            // 
+            // colAlias
+            // 
+            this.colAlias.FieldName = "Alias";
+            this.colAlias.Name = "colAlias";
+            this.colAlias.Visible = true;
+            this.colAlias.VisibleIndex = 1;
+            // 
+            // colParentGroup
+            // 
+            this.colParentGroup.FieldName = "ParentGroup";
+            this.colParentGroup.Name = "colParentGroup";
+            this.colParentGroup.Visible = true;
+            this.colParentGroup.VisibleIndex = 2;
+            // 
+            // colOpBalDr
+            // 
+            this.colOpBalDr.FieldName = "OpBalDr";
+            this.colOpBalDr.Name = "colOpBalDr";
+            this.colOpBalDr.Visible = true;
+            this.colOpBalDr.VisibleIndex = 3;
+            // 
+            // colOpBalCr
+            // 
+            this.colOpBalCr.FieldName = "OpBalCr";
+            this.colOpBalCr.Name = "colOpBalCr";
+            this.colOpBalCr.Visible = true;
+            this.colOpBalCr.VisibleIndex = 4;
             // 
             // navBarControl1
             // 
@@ -244,51 +291,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // accountList1
-            // 
-            this.accountList1.DataSetName = "AccountList";
-            this.accountList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // accountListDtBindingSource
-            // 
-            this.accountListDtBindingSource.DataMember = "AccountListDt";
-            this.accountListDtBindingSource.DataSource = this.accountList1;
-            // 
-            // colName
-            // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            // 
-            // colAlias
-            // 
-            this.colAlias.FieldName = "Alias";
-            this.colAlias.Name = "colAlias";
-            this.colAlias.Visible = true;
-            this.colAlias.VisibleIndex = 1;
-            // 
-            // colParentGroup
-            // 
-            this.colParentGroup.FieldName = "ParentGroup";
-            this.colParentGroup.Name = "colParentGroup";
-            this.colParentGroup.Visible = true;
-            this.colParentGroup.VisibleIndex = 2;
-            // 
-            // colOpBalDr
-            // 
-            this.colOpBalDr.FieldName = "OpBalDr";
-            this.colOpBalDr.Name = "colOpBalDr";
-            this.colOpBalDr.Visible = true;
-            this.colOpBalDr.VisibleIndex = 3;
-            // 
-            // colOpBalCr
-            // 
-            this.colOpBalCr.FieldName = "OpBalCr";
-            this.colOpBalCr.Name = "colOpBalCr";
-            this.colOpBalCr.Visible = true;
-            this.colOpBalCr.VisibleIndex = 4;
-            // 
             // AccountList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +304,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountListDtBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
@@ -314,8 +318,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountListDtBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

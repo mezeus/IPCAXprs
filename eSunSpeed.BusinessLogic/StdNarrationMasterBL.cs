@@ -74,7 +74,7 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.StdNarrationMasterModel> lstNarration = new List<StdNarrationMasterModel>();
             eSunSpeedDomain.StdNarrationMasterModel objNarr;
 
-            string Query = "SELECT * FROM StdNarrationMaster";
+            string Query = "SELECT DISTINCT SN_ID,Narration,Vouchertype FROM `StdNarrationMaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -84,7 +84,7 @@ namespace eSunSpeed.BusinessLogic
                 objNarr.SN_Id = Convert.ToInt32(dr["SN_ID"]);
                 objNarr.Narration = dr["Narration"].ToString();
                 objNarr.Vouchertype = dr["Vouchertype"].ToString();
-                objNarr.CreatedBy = dr["CreatedBy"].ToString();
+                //objNarr.CreatedBy = dr["CreatedBy"].ToString();
 
                 lstNarration.Add(objNarr);
 
