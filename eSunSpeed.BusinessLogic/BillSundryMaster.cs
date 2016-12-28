@@ -202,7 +202,7 @@ namespace eSunSpeed.BusinessLogic
             eSunSpeedDomain.BillSundryMasterModel objBsm;
            
 
-            string Query = "SELECT * FROM BillSundryMaster";
+            string Query = "SELECT DISTINCT BS_iD,Name,Alias FROM BillSundryMaster";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -212,50 +212,47 @@ namespace eSunSpeed.BusinessLogic
                 objBsm.BS_Id = Convert.ToInt32(dr["BS_iD"]);
                 objBsm.Name = dr["Name"].ToString();
                 objBsm.Alias = dr["Alias"].ToString();
-                objBsm.PrintName = dr["PrintName"].ToString();
-                objBsm.BillSundryType = dr["BillSundryType"].ToString();
-                objBsm.BillSundryNature = dr["BillSundryNature"].ToString();
-                objBsm.DefaultValue = dr["DefaultValue"].ToString();
-                objBsm.AffectstheCostofGoodsinSale= Convert.ToBoolean(dr["AffectstheCostofGoodsinSale"]);
-                objBsm.AffectstheCostofGoodsinPurchase = Convert.ToBoolean(dr["AffectstheCostofGoodsinPurchase"]);
-                objBsm.AffectstheCostofGoodsinMaterialIssue = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialIssue"]);
-                objBsm.AffectstheCostofGoodsinMaterialReceipt = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialReceipt"]);
-                objBsm.AffectstheCostofGoodsinStockTransfer = Convert.ToBoolean(dr["AffectstheCostofGoodsinStockTransfer"]);
-                objBsm.AffectsAccounting = Convert.ToBoolean(dr["AffectsAccounting"]);
-                objBsm.AdjustInSaleAccount = Convert.ToBoolean(dr["AdjustInSaleAccount"]);
-                objBsm.AccountHeadtoPost = dr["AccountHeadtoPost"].ToString();
-                objBsm.AdjustInPartyAmount = Convert.ToBoolean(dr["AdjustInPartyAmount"]);
-                objBsm.PostOverandAbove = dr["PostOverandAbove"].ToString();
-                objBsm.AdjustInPurchaseAccount = Convert.ToBoolean(dr["AdjustInPurchaseAccount"]);
-                objBsm.typeMaterialIssue = dr["typeMaterialIssue"].ToString();
-                objBsm.typeMaterialReceipt = dr["typeMaterialReceipt"].ToString();
-                objBsm.StockTransfer = dr["StockTransfer"].ToString();
-                objBsm.AffectAccounting = dr["AffectAccounting"].ToString();
-                objBsm.OtherSide = dr["OtherSide"].ToString();
-                objBsm.AdjustinMC = dr["AdjustinMC"].ToString();
-                objBsm.typeAbsoluteAmunt = dr["typeAbsoluteAmunt"].ToString();
-                objBsm.typePercentage = dr["typePercentage"].ToString();
-                objBsm.typePerMainQty = dr["typePerMainQty"].ToString();
-                objBsm.Percentoff = dr["Percentoff"].ToString();
-                objBsm.typeNetBillAmount = dr["typeNetBillAmount"].ToString();
-                objBsm.SelectiveCalculation = Convert.ToBoolean(dr["SelectiveCalculation"]);
-                objBsm.tyeItemsBasicAmt = dr["tyeItemsBasicAmt"].ToString();
-                objBsm.typeTotalMRPofItems = dr["typeTotalMRPofItems"].ToString();
-                objBsm.typeTaxableAmount = dr["typeTaxableAmount"].ToString();
-                objBsm.typePreviousBillSundryAmount= dr["typePreviousBillSundryAmount"].ToString();
-                objBsm.typeOtherBillsundry = dr["typeotherBillsundry"].ToString();
-                objBsm.RBSAmt = Convert.ToBoolean(dr["RBSAmt"]);
-                objBsm.BSAmt = dr["BSAmt"].ToString();
-                objBsm.BSAppOn = dr["BSAppOn"].ToString();
-                objBsm.TextBox = dr["TextBox"].ToString();
-                objBsm.NoOfBillSundry = dr["NoOfBillSundrys"].ToString();
-                objBsm.ConsolidateBillSundriesAmount = Convert.ToBoolean(dr["ConsolidateBillSundriesAmount"]);
-                objBsm.ModifiedBy = dr["ModifiedBy"].ToString();
-
+                //objBsm.PrintName = dr["PrintName"].ToString();
+                //objBsm.BillSundryType = dr["BillSundryType"].ToString();
+                //objBsm.BillSundryNature = dr["BillSundryNature"].ToString();
+                //objBsm.DefaultValue = dr["DefaultValue"].ToString();
+                //objBsm.AffectstheCostofGoodsinSale= Convert.ToBoolean(dr["AffectstheCostofGoodsinSale"]);
+                //objBsm.AffectstheCostofGoodsinPurchase = Convert.ToBoolean(dr["AffectstheCostofGoodsinPurchase"]);
+                //objBsm.AffectstheCostofGoodsinMaterialIssue = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialIssue"]);
+                //objBsm.AffectstheCostofGoodsinMaterialReceipt = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialReceipt"]);
+                //objBsm.AffectstheCostofGoodsinStockTransfer = Convert.ToBoolean(dr["AffectstheCostofGoodsinStockTransfer"]);
+                //objBsm.AffectsAccounting = Convert.ToBoolean(dr["AffectsAccounting"]);
+                //objBsm.AdjustInSaleAccount = Convert.ToBoolean(dr["AdjustInSaleAccount"]);
+                //objBsm.AccountHeadtoPost = dr["AccountHeadtoPost"].ToString();
+                //objBsm.AdjustInPartyAmount = Convert.ToBoolean(dr["AdjustInPartyAmount"]);
+                //objBsm.PostOverandAbove = dr["PostOverandAbove"].ToString();
+                //objBsm.AdjustInPurchaseAccount = Convert.ToBoolean(dr["AdjustInPurchaseAccount"]);
+                //objBsm.typeMaterialIssue = dr["typeMaterialIssue"].ToString();
+                //objBsm.typeMaterialReceipt = dr["typeMaterialReceipt"].ToString();
+                //objBsm.StockTransfer = dr["StockTransfer"].ToString();
+                //objBsm.AffectAccounting = dr["AffectAccounting"].ToString();
+                //objBsm.OtherSide = dr["OtherSide"].ToString();
+                //objBsm.AdjustinMC = dr["AdjustinMC"].ToString();
+                //objBsm.typeAbsoluteAmunt = dr["typeAbsoluteAmunt"].ToString();
+                //objBsm.typePercentage = dr["typePercentage"].ToString();
+                //objBsm.typePerMainQty = dr["typePerMainQty"].ToString();
+                //objBsm.Percentoff = dr["Percentoff"].ToString();
+                //objBsm.typeNetBillAmount = dr["typeNetBillAmount"].ToString();
+                //objBsm.SelectiveCalculation = Convert.ToBoolean(dr["SelectiveCalculation"]);
+                //objBsm.tyeItemsBasicAmt = dr["tyeItemsBasicAmt"].ToString();
+                //objBsm.typeTotalMRPofItems = dr["typeTotalMRPofItems"].ToString();
+                //objBsm.typeTaxableAmount = dr["typeTaxableAmount"].ToString();
+                //objBsm.typePreviousBillSundryAmount= dr["typePreviousBillSundryAmount"].ToString();
+                //objBsm.typeOtherBillsundry = dr["typeotherBillsundry"].ToString();
+                //objBsm.RBSAmt = Convert.ToBoolean(dr["RBSAmt"]);
+                //objBsm.BSAmt = dr["BSAmt"].ToString();
+                //objBsm.BSAppOn = dr["BSAppOn"].ToString();
+                //objBsm.TextBox = dr["TextBox"].ToString();
+                //objBsm.NoOfBillSundry = dr["NoOfBillSundrys"].ToString();
+                //objBsm.ConsolidateBillSundriesAmount = Convert.ToBoolean(dr["ConsolidateBillSundriesAmount"]);
+                //objBsm.ModifiedBy = dr["ModifiedBy"].ToString();
 
                lstBsm.Add(objBsm);
-
-
 
             }
 

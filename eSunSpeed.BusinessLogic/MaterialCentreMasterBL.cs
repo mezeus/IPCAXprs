@@ -111,7 +111,7 @@ namespace eSunSpeed.BusinessLogic
            List<MaterialCentreMasterModel> lstMaterials=new List<MaterialCentreMasterModel>();
            MaterialCentreMasterModel objMat;
 
-         string  Query = "SELECT * FROM MaterialCentreMaster";
+         string  Query = "SELECT DISTINCT MC_Id,Name,Alias,Group FROM `MaterialCentreMaster`";
           System.Data.IDataReader dr= _dbHelper.ExecuteDataReader(Query,_dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -121,21 +121,8 @@ namespace eSunSpeed.BusinessLogic
                 objMat.MC_Id = Convert.ToInt32(dr["MC_Id"]);
                 objMat.Name = dr["Name"].ToString();
                 objMat.Alias = dr["Alias"].ToString();
-                objMat.PrintName = dr["PrintName"].ToString();
                 objMat.Group = dr["Group"].ToString();
-                objMat.StockAccount = dr["StockAccount"].ToString();
-                objMat.EnableStockinBal = Convert.ToBoolean(dr["EnableStockinBal"]);
-                objMat.SalesAccount = dr["SalesAccount"].ToString();
-                objMat.PurchaseAccount = dr["PurchaseAccount"].ToString();
-                objMat.EnableAccinTransfer = Convert.ToBoolean(dr["EnableAccinTransfer"]);
-                objMat.Address = dr["Address"].ToString();
-                objMat.Street = dr["Street"].ToString();
-                objMat.PinCode = dr["PinCode"].ToString();
-                objMat.State = dr["State"].ToString();
-                objMat.City = dr["City"].ToString();
-                objMat.Country = dr["Country"].ToString();
-                objMat.Mobile = dr["Mobile"].ToString();
-
+ 
                 lstMaterials.Add(objMat);
 
             }

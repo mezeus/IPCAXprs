@@ -464,7 +464,7 @@ namespace eSunSpeed.BusinessLogic
             AccountMasterModel _acctMaster;
 
             try {
-                string Query = "SELECT * from ACCOUNTMaster";
+                string Query = "SELECT DISTINCT Ac_ID,ACC_NAME,ACC_SHORTNAME,`ACC_Group`,ACC_OpBal,ACC_DrCrOpenBal FROM `ACCOUNTMaster`";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
                 while (dr.Read())

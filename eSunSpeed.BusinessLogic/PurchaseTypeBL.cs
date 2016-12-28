@@ -177,12 +177,12 @@ namespace eSunSpeed.BusinessLogic
 
         }
 
-        public List<eSunSpeedDomain.SaleTypeModel> GetAllSaleType()
+        public List<eSunSpeedDomain.PurchaseTypeModel> GetAllPurchaseType()
         {
-            List<eSunSpeedDomain.SaleTypeModel> lstSaleType = new List<SaleTypeModel>();
-            eSunSpeedDomain.SaleTypeModel objSaleType;
+            List<eSunSpeedDomain.PurchaseTypeModel> lstPurchaseType = new List<PurchaseTypeModel>();
+            eSunSpeedDomain.PurchaseTypeModel objPurcType;
 
-            string Query = "SELECT * FROM SaleType";
+            string Query = "SELECT DISTINCT Id,SalesType,AliasName,`primary`, UnderGroup FROM `AccountGroups`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             //Is
@@ -190,37 +190,16 @@ namespace eSunSpeed.BusinessLogic
 
             while (dr.Read())
             {
-                objSaleType = new SaleTypeModel();
+                //objSaleType = new SaleTypeModel();
 
-                objSaleType.Sale_Id = Convert.ToInt32(dr["Id"]);
-                objSaleType.SalesType = dr["SalesType"].ToString();
-                objSaleType.typeSpecifyHereSingleAccount= Convert.ToBoolean(dr["typeSpecifyHereSingleAccount"]);
-                objSaleType.LedgerAccountBox = dr["LedgerAccountBox"].ToString();
-                objSaleType.typeDifferentTaxRate = Convert.ToBoolean(dr["typeDifferentTaxRate"]);
-                objSaleType.typeSpecifyINVoucher = Convert.ToBoolean(dr["typeSpecifyINVoucher"]);
-                objSaleType.typeTaxable = Convert.ToBoolean (dr["typeTaxable"]);
-                objSaleType.typeMultiTax = Convert.ToBoolean(dr["tyypeMultiTax"]);
-                objSaleType.typeAgainstSTFrom = Convert.ToBoolean(dr["typeAgainstSTFrom"]);
-                objSaleType.typeTaxpaid = Convert.ToBoolean(dr["typeTaxpaid"]);
-                objSaleType.typeExempt = Convert.ToBoolean(dr["typeExempt"]);
-                objSaleType.typeTaxFree = Convert.ToBoolean(dr["typeTaxFree"]);
-                objSaleType.typeLUMSumDealer = Convert.ToBoolean(dr["typeLUMSumDealer"]);
-                objSaleType.typeUnRegDealer = Convert.ToBoolean(dr["typeUnRegDealer"]);
-                objSaleType.TaxInvoice = Convert.ToBoolean(dr["TaxInvoice"]);
-                objSaleType.VatReturnCategory = dr["VatReturnCategory"].ToString();
-                objSaleType.VatSaleTaxReport = Convert.ToBoolean(dr["VatSaleTaxReport"]);
-                objSaleType.CalculateTaxonItemMRP = Convert.ToBoolean(dr["CalculateTaxonItemMRP"]);
-                objSaleType.TaxInclusiveItemPrice = Convert.ToBoolean(dr["TaxInclusiveItemPrice"]);
-                objSaleType.CalculateTaxonpercentofAmount = Convert.ToDecimal(dr["CalculateTaxonpercentofAmount"]);
-                objSaleType.AdjustTaxinSaleAccount = Convert.ToBoolean(dr["AdjustTaxinSaleAccount"]);
-                objSaleType.TaxAccount = dr["VatSaleTaxReport"].ToString();
-                objSaleType.TypeLocal = Convert.ToBoolean(dr["TypeLocal"]);
-                objSaleType.TypeCentral = Convert.ToBoolean(dr["TypeCentral"]);
-
-                lstSaleType.Add(objSaleType);
+                //objSaleType.Sale_Id = Convert.ToInt32(dr["Id"]);
+                //objSaleType.SalesType = dr["SalesType"].ToString();
+                //objSaleType.typeSpecifyHereSingleAccount= Convert.ToBoolean(dr["typeSpecifyHereSingleAccount"]);
+                //objSaleType.LedgerAccountBox = dr["LedgerAccountBox"].ToString();
+                //lstSaleType.Add(objSaleType);
 
             }
-            return lstSaleType;
+            return lstPurchaseType;
         }
         public bool DeleteSaleType(List<int> salid)
         {

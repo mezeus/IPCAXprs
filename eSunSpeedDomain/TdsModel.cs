@@ -7,7 +7,7 @@ namespace eSunSpeedDomain
 {
   public  class TdsModel
     {
-        public string Tds_Id { get; set; }
+        public int Tds_Id { get; set; }
         public string TdsCategoryName{ get; set; }
         public string Selectcode { get; set; }
     }

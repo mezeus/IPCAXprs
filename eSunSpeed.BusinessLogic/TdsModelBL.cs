@@ -48,6 +48,26 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
+
+        public List<TdsModel> GetListofTDS()
+        {
+            List<TdsModel> lstTdsCategory = new List<TdsModel>();
+            TdsModel objTds;
+
+            string Query = "SELECT DISTINCT TaxCat_Id,Name FROM TaxCategory";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objTds = new TdsModel();
+
+                objTds.Tds_Id = Convert.ToInt32(dr["TaxCat_Id"]);
+                objTds.TdsCategoryName = dr["Name"].ToString();
+
+                lstTdsCategory.Add(objTds);
+            }
+            return lstTdsCategory;
+        }
         //updatebom
         //public bool UpdateSalesMan(SalesManModel objModel)
         //{
@@ -94,7 +114,7 @@ namespace eSunSpeed.BusinessLogic
         //    return isUpdated;
         //}
 
-    
+
         ////Delete
         //public bool DeleteSalesMan(List<int> lstIds)
         //{
@@ -170,7 +190,7 @@ namespace eSunSpeed.BusinessLogic
 
         //    return lstSaleMan;
         //}
-        
+
     }
 }
     

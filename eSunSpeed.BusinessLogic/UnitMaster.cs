@@ -119,7 +119,7 @@ namespace eSunSpeed.BusinessLogic
 
             try
             {
-                string Query = "SELECT * from unitmaster";
+                string Query = "SELECT DISTINCT UM_ID,UnitName,PrintName FROM `UnitMaster`";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
                 while (dr.Read())
@@ -128,10 +128,9 @@ namespace eSunSpeed.BusinessLogic
                     obj = new UnitMasterModel();
 
                     obj.UM_ID = Convert.ToInt32(dr["UM_ID"]);
-                    obj.PrintName = dr["PrintName"].ToString();
                     obj.UnitName = dr["UnitName"].ToString();
-                    obj.ExciseReturn = dr["ExciseReturn"].ToString();
-                    obj.CreatedDate = Convert.ToDateTime(dr["CreatedDate"]);
+                    obj.PrintName = dr["PrintName"].ToString();
+                  
                     lsObj.Add(obj);
                 }
             }

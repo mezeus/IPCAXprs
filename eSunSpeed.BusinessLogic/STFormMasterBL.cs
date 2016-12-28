@@ -77,7 +77,7 @@ namespace eSunSpeed.BusinessLogic
             List<STFormMasterModel> lstSTF = new List<STFormMasterModel>();
             STFormMasterModel objModel;
 
-            string Query = "SELECT * FROM STFormMaster";
+            string Query = "SELECT DISTINCT STF_Id,Name,PrintName FROM STFormMaster";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -88,7 +88,6 @@ namespace eSunSpeed.BusinessLogic
                 objModel.STF_Id = Convert.ToInt32(dr["STF_Id"]);
                 objModel.Name = dr["Name"].ToString();
                 objModel.PrintName= dr["PrintName"].ToString();
-                objModel.STRegType = dr["STRegType"].ToString();
                 
                 lstSTF.Add(objModel);
             }
