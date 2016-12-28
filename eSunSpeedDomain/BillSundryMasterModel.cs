@@ -12,7 +12,7 @@ namespace eSunSpeedDomain
         public string Alias { get; set; }
         public string PrintName { get; set; }
         public string BillSundryType { get; set; }
-        public string BillSundryNarration { get; set; }
+        public string BillSundryNature { get; set; }
         public decimal DefaultValue { get; set; }
         public string subtotalheading { get; set; }
         public bool AffectstheCostofGoodsinSale { get; set; }

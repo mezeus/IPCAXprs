@@ -125,7 +125,7 @@
             this.cbxdefaultvalue = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxsubtotalheading = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxBillsundrytype = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbxBillsundrynarration = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxBillsundrynature = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -221,7 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxdefaultvalue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxsubtotalheading.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrytype.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrynarration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrynature.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -334,7 +334,7 @@
             this.layoutControl1.Controls.Add(this.cbxdefaultvalue);
             this.layoutControl1.Controls.Add(this.cbxsubtotalheading);
             this.layoutControl1.Controls.Add(this.cbxBillsundrytype);
-            this.layoutControl1.Controls.Add(this.cbxBillsundrynarration);
+            this.layoutControl1.Controls.Add(this.cbxBillsundrynature);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -1259,21 +1259,21 @@
             this.cbxBillsundrytype.StyleController = this.layoutControl1;
             this.cbxBillsundrytype.TabIndex = 10;
             // 
-            // cbxBillsundrynarration
+            // cbxBillsundrynature
             // 
-            this.cbxBillsundrynarration.Location = new System.Drawing.Point(345, 108);
-            this.cbxBillsundrynarration.Name = "cbxBillsundrynarration";
-            this.cbxBillsundrynarration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxBillsundrynature.Location = new System.Drawing.Point(345, 108);
+            this.cbxBillsundrynature.Name = "cbxBillsundrynature";
+            this.cbxBillsundrynature.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxBillsundrynarration.Properties.Items.AddRange(new object[] {
+            this.cbxBillsundrynature.Properties.Items.AddRange(new object[] {
             "others",
             "vat",
             "cst",
             "bed",
             "oed"});
-            this.cbxBillsundrynarration.Size = new System.Drawing.Size(87, 20);
-            this.cbxBillsundrynarration.StyleController = this.layoutControl1;
-            this.cbxBillsundrynarration.TabIndex = 11;
+            this.cbxBillsundrynature.Size = new System.Drawing.Size(87, 20);
+            this.cbxBillsundrynature.StyleController = this.layoutControl1;
+            this.cbxBillsundrynature.TabIndex = 11;
             // 
             // layoutControlGroup1
             // 
@@ -1385,11 +1385,11 @@
             // 
             // layoutControlItem8
             // 
-            this.layoutControlItem8.Control = this.cbxBillsundrynarration;
+            this.layoutControlItem8.Control = this.cbxBillsundrynature;
             this.layoutControlItem8.Location = new System.Drawing.Point(114, 96);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(310, 24);
-            this.layoutControlItem8.Text = "Bill Sundary Narration";
+            this.layoutControlItem8.Text = "Bill Sundary Nature";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(216, 13);
             // 
             // layoutControlItem9
@@ -1902,7 +1902,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxdefaultvalue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxsubtotalheading.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrytype.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrynarration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxBillsundrynature.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
@@ -2119,6 +2119,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxdefaultvalue;
         private DevExpress.XtraEditors.ComboBoxEdit cbxsubtotalheading;
         private DevExpress.XtraEditors.ComboBoxEdit cbxBillsundrytype;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxBillsundrynarration;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxBillsundrynature;
     }
 }

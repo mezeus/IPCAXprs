@@ -42,7 +42,7 @@ namespace IPCAUI.Administration
             objbsmod.Alias = tbxAlias.Text;
             objbsmod.PrintName = tbxPrintName.Text;
             objbsmod.BillSundryType = cbxBillsundrytype.Text;
-            objbsmod.BillSundryNarration = cbxBillsundrynarration.Text;
+            objbsmod.BillSundryNature = cbxBillsundrynature.Text;
             objbsmod.DefaultValue = Convert.ToDecimal(cbxdefaultvalue.Text.ToString());
           
             objbsmod.AffectstheCostofGoodsinSale = Convert.ToBoolean(cbxAffectsthecostofgoodsinsale.Text.ToString()=="Y"? true:false);

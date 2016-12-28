@@ -27,7 +27,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Alias", objBSM.Alias));
                 paramCollection.Add(new DBParameter("@PrintName", objBSM.PrintName));
                 paramCollection.Add(new DBParameter("@BillSundryType", objBSM.BillSundryType));
-                paramCollection.Add(new DBParameter("@BillSundryNarration", objBSM.BillSundryNarration));
+                paramCollection.Add(new DBParameter("@BillSundryNature", objBSM.BillSundryNature));
                 paramCollection.Add(new DBParameter("@DefaultValue", objBSM.DefaultValue));
                 paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinSale", objBSM. AffectstheCostofGoodsinSale, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinPurchase", objBSM.AffectstheCostofGoodsinPurchase, System.Data.DbType.Boolean));
@@ -105,7 +105,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Alias", objBSM.Alias));
                 paramCollection.Add(new DBParameter("@PrintName", objBSM.PrintName));
                 paramCollection.Add(new DBParameter("@BillSundryType", objBSM.BillSundryType));
-                paramCollection.Add(new DBParameter("@BillSundryNarration", objBSM.BillSundryNarration));
+                paramCollection.Add(new DBParameter("@BillSundryNature", objBSM.BillSundryNature));
                 paramCollection.Add(new DBParameter("@DefaultValue", objBSM.DefaultValue));
                 paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinSale", objBSM.AffectstheCostofGoodsinSale, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinPurchase", objBSM.AffectstheCostofGoodsinPurchase, System.Data.DbType.Boolean));
@@ -219,7 +219,7 @@ namespace eSunSpeed.BusinessLogic
                 objBsm.Alias = dr["Alias"].ToString();
                 objBsm.PrintName = dr["PrintName"].ToString();
                 objBsm.BillSundryType = dr["BillSundryType"].ToString();
-                objBsm.BillSundryNarration = dr["BillSundryNarration"].ToString();
+                objBsm.BillSundryNature = dr["BillSundryNature"].ToString();
                 objBsm.DefaultValue = Convert.ToDecimal("DefaultValue".ToString());
                 objBsm.AffectstheCostofGoodsinSale= Convert.ToBoolean(dr["AffectstheCostofGoodsinSale"]);
                 objBsm.AffectstheCostofGoodsinPurchase = Convert.ToBoolean(dr["AffectstheCostofGoodsinPurchase"]);
