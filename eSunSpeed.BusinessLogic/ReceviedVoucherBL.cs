@@ -12,7 +12,7 @@ namespace eSunSpeed.BusinessLogic
     {
         private DBHelper _dbHelper = new DBHelper();
 
-        #region SAVE RECIEPT VOUCHER
+        #region SAVE FormRecevied VOUCHER
         public bool SaveReceviedVoucher(ReceviedVoucherModel objRecevied)
         {
             string Query = string.Empty;
@@ -22,28 +22,26 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Date", objRecevied.Date, System.Data.DbType.DateTime));             
+                paramCollection.Add(new DBParameter("@Date", objRecevied.Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Form", objRecevied.form));
                 paramCollection.Add(new DBParameter("@Series", objRecevied.Series));
-                paramCollection.Add(new DBParameter("@IssuingOffice", objRecevied.issuingoffice));
-                paramCollection.Add(new DBParameter("@FromNo", objRecevied.fromNo));
+                paramCollection.Add(new DBParameter("@Issuingoffice", objRecevied.issuingoffice));
+                paramCollection.Add(new DBParameter("@Formnumber", objRecevied.fromNo));
+                paramCollection.Add(new DBParameter("@DateofIssue", objRecevied.issuedDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Stateofissue", objRecevied.stateofissue));
                 paramCollection.Add(new DBParameter("@Party", objRecevied.party));
-                paramCollection.Add(new DBParameter("@DateOfIssue", objRecevied.issuedDate,System.Data.DbType.DateTime));
-                paramCollection.Add(new DBParameter("@StateOfIssue", objRecevied.stateofissue));
                 paramCollection.Add(new DBParameter("@Narration", objRecevied.Narration));
-                
+                paramCollection.Add(new DBParameter("@TotalAmount", "0"));
+
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                Query = "INSERT INTO Recevied_Voucher([Recevied_Date],[Series],[Issuing Office],[FromNo],[Party],[DateOfIssue]," +
-                "[StateOfIssue],[Narration],[CreatedBy]) VALUES " +
-                "(@Date,@Series,@IssuingOffice,@FromNo,@Party,@DateOfIssue,@StateOfIssue,@Narration," +
-                " @CreatedBy)";
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertFormRcvdMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveReceviedAccount(objRecevied.ReceviedModel);
-                    isSaved = true;                
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveReceviedDetails(objRecevied.ReceviedModel, id);
             }
             catch (Exception ex)
             {
@@ -54,12 +52,10 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveReceviedAccount(List<ReceviedModel> lstRec)
+        public bool SaveReceviedDetails(List<ReceviedModel> lstRec,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetReceviedtId();
 
             foreach (ReceviedModel Rec in lstRec)
             {
@@ -69,21 +65,16 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@ID", (Rec.ParentId)));
-                    paramCollection.Add(new DBParameter("@VoucherNo", (Rec.VoucherNo)));
+                    paramCollection.Add(new DBParameter("@RcvdId", (Rec.ParentId)));
+                    paramCollection.Add(new DBParameter("@Voucherno", (Rec.VoucherNo)));
                     paramCollection.Add(new DBParameter("@Dated", Rec.Dated));
-                    paramCollection.Add(new DBParameter("@amount", Rec.Amount));
+                    paramCollection.Add(new DBParameter("@Amount", Rec.Amount));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                     //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Recevied_Amount_Voucher ([Recevied_Id],[VoucherNo],[Dated],[Amount]," +
-                    "[CreatedBy]) VALUES " +
-                    "(@ID,@VoucherNo,@Dated,@amount,@CreatedBy)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                     _dbHelper.ExecuteDataReader("spInsertFormRcvdDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {

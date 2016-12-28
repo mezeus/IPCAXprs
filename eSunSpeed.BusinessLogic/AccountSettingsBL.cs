@@ -61,7 +61,34 @@ namespace eSunSpeed.BusinessLogic
             return _dbHelper.ExecuteNonQuery(Query,paramCollection) > 0;                  
         }
         #endregion
-        
+
+        public AccountSettingsModel GetListofAccountSettings(int id)
+        {
+
+            AccountSettingsModel accountsettings = new AccountSettingsModel();
+
+            string Query = "SELECT * FROM accountsettings WHERE CompId="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                accountsettings = new AccountSettingsModel();
+
+                accountsettings.Billbybilldetails = Convert.ToBoolean(dr["billbybilldetails"].ToString() == "1" ? true : false);
+                accountsettings.creditlimits = Convert.ToBoolean(dr["creditlimits"].ToString() == "1" ? true : false);
+                accountsettings.targets = Convert.ToBoolean(dr["targets"].ToString()== "1" ? true : false);
+                accountsettings.costcenters = Convert.ToBoolean(dr["costcenters"].ToString()== "1" ? true : false);
+                accountsettings.fbtreporting = Convert.ToBoolean(dr["fbtreporting"].ToString()== "1" ? true : false);
+                accountsettings.bankreconcilations = Convert.ToBoolean(dr["bankreconcilations"].ToString()== "1" ? true : false);
+                accountsettings.chequeprinting = Convert.ToBoolean(dr["chequeprinting"].ToString()== "1" ? true : false);
+                //accountsettings.Billbybilldetails = Convert.ToBoolean(dr["billbybilldetails"].ToString());
+                //accountsettings.Billbybilldetails = Convert.ToBoolean(dr["billbybilldetails"].ToString());
+
+            }
+
+            return accountsettings;
+
+        }
     }
 
 }

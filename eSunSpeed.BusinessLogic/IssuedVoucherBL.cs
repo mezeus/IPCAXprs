@@ -12,7 +12,7 @@ namespace eSunSpeed.BusinessLogic
     {
         private DBHelper _dbHelper = new DBHelper();
 
-        #region SAVE RECIEPT VOUCHER
+        #region SAVE FormIssued Voucher
         public bool SaveIssuedVoucher(IssuedVoucherModel objIssued)
         {
             string Query = string.Empty;
@@ -22,26 +22,23 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Date", objIssued.Date, System.Data.DbType.DateTime));             
-                paramCollection.Add(new DBParameter("@From", objIssued.From));
-                paramCollection.Add(new DBParameter("@Authourity", objIssued.Authourity,System.Data.DbType.DateTime));
-                paramCollection.Add(new DBParameter("@FromNo", objIssued.fromNo));
+                paramCollection.Add(new DBParameter("@Date", objIssued.Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Form", objIssued.From));
+                paramCollection.Add(new DBParameter("@FormNo", objIssued.fromNo));
+                paramCollection.Add(new DBParameter("@Authority", objIssued.Authourity, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Party", objIssued.party));
                 paramCollection.Add(new DBParameter("@Narration", objIssued.Narration));
-                
+                paramCollection.Add(new DBParameter("@TotalAmount","0"));
+
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-                Query = "INSERT INTO Issued_Voucher ([Issued_Date],[From],[Rcvd Authourity],[FromNo],[Party]," +
-                "[Narration],[CreatedBy]) VALUES " +
-                "(@Date,@From,@Authourity,@FromNo,@Party,@Narration," +
-                " @CreatedBy)";
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertFormIssuedMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveIssuedAccount(objIssued.ReceviedModel);
-                    isSaved = true;
-                }
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveIssuedDetails(objIssued.ReceviedModel,id);
             }
             catch (Exception ex)
             {
@@ -52,12 +49,10 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveIssuedAccount(List<ReceviedModel> lstRec)
+        public bool SaveIssuedDetails(List<ReceviedModel> lstRec,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            int ParentId = GetIssuedId();
 
             foreach (ReceviedModel Rec in lstRec)
             {
@@ -67,23 +62,18 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@ID", (Rec.ParentId)));
-                    paramCollection.Add(new DBParameter("@VoucherNo", (Rec.VoucherNo)));
+                    paramCollection.Add(new DBParameter("@IssuedId", (Rec.ParentId)));
+                    paramCollection.Add(new DBParameter("@VoucherNumber", (Rec.VoucherNo)));
                     paramCollection.Add(new DBParameter("@Dated", Rec.Dated));
-                    paramCollection.Add(new DBParameter("@amount", Rec.Amount));
-                    paramCollection.Add(new DBParameter("@BillNo", Rec.BillNo));
-                    paramCollection.Add(new DBParameter("@BillDate", Rec.BillDate));
+                    paramCollection.Add(new DBParameter("@Amount", Rec.Amount));
+                    paramCollection.Add(new DBParameter("@PurchaseBillNo", Rec.BillNo));
+                    paramCollection.Add(new DBParameter("@PurchaseDate", Rec.BillDate));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                     //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
 
-
-                    Query = "INSERT INTO Issued_Amount_Voucher ([Issued_Id],[VoucherNo],[Dated],[Amount],[PurchaseBillNo],[PurchaseDate]," +
-                    "[CreatedBy]) VALUES " +
-                    "(@ID,@VoucherNo,@Dated,@amount,@BillNo,@BillDate,@CreatedBy)";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isSaved = true;
+                    System.Data.IDataReader dr =
+                     _dbHelper.ExecuteDataReader("spInsertFormIssuedDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -93,8 +83,6 @@ namespace eSunSpeed.BusinessLogic
             }
             return isSaved;
         }
-
-      
 
         public int GetIssuedId()
         {
@@ -339,7 +327,7 @@ namespace eSunSpeed.BusinessLogic
                 objIssued.IV_Id = DataFormat.GetInteger(dr["Issued_Id"]);
                 objIssued.Date = DataFormat.GetDateTime(dr["Issued_Date"]);
                 objIssued.From = dr["From"].ToString();
-                objIssued.Authourity = dr["Rcvd Authourity"].ToString();
+                objIssued.Authourity =Convert.ToDateTime(dr["Rcvd Authourity"].ToString());
                 objIssued.fromNo = DataFormat.GetInteger(dr["FromNo"]);
                 objIssued.party = dr["Party"].ToString();
                 objIssued.Narration = dr["Narration"].ToString();
@@ -363,8 +351,7 @@ namespace eSunSpeed.BusinessLogic
                     objiss.Dated = drRec["Dated"].ToString();
                     objiss.Amount = Convert.ToDecimal(drRec["Amount"]);
                     objiss.BillNo = DataFormat.GetInteger(drRec["PurchaseBillNo"]);
-                    objiss.BillDate = drRec["PurchaseDate"].ToString();
-
+                    objiss.BillDate =Convert.ToInt32(drRec["PurchaseDate"].ToString());
 
                     objIssued.ReceviedModel.Add(objiss);
 

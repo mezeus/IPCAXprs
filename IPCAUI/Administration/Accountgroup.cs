@@ -128,7 +128,6 @@ namespace IPCAUI.Administration
 
             FillAccountInfo();
 
-
         }
 
         private void FillAccountInfo()
