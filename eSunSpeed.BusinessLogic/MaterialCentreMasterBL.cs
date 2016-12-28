@@ -23,7 +23,7 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Name", objMCM.Name));
+                paramCollection.Add(new DBParameter("@GroupName", objMCM.GroupName));
                 paramCollection.Add(new DBParameter("@Alias", objMCM.Alias));
                 paramCollection.Add(new DBParameter("@PrintName", objMCM.PrintName));
                 paramCollection.Add(new DBParameter("@Group", objMCM.Group));
@@ -43,9 +43,9 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
 
-                Query = "INSERT INTO MaterialCentreMaster([Name],[Alias],[PrintName],[Group],[StockAccount],[EnableStockinBal],[SalesAccount],[PurchaseAccount]," +
-                "[EnableAccinTransfer],[Address],[Street],[City],[State],[Country],[PinCode],[Mobile],[CreatedBy])" +
-                 "VALUES(@Name,@Alias,@PrintName,@Group,@StockAccount,@EnableStockinBal,@SalesAccount,@PurchaseAccount,@EnableAccinTransfer,@Address,@Street,@City," +
+                Query = "INSERT INTO materialcentremaster(`Name`,`Alias`,`PrintName`,`Group`,`StockAccount`,`EnableStockinBal`,`SalesAccount`,`PurchaseAccount`," +
+                "`EnableAccinTransfer`,`Address`,`Street`,`City`,`State`,`Country`,`PinCode`,`Mobile`,`CreatedBy`)" +
+                 "VALUES(@GroupName,@Alias,@PrintName,@Group,@StockAccount,@EnableStockinBal,@SalesAccount,@PurchaseAccount,@EnableAccinTransfer,@Address,@Street,@City," +
                  "@State,@Counry,@PinCode,@Mobile,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -69,7 +69,7 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Name", objMCM.Name));
+                paramCollection.Add(new DBParameter("@Name", objMCM.GroupName));
                 paramCollection.Add(new DBParameter("@Alias", objMCM.Alias));
                 paramCollection.Add(new DBParameter("@PrintName", objMCM.PrintName));
                 paramCollection.Add(new DBParameter("@Group", objMCM.Group));
@@ -119,7 +119,7 @@ namespace eSunSpeed.BusinessLogic
                 objMat = new MaterialCentreMasterModel();
 
                 objMat.MC_Id = Convert.ToInt32(dr["MC_Id"]);
-                objMat.Name = dr["Name"].ToString();
+                objMat.GroupName = dr["GroupName"].ToString();
                 objMat.Alias = dr["Alias"].ToString();
                 objMat.Group = dr["Group"].ToString();
  
