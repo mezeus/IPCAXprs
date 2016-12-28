@@ -854,6 +854,12 @@
     <Compile Include="MDIParent1.Designer.cs">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu\CompanyMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.Designer.cs">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu\ConfigurationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3220,6 +3226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\CompanyMenu.resx">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
