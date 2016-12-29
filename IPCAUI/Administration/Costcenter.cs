@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Costcenter : Form
     {
         CostCentreMasterBL objccm = new CostCentreMasterBL();
+        public static int costId = 0;
         public Costcenter()
         {
             InitializeComponent();
@@ -58,11 +59,6 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
-            //List<CostCentreMasterModel> lstCenter = objccm.GetAllCostCentreMaster();
-            //dgvList.DataSource = lstCenter;
-
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
         }
 
         private void ListCostcenter_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -71,12 +67,50 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxName.Focus();
+
+            FillCostCenterInfo();
+        }
+
+        private void FillCostCenterInfo()
+        {
+            CostCentreMasterModel objMaster = objccm.GetAllCostCentreMasterById(costId);
+
+            //lblCC.Text = row.Cells["CCM_ID"].Value != null ? row.Cells["CCM_ID"].Value.ToString() : string.Empty;
+            tbxName.Text = objMaster.Name;
+            tbxAliasname.Text = objMaster.Alias;
+            cbxPrimarygroup.SelectedItem = objMaster.Group;
+            tbxOpbal.Text = Convert.ToString(objMaster.opBal);
+            cbxDrCr.SelectedItem = objMaster.DrCr;
+
         }
 
         private void Costcenter_Load(object sender, EventArgs e)
         {
             cbxDrCr.SelectedIndex = 0;
             cbxPrimarygroup.SelectedIndex = 0;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {        
+            CostCentreMasterModel objModel = new CostCentreMasterModel();
+
+            objModel.Name = tbxName.Text.Trim();
+            objModel.Alias = tbxAliasname.Text.Trim();
+            objModel.Group = cbxPrimarygroup.SelectedItem.ToString();
+            objModel.opBal = Convert.ToDecimal(tbxOpbal.Text.Trim());
+            objModel.DrCr = cbxDrCr.SelectedItem.ToString();
+            objModel.ModifiedBy = "Admin";
+            objModel.CCM_ID = costId;
+
+            bool isSuccess = objccm.UpdateCCM(objModel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
         }
     }
 }

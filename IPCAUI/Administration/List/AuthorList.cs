@@ -27,5 +27,14 @@ namespace IPCAUI.Administration.List
             dvgAuthorList.DataSource = lstAuthor;
         }
 
+        private void dvgAutorDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AuthorModel lstAuthors;
+
+            lstAuthors = (AuthorModel)dvgAutorDetails.GetRow(dvgAutorDetails.FocusedRowHandle);
+            Author.AuthorId = lstAuthors.Author_Id;
+
+            this.Close();
+        }
     }
 }

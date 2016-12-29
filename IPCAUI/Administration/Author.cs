@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Author : Form
     {
         AuthorMaster objaut = new AuthorMaster();
+        public static int AuthorId = 0;
         public Author()
         {
             InitializeComponent();
@@ -31,6 +32,27 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            btnSave.Visible = false;
+            lblupdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            FillAccountInfo();
+        }
+
+        private void FillAccountInfo()
+        {
+            AuthorModel objAuthor = objaut.GetAllAuthorsById(AuthorId);
+
+            tbxName.Text = objAuthor.Name;
+            tbxAlias.Text = objAuthor.Alias;
+            tbxPrintname.Text = objAuthor.PrintName;
+            cbxContactwithAccount.SelectedItem = objAuthor.ConnectAcc;
+            tbxAddress.Text = objAuthor.Address;
+            cbxState.SelectedItem = objAuthor.State;
+            tbxTelnumber.Text = objAuthor.Telephone;
+            tbxMobileno.Text = objAuthor.MobileNo;
+            tbxEmail.Text = objAuthor.Email;
         }
 
         private void tbxSave_Click(object sender, EventArgs e)
@@ -119,6 +141,50 @@ namespace IPCAUI.Administration
             //    tbxName.Focus();
             //    return;
             //}
+        }
+
+        private void tbxName_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            AuthorModel objModel = new AuthorModel();
+
+            if (tbxName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Author Name can not be blank!");
+                return;
+            }
+            objModel.Name = tbxName.Text.Trim();
+            objModel.Alias = tbxAlias.Text.Trim();
+            objModel.PrintName = tbxPrintname.Text.Trim();
+            objModel.ConnectAcc = cbxContactwithAccount.SelectedItem.ToString() == "Y" ? true : false;
+
+            objModel.Address = tbxAddress.Text.Trim();
+            //objModel.Street = tbxStreet.Text.Trim();
+            //objModel.PinCode = tbxPincode.Text.Trim();
+
+            //CityModel objCity = (CityModel)cbxCity.SelectedItem;
+            //objModel.City = objCity.City_Name;
+            objModel.Street = cbxState.SelectedItem.ToString();
+            //StateModel objState = (StateModel)cbxState.SelectedItem;
+            //objModel.State = objState.State_Name;
+            //objModel.Country = cbxCountry.SelectedItem.ToString();
+            objModel.Telephone = tbxTelnumber.Text.Trim();
+            objModel.MobileNo = tbxMobileno.Text.Trim();
+
+            objModel.Email = tbxEmail.Text.Trim();
+            objModel.State = cbxState.SelectedItem.ToString();
+            objModel.Author_Id = AuthorId;
+
+            objModel.CreatedBy = "Admin";
+
+            bool isSuccess = objaut.UpdateAuthorMaster(objModel);
+            {
+                MessageBox.Show("Update Successfully!");
+            }
         }
     }
 }

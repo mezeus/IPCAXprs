@@ -28,6 +28,16 @@ namespace IPCAUI.Administration.List
 
         private void dvgCurrencyList_KeyDown(object sender, KeyEventArgs e)
         {
+          
+        }
+
+        private void dvgCurrencyDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CurrencyMasterModel lstCurrency;
+
+            lstCurrency = (CurrencyMasterModel)dvgCurrencyDetails.GetRow(dvgCurrencyDetails.FocusedRowHandle);
+            Currencyadd.CurrecyId = lstCurrency.CM_ID;
+
             this.Close();
         }
     }

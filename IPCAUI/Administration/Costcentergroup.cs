@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     public partial class Costcentergroup : Form
     {
         CostCentreGroupBL objCG = new CostCentreGroupBL();
+        public static int groupId = 0;
         public Costcentergroup()
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Group Name can not be blank!");
                 return;
             }
-
             //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
             //{
             //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
@@ -55,12 +55,6 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
-
-            //List<CostCentreGroupModel> lstGroups = objCG.GetAllCostCentreGroups();
-            //dgvList.DataSource = lstGroups;
-
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
         }
 
         private void Listccgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -69,6 +63,27 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            btnSave.Visible = false;
+            //btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            tbxGroupName.Focus();
+            tbxGroupName.ReadOnly = true;
+
+            FillAccountInfo();
+        }
+
+        private void FillAccountInfo()
+        {
+            CostCentreGroupModel objMaster = objCG.GetAllCostCentreGroupsById(groupId);
+
+            tbxGroupName.Text = objMaster.GroupName;
+            tbxAlias.Text = objMaster.Alias;
+            cbxPrimarygroup.SelectedItem = (objMaster.PrimaryGroup)?"Y" : "N";
+            cbxUndergroup.SelectedItem = objMaster.underGroup;
+
         }
 
         private void Costcentergroup_Load(object sender, EventArgs e)
@@ -114,6 +129,31 @@ namespace IPCAUI.Administration
             //    tbxGroupName.Focus();
             //    return;
             //}
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+            //{
+            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+            //    cbxUnderGrp.Focus();
+            //    return;
+            //}
+
+            CostCentreGroupModel objModel = new CostCentreGroupModel();
+
+            objModel.CCG_ID = groupId;
+            objModel.GroupName = tbxGroupName.Text.Trim();
+            objModel.Alias = tbxAlias.Text.Trim();
+            objModel.underGroup = cbxUndergroup.SelectedItem.ToString();
+            objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.CreatedBy = "Admin";
+
+            bool isSuccess = objCG.UpdateCCGM(objModel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
         }
     }
 }

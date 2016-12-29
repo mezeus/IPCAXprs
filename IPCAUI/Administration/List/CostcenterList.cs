@@ -26,34 +26,6 @@ namespace IPCAUI.Administration.List
             dvgCostcenter.DataSource = lstccmaster;
         }
 
-        private void Fill()
-        {
-            DataSets.CostcenterList.CostcenterListDtDataTable dt = new DataSets.CostcenterList.CostcenterListDtDataTable();
-
-            for (int i = 0; i <= 50; i++)
-            {
-                DataSets.CostcenterList.CostcenterListDtRow dr = dt.NewCostcenterListDtRow();
-
-                dr[0] = "Test Name" + i;
-                dr[1] = "Alias Name" +i ;
-                dr[2] = "Parent Group test data" +i;
-                dr[3] = "12.56" +i;
-                dr[4] = "10.45" +i;
-
-                dt.AddCostcenterListDtRow(dr);
-            }
-            DataSets.CostcenterList ds = new DataSets.CostcenterList();
-            ds.Tables.Clear();
-
-            ds.Tables.Add(dt);
-
-            BindingSource src = new BindingSource();
-            src.DataSource = ds.Tables[0];
-
-            costcenterListDtBindingSource.DataSource = src;
-            
-        }
-
         private void dvgCostcenter_KeyDown(object sender, KeyEventArgs e)
         {
             //this.Close();
@@ -69,12 +41,12 @@ namespace IPCAUI.Administration.List
 
         private void dvgCostcenterDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //CostCentreMasterModel lstItems;
+            CostCentreMasterModel lstItems;
 
-            //lstItems = (CostCentreGroupModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
-            //costcenter.groupId = lstItems.GroupId;
+            lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
+            Costcenter.costId = lstItems.CCM_ID;
 
-            //this.Close();
+            this.Close();
         }
     }
 }

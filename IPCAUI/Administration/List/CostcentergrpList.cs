@@ -28,6 +28,21 @@ namespace IPCAUI.Administration.List
 
         private void dvgCCgrpList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgCCgrpList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          
+        }
+
+        private void dvgCCgrpDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CostCentreGroupModel lstGrops;
+
+            lstGrops = (CostCentreGroupModel)dvgCCgrpDetails.GetRow(dvgCCgrpDetails.FocusedRowHandle);
+            Costcentergroup.groupId = lstGrops.CCG_ID;
+
             this.Close();
         }
     }

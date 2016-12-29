@@ -64,10 +64,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ModifiedBy", objCCM.ModifiedBy));
                 paramCollection.Add(new DBParameter("@CCM_ID", objCCM.CCM_ID));
 
-                Query = "UPDATE CostCentreMaster SET [Name]=@Name,[Alias]=@Alias,[Group]=@Group,[opBal]=@opBal,[DrCr]=@DrCr,[ModifiedBy]=@ModifiedBy " +
-                   " WHERE CCM_ID=@CCM_ID";
-
-
+                Query = "UPDATE CostCentreMaster SET Name=@Name,Alias=@Alias,`Group`=@Group,opBal=@opBal,DrCr=@DrCr,ModifiedBy=@ModifiedBy " +
+                        "WHERE CCM_ID=@CCM_ID";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isUpdated = true;
@@ -144,6 +142,32 @@ namespace eSunSpeed.BusinessLogic
 
             return lstCCM;
         }
+
+        public CostCentreMasterModel GetAllCostCentreMasterById(int id)
+        {
+            CostCentreMasterModel objCCM = new CostCentreMasterModel();
+            string Query = "SELECT * FROM CostCentreMaster WHERE CCM_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+
+                objCCM = new CostCentreMasterModel();
+                objCCM.CCM_ID = Convert.ToInt32(dr["CCM_ID"]);
+                objCCM.Name = dr["Name"].ToString();
+                objCCM.Alias = dr["Alias"].ToString();
+                objCCM.Group = dr["Group"].ToString();
+                objCCM.opBal = Convert.ToDecimal(dr["opBal"]);
+                objCCM.DrCr = dr["DrCr"].ToString();
+                //objCCM.ModifiedBy = dr["ModifiedBy"].ToString();
+
+             
+            }
+
+            return objCCM;
+        }
+
+
 
     }
 }
