@@ -21,9 +21,9 @@ namespace IPCAUI
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Company.Companycreate frm = new Company.Companycreate();
-            frm.MdiParent = this;
-            frm.Show();
+           // Company.Companycreate frm = new Company.Companycreate();
+            //frm.MdiParent = this;
+            //frm.Show();
             //frm.Dock = DockStyle.Fill;
             //Form childForm = new Form();
             //childForm.MdiParent = this;

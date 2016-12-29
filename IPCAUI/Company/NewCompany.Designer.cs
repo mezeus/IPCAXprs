@@ -59,6 +59,8 @@
             this.tbxEmail = new DevExpress.XtraEditors.TextEdit();
             this.tbxtype = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxCaption = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.tbxfybeginningfrom = new DevExpress.XtraEditors.DateEdit();
+            this.tbxbookscommencingfrom = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -97,8 +99,6 @@
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.tbxfybeginningfrom = new DevExpress.XtraEditors.DateEdit();
-            this.tbxbookscommencingfrom = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxaddress2.Properties)).BeginInit();
@@ -129,6 +129,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxtype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCaption.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -167,10 +171,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -495,6 +495,44 @@
             this.tbxCaption.Size = new System.Drawing.Size(118, 20);
             this.tbxCaption.StyleController = this.layoutControl1;
             this.tbxCaption.TabIndex = 32;
+            // 
+            // tbxfybeginningfrom
+            // 
+            this.tbxfybeginningfrom.EditValue = null;
+            this.tbxfybeginningfrom.Location = new System.Drawing.Point(131, 132);
+            this.tbxfybeginningfrom.Name = "tbxfybeginningfrom";
+            this.tbxfybeginningfrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxfybeginningfrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxfybeginningfrom.Properties.DisplayFormat.FormatString = "";
+            this.tbxfybeginningfrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.tbxfybeginningfrom.Properties.EditFormat.FormatString = "";
+            this.tbxfybeginningfrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.tbxfybeginningfrom.Properties.Mask.EditMask = "";
+            this.tbxfybeginningfrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.tbxfybeginningfrom.Size = new System.Drawing.Size(252, 20);
+            this.tbxfybeginningfrom.StyleController = this.layoutControl1;
+            this.tbxfybeginningfrom.TabIndex = 12;
+            // 
+            // tbxbookscommencingfrom
+            // 
+            this.tbxbookscommencingfrom.EditValue = null;
+            this.tbxbookscommencingfrom.Location = new System.Drawing.Point(131, 156);
+            this.tbxbookscommencingfrom.Name = "tbxbookscommencingfrom";
+            this.tbxbookscommencingfrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxbookscommencingfrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxbookscommencingfrom.Properties.DisplayFormat.FormatString = "";
+            this.tbxbookscommencingfrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.tbxbookscommencingfrom.Properties.EditFormat.FormatString = "";
+            this.tbxbookscommencingfrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.tbxbookscommencingfrom.Properties.Mask.EditMask = "";
+            this.tbxbookscommencingfrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.tbxbookscommencingfrom.Size = new System.Drawing.Size(237, 20);
+            this.tbxbookscommencingfrom.StyleController = this.layoutControl1;
+            this.tbxbookscommencingfrom.TabIndex = 11;
             // 
             // layoutControlItem25
             // 
@@ -880,48 +918,15 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(331, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // tbxfybeginningfrom
-            // 
-            this.tbxfybeginningfrom.EditValue = null;
-            this.tbxfybeginningfrom.Location = new System.Drawing.Point(131, 132);
-            this.tbxfybeginningfrom.Name = "tbxfybeginningfrom";
-            this.tbxfybeginningfrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxfybeginningfrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxfybeginningfrom.Properties.DisplayFormat.FormatString = "";
-            this.tbxfybeginningfrom.Properties.EditFormat.FormatString = "";
-            this.tbxfybeginningfrom.Properties.Mask.EditMask = "";
-            this.tbxfybeginningfrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.tbxfybeginningfrom.Size = new System.Drawing.Size(252, 20);
-            this.tbxfybeginningfrom.StyleController = this.layoutControl1;
-            this.tbxfybeginningfrom.TabIndex = 12;
-            // 
-            // tbxbookscommencingfrom
-            // 
-            this.tbxbookscommencingfrom.EditValue = null;
-            this.tbxbookscommencingfrom.Location = new System.Drawing.Point(131, 156);
-            this.tbxbookscommencingfrom.Name = "tbxbookscommencingfrom";
-            this.tbxbookscommencingfrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxbookscommencingfrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxbookscommencingfrom.Properties.DisplayFormat.FormatString = "";
-            this.tbxbookscommencingfrom.Properties.EditFormat.FormatString = "";
-            this.tbxbookscommencingfrom.Properties.Mask.EditMask = "";
-            this.tbxbookscommencingfrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.tbxbookscommencingfrom.Size = new System.Drawing.Size(237, 20);
-            this.tbxbookscommencingfrom.StyleController = this.layoutControl1;
-            this.tbxbookscommencingfrom.TabIndex = 11;
-            // 
             // NewCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 541);
             this.Controls.Add(this.layoutControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewCompany";
-            this.Text = "NewCompany";
+            this.Text = "New Company";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbxaddress2.Properties)).EndInit();
@@ -952,6 +957,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxtype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCaption.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -990,10 +999,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxfybeginningfrom.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxbookscommencingfrom.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

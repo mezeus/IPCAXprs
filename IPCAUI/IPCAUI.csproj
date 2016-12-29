@@ -488,12 +488,6 @@
     <Compile Include="Company\Getsoftlocklicence.Designer.cs">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Company\Companycreate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Company\Companycreate.Designer.cs">
-      <DependentUpon>Companycreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Company\Datarestoration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -860,17 +854,17 @@
     <Compile Include="MDIParent1.Designer.cs">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\CompanyMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\CompanyMenu.Designer.cs">
-      <DependentUpon>CompanyMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\ConfigurationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menu\ConfigurationMenu.Designer.cs">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.Designer.cs">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\ReportMenu.cs">
       <SubType>Form</SubType>
@@ -3173,9 +3167,6 @@
     <EmbeddedResource Include="Company\Getsoftlocklicence.resx">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Company\Companycreate.resx">
-      <DependentUpon>Companycreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Company\Datarestoration.resx">
       <DependentUpon>Datarestoration.cs</DependentUpon>
     </EmbeddedResource>
@@ -3236,11 +3227,11 @@
     <EmbeddedResource Include="MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\CompanyMenu.resx">
-      <DependentUpon>CompanyMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menu\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\CompanyMenu.resx">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\ReportMenu.resx">
       <DependentUpon>ReportMenu.cs</DependentUpon>

@@ -11,49 +11,24 @@ using DevExpress.XtraEditors;
 
 namespace IPCAUI.Menu
 {
-    public partial class CompanyMenu : DevExpress.XtraEditors.XtraForm
+    public partial class CompanyMenu : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         XtraForm1 frm;
         public CompanyMenu(XtraForm1 frm)
         {
             InitializeComponent();
-            this.frm = frm;
-        }
+            this.frm = frm;                   
+        }             
 
-        private void ConfigurationMenu_FormClosing(object sender, FormClosingEventArgs e)
+      
+        private void btnCreateComp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frm.Visible = true;
-        }
+            Company.NewCompany frm = new Company.NewCompany();
 
-        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Settings.Accountsettings frm;
-            frm = new Settings.Accountsettings(); //generate new instance 
-            //frm.Owner = this;
-            //frm.TopLevel = false;
-
-            //spli.Panel2.Controls.Add(frm);
-            frm.ShowDialog();
-        }
-
-        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void ribbonControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Inventory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-           
-        }
-
-        private void btnOpenCompany_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
+            frm.Owner = this;
+            frm.TopLevel = false;
+            splitContainerControl1.Panel2.Controls.Add(frm);
+            frm.Show();
         }
     }
 }
