@@ -30,6 +30,16 @@ namespace IPCAUI.Administration.List
         
         private void dvgUnitmasterList_KeyDown(object sender, KeyEventArgs e)
         {
+           
+        }
+
+        private void dvgUnitMasterDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UnitMasterModel lstUnitmaster;
+
+            lstUnitmaster = (UnitMasterModel)dvgUnitMasterDetails.GetRow(dvgUnitMasterDetails.FocusedRowHandle);
+            Unitmaster.UMId = lstUnitmaster.UM_ID;
+
             this.Close();
         }
     }

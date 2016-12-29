@@ -55,11 +55,10 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PrintName", objUM.PrintName));
                 paramCollection.Add(new DBParameter("@ExciseReturn", objUM.ExciseReturn));
                 paramCollection.Add(new DBParameter("@ModifiedBy", objUM.ModifiedBy));
-                paramCollection.Add(new DBParameter("@ModifiedBy", DateTime.Now));
                 paramCollection.Add(new DBParameter("@UM_ID", objUM.UM_ID));
 
 
-                Query = "UPDATE UnitMaster SET [UnitName]=@UnitName,[PrintName]=@PrintName,[ExciseReturn]=@ExciseReturn,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
+                Query = "UPDATE UnitMaster SET UnitName=@UnitName,PrintName=@PrintName,ExciseReturn=@ExciseReturn,ModifiedBy=@ModifiedBy " +
                   "WHERE UM_Id=@UM_Id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -142,5 +141,31 @@ namespace eSunSpeed.BusinessLogic
             return lsObj;
         }
         #endregion
+
+        public UnitMasterModel GetListofUnitsById(int id)
+        {
+            UnitMasterModel obj = new UnitMasterModel();
+
+            try
+            {
+                string Query = "SELECT * FROM `UnitMaster` WHERE UM_ID="+id+"";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+                while (dr.Read())
+                {
+
+                    obj.UM_ID = Convert.ToInt32(dr["UM_ID"]);
+                    obj.UnitName = dr["UnitName"].ToString();
+                    obj.PrintName = dr["PrintName"].ToString();
+                    obj.ExciseReturn = dr["ExciseReturn"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return obj;
+        }
     }
 }

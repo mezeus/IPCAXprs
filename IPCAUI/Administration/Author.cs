@@ -47,7 +47,7 @@ namespace IPCAUI.Administration
             tbxName.Text = objAuthor.Name;
             tbxAlias.Text = objAuthor.Alias;
             tbxPrintname.Text = objAuthor.PrintName;
-            cbxContactwithAccount.SelectedItem = objAuthor.ConnectAcc;
+            cbxContactwithAccount.SelectedItem = Convert.ToString((objAuthor.ConnectAcc) ? "Y" : "N");
             tbxAddress.Text = objAuthor.Address;
             cbxState.SelectedItem = objAuthor.State;
             tbxTelnumber.Text = objAuthor.Telephone;

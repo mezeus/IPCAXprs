@@ -43,7 +43,7 @@ namespace eSunSpeed.BusinessLogic
         }
 
         //Update
-        public bool UpdateIGM(ItemGroupMasterModel objIGM)
+        public bool UpdateMasterSeries(MasterseriesModel objmasmod)
         {
             string Query = string.Empty;
             bool isUpdate = true;
@@ -52,21 +52,13 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@ItemGroup", objIGM.ItemGroup));
-                paramCollection.Add(new DBParameter("@Alias", objIGM.Alias));
-                paramCollection.Add(new DBParameter("@PrimaryGroup", objIGM.PrimaryGroup, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@UnderGroup", objIGM.UnderGroup));
-                paramCollection.Add(new DBParameter("@StockAccount", objIGM.StockAccount));
-                paramCollection.Add(new DBParameter("@SalesAccount", objIGM.SalesAccount));
-                paramCollection.Add(new DBParameter("@PurchaseAccount", objIGM.PurchaseAccount));
+                paramCollection.Add(new DBParameter("@MasterName", objmasmod.MasterName));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@IGM_Id",objIGM.IGM_id));
+                paramCollection.Add(new DBParameter("@SN_Id", objmasmod.MasterId));
 
-                Query = "UPDATE ItemGroupMaster SET [ItemGroup]=@ItemGroup,[Alias]=@Alias,[PrimaryGroup]=@PrimaryGroup,[UnderGroup]=@UnderGroup,[StockAccount]=@StockAccount,[SalesAccount]=@SalesAccount," +
-                   "[PurchaseAccount]=@PurchaseAccount,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                   "WHERE IGM_Id=@IGM_Id";
-                
+                Query = "UPDATE masterseriesgroup SET Name=@MasterName " +
+                        "WHERE masid=@SN_Id;";
+
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isUpdate = true;
             }
@@ -129,6 +121,22 @@ namespace eSunSpeed.BusinessLogic
             }
 
             return lstmasterseries;
+        }
+
+        public MasterseriesModel GetListofMasterSeriesById(int id)
+        {
+            MasterseriesModel masterseries = new MasterseriesModel();
+
+            string Query = "SELECT * FROM masterseriesgroup WHERE masid="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                masterseries.MasterId = Convert.ToInt32(dr["masid"]);
+                masterseries.MasterName = dr["Name"].ToString();
+            }
+
+            return masterseries;
 
         }
     }

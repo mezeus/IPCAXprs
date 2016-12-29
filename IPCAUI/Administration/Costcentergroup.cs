@@ -64,10 +64,10 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
 
-            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
             btnSave.Visible = false;
-            //btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
             tbxGroupName.Focus();
             tbxGroupName.ReadOnly = true;

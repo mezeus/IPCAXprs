@@ -175,15 +175,16 @@ namespace eSunSpeed.BusinessLogic
                 objModel.Name = dr["Author_Name"].ToString();
                 objModel.Alias = dr["Author_Alias"].ToString();
                 objModel.PrintName = dr["Author_PName"].ToString();
-                objModel.ConnectAcc = Convert.ToBoolean(dr["Author_Connect"]);
+                objModel.ConnectAcc = dr["Author_Connect"]=="1"?true:false;
                 objModel.MobileNo = dr["Author_Mobile"].ToString();
                 objModel.Address = dr["Author_Address"].ToString();
                 //objModel.Street = dr["Author_Street"].ToString();
                 //objModel.City = dr["Author_City"].ToString();
                 //objModel.Country = dr["Author_Country"].ToString();
                 objModel.State = dr["Author_State"].ToString();
-                objModel.State = dr["Author_Telenumber"].ToString();
                 objModel.PinCode = dr["Author_Email"].ToString();
+                objModel.Telephone = dr["Author_Telenumber"].ToString();
+                objModel.Email = dr["Author_Email"].ToString();
 
             }
             return objModel;

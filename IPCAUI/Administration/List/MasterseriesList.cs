@@ -25,7 +25,15 @@ namespace IPCAUI.Administration.List
             List<eSunSpeedDomain.MasterseriesModel> lstmaster = objmastbl.GetListofMasterSeries();
             dvgMasterSeriesList.DataSource = lstmaster;
         }
-            
-        
+
+        private void dvgMasterseries_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MasterseriesModel lstmasters;
+
+            lstmasters = (MasterseriesModel)dvgMasterseries.GetRow(dvgMasterseries.FocusedRowHandle);
+            Masterseriesgroup.MsGId = lstmasters.MasterId;
+
+            this.Close();
+        }
     }
 }

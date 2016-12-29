@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     public partial class Masterseriesgroup : Form
     {
         MasterseriesBL objmasbl = new MasterseriesBL();
+        public static int MsGId = 0;
         public Masterseriesgroup()
         {
             InitializeComponent();
@@ -51,11 +52,52 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            tbxName.Focus();
+
+            FillAccountInfo();
+
+        }
+
+        private void FillAccountInfo()
+        {
+            MasterseriesModel objMaster = objmasbl.GetListofMasterSeriesById(MsGId);
+
+            tbxName.Text = objMaster.MasterName;
+
         }
 
         private void tbxName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Masterseriesgroup_Load(object sender, EventArgs e)
+        {
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (tbxName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Name can not be blank!");
+                return;
+            }
+
+            MasterseriesModel objmaster = new MasterseriesModel();
+
+            objmaster.MasterName = tbxName.Text.Trim();
+            objmaster.MasterId = MsGId;
+            bool isSuccess = objmasbl.UpdateMasterSeries(objmaster);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
         }
     }
 }

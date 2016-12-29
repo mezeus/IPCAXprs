@@ -54,7 +54,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ModifiedDate",DateTime.Now));
                 paramCollection.Add(new DBParameter("@SN_Id", objSNM.SN_Id));
 
-                Query = "UPDATE StdNarrationMaster SET [Vouchertype]=@Vouchertype,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
+                Query = "UPDATE StdNarrationMaster SET Vouchertype=@Vouchertype,Narration=@Narration,ModifiedBy=@ModifiedBy " +
                         "WHERE SN_Id=@SN_Id;";
                     
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -91,9 +91,28 @@ namespace eSunSpeed.BusinessLogic
             }
             return lstNarration;
         }
+        //Get All Stdnarrations By ID
+        public StdNarrationMasterModel GetAllStdNarrationById(int id)
+        {
+            StdNarrationMasterModel objNarr = new StdNarrationMasterModel();
+
+            string Query = "SELECT * FROM StdNarrationMaster WHERE SN_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+
+                objNarr.SN_Id = Convert.ToInt32(dr["SN_ID"]);
+                objNarr.Vouchertype = dr["Vouchertype"].ToString();
+                objNarr.Narration = dr["Narration"].ToString();
+
+            }
+            return objNarr;
+        }
+
 
         #region Delete Standard Narration
-      
+
         public bool DeleteNarration(List<int> lstIds)
         {
             string Query = string.Empty;
