@@ -108,6 +108,7 @@
             this.dvgAutorDetails.Name = "dvgAutorDetails";
             this.dvgAutorDetails.OptionsBehavior.ReadOnly = true;
             this.dvgAutorDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgAutorDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgAutorDetails_KeyPress);
             // 
             // colName
             // 

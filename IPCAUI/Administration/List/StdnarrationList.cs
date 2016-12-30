@@ -28,6 +28,16 @@ namespace IPCAUI.Administration.List
 
         private void dvgStdnarration_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgStdnarrationDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            StdNarrationMasterModel lstStdnarr;
+
+            lstStdnarr = (StdNarrationMasterModel)dvgStdnarrationDetails.GetRow(dvgStdnarrationDetails.FocusedRowHandle);
+            StdNarration.StdId = lstStdnarr.SN_Id;
+
             this.Close();
         }
     }

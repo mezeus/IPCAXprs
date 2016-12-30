@@ -54,7 +54,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ConFactor", objUC.ConFactor));
                 paramCollection.Add(new DBParameter("@UC_ID", objUC.ID));
 
-                Query = "UPDATE UnitConversion SET [MainUnit]=@MainUnit,[SubUnit]=@SubUnit,[ConFactor]=@ConFactor "+
+                Query = "UPDATE UnitConversion SET MainUnit=@MainUnit,SubUnit=@SubUnit,ConFactor=@ConFactor "+
                   "WHERE Id=@UC_Id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -142,5 +142,29 @@ namespace eSunSpeed.BusinessLogic
             return lsObj;
         }
         #endregion
+        //Get List Of Unit Conversion By Unit Id
+        public UnitConversionModel GetListofUnitConversionsById(int id)
+        {
+            UnitConversionModel obj = new UnitConversionModel();
+            try
+            {
+                string Query = "SELECT * from unitconversion WHERE ID="+id+"";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+                while (dr.Read())
+                {
+                    obj.ID = Convert.ToInt32(dr["ID"]);
+                    obj.ConFactor = Convert.ToDecimal(dr["ConFactor"]);
+                    obj.SubUnit = dr["SubUnit"].ToString();
+                    obj.MainUnit = dr["MainUnit"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return obj;
+        }
     }
 }

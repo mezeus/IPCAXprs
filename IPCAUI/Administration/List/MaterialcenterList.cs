@@ -29,11 +29,20 @@ namespace IPCAUI.Administration.List
 
         private void dvgMaterialcentList_KeyDown(object sender, KeyEventArgs e)
         {
-            this.Close();
+           
         }
 
         private void dvgMaterialcentList_KeyDown_1(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgMaterialcentList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MaterialCentreMasterModel lstMaterial;
+
+            lstMaterial = (MaterialCentreMasterModel)dvgMaterialcenterDet.GetRow(dvgMaterialcenterDet.FocusedRowHandle);
+            MaterialCenter.MCId = lstMaterial.MC_Id;
             this.Close();
         }
     }

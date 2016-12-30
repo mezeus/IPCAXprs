@@ -111,7 +111,7 @@ namespace eSunSpeed.BusinessLogic
            List<MaterialCentreMasterModel> lstMaterials=new List<MaterialCentreMasterModel>();
            MaterialCentreMasterModel objMat;
 
-         string  Query = "SELECT DISTINCT MC_Id,Name,Alias,Group FROM `MaterialCentreMaster`";
+         string  Query = "SELECT * FROM `materialcentremaster`";
           System.Data.IDataReader dr= _dbHelper.ExecuteDataReader(Query,_dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -119,7 +119,7 @@ namespace eSunSpeed.BusinessLogic
                 objMat = new MaterialCentreMasterModel();
 
                 objMat.MC_Id = Convert.ToInt32(dr["MC_Id"]);
-                objMat.GroupName = dr["GroupName"].ToString();
+                objMat.GroupName = dr["Name"].ToString();
                 objMat.Alias = dr["Alias"].ToString();
                 objMat.Group = dr["Group"].ToString();
  
@@ -128,7 +128,34 @@ namespace eSunSpeed.BusinessLogic
             }
           return lstMaterials;
        }
+        //List of Material Centermaster By Id
+        public MaterialCentreMasterModel GetAllMaterialsById(int id)
+        {
+            MaterialCentreMasterModel objMat = new MaterialCentreMasterModel();
+           
+            string Query = "SELECT * FROM `materialcentremaster` WHERE MC_Id="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
+            while (dr.Read())
+            {
+                objMat = new MaterialCentreMasterModel();
+
+                objMat.MC_Id = Convert.ToInt32(dr["MC_Id"]);
+                objMat.GroupName = dr["Name"].ToString();
+                objMat.Alias = dr["Alias"].ToString();
+                objMat.PrintName = dr["PrintName"].ToString();
+                objMat.Group = dr["Group"].ToString();
+                objMat.StockAccount = dr["StockAccount"].ToString();
+                objMat.EnableStockinBal = Convert.ToBoolean(dr["EnableStockBal"] == "1" ? true : false);
+                objMat.SalesAccount = dr["SalesAccount"].ToString();
+                objMat.SalesAccount = dr["PurchaseAccount"].ToString();
+                objMat.SalesAccount = dr["SalesAccount"].ToString();
+                objMat.EnableAccinTransfer= Convert.ToBoolean(dr["EnableAccinTransfer"] =="1" ? true : false);
+                objMat.Address = dr["Address"].ToString();
+
+            }
+            return objMat;
+        }
         #region Delete MaterialCenter       
         public bool DeleteMaterialCenter(List<int> lstIds)
         {

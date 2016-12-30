@@ -36,7 +36,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgUnitconversionList = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgUnitConDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMainUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSubUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgUnitconversionList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgUnitConDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -150,23 +150,25 @@
             // dvgUnitconversionList
             // 
             this.dvgUnitconversionList.Location = new System.Drawing.Point(47, 29);
-            this.dvgUnitconversionList.MainView = this.gridView1;
+            this.dvgUnitconversionList.MainView = this.dvgUnitConDetails;
             this.dvgUnitconversionList.Name = "dvgUnitconversionList";
             this.dvgUnitconversionList.Size = new System.Drawing.Size(782, 439);
             this.dvgUnitconversionList.TabIndex = 9;
             this.dvgUnitconversionList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgUnitConDetails});
             this.dvgUnitconversionList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgUnitconversionList_KeyDown);
             // 
-            // gridView1
+            // dvgUnitConDetails
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgUnitConDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMainUnit,
             this.colSubUnit,
             this.gridColumn1});
-            this.gridView1.GridControl = this.dvgUnitconversionList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgUnitConDetails.GridControl = this.dvgUnitconversionList;
+            this.dvgUnitConDetails.Name = "dvgUnitConDetails";
+            this.dvgUnitConDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgUnitConDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgUnitConDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgUnitConDetails_KeyPress);
             // 
             // colMainUnit
             // 
@@ -278,7 +280,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgUnitconversionList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgUnitConDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -299,7 +301,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraGrid.GridControl dvgUnitconversionList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgUnitConDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colMainUnit;
         private DevExpress.XtraGrid.Columns.GridColumn colSubUnit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;

@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class MaterialCenter : Form
     {
         MaterialCentreMasterBL objmatcenbl = new MaterialCentreMasterBL();
+        public static int MCId = 0;
         public MaterialCenter()
         {
             InitializeComponent();
@@ -26,7 +27,28 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+            btnSave.Visible = false;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            FillAccountInfo();
         }
+
+        private void FillAccountInfo()
+        {
+            MaterialCentreMasterModel objMaterial = objmatcenbl.GetAllMaterialsById(MCId);
+
+            //tbxName.Text = objAuthor.Name;
+            //tbxAlias.Text = objAuthor.Alias;
+            //tbxPrintname.Text = objAuthor.PrintName;
+            //cbxContactwithAccount.SelectedItem = Convert.ToString((objAuthor.ConnectAcc) ? "Y" : "N");
+            //tbxAddress.Text = objAuthor.Address;
+            //cbxState.SelectedItem = objAuthor.State;
+            //tbxTelnumber.Text = objAuthor.Telephone;
+            //tbxMobileno.Text = objAuthor.MobileNo;
+            //tbxEmail.Text = objAuthor.Email;
+        }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -37,7 +59,7 @@ namespace IPCAUI.Administration
             objGroup.PrintName = tbxPrintname.Text.Trim();
             objGroup.Group = cbxGroup.Text.Trim();
             objGroup.StockAccount = cbxStockaccount.Text.Trim();
-        objGroup.EnableStockinBal =cbxreflectstockinbalancesheet.SelectedItem.ToString() == "Y" ? true : false;
+            objGroup.EnableStockinBal =cbxreflectstockinbalancesheet.SelectedItem.ToString() == "Y" ? true : false;
             objGroup.SalesAccount = cbxSaleAccount.Text.Trim();
             objGroup.PurchaseAccount = cbxPurchaseAccount.Text.Trim();
             objGroup.EnableAccinTransfer = tbxAccStocktransfer.Text.Trim() == "Y" ? true : false;
@@ -53,6 +75,11 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
+        }
+
+        private void MaterialCenter_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

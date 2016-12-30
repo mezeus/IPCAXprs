@@ -52,7 +52,6 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-
                 paramCollection.Add(new DBParameter("@Symbol", objCur.Symbol));
                 paramCollection.Add(new DBParameter("@String", objCur.CString));
                 paramCollection.Add(new DBParameter("@SubString", objCur.SubString));
@@ -61,7 +60,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CM_ID", objCur.CM_ID));
 
 
-                Query = "UPDATE CurrencyMaster SET [Symbol]=@Symbol,[CString]=@String,[SubString]=@SubString,[ConversionMode]=@ConversionMode,[ModifiedBy]=@ModifiedBy " +
+                Query = "UPDATE CurrencyMaster SET Symbol=@Symbol,CString=@String,SubString=@SubString,`ConversionMode`=@ConversionMode,ModifiedBy=@ModifiedBy " +
                         "WHERE CM_ID=@CM_ID";
 
 
@@ -133,5 +132,27 @@ namespace eSunSpeed.BusinessLogic
 
             return lstCurr;
         }
+
+        public CurrencyMasterModel GetAllCurrencyById(int id)
+        {
+            CurrencyMasterModel objCurr = new CurrencyMasterModel();
+
+            string Query = "SELECT * FROM CurrencyMaster WHERE CM_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objCurr = new CurrencyMasterModel();
+                objCurr.CM_ID = Convert.ToInt32(dr["CM_ID"]);
+                objCurr.Symbol = dr["Symbol"].ToString();
+                objCurr.CString = dr["CString"].ToString();
+                objCurr.SubString = dr["SubString"].ToString();
+                objCurr.ConvertionMode = dr["ConversionMode"].ToString();
+     
+            }
+
+            return objCurr;
+        }
+       
     }
 }

@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Unitmaster : Form
     {
         UnitMaster objunm = new UnitMaster();
+        public static int UMId = 0;
         public Unitmaster()
         {
             InitializeComponent();
@@ -61,7 +62,22 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+            btnSave.Visible = false;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+            FillAccountInfo();
         }
+
+        private void FillAccountInfo()
+        {
+            UnitMasterModel objunit = objunm.GetListofUnitsById(UMId);
+
+            tbxUnitName.Text = objunit.UnitName;
+            tbxPrintname.Text = objunit.PrintName;
+            tbxUnitnameExcise.Text = objunit.ExciseReturn;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -88,6 +104,41 @@ namespace IPCAUI.Administration
                     return;
                 }
                 //e.Handled = true; // Mark the event as handled
+            }
+        }
+
+        private void Unitmaster_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (tbxUnitName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Unit Name can not be blank!");
+                return;
+            }
+
+            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
+            //{
+            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+            //    cbxUnderGrp.Focus();
+            //    return;
+            //}
+
+            UnitMasterModel objModel = new UnitMasterModel();
+
+            objModel.UnitName = tbxUnitName.Text.Trim();
+            objModel.PrintName = tbxPrintname.Text.Trim();
+            objModel.ExciseReturn = tbxUnitName.Text.Trim();
+            objModel.UM_ID = UMId;
+            objModel.CreatedBy = "Admin";
+
+            bool isSuccess = objunm.UpdateUM(objModel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfuly!");
             }
         }
     }

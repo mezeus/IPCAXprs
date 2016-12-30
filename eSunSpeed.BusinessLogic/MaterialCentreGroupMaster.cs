@@ -55,12 +55,12 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Alias", objMCG.Alias));
                 paramCollection.Add(new DBParameter("@PrimaryGroup", objMCG.PrimaryGroup,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@UnderGroup", objMCG.UnderGroup));
-                paramCollection.Add(new DBParameter("@ModifiedBy", objMCG.ModifiedBy));
                 paramCollection.Add(new DBParameter("@MCG_ID", objMCG.MCG_ID));
-                paramCollection.Add(new DBParameter("@ModifiedBy", objMCG.ModifiedBy));
 
-                Query = "UPDATE MaterialCentreGroupMaster SET [Group]=@Group,[Alias]=@Alias,[PrimaryGroup]=@PrimaryGroup,[UnderGroup]=@UnderGroup, " +
-                         "[ModifiedBy]=@ModifiedBy WHERE MCG_Id=@MCG_Id";
+
+                Query = "UPDATE `materialcentregroupmaster` SET `Group`=@Group,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,UnderGroup=@UnderGroup " +
+                        "WHERE MCG_ID=@MCG_ID";
+
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isUpdated = true;
@@ -81,7 +81,7 @@ namespace eSunSpeed.BusinessLogic
             List<MaterialCentreGroupMasterModel> lstMCG = new List<MaterialCentreGroupMasterModel>();
             MaterialCentreGroupMasterModel objMCG;
 
-            string Query = "SELECT DISTINCT MCG_ID,Group,PrimaryGroup,UnderGroup FROM `MaterialCentreGroupMaster`";
+            string Query = "SELECT * FROM `materialcentregroupmaster`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -101,8 +101,29 @@ namespace eSunSpeed.BusinessLogic
             return lstMCG;
         }
 
+        //Get List To Update By Id
+        public MaterialCentreGroupMasterModel GetAllMaterialGroupsById(int id)
+        {
+            MaterialCentreGroupMasterModel objMCG = new MaterialCentreGroupMasterModel();
+
+            string Query = "SELECT * FROM `materialcentregroupmaster` WHERE MCG_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objMCG.MCG_ID = Convert.ToInt32(dr["MCG_ID"]);
+                objMCG.Group = dr["Group"].ToString();
+                objMCG.Alias = dr["Alias"].ToString();
+                objMCG.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
+                objMCG.UnderGroup = dr["UnderGroup"].ToString();
+
+            }
+
+            return objMCG;
+        }
+
         #region Delete Material Group
-        
+
         public bool DeleteMaterialGroup(List<int> lstIds)
         {
             string Query = string.Empty;

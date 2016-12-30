@@ -109,7 +109,9 @@
             this.colCurrencyConversionMode});
             this.dvgCurrencyDetails.GridControl = this.dvgCurrencyList;
             this.dvgCurrencyDetails.Name = "dvgCurrencyDetails";
+            this.dvgCurrencyDetails.OptionsBehavior.ReadOnly = true;
             this.dvgCurrencyDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgCurrencyDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCurrencyDetails_KeyPress);
             // 
             // colCurrencySymbol
             // 
