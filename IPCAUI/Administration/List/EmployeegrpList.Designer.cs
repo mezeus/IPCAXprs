@@ -31,7 +31,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgEmployeeList = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgEmpGrpDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEmployeeCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,7 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgEmployeeList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgEmpGrpDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -90,24 +90,26 @@
             // dvgEmployeeList
             // 
             this.dvgEmployeeList.Location = new System.Drawing.Point(47, 29);
-            this.dvgEmployeeList.MainView = this.gridView1;
+            this.dvgEmployeeList.MainView = this.dvgEmpGrpDetails;
             this.dvgEmployeeList.Name = "dvgEmployeeList";
             this.dvgEmployeeList.Size = new System.Drawing.Size(782, 439);
             this.dvgEmployeeList.TabIndex = 9;
             this.dvgEmployeeList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgEmpGrpDetails});
             this.dvgEmployeeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgEmployeeList_KeyDown);
             // 
-            // gridView1
+            // dvgEmpGrpDetails
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgEmpGrpDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colEmployeeCode,
             this.colParentGroup,
             this.colJoiningdate});
-            this.gridView1.GridControl = this.dvgEmployeeList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgEmpGrpDetails.GridControl = this.dvgEmployeeList;
+            this.dvgEmpGrpDetails.Name = "dvgEmpGrpDetails";
+            this.dvgEmpGrpDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgEmpGrpDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgEmpGrpDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgEmpGrpDetails_KeyPress);
             // 
             // colName
             // 
@@ -153,6 +155,7 @@
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
+            this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
             // 
             // navBarGroup1
             // 
@@ -278,7 +281,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgEmployeeList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgEmpGrpDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -305,7 +308,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgEmployeeList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgEmpGrpDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colEmployeeCode;

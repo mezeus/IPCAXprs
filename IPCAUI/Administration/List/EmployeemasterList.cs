@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
@@ -21,12 +22,22 @@ namespace IPCAUI.Administration.List
 
         private void EmployeemasterList_Load(object sender, EventArgs e)
         {
-            //List<eSunSpeedDomain.EmployeeMasterModel> lstemployeemaster = objmasterbl.grt();
-            //dvgAccList.DataSource = lstGroups;
+            List<eSunSpeedDomain.EmployeeMasterModel> lstEmployee = objmasterbl.GetListofallEmployees();
+            dvgEmployeemstList.DataSource = lstEmployee;
         }
 
         private void dvgEmployeemstList_KeyDown(object sender, KeyEventArgs e)
         {
+           
+        }
+
+        private void dvgEmpMasterdetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            EmployeeMasterModel lstEmpGroups;
+
+            lstEmpGroups = (EmployeeMasterModel)dvgEmpMasterdetails.GetRow(dvgEmpMasterdetails.FocusedRowHandle);
+            Employeemaster.EmpMstId = lstEmpGroups.EmployeeId;
+
             this.Close();
         }
     }
