@@ -38,8 +38,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ShortName", objCompany.ShortName));
                 paramCollection.Add(new DBParameter("@Country", objCompany.Country));
                 paramCollection.Add(new DBParameter("@State", objCompany.State));
-                paramCollection.Add(new DBParameter("@FYBeginning", objCompany.FYBegining));
-                paramCollection.Add(new DBParameter("@BooksCommencing", objCompany.BooksCommencing));
+                paramCollection.Add(new DBParameter("@FYBegining", objCompany.FYBegining,System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@BooksCommencing", objCompany.BooksCommencing, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Address", objCompany.Address));
                 paramCollection.Add(new DBParameter("@CIN", objCompany.CIN));
                 paramCollection.Add(new DBParameter("@PAN", objCompany.PAN));
@@ -60,9 +60,9 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CreatedBy", objCompany.CreatedBy));
 
                 Query = "INSERT INTO company (`Name`,`PrintName`,`ShortName`," +
-                    "`Country`,`State`,`FYBeginning`,`Bookscommencing`,`Address`,`CIN`,`PAN`,`Ward`,`Telephone`,`Fax`,`Email`,`CurrencySymbol`,`CurrencyString`,`CurrencySubString`,`CurrencyFont`," +
-                    "`CurrencyCharacter`,`VAT`,`Type`,`EnableTaxSchg`,`TIN`,`CSTNo`,`CreatedBy "+
-                    "VALUES(@Name,@PrintName,@ShortName,@Country,@State,@FYBeginning,@BooksCommencing,@Address,@CIN,@PAN,@Ward,@Telephone,@Fax,@Email,@CurrencySymbol,@CurrencyString,@CurrencySubString,@CurrencyFont,@CurrencyCharacter," +
+                    "`Country`,`State`,`FYBegining`,`Bookscommencing`,`Address`,`CIN`,`PAN`,`Ward`,`Telephone`,`Fax`,`Email`,`CurrencySymbol`,`CurrencyString`,`CurrencySubString`,`CurrencyFont`," +
+                    "`CurrencyCharacter`,`VAT`,`Type`,`EnableTaxSchg`,`TIN`,`CSTNo`,`CreatedBy`)"+
+                    "VALUES(@Name,@PrintName,@ShortName,@Country,@State,@FYBegining,@BooksCommencing,@Address,@CIN,@PAN,@Ward,@Telephone,@Fax,@Email,@CurrencySymbol,@CurrencyString,@CurrencySubString,@CurrencyFont,@CurrencyCharacter," +
                     "@VAT,@Type,@EnableTaxSchg,@TIN,@CSTNo,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
