@@ -72,6 +72,18 @@ namespace IPCAUI.Administration
 
             objtaxcat.Name = tbxName.Text.Trim();
             objtaxcat.Taxation_Type = cbxtype.SelectedItem.ToString();
+            objtaxcat.Local_Tax=Convert.ToDecimal(tbxRateoftaxLocal.Text.ToString());
+            objtaxcat.CentralTax= Convert.ToDecimal(tbxRateoftatxx.Text.ToString());
+            objtaxcat.TaxonMRP = Convert.ToBoolean(cbxTaxonmrp.SelectedItem.ToString()=="Y"?true:false);
+            objtaxcat.CalculatedTaxon = Convert.ToDecimal(tbxcalculatedtaxon.Text.ToString());
+            objtaxcat.TaxonMRPMode = cbxtaxonmrpmode.SelectedItem.ToString();
+            objtaxcat.Taxation_Type = cbxTaxationtype.SelectedItem.ToString();
+            objtaxcat.HSNCode = tbxHsn.Text;
+            objtaxcat.Tax_Desc = tbxDescription.Text;
+
+
+
+
 
             string message = string.Empty;
 

@@ -225,5 +225,23 @@ namespace IPCAUI.Transactions
                 // d.ShowDialog();
             }
         }
+
+        private void btnContraList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.ContraVouchers frmList = new Transaction.List.ContraVouchers();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+
+            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            btnSave.Visible = false;
+          //  btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            //tbxGroupName.Focus();
+            //tbxGroupName.ReadOnly = true;
+
+            //FillAccountInfo();
+        }
     }
 }
