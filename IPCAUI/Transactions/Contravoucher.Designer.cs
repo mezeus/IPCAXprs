@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContraVoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dvgMainContra = new DevExpress.XtraGrid.GridControl();
-            this.contraVoucherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contraVoucherBindingSource = new System.Windows.Forms.BindingSource();
             this.contraVoucher1 = new IPCAUI.DataSets.ContraVoucher();
             this.gdvContra = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,7 +57,7 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnContraList = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -66,6 +65,7 @@
             this.tbxVoucherNo = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
             this.tbxLongNarration = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxVoucherSeries = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -80,7 +80,6 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tbxVoucherSeries = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMainContra)).BeginInit();
@@ -95,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -109,7 +109,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -289,7 +288,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup3;
+            this.navBarControl1.ActiveGroup = this.navBarGroup5;
             this.navBarControl1.Appearance.GroupHeader.BackColor = System.Drawing.Color.Lavender;
             this.navBarControl1.Appearance.GroupHeader.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.navBarControl1.Appearance.GroupHeader.Options.UseBackColor = true;
@@ -304,7 +303,7 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem4,
-            this.navBarItem7,
+            this.btnContraList,
             this.navBarItem8,
             this.navBarItem9,
             this.navBarItem10,
@@ -323,7 +322,6 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "Images";
-            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
@@ -401,18 +399,20 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "Add/Modify";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnContraList),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // navBarItem7
+            // btnContraList
             // 
-            this.navBarItem7.Caption = "List";
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.SmallImage")));
+            this.btnContraList.Caption = "List";
+            this.btnContraList.Name = "btnContraList";
+            this.btnContraList.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnContraList.SmallImage")));
+            this.btnContraList.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnContraList_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -476,6 +476,18 @@
             this.tbxLongNarration.Size = new System.Drawing.Size(778, 27);
             this.tbxLongNarration.StyleController = this.layoutControl1;
             this.tbxLongNarration.TabIndex = 26;
+            // 
+            // tbxVoucherSeries
+            // 
+            this.tbxVoucherSeries.EnterMoveNextControl = true;
+            this.tbxVoucherSeries.Location = new System.Drawing.Point(242, 12);
+            this.tbxVoucherSeries.Name = "tbxVoucherSeries";
+            this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxVoucherSeries.Properties.NullText = "";
+            this.tbxVoucherSeries.Size = new System.Drawing.Size(179, 20);
+            this.tbxVoucherSeries.StyleController = this.layoutControl1;
+            this.tbxVoucherSeries.TabIndex = 0;
             // 
             // layoutControlItem8
             // 
@@ -610,18 +622,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // tbxVoucherSeries
-            // 
-            this.tbxVoucherSeries.EnterMoveNextControl = true;
-            this.tbxVoucherSeries.Location = new System.Drawing.Point(242, 12);
-            this.tbxVoucherSeries.Name = "tbxVoucherSeries";
-            this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxVoucherSeries.Properties.NullText = "";
-            this.tbxVoucherSeries.Size = new System.Drawing.Size(179, 20);
-            this.tbxVoucherSeries.StyleController = this.layoutControl1;
-            this.tbxVoucherSeries.TabIndex = 0;
-            // 
             // ContraVoucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -647,6 +647,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -661,7 +662,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,7 +686,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
+        private DevExpress.XtraNavBar.NavBarItem btnContraList;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem navBarItem9;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
