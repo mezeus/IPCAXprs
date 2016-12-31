@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Transaction.List
 {
-    partial class DebitNotes
+    partial class DebitNotesList
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -64,7 +65,6 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).BeginInit();
@@ -247,6 +247,13 @@
             this.gridColumn4.VisibleIndex = 6;
             this.gridColumn4.Width = 79;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Total Amount";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            // 
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.navBarGroup1;
@@ -370,8 +377,8 @@
             this.simpleLabelItem1.Location = new System.Drawing.Point(346, 0);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
             this.simpleLabelItem1.Size = new System.Drawing.Size(343, 17);
-            this.simpleLabelItem1.Text = "List of DebitNotes";
-            this.simpleLabelItem1.TextSize = new System.Drawing.Size(85, 13);
+            this.simpleLabelItem1.Text = "List of DebitNotesList";
+            this.simpleLabelItem1.TextSize = new System.Drawing.Size(101, 13);
             // 
             // emptySpaceItem1
             // 
@@ -443,21 +450,14 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "TotalAmount";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            // 
-            // DebitNotes
+            // DebitNotesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "DebitNotes";
+            this.Name = "DebitNotesList";
             this.Text = "Transactions List";
             this.Load += new System.EventHandler(this.DebitNotes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

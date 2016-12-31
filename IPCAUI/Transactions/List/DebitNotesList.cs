@@ -12,10 +12,10 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class DebitNotes : Form
+    public partial class DebitNotesList : Form
     {
         AccountMasterBL objaccbl = new AccountMasterBL();
-        public DebitNotes()
+        public DebitNotesList()
         {
           
             InitializeComponent();
