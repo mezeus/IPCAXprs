@@ -12,12 +12,15 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Administration
 {
+    
     public partial class BillsofMaterial : Form
     {
         BillsofMaterialBL objbal = new BillsofMaterialBL();
+        List<BillofMaterialModel> obj;
+
         public BillsofMaterial()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -40,11 +43,11 @@ namespace IPCAUI.Administration
             objBMmodl.BOMName = tbxBomName.Text.Trim();
             objBMmodl.Itemtoproduce = cbxItemproduce.Text.Trim();
             objBMmodl.Quantity = Convert.ToInt32(tbxQuanty.Text.Trim());
-            objBMmodl.ItemUnit = cbxUnit.SelectedItem.ToString();
-            objBMmodl.Expenses = Convert.ToDecimal(tbxExpensespcs.Text.Trim());
-            objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxItemgenerated.SelectedItem.ToString().Equals("Yes") ? true : false);
+            objBMmodl.ItemUnit = tbxUnit.ToString();
+            objBMmodl.Expenses = Convert.ToDecimal(tbxExpenses.Text.Trim());
+            objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxSpecifyItemGenerated.ToString().Equals("Yes") ? true : false);
          //   objBMmodl.SourceMC = string.Empty;
-            objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString().Equals("Yes") ? true : false);
+            objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxSpecifyItemConsumed.ToString().Equals("Yes") ? true : false);
             objBMmodl.AppMc = string.Empty;
             //objBMmodl.ItemName = Text.Trim();
             //objBMmodl.Qty = Convert.ToInt32(tbxRawQty.Text.Trim());
@@ -93,10 +96,20 @@ namespace IPCAUI.Administration
 
         private void BillsofMaterial_Load(object sender, EventArgs e)
         {
-            cbxUnit.SelectedIndex = 0;
-            cbxItemgenerated.SelectedIndex = 0;
-            cbxItemconsumed.SelectedIndex= 0;
+            
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ItemName");
+            dt.Columns.Add("Qty");
+            dt.Columns.Add("Unit");
+
+            dvgRawmat.DataSource = dt;
+
+           // tbxUnit.SelectedIndex = 0;
+            //cbxItemgenerated.SelectedIndex = 0;
+            //cbxItemconsumed.SelectedIndex= 0;
             cbxItemproduce.SelectedIndex = 0;
         }
+
+       
     }
 }

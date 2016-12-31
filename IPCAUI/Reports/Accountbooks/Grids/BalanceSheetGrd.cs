@@ -9,91 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
+using eSunSpeed.BusinessLogic;
+using static eSunSpeed.BusinessLogic.BalanceSheetBL;
 
 namespace IPCAUI.Reports.Accountbooks.Grids
 {
     public partial class BalanceSheetGrd : DevExpress.XtraEditors.XtraForm
     {
+
+        BalanceSheetBL objBL = new BalanceSheetBL();
+        int inCurrenRowIndex = 0;
+        int inCurentcolIndex = 0;
+        string calculationMethod = string.Empty;
+        decimal decPrintOrNot = 0;
+        decimal decPrintOrNot1 = 0;
+
         public BalanceSheetGrd()
         {
             InitializeComponent();
         }
 
-        private void labelControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Fill()
-        {
-            
-            DataSets.BalanceSheet.BalSheetDtDataTable dt = new DataSets.BalanceSheet.BalSheetDtDataTable();
-
-            //DataRow dr = dt.NewRow();
-
-            //dr[0] = "ITEM1";
-            //dr[1] = "Paste";
-            //dr[2] = "0.0";
-            //dr[3] = "dozen";
-
-            DataSets.BalanceSheet.BalSheetDtRow dr = dt.NewBalSheetDtRow();
-
-            dr[0] = "ITEM1";
-            dr[1] = "Paste";
-            
-            dt.AddBalSheetDtRow(dr);
-
-            DataSets.BalanceSheet ds = new DataSets.BalanceSheet();
-            ds.Tables.Clear();
-
-            ds.Tables.Add(dt);
-
-            BindingSource src = new BindingSource();
-            src.DataSource = ds.Tables[0];
-
-            balSheetDtBindingSource.DataSource = src;
-           // repositoryItemLookUpEdit1.DataSource = src;
-        }
-
-        private void DayBook_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'iPCADataSet.Approvers' table. You can move, or remove it, as needed.
-            
-
-        }
-
-        private void dockPanel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void officeNavigationBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void officeNavigationBar1_QueryPeekFormContent(object sender, DevExpress.XtraBars.Navigation.QueryPeekFormContentEventArgs e)
-        {
-            
-            
-    }
+   
 
         private void btnFilters_Click(object sender, EventArgs e)
         {
             Reports.Accountbooks.Daybook frmdayBook = new Daybook();
             frmdayBook.ShowDialog();                       
         }
-
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void repositoryItemTextEdit1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
 
@@ -257,15 +200,311 @@ namespace IPCAUI.Reports.Accountbooks.Grids
             //string selectedNode = (sender as TreeList).FocusedNode.GetValue(0).ToString();
         }
 
-        private void treeList1_FocusedNodeChanged_1(object sender, FocusedNodeChangedEventArgs e)
-        {
-
-        }
-
+        
         private void BalanceSheetGrd_Load(object sender, EventArgs e)
         {
-            Fill();
+            FillGrid();
         }
+      
+        public void FillGrid()
+        {
+            DataSet DsetBalanceSheet = new DataSet();
+            CurrencyInfo InfoCurrency = new CurrencyInfo();
+            DataTable dtbl = new DataTable();
+            Font newFont = new Font(dgvReport.Font, FontStyle.Bold);
+            int inDecimalPlaces = InfoCurrency.NoOfDecimalPlaces;
+
+            DsetBalanceSheet = objBL.BalanceSheet(DateTime.Parse("01-01-2016"), DateTime.Parse("12-02-2017"));
+            //------------------- Asset -------------------------------// 
+            dtbl = DsetBalanceSheet.Tables[0];
+            decimal dcTotalAsset = 0;
+            if (dtbl.Rows.Count == 0)
+            {
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Current Assets";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = "0.00";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["GroupId1"].Value = 0;
+            }
+            else
+            {
+                foreach (DataRow rw in dtbl.Rows)
+                {
+                    dgvReport.Rows.Add();
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = rw["Name"].ToString();
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = rw["Balance"].ToString();
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["GroupId1"].Value = rw["ID"].ToString();
+                }
+
+                dcTotalAsset = decimal.Parse(dtbl.Compute("Sum(Balance)", string.Empty).ToString());
+            }
+            //------------------------ Liability ---------------------//
+            dtbl = new DataTable();
+            dtbl = DsetBalanceSheet.Tables[1];
+            int index = 0;
+            decimal dcTotalLiability = 0;
+            if (dtbl.Rows.Count == 0)
+            {
+                dgvReport.Rows.Add();
+                dgvReport.Rows[index].Cells["dgvtxtLiability"].Value = "Current Liabilities";
+                dgvReport.Rows[index].Cells["Amount2"].Value = "0.00";
+                dgvReport.Rows[index].Cells["GroupId2"].Value = 0;
+                dcTotalLiability = decimal.Parse("0.00");
+            }
+            else
+            {
+                foreach (DataRow rw in dtbl.Rows)
+                {
+                    if (index < dgvReport.Rows.Count)
+                    {
+                        dgvReport.Rows[index].Cells["dgvtxtLiability"].Value = rw["Name"].ToString();
+                        dgvReport.Rows[index].Cells["Amount2"].Value = rw["Balance"].ToString();
+                        dgvReport.Rows[index].Cells["GroupId2"].Value = rw["ID"].ToString();
+                    }
+                    else
+                    {
+                        dgvReport.Rows.Add();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = rw["Name"].ToString();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = rw["Balance"].ToString();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["GroupId2"].Value = rw["ID"].ToString();
+                    }
+                    index++;
+                }
+                dcTotalLiability = decimal.Parse(dtbl.Compute("Sum(Balance)", string.Empty).ToString());
+            }
+            decimal dcClosingStock = objBL.StockValueGetOnDate(Convert.ToDateTime("01-01-2016"), calculationMethod, false, false);
+            dcClosingStock = Math.Round(dcClosingStock, inDecimalPlaces);
+            //---------------------Opening Stock---------------------------------------------------------------------------------------------------------------
+            decimal dcOpeninggStock = objBL.StockValueGetOnDate(DateTime.Parse("01-01-2016"), calculationMethod, true, true);
+            decimal dcProfit = 0;
+            DataSet dsetProfitAndLoss = new DataSet();
+            dsetProfitAndLoss = objBL.ProfitAndLossAnalysisUpToaDateForBalansheet(DateTime.Parse("01-01-2016"), DateTime.Parse("12-12-2016"));
+            DataTable dtblProfit = new DataTable();
+            dtblProfit = dsetProfitAndLoss.Tables[0];
+            for (int i = 0; i < dsetProfitAndLoss.Tables.Count; ++i)
+            {
+                dtbl = dsetProfitAndLoss.Tables[i];
+                decimal dcSum = 0;
+                if (i == 0 || (i % 2) == 0)
+                {
+                    if (dtbl.Rows.Count > 0)
+                    {
+                        dcSum = decimal.Parse(dtbl.Compute("Sum(Debit)", string.Empty).ToString());
+                        dcProfit = dcProfit - dcSum;
+                    }
+                }
+                else
+                {
+                    if (dtbl.Rows.Count > 0)
+                    {
+                        dcSum = decimal.Parse(dtbl.Compute("Sum(Credit)", string.Empty).ToString());
+                        dcProfit = dcProfit + dcSum;
+                    }
+                }
+            }
+            decimal decCurrentProfitLoss = 0;
+            decCurrentProfitLoss = dcProfit + (dcClosingStock - dcOpeninggStock);
+            decimal dcProfitOpening = 0;
+            DataSet dsetProfitAndLossOpening = new DataSet();
+            dsetProfitAndLossOpening =objBL.ProfitAndLossAnalysisUpToaDateForPreviousYears(DateTime.Parse("01-01-2016"));
+            DataTable dtblProfitOpening = new DataTable();
+            dtblProfitOpening = dsetProfitAndLossOpening.Tables[0];
+            for (int i = 0; i < dsetProfitAndLossOpening.Tables.Count; ++i)
+            {
+                dtbl = dsetProfitAndLossOpening.Tables[i];
+                decimal dcSum = 0;
+                if (i == 0 || (i % 2) == 0)
+                {
+                    if (dtbl.Rows.Count > 0)
+                    {
+                        dcSum = decimal.Parse(dtbl.Compute("Sum(Debit)", string.Empty).ToString());
+                        dcProfitOpening = dcProfitOpening - dcSum;
+                    }
+                }
+                else
+                {
+                    if (dtbl.Rows.Count > 0)
+                    {
+                        dcSum = decimal.Parse(dtbl.Compute("Sum(Credit)", string.Empty).ToString());
+                        dcProfitOpening = dcProfitOpening + dcSum;
+                    }
+                }
+            }
+            DataTable dtblProfitLedgerOpening = new DataTable();
+            dtblProfitLedgerOpening = DsetBalanceSheet.Tables[3];
+            decimal decProfitLedgerOpening = 0;
+            foreach (DataRow dRow in dtblProfitLedgerOpening.Rows)
+            {
+                decProfitLedgerOpening += decimal.Parse(dRow["Balance"].ToString());
+            }
+            DataTable dtblProf = new DataTable();
+            dtblProf = DsetBalanceSheet.Tables[2];
+            decimal decProfitLedger = 0;
+            if (dtblProf.Rows.Count > 0)
+            {
+                decProfitLedger = decimal.Parse(dtblProf.Compute("Sum(Balance)", string.Empty).ToString());
+            }
+            decimal decTotalProfitAndLoss = 0;
+            if (dcProfitOpening >= 0)
+            {
+                decTotalProfitAndLoss = decProfitLedger;
+            }
+            else if (dcProfitOpening < 0)
+            {
+                decTotalProfitAndLoss = decProfitLedger;
+            }
+            index = 0;
+            if (dcClosingStock >= 0)
+            {
+                //---------- Asset ----------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Closing Stock";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round(dcClosingStock, inDecimalPlaces);
+                dcTotalAsset += dcClosingStock;
+            }
+            else
+            {
+                //--------- Liability ---------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "Closing Stock";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = -(Math.Round(dcClosingStock, inDecimalPlaces));
+                dcTotalLiability += -dcClosingStock;
+            }
+            dgvReport.Rows.Add();
+            decimal decOpeningOfProfitAndLoss = decProfitLedgerOpening + dcProfitOpening;
+            decimal decTotalProfitAndLossOverAll = decTotalProfitAndLoss + decOpeningOfProfitAndLoss + decCurrentProfitLoss;
+            if (decTotalProfitAndLossOverAll <= 0)
+            {
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "----------------------------------------";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                foreach (DataRow dRow in dtblProf.Rows)
+                {
+                    if (dRow["Name"].ToString() == "Profit And Loss Account")
+                    {
+                        dgvReport.Rows.Add();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.DarkSlateGray;
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = dRow["Name"].ToString();
+                        if (decCurrentProfitLoss < 0)
+                        {
+                            decCurrentProfitLoss = decCurrentProfitLoss * -1;
+                        }
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round(decTotalProfitAndLoss + decCurrentProfitLoss, 2);
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["GroupId1"].Value = dRow["ID"].ToString();
+                    }
+                }
+                //-------------- Asset ---------------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Profit And Loss (Opening)";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round(decTotalProfitAndLoss, 2);
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Style.ForeColor = Color.DarkSlateGray;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Style.ForeColor = Color.DarkSlateGray;
+                //-------------- Asset ---------------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Current Period";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round(decCurrentProfitLoss, 2);
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Style.ForeColor = Color.DarkSlateGray;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Style.ForeColor = Color.DarkSlateGray;
+                dcTotalAsset = dcTotalAsset + (decCurrentProfitLoss + decTotalProfitAndLoss);
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "----------------------------------------";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+            }
+            else if (decTotalProfitAndLossOverAll > 0)
+            {
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "----------------------------------------";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                foreach (DataRow dRow in dtblProf.Rows)
+                {
+                    if (dRow["Name"].ToString() == "Profit And Loss Account")
+                    {
+                        dgvReport.Rows.Add();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.DarkSlateGray;
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = dRow[1].ToString();
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = Math.Round(decTotalProfitAndLoss + decCurrentProfitLoss, 2);
+                        dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["GroupId2"].Value = dRow[0].ToString();
+                    }
+                }
+                //------------ Liability ------------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "Profit And Loss (Opening)";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = Math.Round(decTotalProfitAndLoss, inDecimalPlaces);
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Style.ForeColor = Color.DarkSlateGray;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Style.ForeColor = Color.DarkSlateGray;
+                dcTotalLiability += decOpeningOfProfitAndLoss;
+                //------------ Liability ------------//
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "Current Period";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = Math.Round(decCurrentProfitLoss, inDecimalPlaces);
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Style.ForeColor = Color.DarkSlateGray;
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Style.ForeColor = Color.DarkSlateGray;
+                dcTotalLiability = dcTotalLiability + (decCurrentProfitLoss + decTotalProfitAndLoss); //dcProfit;
+                dgvReport.Rows.Add();
+                dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "----------------------------------------";
+                dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+            }
+            dgvReport.Rows.Add();
+            decimal dcDiffAsset = 0;
+            decimal dcDiffLiability = 0;
+            decimal dcTotalValue = dcTotalAsset;
+            if (dcTotalAsset != dcTotalLiability)
+            {
+                if (dcTotalAsset > dcTotalLiability)
+                {
+                    //--------------- Liability exceeds so in asset side ----------------//
+                    dgvReport.Rows.Add();
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "Difference";
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = Math.Round((dcTotalAsset - dcTotalLiability), inDecimalPlaces);
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.DarkRed;
+                    dcDiffLiability = dcTotalAsset - dcTotalLiability;
+                }
+                else
+                {
+                    //--------------- Asset exceeds so in liability side ----------------//
+                    dgvReport.Rows.Add();
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Difference";
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round((dcTotalLiability - dcTotalAsset), inDecimalPlaces); ;
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+                    dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.DarkRed;
+                    dcDiffAsset = dcTotalLiability - dcTotalAsset;
+                }
+            }
+            dgvReport.Rows.Add();
+            dgvReport.Rows.Add();
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = "__________________________";
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = "__________________________";
+            dgvReport.Rows.Add();
+            dgvReport.Rows[dgvReport.Rows.Count - 1].DefaultCellStyle.Font = newFont;
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtLiability"].Value = "Total";
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["dgvtxtAsset"].Value = "Total";
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount1"].Value = Math.Round((dcTotalAsset + dcDiffAsset), inDecimalPlaces);
+            dgvReport.Rows[dgvReport.Rows.Count - 1].Cells["Amount2"].Value = Math.Round((dcTotalLiability + dcDiffLiability), inDecimalPlaces);
+            if (dgvReport.Columns.Count > 0)
+            {
+                dgvReport.Columns["Amount1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvReport.Columns["Amount2"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+            decPrintOrNot = dcTotalAsset + dcDiffAsset;
+            decPrintOrNot1 = dcTotalLiability + dcDiffLiability;
+            if (inCurrenRowIndex >= 0 && dgvReport.Rows.Count > 0 && inCurrenRowIndex < dgvReport.Rows.Count)
+            {
+                if (dgvReport.Rows[inCurrenRowIndex].Cells[inCurentcolIndex].Visible)
+                {
+                    dgvReport.CurrentCell = dgvReport.Rows[inCurrenRowIndex].Cells[inCurentcolIndex];
+                }
+                if (dgvReport.CurrentCell != null && dgvReport.CurrentCell.Visible)
+                    dgvReport.CurrentCell.Selected = true;
+            }
+            inCurrenRowIndex = 0;
+        }
+                       
     }
 
 }
