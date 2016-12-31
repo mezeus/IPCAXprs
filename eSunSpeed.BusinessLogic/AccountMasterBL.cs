@@ -54,8 +54,7 @@ namespace eSunSpeed.BusinessLogic
             string Query = string.Empty;
 
             DBParameterCollection paramCollection = new DBParameterCollection();
-            
-            paramCollection.Add(new DBParameter("@Acc_DbName", "zAKIR"));
+           
             paramCollection.Add(new DBParameter("@ACC_NAME", objAcctMaster.AccountName));
             paramCollection.Add(new DBParameter("@ACC_SHORTNAME",objAcctMaster.ShortName));
             paramCollection.Add(new DBParameter("@ACC_PRINTNAME", objAcctMaster.PrintName));
@@ -71,8 +70,8 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@ACC_DrCrPrevBal", objAcctMaster.DrCrOpeningBal));
             paramCollection.Add(new DBParameter("@ACC_MaintainBitwise", objAcctMaster.MaintainBillwiseAccounts?1:0,System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ACC_ActivateInterestCal", objAcctMaster.ActivateInterestCal?1:0,System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@ACC_CreditDays", objAcctMaster.CreditDays));
-            paramCollection.Add(new DBParameter("@ACC_CreditLimit", objAcctMaster.CreditLimit));
+            paramCollection.Add(new DBParameter("@ACC_CreditDays_ForSale", objAcctMaster.CreditDaysforSale));
+            paramCollection.Add(new DBParameter("@ACC_CreditDays_ForPurch", objAcctMaster.CreditDaysforPurchase));
 
             paramCollection.Add(new DBParameter("@ACC_TypeofDealer", objAcctMaster.TypeofDealer));
             paramCollection.Add(new DBParameter("@ACC_TypeofBuissness", objAcctMaster.TypeofBuissness));
@@ -105,6 +104,7 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@ACC_contactperson", objAcctMaster.contactperson));
             paramCollection.Add(new DBParameter("@ACC_ITPanNumber", objAcctMaster.ITPanNumber));
             paramCollection.Add(new DBParameter("@ACC_LSTNumber", objAcctMaster.LstNumber));
+            
 
             paramCollection.Add(new DBParameter("@ACC_CSTNumber", objAcctMaster.CSTNumber));
             paramCollection.Add(new DBParameter("@ACC_TIN", objAcctMaster.TIN));
@@ -116,18 +116,18 @@ namespace eSunSpeed.BusinessLogic
             paramCollection.Add(new DBParameter("@ACC_DEFAULT_CHEQUE_FORMAT", ""));
             paramCollection.Add(new DBParameter("@ENABLE_CHEQUE_PRINTING", true,System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));
-            paramCollection.Add(new DBParameter("@AC_Id", objAcctMaster.AccountId));
+            paramCollection.Add(new DBParameter("@Ac_Id", objAcctMaster.AccountId));
 
             //todo: NEED TO FIX UPDATE
             Query =
-            "UPDATE AccountMaster SET [Acc_DbName]=@Acc_DbName,[ACC_NAME]=@ACC_NAME,[ACC_SHORTNAME]=@ACC_SHORTNAME,[ACC_PRINTNAME]=@ACC_PRINTNAME,[ACC_LedgerType]=@ACC_LedgerType,[ACC_MultiCurr]=@ACC_MultiCurr,[ACC_Group]=@ACC_Group,[ACC_OpBal]=@ACC_OpBal," +
-                            "[ACC_PrevYearBal]=@ACC_PrevYearBal,[ACC_DrCrOpenBal]=@ACC_DrCrOpenBal,[ACC_DrCrPrevBal]=@ACC_DrCrPrevBal,[ACC_MaintainBitwise]=@ACC_MaintainBitwise,[ACC_ActivateInterestCal]=@ACC_ActivateInterestCal,[ACC_CreditDays]=@ACC_CreditDays, " +
-                            "[ACC_CreditLimit]=@ACC_CreditLimit,[ACC_TypeofBuissness]=@ACC_TypeofBuissness,[ACC_Transport]=@ACC_Transport,[ACC_Station]=@ACC_Station,[ACC_SpecifyDefaultSaleType]=@ACC_SpecifyDefaultSaleType,[ACC_DefaultSaleType]=@ACC_DefaultSaleType,"+
-                            "[ACC_FreezeSaleType]=@ACC_FreezeSaleType,[ACC_SpecifyDefaultPurType]=@ACC_SpecifyDefaultPurType,[ACC_DefaultPurcType]=@ACC_DefaultPurcType,[ACC_LockSalesType]=@ACC_LockSalesType,[ACC_LockPurcType]=@ACC_LockPurcType,[ACC_address1]=@ACC_address1," +
-                            "[ACC_address2]=@ACC_address2,[ACC_Address3]=@ACC_Address3,[ACC_Address4]=@ACC_Address4,[ACC_State]=@ACC_State,[ACC_TelephoneNumber]=@ACC_TelephoneNumber,[ACC_Fax]=@ACC_Fax,[ACC_MobileNumber]=@ACC_MobileNumber,[ACC_email]=@ACC_email,[ACC_Website]=@ACC_Website,"+
-                            "[ACC_enablemailquery]=@ACC_enablemailquery,[ACC_enableSMSquery]=@ACC_enableSMSquery,[ACC_contactperson]=@ACC_contactperson,[ACC_ITPanNumber]=@ACC_ITPanNumber,[ACC_LSTNumber]=@ACC_LSTNumber,[ACC_CSTNumber]=@ACC_CSTNumber,[ACC_TIN]=@ACC_TIN," +
-                            "[ACC_ServiceTax]=@ACC_ServiceTax,[ACC_BankAccountNumber]=@ACC_BankAccountNumber,[ACC_IECode]=@ACC_IECode,[ACC_CreatedBy]=@ACC_CreatedBy,[ACC_DEFAULT_CHEQUE_FORMAT]=@ACC_DEFAULT_CHEQUE_FORMAT,[ENABLE_CHEQUE_PRINTING]=@ENABLE_CHEQUE_PRINTING,[ACC_Cheque_PrintName]=@ACC_Cheque_PrintName " +
-                            " WHERE [AC_Id]=@Ac_Id";
+            "UPDATE accountmaster SET ACC_NAME=@ACC_NAME,ACC_SHORTNAME=@ACC_SHORTNAME,ACC_PRINTNAME=@ACC_PRINTNAME,ACC_LedgerType=@ACC_LedgerType,ACC_MultiCurr=@ACC_MultiCurr,ACC_Group=@ACC_Group,ACC_OpBal=@ACC_OpBal," +
+                            "ACC_PrevYearBal=@ACC_PrevYearBal,ACC_DrCrOpenBal=@ACC_DrCrOpenBal,ACC_DrCrPrevBal=@ACC_DrCrPrevBal,ACC_MaintainBitwise=@ACC_MaintainBitwise,ACC_ActivateInterestCal=@ACC_ActivateInterestCal,ACC_CreditDays_ForSale=@ACC_CreditDays_ForSale, " +
+                            "ACC_CreditDays_ForPurch=@ACC_CreditDays_ForPurch,ACC_CreditDays=@,ACC_Transport=@ACC_Transport,ACC_Station=@ACC_Station,ACC_SpecifyDefaultSaleType=@ACC_SpecifyDefaultSaleType,ACC_DefaultSaleType=@ACC_DefaultSaleType," +
+                            "ACC_FreezeSaleType=@ACC_FreezeSaleType,ACC_SpecifyDefaultPurType=@ACC_SpecifyDefaultPurType,ACC_DefaultPurcType=@ACC_DefaultPurcType,ACC_LockSalesType=@ACC_LockSalesType,ACC_LockPurcType=@ACC_LockPurcType,ACC_address1=@ACC_address1," +
+                            "ACC_address2=@ACC_address2,ACC_Address3=@ACC_Address3,ACC_Address4=@ACC_Address4,ACC_State=@ACC_State,ACC_TelephoneNumber=@ACC_TelephoneNumber,ACC_Fax=@ACC_Fax,ACC_MobileNumber=@ACC_MobileNumber,ACC_email=@ACC_email,ACC_Website=@ACC_Website,"+
+                            "ACC_enablemailquery=@ACC_enablemailquery,ACC_enableSMSquery=@ACC_enableSMSquery,ACC_contactperson=@ACC_contactperson,ACC_ITPanNumber=@ACC_ITPanNumber,ACC_LSTNumber=@ACC_LSTNumber,ACC_CSTNumber=@ACC_CSTNumber,ACC_TIN=@ACC_TIN," +
+                            "ACC_ServiceTax=@ACC_ServiceTax,ACC_BankAccountNumber=@ACC_BankAccountNumber,ACC_IECode=@ACC_IECode,ACC_CreatedBy=@ACC_CreatedBy,ACC_DEFAULT_CHEQUE_FORMAT=@ACC_DEFAULT_CHEQUE_FORMAT,ENABLE_CHEQUE_PRINTING=@ENABLE_CHEQUE_PRINTING,ACC_Cheque_PrintName=@ACC_Cheque_PrintName " +
+                            " WHERE AC_Id=@Ac_Id";
             
 
             return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;
@@ -539,7 +539,7 @@ namespace eSunSpeed.BusinessLogic
             return lstAccountMaster;
         }
         #endregion
-        public AccountMasterModel GetListofAccountByAccountName(int id)
+        public AccountMasterModel GetListofAccountByAccountId(int id)
         {           
             AccountMasterModel _acctMaster=new AccountMasterModel();
             
@@ -560,12 +560,13 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.MultiCurrency = Convert.ToBoolean(dr["ACC_MultiCurr"]) ? true : false;
                     _acctMaster.Group = dr["ACC_Group"].ToString();
                     _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_OpBal"].ToString());
-                    // _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString();
+                    _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_PrevYearBal"].ToString());
                     _acctMaster.DrCrOpeningBal = dr["ACC_DrCrOpenBal"].ToString();
                     _acctMaster.DrCrPrevBal = dr["ACC_DrCrPrevBal"].ToString();
-                    _acctMaster.MaintainBillwiseAccounts = Convert.ToBoolean(dr["ACC_MaintainBitwise"]) ? true : false;
+                    _acctMaster.MultiCurrency = Convert.ToBoolean(dr["ACC_MultiCurr"]) ? true : false;
+                    _acctMaster.MaintainBillwiseAccounts = Convert.ToBoolean(dr["ACC_MultiCurr"]) ? true : false;
 
-                    _acctMaster.ActivateInterestCal = Convert.ToBoolean(dr["ACC_ActivateInterestCal"]) == false ? false : true;
+                    _acctMaster.ActivateInterestCal = Convert.ToBoolean(dr["ACC_ActivateInterestCal"]) ? false : true;
                     _acctMaster.CreditDays = dr["ACC_CreditDays"].ToString();
                     _acctMaster.CreditLimit = dr["ACC_CreditLimit"].ToString();
                     _acctMaster.TypeofDealer = dr["ACC_TypeofDealer"].ToString();
@@ -574,8 +575,12 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.Station = dr["ACC_Station"].ToString();
                     _acctMaster.specifyDefaultSaleType = Convert.ToBoolean(dr["ACC_SpecifyDefaultSaleType"]) == false ? false : true;
                     _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
-                   // _acctMaster.FreezeSaleType = dr["ACC_FreezeSaleType"].ToString();
+                    _acctMaster.FreezeSaleType = Convert.ToBoolean(dr["ACC_FreezeSaleType"])?true:false;
                     _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
+                    _acctMaster.DefaultPurcType = dr["ACC_DefaultSaleType"].ToString();
+                    _acctMaster.FreezePurcType = Convert.ToBoolean(dr["ACC_FreezeSaleType"]) ? true : false;
+                    _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]) == false ? false : true;
+
 
                     _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]) == false ? false : true;
                     _acctMaster.LockPurchaseType = Convert.ToBoolean(dr["ACC_LockPurcType"]) == false ? false : true;

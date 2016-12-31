@@ -39,7 +39,15 @@ namespace IPCAUI.Administration
         {
             
         }
-
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         private void navbtnAccountsettings_ItemChanged(object sender, EventArgs e)
         {
            
@@ -82,11 +90,11 @@ namespace IPCAUI.Administration
             AccountMasterModel obj = new AccountMasterModel();
 
             obj.AccountName = tbxName.Text.Trim();
-            obj.PrintName = tbxPrintname.Text.Trim();
-            obj.ShortName = tbxAlias.Text;
-            //obj.LedgerType = cbxLederyType.SelectedItem==null?string.Empty: cbxLederyType.SelectedItem.ToString();
-
+            obj.PrintName = tbxPrintname.Text.Trim()==null?string.Empty:tbxPrintname.Text.Trim();
+            obj.ShortName = tbxAlias.Text == null ? string.Empty : tbxPrintname.Text.Trim();
+            obj.LedgerType = cbxLedgertype.SelectedItem==null?string.Empty: cbxLedgertype.SelectedItem.ToString();
             obj.Group = cbxGroupname.SelectedItem == null ? string.Empty : cbxGroupname.SelectedItem.ToString();
+            obj.MultiCurrency = Convert.ToBoolean(cbxMulticurrency.SelectedItem.ToString() == "Y" ? true : false);
 
             obj.OPBal = Convert.ToDecimal(tbxOpbal.Text);
             obj.PrevYearBal = Convert.ToDecimal(tbxPrevyearbal.Text);
@@ -95,50 +103,50 @@ namespace IPCAUI.Administration
 
             obj.CreditDaysforSale = Convert.ToInt32(tbxCreditdaysforSale.Text==string.Empty ? "0":tbxCreditdaysforSale.Text.Trim());
             obj.CreditDaysforPurchase= Convert.ToInt32(tbxCreditdaysforPurc.Text == string.Empty ? "0" : tbxCreditdaysforPurc.Text.Trim());
+            obj.MaintainBillwiseAccounts = cbxMaintainBalancing.SelectedItem.ToString() == "Y" ? true : false;
             //obj.CreditLimit = tbxcred.Text;
 
-            obj.Transport = tbxTransport.Text;
-            obj.Station = tbxStation.Text;
+            obj.Transport = tbxTransport.Text==null?string.Empty:tbxTransport.Text;
+            obj.Station = tbxStation.Text == null ? string.Empty : tbxStation.Text;
 
             obj.specifyDefaultSaleType = cbxSpecifydefaultSale.SelectedItem.ToString()=="Y"?true:false;
-            //obj.DefaultSaleType = cbxDefaultsaletype.SelectedItem.ToString() == ""? string.Empty : cbxDefaultsaletype.SelectedItem.ToString();
             obj.FreezeSaleType = cbxFreezesaletype.SelectedItem.ToString() == "Y" ? true : false;
+            obj.DefaultSaleType = cbxDefaultsaletype.SelectedItem.ToString() == ""? string.Empty : cbxDefaultsaletype.SelectedItem.ToString();
 
             obj.SpecifyDefaultPurType = cbxSpecifydefaultPurcType.SelectedItem.ToString().Equals("Y") ? true : false;
-            obj.specifyDefaultSaleType = cbxSpecifydefaultPurcType.SelectedItem.ToString().Equals("Y") ? true : false;
             obj.DefaultPurcType = cbxDefaultPurcType.SelectedItem==null?string.Empty: cbxDefaultPurcType.SelectedItem.ToString();
-
             obj.FreezePurcType = cbxFreezePurcType.SelectedItem.ToString() == "Y" ? true : false;
+
             obj.InterestRatePayable = Convert.ToDecimal(tbxInterestPay.Text==null?"0":tbxInterestPay.Text);
             obj.InterestRateReceivable = Convert.ToDecimal(tbxInterestrateReceviable.Text == null ? "0" :tbxInterestrateReceviable.Text);
 
-            obj.address = tbxAddress.Text.Trim();
-            obj.address1 = tbxAddress1.Text.Trim();
-            obj.address2 = tbxAddress2.Text.Trim();
-            obj.address3 = tbxAddress3.Text.Trim();
+            obj.address = tbxAddress.Text.Trim()==null?string.Empty:tbxAddress.Text.Trim();
+            obj.address1 = tbxAddress1.Text.Trim() == null ? string.Empty : tbxAddress1.Text.Trim();
+            obj.address2 = tbxAddress2.Text.Trim() == null ? string.Empty : tbxAddress2.Text.Trim();
+            obj.address3 = tbxAddress3.Text.Trim() == null ? string.Empty : tbxAddress3.Text.Trim();
             obj.State = cbxState.SelectedItem.ToString();
-            obj.area = tbxArea.Text.Trim();
-            obj.TelephoneNumber = tbxTelno.Text.Trim();
+            obj.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
+            obj.TelephoneNumber = tbxTelno.Text.Trim() == null ? string.Empty : tbxTelno.Text.Trim();
 
-            obj.Fax = tbxFax.Text;
-            obj.MobileNumber = tbxMobileno.Text;
-            obj.email = tbxEmail.Text;
+            obj.Fax = tbxFax.Text == null ? string.Empty : tbxFax.Text.Trim();
+            obj.MobileNumber = tbxMobileno.Text == null ? string.Empty : tbxMobileno.Text.Trim();
+            obj.email = tbxEmail.Text == null ? string.Empty : tbxEmail.Text.Trim();
 
             obj.enablemailquery = Convert.ToBoolean(tbxEmailQuery.Text.Trim().Equals("Y") ? true : false);
             obj.enableSMSquery = Convert.ToBoolean(tbxSMSQuery.Text.Trim().Equals("Y") ? true : false);
 
-            obj.contactperson = tbxContactPerson.Text;
-            obj.ITPanNumber = tbxITpan.Text;
-            obj.Ward = string.Empty;
-            obj.LstNumber = tbxLstno.Text;
-            obj.CSTNumber = tbxCstno.Text;
-            obj.TIN = string.Empty;
-            obj.LBTNumber = string.Empty;
-            obj.ServiceTaxNumber = string.Empty;
-            obj.IECode = tbxIecode.Text;
-            obj.DLNO1 = tbxDlno1.Text.Trim();
+            obj.contactperson = tbxContactPerson.Text == null ? string.Empty : tbxContactPerson.Text.Trim();
+            obj.ITPanNumber = tbxITpan.Text == null ? string.Empty : tbxITpan.Text.Trim();
+            obj.Ward = tbxWard.Text == null ? string.Empty : tbxWard.Text.Trim();
+            obj.LstNumber = tbxLstno.Text == null ? string.Empty : tbxLstno.Text.Trim();
+            obj.CSTNumber = tbxCstno.Text == null ? string.Empty : tbxCstno.Text.Trim();
+            obj.TIN = tbxTin.Text==null? string.Empty : tbxTin.Text.Trim();
+            obj.LBTNumber = tbxlbtno == null ? string.Empty : tbxlbtno.Text.Trim();
+            obj.ServiceTaxNumber =tbxServicetax== null ? string.Empty : tbxServicetax.Text.Trim();
+            obj.IECode = tbxIecode.Text == null ? string.Empty : tbxIecode.Text.Trim();
+            obj.DLNO1 = tbxDlno1.Text.Trim() == null ? string.Empty : tbxDlno1.Text.Trim();
             obj.No1 = tbxNo1.SelectedText.ToString();
-            obj.ChequePrintName = string.Empty;
+            obj.ChequePrintName = tbxChequePrintName.Text == null ? string.Empty : tbxChequePrintName.Text.Trim();
             obj.allowwebbasedreporting = tbxWebBasedReporting.ToString();
 
             string message = string.Empty;
@@ -158,7 +166,7 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
 
-            //layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
             btnSave.Visible = false;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -171,7 +179,7 @@ namespace IPCAUI.Administration
 
         private void FillAccountInfo()
         {
-            AccountMasterModel objMaster = accMaster.GetListofAccountByAccountName(groupId);
+            AccountMasterModel objMaster = accMaster.GetListofAccountByAccountId(groupId);
 
             //lblaccountid.Text = objMaster.AccountId.ToString();
             tbxName.Text = objMaster.AccountName;
@@ -180,31 +188,34 @@ namespace IPCAUI.Administration
             cbxLedgertype.SelectedItem = objMaster.LedgerType;
             cbxGroupname.Text = objMaster.AccountName;
 
-            tbxOpbal.Text = objMaster.OPBal.ToString();
+            tbxOpbal.Text = Convert.ToString(objMaster.OPBal);
             tbxPrevyearbal.Text = objMaster.PrevYearBal.ToString();
             cbxCrDr.SelectedItem = objMaster.DrCrOpeningBal;
             cbxPrevCrDr.SelectedItem = objMaster.DrCrPrevBal;
 
-            tbxCreditdaysforPurc.Text = objMaster.CreditDays;
+            tbxCreditdaysforPurc.Text =Convert.ToString(objMaster.CreditDaysforPurchase);
+            tbxCreditdaysforSale.Text = Convert.ToString(objMaster.CreditDaysforSale);
             //tbxCreditLimitAccount.Text = objMaster.CreditLimit;
 
             tbxTransport.Text = objMaster.Transport;
             tbxStation.Text = objMaster.Station;
 
 
-            cbxState.Text = objMaster.State;
-            cbxDefaultPurcType.Text = objMaster.DefaultPurcType;
-            cbxDefaultsaletype.Text = objMaster.DefaultSaleType;
-            cbxFreezesaletype.Text = objMaster.LockSalesType ? "Y" : "N";
-            cbxFreezePurcType.Text = objMaster.LockPurchaseType ? "Y" : "N";
-
-           cbxMulticurrency.SelectedItem = objMaster.MultiCurrency ? "Y" : "N";
-            cbxSpecifydefaultPurcType.Text = objMaster.SpecifyDefaultPurType ? "Y" : "N";
-            cbxSpecifydefaultSale.Text = objMaster.specifyDefaultSaleType ? "Y" : "N";
+            cbxState.SelectedItem = objMaster.State;
+            cbxDefaultPurcType.SelectedItem = objMaster.DefaultPurcType;
+            cbxDefaultsaletype.SelectedItem = objMaster.DefaultSaleType;
+            cbxFreezesaletype.SelectedItem = objMaster.LockSalesType ? "Y" : "N";
+            cbxFreezePurcType.SelectedItem = objMaster.LockPurchaseType ? "Y" : "N";
+            cbxSpecifydefaultSale.SelectedItem = objMaster.specifyDefaultSaleType;
+            cbxSpecifydefaultPurcType.SelectedItem = objMaster.SpecifyDefaultPurType;
+            cbxMulticurrency.SelectedItem = objMaster.MultiCurrency ? "Y" : "N";
             //cbx.Text = objMaster.TypeofBuissness;
-            //cbxYesNoActivateInterestCalculation.Text = objMaster.ActivateInterestCal ? "Y" : "N";
+            //cbxYesNoActivateInterestCalculation.text = objMaster.ActivateInterestCal ? "Y" : "N";
 
-            cbxMaintainBalancing.Text = objMaster.MaintainBillwiseAccounts ? "Y" : "N";
+            cbxMaintainBalancing.SelectedItem = objMaster.MaintainBillwiseAccounts ? "Y" : "N";
+            tbxInterestPay.Text =Convert.ToString(objMaster.InterestRatePayable);
+            tbxInterestrateReceviable.Text = Convert.ToString(objMaster.InterestRateReceivable);
+
             tbxAddress.Text = objMaster.address;
             tbxAddress1.Text = objMaster.address1;
             tbxAddress2.Text = objMaster.address2;
@@ -221,8 +232,6 @@ namespace IPCAUI.Administration
             tbxITpan.Text = objMaster.ITPanNumber;
             tbxLstno.Text = objMaster.LstNumber;
             tbxMobileno.Text = objMaster.MobileNumber;
-
-
         }
 
         private void Account_Load(object sender, EventArgs e)
@@ -394,6 +403,85 @@ namespace IPCAUI.Administration
             else
             {
                 grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            tbxPrintname.Text = tbxName.Text.Trim();
+            tbxAlias.Text = tbxName.Text.Trim();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            AccountMasterModel obj = new AccountMasterModel();
+
+            obj.AccountName = tbxName.Text.Trim();
+            obj.PrintName = tbxPrintname.Text.Trim() == null ? string.Empty : tbxPrintname.Text.Trim();
+            obj.ShortName = tbxAlias.Text == null ? string.Empty : tbxPrintname.Text.Trim();
+            obj.LedgerType = cbxLedgertype.SelectedItem == null ? string.Empty : cbxLedgertype.SelectedItem.ToString();
+            obj.Group = cbxGroupname.SelectedItem == null ? string.Empty : cbxGroupname.SelectedItem.ToString();
+            obj.MultiCurrency = Convert.ToBoolean(cbxMulticurrency.SelectedItem.ToString() == "Y" ? true : false);
+
+            obj.OPBal = Convert.ToDecimal(tbxOpbal.Text);
+            obj.PrevYearBal = Convert.ToDecimal(tbxPrevyearbal.Text);
+            obj.DrCrOpeningBal = cbxCrDr.SelectedItem.ToString();
+            obj.DrCrPrevBal = cbxPrevCrDr.SelectedItem.ToString();
+
+            obj.CreditDaysforSale = Convert.ToInt32(tbxCreditdaysforSale.Text == string.Empty ? "0" : tbxCreditdaysforSale.Text.Trim());
+            obj.CreditDaysforPurchase = Convert.ToInt32(tbxCreditdaysforPurc.Text == string.Empty ? "0" : tbxCreditdaysforPurc.Text.Trim());
+            obj.MaintainBillwiseAccounts = cbxMaintainBalancing.SelectedItem.ToString() == "Y" ? true : false;
+            //obj.CreditLimit = tbxcred.Text;
+
+            obj.Transport = tbxTransport.Text == null ? string.Empty : tbxTransport.Text;
+            obj.Station = tbxStation.Text == null ? string.Empty : tbxStation.Text;
+
+            obj.specifyDefaultSaleType = cbxSpecifydefaultSale.SelectedItem.ToString() == "Y" ? true : false;
+            obj.FreezeSaleType = cbxFreezesaletype.SelectedItem.ToString() == "Y" ? true : false;
+            obj.DefaultSaleType = cbxDefaultsaletype.SelectedItem.ToString() == "" ? string.Empty : cbxDefaultsaletype.SelectedItem.ToString();
+
+            obj.SpecifyDefaultPurType = cbxSpecifydefaultPurcType.SelectedItem.ToString().Equals("Y") ? true : false;
+            obj.DefaultPurcType = cbxDefaultPurcType.SelectedItem == null ? string.Empty : cbxDefaultPurcType.SelectedItem.ToString();
+            obj.FreezePurcType = cbxFreezePurcType.SelectedItem.ToString() == "Y" ? true : false;
+
+            obj.InterestRatePayable = Convert.ToDecimal(tbxInterestPay.Text == null ? "0" : tbxInterestPay.Text);
+            obj.InterestRateReceivable = Convert.ToDecimal(tbxInterestrateReceviable.Text == null ? "0" : tbxInterestrateReceviable.Text);
+
+            obj.address = tbxAddress.Text.Trim() == null ? string.Empty : tbxAddress.Text.Trim();
+            obj.address1 = tbxAddress1.Text.Trim() == null ? string.Empty : tbxAddress1.Text.Trim();
+            obj.address2 = tbxAddress2.Text.Trim() == null ? string.Empty : tbxAddress2.Text.Trim();
+            obj.address3 = tbxAddress3.Text.Trim() == null ? string.Empty : tbxAddress3.Text.Trim();
+            obj.State = cbxState.SelectedItem.ToString();
+            obj.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
+            obj.TelephoneNumber = tbxTelno.Text.Trim() == null ? string.Empty : tbxTelno.Text.Trim();
+
+            obj.Fax = tbxFax.Text == null ? string.Empty : tbxFax.Text.Trim();
+            obj.MobileNumber = tbxMobileno.Text == null ? string.Empty : tbxMobileno.Text.Trim();
+            obj.email = tbxEmail.Text == null ? string.Empty : tbxEmail.Text.Trim();
+
+            obj.enablemailquery = Convert.ToBoolean(tbxEmailQuery.Text.Trim().Equals("Y") ? true : false);
+            obj.enableSMSquery = Convert.ToBoolean(tbxSMSQuery.Text.Trim().Equals("Y") ? true : false);
+
+            obj.contactperson = tbxContactPerson.Text == null ? string.Empty : tbxContactPerson.Text.Trim();
+            obj.ITPanNumber = tbxITpan.Text == null ? string.Empty : tbxITpan.Text.Trim();
+            obj.Ward = tbxWard.Text == null ? string.Empty : tbxWard.Text.Trim();
+            obj.LstNumber = tbxLstno.Text == null ? string.Empty : tbxLstno.Text.Trim();
+            obj.CSTNumber = tbxCstno.Text == null ? string.Empty : tbxCstno.Text.Trim();
+            obj.TIN = tbxTin.Text == null ? string.Empty : tbxTin.Text.Trim();
+            obj.LBTNumber = tbxlbtno == null ? string.Empty : tbxlbtno.Text.Trim();
+            obj.ServiceTaxNumber = tbxServicetax == null ? string.Empty : tbxServicetax.Text.Trim();
+            obj.IECode = tbxIecode.Text == null ? string.Empty : tbxIecode.Text.Trim();
+            obj.DLNO1 = tbxDlno1.Text.Trim() == null ? string.Empty : tbxDlno1.Text.Trim();
+            obj.No1 = tbxNo1.SelectedText.ToString();
+            obj.ChequePrintName = tbxChequePrintName.Text == null ? string.Empty : tbxChequePrintName.Text.Trim();
+            obj.allowwebbasedreporting = tbxWebBasedReporting.ToString();
+            obj.AccountId = groupId;
+
+            string message = string.Empty;
+            bool isSuccess = accMaster.UpdateAccount(obj);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
             }
         }
     }
