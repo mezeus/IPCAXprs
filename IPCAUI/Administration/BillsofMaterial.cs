@@ -16,6 +16,8 @@ namespace IPCAUI.Administration
     public partial class BillsofMaterial : Form
     {
         BillsofMaterialBL objbal = new BillsofMaterialBL();
+        public static int BMId = 0;
+
         public BillsofMaterial()
         {
             InitializeComponent();           
