@@ -66,12 +66,14 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@StockAccount", objIGM.StockAccount));
                 paramCollection.Add(new DBParameter("@SalesAccount", objIGM.SalesAccount));
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objIGM.PurchaseAccount));
+                paramCollection.Add(new DBParameter("@DefaultConfig", objIGM.DefaultConfig, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@SeparateConfig", objIGM.SeparateConfig, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@Parameters", objIGM.Parameters));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
                 paramCollection.Add(new DBParameter("@IGM_Id",objIGM.IGM_id));
 
-                Query = "UPDATE ItemGroupMaster SET [ItemGroup]=@ItemGroup,[Alias]=@Alias,[PrimaryGroup]=@PrimaryGroup,[UnderGroup]=@UnderGroup,[StockAccount]=@StockAccount,[SalesAccount]=@SalesAccount," +
-                   "[PurchaseAccount]=@PurchaseAccount,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
+                Query = "UPDATE ItemGroupMaster SET ItemGroup=@ItemGroup,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,UnderGroup=@UnderGroup,StockAccount=@StockAccount,SalesAccount=@SalesAccount," +
+                   "PurchaseAccount=@PurchaseAccount,`DefaultConfig`=@DefaultConfig,`SeparateConfig`=@SeparateConfig,Parameters=@Parameters,ModifiedBy=@ModifiedBy " +
                    "WHERE IGM_Id=@IGM_Id";
                 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -109,6 +111,31 @@ namespace eSunSpeed.BusinessLogic
             }
 
             return lstIGM;
+        }
+        //Get List Of Groups By Id
+        public ItemGroupMasterModel GetAllItemGroupById(int id)
+        {
+            ItemGroupMasterModel objIGM = new ItemGroupMasterModel();
+
+            string Query = "SELECT * FROM `ItemGroupMaster` WHERE IGM_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objIGM.IGM_id = Convert.ToInt32(dr["IGM_ID"]);
+                objIGM.ItemGroup = dr["ItemGroup"].ToString();
+                objIGM.Alias = dr["Alias"].ToString();
+                objIGM.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
+                objIGM.UnderGroup = dr["UnderGroup"].ToString();
+                objIGM.StockAccount = dr["StockAccount"].ToString();
+                objIGM.SalesAccount = dr["SalesAccount"].ToString();
+                objIGM.PurchaseAccount = dr["PurchaseAccount"].ToString();
+                objIGM.DefaultConfig =Convert.ToBoolean(dr["DefaultConfig"]);
+                objIGM.SeparateConfig = Convert.ToBoolean(dr["SeparateConfig"]);
+                objIGM.Parameters =Convert.ToInt32(dr["Parameters"].ToString());
+            }
+
+            return objIGM;
         }
 
         public bool DeletITG(List<int> lstIds)

@@ -9,7 +9,7 @@ namespace eSunSpeedDomain
     {
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
-        public string EmployeeCode { get; set; }
+        public int EmployeeCode { get; set; }
         public string ShortName { get; set; }
 
         public string PrintName { get; set; }
@@ -24,10 +24,10 @@ namespace eSunSpeedDomain
         public string Address2 { get; set; }
         public string Address3 { get; set; }
 
-        public string DateofBirth { get; set; }
+        public DateTime DateofBirth { get; set; }
         public string Gender { get; set; }
-        public string MobileNumber { get; set; }
-        public string TelephoneNumber { get; set; }
+        public int MobileNumber { get; set; }
+        public int TelephoneNumber { get; set; }
         public string email { get; set; }
         public string ITpan { get; set; }
 
@@ -35,9 +35,9 @@ namespace eSunSpeedDomain
         public string FreezeSaleType { get; set; }
         public bool SpecifyDefaultPurType { get; set; }
 
-        public string DateofJoining { get; set; }     
+        public DateTime DateofJoining { get; set; }     
         public string CurrentStatus { get; set; }     
-        public string LastWorkingDate { get; set; }
+        public DateTime LastWorkingDate { get; set; }
         public string PFNo { get; set; }
         public string ESIInsurance { get; set; }
 

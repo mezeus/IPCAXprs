@@ -16,8 +16,6 @@ namespace IPCAUI.Administration
     public partial class BillsofMaterial : Form
     {
         BillsofMaterialBL objbal = new BillsofMaterialBL();
-        List<BillofMaterialModel> obj;
-
         public BillsofMaterial()
         {
             InitializeComponent();           
@@ -34,35 +32,31 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+            btnSave.Visible = false;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            tbxBomName.Focus();
+
+            FillAccountInfo();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void FillAccountInfo()
         {
-            BillofMaterialModel objBMmodl = new BillofMaterialModel();
+            BillofMaterialModel objBom = objbal.GetAllBillofMaterialById(BMId);
 
-            objBMmodl.BOMName = tbxBomName.Text.Trim();
-            objBMmodl.Itemtoproduce = cbxItemproduce.Text.Trim();
-            objBMmodl.Quantity = Convert.ToInt32(tbxQuanty.Text.Trim());
-            objBMmodl.ItemUnit = tbxUnit.ToString();
-            objBMmodl.Expenses = Convert.ToDecimal(tbxExpenses.Text.Trim());
-            objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxSpecifyItemGenerated.ToString().Equals("Yes") ? true : false);
-         //   objBMmodl.SourceMC = string.Empty;
-            objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxSpecifyItemConsumed.ToString().Equals("Yes") ? true : false);
-            objBMmodl.AppMc = string.Empty;
-            //objBMmodl.ItemName = Text.Trim();
-            //objBMmodl.Qty = Convert.ToInt32(tbxRawQty.Text.Trim());
-            //objBMmodl.Unit = Convert.ToDecimal(tbxRawUnit.Text.Trim());
+            tbxBomName.Text= objBom.BOMName;
+            cbxItemproduce.SelectedItem = objBom.Itemtoproduce;
+            tbxQuanty.Text=Convert.ToString(objBom.Quantity);
+            cbxUnit.SelectedItem = objBom.ItemUnit;
+            tbxExpensespcs.Text=Convert.ToString(objBom.Expenses);
+            cbxItemgenerated.SelectedItem= objBom.SpecifyMCGenerated;
+            cbxItemconsumed.SelectedItem=objBom.SpecifyDefaultMCforItemConsumed;
 
-            bool isSuccess = objbal.SaveBOM(objBMmodl);
-            if (isSuccess)
-            {
-                MessageBox.Show("Saved Successfully!");
-                //List<BillofMaterialModel> lstBillMat = objBillmat.GetAllBillofMaterial();
-                //dgvList.DataSource = lstBillMat;
-                //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                //d.ShowDialog();
-            }
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -72,16 +66,32 @@ namespace IPCAUI.Administration
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            BillofMaterialModel objBMmodl = new BillofMaterialModel();
+
+            objBMmodl.BOMName = tbxBomName.Text.Trim();
+            objBMmodl.Itemtoproduce = cbxItemproduce.Text.Trim();
+            objBMmodl.Quantity = Convert.ToInt32(tbxQuanty.Text.Trim());
+            objBMmodl.ItemUnit = cbxUnit.SelectedItem.ToString();
+            objBMmodl.Expenses = Convert.ToDecimal(tbxExpensespcs.Text.Trim());
+            objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxItemgenerated.SelectedItem.ToString().Equals("Yes") ? true : false);
+         //   objBMmodl.SourceMC = string.Empty;
+            objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString().Equals("Yes") ? true : false);
+            objBMmodl.AppMc = string.Empty;
+
+            bool isSuccess = objbal.SaveBOM(objBMmodl);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
+        }
+   
         private void tbxBomName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
             {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
                 if (tbxBomName.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("Master Name Can Not Be Blank!");
@@ -90,7 +100,6 @@ namespace IPCAUI.Administration
 
 
                 }
-                //e.Handled = true; // Mark the event as handled
             }
         }
 
@@ -109,7 +118,5 @@ namespace IPCAUI.Administration
             //cbxItemconsumed.SelectedIndex= 0;
             cbxItemproduce.SelectedIndex = 0;
         }
-
-       
     }
 }
