@@ -33,11 +33,21 @@ namespace IPCAUI.Administration.List
 
         private void dvgTaxcategoryList_KeyDown(object sender, KeyEventArgs e)
         {
-            this.Close();
+           
         }
 
         private void dvgTdscategoryList_KeyDown(object sender, KeyEventArgs e)
         {
+           
+        }
+
+        private void dvgTdsCatDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TdsModel lstTds;
+
+            lstTds = (TdsModel)dvgTdsCatDetails.GetRow(dvgTdsCatDetails.FocusedRowHandle);
+            TDSCategory.TdsId = lstTds.Tds_Id;
+
             this.Close();
         }
     }

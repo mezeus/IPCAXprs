@@ -26,6 +26,7 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -55,19 +56,23 @@ namespace IPCAUI.Administration
             }
         }
 
-        private void btnSave_Click_1(object sender, EventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //TODO: 1. Check whether the group name exists or not
-            //2. if exist then do not allow to save with the same group name
-            //3. Prompt user to change the group name as it already exists
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {         
             if (tbxName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Name can not be blank!");
                 return;
             }
-
-
             eSunSpeedDomain.TaxCategoryModel objtaxcat = new TaxCategoryModel();
 
             objtaxcat.Name = tbxName.Text.Trim();
@@ -81,10 +86,6 @@ namespace IPCAUI.Administration
             objtaxcat.HSNCode = tbxHsn.Text;
             objtaxcat.Tax_Desc = tbxDescription.Text;
 
-
-
-
-
             string message = string.Empty;
 
             bool isSuccess = objtaxbl.SaveTaxCategory(objtaxcat);
@@ -92,6 +93,11 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

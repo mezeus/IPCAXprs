@@ -20,48 +20,64 @@ namespace eSunSpeedDomain
         public bool AffectstheCostofGoodsinMaterialIssue { get; set; }
         public bool AffectstheCostofGoodsinMaterialReceipt { get; set; }
         public bool AffectstheCostofGoodsinStockTransfer { get; set; }
-        public bool AffectsAccounting { get; set; }
-        public string AccounttoHeadPost { get; set; }
-        public bool AdjustInSaleAmount { get; set; }
-        public bool AdjustInPartyAmount { get; set; }
-        public string PostOverandAbove { get; set; }
-        public bool AdjustInPurchaseAmount { get; set; }
+
+        //Accounting In Sale
+        public bool SaleAffectsAccounting { get; set; }
+        public bool SaleAdjustInSaleAmount { get; set; }
+        public string SaleAccounttoHeadPost { get; set; }
+        public bool SaleAdjustInPartyAmount { get; set; }
+        public string SaleAccounttoHeadPostParty { get; set; }
+        public string SalePostOverandAbove { get; set; }
+
+        //Accounting In Purchase
+        public bool PurcAffectsAccounting { get; set; }
+        public bool PurcAdjustInPurcAmount { get; set; }
+        public string PurcAccounttoHeadPost { get; set; }
+        public bool PurcAdjustInPartyAmount { get; set; }
+        public string PurcAccounttoHeadPostParty { get; set; }
+        public string PurcPostOverandAbove { get; set; }
+
         //This code RadioButtotick of any one in three
         public  bool typeMaterialIssue { get; set; }
-        public string typeMaterialReceipt { get; set; }
-        public string StockTransfer { get; set; }
+        public bool typeMaterialReceipt { get; set; }
+        public bool StockTransfer { get; set; }
 
         public bool AffectAccounting { get; set; }
         public string OtherSide { get; set; }
-        public string Accountheadtopost { get; set; }
-        public string Adjustinparty { get; set; }
-        public bool postoverandabove { get; set; }
         public string AdjustinMC { get; set; }
-        public string typeAbsoluteAmount { get; set; }
-        public string typePercentage { get; set; }
-        public string typePerMainQty { get; set; }
-        public string PerAltQty { get; set; }
+        public string Accountheadtopost { get; set; }
+        public string AccountheadtopostParty { get; set; }
+        public bool postoverandabove { get; set; }
+        
+        //Account of Bill Sundary
+        public bool typeAbsoluteAmount { get; set; }
+        public bool typePercentage { get; set; }
+        public bool typePerMainQty { get; set; }
+        public bool PerAltQty { get; set; }
 
-        public string Percentoff { get; set; }
+        public decimal Percentoff { get; set; }
 
-        public string typeNetBillAmount { get; set; } 
+        public bool typeNetBillAmount { get; set; } 
         public bool SelectiveCalculation { get; set; }
-        public string tyeItemsBasicAmt { get; set; }
-        public string typeTotalMRPofItems { get; set; }
-        public string typeTaxableAmount { get; set; }
-        public string typePreviousBillSundryAmount { get; set; }
-        public string typeOtherBillsundry { get; set; }
+        public bool tyeItemsBasicAmt { get; set; }
+        public bool typeTotalMRPofItems { get; set; }
+        public bool typeTaxableAmount { get; set; }
+        public bool typePreviousBillSundryAmount { get; set; }
+        public bool typeOtherBillsundry { get; set; }
+
+        //Groupbox of Bill Sundry(s) Details
+        public string NoOfBillSundry { get; set; }
+        public bool ConsolidateBillSundriesAmount { get; set; }
+
         public string roundoffBillsundry { get; set; }
         //This singel GroupBox
         public bool RBSAmt { get; set; }
         //Billsundry to be Calculated on Group
-        public string BSAmt { get; set; }
-        public string BSAppOn { get; set; }
+        public bool BSAmt { get; set; }
+        public bool BSAppOn { get; set; }
         // if Enable Other Bill Sundry This Textboxwill open 
         public string TextBox { get; set; }
-        //Groupbox of Bill Sundry(s) Details
-        public string NoOfBillSundry { get; set; }
-        public bool ConsolidateBillSundriesAmount { get; set; }
+      
         public string ModifiedBy { get; set; }
 
     }
