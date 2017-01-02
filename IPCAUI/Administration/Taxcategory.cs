@@ -26,6 +26,7 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -55,23 +56,35 @@ namespace IPCAUI.Administration
             }
         }
 
-        private void btnSave_Click_1(object sender, EventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //TODO: 1. Check whether the group name exists or not
-            //2. if exist then do not allow to save with the same group name
-            //3. Prompt user to change the group name as it already exists
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {         
             if (tbxName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Name can not be blank!");
                 return;
             }
-
-
             eSunSpeedDomain.TaxCategoryModel objtaxcat = new TaxCategoryModel();
 
             objtaxcat.Name = tbxName.Text.Trim();
             objtaxcat.Taxation_Type = cbxtype.SelectedItem.ToString();
+            objtaxcat.Local_Tax=Convert.ToDecimal(tbxRateoftaxLocal.Text.ToString());
+            objtaxcat.CentralTax= Convert.ToDecimal(tbxRateoftatxx.Text.ToString());
+            objtaxcat.TaxonMRP = Convert.ToBoolean(cbxTaxonmrp.SelectedItem.ToString()=="Y"?true:false);
+            objtaxcat.CalculatedTaxon = Convert.ToDecimal(tbxcalculatedtaxon.Text.ToString());
+            objtaxcat.TaxonMRPMode = cbxtaxonmrpmode.SelectedItem.ToString();
+            objtaxcat.Taxation_Type = cbxTaxationtype.SelectedItem.ToString();
+            objtaxcat.HSNCode = tbxHsn.Text;
+            objtaxcat.Tax_Desc = tbxDescription.Text;
 
             string message = string.Empty;
 
@@ -80,6 +93,11 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void dvgTaxrates_Click(object sender, EventArgs e)

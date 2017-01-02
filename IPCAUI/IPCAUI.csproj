@@ -488,12 +488,6 @@
     <Compile Include="Company\Getsoftlocklicence.Designer.cs">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Company\Companycreate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Company\Companycreate.Designer.cs">
-      <DependentUpon>Companycreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Company\Datarestoration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -860,17 +854,17 @@
     <Compile Include="MDIParent1.Designer.cs">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\CompanyMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\CompanyMenu.Designer.cs">
-      <DependentUpon>CompanyMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\ConfigurationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menu\ConfigurationMenu.Designer.cs">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\CompanyMenu.Designer.cs">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\ReportMenu.cs">
       <SubType>Form</SubType>
@@ -2849,6 +2843,174 @@
     <Compile Include="Transactions\JournalVoucher.Designer.cs">
       <DependentUpon>JournalVoucher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\List\CallReportVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\CallReportVouchersList .Designer.cs">
+      <DependentUpon>CallReportVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\CallAllocationVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\CallAllocationVouchersList.Designer.cs">
+      <DependentUpon>CallAllocationVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\ContraVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\ContraVouchersList .Designer.cs">
+      <DependentUpon>ContraVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\CallReceiptVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\CallReceiptVoucherList.Designer.cs">
+      <DependentUpon>CallReceiptVoucherList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\SalaryCalculationVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\SalaryCalculationVoucherList.Designer.cs">
+      <DependentUpon>SalaryCalculationVoucherList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PhysicalStockVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PhysicalStockVoucherList.Designer.cs">
+      <DependentUpon>PhysicalStockVoucherList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\FormsIssuedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\FormsIssuedList.Designer.cs">
+      <DependentUpon>FormsIssuedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\FormsReceivesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\FormsReceivesList.Designer.cs">
+      <DependentUpon>FormsReceivesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\MaterialRcvdfromPartyVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\MaterialRcvdfromPartyVouchersList .Designer.cs">
+      <DependentUpon>MaterialRcvdfromPartyVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\MaterialIssuedtoPartyVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\MaterialIssuedtoPartyVouchersList.Designer.cs">
+      <DependentUpon>MaterialIssuedtoPartyVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\StockJournalVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\StockJournalVouchersList.Designer.cs">
+      <DependentUpon>StockJournalVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\UnassembleVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\UnassembleVouchersList .Designer.cs">
+      <DependentUpon>UnassembleVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\ProductionVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\ProductionVouchersList .Designer.cs">
+      <DependentUpon>ProductionVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\StockTransfervouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\StockTransfervouchersList.Designer.cs">
+      <DependentUpon>StockTransfervouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\CreditNotesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\CreditNotesList.Designer.cs">
+      <DependentUpon>CreditNotesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\DebitNotesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\DebitNotesList.Designer.cs">
+      <DependentUpon>DebitNotesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseQuotationVouchers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseQuotationVouchers.Designer.cs">
+      <DependentUpon>PurchaseQuotationVouchers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseOrderVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseOrderVouchersList.Designer.cs">
+      <DependentUpon>PurchaseOrderVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\SalesOrderVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\SalesOrderVouchersList.Designer.cs">
+      <DependentUpon>SalesOrderVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseVouchersList.Designer.cs">
+      <DependentUpon>PurchaseVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseReturnVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseReturnVouchersList.Designer.cs">
+      <DependentUpon>PurchaseReturnVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\SalesReturnVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\SalesReturnVouchersList.Designer.cs">
+      <DependentUpon>SalesReturnVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PaymentVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PaymentVouchersList.Designer.cs">
+      <DependentUpon>PaymentVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\ReceiptVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\ReceiptVouchersList.Designer.cs">
+      <DependentUpon>ReceiptVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\JournalVouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\JournalVouchersList.Designer.cs">
+      <DependentUpon>JournalVouchersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\SalesVouchersList .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\SalesVouchersList .Designer.cs">
+      <DependentUpon>SalesVouchersList .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\SalesQuotationVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\SalesQuotationVoucherList.Designer.cs">
+      <DependentUpon>SalesQuotationVoucherList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseIndentVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\List\PurchaseIndentVoucherList.Designer.cs">
+      <DependentUpon>PurchaseIndentVoucherList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\MatIssuedtopartyvoucher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3173,9 +3335,6 @@
     <EmbeddedResource Include="Company\Getsoftlocklicence.resx">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Company\Companycreate.resx">
-      <DependentUpon>Companycreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Company\Datarestoration.resx">
       <DependentUpon>Datarestoration.cs</DependentUpon>
     </EmbeddedResource>
@@ -3236,11 +3395,11 @@
     <EmbeddedResource Include="MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\CompanyMenu.resx">
-      <DependentUpon>CompanyMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menu\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\CompanyMenu.resx">
+      <DependentUpon>CompanyMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\ReportMenu.resx">
       <DependentUpon>ReportMenu.cs</DependentUpon>
@@ -4235,6 +4394,90 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\JournalVoucher.resx">
       <DependentUpon>JournalVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\CallReportVouchersList .resx">
+      <DependentUpon>CallReportVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\CallAllocationVouchersList.resx">
+      <DependentUpon>CallAllocationVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\ContraVouchersList .resx">
+      <DependentUpon>ContraVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\CallReceiptVoucherList.resx">
+      <DependentUpon>CallReceiptVoucherList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\SalaryCalculationVoucherList.resx">
+      <DependentUpon>SalaryCalculationVoucherList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PhysicalStockVoucherList.resx">
+      <DependentUpon>PhysicalStockVoucherList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\FormsIssuedList.resx">
+      <DependentUpon>FormsIssuedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\FormsReceivesList.resx">
+      <DependentUpon>FormsReceivesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\MaterialRcvdfromPartyVouchersList .resx">
+      <DependentUpon>MaterialRcvdfromPartyVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\MaterialIssuedtoPartyVouchersList.resx">
+      <DependentUpon>MaterialIssuedtoPartyVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\StockJournalVouchersList.resx">
+      <DependentUpon>StockJournalVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\UnassembleVouchersList .resx">
+      <DependentUpon>UnassembleVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\ProductionVouchersList .resx">
+      <DependentUpon>ProductionVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\StockTransfervouchersList.resx">
+      <DependentUpon>StockTransfervouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\CreditNotesList.resx">
+      <DependentUpon>CreditNotesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\DebitNotesList.resx">
+      <DependentUpon>DebitNotesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PurchaseQuotationVouchers.resx">
+      <DependentUpon>PurchaseQuotationVouchers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PurchaseOrderVouchersList.resx">
+      <DependentUpon>PurchaseOrderVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\SalesOrderVouchersList.resx">
+      <DependentUpon>SalesOrderVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PurchaseVouchersList.resx">
+      <DependentUpon>PurchaseVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PurchaseReturnVouchersList.resx">
+      <DependentUpon>PurchaseReturnVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\SalesReturnVouchersList.resx">
+      <DependentUpon>SalesReturnVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PaymentVouchersList.resx">
+      <DependentUpon>PaymentVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\ReceiptVouchersList.resx">
+      <DependentUpon>ReceiptVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\JournalVouchersList.resx">
+      <DependentUpon>JournalVouchersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\SalesVouchersList .resx">
+      <DependentUpon>SalesVouchersList .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\SalesQuotationVoucherList.resx">
+      <DependentUpon>SalesQuotationVoucherList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\List\PurchaseIndentVoucherList.resx">
+      <DependentUpon>PurchaseIndentVoucherList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\MatIssuedtopartyvoucher.resx">
       <DependentUpon>MatIssuedtopartyvoucher.cs</DependentUpon>

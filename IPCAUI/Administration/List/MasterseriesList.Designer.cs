@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgMasterSeriesList = new DevExpress.XtraGrid.GridControl();
@@ -103,6 +102,7 @@
             this.dvgMasterseries.Name = "dvgMasterseries";
             this.dvgMasterseries.OptionsBehavior.ReadOnly = true;
             this.dvgMasterseries.OptionsView.ShowGroupPanel = false;
+            this.dvgMasterseries.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgMasterseries_KeyPress);
             // 
             // colName
             // 

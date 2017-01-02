@@ -30,6 +30,16 @@ namespace IPCAUI.Administration.List
 
         private void dvgMCgrpList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgMCgrpDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MaterialCentreGroupMasterModel lstMaterials;
+
+            lstMaterials = (MaterialCentreGroupMasterModel)dvgMCgrpDetails.GetRow(dvgMCgrpDetails.FocusedRowHandle);
+            Materialcentergroup.MCGId = lstMaterials.MCG_ID;
+
             this.Close();
         }
     }

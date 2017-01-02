@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Materialcentergroup : Form
     {
         MaterialCentreGroupMaster MatObj = new MaterialCentreGroupMaster();
+        public static int MCGId = 0;
         public Materialcentergroup()
         {
             InitializeComponent();
@@ -48,12 +49,29 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            btnSave.Visible = false;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+            FillAccountInfo();
+        }
+        private void FillAccountInfo()
+        {
+            MaterialCentreGroupMasterModel objMaster = MatObj.GetAllMaterialGroupsById(MCGId);
+
+            tbxGroupName.Text = objMaster.Group;
+            tbxAliasname.Text = objMaster.Alias;
+            cbxPrimarygroup.SelectedItem = Convert.ToString((objMaster.PrimaryGroup) ? "Y" : "N");
+            cbxUndergroup.SelectedItem = objMaster.UnderGroup;
+
         }
 
         private void Materialcentergroup_Load(object sender, EventArgs e)
         {
             cbxPrimarygroup.SelectedIndex = 0;
             cbxUndergroup.SelectedIndex = 0;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -84,6 +102,24 @@ namespace IPCAUI.Administration
 
                 }
                 //e.Handled = true; // Mark the event as handled
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            MaterialCentreGroupMasterModel objGroup = new MaterialCentreGroupMasterModel();
+
+            objGroup.Group = tbxGroupName.Text.TrimEnd();
+            objGroup.Alias = tbxAliasname.Text.Trim();
+            objGroup.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
+            objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            objGroup.MCG_ID = MCGId;
+            objGroup.CreatedBy = "Admin";
+
+            bool isSuccess = MatObj.UpdateMCG(objGroup);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
             }
         }
     }

@@ -29,7 +29,22 @@ namespace IPCAUI.Administration.List
 
         private void dvgEmployeeList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgEmpGrpDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            EmployeeGroupModel lstEmpGroups;
+
+            lstEmpGroups = (EmployeeGroupModel)dvgEmpGrpDetails.GetRow(dvgEmpGrpDetails.FocusedRowHandle);
+            Employeegroup.Empid = lstEmpGroups.GroupId;
+
             this.Close();
+        }
+
+        private void navBarControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

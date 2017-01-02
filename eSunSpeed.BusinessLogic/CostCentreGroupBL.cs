@@ -63,7 +63,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ModifiedBy", objCCG.ModifiedBy));
                 paramCollection.Add(new DBParameter("@CCG_ID", objCCG.CCG_ID));
 
-                Query = "UPDATE CostCentreGroupMaster SET [GroupName]=@GroupName,[Alias]=@Alias,[PrimaryGroup]=@PrimaryGroup,[underGroup]=@underGroup,[ModifiedBy]=@ModifiedBy " +
+                Query = "UPDATE CostCentreGroupMaster SET GroupName=@GroupName,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,underGroup=@underGroup,ModifiedBy=@ModifiedBy " +
                    "WHERE CCG_ID=@CCG_ID";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -135,6 +135,28 @@ namespace eSunSpeed.BusinessLogic
             }
 
             return lstCCG;
+        }
+        //Get All CostcenterGroup By Id
+        public CostCentreGroupModel GetAllCostCentreGroupsById(int id)
+        {
+            CostCentreGroupModel objCCG = new CostCentreGroupModel();
+      
+            string Query = "SELECT * FROM CostCentreGroupMaster WHERE CCG_ID="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+
+                objCCG = new CostCentreGroupModel();
+                objCCG.CCG_ID = Convert.ToInt32(dr["CCG_ID"]);
+                objCCG.GroupName = dr["GroupName"].ToString();
+                objCCG.Alias = dr["Alias"].ToString();
+                objCCG.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
+                objCCG.underGroup = dr["underGroup"].ToString();
+                
+            }
+
+            return objCCG;
         }
 
     }

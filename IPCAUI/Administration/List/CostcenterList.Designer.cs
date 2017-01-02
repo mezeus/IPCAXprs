@@ -49,8 +49,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.costcenterListDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.costcenterList1 = new IPCAUI.DataSets.CostcenterList();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCostcenter)).BeginInit();
@@ -65,8 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcenterListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcenterList1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -115,6 +111,7 @@
             this.gridColumn2});
             this.dvgCostcenterDetails.GridControl = this.dvgCostcenter;
             this.dvgCostcenterDetails.Name = "dvgCostcenterDetails";
+            this.dvgCostcenterDetails.OptionsBehavior.ReadOnly = true;
             this.dvgCostcenterDetails.OptionsView.ShowGroupPanel = false;
             this.dvgCostcenterDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCostcenterDetails_KeyPress);
             this.dvgCostcenterDetails.DoubleClick += new System.EventHandler(this.dvgCostcenterDetails_DoubleClick);
@@ -283,16 +280,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(336, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // costcenterListDtBindingSource
-            // 
-            this.costcenterListDtBindingSource.DataMember = "CostcenterListDt";
-            this.costcenterListDtBindingSource.DataSource = this.costcenterList1;
-            // 
-            // costcenterList1
-            // 
-            this.costcenterList1.DataSetName = "CostcenterList";
-            this.costcenterList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // CostcenterList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,8 +304,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcenterListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcenterList1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,8 +322,6 @@
         private DevExpress.XtraGrid.GridControl dvgCostcenter;
         private DevExpress.XtraGrid.Views.Grid.GridView dvgCostcenterDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource costcenterListDtBindingSource;
-        private DataSets.CostcenterList costcenterList1;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colAlias;
         private DevExpress.XtraGrid.Columns.GridColumn colParentGroup;

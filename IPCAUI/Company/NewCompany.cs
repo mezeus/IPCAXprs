@@ -37,9 +37,9 @@ namespace IPCAUI.Company
             objcommods.Name = tbxname.Text.Trim();
             objcommods.PrintName = tbxPrintName.Text.Trim();
             objcommods.ShortName = tbxshortname.Text;
-            objcommods.Country = luecountry.Text;
-            objcommods.State = luestate.Text;
-            objcommods.FYBegining = Convert.ToDateTime(tbxfybeginningfrom.SelectedText.ToString());
+            objcommods.Country = tbxcountry.Text;
+            objcommods.State =tbxstate.Text;
+            objcommods.FYBegining = Convert.ToDateTime(tbxfybeginningfrom.Text);
             objcommods.BooksCommencing = Convert.ToDateTime(tbxbookscommencingfrom.SelectedText.ToString());
             objcommods.Address = tbxaddress.Text;
             objcommods.CIN = tbxCIN.Text;
@@ -55,7 +55,7 @@ namespace IPCAUI.Company
             objcommods.CurrencyCharacter = tbxcurrencycharacter.Text;
             objcommods.VAT = tbxEnableVAT.Text;
             objcommods.Type = tbxtype.Text;
-            objcommods.EnableTaxSchg = Convert.ToBoolean(tbxEnableAddTax.Text);
+           objcommods.EnableTaxSchg = Convert.ToBoolean(tbxEnableAddTax.Text.ToString()=="Y"?true:false);
             objcommods.TIN = tbxTin.Text;
             objcommods.CSTNo = tbxCSTNO.Text;
             objcommods.CreatedBy = "Admin";
@@ -70,6 +70,21 @@ namespace IPCAUI.Company
                 if (isSuccess)
                     MessageBox.Show("Saved Successfully!");
             }
+
+        }
+
+        private void NewCompany_Load(object sender, EventArgs e)
+        {
+            tbxcountry.SelectedIndex = 0;
+            tbxstate.SelectedIndex = 0;
+            tbxEnableVAT.SelectedIndex = 0;
+            tbxtype.SelectedIndex = 0;
+            tbxEnableAddTax.SelectedIndex = 0;
+            tbxCaption.SelectedIndex = 0;
+                
+
+
+
 
         }
     }

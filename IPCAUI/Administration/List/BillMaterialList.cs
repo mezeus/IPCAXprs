@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
     public partial class BillMaterialList : Form
     {
+        BillsofMaterialBL objbal = new BillsofMaterialBL();
         public BillMaterialList()
         {
             InitializeComponent();
@@ -19,35 +22,30 @@ namespace IPCAUI.Administration.List
 
         private void BillMaterialList_Load(object sender, EventArgs e)
         {
-            Fill();
+
+            List<eSunSpeedDomain.BillofMaterialModel> lstBillMaterials = objbal.GetAllBillofMaterial();
+            dvgBillList.DataSource = lstBillMaterials;
+            
         }
 
-        private void Fill()
+        private void dvgBillmaterialDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
-            DataSets.BillsmaterialList.BillsmaterialListDtDataTable dt = new DataSets.BillsmaterialList.BillsmaterialListDtDataTable();
+            BillofMaterialModel lstBillmaterials;
 
-            for (int i = 0; i <= 50; i++)
+            lstBillmaterials = (BillofMaterialModel)dvgBillmaterialDetails.GetRow(dvgBillmaterialDetails.FocusedRowHandle);
+            BillsofMaterial.BMId = lstBillmaterials.Bom_Id;
+
+            this.Close();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
             {
-                DataSets.BillsmaterialList.BillsmaterialListDtRow dr = dt.NewBillsmaterialListDtRow();
-
-                dr[0] = "Test Name" + i;
-                dr[1] = "Alias Name" +i ;
-                //dr[2] = "Parent Group test data" +i;
-                //dr[3] = "12.56" +i;
-                //dr[4] = "10.45" +i;
-
-                dt.AddBillsmaterialListDtRow(dr);
+                this.Close();
+                return true;
             }
-            DataSets.BillsmaterialList ds = new DataSets.BillsmaterialList();
-            ds.Tables.Clear();
-
-            ds.Tables.Add(dt);
-
-            BindingSource src = new BindingSource();
-            src.DataSource = ds.Tables[0];
-
-            billsmaterialListDtBindingSource.DataSource = src;
-            
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

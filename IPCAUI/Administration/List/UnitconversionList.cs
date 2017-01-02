@@ -32,5 +32,15 @@ namespace IPCAUI.Administration.List
         {
 
         }
+
+        private void dvgUnitConDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UnitConversionModel lstUnitCover;
+
+            lstUnitCover = (UnitConversionModel)dvgUnitConDetails.GetRow(dvgUnitConDetails.FocusedRowHandle);
+            Unitconversion.UCId = lstUnitCover.ID;
+
+            this.Close();
+        }
     }
 }

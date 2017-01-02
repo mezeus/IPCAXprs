@@ -30,6 +30,16 @@ namespace IPCAUI.Administration.List
         
         private void dvgItemgrpList_KeyDown(object sender, KeyEventArgs e)
         {
+           
+        }
+
+        private void dvgItemgrpDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           ItemGroupMasterModel lstItemsGroups;
+
+            lstItemsGroups = (ItemGroupMasterModel)dvgItemgrpDetails.GetRow(dvgItemgrpDetails.FocusedRowHandle);
+            Itemgroup.ItemgrpId= lstItemsGroups.IGM_id;
+
             this.Close();
         }
     }

@@ -136,14 +136,14 @@ namespace eSunSpeed.BusinessLogic
         }
         #endregion
 
-        //List
+        //List In Bills og Material
 
         public List<eSunSpeedDomain.BillofMaterialModel> GetAllBillofMaterial()
         {
             List<eSunSpeedDomain.BillofMaterialModel> lstBom = new List<BillofMaterialModel>();
             eSunSpeedDomain.BillofMaterialModel objBom;
 
-            string Query = "SELECT * FROM BillsofMaterial";
+            string Query = "SELECT * FROM `BillsofMaterial`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -152,28 +152,39 @@ namespace eSunSpeed.BusinessLogic
                 objBom = new BillofMaterialModel();
 
                 objBom.BOMName = dr["BOMName"].ToString();
-                objBom.Itemtoproduce= dr["ItemProduct"].ToString();
+                objBom.Itemtoproduce= dr["Itemtoproduce"].ToString();
                 objBom.Quantity = Convert.ToDecimal(dr["Quantity"]);
                 objBom.ItemUnit = dr["ItemUnit"].ToString();
                 objBom.Expenses = Convert.ToDecimal(dr["Expenses"]);
-                objBom.SpecifyMCGenerated = Convert.ToBoolean(dr["SpecifyMcGenerated"]);
-                objBom.SourceMC = dr["SourceMC"].ToString();
+                objBom.SpecifyMCGenerated = Convert.ToBoolean(dr["SpecifyMCGenerated"]);
                 objBom.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(dr["SpecifyDefaultMCforItemConsumed"]);
-                objBom.AppMc = dr["AppMc"].ToString();
-                objBom.SNo = Convert.ToInt32(dr["SNo"]);
-                objBom.ItemName = dr["ItemName"].ToString();
-                objBom.Qty = Convert.ToDecimal(dr["Qty"]);
-                objBom.Unit = Convert.ToDecimal(dr["Unit"]);
-                objBom.TotalofConsumedqtyUnit = Convert.ToDecimal(dr["TotalofConsumedqtyUnit"]);
-
 
                 lstBom.Add(objBom);
-
-
 
             }
 
             return lstBom;
+        }
+        //List Of BillofMaterial By Id
+        public BillofMaterialModel GetAllBillofMaterialById(int id)
+        {
+            BillofMaterialModel objBom = new BillofMaterialModel();
+
+            string Query = "SELECT * FROM `BillsofMaterial` WHERE Bom_Id="+id+"";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objBom.BOMName = dr["BOMName"].ToString();
+                objBom.Itemtoproduce = dr["Itemtoproduce"].ToString();
+                objBom.Quantity = Convert.ToDecimal(dr["Quantity"]);
+                objBom.ItemUnit = dr["ItemUnit"].ToString();
+                objBom.Expenses = Convert.ToDecimal(dr["Expenses"]);
+                objBom.SpecifyMCGenerated = Convert.ToBoolean(dr["SpecifyMCGenerated"]);
+                objBom.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(dr["SpecifyDefaultMCforItemConsumed"]);
+
+            }
+            return objBom;
         }
 
         //Search

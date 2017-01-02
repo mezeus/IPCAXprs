@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Itemgroup : Form
     {
         ItemGroupMasterBL objItemBL = new ItemGroupMasterBL();
+        public static int ItemgrpId = 0;
         public Itemgroup()
         {
             InitializeComponent();
@@ -40,11 +41,6 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
             }
-            //List<ItemGroupMasterModel> lstItems = objItemBL.GetAllItemGroup();
-            //dgvList.DataSource = lstItems;
-
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
         }
 
         private void ListItemgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -53,7 +49,34 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            btnSave.Visible = false;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxGroupName.Focus();
+            tbxGroupName.ReadOnly = true;
+
+            FillAccountInfo();
+
         }
+
+        private void FillAccountInfo()
+        {
+            ItemGroupMasterModel objIGM = objItemBL.GetAllItemGroupById(ItemgrpId);
+
+            tbxGroupName.Text = objIGM.ItemGroup;
+            tbxAliasname.Text = objIGM.Alias;
+            cbxPrimarygroup.SelectedItem =Convert.ToString((objIGM.PrimaryGroup)?"Y":"N");
+            cbxUndergroup.SelectedItem=objIGM.UnderGroup;
+            cbxStockaccount.SelectedItem= objIGM.StockAccount;
+            cbxSalesaccount.SelectedItem= objIGM.SalesAccount;
+            cbxPurchaseAccount.SelectedItem= objIGM.PurchaseAccount;
+            rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
+            rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
+            tbxParameters.Text=Convert.ToString(objIGM.Parameters);
+        }
+
 
         private void Itemgroup_Load(object sender, EventArgs e)
         {
@@ -78,12 +101,6 @@ namespace IPCAUI.Administration
         {
             if (e.KeyChar == '\r')
             {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
                 if (tbxGroupName.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("Item Group Can Not Be Blank!");
@@ -92,8 +109,45 @@ namespace IPCAUI.Administration
                     
 
                 }
-                //e.Handled = true; // Mark the event as handled
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            ItemGroupMasterModel objModel = new ItemGroupMasterModel();
+
+            objModel.ItemGroup = tbxGroupName.Text.Trim();
+            objModel.Alias = tbxAliasname.Text.Trim();
+            objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
+            objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
+            objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
+            objModel.SeparateConfig = rbnSeparteConfig.Checked ? true : false;
+            objModel.DefaultConfig = rbnDefaultconfig.Checked ? true : false;
+            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
+            objModel.IGM_id = ItemgrpId;
+            objModel.ModifiedBy = "Admin";
+
+            bool isSuccess = objItemBL.UpdateIGM(objModel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            tbxAliasname.Text = string.Empty;
+            tbxGroupName.Text = string.Empty;
+            cbxPrimarygroup.SelectedIndex = 1;
+            cbxPurchaseAccount.SelectedItem = "";
+            cbxStockaccount.SelectedItem = "";
+            cbxUndergroup.SelectedItem = "";
+            cbxSalesaccount.SelectedText = "";
+            rbnDefaultconfig.Checked = false;
+            rbnSeparteConfig.Checked = false;
+            tbxParameters.Text = string.Empty;
         }
     }
 }

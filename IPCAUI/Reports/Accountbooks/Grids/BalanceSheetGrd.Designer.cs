@@ -28,519 +28,363 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BalanceSheetGrd));
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.dtDate = new DevExpress.XtraEditors.LabelControl();
-            this.lblDate = new DevExpress.XtraEditors.LabelControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.balSheetDtBindingSource = new System.Windows.Forms.BindingSource();
-            this.balanceSheet = new IPCAUI.DataSets.BalanceSheet();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Liabilities = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ASSETS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.Navigations = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtToDate = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblasset = new System.Windows.Forms.Label();
+            this.dgvReport = new System.Windows.Forms.DataGridView();
+            this.ID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtLiability = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtAsset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpdate = new System.Windows.Forms.DateTimePicker();
+            this.btnclear = new System.Windows.Forms.Button();
+            this.btnsearch = new System.Windows.Forms.Button();
+            this.lbltodate = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblliability = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balSheetDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balanceSheet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            this.navBarControl1.SuspendLayout();
-            this.navBarGroupControlContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            // 
-            // treeListBand1
-            // 
-            this.treeListBand1.Caption = "treeListBand1";
-            this.treeListBand1.Name = "treeListBand1";
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.Caption = "treeListColumn1";
-            this.treeListColumn1.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.treeListColumn1.FieldName = "treeListColumn1";
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 0;
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.dtDate);
-            this.layoutControl1.Controls.Add(this.lblDate);
-            this.layoutControl1.Controls.Add(this.gridControl1);
+            this.layoutControl1.Controls.Add(this.panel1);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.textEdit5);
-            this.layoutControl1.Controls.Add(this.textEdit6);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.textEdit9);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem3,
-            this.layoutControlItem2});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(425, 280, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(941, 509);
+            this.layoutControl1.Size = new System.Drawing.Size(924, 635);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // dtDate
-            // 
-            this.dtDate.Location = new System.Drawing.Point(617, 12);
-            this.dtDate.Name = "dtDate";
-            this.dtDate.Size = new System.Drawing.Size(63, 13);
-            this.dtDate.StyleController = this.layoutControl1;
-            this.dtDate.TabIndex = 16;
-            // 
-            // lblDate
-            // 
-            this.lblDate.Location = new System.Drawing.Point(545, 12);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(68, 13);
-            this.lblDate.StyleController = this.layoutControl1;
-            this.lblDate.TabIndex = 15;
-            this.lblDate.Text = "At the end of:";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.DataSource = this.balSheetDtBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(176, 70);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(753, 393);
-            this.gridControl1.TabIndex = 14;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // balSheetDtBindingSource
-            // 
-            this.balSheetDtBindingSource.DataMember = "BalSheetDt";
-            this.balSheetDtBindingSource.DataSource = this.balanceSheet;
-            // 
-            // balanceSheet
-            // 
-            this.balanceSheet.DataSetName = "BalanceSheet";
-            this.balanceSheet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Liabilities,
-            this.ASSETS});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowFooter = true;
-            // 
-            // Liabilities
-            // 
-            this.Liabilities.Caption = "LIABILITIES(Rs.)";
-            this.Liabilities.FieldName = "Liabilities";
-            this.Liabilities.Name = "Liabilities";
-            this.Liabilities.Visible = true;
-            this.Liabilities.VisibleIndex = 0;
-            // 
-            // ASSETS
-            // 
-            this.ASSETS.Caption = "ASSESTS(Rs.)";
-            this.ASSETS.FieldName = "Assests";
-            this.ASSETS.Name = "ASSETS";
-            this.ASSETS.Visible = true;
-            this.ASSETS.VisibleIndex = 1;
-            // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup13;
-            this.navBarControl1.Appearance.Background.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.navBarControl1.Appearance.Background.Options.UseBackColor = true;
-            this.navBarControl1.Appearance.NavigationPaneHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseBackColor = true;
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.Navigations,
-            this.navBarGroup13});
-            this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.navBarItem1,
-            this.navBarItem2,
-            this.navBarItem3,
-            this.navBarItem4,
-            this.navBarItem5,
-            this.navBarItem6,
-            this.navBarItem7,
-            this.navBarItem8,
-            this.navBarItem9});
+            this.navBarGroup1});
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 160;
-            this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(160, 451);
-            this.navBarControl1.TabIndex = 13;
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 115;
+            this.navBarControl1.Size = new System.Drawing.Size(115, 611);
+            this.navBarControl1.TabIndex = 4;
             this.navBarControl1.Text = "navBarControl1";
-            this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
             // 
-            // navBarGroup13
+            // navBarGroup1
             // 
-            this.navBarGroup13.Caption = "Report Options";
-            this.navBarGroup13.ControlContainer = this.navBarGroupControlContainer1;
-            this.navBarGroup13.Expanded = true;
-            this.navBarGroup13.GroupClientHeight = 332;
-            this.navBarGroup13.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup13.Name = "navBarGroup13";
-            this.navBarGroup13.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup13.SmallImage")));
-            // 
-            // navBarGroupControlContainer1
-            // 
-            this.navBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer1.Controls.Add(this.treeList1);
-            this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(158, 332);
-            this.navBarGroupControlContainer1.TabIndex = 0;
-            // 
-            // treeList1
-            // 
-            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn3});
-            this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(0, 0);
-            this.treeList1.Name = "treeList1";
-            this.treeList1.BeginUnboundLoad();
-            this.treeList1.AppendNode(new object[] {
-            "Horizontal"}, -1);
-            this.treeList1.AppendNode(new object[] {
-            "Month-Wise"}, 0);
-            this.treeList1.AppendNode(new object[] {
-            "Date-Wise"}, 0);
-            this.treeList1.AppendNode(new object[] {
-            "Vertical"}, -1);
-            this.treeList1.AppendNode(new object[] {
-            "Month-Wise"}, 3);
-            this.treeList1.AppendNode(new object[] {
-            "Date-Wise"}, 3);
-            this.treeList1.AppendNode(new object[] {
-            "Vertical(Configurable)"}, -1);
-            this.treeList1.AppendNode(new object[] {
-            "Month-Wise"}, 6);
-            this.treeList1.AppendNode(new object[] {
-            "Date-Wise"}, 6);
-            this.treeList1.EndUnboundLoad();
-            this.treeList1.OptionsBehavior.Editable = false;
-            this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.Size = new System.Drawing.Size(158, 332);
-            this.treeList1.TabIndex = 0;
-            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
-            // 
-            // treeListColumn3
-            // 
-            this.treeListColumn3.Caption = "treeListColumn3";
-            this.treeListColumn3.FieldName = "treeListColumn3";
-            this.treeListColumn3.MinWidth = 52;
-            this.treeListColumn3.Name = "treeListColumn3";
-            this.treeListColumn3.Visible = true;
-            this.treeListColumn3.VisibleIndex = 0;
-            // 
-            // Navigations
-            // 
-            this.Navigations.Caption = "Print/Export/Refresh";
-            this.Navigations.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem6),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
-            this.Navigations.Name = "Navigations";
-            // 
-            // navBarItem6
-            // 
-            this.navBarItem6.Caption = "Export";
-            this.navBarItem6.Name = "navBarItem6";
-            this.navBarItem6.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem6.SmallImage")));
-            // 
-            // navBarItem7
-            // 
-            this.navBarItem7.Caption = "Refresh";
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.SmallImage")));
-            // 
-            // navBarItem8
-            // 
-            this.navBarItem8.Caption = "Print";
-            this.navBarItem8.Name = "navBarItem8";
-            this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
-            // 
-            // navBarItem9
-            // 
-            this.navBarItem9.Caption = "Email";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "navBarItem1";
-            this.navBarItem1.Name = "navBarItem1";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "navBarItem2";
-            this.navBarItem2.Name = "navBarItem2";
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "navBarItem3";
-            this.navBarItem3.Name = "navBarItem3";
-            // 
-            // navBarItem4
-            // 
-            this.navBarItem4.Caption = "navBarItem4";
-            this.navBarItem4.Name = "navBarItem4";
-            // 
-            // navBarItem5
-            // 
-            this.navBarItem5.Caption = "navBarItem5";
-            this.navBarItem5.Name = "navBarItem5";
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.Location = new System.Drawing.Point(272, 12);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(657, 20);
-            this.textEdit5.StyleController = this.layoutControl1;
-            this.textEdit5.TabIndex = 5;
-            // 
-            // textEdit6
-            // 
-            this.textEdit6.Location = new System.Drawing.Point(738, 12);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Size = new System.Drawing.Size(191, 20);
-            this.textEdit6.StyleController = this.layoutControl1;
-            this.textEdit6.TabIndex = 6;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(258, 29);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(283, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 8;
-            // 
-            // textEdit9
-            // 
-            this.textEdit9.Location = new System.Drawing.Point(627, 29);
-            this.textEdit9.Name = "textEdit9";
-            this.textEdit9.Size = new System.Drawing.Size(302, 20);
-            this.textEdit9.StyleController = this.layoutControl1;
-            this.textEdit9.TabIndex = 9;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.textEdit6;
-            this.layoutControlItem3.CustomizationFormText = "layoutControlItem3";
-            this.layoutControlItem3.Location = new System.Drawing.Point(630, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(291, 24);
-            this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(93, 13);
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.textEdit5;
-            this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(164, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(757, 24);
-            this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(93, 13);
+            this.navBarGroup1.Caption = "navBarGroup1";
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.Name = "navBarGroup1";
             // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem10,
-            this.emptySpaceItem2,
             this.layoutControlItem1,
-            this.simpleLabelItem1,
-            this.emptySpaceItem1,
-            this.emptySpaceItem3,
-            this.layoutControlItem4,
-            this.layoutControlItem7});
+            this.layoutControlItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(941, 509);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(924, 635);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.textEdit2;
-            this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
-            this.layoutControlItem5.Location = new System.Drawing.Point(164, 17);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(369, 24);
-            this.layoutControlItem5.Text = "From Date:";
-            this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(79, 13);
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.textEdit9;
-            this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
-            this.layoutControlItem6.Location = new System.Drawing.Point(533, 17);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(388, 24);
-            this.layoutControlItem6.Text = "To Date:";
-            this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(79, 13);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.navBarControl1;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(164, 455);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(164, 41);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(757, 17);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gridControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(164, 58);
+            this.layoutControlItem1.Control = this.navBarControl1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(757, 397);
+            this.layoutControlItem1.Size = new System.Drawing.Size(119, 615);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // simpleLabelItem1
-            // 
-            this.simpleLabelItem1.AllowHotTrack = false;
-            this.simpleLabelItem1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.simpleLabelItem1.Location = new System.Drawing.Point(164, 0);
-            this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(369, 17);
-            this.simpleLabelItem1.Text = "BALANCE SHEET";
-            this.simpleLabelItem1.TextSize = new System.Drawing.Size(79, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 455);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(921, 34);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(672, 0);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(249, 17);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.lblDate;
-            this.layoutControlItem4.Location = new System.Drawing.Point(533, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 547);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(72, 17);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
+            this.layoutControlItem4.Size = new System.Drawing.Size(201, 25);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(50, 20);
             // 
-            // layoutControlItem7
+            // panel1
             // 
-            this.layoutControlItem7.Control = this.dtDate;
-            this.layoutControlItem7.Location = new System.Drawing.Point(605, 0);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(67, 17);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.txtToDate);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.dgvReport);
+            this.panel1.Controls.Add(this.dtpdate);
+            this.panel1.Controls.Add(this.btnclear);
+            this.panel1.Controls.Add(this.btnsearch);
+            this.panel1.Controls.Add(this.lbltodate);
+            this.panel1.Controls.Add(this.btnPrint);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.ForeColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(131, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(781, 611);
+            this.panel1.TabIndex = 5;
             // 
-            // treeListColumn2
+            // layoutControlItem2
             // 
-            this.treeListColumn2.Name = "treeListColumn2";
+            this.layoutControlItem2.Control = this.panel1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(119, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(785, 615);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
-            // gridColumn1
+            // txtToDate
             // 
-            this.gridColumn1.FieldName = "Liabilities";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.txtToDate.Location = new System.Drawing.Point(129, 32);
+            this.txtToDate.Margin = new System.Windows.Forms.Padding(5);
+            this.txtToDate.Name = "txtToDate";
+            this.txtToDate.Size = new System.Drawing.Size(223, 21);
+            this.txtToDate.TabIndex = 1219;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DimGray;
+            this.panel2.Controls.Add(this.lblasset);
+            this.panel2.ForeColor = System.Drawing.Color.White;
+            this.panel2.Location = new System.Drawing.Point(391, 63);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(380, 32);
+            this.panel2.TabIndex = 1227;
+            // 
+            // lblasset
+            // 
+            this.lblasset.AutoSize = true;
+            this.lblasset.BackColor = System.Drawing.Color.Transparent;
+            this.lblasset.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblasset.ForeColor = System.Drawing.Color.White;
+            this.lblasset.Location = new System.Drawing.Point(132, 5);
+            this.lblasset.Name = "lblasset";
+            this.lblasset.Size = new System.Drawing.Size(62, 22);
+            this.lblasset.TabIndex = 1184;
+            this.lblasset.Text = "Asset";
+            // 
+            // dgvReport
+            // 
+            this.dgvReport.AllowUserToAddRows = false;
+            this.dgvReport.AllowUserToDeleteRows = false;
+            this.dgvReport.AllowUserToResizeColumns = false;
+            this.dgvReport.AllowUserToResizeRows = false;
+            this.dgvReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvReport.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dgvReport.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReport.ColumnHeadersVisible = false;
+            this.dgvReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID2,
+            this.GroupId2,
+            this.dgvtxtLiability,
+            this.Amount2,
+            this.dgvtxtAsset,
+            this.Amount1,
+            this.ID1,
+            this.GroupId1});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReport.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvReport.EnableHeadersVisualStyles = false;
+            this.dgvReport.GridColor = System.Drawing.Color.LightGray;
+            this.dgvReport.Location = new System.Drawing.Point(10, 95);
+            this.dgvReport.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
+            this.dgvReport.MultiSelect = false;
+            this.dgvReport.Name = "dgvReport";
+            this.dgvReport.ReadOnly = true;
+            this.dgvReport.RowHeadersVisible = false;
+            this.dgvReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvReport.Size = new System.Drawing.Size(761, 449);
+            this.dgvReport.TabIndex = 1224;
+            // 
+            // ID2
+            // 
+            this.ID2.HeaderText = "ID2";
+            this.ID2.Name = "ID2";
+            this.ID2.ReadOnly = true;
+            this.ID2.Visible = false;
+            // 
+            // GroupId2
+            // 
+            this.GroupId2.HeaderText = "GroupId2";
+            this.GroupId2.Name = "GroupId2";
+            this.GroupId2.ReadOnly = true;
+            this.GroupId2.Visible = false;
+            // 
+            // dgvtxtLiability
+            // 
+            this.dgvtxtLiability.HeaderText = "Liability";
+            this.dgvtxtLiability.Name = "dgvtxtLiability";
+            this.dgvtxtLiability.ReadOnly = true;
+            // 
+            // Amount2
+            // 
+            this.Amount2.HeaderText = "Amount2";
+            this.Amount2.Name = "Amount2";
+            this.Amount2.ReadOnly = true;
+            this.Amount2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dgvtxtAsset
+            // 
+            this.dgvtxtAsset.HeaderText = "Asset";
+            this.dgvtxtAsset.Name = "dgvtxtAsset";
+            this.dgvtxtAsset.ReadOnly = true;
+            // 
+            // Amount1
+            // 
+            this.Amount1.HeaderText = "Amount1";
+            this.Amount1.Name = "Amount1";
+            this.Amount1.ReadOnly = true;
+            this.Amount1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ID1
+            // 
+            this.ID1.HeaderText = "ID1";
+            this.ID1.Name = "ID1";
+            this.ID1.ReadOnly = true;
+            this.ID1.Visible = false;
+            // 
+            // GroupId1
+            // 
+            this.GroupId1.HeaderText = "GroupId1";
+            this.GroupId1.Name = "GroupId1";
+            this.GroupId1.ReadOnly = true;
+            this.GroupId1.Visible = false;
+            // 
+            // dtpdate
+            // 
+            this.dtpdate.CustomFormat = "dd-MMM-yyyy";
+            this.dtpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpdate.Location = new System.Drawing.Point(296, 32);
+            this.dtpdate.Name = "dtpdate";
+            this.dtpdate.Size = new System.Drawing.Size(20, 21);
+            this.dtpdate.TabIndex = 1222;
+            // 
+            // btnclear
+            // 
+            this.btnclear.BackColor = System.Drawing.Color.DimGray;
+            this.btnclear.FlatAppearance.BorderSize = 0;
+            this.btnclear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclear.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclear.ForeColor = System.Drawing.Color.White;
+            this.btnclear.Location = new System.Drawing.Point(688, 32);
+            this.btnclear.Name = "btnclear";
+            this.btnclear.Size = new System.Drawing.Size(83, 21);
+            this.btnclear.TabIndex = 1221;
+            this.btnclear.Text = "Clear";
+            this.btnclear.UseVisualStyleBackColor = false;
+            // 
+            // btnsearch
+            // 
+            this.btnsearch.BackColor = System.Drawing.Color.DimGray;
+            this.btnsearch.FlatAppearance.BorderSize = 0;
+            this.btnsearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnsearch.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsearch.ForeColor = System.Drawing.Color.White;
+            this.btnsearch.Location = new System.Drawing.Point(585, 32);
+            this.btnsearch.Name = "btnsearch";
+            this.btnsearch.Size = new System.Drawing.Size(83, 21);
+            this.btnsearch.TabIndex = 1220;
+            this.btnsearch.Text = "Search";
+            this.btnsearch.UseVisualStyleBackColor = false;
+            // 
+            // lbltodate
+            // 
+            this.lbltodate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltodate.ForeColor = System.Drawing.Color.Black;
+            this.lbltodate.Location = new System.Drawing.Point(36, 32);
+            this.lbltodate.Name = "lbltodate";
+            this.lbltodate.Size = new System.Drawing.Size(75, 20);
+            this.lbltodate.TabIndex = 1225;
+            this.lbltodate.Text = "To Date";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnPrint.FlatAppearance.BorderSize = 0;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.ForeColor = System.Drawing.Color.Black;
+            this.btnPrint.Location = new System.Drawing.Point(9, 552);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(86, 27);
+            this.btnPrint.TabIndex = 1223;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.ForeColor = System.Drawing.Color.Honeydew;
+            this.panel3.Location = new System.Drawing.Point(391, 63);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1, 480);
+            this.panel3.TabIndex = 1228;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.DimGray;
+            this.panel4.Controls.Add(this.lblliability);
+            this.panel4.ForeColor = System.Drawing.Color.White;
+            this.panel4.Location = new System.Drawing.Point(10, 63);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(385, 32);
+            this.panel4.TabIndex = 1226;
+            // 
+            // lblliability
+            // 
+            this.lblliability.AutoSize = true;
+            this.lblliability.BackColor = System.Drawing.Color.Transparent;
+            this.lblliability.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblliability.ForeColor = System.Drawing.Color.White;
+            this.lblliability.Location = new System.Drawing.Point(124, 5);
+            this.lblliability.Name = "lblliability";
+            this.lblliability.Size = new System.Drawing.Size(82, 22);
+            this.lblliability.TabIndex = 1183;
+            this.lblliability.Text = "Liability";
             // 
             // BalanceSheetGrd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 509);
+            this.ClientSize = new System.Drawing.Size(924, 635);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BalanceSheetGrd";
@@ -548,84 +392,53 @@
             this.Text = "BalanceSheetGrd";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BalanceSheetGrd_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balSheetDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balanceSheet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            this.navBarControl1.ResumeLayout(false);
-            this.navBarGroupControlContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit9;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem4;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem5;
-        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
-        private DevExpress.XtraNavBar.NavBarGroup Navigations;
-        private DevExpress.XtraEditors.LabelControl dtDate;
-        private DevExpress.XtraEditors.LabelControl lblDate;
-        private System.Windows.Forms.BindingSource balSheetDtBindingSource;
-        private DataSets.BalanceSheet balanceSheet;
-        private DevExpress.XtraGrid.Columns.GridColumn Liabilities;
-        private DevExpress.XtraGrid.Columns.GridColumn ASSETS;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup13;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem6;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
-        private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtToDate;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblasset;
+        private System.Windows.Forms.DataGridView dgvReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupId2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtLiability;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtAsset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupId1;
+        private System.Windows.Forms.DateTimePicker dtpdate;
+        private System.Windows.Forms.Button btnclear;
+        private System.Windows.Forms.Button btnsearch;
+        private System.Windows.Forms.Label lbltodate;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblliability;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

@@ -94,6 +94,13 @@ namespace IPCAUI.Administration
                     tbxGroupName.Focus();
                     return;
                 }
+                if (objaccbl.IsGroupExists(tbxGroupName.Text.Trim()))
+                {
+                    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                    tbxGroupName.Focus();
+                    return;
+                }
+
                 if (this.ActiveControl != null)
                 {
                     this.SelectNextControl(this.ActiveControl, true, true, true, true);
@@ -135,7 +142,7 @@ namespace IPCAUI.Administration
             AccountGroupModel objMaster = objaccbl.GetAccountGroupByGroupId(groupId);
 
             tbxGroupName.Text = objMaster.GroupName;
-            tbxAliasname.Text = objMaster.AliasName;
+            tbxAliasname.Text = objMaster.AliasName;    
             cbxPrimarygroup.SelectedItem = objMaster.Primary == "True" ? "Yes" : "No";
             cbxUndergroup.SelectedItem = objMaster.UnderGroup;
             cbxNaturegroup.SelectedItem = objMaster.NatureGroup;

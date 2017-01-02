@@ -12,12 +12,15 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Administration
 {
+    
     public partial class BillsofMaterial : Form
     {
         BillsofMaterialBL objbal = new BillsofMaterialBL();
+        public static int BMId = 0;
+
         public BillsofMaterial()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -31,6 +34,39 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+            btnSave.Visible = false;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+            tbxBomName.Focus();
+
+            FillAccountInfo();
+        }
+
+        private void FillAccountInfo()
+        {
+            BillofMaterialModel objBom = objbal.GetAllBillofMaterialById(BMId);
+
+            tbxBomName.Text= objBom.BOMName;
+            cbxItemproduce.SelectedItem = objBom.Itemtoproduce;
+            tbxQuanty.Text=Convert.ToString(objBom.Quantity);
+            cbxUnit.SelectedItem = objBom.ItemUnit;
+            tbxExpensespcs.Text=Convert.ToString(objBom.Expenses);
+            cbxItemgenerated.SelectedItem= objBom.SpecifyMCGenerated;
+            cbxItemconsumed.SelectedItem=objBom.SpecifyDefaultMCforItemConsumed;
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -46,39 +82,18 @@ namespace IPCAUI.Administration
          //   objBMmodl.SourceMC = string.Empty;
             objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString().Equals("Yes") ? true : false);
             objBMmodl.AppMc = string.Empty;
-            //objBMmodl.ItemName = Text.Trim();
-            //objBMmodl.Qty = Convert.ToInt32(tbxRawQty.Text.Trim());
-            //objBMmodl.Unit = Convert.ToDecimal(tbxRawUnit.Text.Trim());
 
             bool isSuccess = objbal.SaveBOM(objBMmodl);
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
-                //List<BillofMaterialModel> lstBillMat = objBillmat.GetAllBillofMaterial();
-                //dgvList.DataSource = lstBillMat;
-                //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                //d.ShowDialog();
             }
         }
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Escape)
-            {
-                this.Close();
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
+   
         private void tbxBomName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
             {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
                 if (tbxBomName.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("Master Name Can Not Be Blank!");
@@ -87,15 +102,22 @@ namespace IPCAUI.Administration
 
 
                 }
-                //e.Handled = true; // Mark the event as handled
             }
         }
 
         private void BillsofMaterial_Load(object sender, EventArgs e)
         {
-            cbxUnit.SelectedIndex = 0;
-            cbxItemgenerated.SelectedIndex = 0;
-            cbxItemconsumed.SelectedIndex= 0;
+            
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ItemName");
+            dt.Columns.Add("Qty");
+            dt.Columns.Add("Unit");
+
+            dvgRawmat.DataSource = dt;
+
+           // tbxUnit.SelectedIndex = 0;
+            //cbxItemgenerated.SelectedIndex = 0;
+            //cbxItemconsumed.SelectedIndex= 0;
             cbxItemproduce.SelectedIndex = 0;
         }
     }

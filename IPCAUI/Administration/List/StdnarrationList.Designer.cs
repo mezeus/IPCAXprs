@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgStdnarration = new DevExpress.XtraGrid.GridControl();
@@ -110,6 +109,7 @@
             this.dvgStdnarrationDetails.Name = "dvgStdnarrationDetails";
             this.dvgStdnarrationDetails.OptionsBehavior.ReadOnly = true;
             this.dvgStdnarrationDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgStdnarrationDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgStdnarrationDetails_KeyPress);
             // 
             // colVoucherType
             // 

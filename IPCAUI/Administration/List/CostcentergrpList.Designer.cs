@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgCCgrpList = new DevExpress.XtraGrid.GridControl();
-            this.costcentergrpListDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.costcentergrpList1 = new IPCAUI.DataSets.CostcentergrpList();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgCCgrpDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrimary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnderGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,9 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCCgrpList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcentergrpListDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcentergrpList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgCCgrpDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -95,35 +90,26 @@
             // 
             // dvgCCgrpList
             // 
-            this.dvgCCgrpList.DataSource = this.costcentergrpListDtBindingSource;
             this.dvgCCgrpList.Location = new System.Drawing.Point(47, 30);
-            this.dvgCCgrpList.MainView = this.gridView1;
+            this.dvgCCgrpList.MainView = this.dvgCCgrpDetails;
             this.dvgCCgrpList.Name = "dvgCCgrpList";
             this.dvgCCgrpList.Size = new System.Drawing.Size(782, 438);
             this.dvgCCgrpList.TabIndex = 9;
             this.dvgCCgrpList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgCCgrpDetails});
             this.dvgCCgrpList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCCgrpList_KeyDown);
+            this.dvgCCgrpList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCCgrpList_KeyPress);
             // 
-            // costcentergrpListDtBindingSource
+            // dvgCCgrpDetails
             // 
-            this.costcentergrpListDtBindingSource.DataMember = "CostcentergrpListDt";
-            this.costcentergrpListDtBindingSource.DataSource = this.costcentergrpList1;
-            // 
-            // costcentergrpList1
-            // 
-            this.costcentergrpList1.DataSetName = "CostcentergrpList";
-            this.costcentergrpList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgCCgrpDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colPrimary,
             this.colUnderGroup});
-            this.gridView1.GridControl = this.dvgCCgrpList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgCCgrpDetails.GridControl = this.dvgCCgrpList;
+            this.dvgCCgrpDetails.Name = "dvgCCgrpDetails";
+            this.dvgCCgrpDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgCCgrpDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCCgrpDetails_KeyPress);
             // 
             // colName
             // 
@@ -287,9 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgCCgrpList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcentergrpListDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.costcentergrpList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgCCgrpDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -316,10 +300,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgCCgrpList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgCCgrpDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource costcentergrpListDtBindingSource;
-        private DataSets.CostcentergrpList costcentergrpList1;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colPrimary;
         private DevExpress.XtraGrid.Columns.GridColumn colUnderGroup;

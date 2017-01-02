@@ -690,7 +690,7 @@
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 43;
             this.simpleButton1.Text = "Save";
-           // this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // textEdit11
             // 
