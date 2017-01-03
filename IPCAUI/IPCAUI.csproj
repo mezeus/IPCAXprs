@@ -110,6 +110,12 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\List\AccountgroupList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3145,6 +3151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\List\AccountgroupList.resx">
       <DependentUpon>AccountgroupList.cs</DependentUpon>

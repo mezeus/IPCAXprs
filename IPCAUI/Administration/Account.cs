@@ -199,8 +199,7 @@ namespace IPCAUI.Administration
 
             tbxTransport.Text = objMaster.Transport;
             tbxStation.Text = objMaster.Station;
-
-
+            
             cbxState.SelectedItem = objMaster.State;
             cbxDefaultPurcType.SelectedItem = objMaster.DefaultPurcType;
             cbxDefaultsaletype.SelectedItem = objMaster.DefaultSaleType;
@@ -312,55 +311,55 @@ namespace IPCAUI.Administration
         {
 
             ////TODO: Conditions
-            //if (cbxGroupname.SelectedItem.ToString() == "Unsecured Loans")
-            //{
-            //    grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    cbxCrDr.SelectedIndex = 0;
-            //    cbxPrevCrDr.SelectedIndex = 0;
-            //}
-            //else
-            //{
-            //    grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //}
-            //if (cbxGroupname.SelectedItem.ToString()=="Sundry Creditors")
-            //{
-              
-            //    //enable fields
-            //}
-            //if(cbxGroupname.SelectedItem.ToString()=="Bank Account")
-            //{
-            //    lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    cbxSpecifydefaultSale.SelectedIndex = 1;
-            //    cbxSpecifydefaultPurcType.SelectedIndex = 1;
-            //    cbxFreezesaletype.SelectedIndex = 1;
-            //    cbxFreezePurcType.SelectedIndex = 1;
-                
-            //}
-            //else
-            //{
-            //    lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //}
-            //if(cbxGroupname.SelectedItem.ToString()== "Suspence Account")
-            //{
-            //    cbxCrDr.SelectedIndex = 1;
-            //    cbxPrevCrDr.SelectedIndex = 1;
-            //}
-            //if(cbxGroupname.SelectedItem.ToString()== "Sunday Debitors")
-            //{
-            //    cbxCrDr.SelectedIndex = 1;
-            //    cbxPrevCrDr.SelectedIndex = 1;
-            //    cbxMaintainBalancing.SelectedIndex = 0;
-            //}
+            if (cbxGroupname.SelectedItem.ToString() == "Unsecured Loans")
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                cbxCrDr.SelectedIndex = 0;
+                cbxPrevCrDr.SelectedIndex = 0;
+            }
+            else
+            {
+                grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            if (cbxGroupname.SelectedItem.ToString() == "Sundry Creditors")
+            {
+
+                //enable fields
+            }
+            if (cbxGroupname.SelectedItem.ToString() == "Bank Account")
+            {
+                lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                cbxSpecifydefaultSale.SelectedIndex = 1;
+                cbxSpecifydefaultPurcType.SelectedIndex = 1;
+                cbxFreezesaletype.SelectedIndex = 1;
+                cbxFreezePurcType.SelectedIndex = 1;
+
+            }
+            else
+            {
+                lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            if (cbxGroupname.SelectedItem.ToString() == "Suspence Account")
+            {
+                cbxCrDr.SelectedIndex = 1;
+                cbxPrevCrDr.SelectedIndex = 1;
+            }
+            if (cbxGroupname.SelectedItem.ToString() == "Sunday Debitors")
+            {
+                cbxCrDr.SelectedIndex = 1;
+                cbxPrevCrDr.SelectedIndex = 1;
+                cbxMaintainBalancing.SelectedIndex = 0;
+            }
 
         }
 
