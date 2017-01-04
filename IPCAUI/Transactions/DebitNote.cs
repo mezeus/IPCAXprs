@@ -209,18 +209,74 @@ namespace IPCAUI.Transactions
         }
         private void FillDebitNote()
         {
+            btnUpdate.Visible = true;
+            btnSave.Visible = false;
+
             List<DebitNoteModel> objMaster = objDNbl.GetDebitNotebyId(DNId);
 
             tbxVchNumber.Text = objMaster.FirstOrDefault().Voucher_Number.ToString();
             tbxVoucherSeries.Text = objMaster.FirstOrDefault().Voucher_Series.ToString();
+
+            //Need to map the correct values
            // tbxLongNarratin.Text = objMaster.FirstOrDefault().LongNarration.ToString();
             dtDate.Text = objMaster.FirstOrDefault().DN_Date.ToString();
 
-            foreach(AccountModel acc in objMaster.FirstOrDefault().DebitAccountModel)
-            {
+            debitDtBindingSource.DataSource= objMaster.FirstOrDefault().DebitAccountModel;
+            //gdvDebitMaster.DataSource = objMaster.FirstOrDefault().DebitAccountModel;
+                       
+        }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DebitNoteModel objdebit = new DebitNoteModel();
+
+            if (tbxVchNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
             }
-            
+
+            objdebit.DN_Id = DNId;
+            objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
+            objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
+            objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objdebit.TotalCreditAmount = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objdebit.TotalDebitAmount = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+
+            //Items
+            AccountModel objDebit;
+
+            List<AccountModel> lstDebitNotes = new List<AccountModel>();
+
+            for (int i = 0; i < gdvDebit.DataRowCount; i++)
+            {
+                AccountModel row;
+                row = gdvDebit.GetRow(i) as AccountModel;
+             
+                objDebit = new AccountModel();
+
+                objDebit.ParentId= Convert.ToInt32(row.ParentId);
+                objDebit.AC_Id = Convert.ToInt32(row.AC_Id);
+                
+                objDebit.DC = row.DC.ToString();
+
+                objDebit.Account = row.Account.ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+
+                objDebit.Debit = row.Debit.ToString().Length > 0 ? Convert.ToDecimal(row.Debit.ToString()) : 0;
+                objDebit.Credit = row.Credit.ToString().Length > 0 ? Convert.ToDecimal(row.Credit.ToString()) : 0;
+
+                //objDebit.Narration = row.Narration.ToString();
+
+                lstDebitNotes.Add(objDebit);
+            }
+
+            objdebit.DebitAccountModel = lstDebitNotes;
+
+            bool isSuccess = objDNbl.UpdateDebitNote(objdebit);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+            }
         }
     }
 }
