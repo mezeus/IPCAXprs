@@ -24,6 +24,7 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Name", objTaxCat.Name));
                 paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
+                paramCollection.Add(new DBParameter("@ServiceTax", objTaxCat.ServiceTax));
                 paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax,System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP,System.Data.DbType.Boolean));
@@ -34,12 +35,16 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Tax_Desc", objTaxCat.Tax_Desc));
                 paramCollection.Add(new DBParameter("@CreatedBy", objTaxCat.CreatedBy));
 
-                Query = "INSERT INTO taxcategory(`Name`,`TaxCat_Type`,`Local_Tax`,`Central_Tax`,`TaxonMRP`,`CalculatedTaxon`,`TaxonMRPMode`,`Taxation_Type`," +
+                Query = "INSERT INTO taxcategory(`Name`,`TaxCat_Type`,`Service_Tax`,`Local_Tax`,`Central_Tax`,`TaxonMRP`,`CalculatedTaxon`,`TaxonMRPMode`,`Taxation_Type`," +
                         "`HSNCode`,`Tax_Desc`,`CreatedBy`) VALUES " +
-                        "(@Name,@TaxCat_Type,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@Taxation_Type,@HSNCode,@Tax_Desc,@CreatedBy)";
+                        "(@Name,@TaxCat_Type,@ServiceTax,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@Taxation_Type,@HSNCode,@Tax_Desc,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                {
+                    SaveTaxRates(objTaxCat.TaxRates);
                     isSaved = true;
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -50,43 +55,45 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        public bool SaveTaxRates(eSunSpeedDomain.TaxRatesModel objTaxRate)
+        public bool SaveTaxRates(List<TaxRatesModel> lstaxRate)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            try
+            int ParentId = GetTaxCategoryId();
+            foreach (TaxRatesModel objTaxRate in lstaxRate)
             {
-               objTaxRate.TaxCat_Id= GetTaxCategoryId();
+                try
+                {
+                    objTaxRate.TaxRate_Id = ParentId;
 
-                DBParameterCollection paramCollection = new DBParameterCollection();
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxCat_Id));
-                paramCollection.Add(new DBParameter("@wef", objTaxRate.wef));
-                paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Tax_Local));
-                paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
-                paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
-                paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
-                paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central));
+                    paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxRate_Id));
+                    paramCollection.Add(new DBParameter("@wef", objTaxRate.wef,System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax));
+                    paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
+                    paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
+                    paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
+                    paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central));
 
-                paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax));
-                paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax));                
+                    paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax));
+                    paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax));
 
-                paramCollection.Add(new DBParameter("@CreatedBy", objTaxRate.CreatedBy));
+                    paramCollection.Add(new DBParameter("@CreatedBy", objTaxRate.CreatedBy));
 
-                Query = "INSERT INTO TaxRate([TaxCat_Id],[wef],[Tax_Local],[Tax_Schg],[Tax_Type],[Tax_Central],[Schg_Central],[Entry_Tax]," +
-                        "[Service_Tax],[CreatedBy]) VALUES " +
-                        "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy)";
+                    Query = "INSERT INTO taxrate(`TaxCat_Id`,`wef`,`Tax_Local`,`Tax_Schg`,`Tax_Type`,`Tax_Central`,`Schg_Central`,`Entry_Tax`," +
+                            "`Service_Tax`,`CreatedBy`) VALUES " +
+                            "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy)";
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isSaved = true;
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                        isSaved = true;
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                isSaved = false;
-                throw ex;
-            }
-
             return isSaved;
         }
 
@@ -134,7 +141,7 @@ namespace eSunSpeed.BusinessLogic
                 objRate.TaxCat_Id = DataFormat.GetInteger(dr["TaxCat_Id"]);
                 objRate.TaxRate_Id = DataFormat.GetInteger(dr["TaxRate_Id"]);
                 objRate.wef = Convert.ToDateTime(dr["wef"]);
-                objRate.Tax_Local = Convert.ToDecimal(dr["Tax_Local"]);
+                objRate.Local_Tax = Convert.ToDecimal(dr["Tax_Local"]);
                 objRate.Tax_Central = Convert.ToDecimal(dr["Tax_Central"]);
                 objRate.Local_Schg = Convert.ToDecimal(dr["Tax_Schg"]);
                 objRate.Schg_Central = Convert.ToDecimal(dr["Schg_Central"]);
@@ -166,7 +173,7 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@wef", objTaxRate.wef));
-                paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Tax_Local));
+                paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax));
                 paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
                 paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
                 paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
@@ -261,6 +268,32 @@ namespace eSunSpeed.BusinessLogic
             }
             return lstTaxCategories;
         }
+
+        public TaxCategoryModel GetTaxCategoryByTaxId(int id)
+        {
+            TaxCategoryModel objTaxCategory = new TaxCategoryModel();
+
+            string Query = "SELECT * FROM `taxcategory` where TaxCat_Id=" +id;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objTaxCategory.TaxCat_Id = Convert.ToInt32(dr["TaxCat_Id"]);
+                objTaxCategory.Name = dr["Name"].ToString();
+                objTaxCategory.TaxCat_Type = dr["Taxation_Type"].ToString();
+                objTaxCategory.Local_Tax =Convert.ToDecimal(dr["Local_Tax"].ToString());
+                objTaxCategory.CentralTax = Convert.ToDecimal(dr["Central_Tax"].ToString());
+                objTaxCategory.TaxonMRP = Convert.ToBoolean(dr["TaxonMRP"].ToString()=="1"?true:false);
+                objTaxCategory.CalculatedTaxon = Convert.ToDecimal(dr["CalculatedTaxon"].ToString());
+                objTaxCategory.TaxonMRPMode =dr["TaxonMRPMode"].ToString();
+                objTaxCategory.HSNCode = dr["HSNCode"].ToString();
+                objTaxCategory.Tax_Desc = dr["Tax_Desc"].ToString();
+            }
+
+            return objTaxCategory;
+
+        }
+
         public bool DeleteTaxCategory(List<int> TaxCategoryid)
         {
             string Query = string.Empty;

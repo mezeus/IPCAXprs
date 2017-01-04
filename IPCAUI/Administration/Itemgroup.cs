@@ -23,17 +23,32 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (tbxGroupName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Group Name can not be blank!");
+                return;
+            }
+
             ItemGroupMasterModel objModel = new ItemGroupMasterModel();
             objModel.ItemGroup = tbxGroupName.Text.Trim();
+
             objModel.Alias = tbxAliasname.Text.Trim();
             objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
             objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
             objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
             objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
             objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
-            objModel.SeparateConfig = rbnSeparteConfig.Checked ? true : false;
-            objModel.DefaultConfig = rbnDefaultconfig.Checked ? true : false;
-            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
+            objModel.SeparateConfig =false;
+            objModel.DefaultConfig =false;
+            if(rbnDefaultConfig.SelectedIndex==0)
+            {
+                objModel.DefaultConfig = true;
+            }
+            if (rbnDefaultConfig.SelectedIndex == 1)
+            {
+                objModel.SeparateConfig = true;
+            }
+            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==null?"0":tbxParameters.Text.Trim());
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objItemBL.SaveIGM(objModel);
@@ -72,19 +87,19 @@ namespace IPCAUI.Administration
             cbxStockaccount.SelectedItem= objIGM.StockAccount;
             cbxSalesaccount.SelectedItem= objIGM.SalesAccount;
             cbxPurchaseAccount.SelectedItem= objIGM.PurchaseAccount;
-            rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
-            rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
+            //rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
+            //rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
             tbxParameters.Text=Convert.ToString(objIGM.Parameters);
         }
 
 
         private void Itemgroup_Load(object sender, EventArgs e)
         {
-            cbxPrimarygroup.SelectedIndex = 0;
-            cbxPurchaseAccount.SelectedIndex = 0;
-            cbxSalesaccount.SelectedIndex = 0;
-            cbxStockaccount.SelectedIndex = 0;
-            cbxUndergroup.SelectedIndex = 0;
+            cbxPrimarygroup.SelectedIndex = 1;
+            //cbxPurchaseAccount.SelectedIndex = 0;
+            //cbxSalesaccount.SelectedIndex = 0;
+            //cbxStockaccount.SelectedIndex = 0;
+            //cbxUndergroup.SelectedIndex = 0;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -123,8 +138,16 @@ namespace IPCAUI.Administration
             objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
             objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
             objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
-            objModel.SeparateConfig = rbnSeparteConfig.Checked ? true : false;
-            objModel.DefaultConfig = rbnDefaultconfig.Checked ? true : false;
+            objModel.SeparateConfig = false;
+            objModel.DefaultConfig = false;
+            if (rbnDefaultConfig.SelectedIndex == 0)
+            {
+                objModel.DefaultConfig = true;
+            }
+            if (rbnDefaultConfig.SelectedIndex == 1)
+            {
+                objModel.SeparateConfig = true;
+            }
             objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
             objModel.IGM_id = ItemgrpId;
             objModel.ModifiedBy = "Admin";
@@ -145,9 +168,34 @@ namespace IPCAUI.Administration
             cbxStockaccount.SelectedItem = "";
             cbxUndergroup.SelectedItem = "";
             cbxSalesaccount.SelectedText = "";
-            rbnDefaultconfig.Checked = false;
-            rbnSeparteConfig.Checked = false;
+            //rbnDefaultconfig.Checked = false;
+            //rbnSeparteConfig.Checked = false;
             tbxParameters.Text = string.Empty;
+        }
+
+        private void tbxGroupName_TextChanged(object sender, EventArgs e)
+        {
+            tbxAliasname.Text = tbxGroupName.Text.Trim();
+        }
+
+        private void cbxUndergroup_Enter(object sender, EventArgs e)
+        {
+            cbxUndergroup.SelectedIndex = 0;
+        }
+
+        private void cbxSalesaccount_Enter(object sender, EventArgs e)
+        {
+            cbxSalesaccount.SelectedIndex = 0;
+        }
+
+        private void cbxPurchaseAccount_Enter(object sender, EventArgs e)
+        {
+            cbxPurchaseAccount.SelectedIndex = 0;
+        }
+
+        private void cbxStockaccount_Enter(object sender, EventArgs e)
+        {
+            cbxStockaccount.SelectedIndex = 0;
         }
     }
 }

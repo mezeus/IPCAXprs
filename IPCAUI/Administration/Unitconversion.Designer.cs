@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Unitconversion));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.cbxSubunit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -103,7 +104,6 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -160,6 +160,17 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(243, 119);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(76, 22);
+            this.btnUpdate.StyleController = this.layoutControl1;
+            this.btnUpdate.TabIndex = 62;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // cbxSubunit
             // 
             this.cbxSubunit.EnterMoveNextControl = true;
@@ -167,17 +178,11 @@
             this.cbxSubunit.Name = "cbxSubunit";
             this.cbxSubunit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxSubunit.Properties.Appearance.Options.UseFont = true;
-            this.cbxSubunit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSubunit.Properties.Items.AddRange(new object[] {
-            "Dozen",
-            "Kgs.",
-            "Gms.",
-            "Metre",
-            "Ps"});
             this.cbxSubunit.Size = new System.Drawing.Size(277, 20);
             this.cbxSubunit.StyleController = this.layoutControl1;
             this.cbxSubunit.TabIndex = 61;
+            this.cbxSubunit.Enter += new System.EventHandler(this.cbxSubunit_Enter);
+            this.cbxSubunit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxSubunit_KeyPress);
             // 
             // navBarControl1
             // 
@@ -576,10 +581,10 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(208, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(76, 14);
+            this.labelControl1.Size = new System.Drawing.Size(105, 14);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
-            this.labelControl1.Text = "Unit Master";
+            this.labelControl1.Text = "Unit Conversion";
             // 
             // gridControl2
             // 
@@ -603,17 +608,10 @@
             this.cbxMainunit.Name = "cbxMainunit";
             this.cbxMainunit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxMainunit.Properties.Appearance.Options.UseFont = true;
-            this.cbxMainunit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxMainunit.Properties.Items.AddRange(new object[] {
-            "Dozen",
-            "Kgs.",
-            "Gms.",
-            "Metre",
-            "Ps"});
             this.cbxMainunit.Size = new System.Drawing.Size(277, 20);
             this.cbxMainunit.StyleController = this.layoutControl1;
             this.cbxMainunit.TabIndex = 5;
+            this.cbxMainunit.Enter += new System.EventHandler(this.cbxMainunit_Enter);
             // 
             // cbxConfactor
             // 
@@ -668,7 +666,7 @@
             this.layoutControlItem1.Control = this.labelControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(196, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(80, 18);
+            this.layoutControlItem1.Size = new System.Drawing.Size(109, 18);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -698,9 +696,9 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(276, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(305, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(146, 18);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(117, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
@@ -839,17 +837,6 @@
             this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem10.Text = "Sub Unit";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(57, 13);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(243, 119);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(76, 22);
-            this.btnUpdate.StyleController = this.layoutControl1;
-            this.btnUpdate.TabIndex = 62;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblUpdate
             // 

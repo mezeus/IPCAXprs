@@ -33,6 +33,16 @@ namespace IPCAUI.Administration.List
 
         private void dvgTaxcategoryList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgTaxcategoryList_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            TaxCategoryModel lstTaxcategory;
+
+            lstTaxcategory = (TaxCategoryModel)dvgTaxcatDetails.GetRow(dvgTaxcatDetails.FocusedRowHandle);
+            Taxcategory.Tax_Id = lstTaxcategory.TaxCat_Id;
+
             this.Close();
         }
     }

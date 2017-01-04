@@ -94,8 +94,7 @@ namespace eSunSpeed.BusinessLogic
                 objMCG.PrimaryGroup = Convert.ToBoolean(dr["PrimaryGroup"]);
                 objMCG.UnderGroup = dr["UnderGroup"].ToString();              
 
-                lstMCG.Add(objMCG);
-                
+                lstMCG.Add(objMCG);               
             }
 
             return lstMCG;

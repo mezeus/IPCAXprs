@@ -12,6 +12,7 @@ namespace eSunSpeedDomain
         public string TaxCat_Type { get; set; }
         public string Taxation_Type { get; set; }
         public decimal Local_Tax { get; set; }
+        public decimal ServiceTax { get; set; }
         public decimal CentralTax { get; set; }
         public bool TaxonMRP { get; set; }
         public decimal CalculatedTaxon { get; set; }

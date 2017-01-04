@@ -23,54 +23,76 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-               // paramCollection.Add(new DBParameter("@Name", objBSM.Name));
-               // paramCollection.Add(new DBParameter("@Alias", objBSM.Alias));
-               // paramCollection.Add(new DBParameter("@PrintName", objBSM.PrintName));
-               // paramCollection.Add(new DBParameter("@BillSundryType", objBSM.BillSundryType));
-               // paramCollection.Add(new DBParameter("@BillSundryNature", objBSM.BillSundryNature));
-               // paramCollection.Add(new DBParameter("@DefaultValue", objBSM.DefaultValue));
-               // paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinSale", objBSM. AffectstheCostofGoodsinSale, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinPurchase", objBSM.AffectstheCostofGoodsinPurchase, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinMaterialIssue", objBSM.AffectstheCostofGoodsinMaterialIssue, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinMaterialReceipt", objBSM.AffectstheCostofGoodsinMaterialReceipt, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinStockTransfer", objBSM.AffectstheCostofGoodsinStockTransfer, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AffectsAccounting", objBSM.AffectsAccounting, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AdjustInSaleAmount", objBSM.AdjustInSaleAmount, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@AccounttoHeadPost", objBSM.AccounttoHeadPost));
-               // paramCollection.Add(new DBParameter("@AdjustInPartyAmount", objBSM.AdjustInPartyAmount, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@PostOverandAbove", objBSM.PostOverandAbove));
-               // paramCollection.Add(new DBParameter("@AdjustInPurchaseAmount", objBSM.AdjustInPurchaseAmount, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@typeMaterialIssue", objBSM.typeMaterialIssue,System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@typeMaterialReceipt", objBSM.typeMaterialReceipt));
-               // paramCollection.Add(new DBParameter("@StockTransfer", objBSM.StockTransfer));
-               // paramCollection.Add(new DBParameter("@AffectAccounting", objBSM.AffectAccounting));
-               // paramCollection.Add(new DBParameter("@OtherSide", objBSM.OtherSide));
-               // paramCollection.Add(new DBParameter("@AdjustinMC", objBSM.AdjustinMC));
-               //// paramCollection.Add(new DBParameter("@typeAbsoluteAmount", objBSM.typeAbsoluteAmount));
-               // paramCollection.Add(new DBParameter("@typePercentage", objBSM.typePercentage));
-               // paramCollection.Add(new DBParameter("@typePerMainQty", objBSM.typePerMainQty));
-               // paramCollection.Add(new DBParameter("@Percentoff", objBSM.Percentoff));
-               // paramCollection.Add(new DBParameter("@typeNetBillAmount", objBSM.typeNetBillAmount));
-               // paramCollection.Add(new DBParameter("@SelectiveCalculation", objBSM.SelectiveCalculation, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@tyeItemsBasicAmt", objBSM.tyeItemsBasicAmt));
-               // paramCollection.Add(new DBParameter("@typeTotalMRPofItems", objBSM.typeTotalMRPofItems));
-               // paramCollection.Add(new DBParameter("@typeTaxableAmount", objBSM.typeTaxableAmount));
-               // paramCollection.Add(new DBParameter("@typePreviousBillSundryAmount", objBSM.typePreviousBillSundryAmount));
-               // paramCollection.Add(new DBParameter("@typeOtherBillsundry", objBSM.typeOtherBillsundry));
-               // paramCollection.Add(new DBParameter("@RBSAmt", objBSM.RBSAmt, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@BSAmt", objBSM.BSAmt));
-               // paramCollection.Add(new DBParameter("@BSAppOn ", objBSM.BSAmt));
-               // paramCollection.Add(new DBParameter("@TextBox", objBSM.TextBox));
-               // paramCollection.Add(new DBParameter("@NoOfBillSundrys", objBSM.NoOfBillSundry));
-               // paramCollection.Add(new DBParameter("@ConsolidateBillSundriesAmount", objBSM.ConsolidateBillSundriesAmount, System.Data.DbType.Boolean));
-               // paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-               // paramCollection.Add(new DBParameter("@subtotalheading", objBSM.subtotalheading));
+                paramCollection.Add(new DBParameter("@Name", objBSM.Name));
+                paramCollection.Add(new DBParameter("@Alias", objBSM.Alias));
+                paramCollection.Add(new DBParameter("@PrintName", objBSM.PrintName));
+                paramCollection.Add(new DBParameter("@BillSundryType", objBSM.BillSundryType));
+                paramCollection.Add(new DBParameter("@BillSundryNature", objBSM.BillSundryNature));
+                paramCollection.Add(new DBParameter("@DefaultValue", objBSM.DefaultValue));
+                paramCollection.Add(new DBParameter("@Subtotalheading", objBSM.subtotalheading));
+                
+                paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinSale", objBSM. AffectstheCostofGoodsinSale, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinPurchase", objBSM.AffectstheCostofGoodsinPurchase, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinMaterialIssue", objBSM.AffectstheCostofGoodsinMaterialIssue, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinMaterialReceipt", objBSM.AffectstheCostofGoodsinMaterialReceipt, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AffectstheCostofGoodsinStockTransfer", objBSM.AffectstheCostofGoodsinStockTransfer, System.Data.DbType.Boolean));
 
-                Query = "INSERT INTO billsundrymaster(`Name`,`Alias`,`PrintName`,`BillSundryType`,`BillSundryNature`,`DefaultValue`," +
+                paramCollection.Add(new DBParameter("@AffectsAccountingsale", objBSM.SaleAffectsAccounting, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AdjustInSaleAmountsale", objBSM.SaleAdjustInSaleAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AccounttoHeadPostsale", objBSM.SaleAccounttoHeadPost));
+                paramCollection.Add(new DBParameter("@AdjustInPartyAmountsale", objBSM.SaleAdjustInPartyAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AccounttoHeadPostpartysale", objBSM.SaleAccounttoHeadPostParty));
+                paramCollection.Add(new DBParameter("@PostOverandAbovesale", objBSM.SalePostOverandAbove));
+
+                paramCollection.Add(new DBParameter("@AffectsAccountingpurc", objBSM.PurcAffectsAccounting, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AdjustInSaleAmountpurc", objBSM.PurcAdjustInPurcAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AccounttoHeadPostpurc", objBSM.PurcAccounttoHeadPost));
+                paramCollection.Add(new DBParameter("@AdjustInPartyAmountpurc", objBSM.PurcAdjustInPartyAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@AccounttoHeadPostpartypurc", objBSM.PurcAccounttoHeadPostParty));
+                paramCollection.Add(new DBParameter("@PostOverandAbovepurc", objBSM.PurcPostOverandAbove));
+
+                paramCollection.Add(new DBParameter("@typeMaterialIssue", objBSM.typeMaterialIssue,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typeMaterialReceipt", objBSM.typeMaterialReceipt, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@StockTransfer", objBSM.StockTransfer, System.Data.DbType.Boolean));
+
+                paramCollection.Add(new DBParameter("@AffectAccounting", objBSM.AffectAccounting, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@OtherSide", objBSM.OtherSide));
+                paramCollection.Add(new DBParameter("@Accountheadtopost", objBSM.Accountheadtopost));
+                paramCollection.Add(new DBParameter("@AdjustinMC", objBSM.AdjustinMC));
+                paramCollection.Add(new DBParameter("@Accountheadtopostparty", objBSM.AccountheadtopostParty));
+                paramCollection.Add(new DBParameter("@Postoverandabove", objBSM.postoverandabove, System.Data.DbType.Boolean));
+
+                paramCollection.Add(new DBParameter("@typeAbsoluteamount", objBSM.typeAbsoluteAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typePercentage", objBSM.typePercentage, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typePerMainQty", objBSM.typePerMainQty,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typePeraltQty", objBSM.PerAltQty,System.Data.DbType.Boolean));
+
+                paramCollection.Add(new DBParameter("@Percentoff", objBSM.Percentoff));
+                paramCollection.Add(new DBParameter("@typeNetBillAmount", objBSM.typeNetBillAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@SelectiveCalculation", objBSM.SelectiveCalculation, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@tyeItemsBasicAmt", objBSM.tyeItemsBasicAmt, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@IncludeFreeqty", objBSM.IncludeFreeQty, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typeTotalMRPofItems", objBSM.typeTotalMRPofItems, System.Data.DbType.Boolean)); 
+                paramCollection.Add(new DBParameter("@typeTaxableAmount", objBSM.typeTaxableAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typePreviousBillSundryAmount", objBSM.typePreviousBillSundryAmount, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@typeOtherBillsundry", objBSM.typeOtherBillsundry, System.Data.DbType.Boolean));
+
+                paramCollection.Add(new DBParameter("@BSAmt", objBSM.BSAmt, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@BSAppOn ", objBSM.BSAppOn, System.Data.DbType.Boolean));
+               
+                paramCollection.Add(new DBParameter("@NoOfBillSundrys", objBSM.NoOfBillSundry));
+                paramCollection.Add(new DBParameter("@ConsolidateBillSundriesAmount", objBSM.ConsolidateBillSundriesAmount, System.Data.DbType.Boolean));
+
+                paramCollection.Add(new DBParameter("@Roundoffbillsundary", objBSM.roundoffBillsundry, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                // paramCollection.Add(new DBParameter("@subtotalheading", objBSM.subtotalheading));
+
+                Query = "INSERT INTO billsundrymaster(`Name`,`Alias`,`PrintName`,`BillSundryType`,`BillSundryNature`,`DefaultValue`,`subtotalheading`," +
                     "`AffectstheCostofGoodsinSale`,`AffectstheCostofGoodsinPurchase`,`AffectstheCostofGoodsinMaterialIssue`,`AffectstheCostofGoodsinMaterialReceipt`," +
-                    "`AffectstheCostofGoodsinStockTransfer`,`AffectsAccounting`,`AdjustInSaleAmount`,`AccountHeadtoPost`,`AdjustInPartyAmount`,`PostOverandAbove`," +
-                    "`AdjustInPurchaseAmount`,`typeMaterialIssue`,`typeMaterialReceipt`,`StockTransfer`," +
+                    "`AffectstheCostofGoodsinStockTransfer`,`SaleAffectsAccounting`,`SaleAdjustInSaleAmount`,`SaleAccounttoHeadPost`,`SaleAdjustInPartyAmount`,`SaleAccounttoHeadPostParty`,`SalePostOverandAbove`," +
+                    "`PurcAffectsAccounting`,`PurcAdjustInPurcAmount`,`PurcAccounttoHeadPost`,`PurcAdjustInPartyAmount`,`PurcAccounttoHeadPostParty`,`PurcPostOverandAbove`," +
                    " `AffectAccounting`,`OtherSide`,`AdjustinMC`,`typePercentage`,`typePerMainQty`,`Percentoff`,`typeNetBillAmount`," +
+                   "``,``,``,"+
                     "`SelectiveCalculation`,`tyeItemsBasicAmt`,`typeTotalMRPofItems`,`typeTaxableAmount`,`typePreviousBillSundryAmount`,`typeOtherBillsundry`," +
                     "`RBSAmt`,`BSAmt`,`BSAppon`,`TextBox`,`NoOfBillSundrys`,`ConsolidateBillSundriesAmount`,`CreatedBy`,`subtotalheading`) " +
                     "VALUES(@Name,@Alias,@PrintName,@BillSundryType,@BillSundryNature,@DefaultValue,@AffectstheCostofGoodsinSale,@AffectstheCostofGoodsinPurchase," +

@@ -33,6 +33,9 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objMCM.PurchaseAccount));
                 paramCollection.Add(new DBParameter("@EnableAccinTransfer", objMCM.EnableAccinTransfer,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@Address", objMCM.Address));
+                paramCollection.Add(new DBParameter("@Address1", objMCM.Address1));
+                paramCollection.Add(new DBParameter("@Address2", objMCM.Address2));
+                paramCollection.Add(new DBParameter("@Address3", objMCM.Address3));
                 paramCollection.Add(new DBParameter("@Street", objMCM.Street));
                 paramCollection.Add(new DBParameter("@City", objMCM.City));
                 paramCollection.Add(new DBParameter("@State", objMCM.State));
@@ -44,8 +47,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
 
                 Query = "INSERT INTO materialcentremaster(`Name`,`Alias`,`PrintName`,`Group`,`StockAccount`,`EnableStockinBal`,`SalesAccount`,`PurchaseAccount`," +
-                "`EnableAccinTransfer`,`Address`,`Street`,`City`,`State`,`Country`,`PinCode`,`Mobile`,`CreatedBy`)" +
-                 "VALUES(@GroupName,@Alias,@PrintName,@Group,@StockAccount,@EnableStockinBal,@SalesAccount,@PurchaseAccount,@EnableAccinTransfer,@Address,@Street,@City," +
+                "`EnableAccinTransfer`,`Address`,`Address1`,`Address2`,`Address3`,`Street`,`City`,`State`,`Country`,`PinCode`,`Mobile`,`CreatedBy`)" +
+                 "VALUES(@GroupName,@Alias,@PrintName,@Group,@StockAccount,@EnableStockinBal,@SalesAccount,@PurchaseAccount,@EnableAccinTransfer,@Address,@Address1,@Address2,@Address3,@Street,@City," +
                  "@State,@Counry,@PinCode,@Mobile,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -79,11 +82,14 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objMCM.PurchaseAccount));
                 paramCollection.Add(new DBParameter("@EnableAccinTransfer", objMCM.EnableAccinTransfer, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@Address", objMCM.Address));
+                paramCollection.Add(new DBParameter("@Address1", objMCM.Address1));
+                paramCollection.Add(new DBParameter("@Address2", objMCM.Address2));
+                paramCollection.Add(new DBParameter("@Address3", objMCM.Address3));
                 paramCollection.Add(new DBParameter("@MC_Id", objMCM.MC_Id));
 
                 Query = "UPDATE `materialcentremaster` SET `Name`=@GroupName,`Alias`=@Alias,`PrintName`=@PrintName,`Group`=@Group," +
                 "`StockAccount`=@StockAccount,`EnableStockinBal`=@EnableStockinBal,`SalesAccount`=@SalesAccount,`PurchaseAccount`=@PurchaseAccount," +
-                "`EnableAccinTransfer`=@EnableAccinTransfer,`Address`=@Address " +
+                "`EnableAccinTransfer`=@EnableAccinTransfer,`Address`=@Address,`Address1`=@Address1,`Address2`=@Address2,`Address3`=@Address3 " +
                  " WHERE `MC_Id`=@MC_Id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -143,6 +149,9 @@ namespace eSunSpeed.BusinessLogic
                 objMat.PurchaseAccount = dr["PurchaseAccount"].ToString();
                 objMat.EnableAccinTransfer= Convert.ToBoolean(dr["EnableAccinTransfer"]);
                 objMat.Address = dr["Address"].ToString();
+                objMat.Address1 = dr["Address1"].ToString();
+                objMat.Address2 = dr["Address2"].ToString();
+                objMat.Address3 = dr["Address3"].ToString();
 
             }
             return objMat;

@@ -110,6 +110,12 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\ItemMasterNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\ItemMasterNew.Designer.cs">
+      <DependentUpon>ItemMasterNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\List\AccountgroupList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,12 @@
     </Compile>
     <Compile Include="Administration\Miscellaneousmaster.Designer.cs">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemAliasPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemAliasPopup.Designer.cs">
+      <DependentUpon>ItemAliasPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\Referencegroup.cs">
       <SubType>Form</SubType>
@@ -3146,6 +3158,9 @@
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\ItemMasterNew.resx">
+      <DependentUpon>ItemMasterNew.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\List\AccountgroupList.resx">
       <DependentUpon>AccountgroupList.cs</DependentUpon>
     </EmbeddedResource>
@@ -3241,6 +3256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Miscellaneousmaster.resx">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\ItemAliasPopup.resx">
+      <DependentUpon>ItemAliasPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Referencegroup.resx">
       <DependentUpon>Referencegroup.cs</DependentUpon>

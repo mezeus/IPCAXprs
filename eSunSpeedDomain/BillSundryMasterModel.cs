@@ -64,14 +64,15 @@ namespace eSunSpeedDomain
         public bool typeTaxableAmount { get; set; }
         public bool typePreviousBillSundryAmount { get; set; }
         public bool typeOtherBillsundry { get; set; }
-
+        public bool IncludeFreeQty { get; set; }
         //Groupbox of Bill Sundry(s) Details
-        public string NoOfBillSundry { get; set; }
+        public int NoOfBillSundry { get; set; }
         public bool ConsolidateBillSundriesAmount { get; set; }
 
-        public string roundoffBillsundry { get; set; }
+        public bool roundoffBillsundry { get; set; }
         //This singel GroupBox
         public bool RBSAmt { get; set; }
+
         //Billsundry to be Calculated on Group
         public bool BSAmt { get; set; }
         public bool BSAppOn { get; set; }

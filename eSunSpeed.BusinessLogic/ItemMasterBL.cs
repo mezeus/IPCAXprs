@@ -18,89 +18,166 @@ namespace eSunSpeed.BusinessLogic
           DBParameterCollection paramCollection = new DBParameterCollection();
           
           paramCollection.Add(new DBParameter("@ITEM_Name", objItem.Name));
-          paramCollection.Add(new DBParameter("@ITEM_ALIAS", objItem.Alias));
-          paramCollection.Add(new DBParameter("@ITEM_GROUP", objItem.Group));          
-          paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
+          paramCollection.Add(new DBParameter("@ITEM_PrintName", objItem.PrintName));
+            paramCollection.Add(new DBParameter("@ITEM_ALIAS", objItem.Alias));
+          paramCollection.Add(new DBParameter("@ITEM_GROUP", objItem.Group));
+          paramCollection.Add(new DBParameter("@ITEM_COMPANY", objItem.Company));
 
-          paramCollection.Add(new DBParameter("@ITEM_OPSTOCKQTY", objItem.OpStockQty));
+          paramCollection.Add(new DBParameter("@ITEM_MAINUNIT", objItem.MainUnit));
+          paramCollection.Add(new DBParameter("@ALTUNIT", objItem.AltUnit));
+          paramCollection.Add(new DBParameter("@ITEM_CONFACTOR", objItem.Confactor));
           paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
-          paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.SalePrice));
-          paramCollection.Add(new DBParameter("@ITEM_PURCHASEPRICE",objItem.Purprice ));
-          paramCollection.Add(new DBParameter("@ITEM_MRP",objItem.MRP ));
+            paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
+            paramCollection.Add(new DBParameter("@ITEM_RATE", objItem.Rate));
+          paramCollection.Add(new DBParameter("@ITEM_PER",objItem.Per ));
+          paramCollection.Add(new DBParameter("@ITEM_VALUE",objItem.Value ));
 
+            paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.SalePrice));
+            paramCollection.Add(new DBParameter("@ITEM_PURCEPRICE", objItem.Purprice));
+            paramCollection.Add(new DBParameter("@ITEM_MRP", objItem.MRP));
+            paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE", objItem.MinSalePrice));
+            paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE", objItem.SelfValuePrice));
+            paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount));
+            paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount));
+            paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", objItem.SpecifySaleDiscStructure,System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_StockValMethod", objItem.StockValMethod ));
 
-          paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE",objItem.MinSalePrice ));
-          paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE",objItem.SelfValuePrice ));
-          paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT",objItem.SaleDiscount ));
-          paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT",objItem.PurDiscount ));
-          paramCollection.Add(new DBParameter("@ITEM_SALECOMPDISCOUNT", objItem.SaleCompoundDiscount ));
+            //paramCollection.Add(new DBParameter("@ITEM_SALECOMPDISCOUNT", objItem.SaleCompoundDiscount ));
+            //paramCollection.Add(new DBParameter("@ITEM_PURCHCOMPDISCOUNT", objItem.PurCompoundDiscount));
+            //paramCollection.Add(new DBParameter("@ITEM_SALEMARKUP",objItem.SaleMarkup ));
+            //paramCollection.Add(new DBParameter("@ITEM_PURMARKUP",objItem.PurMarkup ));
+            paramCollection.Add(new DBParameter("@ITEM_TAXCATEGORY", objItem.TaxCategory));
+            paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION1", objItem.ItemDescription1));
+            paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION2", objItem.ItemDescription2));
+            paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION3", objItem.ItemDescription3));
+            paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION4", objItem.ItemDescription4));
 
-          paramCollection.Add(new DBParameter("@ITEM_PURCHCOMPDISCOUNT", objItem.PurCompoundDiscount ));
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYSALEDISCSTRUCT", objItem.SpecifySaleDiscStructure,System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYPURDISCSTRUCT", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_SALEMARKUP",objItem.SaleMarkup ));
-          paramCollection.Add(new DBParameter("@ITEM_PURMARKUP",objItem.PurMarkup ));
+            paramCollection.Add(new DBParameter("@ITEM_SETCRITICALLEVEL", objItem.SetCriticalLevel, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_MAINTAINRG23D", objItem.MaintainRG23D, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_TARIFHEADING", objItem.TariffHeading));
+            paramCollection.Add(new DBParameter("@ITEM_SERIALWISEDETAILS", objItem.SerialNumberwiseDetails, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_PARAMETERIZEDDETAILS", objItem.ParameterizedDetails, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_MRPWISEDETAILS", objItem.MRPWiseDetails, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_BATCHWISEDETAILS", objItem.BatchwiseDetails, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_EXPDATEREQUIRED", objItem.ExpDateRequired, System.Data.DbType.Boolean));
 
-          paramCollection.Add(new DBParameter("@ITEM_SALECOMPMARKUP", objItem.SaleCompMarkup ));
-          paramCollection.Add(new DBParameter("@ITEM_PURCOMPMARKUP",objItem.PurCompMarkup ));
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYSALEMARKUPSTRUCT", objItem.SpecifySaleMarkupStruct, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYPURMARKUPSTRUCT", objItem.SpecifyPurMarkupStruct, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_TAXCATEGORY",objItem.TaxCategory ));
+            paramCollection.Add(new DBParameter("@ITEM_EXPIRYDAYS", objItem.ExpiryDays));
+            paramCollection.Add(new DBParameter("@ITEM_SALESACCOUNT", objItem.SalesAccount));
+            paramCollection.Add(new DBParameter("@ITEM_PURCACCOUNT", objItem.PurcAccount));
+            paramCollection.Add(new DBParameter("@ITEM_MAINTAINSTOCKBAL", objItem.DontMaintainStockBal, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTMC", objItem.SpecifyDefaultMC, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_FREEZEMCFORITEM", objItem.FreezeMCforItem, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_TOTALNUMBEROFAUTHORS", objItem.TotalNumberofAuthors));
 
-          paramCollection.Add(new DBParameter("@ITEM_TAXTYPE",objItem.TaxType ));
-          paramCollection.Add(new DBParameter("@ITEM_SERVICETAXRATE",objItem.ServiceTaxRate ));
-          paramCollection.Add(new DBParameter("@ITEM_LOCALTAX", objItem.RateofTax_Central ));
-          paramCollection.Add(new DBParameter("@ITEM_CENTRALTAX", objItem.RateofTax_Central ));
-          paramCollection.Add(new DBParameter("@ITEM_TAXONMRP", objItem.TaxonMRP, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_PICKITEMSIZEFROMDESC", objItem.PickItemSizefromDescription, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTVENDOR", objItem.SpecifyDefaultVendor, System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@CreatedBy", objItem.CreatedBy));
 
-          paramCollection.Add(new DBParameter("@ITEM_HSNCODE", objItem.HSNCode));
-          paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION1",objItem.ItemDescription1 ));
-          paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION2",objItem.ItemDescription2 ));
-          paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION3",objItem.ItemDescription3 ));
+          //  paramCollection.Add(new DBParameter("@ITEM_SALECOMPMARKUP", objItem.SaleCompMarkup ));
+          //paramCollection.Add(new DBParameter("@ITEM_PURCOMPMARKUP",objItem.PurCompMarkup ));
+          //paramCollection.Add(new DBParameter("@ITEM_SPECIFYSALEMARKUPSTRUCT", objItem.SpecifySaleMarkupStruct, System.Data.DbType.Boolean));
+           //paramCollection.Add(new DBParameter("@ITEM_SPECIFYPURMARKUPSTRUCT", objItem.SpecifyPurMarkupStruct, System.Data.DbType.Boolean));
+          //paramCollection.Add(new DBParameter("@ITEM_TAXTYPE",objItem.TaxType ));
+          //paramCollection.Add(new DBParameter("@ITEM_SERVICETAXRATE",objItem.ServiceTaxRate ));
+          //paramCollection.Add(new DBParameter("@ITEM_LOCALTAX", objItem.RateofTax_Central ));
+          //paramCollection.Add(new DBParameter("@ITEM_CENTRALTAX", objItem.RateofTax_Central ));
+          //paramCollection.Add(new DBParameter("@ITEM_TAXONMRP", objItem.TaxonMRP, System.Data.DbType.Boolean));
+
+          //paramCollection.Add(new DBParameter("@ITEM_HSNCODE", objItem.HSNCode));        
           
-          paramCollection.Add(new DBParameter("@ITEM_SETCRITICALLEVEL", objItem.SetCriticalLevel, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_MAINTAINRG23D", objItem.MaintainRG23D, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_TARIFHEADING", objItem.TariffHeading ));
-
-          paramCollection.Add(new DBParameter("@ITEM_SERIALWISEDETAILS", objItem.SerialNumberwiseDetails, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_MRPWISEDETAILS", objItem.MRPWiseDetails, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_PARAMETERIZEDDETAILS", objItem.ParameterizedDetails, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_BATCHWISEDETAILS", objItem.BatchwiseDetails, System.Data.DbType.Boolean));
-
-          paramCollection.Add(new DBParameter("@ITEM_EXPDATEREQUIRED", objItem.ExpDateRequired, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_EXPIRYDAYS",objItem.ExpiryDays));
-          paramCollection.Add(new DBParameter("@ITEM_SALESACCOUNT",objItem.SalesAccount));
-          paramCollection.Add(new DBParameter("@ITEM_PURCACCOUNT", objItem.PurcAccount));
-
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTMC", objItem.SpecifyDefaultMC, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_FREEZEMCFORITEM", objItem.FreezeMCforItem, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_TOTALNUMBEROFAUTHORS",objItem.TotalNumberofAuthors ));
-          paramCollection.Add(new DBParameter("@ITEM_MAINTAINSTOCKBAL", objItem.DontMaintainStockBal, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_PICKITEMSIZEFROMDESC", objItem.PickItemSizefromDescription, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTVENDOR", objItem.SpecifyDefaultVendor, System.Data.DbType.Boolean));
-          paramCollection.Add(new DBParameter("@CreatedBy", objItem.CreatedBy));
-
             Query =
-                    "INSERT INTO ITEM_MASTER(`ITEM_Name`,`ITEM_ALIAS`,`ITEM_GROUP`,`ITEM_UNIT`,`ITEM_OPSTOCKQTY`,`ITEM_OPSTOCKVALUE`,`ITEM_SALEPRICE`," +
-                          "`ITEM_PURCHASEPRICE`,`ITEM_MRP`,`ITEM_MINSALEPRICE`,`ITEM_SELFVALUEPRICE`,`ITEM_SALEDISCOUNT`,`ITEM_PURCHASEDISCOUNT`,`ITEM_SALECOMPDISCOUNT`,`ITEM_PURCHCOMPDISCOUNT`," +
-                          "`ITEM_SPECIFYSALEDISCSTRUCT`,`ITEM_SPECIFYPURDISCSTRUCT`,`ITEM_SALEMARKUP`,`ITEM_PURMARKUP`,`ITEM_SALECOMPMARKUP`,`ITEM_PURCOMPMARKUP`,`ITEM_SPECIFYSALEMARKUPSTRUCT`," +
-                          "`ITEM_SPECIFYPURMARKUPSTRUCT`,`ITEM_TAXCATEGORY`,`ITEM_TAXTYPE`,`ITEM_SERVICETAXRATE`,`ITEM_LOCALTAX`,`ITEM_CENTRALTAX`,`ITEM_TAXONMRP`,`ITEM_HSNCODE`,`ITEM_DESCRIPTION1`,`ITEM_DESCRIPTION2`," +
-                          "`ITEM_DESCRIPTION3`,`ITEM_SETCRITICALLEVEL`,`ITEM_MAINTAINRG23D`,`ITEM_TARIFHEADING`,`ITEM_SERIALWISEDETAILS`,`ITEM_MRPWISEDETAILS`," +
-                          "`ITEM_PARAMETERIZEDDETAILS`,`ITEM_BATCHWISEDETAILS`,`ITEM_EXPDATEREQUIRED`,`ITEM_EXPIRYDAYS`,`ITEM_SALESACCOUNT`,`ITEM_PURCACCOUNT`,`ITEM_SPECIFYDEFAULTMC`," +
-                          "`ITEM_FREEZEMCFORITEM`,`ITEM_TOTALNUMBEROFAUTHORS`,`ITEM_MAINTAINSTOCKBAL`,`ITEM_PICKITEMSIZEFROMDESC`,`ITEM_SPECIFYDEFAULTVENDOR`,`CreatedBy`)" +
+                    "INSERT INTO itemmaster(`ITEM_Name`,`ITEM_PRINTName``ITEM_ALIAS`,`ITEM_GROUP`,`ITEM_COMPANY`," +
+                    "`ITEM_MAINUNIT`,`ITEM_ALTUNIT`,`ITEM_CONFACTOR`,`ITEM_OPSTOCK`,`ITEM_UNIT`,`ITEM_RATE`,`ITEM_PER`,`ITEM_VALUE`,`ITEM_SALEPRICETOAPPLY`,`ITEM_PURCPRICETOAPPLY`,`ITEM_SALEPRICE`," +
+                          "`ITEM_PURCHASEPRICE`,`ITEM_MRP`,`ITEM_MINSALEPRICE`,`ITEM_SELFVALUEPRICE`,`ITEM_SALEDISCOUNT`,`ITEM_PURCHASEDISCOUNT`," +
+                          "`ITEM_SPECIFYSALEDISCSTRUCT`,`ITEM_SPECIFYPURDISCSTRUCT`,`ITEM_STOCKVALMETHOD`," +
+                          "`ITEM_TAXCATEGORY`,`ITEM_DESCRIPTION1`,`ITEM_DESCRIPTION2`,`ITEM_DESCRIPTION3`,`ITEM_DESCRIPTION4`," +
+                          "`ITEM_SETCRITICALLEVEL`,`ITEM_MAINTAINRG23D`,`ITEM_TARIFHEADING`,`ITEM_SERIALWISEDETAILS`,`ITEM_PARAMETERIZEDDETAILS`,`ITEM_MRPWISEDETAILS`," +
+                          "`ITEM_BATCHWISEDETAILS`,`ITEM_EXPDATEREQUIRED`,`ITEM_EXPIRYDAYS`,`ITEM_SALESACCOUNT`,`ITEM_PURCACCOUNT`,`ITEM_MAINTAINSTOCKBAL`,`ITEM_SPECIFYDEFAULTMC`," +
+                          "`ITEM_FREEZEMCFORITEM`,`ITEM_TOTALNUMBEROFAUTHORS`,`ITEM_PICKITEMSIZEFROMDESC`,`ITEM_SPECIFYDEFAULTVENDOR`,`CreatedBy`)" +
                           "VALUES"+
-                          "(@ITEM_Name,@ITEM_ALIAS,@ITEM_GROUP,@ITEM_UNIT,@ITEM_OPSTOCKQTY,@ITEM_OPSTOCKVALUE,@ITEM_SALEPRICE,@ITEM_PURCHASEPRICE,@ITEM_MRP," +
-                          "@ITEM_MINSALEPRICE,@ITEM_SELFVALUEPRICE,@ITEM_SALEDISCOUNT,@ITEM_PURCHASEDISCOUNT,@ITEM_SALECOMPDISCOUNT,@ITEM_PURCHCOMPDISCOUNT," +
-                          "@ITEM_SPECIFYSALEDISCSTRUCTURE,@ITEM_SPECIFYPURDISCSTRUCTURE,@ITEM_SALEMARKUP,@ITEM_PURMARKUP,@ITEM_SALECOMPMARKUP,@ITEM_PURCOMPMARKUP,@ITEM_SPECIFYSALEMARKUPSTRUCT," +
-                          "@ITEM_SPECIFYPURMARKUPSTRUCT,@ITEM_TAXCATEGORY,@ITEM_TAXTYPE,@ITEM_SERVICETAXRATE,@ITEM_LOCALTAX,@ITEM_CENTRALTAX,@ITEM_TAXONMRP,@ITEM_HSNCODE,@ITEM_DESCRIPTION1," +
-                          "@ITEM_DESCRIPTION2,@ITEM_DESCRIPTION3,@ITEM_SETCRITICALLEVEL,@ITEM_MAINTAINRG23D,@ITEM_TARIFHEADING,@ITEM_SERIALNUMBERWISEDETAILS," +
-                          "@ITEM_MRPWISEDETAILS,@ITEM_PARAMETERIZEDDETAILS,@ITEM_BATCHWISEDETAILS,@ITEM_EXPDATEREQUIRED,@ITEM_EXPIRYDAYS,@ITEM_SALESACCOUNT,@ITEM_PURCACCOUNT,@ITEM_SPECIFYDEFAULTMC,@ITEM_FREEZEMCFORITEM,@ITEM_TOTALNUMBEROFAUTHORS,@ITEM_MAINTAINSTOCKBAL,@ITEM_PICKITEMSIZEFROMDESC,@ITEM_SPECIFYDEFAULTVENDOR,@CreatedBy)";
+                          "(@ITEM_Name,@ITEM_PrintName,@ITEM_ALIAS,@ITEM_GROUP,@ITEM_COMPANY,@ITEM_MAINUNIT,@ALTUNIT,@ITEM_CONFACTOR,@ITEM_OPSTOCKVALUE,@ITEM_UNIT,@ITEM_RATE,@ITEM_PER,@ITEM_VALUE,@ITEM_APPLYSALEPRICE,@ITEM_APPLYPURCPRICE,@ITEM_SALEPRICE," +
+                          "@ITEM_PURCHASEPRICE,@ITEM_MRP," +
+                          "@ITEM_MINSALEPRICE,@ITEM_SELFVALUEPRICE,@ITEM_SALEDISCOUNT,@ITEM_PURCHASEDISCOUNT," +
+                          "@ITEM_SpecifySaleDiscStructure,@ITEM_SpecifyPurDiscStructure,@ITEM_StockValMethod," +
+                          "@ITEM_TAXCATEGORY,@ITEM_DESCRIPTION1," +
+                          "@ITEM_DESCRIPTION2,@ITEM_DESCRIPTION3,@ITEM_DESCRIPTION4,@ITEM_SETCRITICALLEVEL,@ITEM_MAINTAINRG23D,@ITEM_TARIFHEADING,@ITEM_SERIALNUMBERWISEDETAILS," +
+                          "@ITEM_PARAMETERIZEDDETAILS,@ITEM_MRPWISEDETAILS,@ITEM_BATCHWISEDETAILS,@ITEM_EXPDATEREQUIRED,@ITEM_EXPIRYDAYS,@ITEM_SALESACCOUNT,@ITEM_PURCACCOUNT,@ITEM_MAINTAINSTOCKBAL,@ITEM_SPECIFYDEFAULTMC,@ITEM_FREEZEMCFORITEM,@ITEM_TOTALNUMBEROFAUTHORS,@ITEM_PICKITEMSIZEFROMDESC,@ITEM_SPECIFYDEFAULTVENDOR,@CreatedBy)";
 
-          return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;
-                    
+          return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;                    
       }
+         //Get All Items By Id
+        public ItemMasterModel GetAllItemsById(int id)
+        {
+            ItemMasterModel objItem = new ItemMasterModel();
+            string Query = string.Empty;
+
+            Query = "SELECT * FROM itemmaster WHERE ITM_ID="+id;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            { 
+                objItem.Name = dr["ITEM_Name"].ToString();
+                objItem.PrintName = dr["ITEM_PRINTName"].ToString()==null?string.Empty: dr["ITEM_PRINTName"].ToString();
+                objItem.Alias = dr["ITEM_ALIAS"].ToString();
+                objItem.Group = dr["ITEM_GROUP"].ToString();
+                objItem.Company = dr["ITEM_COMPANY"].ToString();
+                objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
+                objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
+                objItem.Confactor =Convert.ToInt32(dr["ITEM_CONFACTOR"].ToString());
+                objItem.OpStockQty =Convert.ToInt32(dr["ITEM_OPSTOCK"].ToString());
+                objItem.Unit = dr["ITEM_UNIT"].ToString();
+                objItem.Rate =Convert.ToInt32(dr["ITEM_RATE"].ToString());
+                objItem.Per = dr["ITEM_PER"].ToString();
+                objItem.Value =Convert.ToInt32( dr["ITEM_VALUE"].ToString());
+                objItem.ApplySalesPrice = Convert.ToBoolean(dr["ITEM_SALEPRICETOAPPLY"].ToString()=="1"?true:false);
+                objItem.ApplyPurchPrice = Convert.ToBoolean(dr["ITEM_PURCPRICETOAPPLY"].ToString() == "1" ? true : false);
+
+                objItem.SalePrice =Convert.ToInt32(dr["ITEM_SALEPRICE"].ToString());
+                objItem.Purprice = Convert.ToInt32(dr["ITEM_PURCHASEPRICE"]==null?"0": dr["ITEM_PURCHASEPRICE"].ToString());
+                objItem.MRP = Convert.ToInt32(dr["ITEM_MRP"].ToString());
+                objItem.MinSalePrice = Convert.ToInt32(dr["ITEM_MINSALEPRICE"].ToString());
+                objItem.SelfValuePrice = Convert.ToInt32(dr["ITEM_SELFVALUEPRICE"].ToString());
+                objItem.SaleDiscount = Convert.ToInt32(dr["ITEM_SALEDISCOUNT"].ToString());
+                objItem.PurDiscount = Convert.ToInt32(dr["ITEM_PURCHASEDISCOUNT"].ToString());
+
+                objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"].ToString() == "1" ? true : false);
+                objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"].ToString() == "1" ? true : false);
+                objItem.StockValMethod = dr["ITEM_STOCKVALMETHOD"].ToString();
+
+                objItem.TaxCategory = dr["ITEM_TAXCATEGORY"].ToString();
+                objItem.ItemDescription1 = dr["ITEM_DESCRIPTION1"].ToString();
+                objItem.ItemDescription2 = dr["ITEM_DESCRIPTION2"].ToString();
+                objItem.ItemDescription3 = dr["ITEM_DESCRIPTION3"].ToString();
+                objItem.ItemDescription4 = dr["ITEM_DESCRIPTION4"].ToString();
+
+                objItem.SetCriticalLevel = Convert.ToBoolean(dr["ITEM_SETCRITICALLEVEL"].ToString() == "1" ? true : false);
+
+                objItem.MaintainRG23D = Convert.ToBoolean(dr["ITEM_MAINTAINRG23D"].ToString() == "1" ? true : false);
+                objItem.TariffHeading = dr["ITEM_TARIFHEADING"].ToString();
+                objItem.SerialNumberwiseDetails = Convert.ToBoolean(dr["ITEM_SERIALWISEDETAILS"].ToString() == "1" ? true : false);
+                objItem.MRPWiseDetails = Convert.ToBoolean(dr["ITEM_MRPWISEDETAILS"].ToString() == "1" ? true : false);
+                objItem.ParameterizedDetails = Convert.ToBoolean(dr["ITEM_PARAMETERIZEDDETAILS"].ToString() == "1" ? true : false);
+                objItem.BatchwiseDetails = Convert.ToBoolean(dr["ITEM_BATCHWISEDETAILS"].ToString() == "1" ? true : false);
+                objItem.ExpDateRequired = Convert.ToBoolean(dr["ITEM_EXPDATEREQUIRED"].ToString() == "1" ? true : false);
+                objItem.ExpiryDays = Convert.ToInt32(dr["ITEM_EXPIRYDAYS"]);
+                objItem.SalesAccount = dr["ITEM_SALESACCOUNT"].ToString();
+                objItem.PurcAccount = dr["ITEM_PURCACCOUNT"].ToString();
+                objItem.SpecifyDefaultMC = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTMC"]);
+                objItem.FreezeMCforItem = Convert.ToBoolean(dr["ITEM_FREEZEMCFORITEM"]);
+                objItem.TotalNumberofAuthors = Convert.ToInt32(dr["ITEM_TOTALNUMBEROFAUTHORS"]);
+                objItem.DontMaintainStockBal = Convert.ToBoolean(dr["ITEM_MAINTAINSTOCKBAL"]);
+                objItem.PickItemSizefromDescription = Convert.ToBoolean(dr["ITEM_PICKITEMSIZEFROMDESC"]);
+                objItem.SpecifyDefaultVendor = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTVENDOR"]);              
+
+            }
+            return objItem;
+
+        }
         //Update
-      public bool UpdateItemMaster(eSunSpeedDomain.ItemMasterModel objItem)
+        public bool UpdateItemMaster(eSunSpeedDomain.ItemMasterModel objItem)
       {
           string Query = string.Empty;
 
@@ -205,7 +282,7 @@ namespace eSunSpeed.BusinessLogic
 
           string Query = string.Empty;
 
-          Query = "SELECT * FROM ITEM_MASTER";
+          Query = "SELECT * FROM itemmaster";
           System.Data.IDataReader dr= _dbHelper.ExecuteDataReader(Query,_dbHelper.GetConnObject());
 
           while (dr.Read())
@@ -214,61 +291,9 @@ namespace eSunSpeed.BusinessLogic
                 objItem.ItemId = Convert.ToInt32(dr["ITM_ID"]);
               objItem.Name = dr["ITEM_Name"].ToString();
               objItem.Alias = dr["ITEM_ALIAS"].ToString();
-
               objItem.Group = dr["ITEM_GROUP"].ToString();
-              objItem.PrintName = dr["ITEM_PRINTNAME"].ToString();
-              objItem.Unit = dr["ITEM_UNIT"].ToString();
-              objItem.OpStockQty = Convert.ToDouble(dr["ITEM_OPSTOCKQTY"]);
-              objItem.OpStockValue = Convert.ToDouble(dr["ITEM_OPSTOCKVALUE"]);
-              objItem.SalePrice = Convert.ToDouble(dr["ITEM_SALEPRICE"]);
-              objItem.Purprice = Convert.ToDouble(dr["ITEM_PURCHASEPRICE"]);
-              objItem.MRP = Convert.ToDouble(dr["ITEM_MRP"]);
-              objItem.MinSalePrice = Convert.ToDouble(dr["ITEM_MINSALEPRICE"]);
-              objItem.SelfValuePrice = Convert.ToDouble(dr["ITEM_SELFVALUEPRICE"]);
-              objItem.SaleDiscount = Convert.ToDouble(dr["ITEM_SALEDISCOUNT"]);
-              objItem.PurDiscount = Convert.ToDouble(dr["ITEM_PURCHASEDISCOUNT"]);
-              objItem.SaleCompoundDiscount = Convert.ToDouble(dr["ITEM_SALECOMPDISCOUNT"]);
-              objItem.PurCompoundDiscount = Convert.ToDouble(dr["ITEM_PURCHCOMPDISCOUNT"]);
-              objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"]);
-              objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"]);
-              objItem.SaleMarkup = dr["ITEM_SALEMARKUP"].ToString();
-              objItem.PurMarkup = dr["ITEM_PURMARKUP"].ToString();
-              objItem.SaleCompMarkup = dr["ITEM_SALECOMPMARKUP"].ToString();
-              objItem.PurCompMarkup = dr["ITEM_PURCOMPMARKUP"].ToString();
-              objItem.SpecifySaleMarkupStruct = Convert.ToBoolean(dr["ITEM_SPECIFYSALEMARKUPSTRUCT"]);
-              objItem.SpecifyPurMarkupStruct = Convert.ToBoolean(dr["ITEM_SPECIFYPURMARKUPSTRUCT"]);
-              objItem.TaxCategory = dr["ITEM_TAXCATEGORY"].ToString();
-              objItem.TaxType = dr["ITEM_TAXTYPE"].ToString();
-              objItem.ServiceTaxRate = Convert.ToDouble(dr["ITEM_SERVICETAXRATE"]);
-              objItem.RateofTax_Local = Convert.ToDouble(dr["ITEM_LOCALTAX"]);
-              objItem.RateofTax_Central = Convert.ToDouble(dr["ITEM_CENTRALTAX"]);
-              objItem.TaxonMRP = Convert.ToBoolean(dr["ITEM_TAXONMRP"]);
-              objItem.HSNCode = dr["ITEM_HSNCODE"].ToString();
-              objItem.ItemDescription1 = dr["ITEM_DESCRIPTION1"].ToString();
-              objItem.ItemDescription2 = dr["ITEM_DESCRIPTION2"].ToString();
-              objItem.ItemDescription3 = dr["ITEM_DESCRIPTION3"].ToString();
-              objItem.ItemDescription4 = dr["ITEM_DESCRIPTION4"].ToString();
-              objItem.ItemDescription5 = dr["ITEM_DESCRIPTION5"].ToString();
-              objItem.ItemDescription6 = dr["ITEM_DESCRIPTION6"].ToString();
-              objItem.SetCriticalLevel = Convert.ToBoolean(dr["ITEM_SETCRITICALLEVEL"]);
-
-              objItem.MaintainRG23D = Convert.ToBoolean(dr["ITEM_MAINTAINRG23D"]);
-              objItem.TariffHeading = dr["ITEM_TARIFHEADING"].ToString();
-              objItem.SerialNumberwiseDetails = Convert.ToBoolean(dr["ITEM_SERIALWISEDETAILS"]);
-              objItem.MRPWiseDetails = Convert.ToBoolean(dr["ITEM_MRPWISEDETAILS"]);
-              objItem.ParameterizedDetails = Convert.ToBoolean(dr["ITEM_PARAMETERIZEDDETAILS"]);
-              objItem.BatchwiseDetails = Convert.ToBoolean(dr["ITEM_BATCHWISEDETAILS"]);
-              objItem.ExpDateRequired = Convert.ToBoolean(dr["ITEM_EXPDATEREQUIRED"]);
-              objItem.ExpiryDays = Convert.ToInt32(dr["ITEM_EXPIRYDAYS"]);
-              objItem.SalesAccount = dr["ITEM_SALESACCOUNT"].ToString();
-              objItem.PurcAccount = dr["ITEM_PURCACCOUNT"].ToString();
-              objItem.SpecifyDefaultMC = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTMC"]);
-              objItem.FreezeMCforItem = Convert.ToBoolean(dr["ITEM_FREEZEMCFORITEM"]);
-              objItem.TotalNumberofAuthors = Convert.ToInt32(dr["ITEM_TOTALNUMBEROFAUTHORS"]);
-              objItem.DontMaintainStockBal = Convert.ToBoolean(dr["ITEM_MAINTAINSTOCKBAL"]);
-              objItem.PickItemSizefromDescription = Convert.ToBoolean(dr["ITEM_PICKITEMSIZEFROMDESC"]);
-              objItem.SpecifyDefaultVendor = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTVENDOR"]);
-
+              objItem.OpStockValue = Convert.ToInt32(dr["ITEM_OPSTOCK"].ToString());
+              objItem.Unit = dr["ITEM_UNIT"].ToString();             
               lstItems.Add(objItem);
           
           }

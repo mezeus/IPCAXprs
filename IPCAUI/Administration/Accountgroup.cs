@@ -35,9 +35,6 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //TODO: 1. Check whether the group name exists or not
-            //2. if exist then do not allow to save with the same group name
-            //3. Prompt user to change the group name as it already exists
 
             if (tbxGroupName.Text.Equals(string.Empty))
             {
@@ -45,23 +42,19 @@ namespace IPCAUI.Administration
                 return;
             }
 
-            //if (accobj.IsGroupExist(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //   // cbxUnderGrp.Focus();
-            //    return;
-            //}
-
             eSunSpeedDomain.AccountGroupModel objAccGroup = new eSunSpeedDomain.AccountGroupModel();
 
             objAccGroup.GroupName = tbxGroupName.Text;
-
-            objAccGroup.AliasName = tbxAliasname.Text;
-           
-            objAccGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
-
+            objAccGroup.AliasName = tbxAliasname.Text==null?string.Empty:tbxAliasname.Text.Trim();
+            objAccGroup.Primary = Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString()=="Y"?true:false);
             objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
+            AccountGroupModel objmodel = objaccbl.GetAccountGroupIdByGroupName(objAccGroup.UnderGroup);
+            objAccGroup.UnderGroupId = objmodel.GroupId;
+            if (cbxPrimarygroup.SelectedItem.ToString().Equals("Y"))
+            {
+                objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
+            }
+            objAccGroup.NatureGroup = cbxNaturegroup.Text == null ? string.Empty : cbxNaturegroup.Text.Trim();
             objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
 
             objAccGroup.CreatedBy = "Admin";
@@ -125,16 +118,13 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
 
-            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
             btnSave.Visible = false;
             btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             tbxGroupName.Focus();
-            tbxGroupName.ReadOnly = true;
-
             FillAccountInfo();
-
         }
 
         private void FillAccountInfo()
@@ -143,7 +133,7 @@ namespace IPCAUI.Administration
 
             tbxGroupName.Text = objMaster.GroupName;
             tbxAliasname.Text = objMaster.AliasName;    
-            cbxPrimarygroup.SelectedItem = objMaster.Primary == "True" ? "Yes" : "No";
+            cbxPrimarygroup.SelectedItem = objMaster.Primary?"Y":"N";
             cbxUndergroup.SelectedItem = objMaster.UnderGroup;
             cbxNaturegroup.SelectedItem = objMaster.NatureGroup;
 
@@ -172,7 +162,7 @@ namespace IPCAUI.Administration
         objAccGroup.GroupName = tbxGroupName.Text;
 
         objAccGroup.AliasName = tbxAliasname.Text;
-        objAccGroup.Primary = cbxPrimarygroup.SelectedItem.ToString();
+        objAccGroup.Primary =Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString());
 
         objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
         objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
@@ -194,6 +184,67 @@ namespace IPCAUI.Administration
         private void Accountgroup_Load(object sender, EventArgs e)
         {
             cbxPrimarygroup.SelectedIndex = 1;
+            lactrlNatureofGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlAffectGross.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            LodaGroups();
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+        public void LodaGroups()
+        {
+            List<AccountGroupModel> objmodel = objaccbl.GetListofAccountsGroups();
+            //var lstgroups = objmodel
+            //            .Select(i => new { i.GroupName })
+            //            .Distinct()
+            //            .OrderByDescending(i => i.GroupName)
+            //            .ToList();
+            foreach (AccountGroupModel objgroup in objmodel)
+            {
+                cbxUndergroup.Properties.Items.Add(objgroup.GroupName);
+            }
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            tbxGroupName.Text = string.Empty;
+            tbxAliasname.Text = string.Empty;
+            cbxPrimarygroup.SelectedIndex = 1;
+            
+        }
+
+        private void cbxPrimarygroup_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cbxPrimarygroup.SelectedItem.ToString()=="Y")
+            {
+                lactrlUnderGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lactrlNatureofGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lactrlAffectGross.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            else
+            {
+                lactrlUnderGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lactrlNatureofGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lactrlAffectGross.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        { 
+            AccountGroupModel objAccount = new AccountGroupModel();
+            objAccount.GroupId = groupId;
+            bool isDelete = objaccbl.DeleteAccountGroupById(groupId);
+            if (isDelete)
+            {
+               MessageBox.Show("Delete Successfully!");
+                tbxGroupName.Text = string.Empty;
+                tbxAliasname.Text = string.Empty;
+                cbxPrimarygroup.SelectedIndex = 1;
+            }
         }
     }
 }

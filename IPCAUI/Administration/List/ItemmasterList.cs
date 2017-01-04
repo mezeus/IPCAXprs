@@ -29,6 +29,15 @@ namespace IPCAUI.Administration.List
 
         private void dvgItemmasterList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgItemDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            ItemMasterModel lstItems;
+
+            lstItems = (ItemMasterModel)dvgItemDetails.GetRow(dvgItemDetails.FocusedRowHandle);
+            ItemMasterNew.Item_Id = lstItems.ItemId;
             this.Close();
         }
     }

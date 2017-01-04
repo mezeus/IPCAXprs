@@ -23,18 +23,30 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (tbxGroupName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Group Name can not be blank!");
+                return;
+            }
             MaterialCentreGroupMasterModel objGroup = new MaterialCentreGroupMasterModel();
 
             objGroup.Group = tbxGroupName.Text.TrimEnd();
-            objGroup.Alias = tbxAliasname.Text.Trim();
+            objGroup.Alias = tbxAliasname.Text==null?string.Empty:tbxAliasname.Text;
             objGroup.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            if(cbxPrimarygroup.SelectedItem.ToString()=="N")
+            {
+                objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            }
+                      
             objGroup.CreatedBy = "Admin";
 
             bool isSuccess = MatObj.SaveMCG(objGroup);
             if(isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+                tbxGroupName.Text = string.Empty;
+                tbxAliasname.Text = string.Empty;
+                cbxPrimarygroup.SelectedIndex = 1;
             }
             //List<MaterialCentreGroupMasterModel> lstGroups = MatObj.GetAllMaterialGroups();
             //dgvList.DataSource = lstGroups;
@@ -69,8 +81,8 @@ namespace IPCAUI.Administration
 
         private void Materialcentergroup_Load(object sender, EventArgs e)
         {
-            cbxPrimarygroup.SelectedIndex = 0;
-            cbxUndergroup.SelectedIndex = 0;
+            cbxPrimarygroup.SelectedIndex = 1;
+            
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -110,17 +122,46 @@ namespace IPCAUI.Administration
             MaterialCentreGroupMasterModel objGroup = new MaterialCentreGroupMasterModel();
 
             objGroup.Group = tbxGroupName.Text.TrimEnd();
-            objGroup.Alias = tbxAliasname.Text.Trim();
+            objGroup.Alias = tbxAliasname.Text == null ? string.Empty : tbxAliasname.Text;
             objGroup.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            objGroup.MCG_ID = MCGId;
+            if (cbxPrimarygroup.SelectedItem.ToString() == "N")
+            {
+                objGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            }
+
             objGroup.CreatedBy = "Admin";
+            objGroup.MCG_ID = MCGId;
 
             bool isSuccess = MatObj.UpdateMCG(objGroup);
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
+                tbxGroupName.Text = string.Empty;
+                tbxAliasname.Text = string.Empty;
+                cbxPrimarygroup.SelectedIndex = 1;
             }
+        }
+
+        private void cbxPrimarygroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxPrimarygroup.SelectedItem.ToString()=="N")
+            {
+                lblUndergroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            else
+            {
+                lblUndergroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+        }
+
+        private void cbxUndergroup_Enter(object sender, EventArgs e)
+        {
+            cbxUndergroup.SelectedIndex = 0;
+        }
+
+        private void tbxGroupName_TextChanged(object sender, EventArgs e)
+        {
+            tbxAliasname.Text = tbxGroupName.Text;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Unitconversion : Form
     {
         UnitConversion objunc = new UnitConversion();
+        UnitMaster objUnitBl = new UnitMaster();
         public static int UCId = 0;
         public Unitconversion()
         {
@@ -29,21 +30,18 @@ namespace IPCAUI.Administration
                 return;
             }
             UnitConversionModel objUnitCon = new UnitConversionModel();
-            //if (objUnitCon.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-            objUnitCon.MainUnit = cbxMainunit.Text.Trim();
-            objUnitCon.SubUnit = cbxSubunit.Text.Trim();
+
+            objUnitCon.MainUnit = cbxMainunit.SelectedItem.ToString();
+            objUnitCon.SubUnit = cbxSubunit.SelectedItem.ToString();
             objUnitCon.ConFactor = Convert.ToDecimal(cbxConfactor.Text.Trim());
 
             bool isSuccess = objunc.SaveUC(objUnitCon);
             if(isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+                ClearControls();
             }
+
             //List<eSunSpeedDomain.UnitConversionModel> lstGroups = objunc.GetListofUnitConversions();
             //dgvList.DataSource = lstGroups;
 
@@ -76,15 +74,26 @@ namespace IPCAUI.Administration
             cbxConfactor.Text =Convert.ToString(objMaster.ConFactor);
 
         }
-
+        public void ClearControls()
+        {
+            cbxSubunit.Text = string.Empty;
+            cbxMainunit.Text = string.Empty;
+        }
 
         private void Unitconversion_Load(object sender, EventArgs e)
         {
-            cbxMainunit.SelectedIndex = 0;
-            cbxSubunit.SelectedIndex = 1;
+            LodaUnits();
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
-
+        public void LodaUnits()
+        {
+            List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
+            foreach (UnitMasterModel objunit in lstUnits)
+            {
+                cbxMainunit.Properties.Items.Add(objunit.UnitName);
+                cbxSubunit.Properties.Items.Add(objunit.UnitName);
+            }
+        }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (cbxMainunit.Text.Equals(string.Empty))
@@ -93,14 +102,8 @@ namespace IPCAUI.Administration
                 return;
             }
             UnitConversionModel objUnitCon = new UnitConversionModel();
-            //if (objUnitCon.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-            objUnitCon.MainUnit = cbxMainunit.Text.Trim();
-            objUnitCon.SubUnit = cbxSubunit.Text.Trim();
+            objUnitCon.MainUnit = cbxMainunit.SelectedItem.ToString();
+            objUnitCon.SubUnit = cbxSubunit.SelectedItem.ToString();
             objUnitCon.ConFactor = Convert.ToDecimal(cbxConfactor.Text.Trim());
             objUnitCon.ID = UCId;
 
@@ -108,6 +111,25 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+            }
+        }
+
+        private void cbxMainunit_Enter(object sender, EventArgs e)
+        {
+            cbxMainunit.SelectedIndex = 0;
+        }
+
+        private void cbxSubunit_Enter(object sender, EventArgs e)
+        {
+            cbxSubunit.SelectedIndex = 0;
+        }
+
+        private void cbxSubunit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxSubunit.SelectedItem == cbxMainunit.SelectedItem)
+            {
+                MessageBox.Show("Main Unit & Sub Unit Are Not Same");
+                cbxSubunit.Focus();
             }
         }
     }

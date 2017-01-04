@@ -655,14 +655,10 @@
             this.cbxGroup.Properties.Appearance.Options.UseFont = true;
             this.cbxGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxGroup.Properties.Items.AddRange(new object[] {
-            "Godowns",
-            "Production Floors",
-            "Stores",
-            ""});
             this.cbxGroup.Size = new System.Drawing.Size(310, 20);
             this.cbxGroup.StyleController = this.layoutControl1;
             this.cbxGroup.TabIndex = 14;
+            this.cbxGroup.Enter += new System.EventHandler(this.cbxGroup_Enter);
             // 
             // tbxPrintname
             // 
@@ -684,6 +680,7 @@
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
             // 
@@ -722,7 +719,8 @@
             this.cbxStockaccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxStockaccount.Properties.Items.AddRange(new object[] {
-            "Stock Account"});
+            "Stock "});
+            this.cbxStockaccount.Properties.Enter += new System.EventHandler(this.cbxStockaccount_Properties_Enter);
             this.cbxStockaccount.Size = new System.Drawing.Size(310, 20);
             this.cbxStockaccount.StyleController = this.layoutControl1;
             this.cbxStockaccount.TabIndex = 7;
@@ -748,6 +746,8 @@
             this.tbxGroupName.Size = new System.Drawing.Size(310, 20);
             this.tbxGroupName.StyleController = this.layoutControl1;
             this.tbxGroupName.TabIndex = 5;
+            this.tbxGroupName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
+            this.tbxGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
             // 
             // labelControl1
             // 
@@ -1113,6 +1113,7 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.tbxAccStocktransfer;
+            this.layoutControlItem10.Enabled = false;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 192);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(497, 25);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(497, 25);
@@ -1125,6 +1126,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.cbxPurchaseAccount;
+            this.layoutControlItem6.Enabled = false;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(497, 24);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(497, 24);
@@ -1137,6 +1139,7 @@
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.cbxSaleAccount;
+            this.layoutControlItem13.Enabled = false;
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(497, 24);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(497, 24);

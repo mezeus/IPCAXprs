@@ -169,8 +169,8 @@ namespace IPCAUI.Menu
 
         private void barbtnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Itemsmaster frm;
-            frm = new Administration.Itemsmaster(); //generate new instance 
+            Administration.ItemMasterNew frm;
+            frm = new Administration.ItemMasterNew(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

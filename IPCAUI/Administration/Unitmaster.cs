@@ -39,21 +39,19 @@ namespace IPCAUI.Administration
             UnitMasterModel objModel = new UnitMasterModel();
 
             objModel.UnitName = tbxUnitName.Text.Trim();
-            objModel.PrintName = tbxPrintname.Text.Trim();
-            objModel.ExciseReturn = tbxUnitName.Text.Trim();
+            objModel.PrintName = tbxPrintname.Text == null?string.Empty:tbxPrintname.Text.Trim();
+            objModel.ExciseReturn = tbxUnitnameExcise.Text.Trim() == null ? string.Empty : tbxUnitnameExcise.Text.Trim();
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objunm.SaveUM(objModel);
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfuly!");
+                tbxUnitName.Text = string.Empty;
+                tbxPrintname.Text = string.Empty;
+                tbxUnitnameExcise.Text = string.Empty;
+                tbxUnitName.Focus();
             }
-
-            //List<UnitMasterModel> lstUnits = objunm.GetListofUnits();
-            //dgvList.DataSource = lstUnits;
-
-            //Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //d.ShowDialog();
         }
 
         private void dvgUnitmaster_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -130,8 +128,8 @@ namespace IPCAUI.Administration
             UnitMasterModel objModel = new UnitMasterModel();
 
             objModel.UnitName = tbxUnitName.Text.Trim();
-            objModel.PrintName = tbxPrintname.Text.Trim();
-            objModel.ExciseReturn = tbxUnitName.Text.Trim();
+            objModel.PrintName = tbxPrintname.Text.Trim() == null ? string.Empty : tbxPrintname.Text.Trim(); ;
+            objModel.ExciseReturn = tbxUnitnameExcise.Text.Trim() == null ? string.Empty : tbxUnitnameExcise.Text.Trim(); ;
             objModel.UM_ID = UMId;
             objModel.CreatedBy = "Admin";
 
@@ -140,6 +138,23 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Update Successfuly!");
             }
+        }
+
+        private void tbxUnitName_TextChanged(object sender, EventArgs e)
+        {
+            tbxPrintname.Text = tbxUnitName.Text.Trim();
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            tbxUnitName.Text = string.Empty;
+            tbxPrintname.Text = string.Empty;
+            tbxUnitnameExcise.Text = string.Empty;
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

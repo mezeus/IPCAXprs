@@ -17,7 +17,10 @@ namespace eSunSpeedDomain
         public string SalesAccount { get; set; }
         public string PurchaseAccount { get; set; }
         public bool EnableAccinTransfer { get; set; }  
-        public string Address { get; set; }      
+        public string Address { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
 

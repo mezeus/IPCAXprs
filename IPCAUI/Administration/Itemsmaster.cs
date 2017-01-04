@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     {
         ItemMasterBL objIMBL = new ItemMasterBL();
         ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
+        TaxCategory objTaxBl = new TaxCategory();
         public Itemsmaster()
         {
             InitializeComponent();
@@ -106,8 +107,8 @@ namespace IPCAUI.Administration
             objModel.TariffHeading = cbxTariffHeading.SelectedItem.ToString();
             objModel.MRPWiseDetails = cbxMRPWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
             objModel.BatchwiseDetails = cbxBatchWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
-            objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
+            //objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
+            //objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
             objModel.SpecifyDefaultMC = cbxSpecifyDefaultMC.SelectedItem.ToString() == "Y" ? true : false;
             objModel.FreezeMCforItem = cbxFreezeMC.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;

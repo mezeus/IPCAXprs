@@ -31,13 +31,14 @@ namespace eSunSpeed.BusinessLogic
             
             paramCollection.Add(new DBParameter("@GroupName", objAccountGrp.GroupName));
             paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
-            paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary=="Yes"?1:0));
+            paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary,System.Data.DbType.Boolean));
+            paramCollection.Add(new DBParameter("@UnderGroupId", objAccountGrp.UnderGroupId));
             paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
             paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
             paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit,System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@CreatedBy", objAccountGrp.CreatedBy));
                        
-            Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UnderGroup`,`NatureGroup`,`IsAffectGrossProfit`,`CreatedBy`) VALUES (@GroupName,@AliasName,@Primary,@UnderGroup,@NatureGroup,@IsAffectGrossProfit,@CreatedBy)";
+            Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UndergroupID`,`UnderGroup`,`NatureGroup`,`IsAffectGrossProfit`,`CreatedBy`) VALUES (@GroupName,@AliasName,@Primary,@UnderGroupId,@UnderGroup,@NatureGroup,@IsAffectGrossProfit,@CreatedBy)";
 
             return _dbHelper.ExecuteNonQuery(Query,paramCollection) > 0;                  
         }
@@ -268,12 +269,32 @@ namespace eSunSpeed.BusinessLogic
                 accountGroup.GroupName = dr["GroupName"].ToString();
                 accountGroup.AliasName = dr["AliasName"].ToString();
                 accountGroup.UnderGroup = dr["UnderGroup"].ToString();
-                accountGroup.Primary = dr["Primary"].ToString();
+                accountGroup.Primary =Convert.ToBoolean(dr["Primary"].ToString());
 
                 lstAccountGroups.Add(accountGroup);
 
             }
               
+            return lstAccountGroups;
+
+        }
+        public List<eSunSpeedDomain.AccountGroupModel> GetUnderGroupIdByGroupName(string groupname)
+        {
+            List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
+            eSunSpeedDomain.AccountGroupModel accountGroup;
+
+            //StringBuilder _sbQuery = new StringBuilder();
+            //_sbQuery.AppendFormat("SELECT AG_ID FROM `AccountGroups` WHERE Groupname='{0}'", groupname);
+            string Query = "SELECT * FROM `accountgroups` WHERE `GroupName`='"+groupname+"'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+            while (dr.Read())
+            {
+                accountGroup = new eSunSpeedDomain.AccountGroupModel();
+
+                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
+                lstAccountGroups.Add(accountGroup);
+            }
+
             return lstAccountGroups;
 
         }
@@ -339,10 +360,10 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@GroupName", objAccountGrp.GroupName));
                 paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
-                paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary == "Yes" ? 1 : 0));
+                paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
                 paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
-                paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit ? 1 : 0, DbType.Int16));
+                paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit,System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ModifiedBy", objAccountGrp.ModifiedBy));
 
                 paramCollection.Add(new DBParameter("@GroupId", objAccountGrp.GroupId));
@@ -399,6 +420,25 @@ namespace eSunSpeed.BusinessLogic
             }
 
             return isUpdated;
+        }
+
+        public bool DeleteAccountGroupById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM `accountgroups` WHERE `AG_ID`='"+id+"'";
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                isDelete = true;          
+               
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
         }
         #endregion
 
@@ -639,7 +679,7 @@ namespace eSunSpeed.BusinessLogic
                 accountGroup.GroupName = dr["GroupName"].ToString();
                 accountGroup.AliasName = dr["AliasName"].ToString();
                 accountGroup.UnderGroup = dr["UnderGroup"].ToString();
-                accountGroup.Primary = dr["Primary"].ToString();
+                accountGroup.Primary = Convert.ToBoolean(dr["Primary"].ToString());
                 accountGroup.NatureGroup = dr["NatureGroup"].ToString();
                 accountGroup.IsAffectGrossProfit = dr["IsAffectGrossProfit"].ToString()==""?false:Convert.ToBoolean( dr["IsAffectGrossProfit"]);
 
@@ -649,6 +689,21 @@ namespace eSunSpeed.BusinessLogic
 
         }
 
+        public AccountGroupModel GetAccountGroupIdByGroupName(string groupname)
+        {
+            AccountGroupModel accountGroup = new AccountGroupModel();
+
+            string Query = "SELECT  AG_ID FROM `accountgroups` where GroupName='"+groupname+"'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
+            }
+
+            return accountGroup;
+
+        }
         #endregion  
     }
 

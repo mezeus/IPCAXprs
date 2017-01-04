@@ -10,7 +10,7 @@ namespace eSunSpeedDomain
         public int TaxCat_Id { get; set; }
         public int TaxRate_Id { get; set; }
         public DateTime wef { get; set; }
-        public decimal Tax_Local { get; set; }
+        public decimal Local_Tax { get; set; }
         public decimal Local_Schg { get; set; }
         public string Tax_Type { get; set; }
         public decimal Tax_Central { get; set; }

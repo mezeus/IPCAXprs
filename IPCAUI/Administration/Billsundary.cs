@@ -121,19 +121,52 @@ namespace IPCAUI.Administration
             {
                 objbsmod.PerAltQty = true;
             }
-            objbsmod.typeAbsoluteAmount = false;
-            objbsmod.typeAbsoluteAmount = false;
-            //objbsmod.typeNetBillAmount = rbnetbillamount.ToString();
-            //objbsmod.tyeItemsBasicAmt = rbitembasicamount.ToString();
-            //objbsmod.typeTotalMRPofItems = rbtotalmrpofitems.ToString();
-            //objbsmod.typeTaxableAmount = rbtaxableamount.ToString();
-            //objbsmod.typePreviousBillSundryAmount = rbbillsundryamount.ToString();
-            //objbsmod.typeOtherBillsundry = rbotherbillsundry.ToString();
-            //objbsmod.roundoffBillsundry = cbxroundoffbillsundryamount.ToString();
-            //objbsmod.NoOfBillSundry = cbnoofbillsundrys.ToString();
-            //objbsmod.ConsolidateBillSundriesAmount = Convert.ToBoolean(cbconsoilatedbillsundariesamt.ToString() == "Y" ? true : false);
-            //objbsmod.BSAmt = rbbillsundryamount.ToString();
-            //objbsmod.subtotalheading = cbxsubtotalheading.Text;
+            objbsmod.typeNetBillAmount = false;
+            objbsmod.tyeItemsBasicAmt = false;
+            objbsmod.typeTotalMRPofItems = false;
+            objbsmod.typeTaxableAmount = false;
+            objbsmod.typePreviousBillSundryAmount = false;
+            objbsmod.typeOtherBillsundry = false;
+            if (rbnbillsOf.SelectedIndex == 0)
+            {
+                objbsmod.typeNetBillAmount = true;
+            }
+            if (rbnbillsOf.SelectedIndex == 1)
+            {
+                objbsmod.tyeItemsBasicAmt = true;
+            }
+            if (rbnbillsOf.SelectedIndex == 2)
+            {
+                objbsmod.typeTotalMRPofItems = true;
+            }
+            if (rbnbillsOf.SelectedIndex == 3)
+            {
+                objbsmod.typeTaxableAmount = true;
+            }
+            if (rbnbillsOf.SelectedIndex == 4)
+            {
+                objbsmod.typePreviousBillSundryAmount = true;
+            }
+            if (rbnbillsOf.SelectedIndex == 5)
+            {
+                objbsmod.typeOtherBillsundry = true;
+            }
+            objbsmod.Percentoff = Convert.ToDecimal(tbxPersentage.Text.ToString());
+            objbsmod.SelectiveCalculation =Convert.ToBoolean(cbxselectivecalculation.SelectedItem.ToString() == "Y" ? true : false);
+            objbsmod.IncludeFreeQty = Convert.ToBoolean(chkIncludefreequantity.Checked ? true : false);
+            objbsmod.NoOfBillSundry = Convert.ToInt32(tbxNofbillsundrys.Text == null ? "0" : tbxNofbillsundrys.Text.Trim());
+            objbsmod.ConsolidateBillSundriesAmount=Convert.ToBoolean(cbxConsoilatedbillsundariesamt.SelectedItem.ToString() == "Y" ? true : false);
+
+            objbsmod.BSAmt = false;
+            if (rbnBillsundaryCal.SelectedIndex == 0)
+            {
+                objbsmod.BSAmt = true;
+            }
+            if (rbnBillsundaryCal.SelectedIndex == 1)
+            {
+                objbsmod.BSAppOn = true;
+            }
+            objbsmod.roundoffBillsundry = Convert.ToBoolean(cbxConsoilatedbillsundariesamt.SelectedItem.ToString() == "Y" ? true : false);
 
             bool isSuccess = objbsmas.SaveBSM(objbsmod);
             if(isSuccess)

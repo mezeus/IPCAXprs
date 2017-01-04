@@ -16,19 +16,25 @@ namespace eSunSpeedDomain
         //Group
 
         public string Group { get; set; }
-        public string Unit { get; set; }
+        public string Company { get; set; }
+
+        public string MainUnit { get; set; }
         
         public double OpStockQty { get; set; }
         
         public double OpStockValue { get; set; }
 
         public string AltUnit { get; set; }
-        
+        public string Unit { get; set; }
+
         public double Confactor { get; set; }
         
         public string ConType { get; set; }
         
         public double AltOpQty { get; set; }
+        public double Rate { get; set; }
+        public string Per { get; set; }
+        public double Value { get; set; }
 
         public bool ApplySalesPrice { get; set; }
         public bool ApplyPurchPrice { get; set; }
@@ -39,6 +45,7 @@ namespace eSunSpeedDomain
         public double MRP { get; set; }
         public double MinSalePrice { get; set; }
         public double SelfValuePrice { get; set; }
+        public string StockValMethod { get; set; }
 
         //Discount
         

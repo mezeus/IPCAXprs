@@ -30,9 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Itemgroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.rbnDefaultConfig = new DevExpress.XtraEditors.RadioGroup();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
-            this.rbnSeparteConfig = new System.Windows.Forms.RadioButton();
-            this.rbnDefaultconfig = new System.Windows.Forms.RadioButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.ListItemgroup = new DevExpress.XtraNavBar.NavBarItem();
@@ -112,15 +111,15 @@
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rbnDefaultConfig.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParameters.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxUndergroup.Properties)).BeginInit();
@@ -152,10 +151,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
@@ -163,9 +161,8 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.rbnDefaultConfig);
             this.layoutControl1.Controls.Add(this.btnUpdate);
-            this.layoutControl1.Controls.Add(this.rbnSeparteConfig);
-            this.layoutControl1.Controls.Add(this.rbnDefaultconfig);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.btnConfig);
             this.layoutControl1.Controls.Add(this.tbxParameters);
@@ -191,6 +188,18 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // rbnDefaultConfig
+            // 
+            this.rbnDefaultConfig.Location = new System.Drawing.Point(154, 228);
+            this.rbnDefaultConfig.Name = "rbnDefaultConfig";
+            this.rbnDefaultConfig.Properties.Columns = 2;
+            this.rbnDefaultConfig.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Use Default Config"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Use Separate Default")});
+            this.rbnDefaultConfig.Size = new System.Drawing.Size(280, 25);
+            this.rbnDefaultConfig.StyleController = this.layoutControl1;
+            this.rbnDefaultConfig.TabIndex = 62;
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
@@ -201,26 +210,6 @@
             this.btnUpdate.TabIndex = 61;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // rbnSeparteConfig
-            // 
-            this.rbnSeparteConfig.Location = new System.Drawing.Point(301, 228);
-            this.rbnSeparteConfig.Name = "rbnSeparteConfig";
-            this.rbnSeparteConfig.Size = new System.Drawing.Size(133, 25);
-            this.rbnSeparteConfig.TabIndex = 60;
-            this.rbnSeparteConfig.TabStop = true;
-            this.rbnSeparteConfig.Text = "Use Separate Default";
-            this.rbnSeparteConfig.UseVisualStyleBackColor = true;
-            // 
-            // rbnDefaultconfig
-            // 
-            this.rbnDefaultconfig.Location = new System.Drawing.Point(154, 228);
-            this.rbnDefaultconfig.Name = "rbnDefaultconfig";
-            this.rbnDefaultconfig.Size = new System.Drawing.Size(143, 25);
-            this.rbnDefaultconfig.TabIndex = 59;
-            this.rbnDefaultconfig.TabStop = true;
-            this.rbnDefaultconfig.Text = "Use Default Config";
-            this.rbnDefaultconfig.UseVisualStyleBackColor = true;
             // 
             // navBarControl1
             // 
@@ -632,8 +621,6 @@
             this.cbxUndergroup.Name = "cbxUndergroup";
             this.cbxUndergroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxUndergroup.Properties.Appearance.Options.UseFont = true;
-            this.cbxUndergroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxUndergroup.Properties.Items.AddRange(new object[] {
             "General",
             "Sales",
@@ -641,6 +628,7 @@
             this.cbxUndergroup.Size = new System.Drawing.Size(410, 20);
             this.cbxUndergroup.StyleController = this.layoutControl1;
             this.cbxUndergroup.TabIndex = 8;
+            this.cbxUndergroup.Enter += new System.EventHandler(this.cbxUndergroup_Enter);
             // 
             // cbxPrimarygroup
             // 
@@ -679,6 +667,7 @@
             this.tbxGroupName.Size = new System.Drawing.Size(410, 20);
             this.tbxGroupName.StyleController = this.layoutControl1;
             this.tbxGroupName.TabIndex = 5;
+            this.tbxGroupName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
             this.tbxGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxGroupName_KeyDown);
             this.tbxGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
             // 
@@ -715,13 +704,12 @@
             this.cbxStockaccount.Name = "cbxStockaccount";
             this.cbxStockaccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxStockaccount.Properties.Appearance.Options.UseFont = true;
-            this.cbxStockaccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxStockaccount.Properties.Items.AddRange(new object[] {
             "Stock Account"});
             this.cbxStockaccount.Size = new System.Drawing.Size(410, 20);
             this.cbxStockaccount.StyleController = this.layoutControl1;
             this.cbxStockaccount.TabIndex = 13;
+            this.cbxStockaccount.Enter += new System.EventHandler(this.cbxStockaccount_Enter);
             // 
             // cbxSalesaccount
             // 
@@ -730,13 +718,12 @@
             this.cbxSalesaccount.Name = "cbxSalesaccount";
             this.cbxSalesaccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxSalesaccount.Properties.Appearance.Options.UseFont = true;
-            this.cbxSalesaccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxSalesaccount.Properties.Items.AddRange(new object[] {
             "Sales Account"});
             this.cbxSalesaccount.Size = new System.Drawing.Size(410, 20);
             this.cbxSalesaccount.StyleController = this.layoutControl1;
             this.cbxSalesaccount.TabIndex = 14;
+            this.cbxSalesaccount.Enter += new System.EventHandler(this.cbxSalesaccount_Enter);
             // 
             // cbxPurchaseAccount
             // 
@@ -745,13 +732,12 @@
             this.cbxPurchaseAccount.Name = "cbxPurchaseAccount";
             this.cbxPurchaseAccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxPurchaseAccount.Properties.Appearance.Options.UseFont = true;
-            this.cbxPurchaseAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxPurchaseAccount.Properties.Items.AddRange(new object[] {
             "Purchase Account"});
             this.cbxPurchaseAccount.Size = new System.Drawing.Size(410, 20);
             this.cbxPurchaseAccount.StyleController = this.layoutControl1;
             this.cbxPurchaseAccount.TabIndex = 15;
+            this.cbxPurchaseAccount.Enter += new System.EventHandler(this.cbxPurchaseAccount_Enter);
             // 
             // layoutControlItem8
             // 
@@ -980,38 +966,13 @@
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem10,
-            this.layoutControlItem13,
             this.layoutControlItem14,
-            this.layoutControlItem15});
+            this.layoutControlItem15,
+            this.layoutControlItem7});
             this.layoutControlGroup2.Location = new System.Drawing.Point(130, 186);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(536, 71);
             this.layoutControlGroup2.Text = "Parameterized Stock  Details Configuration";
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.rbnDefaultconfig;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem10.MaxSize = new System.Drawing.Size(147, 29);
-            this.layoutControlItem10.MinSize = new System.Drawing.Size(147, 29);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(147, 29);
-            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.rbnSeparteConfig;
-            this.layoutControlItem13.Location = new System.Drawing.Point(147, 0);
-            this.layoutControlItem13.MaxSize = new System.Drawing.Size(137, 29);
-            this.layoutControlItem13.MinSize = new System.Drawing.Size(137, 29);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(137, 29);
-            this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem14
             // 
@@ -1036,6 +997,15 @@
             this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.rbnDefaultConfig;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(284, 29);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // emptySpaceItem13
             // 
@@ -1081,6 +1051,7 @@
             this.Load += new System.EventHandler(this.Itemgroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rbnDefaultConfig.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParameters.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxUndergroup.Properties)).EndInit();
@@ -1112,10 +1083,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
@@ -1205,15 +1175,13 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxStockaccount;
         private DevExpress.XtraEditors.ComboBoxEdit cbxSalesaccount;
         private DevExpress.XtraEditors.ComboBoxEdit cbxPurchaseAccount;
-        private System.Windows.Forms.RadioButton rbnSeparteConfig;
-        private System.Windows.Forms.RadioButton rbnDefaultconfig;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem13;
         private DevExpress.XtraEditors.SimpleButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControlItem lblUpdate;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.RadioGroup rbnDefaultConfig;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }
