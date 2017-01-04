@@ -14,7 +14,8 @@ namespace IPCAUI.Transaction.List
 {
     public partial class DebitNotesList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
+        DebitNoteBL objBL = new DebitNoteBL();
+
         public DebitNotesList()
         {
           
@@ -23,27 +24,19 @@ namespace IPCAUI.Transaction.List
 
         private void DebitNotes_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<ListModel> lstDebitNotes = objBL.GetAllDebitNote();
+            dvgDebitList.DataSource = lstDebitNotes;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
+                        
+        private void dvgDebitList_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AccountGroupModel lstItems;
+            ListModel lstMasters;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+            lstMasters = (ListModel)gdvDebitDetails.GetRow(gdvDebitDetails.FocusedRowHandle);
+            Transactions.DebitNote.DNId= lstMasters.Id;
+
+            this.Close();
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            AccountGroupModel lstItems;
-
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
     }
 }

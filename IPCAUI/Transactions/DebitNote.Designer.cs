@@ -37,7 +37,7 @@
             this.gdvDebit = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDebit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,7 +58,7 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnDebitList = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.tbxVchNumber = new DevExpress.XtraEditors.TextEdit();
@@ -154,7 +154,7 @@
             this.gdvDebit.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
             this.DC,
-            this.colQty,
+            this.colDebit,
             this.colCredit,
             this.colNarration,
             this.Account});
@@ -196,18 +196,18 @@
             this.DC.VisibleIndex = 1;
             this.DC.Width = 49;
             // 
-            // colQty
+            // colDebit
             // 
-            this.colQty.Caption = "Debit(Rs.)";
-            this.colQty.ColumnEdit = this.repositoryItemTextEdit1;
-            this.colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colQty.FieldName = "Debit";
-            this.colQty.Name = "colQty";
-            this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.colDebit.Caption = "Debit(Rs.)";
+            this.colDebit.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDebit.FieldName = "Debit";
+            this.colDebit.Name = "colDebit";
+            this.colDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
-            this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 3;
-            this.colQty.Width = 59;
+            this.colDebit.Visible = true;
+            this.colDebit.VisibleIndex = 3;
+            this.colDebit.Width = 59;
             // 
             // repositoryItemTextEdit1
             // 
@@ -278,7 +278,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.ActiveGroup = this.navBarGroup5;
             this.navBarControl1.Appearance.GroupHeader.BackColor = System.Drawing.Color.Lavender;
             this.navBarControl1.Appearance.GroupHeader.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.navBarControl1.Appearance.GroupHeader.Options.UseBackColor = true;
@@ -293,7 +293,7 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem4,
-            this.navBarItem7,
+            this.btnDebitList,
             this.navBarItem8,
             this.navBarItem9,
             this.navBarItem10,
@@ -312,7 +312,6 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Voucher Other Details";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem11),
@@ -390,18 +389,20 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "Add/Modify";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnDebitList),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // navBarItem7
+            // btnDebitList
             // 
-            this.navBarItem7.Caption = "List";
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.SmallImage")));
+            this.btnDebitList.Caption = "List";
+            this.btnDebitList.Name = "btnDebitList";
+            this.btnDebitList.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnDebitList.SmallImage")));
+            this.btnDebitList.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnDebitList_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -632,7 +633,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
+        private DevExpress.XtraNavBar.NavBarItem btnDebitList;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem navBarItem9;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
@@ -654,7 +655,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gdvDebit;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
         private DevExpress.XtraGrid.Columns.GridColumn DC;
-        private DevExpress.XtraGrid.Columns.GridColumn colQty;
+        private DevExpress.XtraGrid.Columns.GridColumn colDebit;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn colCredit;
         private DevExpress.XtraGrid.Columns.GridColumn colNarration;
