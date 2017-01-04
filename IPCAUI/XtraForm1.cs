@@ -26,8 +26,8 @@ namespace IPCAUI
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
 
-            lblDay.Text = DateTime.Today.DayOfWeek.ToString();
-            lblDate.Text = DateTime.Now.ToShortDateString();
+            //lblDay.Text = DateTime.Today.DayOfWeek.ToString();
+            //lblDate.Text = DateTime.Now.ToShortDateString();
         }
 
         private void windowsUIView1_QueryControl(object sender, DevExpress.XtraBars.Docking2010.Views.QueryControlEventArgs e)
@@ -179,6 +179,16 @@ namespace IPCAUI
                 default:
                     break;
             }
+        }
+
+        private void tileLicensing_ItemClick(object sender, TileItemEventArgs e)
+        {
+
+        }
+
+        private void navBarControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

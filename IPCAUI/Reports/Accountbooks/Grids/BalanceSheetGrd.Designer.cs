@@ -31,14 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtToDate = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblasset = new System.Windows.Forms.Label();
             this.dgvReport = new System.Windows.Forms.DataGridView();
@@ -50,25 +43,27 @@
             this.Amount1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtpdate = new System.Windows.Forms.DateTimePicker();
-            this.btnclear = new System.Windows.Forms.Button();
-            this.btnsearch = new System.Windows.Forms.Button();
-            this.lbltodate = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblliability = new System.Windows.Forms.Label();
+            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -83,62 +78,11 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // navBarControl1
-            // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
-            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup1});
-            this.navBarControl1.Location = new System.Drawing.Point(12, 12);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 115;
-            this.navBarControl1.Size = new System.Drawing.Size(115, 611);
-            this.navBarControl1.TabIndex = 4;
-            this.navBarControl1.Text = "navBarControl1";
-            // 
-            // navBarGroup1
-            // 
-            this.navBarGroup1.Caption = "navBarGroup1";
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.Name = "navBarGroup1";
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(924, 635);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.navBarControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(119, 615);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 547);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(201, 25);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(50, 20);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.txtToDate);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dgvReport);
-            this.panel1.Controls.Add(this.dtpdate);
-            this.panel1.Controls.Add(this.btnclear);
-            this.panel1.Controls.Add(this.btnsearch);
-            this.panel1.Controls.Add(this.lbltodate);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel4);
@@ -148,29 +92,12 @@
             this.panel1.Size = new System.Drawing.Size(781, 611);
             this.panel1.TabIndex = 5;
             // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.panel1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(119, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(785, 615);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // txtToDate
-            // 
-            this.txtToDate.Location = new System.Drawing.Point(129, 32);
-            this.txtToDate.Margin = new System.Windows.Forms.Padding(5);
-            this.txtToDate.Name = "txtToDate";
-            this.txtToDate.Size = new System.Drawing.Size(223, 21);
-            this.txtToDate.TabIndex = 1219;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DimGray;
             this.panel2.Controls.Add(this.lblasset);
             this.panel2.ForeColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(391, 63);
+            this.panel2.Location = new System.Drawing.Point(391, 15);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(380, 32);
             this.panel2.TabIndex = 1227;
@@ -195,7 +122,6 @@
             this.dgvReport.AllowUserToResizeRows = false;
             this.dgvReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReport.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dgvReport.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.DimGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
@@ -225,14 +151,14 @@
             this.dgvReport.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvReport.EnableHeadersVisualStyles = false;
             this.dgvReport.GridColor = System.Drawing.Color.LightGray;
-            this.dgvReport.Location = new System.Drawing.Point(10, 95);
+            this.dgvReport.Location = new System.Drawing.Point(10, 47);
             this.dgvReport.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.dgvReport.MultiSelect = false;
             this.dgvReport.Name = "dgvReport";
             this.dgvReport.ReadOnly = true;
             this.dgvReport.RowHeadersVisible = false;
             this.dgvReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvReport.Size = new System.Drawing.Size(761, 449);
+            this.dgvReport.Size = new System.Drawing.Size(761, 497);
             this.dgvReport.TabIndex = 1224;
             // 
             // ID2
@@ -289,53 +215,6 @@
             this.GroupId1.ReadOnly = true;
             this.GroupId1.Visible = false;
             // 
-            // dtpdate
-            // 
-            this.dtpdate.CustomFormat = "dd-MMM-yyyy";
-            this.dtpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpdate.Location = new System.Drawing.Point(296, 32);
-            this.dtpdate.Name = "dtpdate";
-            this.dtpdate.Size = new System.Drawing.Size(20, 21);
-            this.dtpdate.TabIndex = 1222;
-            // 
-            // btnclear
-            // 
-            this.btnclear.BackColor = System.Drawing.Color.DimGray;
-            this.btnclear.FlatAppearance.BorderSize = 0;
-            this.btnclear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnclear.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnclear.ForeColor = System.Drawing.Color.White;
-            this.btnclear.Location = new System.Drawing.Point(688, 32);
-            this.btnclear.Name = "btnclear";
-            this.btnclear.Size = new System.Drawing.Size(83, 21);
-            this.btnclear.TabIndex = 1221;
-            this.btnclear.Text = "Clear";
-            this.btnclear.UseVisualStyleBackColor = false;
-            // 
-            // btnsearch
-            // 
-            this.btnsearch.BackColor = System.Drawing.Color.DimGray;
-            this.btnsearch.FlatAppearance.BorderSize = 0;
-            this.btnsearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsearch.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsearch.ForeColor = System.Drawing.Color.White;
-            this.btnsearch.Location = new System.Drawing.Point(585, 32);
-            this.btnsearch.Name = "btnsearch";
-            this.btnsearch.Size = new System.Drawing.Size(83, 21);
-            this.btnsearch.TabIndex = 1220;
-            this.btnsearch.Text = "Search";
-            this.btnsearch.UseVisualStyleBackColor = false;
-            // 
-            // lbltodate
-            // 
-            this.lbltodate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltodate.ForeColor = System.Drawing.Color.Black;
-            this.lbltodate.Location = new System.Drawing.Point(36, 32);
-            this.lbltodate.Name = "lbltodate";
-            this.lbltodate.Size = new System.Drawing.Size(75, 20);
-            this.lbltodate.TabIndex = 1225;
-            this.lbltodate.Text = "To Date";
-            // 
             // btnPrint
             // 
             this.btnPrint.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -363,7 +242,7 @@
             this.panel4.BackColor = System.Drawing.Color.DimGray;
             this.panel4.Controls.Add(this.lblliability);
             this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(10, 63);
+            this.panel4.Location = new System.Drawing.Point(10, 15);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(385, 32);
             this.panel4.TabIndex = 1226;
@@ -380,6 +259,61 @@
             this.lblliability.TabIndex = 1183;
             this.lblliability.Text = "Liability";
             // 
+            // navBarControl1
+            // 
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroup1});
+            this.navBarControl1.Location = new System.Drawing.Point(12, 12);
+            this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 115;
+            this.navBarControl1.Size = new System.Drawing.Size(115, 611);
+            this.navBarControl1.TabIndex = 4;
+            this.navBarControl1.Text = "navBarControl1";
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "navBarGroup1";
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.Name = "navBarGroup1";
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(924, 635);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.navBarControl1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(119, 615);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.panel1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(119, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(785, 615);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 547);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(201, 25);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(50, 20);
+            // 
             // BalanceSheetGrd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,18 +328,17 @@
             this.Load += new System.EventHandler(this.BalanceSheetGrd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,7 +352,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtToDate;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblasset;
         private System.Windows.Forms.DataGridView dgvReport;
@@ -431,10 +363,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID1;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupId1;
-        private System.Windows.Forms.DateTimePicker dtpdate;
-        private System.Windows.Forms.Button btnclear;
-        private System.Windows.Forms.Button btnsearch;
-        private System.Windows.Forms.Label lbltodate;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;

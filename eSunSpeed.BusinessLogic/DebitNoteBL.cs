@@ -27,10 +27,10 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@DNDate", objdebit.DN_Date, System.Data.DbType.DateTime));
 
                 paramCollection.Add(new DBParameter("@DNType", objdebit.Type));
-                paramCollection.Add(new DBParameter("@PDCDate", objdebit.PDCDate, System.Data.DbType.DateTime));
+                
                 paramCollection.Add(new DBParameter("@LongNarration", objdebit.LongNarration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objdebit.TotalCreditAmount));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objdebit.TotalDebitAmount));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
@@ -40,18 +40,10 @@ namespace eSunSpeed.BusinessLogic
 
                 int id = 0;
                 dr.Read();
+
                 id = Convert.ToInt32(dr[0]);
                 SaveDebitAccounts(objdebit.DebitAccountModel, id);
-                //Query = "INSERT INTO Debit_Note([Series],[DN_Date],[VoucherNo],[Type],[PDC_Date]," +
-                //"[CreatedBy]) VALUES " +
-                //"(@Series,@Date,@Voucher_Number,@Type,@PDDate, " +
-                //" @CreatedBy)";
-
-                //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                //{
-                //    SaveDebitAccounts(objdebit.DebitAccountModel);
-                //   debitId=  GetDebitId();                    
-                //}
+                
             }
             catch (Exception ex)
             {
@@ -77,7 +69,7 @@ namespace eSunSpeed.BusinessLogic
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@CreditId", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@DebitId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
                     paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
@@ -89,13 +81,7 @@ namespace eSunSpeed.BusinessLogic
 
                     System.Data.IDataReader dr =
                    _dbHelper.ExecuteDataReader("spInsertDebitDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-                    
-                    //Query = "INSERT INTO Debit_Note_Accounts([Debit_Id],[DC],[Account],[Debit]," +
-                    //"[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    //"(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    //    isSaved = true;
+                                    
                 }
                 catch (Exception ex)
                 {
@@ -106,45 +92,7 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        //public bool SaveProductionBillSundry(List<BillSundry_VoucherModel> lstBS)
-        //{
-        //    string Query = string.Empty;
-        //    bool isSaved = true;
-
-        //    int ParentId = GetContraId();
-
-        //    foreach (BillSundry_VoucherModel bs in lstBS)
-        //    {
-        //        bs.ParentId = ParentId;
-
-        //        try
-        //        {
-        //            DBParameterCollection paramCollection = new DBParameterCollection();
-
-        //            paramCollection.Add(new DBParameter("@PV_ID", bs.ParentId));
-        //            paramCollection.Add(new DBParameter("@Name", bs.BillSundry));
-        //            paramCollection.Add(new DBParameter("@Percentage", Convert.ToDecimal(bs.Percentage)));
-        //            paramCollection.Add(new DBParameter("@Amount", Convert.ToDecimal(bs.Amount)));
-        //            paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
-        //            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-        //            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
-
-        //            Query = "INSERT INTO Trans_Production_BS([TransPVId],[BillSundry],[Percentage]," +
-        //            "[Amount],[TotalAmount],[CreatedBy],[CreatedDate]) VALUES " +
-        //            "(@PV_ID,@Name,@Percentage,@Amount,@TotalAmount,@CreatedBy,@CreatedDate)";
-
-        //            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-        //                isSaved = true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            isSaved = false;
-        //            throw ex;
-        //        }
-        //    }
-        //    return isSaved;
-        //}
-
+        
         public int GetDebitId()
         {
             string Query = "SELECT MAX(Debit_Id) FROM Debit_Note";
@@ -173,7 +121,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Date", objDebit.DN_Date));
                 paramCollection.Add(new DBParameter("@Voucher_Number", objDebit.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Type", objDebit.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objDebit.PDCDate));
+                
                 //paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
                 //paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
 
@@ -271,7 +219,7 @@ namespace eSunSpeed.BusinessLogic
                 objDebit.DN_Date = DataFormat.GetDateTime(dr["CN_Date"]);
                 objDebit.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objDebit.Type = dr["Type"].ToString();
-                objDebit.PDCDate = Convert.ToDateTime(dr["PDCDate"].ToString());
+                
 
                 //SELECT Debit Note Accounts
 
@@ -353,9 +301,9 @@ namespace eSunSpeed.BusinessLogic
 
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.Append("SELECT C.DEBIT_ID, C.DN_DATE, C.VOUCHERNO, C.TYPE, A.ACCOUNT, A.CREDIT FROM DEBIT_NOTE C ");
-            sbQuery.Append("INNER JOIN DEBIT_NOTE_ACCOUNTS A ");
-            sbQuery.Append("ON A.DEBIT_ID = C.DEBIT_ID WHERE A.DC = 'C'; ");
+            sbQuery.Append("SELECT C.DEBIT_ID, C.DN_DATE, C.VOUCHERNO, C.TYPE, A.ACCOUNT, C.TOTALCREDITAMOUNT,C.TOTALDEBITAMOUNT FROM DEBIT_NOTE_MASTER C ");
+            sbQuery.Append("INNER JOIN DEBIT_NOTE_DETAILS A ");
+            sbQuery.Append("ON A.DEBIT_ID = C.DEBIT_ID ");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -368,8 +316,8 @@ namespace eSunSpeed.BusinessLogic
                 objList.Date = Convert.ToDateTime(dr["DN_Date"]);
                 objList.VoucherNo = Convert.ToInt32(dr["VOUCHERNO"]);
                 objList.Type = Convert.ToString(dr["Type"]);
-                objList.Account = Convert.ToString(dr["Account"]);
-                objList.TotalAmt = Convert.ToInt32(dr["CREDIT"]);
+                objList.Account = Convert.ToString(dr["ACCOUNT"]);
+                objList.TotalAmt = Convert.ToInt32(dr["TOTALCREDITAMOUNT"])>0? Convert.ToInt32(dr["TOTALCREDITAMOUNT"]): Convert.ToInt32(dr["TOTALDEBITAMOUNT"]);
                 lstModel.Add(objList);
 
             }
@@ -381,7 +329,7 @@ namespace eSunSpeed.BusinessLogic
             List<DebitNoteModel> lstDebit = new List<DebitNoteModel>();
             DebitNoteModel objDebit;
 
-            string Query = "SELECT * FROM Debit_Note WHERE Debit_Id=" + id;
+            string Query = "SELECT * FROM Debit_Note_Master WHERE Debit_Id=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -393,12 +341,10 @@ namespace eSunSpeed.BusinessLogic
                 objDebit.DN_Date = DataFormat.GetDateTime(dr["DN_Date"]);
                 objDebit.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objDebit.Type = dr["Type"].ToString();
-                if (dr["PDC_Date"].ToString() != "")
-                    objDebit.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
-
+                
                 //SELECT Contra Voucher Accounts
 
-                string itemQuery = "SELECT * FROM Debit_Note_Accounts WHERE Debit_Id=" + objDebit.DN_Id;
+                string itemQuery = "SELECT * FROM Debit_Note_Details WHERE Debit_Id=" + objDebit.DN_Id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
                 objDebit.DebitAccountModel = new List<AccountModel>();

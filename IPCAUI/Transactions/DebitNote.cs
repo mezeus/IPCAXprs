@@ -19,6 +19,8 @@ namespace IPCAUI.Transactions
     public partial class DebitNote : Form
     {
         DebitNoteBL objDNbl = new DebitNoteBL();
+        public static int DNId;
+
         public DebitNote()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace IPCAUI.Transactions
         {
             InitData();
 
+            int dn = DNId;
             // Create an in-place LookupEdit control.
             RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
             riLookup.DataSource = Categories;
@@ -160,45 +163,64 @@ namespace IPCAUI.Transactions
             objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
             objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
-           
-            //objcredit.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            //objcredit.Narration = tbxLogNarration.Text.Trim();
-            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
-            //objPurc.Narration = tbxNarration.Text.Trim();
-            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
-
-            //Bill Number and Due date not captured- check with Ravi if these are required
-
+            objdebit.TotalCreditAmount = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objdebit.TotalDebitAmount = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
 
             //Items
-            AccountModel objacc;
-            List<AccountModel> lstAccounts = new List<AccountModel>();
+            AccountModel objDebit;
+
+            List<AccountModel> lstDebitNotes = new List<AccountModel>();
 
             for (int i = 0; i < gdvDebit.DataRowCount; i++)
             {
                 DataRow row = gdvDebit.GetDataRow(i);
 
-                objacc = new AccountModel();
-                objacc.DC = row["DC"].ToString();
+                objDebit = new AccountModel();
 
-                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
-                //objacc.Unit = row["Unit"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
-                objacc.Narration = row["Narration"].ToString();
-                lstAccounts.Add(objacc);
+                objDebit.DC = row["DC"].ToString();
+
+                objDebit.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+
+                objDebit.Debit = row["Debit"].ToString().Length > 0 ? Convert.ToDecimal(row["Debit"].ToString()) : 0;
+                objDebit.Credit = row["Credit"].ToString().Length>0 ?  Convert.ToDecimal(row["Credit"].ToString()):0;
+
+                objDebit.Narration = row["Narration"].ToString();
+
+                lstDebitNotes.Add(objDebit);
             }
 
-            objdebit.DebitAccountModel = lstAccounts;
+            objdebit.DebitAccountModel = lstDebitNotes;
            
             bool isSuccess = objDNbl.SaveDebitNote(objdebit);
             if (isSuccess)
             {
-                MessageBox.Show("Saved Successfully!");
-                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                // d.ShowDialog();
+                MessageBox.Show("Saved Successfully!");             
             }
+        }
+
+        private void btnDebitList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.DebitNotesList frmList = new Transaction.List.DebitNotesList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+
+            FillDebitNote();
+        }
+        private void FillDebitNote()
+        {
+            List<DebitNoteModel> objMaster = objDNbl.GetDebitNotebyId(DNId);
+
+            tbxVchNumber.Text = objMaster.FirstOrDefault().Voucher_Number.ToString();
+            tbxVoucherSeries.Text = objMaster.FirstOrDefault().Voucher_Series.ToString();
+           // tbxLongNarratin.Text = objMaster.FirstOrDefault().LongNarration.ToString();
+            dtDate.Text = objMaster.FirstOrDefault().DN_Date.ToString();
+
+            foreach(AccountModel acc in objMaster.FirstOrDefault().DebitAccountModel)
+            {
+
+            }
+            
         }
     }
 }
