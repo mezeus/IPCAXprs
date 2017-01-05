@@ -28,8 +28,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CNType", objCredit.Type));
                 paramCollection.Add(new DBParameter("@PDCDate", objCredit.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objCredit.Narration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objCredit.TotalCreditAmt));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objCredit.TotalDebitAmt));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
@@ -135,31 +135,24 @@ namespace eSunSpeed.BusinessLogic
 
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@VoucherNumber", objCredit.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objCredit.Voucher_Series));
-                paramCollection.Add(new DBParameter("@CNDate", objCredit.CN_Date));
-                
-                paramCollection.Add(new DBParameter("@CNType", objCredit.Type));
-                paramCollection.Add(new DBParameter("@PDCDate", objCredit.PDCDate));
+                paramCollection.Add(new DBParameter("@Date", objCredit.CN_Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objCredit.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Type", objCredit.Type));
+                paramCollection.Add(new DBParameter("@PCDate", objCredit.PDCDate,System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Narration", objCredit.Narration));
 
-                paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmt", objCredit.TotalCreditAmt));
+                paramCollection.Add(new DBParameter("@TotalDebitAmt", objCredit.TotalDebitAmt));
 
-                //paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                //paramCollection.Add(new DBParameter("@id", objCredit.CN_Id));
+                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@id", objCredit.CN_Id));
 
-                System.Data.IDataReader dr =
-                   _dbHelper.ExecuteDataReader("spInsertCreditNoteMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-
-                int id = 0;
-                dr.Read();
-                id = Convert.ToInt32(dr[0]);
-
-                //Query = "UPDATE Credit_Note SET [Series]=@Series,[CN_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                //         "[Type]=@Type,[PDC_Date]=@PDDate,[TotalCreditAmt]=@TotalCreditAmt,[TotalDebitAmt]=@TotalDebitAmt,[ModifiedBy]=@ModifiedBy," +
-                //        "[ModifiedDate]=@ModifiedDate " +
-                //        "WHERE Credit_Id=@id";
+                Query = "UPDATE Credit_Note_Master SET Series=@Series,CN_Date=@Date,VoucherNo=@VoucherNumber," +
+                         "Type=@Type,PDC_Date=@PDDate,LongNarration=@Narration,TotalCreditAmt=@TotalCreditAmt,TotalDebitAmt=@TotalDebitAmt,ModifiedBy=@ModifiedBy," +
+                        "ModifiedDate=@ModifiedDate " +
+                        "WHERE Credit_Id=@id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
@@ -180,13 +173,13 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now,System.Data.DbType.DateTime));
                             paramCollection.Add(new DBParameter("@ACT_ID", act.AC_Id));
 
-                            Query = "UPDATE Credit_Note_Accounts SET [DC]=@DC," +
-                            "[Account]=@Account,[Debit]=@Debit,[Credit]=@Credit,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                            "WHERE [AC_Id]=@ACT_ID";
-
+                            Query = "UPDATE Credit_Note_Details SET DC=@DC," +
+                            "Account=@Account,Debit=@Debit,Credit=@Credit,Narration=@Narration,ModifiedBy=@ModifiedBy,ModifiedDate=@ModifiedDate " +
+                            "WHERE AC_Id=@ACT_ID";
+                            
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                             {
                                 isUpdated = true;
@@ -196,7 +189,7 @@ namespace eSunSpeed.BusinessLogic
                         {
                             paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@CN_ID", (act.ParentId)));
+                            paramCollection.Add(new DBParameter("@CN_ID", (objCredit.CN_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
                             paramCollection.Add(new DBParameter("@Debit", act.Debit));
@@ -204,11 +197,11 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now,System.Data.DbType.DateTime));
 
 
-                            Query = "INSERT INTO Credit_Note_Accounts([Credit_Id],[DC],[Account],[Debit],[Credit]," +
-                            "[Narration],[CreatedBy],[CreatedDate]) VALUES " +
+                            Query = "INSERT INTO Credit_Note_Details(Credit_Id,DC,Account,Debit,Credit," +
+                            "Narration,CreatedBy,CreatedDate) VALUES " +
                             "(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0) { };                                
@@ -220,7 +213,7 @@ namespace eSunSpeed.BusinessLogic
             catch (Exception ex)
             {
                 isUpdated = false;
-                 throw ex;
+               //  throw ex;
             }
 
             return isUpdated;
@@ -277,8 +270,8 @@ namespace eSunSpeed.BusinessLogic
             StringBuilder sbQuery = new StringBuilder();
             string whereClause = string.Empty;
 
-            sbQuery.Append("SELECT C.CREDIT_ID, C.CN_DATE, C.VOUCHERNO, C.TYPE, A.ACCOUNT, A.CREDIT FROM CREDIT_NOTE C ");
-            sbQuery.Append("INNER JOIN CREDIT_NOTE_ACCOUNTS A ");
+            sbQuery.Append("SELECT C.CREDIT_ID, C.CN_DATE, C.VOUCHERNO, C.TYPE, A.ACCOUNT, A.CREDIT FROM CREDIT_NOTE_MASTER C ");
+            sbQuery.Append("INNER JOIN CREDIT_NOTE_DETAILS A ");
             sbQuery.Append("ON A.CREDIT_ID = C.CREDIT_ID");
             
                                     
@@ -295,6 +288,7 @@ namespace eSunSpeed.BusinessLogic
                 objList.Type = Convert.ToString(dr["Type"]);
                 objList.Account = Convert.ToString(dr["Account"]);
                 objList.TotalAmt = Convert.ToInt32(dr["CREDIT"]);
+
                 lstModel.Add(objList);
 
             }
@@ -306,7 +300,7 @@ namespace eSunSpeed.BusinessLogic
             List<CreditNoteModel> lstCredit = new List<CreditNoteModel>();
             CreditNoteModel objcredit;
 
-            string Query = "SELECT * FROM Credit_Note WHERE Credit_Id=" + id;
+            string Query = "SELECT * FROM Credit_Note_Master WHERE Credit_Id=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -323,7 +317,7 @@ namespace eSunSpeed.BusinessLogic
 
                 //SELECT Credit Note Accounts
 
-                string itemQuery = "SELECT * FROM Credit_Note_Accounts WHERE Credit_Id=" + objcredit.CN_Id;
+                string itemQuery = "SELECT * FROM Credit_Note_Details WHERE Credit_Id=" + objcredit.CN_Id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
                 objcredit.CreditAccountModel = new List<AccountModel>();

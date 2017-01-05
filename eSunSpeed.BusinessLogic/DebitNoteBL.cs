@@ -202,7 +202,7 @@ namespace eSunSpeed.BusinessLogic
 
 
 
-        public List<DebitNoteModel> GetAllDebitsNote()
+        public List<DebitNoteModel> GetAllDebitsNote_old()
         {
             List<DebitNoteModel> lstDebit = new List<DebitNoteModel>();
             DebitNoteModel objDebit;
