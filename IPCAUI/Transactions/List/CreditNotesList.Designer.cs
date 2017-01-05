@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Transaction.List
 {
-    partial class CreditNotes
+    partial class CreditNotesList
     {
         /// <summary>
         /// Required designer variable.
@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dvgAccList = new DevExpress.XtraGrid.GridControl();
-            this.gdvAccGroupDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgCreditList = new DevExpress.XtraGrid.GridControl();
+            this.gdvCreditDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrimary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnderGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,10 +65,12 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgCreditList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvCreditDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -96,7 +98,7 @@
             this.layoutControl1.Controls.Add(this.label3);
             this.layoutControl1.Controls.Add(this.label2);
             this.layoutControl1.Controls.Add(this.label1);
-            this.layoutControl1.Controls.Add(this.dvgAccList);
+            this.layoutControl1.Controls.Add(this.dvgCreditList);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -155,20 +157,20 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Voucher Series:";
             // 
-            // dvgAccList
+            // dvgCreditList
             // 
-            this.dvgAccList.Location = new System.Drawing.Point(47, 53);
-            this.dvgAccList.MainView = this.gdvAccGroupDetails;
-            this.dvgAccList.Name = "dvgAccList";
-            this.dvgAccList.Size = new System.Drawing.Size(782, 415);
-            this.dvgAccList.TabIndex = 9;
-            this.dvgAccList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvAccGroupDetails});
+            this.dvgCreditList.Location = new System.Drawing.Point(47, 53);
+            this.dvgCreditList.MainView = this.gdvCreditDetails;
+            this.dvgCreditList.Name = "dvgCreditList";
+            this.dvgCreditList.Size = new System.Drawing.Size(782, 415);
+            this.dvgCreditList.TabIndex = 9;
+            this.dvgCreditList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvCreditDetails});
             // 
-            // gdvAccGroupDetails
+            // gdvCreditDetails
             // 
-            this.gdvAccGroupDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gdvAccGroupDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gdvCreditDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.gdvCreditDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colPrimary,
             this.colUnderGroup,
@@ -177,13 +179,15 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
-            this.gdvAccGroupDetails.GridControl = this.dvgAccList;
-            this.gdvAccGroupDetails.Name = "gdvAccGroupDetails";
-            this.gdvAccGroupDetails.OptionsBehavior.ReadOnly = true;
-            this.gdvAccGroupDetails.OptionsView.ShowGroupPanel = false;
-            this.gdvAccGroupDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
-            this.gdvAccGroupDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7});
+            this.gdvCreditDetails.GridControl = this.dvgCreditList;
+            this.gdvCreditDetails.Name = "gdvCreditDetails";
+            this.gdvCreditDetails.OptionsBehavior.ReadOnly = true;
+            this.gdvCreditDetails.OptionsView.ShowGroupPanel = false;
+            this.gdvCreditDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvCreditDetails_KeyPress);
+            this.gdvCreditDetails.DoubleClick += new System.EventHandler(this.gdvCreditDetails_DoubleClick);
             // 
             // colName
             // 
@@ -195,7 +199,8 @@
             // 
             // colPrimary
             // 
-            this.colPrimary.Caption = "VoucherBillNo";
+            this.colPrimary.Caption = "Voucher/BillNo";
+            this.colPrimary.FieldName = "VoucherNo";
             this.colPrimary.Name = "colPrimary";
             this.colPrimary.Visible = true;
             this.colPrimary.VisibleIndex = 1;
@@ -204,6 +209,7 @@
             // colUnderGroup
             // 
             this.colUnderGroup.Caption = "Account";
+            this.colUnderGroup.FieldName = "Account";
             this.colUnderGroup.Name = "colUnderGroup";
             this.colUnderGroup.Visible = true;
             this.colUnderGroup.VisibleIndex = 2;
@@ -218,6 +224,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Type";
+            this.gridColumn1.FieldName = "Type";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
@@ -246,6 +253,7 @@
             // gridColumn5
             // 
             this.gridColumn5.Caption = "TotalAmount";
+            this.gridColumn5.FieldName = "TotalAmt";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
@@ -352,7 +360,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgAccList;
+            this.layoutControlItem3.Control = this.dvgCreditList;
             this.layoutControlItem3.Location = new System.Drawing.Point(35, 41);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(786, 419);
@@ -373,8 +381,8 @@
             this.simpleLabelItem1.Location = new System.Drawing.Point(346, 0);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
             this.simpleLabelItem1.Size = new System.Drawing.Size(343, 17);
-            this.simpleLabelItem1.Text = "List of CreditNotes";
-            this.simpleLabelItem1.TextSize = new System.Drawing.Size(89, 13);
+            this.simpleLabelItem1.Text = "List of CreditNotesList";
+            this.simpleLabelItem1.TextSize = new System.Drawing.Size(105, 13);
             // 
             // emptySpaceItem1
             // 
@@ -446,20 +454,36 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // CreditNotes
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "ParentId";
+            this.gridColumn6.FieldName = "ParentId";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "AC_Id";
+            this.gridColumn7.FieldName = "AC_Id";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            // 
+            // CreditNotesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "CreditNotes";
+            this.Name = "CreditNotesList";
             this.Text = "Transactions List";
-            this.Load += new System.EventHandler(this.CreditNotes_Load);
+            this.Load += new System.EventHandler(this.CreditNotesList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgCreditList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvCreditDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -492,8 +516,8 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraGrid.GridControl dvgAccList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gdvAccGroupDetails;
+        private DevExpress.XtraGrid.GridControl dvgCreditList;
+        private DevExpress.XtraGrid.Views.Grid.GridView gdvCreditDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colPrimary;
@@ -520,5 +544,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

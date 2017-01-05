@@ -20,6 +20,8 @@ namespace IPCAUI.Transactions
     public partial class CreditNote : Form
     {
         CreditNoteBL objBl = new CreditNoteBL();
+        public static int CNId;
+
         public CreditNote()
         {
             InitializeComponent();
@@ -169,7 +171,10 @@ namespace IPCAUI.Transactions
             objcredit.CN_Date = Convert.ToDateTime(dtDate.Text);
             objcredit.Type = tbxType.Text.Trim();
             objcredit.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objcredit.Narration = tbxLogNarration.Text.Trim();  
+            objcredit.Narration = tbxLogNarration.Text.Trim();
+
+            objcredit.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objcredit.TotalDebitAmt= Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
 
             //Credit Note Account details
             AccountModel objacc;
@@ -182,10 +187,11 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
 
-                objacc.Account = row["Account"].ToString(); 
-                //objacc.Unit = row["Unit"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
+                objacc.Account = row["Account"].ToString();
+
+                objacc.Debit = row["Debit"].ToString().Length > 0 ? Convert.ToDecimal(row["Debit"].ToString()) : 0;
+                objacc.Credit = row["Credit"].ToString().Length > 0 ? Convert.ToDecimal(row["Credit"].ToString()) : 0;
+
                 objacc.Narration = row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
@@ -196,9 +202,90 @@ namespace IPCAUI.Transactions
             bool isSuccess = objBl.SaveCreditNote(objcredit);
             if (isSuccess)
             {
+                MessageBox.Show("Saved Successfully!");               
+            }
+        }
+
+        private void btnList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.CreditNotesList frmList = new Transaction.List.CreditNotesList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+
+            FillCreditNote();
+        }
+
+        private void FillCreditNote()
+        {
+            btnUpdate.Visible = true;
+            btnSave.Visible = false;
+
+            List<CreditNoteModel> objMaster = objBl.GetCreditNotebyId(CNId);
+
+            tbxVoucherNumber.Text = objMaster.FirstOrDefault().Voucher_Number.ToString();
+            tbxVoucherSeries.Text = objMaster.FirstOrDefault().Voucher_Series.ToString();
+
+            //Need to map the correct values
+            // tbxLongNarratin.Text = objMaster.FirstOrDefault().LongNarration.ToString();
+
+            dtDate.Text = objMaster.FirstOrDefault().CN_Date.ToString();
+
+            creditDsBindingSource.DataSource = objMaster.FirstOrDefault().CreditAccountModel;
+            
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            CreditNoteModel objCredit = new CreditNoteModel();
+
+            if (tbxVoucherNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objCredit.CN_Id = CNId;
+            objCredit.Voucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
+            objCredit.CN_Date = Convert.ToDateTime(dtDate.Text);
+            objCredit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objCredit.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objCredit.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+
+            //Items
+            AccountModel objAcc;
+
+            List<AccountModel> lstCreditNotes = new List<AccountModel>();
+
+            for (int i = 0; i < gdvCredit.DataRowCount; i++)
+            {
+                AccountModel row;
+                row = gdvCredit.GetRow(i) as AccountModel;
+
+                objAcc = new AccountModel();
+
+                objAcc.ParentId = Convert.ToInt32(row.ParentId);
+                objAcc.AC_Id = Convert.ToInt32(row.AC_Id);
+
+                objAcc.DC = row.DC.ToString();
+
+                objAcc.Account = row.Account.ToString(); /*Convert.ToDecimal(row["Qty"]);*/
+
+                objAcc.Debit = row.Debit.ToString().Length > 0 ? Convert.ToDecimal(row.Debit.ToString()) : 0;
+                objAcc.Credit = row.Credit.ToString().Length > 0 ? Convert.ToDecimal(row.Credit.ToString()) : 0;
+
+                //objDebit.Narration = row.Narration.ToString();
+
+                lstCreditNotes.Add(objAcc);
+            }
+
+            objCredit.CreditAccountModel = lstCreditNotes;
+
+            bool isSuccess = objBl.UpdateCreditNote(objCredit);
+            if (isSuccess)
+            {
                 MessageBox.Show("Saved Successfully!");
-                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                // d.ShowDialog();
             }
         }
     }

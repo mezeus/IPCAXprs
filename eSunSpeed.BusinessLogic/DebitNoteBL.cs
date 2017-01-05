@@ -118,20 +118,20 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@Series", objDebit.Voucher_Series));
-                paramCollection.Add(new DBParameter("@Date", objDebit.DN_Date));
+                paramCollection.Add(new DBParameter("@Date", objDebit.DN_Date, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Voucher_Number", objDebit.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Type", objDebit.Type));
-                
-                //paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
-                //paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
+
+                paramCollection.Add(new DBParameter("@TotalCreditAmt", objDebit.TotalCreditAmount));
+                paramCollection.Add(new DBParameter("@TotalDebitAmt", objDebit.TotalDebitAmount));
 
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@id", objDebit.DN_Id));
 
-                Query = "UPDATE Debit_Note SET [Series]=@Series,[DN_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                         "[Type]=@Type,[PDC_Date]=@PDDate,[ModifiedBy]=@ModifiedBy," +
-                        "[ModifiedDate]=@ModifiedDate " +
+                Query = "UPDATE Debit_Note_Master SET Series=@Series,DN_Date=@Date,VoucherNo=@Voucher_Number," +
+                         "Type=@Type,TotalCreditAmount=@TotalCreditAmt,TotalDebitAmount=@TotalDebitAmt,ModifiedBy=@ModifiedBy," +
+                        "ModifiedDate=@ModifiedDate " +
                         "WHERE Debit_Id=@id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -153,12 +153,12 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                             paramCollection.Add(new DBParameter("@ACT_ID", act.AC_Id));
 
-                            Query = "UPDATE Debit_Note_Accounts SET [DC]=@DC," +
-                            "[Account]=@Account,[Debit]=@Debit,[Credit]=@Credit,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                            "WHERE [AC_Id]=@ACT_ID";
+                            Query = "UPDATE Debit_Note_Details SET DC=@DC," +
+                            "Account=@Account,Debit=@Debit,Credit=@Credit,Narration=@Narration,ModifiedBy=@ModifiedBy,ModifiedDate=@ModifiedDate " +
+                            "WHERE AC_Id=@ACT_ID";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                             {
@@ -169,7 +169,7 @@ namespace eSunSpeed.BusinessLogic
                         {
                             paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@DN_ID", (act.ParentId)));
+                            paramCollection.Add(new DBParameter("@DN_ID", (objDebit.DN_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
                             paramCollection.Add(new DBParameter("@Debit", act.Debit));
@@ -177,11 +177,11 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
 
 
-                            Query = "INSERT INTO Debit_Note_Accounts([Debit_Id],[DC],[Account],[Debit],[Credit]," +
-                            "[Narration],[CreatedBy],[CreatedDate]) VALUES " +
+                            Query = "INSERT INTO Debit_Note_Details(Debit_Id,DC,Account,Debit,Credit," +
+                            "Narration,CreatedBy,CreatedDate) VALUES " +
                             "(@DN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0) { };
@@ -193,7 +193,7 @@ namespace eSunSpeed.BusinessLogic
             catch (Exception ex)
             {
                 isUpdated = false;
-                throw ex;
+              //  throw ex;
             }
 
             return isUpdated;
@@ -202,7 +202,7 @@ namespace eSunSpeed.BusinessLogic
 
 
 
-        public List<DebitNoteModel> GetAllDebitsNote()
+        public List<DebitNoteModel> GetAllDebitsNote_old()
         {
             List<DebitNoteModel> lstDebit = new List<DebitNoteModel>();
             DebitNoteModel objDebit;

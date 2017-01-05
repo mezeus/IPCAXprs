@@ -12,10 +12,10 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class CreditNotes : Form
+    public partial class CreditNotesList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public CreditNotes()
+        CreditNoteBL objBL = new CreditNoteBL();
+        public CreditNotesList()
         {
           
             InitializeComponent();
@@ -23,27 +23,32 @@ namespace IPCAUI.Transaction.List
 
         private void CreditNotes_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+         
 
         }
                 
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
+        private void CreditNotesList_Load(object sender, EventArgs e)
         {
-            AccountGroupModel lstItems;
-
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+            List<ListModel> lstCredits = objBL.GetAllCreditNote();
+            dvgCreditList.DataSource = lstCredits;
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void gdvCreditDetails_DoubleClick(object sender, EventArgs e)
         {
-            AccountGroupModel lstItems;
+            //AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
+            //lstItems = (AccountGroupModel)gdvCreditDetails.GetRow(gdvCreditDetails.FocusedRowHandle);
+            //string cellValue = lstItems.GroupId.ToString();
+        }
 
-              this.Close();            
-        }        
+        private void gdvCreditDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ListModel lstMasters;
+
+            lstMasters = (ListModel)gdvCreditDetails.GetRow(gdvCreditDetails.FocusedRowHandle);
+            Transactions.CreditNote.CNId = lstMasters.Id;
+
+            this.Close();
+        }
     }
 }
