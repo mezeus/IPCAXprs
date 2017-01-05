@@ -65,10 +65,11 @@ namespace IPCAUI.Administration
             btnSave.Visible = false;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-            FillAccountInfo();
+            FillMaterialGroupInfo();
         }
-        private void FillAccountInfo()
+        private void FillMaterialGroupInfo()
         {
             MaterialCentreGroupMasterModel objMaster = MatObj.GetAllMaterialGroupsById(MCGId);
 
@@ -82,7 +83,7 @@ namespace IPCAUI.Administration
         private void Materialcentergroup_Load(object sender, EventArgs e)
         {
             cbxPrimarygroup.SelectedIndex = 1;
-            
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -162,6 +163,31 @@ namespace IPCAUI.Administration
         private void tbxGroupName_TextChanged(object sender, EventArgs e)
         {
             tbxAliasname.Text = tbxGroupName.Text;
+        }
+        public void ClearControls()
+        {
+            tbxGroupName.Text = string.Empty;
+            tbxAliasname.Text = string.Empty;
+            cbxPrimarygroup.SelectedIndex = 1;
+            MCGId = 0;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = MatObj.DeleteMaterialGroupById(MCGId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearControls();
+            }
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ClearControls();
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
     }
 }

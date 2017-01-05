@@ -59,13 +59,14 @@ namespace IPCAUI.Administration
             btnSave.Visible = false;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             cbxMainunit.Focus();
 
-            FillAccountInfo();
+            FillUnitConversionInfo();
 
         }
 
-        private void FillAccountInfo()
+        private void FillUnitConversionInfo()
         {
             UnitConversionModel objMaster = objunc.GetListofUnitConversionsById(UCId);
 
@@ -84,6 +85,7 @@ namespace IPCAUI.Administration
         {
             LodaUnits();
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
         public void LodaUnits()
         {
@@ -131,6 +133,43 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Main Unit & Sub Unit Are Not Same");
                 cbxSubunit.Focus();
             }
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ClearControls();
+            UCId = 0;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objunc.DeleteUnitConversionById(UCId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearControls();
+            }
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void cbxMainunit_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }

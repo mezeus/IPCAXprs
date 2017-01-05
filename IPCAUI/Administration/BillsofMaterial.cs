@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace IPCAUI.Administration
 {
@@ -79,11 +80,46 @@ namespace IPCAUI.Administration
             objBMmodl.ItemUnit = cbxUnit.SelectedItem.ToString();
             objBMmodl.Expenses = Convert.ToDecimal(tbxExpensespcs.Text.Trim());
             objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxItemgenerated.SelectedItem.ToString().Equals("Yes") ? true : false);
-         //   objBMmodl.SourceMC = string.Empty;
+
+           // objBMmodl.SourceMC = string.Empty;
             objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString().Equals("Yes") ? true : false);
             objBMmodl.AppMc = string.Empty;
 
+            //Item consumed
+            List<BillsofMaterialDetailsModel> lstItemConsumed = new List<BillsofMaterialDetailsModel>();
+            BillsofMaterialDetailsModel objConsumed;
+            for (int i = 0; i < dvgMatConsuDetails.DataRowCount; i++)
+            {
+               DataRow row = dvgMatConsuDetails.GetDataRow(i);
+
+                objConsumed = new BillsofMaterialDetailsModel();
+                objConsumed.ItemName = row["ItemName"].ToString();
+                objConsumed.Qty = Convert.ToDecimal(row["Qty"].ToString());
+                objConsumed.Unit = row["Unit"].ToString();
+
+                lstItemConsumed.Add(objConsumed);
+                //objBMmodl.MaterialConsumed.Add(objConsumed);
+            }
+            objBMmodl.MaterialConsumed = lstItemConsumed;
+            
+            //Item generated
+            List<BillsofMaterialDetailsModel> lstItemGenerated = new List<BillsofMaterialDetailsModel>();
+            BillsofMaterialDetailsModel objGenerated;
+            for (int i = 0; i < dvgProductGeneratedDet.DataRowCount; i++)
+            {
+                DataRow row = dvgProductGeneratedDet.GetDataRow(i);
+
+                objGenerated = new BillsofMaterialDetailsModel();
+                objGenerated.ItemName = row["ItemName"].ToString();
+                objGenerated.Qty = Convert.ToDecimal(row["Qty"].ToString());
+                objGenerated.Unit = row["Unit"].ToString();
+
+                lstItemGenerated.Add(objGenerated);
+                //objBMmodl.MaterialGenerated.Add(objGenerated);
+            }
+            objBMmodl.MaterialGenerated = lstItemGenerated;
             bool isSuccess = objbal.SaveBOM(objBMmodl);
+
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
@@ -99,26 +135,72 @@ namespace IPCAUI.Administration
                     MessageBox.Show("Master Name Can Not Be Blank!");
                     this.ActiveControl = tbxBomName;
                     return;
-
-
                 }
             }
         }
 
         private void BillsofMaterial_Load(object sender, EventArgs e)
         {
-            
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ItemName");
-            dt.Columns.Add("Qty");
-            dt.Columns.Add("Unit");
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            DataTable dtgenerate = new DataTable();
+            dtgenerate.Columns.Add("ItemName");
+            dtgenerate.Columns.Add("Qty");
+            dtgenerate.Columns.Add("Unit");
 
-            dvgRawmat.DataSource = dt;
+            dvgProductGenerate.DataSource = dtgenerate;
 
-           // tbxUnit.SelectedIndex = 0;
-            //cbxItemgenerated.SelectedIndex = 0;
-            //cbxItemconsumed.SelectedIndex= 0;
+            DataTable dtconsumed = new DataTable();
+            dtconsumed.Columns.Add("ItemName");
+            dtconsumed.Columns.Add("Qty");
+            dtconsumed.Columns.Add("Unit");
+
+            dvgMatConsumed.DataSource = dtconsumed;
+
+           
             cbxItemproduce.SelectedIndex = 0;
+        }
+
+        private void dvgRawmatDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void dvgProductGeneratedDet_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void dvgMatConsuDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
         }
     }
 }

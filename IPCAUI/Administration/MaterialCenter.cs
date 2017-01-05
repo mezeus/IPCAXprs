@@ -31,11 +31,12 @@ namespace IPCAUI.Administration
             btnSave.Visible = false;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-            FillAccountInfo();
+            FillMaterialCenterInfo();
         }
 
-        private void FillAccountInfo()
+        private void FillMaterialCenterInfo()
         {
             MaterialCentreMasterModel objMaterial = objmatcenbl.GetAllMaterialsById(MCId);
 
@@ -60,7 +61,7 @@ namespace IPCAUI.Administration
         {
             if (tbxGroupName.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Group Name can not be blank!");
+                MessageBox.Show("Master Name can not be blank!");
                 return;
             }
             MaterialCentreMasterModel objGroup = new MaterialCentreMasterModel();
@@ -105,6 +106,7 @@ namespace IPCAUI.Administration
             cbxreflectstockinbalancesheet.SelectedIndex = 0;
             LoadMaterialGroup();
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
         public void LoadMaterialGroup()
         {
@@ -192,6 +194,16 @@ namespace IPCAUI.Administration
                 //    return;
                 //}
                 //e.Handled = true; // Mark the event as handled
+            }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objmatcenbl.DeleteMaterialCenterById(MCId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearControls();
             }
         }
     }

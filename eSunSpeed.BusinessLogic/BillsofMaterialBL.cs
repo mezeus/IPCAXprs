@@ -43,7 +43,11 @@ namespace eSunSpeed.BusinessLogic
                     "VALUES(@BOMName,@Itemtoproduce,@Quantity,@ItemUnit,@Expenses,@SpecifyMCGenerated,@SpecifyDefaultMCforItemConsumed,@AppMc,@SNo,@ItemName,@Qty,@Unit,@TotalofConsumedqtyUnit,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                {
+                    SaveRawMaterialConsumed(objBOM.MaterialConsumed);
+                    SaveMaterialGenerated(objBOM.MaterialGenerated);
                     isSaved = true;
+                }
             }
             catch (Exception ex)
             {
@@ -53,6 +57,76 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
+        //Save Item Raw Material Consumed
+        public bool SaveRawMaterialConsumed(List<BillsofMaterialDetailsModel> lstConsumed)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            int ParentId = GetBillofMaterialId();
+            foreach (BillsofMaterialDetailsModel objConsumed in lstConsumed)
+            {
+                try
+                {
+                    objConsumed.id = ParentId;
+
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Consumed_Id",ParentId));
+                    paramCollection.Add(new DBParameter("@Consumed_Item", objConsumed.ItemName));
+                    paramCollection.Add(new DBParameter("@Consumed_Qty", objConsumed.Qty));
+                    paramCollection.Add(new DBParameter("@Consumed_Unit", objConsumed.Unit));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    Query = "INSERT INTO bom_consumed_details(`Bom_Id`,`ItemName`,`Qty`,`Unit`,`CreatedBy`)" +
+                            "VALUES(@Consumed_Id,@Consumed_Item,@Consumed_Qty,@Consumed_Unit,@CreatedBy)";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                        isSaved = true;
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+
+        //Save Item Raw Material Generated
+        public bool SaveMaterialGenerated(List<BillsofMaterialDetailsModel> lstGenerate)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            int ParentId = GetBillofMaterialId();
+            foreach (BillsofMaterialDetailsModel objGenerate in lstGenerate)
+            {
+                try
+                {
+                    objGenerate.id = ParentId;
+
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Generate_Id", ParentId));
+                    paramCollection.Add(new DBParameter("@Generate_Item", objGenerate.ItemName));
+                    paramCollection.Add(new DBParameter("@Generate_Qty", objGenerate.Qty));
+                    paramCollection.Add(new DBParameter("@Generate_Unit", objGenerate.Unit));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    Query = "INSERT INTO bom_generate_details(`Bom_Id`,`ItemName`,`Qty`,`Unit`,`CreatedBy`)" +
+                            "VALUES(@Generate_Id,@Generate_Item,@Generate_Qty,@Generate_Unit,@CreatedBy)";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                        isSaved = true;
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+
         //updatebom
         public bool UpdateBOM(eSunSpeedDomain.BillofMaterialModel objBOM)
         {
@@ -195,6 +269,15 @@ namespace eSunSpeed.BusinessLogic
             return null;
         }
 
+        //Get Parent Id Need To Inscrt Grids
+        public int GetBillofMaterialId()
+        {
+            string Query = "SELECT MAX(Bom_Id) FROM billsofmaterial";
+
+            int id = Convert.ToInt32(_dbHelper.ExecuteScalar(Query));
+
+            return id;
+        }
     }
 }
     

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace eSunSpeedDomain
 {
-    public class BillofMaterialModel
+    public class BillofMaterialModel:BillsofMaterialDetailsModel
     {
         public int Bom_Id { get; set; }
         public string BOMName { get; set; }
@@ -21,12 +21,14 @@ namespace eSunSpeedDomain
         public bool SpecifyDefaultMCforItemConsumed { get; set; }// if this Enable RightSideMcComboBoxWillShow
         public string AppMc { get; set; }
         
-        // Raw Material Consumed Grid
-        public int SNo { get; set; }
-        public string ItemName { get; set; }
-        public decimal Qty { get; set; }
-        public decimal Unit { get; set; }
-        public decimal TotalofConsumedqtyUnit { get; set; }
+        public List<BillsofMaterialDetailsModel> MaterialConsumed { get; set; }
+        public List<BillsofMaterialDetailsModel> MaterialGenerated { get; set; }
+        //// Raw Material Consumed Grid
+        //public int SNo { get; set; }
+        //public string ItemName { get; set; }
+        //public decimal Qty { get; set; }
+        //public decimal Unit { get; set; }
+        //public decimal TotalofConsumedqtyUnit { get; set; }
         // Raw Product Generated Grid= Raw Material Consumed Grid Same
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }

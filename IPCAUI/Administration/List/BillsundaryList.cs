@@ -24,11 +24,21 @@ namespace IPCAUI.Administration.List
         private void BillsundaryList_Load(object sender, EventArgs e)
         {
             List<eSunSpeedDomain.BillSundryMasterModel> lstbillsundary = objbillbl.GetAllBillSundry();
-            dvgBillSunadtList.DataSource = lstbillsundary;
+            dvgBillSundryList.DataSource = lstbillsundary;
         }
 
         private void dvgBillSunadtList_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void dvgBillSundryDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            BillSundryMasterModel lstBillsundry;
+
+            lstBillsundry = (BillSundryMasterModel)dvgBillSundryDetails.GetRow(dvgBillSundryDetails.FocusedRowHandle);
+            Billsundary.Bill_Id = lstBillsundry.BS_Id;
+
             this.Close();
         }
     }

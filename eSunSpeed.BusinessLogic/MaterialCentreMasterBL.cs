@@ -156,7 +156,7 @@ namespace eSunSpeed.BusinessLogic
             }
             return objMat;
         }
-        #region Delete MaterialCenter       
+        #region Delete MaterialCenter Multiple       
         public bool DeleteMaterialCenter(List<int> lstIds)
         {
             string Query = string.Empty;
@@ -187,6 +187,23 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
         #endregion
-
+        //Delete Material Center By Id
+        public bool DeleteMaterialCenterById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM materialcentremaster WHERE MC_Id=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
     }
 }

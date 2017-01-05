@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeedDomain;
 using eSunSpeed.BusinessLogic;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
+
 
 namespace IPCAUI.Administration
 {
@@ -171,6 +174,20 @@ namespace IPCAUI.Administration
                 lblCalculatedtax.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblPerAmt.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblTaxonMrpmode.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+        }
+
+        private void dvgTaxrateDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
             }
         }
     }

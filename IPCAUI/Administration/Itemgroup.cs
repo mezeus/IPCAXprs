@@ -69,14 +69,14 @@ namespace IPCAUI.Administration
             btnSave.Visible = false;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             tbxGroupName.Focus();
-            tbxGroupName.ReadOnly = true;
-
-            FillAccountInfo();
+            //tbxGroupName.ReadOnly = true;
+            FillItemGroupInfo();
 
         }
 
-        private void FillAccountInfo()
+        private void FillItemGroupInfo()
         {
             ItemGroupMasterModel objIGM = objItemBL.GetAllItemGroupById(ItemgrpId);
 
@@ -96,10 +96,8 @@ namespace IPCAUI.Administration
         private void Itemgroup_Load(object sender, EventArgs e)
         {
             cbxPrimarygroup.SelectedIndex = 1;
-            //cbxPurchaseAccount.SelectedIndex = 0;
-            //cbxSalesaccount.SelectedIndex = 0;
-            //cbxStockaccount.SelectedIndex = 0;
-            //cbxUndergroup.SelectedIndex = 0;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -196,6 +194,35 @@ namespace IPCAUI.Administration
         private void cbxStockaccount_Enter(object sender, EventArgs e)
         {
             cbxStockaccount.SelectedIndex = 0;
+        }
+        public void ClearFormValues()
+        {
+            tbxGroupName.Text = string.Empty;
+            tbxAliasname.Text = string.Empty;
+            tbxParameters.Text = string.Empty;
+            cbxPrimarygroup.SelectedIndex = 1;
+            cbxStockaccount.SelectedItem = "";
+            cbxSalesaccount.SelectedItem = "";
+            cbxPurchaseAccount.SelectedItem = "";
+
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objItemBL.DeleteItemGroupById(ItemgrpId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearFormValues();
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

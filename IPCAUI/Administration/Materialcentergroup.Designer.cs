@@ -35,7 +35,7 @@
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.ListMaterialCengrp = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navbtnAccountsettings = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
@@ -104,6 +104,9 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -132,10 +135,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.btnQuit);
@@ -160,9 +166,9 @@
             // btnUpdate
             // 
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(364, 126);
+            this.btnUpdate.Location = new System.Drawing.Point(347, 126);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(76, 22);
+            this.btnUpdate.Size = new System.Drawing.Size(77, 22);
             this.btnUpdate.StyleController = this.layoutControl1;
             this.btnUpdate.TabIndex = 61;
             this.btnUpdate.Text = "Update";
@@ -189,7 +195,7 @@
             this.navBarItem6,
             this.ListMaterialCengrp,
             this.navBarItem8,
-            this.navBarItem9,
+            this.btnNewEntery,
             this.navbtnAccountsettings,
             this.navBarItem11,
             this.GeneralAccountScreen,
@@ -237,7 +243,7 @@
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.ListMaterialCengrp),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
@@ -254,11 +260,12 @@
             this.navBarItem8.Name = "navBarItem8";
             this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
             // 
-            // navBarItem9
+            // btnNewEntery
             // 
-            this.navBarItem9.Caption = "New Entry";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
+            this.btnNewEntery.Caption = "New Entry";
+            this.btnNewEntery.Name = "btnNewEntery";
+            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
+            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -530,9 +537,9 @@
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(476, 126);
+            this.btnQuit.Location = new System.Drawing.Point(542, 126);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(68, 22);
+            this.btnQuit.Size = new System.Drawing.Size(77, 22);
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
@@ -540,9 +547,9 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(259, 126);
+            this.btnSave.Location = new System.Drawing.Point(242, 126);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 22);
+            this.btnSave.Size = new System.Drawing.Size(77, 22);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
@@ -661,7 +668,9 @@
             this.layoutControlItem11,
             this.emptySpaceItem2,
             this.emptySpaceItem8,
-            this.lblUpdate});
+            this.lblUpdate,
+            this.lblDelete,
+            this.emptySpaceItem9});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(710, 318);
@@ -742,11 +751,11 @@
             // lblSave
             // 
             this.lblSave.Control = this.btnSave;
-            this.lblSave.Location = new System.Drawing.Point(247, 114);
-            this.lblSave.MaxSize = new System.Drawing.Size(84, 26);
-            this.lblSave.MinSize = new System.Drawing.Size(84, 26);
+            this.lblSave.Location = new System.Drawing.Point(230, 114);
+            this.lblSave.MaxSize = new System.Drawing.Size(81, 26);
+            this.lblSave.MinSize = new System.Drawing.Size(81, 26);
             this.lblSave.Name = "lblSave";
-            this.lblSave.Size = new System.Drawing.Size(84, 26);
+            this.lblSave.Size = new System.Drawing.Size(81, 26);
             this.lblSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblSave.TextSize = new System.Drawing.Size(0, 0);
             this.lblSave.TextVisible = false;
@@ -754,11 +763,11 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnQuit;
-            this.layoutControlItem9.Location = new System.Drawing.Point(464, 114);
-            this.layoutControlItem9.MaxSize = new System.Drawing.Size(72, 26);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(72, 26);
+            this.layoutControlItem9.Location = new System.Drawing.Point(530, 114);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(81, 26);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(81, 26);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(72, 26);
+            this.layoutControlItem9.Size = new System.Drawing.Size(81, 26);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
@@ -766,11 +775,11 @@
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(432, 114);
-            this.emptySpaceItem5.MaxSize = new System.Drawing.Size(32, 26);
-            this.emptySpaceItem5.MinSize = new System.Drawing.Size(32, 26);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(520, 114);
+            this.emptySpaceItem5.MaxSize = new System.Drawing.Size(10, 26);
+            this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 26);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(32, 26);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(10, 26);
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -778,19 +787,22 @@
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
             this.emptySpaceItem6.Location = new System.Drawing.Point(109, 114);
-            this.emptySpaceItem6.MaxSize = new System.Drawing.Size(138, 26);
-            this.emptySpaceItem6.MinSize = new System.Drawing.Size(138, 26);
+            this.emptySpaceItem6.MaxSize = new System.Drawing.Size(121, 26);
+            this.emptySpaceItem6.MinSize = new System.Drawing.Size(121, 26);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(138, 26);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(121, 26);
             this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(536, 114);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(611, 114);
+            this.emptySpaceItem7.MaxSize = new System.Drawing.Size(10, 26);
+            this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 26);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(85, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(10, 26);
+            this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
@@ -825,25 +837,59 @@
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(331, 114);
-            this.emptySpaceItem8.MaxSize = new System.Drawing.Size(21, 26);
-            this.emptySpaceItem8.MinSize = new System.Drawing.Size(21, 26);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(311, 114);
+            this.emptySpaceItem8.MaxSize = new System.Drawing.Size(24, 26);
+            this.emptySpaceItem8.MinSize = new System.Drawing.Size(24, 26);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(21, 26);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(24, 26);
             this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblUpdate
             // 
             this.lblUpdate.Control = this.btnUpdate;
-            this.lblUpdate.Location = new System.Drawing.Point(352, 114);
-            this.lblUpdate.MaxSize = new System.Drawing.Size(80, 26);
-            this.lblUpdate.MinSize = new System.Drawing.Size(80, 26);
+            this.lblUpdate.Location = new System.Drawing.Point(335, 114);
+            this.lblUpdate.MaxSize = new System.Drawing.Size(81, 26);
+            this.lblUpdate.MinSize = new System.Drawing.Size(81, 26);
             this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(80, 26);
+            this.lblUpdate.Size = new System.Drawing.Size(81, 26);
             this.lblUpdate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpdate.TextVisible = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(452, 126);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(76, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 62;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // lblDelete
+            // 
+            this.lblDelete.Control = this.btnDelete;
+            this.lblDelete.Location = new System.Drawing.Point(440, 114);
+            this.lblDelete.MaxSize = new System.Drawing.Size(80, 26);
+            this.lblDelete.MinSize = new System.Drawing.Size(80, 26);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(80, 26);
+            this.lblDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lblDelete.TextSize = new System.Drawing.Size(0, 0);
+            this.lblDelete.TextVisible = false;
+            // 
+            // emptySpaceItem9
+            // 
+            this.emptySpaceItem9.AllowHotTrack = false;
+            this.emptySpaceItem9.Location = new System.Drawing.Point(416, 114);
+            this.emptySpaceItem9.MaxSize = new System.Drawing.Size(24, 26);
+            this.emptySpaceItem9.MinSize = new System.Drawing.Size(24, 26);
+            this.emptySpaceItem9.Name = "emptySpaceItem9";
+            this.emptySpaceItem9.Size = new System.Drawing.Size(24, 26);
+            this.emptySpaceItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Materialcentergroup
             // 
@@ -884,6 +930,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -956,7 +1004,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
         private DevExpress.XtraNavBar.NavBarItem ListMaterialCengrp;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem6;
@@ -965,5 +1013,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private DevExpress.XtraEditors.SimpleButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControlItem lblUpdate;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraLayout.LayoutControlItem lblDelete;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
     }
 }

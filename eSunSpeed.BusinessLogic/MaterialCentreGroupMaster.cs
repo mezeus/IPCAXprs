@@ -121,7 +121,7 @@ namespace eSunSpeed.BusinessLogic
             return objMCG;
         }
 
-        #region Delete Material Group
+        #region Delete Material Group Multiple
 
         public bool DeleteMaterialGroup(List<int> lstIds)
         {
@@ -153,6 +153,24 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
         #endregion
+        //Delete Material Group By Id
+        public bool DeleteMaterialGroupById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM materialcentregroupmaster WHERE MCG_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
     }
 
 

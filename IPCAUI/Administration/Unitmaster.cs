@@ -28,14 +28,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Unit Name can not be blank!");
                 return;
             }
-
-            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-
             UnitMasterModel objModel = new UnitMasterModel();
 
             objModel.UnitName = tbxUnitName.Text.Trim();
@@ -47,9 +39,7 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfuly!");
-                tbxUnitName.Text = string.Empty;
-                tbxPrintname.Text = string.Empty;
-                tbxUnitnameExcise.Text = string.Empty;
+                ClearControls();
                 tbxUnitName.Focus();
             }
         }
@@ -62,12 +52,13 @@ namespace IPCAUI.Administration
             frmList.ShowDialog();
             btnSave.Visible = false;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
-            FillAccountInfo();
+            FillUnitMasterInfo();
         }
 
-        private void FillAccountInfo()
+        private void FillUnitMasterInfo()
         {
             UnitMasterModel objunit = objunm.GetListofUnitsById(UMId);
 
@@ -107,7 +98,8 @@ namespace IPCAUI.Administration
 
         private void Unitmaster_Load(object sender, EventArgs e)
         {
-           
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -117,14 +109,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Unit Name can not be blank!");
                 return;
             }
-
-            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-
             UnitMasterModel objModel = new UnitMasterModel();
 
             objModel.UnitName = tbxUnitName.Text.Trim();
@@ -147,14 +131,31 @@ namespace IPCAUI.Administration
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            ClearControls();
+            UMId = 0;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+        }
+        public void ClearControls()
+        {
             tbxUnitName.Text = string.Empty;
             tbxPrintname.Text = string.Empty;
             tbxUnitnameExcise.Text = string.Empty;
         }
-
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objunm.DeleteUnitMasterById(UMId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearControls();
+            }
         }
     }
 }

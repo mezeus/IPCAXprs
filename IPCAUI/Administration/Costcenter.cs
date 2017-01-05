@@ -69,6 +69,7 @@ namespace IPCAUI.Administration
             frmList.ShowDialog();
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             tbxName.Focus();
 
             FillCostCenterInfo();
@@ -86,12 +87,18 @@ namespace IPCAUI.Administration
             cbxDrCr.SelectedItem = objMaster.DrCr;
 
         }
-
+        public void ClearControls()
+        {
+            tbxName.Text = string.Empty;
+            tbxAliasname.Text = string.Empty;
+            tbxOpbal.Text = "0.00";
+        }
         private void Costcenter_Load(object sender, EventArgs e)
         {
             cbxDrCr.SelectedIndex = 0;
             cbxPrimarygroup.SelectedIndex = 0;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -111,6 +118,17 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Update Successfully!");
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //bool isDelete = objccm.DeletCostCentre(costId);
+            //if (isDelete)
+            //{
+            //    MessageBox.Show("Delete Successfully!");
+            //    ClearControls();
+            //    costId = 0;
+            //}
         }
     }
 }

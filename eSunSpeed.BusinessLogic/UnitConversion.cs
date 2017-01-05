@@ -166,5 +166,24 @@ namespace eSunSpeed.BusinessLogic
 
             return obj;
         }
+
+        //Delete Unit Conversion By Id
+        public bool DeleteUnitConversionById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM unitconversion WHERE ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
     }
 }

@@ -167,5 +167,23 @@ namespace eSunSpeed.BusinessLogic
 
             return isUpdated;
         }
+        //Delete Single Item Group
+        public bool DeleteItemGroupById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM itemgroupmaster WHERE IGM_Id=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
     }
 }

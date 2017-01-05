@@ -109,6 +109,24 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
         #endregion
+        //Delete Unitmaster By Id
+        public bool DeleteUnitMasterById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM UnitMaster WHERE UM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
 
         #region Get List of Units
         public List<UnitMasterModel> GetListofUnits()

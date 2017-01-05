@@ -153,11 +153,13 @@ namespace IPCAUI.Administration
             cbxMaintainStock.SelectedIndex = 0;
             cbxPickitemforsizing.SelectedIndex = 0;
             cbxSpecifyDefaultVendor.SelectedIndex = 0;
-
+            
             cbxEnablePurcDiscStruct.SelectedIndex = 0;
             cbxEnableSalesDiscStruct.SelectedIndex = 0;
             cbxEnableSalesMarkupStruct.SelectedIndex = 0;
             tbxStockValMethod.SelectedIndex = 0;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
             //Unit Combobox Load
             List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
@@ -184,10 +186,16 @@ namespace IPCAUI.Administration
         }
         private void ItemMasterNew_Load(object sender, EventArgs e)
         {
-
+            
             LoadDefaultValues();
         }
+        public void ClearFormValues()
+        {
+            tbxName.Text = string.Empty;
+            tbxPrintname.Text = string.Empty;
+            tbxAlias.Text = string.Empty;
 
+        }
         private void ItemList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.ItemmasterList frmList = new Administration.List.ItemmasterList();
@@ -197,6 +205,7 @@ namespace IPCAUI.Administration
             
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             tbxName.Focus();
 
             FillItemMasterInfo();
@@ -237,26 +246,26 @@ namespace IPCAUI.Administration
             tbxItemdesc1.Text = objItem.ItemDescription1;
             tbxItemdesc2.Text = objItem.ItemDescription2;
             tbxItemdesc3.Text = objItem.ItemDescription3;
-            //tbxItemdesc4 objItem.ItemDescription4 = dr["ITEM_DESCRIPTION4"].ToString();
+            tbxItemdesc4.Text = objItem.ItemDescription4;
 
-            //objItem.SetCriticalLevel = Convert.ToBoolean(dr["ITEM_SETCRITICALLEVEL"].ToString() == "1" ? true : false);
+            cbxCreticallevel.SelectedItem = (objItem.SetCriticalLevel)? "Y" : "N";
 
-            //objItem.MaintainRG23D = Convert.ToBoolean(dr["ITEM_MAINTAINRG23D"].ToString() == "1" ? true : false);
-            //objItem.TariffHeading = dr["ITEM_TARIFHEADING"].ToString();
-            //objItem.SerialNumberwiseDetails = Convert.ToBoolean(dr["ITEM_SERIALWISEDETAILS"].ToString() == "1" ? true : false);
-            //objItem.MRPWiseDetails = Convert.ToBoolean(dr["ITEM_MRPWISEDETAILS"].ToString() == "1" ? true : false);
-            //objItem.ParameterizedDetails = Convert.ToBoolean(dr["ITEM_PARAMETERIZEDDETAILS"].ToString() == "1" ? true : false);
-            //objItem.BatchwiseDetails = Convert.ToBoolean(dr["ITEM_BATCHWISEDETAILS"].ToString() == "1" ? true : false);
-            //objItem.ExpDateRequired = Convert.ToBoolean(dr["ITEM_EXPDATEREQUIRED"].ToString() == "1" ? true : false);
-            //objItem.ExpiryDays = Convert.ToInt32(dr["ITEM_EXPIRYDAYS"]);
-            //objItem.SalesAccount = dr["ITEM_SALESACCOUNT"].ToString();
-            //objItem.PurcAccount = dr["ITEM_PURCACCOUNT"].ToString();
-            //objItem.SpecifyDefaultMC = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTMC"]);
-            //objItem.FreezeMCforItem = Convert.ToBoolean(dr["ITEM_FREEZEMCFORITEM"]);
-            //objItem.TotalNumberofAuthors = Convert.ToInt32(dr["ITEM_TOTALNUMBEROFAUTHORS"]);
-            //objItem.DontMaintainStockBal = Convert.ToBoolean(dr["ITEM_MAINTAINSTOCKBAL"]);
-            //objItem.PickItemSizefromDescription = Convert.ToBoolean(dr["ITEM_PICKITEMSIZEFROMDESC"]);
-            //objItem.SpecifyDefaultVendor = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTVENDOR"]);
+            cbxMaintainRG.SelectedItem = (objItem.MaintainRG23D)?"Y":"N";
+            tbxTariffHeading.Text = objItem.TariffHeading;
+            cbxSrlWiseDetails.SelectedItem = (objItem.SerialNumberwiseDetails)?"Y":"N";
+            cbxMRPWiseDetails.SelectedItem =(objItem.MRPWiseDetails) ? "Y" : "N";
+            cbxParamDetails.SelectedItem = (objItem.ParameterizedDetails) ?"Y" : "N";
+            cbxBatchWiseDetails.SelectedItem= (objItem.BatchwiseDetails) ? "Y" : "N";
+            cbxEnableExpDate.SelectedItem = (objItem.ExpDateRequired)?"Y":"N";
+            tbxExpDays.Text = objItem.ExpiryDays.ToString();
+            cbxSalesAccount.SelectedItem = objItem.SalesAccount.ToString();
+            cbxPurchAccount.SelectedItem = objItem.PurcAccount.ToString();
+            cbxSpecifyDefaultMC.SelectedItem = (objItem.SpecifyDefaultMC)?"Y":"N";
+            cbxFreezeMC.SelectedItem = (objItem.FreezeMCforItem)?"Y":"N";
+            tbxAuthors.Text = objItem.TotalNumberofAuthors.ToString();
+            cbxMaintainStock.SelectedItem = (objItem.DontMaintainStockBal)?"Y":"N";
+            cbxPickitemforsizing.SelectedItem =(objItem.PickItemSizefromDescription)?"Y":"N";
+            cbxSpecifyDefaultVendor.SelectedItem = (objItem.SpecifyDefaultVendor)?"Y":"N";
         }
 
 
@@ -293,6 +302,123 @@ namespace IPCAUI.Administration
         private void cbxTaxCat_Enter(object sender, EventArgs e)
         {
             cbxTaxCat.SelectedIndex = 0;
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            ItemMasterModel objModel = new ItemMasterModel();
+
+            objModel.Name = tbxName.Text.Trim();
+            objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
+            objModel.Alias = tbxAlias.Text == null ? string.Empty : tbxAlias.Text.Trim();
+            objModel.Group = cbxGroup.SelectedItem.ToString();
+            objModel.Company = cbxGroup.SelectedItem.ToString();
+
+            objModel.MainUnit = cbxMainUnit.SelectedItem.ToString();
+            objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
+            objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
+
+            objModel.Unit = cbxUnit.SelectedItem.ToString();
+            objModel.OpStockValue = Convert.ToDouble(tbxOpStock.Text.Trim());
+            objModel.Rate = Convert.ToDouble(tbxRate.Text.Trim());
+            objModel.Per = tbxPer.SelectedItem.ToString();
+            objModel.Value = Convert.ToDouble(tbxValue.Text.Trim());
+
+            objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.SalePrice = Convert.ToDouble(tbxSalesPrice.Text.Trim());
+            objModel.Purprice = Convert.ToDouble(tbxPurcPrice.Text.Trim());
+            objModel.MRP = Convert.ToDouble(tbxMRP.Text.Trim());
+            objModel.MinSalePrice = Convert.ToDouble(tbxMinSalesPrice.Text.Trim());
+            objModel.SelfValuePrice = Convert.ToDouble(tbxSelfValPrice.Text.Trim());
+            objModel.SaleDiscount = Convert.ToDouble(tbxSaleDiscount.Text.Trim());
+            objModel.PurDiscount = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
+            objModel.SpecifySaleDiscStructure = cbxEnableSalesDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.SpecifyPurDiscStructure = cbxEnablePurcDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
+
+            objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
+            objModel.ItemDescription1 = tbxItemdesc1.Text == null ? string.Empty : tbxItemdesc1.Text.Trim();
+            objModel.ItemDescription2 = tbxItemdesc2.Text.Trim() == null ? string.Empty : tbxItemdesc2.Text.Trim();
+            objModel.ItemDescription3 = tbxItemdesc3.Text.Trim() == null ? string.Empty : tbxItemdesc3.Text.Trim();
+            objModel.ItemDescription4 = tbxItemdesc4.Text.Trim() == null ? string.Empty : tbxItemdesc4.Text.Trim();
+
+            objModel.SetCriticalLevel = cbxCreticallevel.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.MaintainRG23D = cbxMaintainRG.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.TariffHeading = tbxTariffHeading.Text == null ? string.Empty : tbxTariffHeading.Text.Trim();
+            objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ParameterizedDetails = cbxParamDetails.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.MRPWiseDetails = cbxMRPWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.BatchwiseDetails = cbxBatchWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim());
+            objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
+            objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
+            objModel.DontMaintainStockBal = cbxMaintainStock.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.SpecifyDefaultMC = cbxSpecifyDefaultMC.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.FreezeMCforItem = cbxFreezeMC.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.TotalNumberofAuthors = Convert.ToInt32(tbxAuthors.Text.Trim());
+            objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.SpecifyDefaultVendor = cbxSpecifyDefaultVendor.SelectedItem.ToString() == "Y" ? true : false;
+
+            //objModel.SaleCompoundDiscount = Convert.ToDouble(tbxSalesCompDisc.Text.Trim());
+            //objModel.DontMaintainStockBal = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
+
+
+            if (objModel.SpecifySaleDiscStructure)
+                //lblSalesDisAmt.Visible = true;
+
+
+                if (objModel.SpecifySaleDiscStructure)
+                    //lblPurDiscAmt.Visible = true;
+
+                    //objModel.SaleMarkup = tbxSalesMarkup.Text.Trim();
+                    //objModel.PurMarkup = tbxPurchMarkup.Text.Trim();
+                    //objModel.SaleCompMarkup = tbxSalesCompMarkup.Text.Trim();
+                    //objModel.PurCompMarkup = tbxPurchCompMarkup.Text.Trim();
+
+                    //objModel.SpecifySaleMarkupStruct = cbxEnableSalesMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
+                    //objModel.SpecifyPurMarkupStruct = cbxEnablePurchMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
+                    //objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
+                    //objModel.TaxonMRP = tbxMRP.SelectedItem.ToString() == "Y" ? true : false;
+                    //objModel.TaxType = cbxTaxCat.SelectedItem.ToString();
+
+                    //objModel.ServiceTaxRate = Convert.ToDouble(tbxServiceTaxRate.Text.Trim());
+                    //objModel.RateofTax_Local = Convert.ToDouble(tbxLocalTax.Text.Trim());
+                    //objModel.RateofTax_Central = Convert.ToDouble(tbxCentralTax.Text.Trim());
+                    //objModel.HSNCode = tbxHSNCode.Text.Trim();
+                    objModel.ItemId = Item_Id;
+                    objModel.CreatedBy = "Admin";
+
+            bool isSuccess = objIMBL.UpdateItemMaster(objModel);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objIMBL.DeleteItemMasterById(Item_Id);
+            if(isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearFormValues();
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
