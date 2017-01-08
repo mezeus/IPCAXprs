@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Transaction.List
 {
-    partial class JournalVouchers
+    partial class JournalVouchersList
     {
         /// <summary>
         /// Required designer variable.
@@ -34,8 +34,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dvgAccList = new DevExpress.XtraGrid.GridControl();
-            this.gdvAccGroupDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgJournalList = new DevExpress.XtraGrid.GridControl();
+            this.dvgJournalListDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrimary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnderGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,8 +64,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgJournalList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgJournalListDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -91,7 +91,7 @@
             this.layoutControl1.Controls.Add(this.label4);
             this.layoutControl1.Controls.Add(this.label3);
             this.layoutControl1.Controls.Add(this.label2);
-            this.layoutControl1.Controls.Add(this.dvgAccList);
+            this.layoutControl1.Controls.Add(this.dvgJournalList);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -142,20 +142,20 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "label2";
             // 
-            // dvgAccList
+            // dvgJournalList
             // 
-            this.dvgAccList.Location = new System.Drawing.Point(47, 53);
-            this.dvgAccList.MainView = this.gdvAccGroupDetails;
-            this.dvgAccList.Name = "dvgAccList";
-            this.dvgAccList.Size = new System.Drawing.Size(782, 415);
-            this.dvgAccList.TabIndex = 9;
-            this.dvgAccList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvAccGroupDetails});
+            this.dvgJournalList.Location = new System.Drawing.Point(47, 53);
+            this.dvgJournalList.MainView = this.dvgJournalListDetails;
+            this.dvgJournalList.Name = "dvgJournalList";
+            this.dvgJournalList.Size = new System.Drawing.Size(782, 415);
+            this.dvgJournalList.TabIndex = 9;
+            this.dvgJournalList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgJournalListDetails});
             // 
-            // gdvAccGroupDetails
+            // dvgJournalListDetails
             // 
-            this.gdvAccGroupDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gdvAccGroupDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgJournalListDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.dvgJournalListDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colPrimary,
             this.colUnderGroup,
@@ -164,12 +164,12 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4});
-            this.gdvAccGroupDetails.GridControl = this.dvgAccList;
-            this.gdvAccGroupDetails.Name = "gdvAccGroupDetails";
-            this.gdvAccGroupDetails.OptionsBehavior.ReadOnly = true;
-            this.gdvAccGroupDetails.OptionsView.ShowGroupPanel = false;
-            this.gdvAccGroupDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
-            this.gdvAccGroupDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
+            this.dvgJournalListDetails.GridControl = this.dvgJournalList;
+            this.dvgJournalListDetails.Name = "dvgJournalListDetails";
+            this.dvgJournalListDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgJournalListDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgJournalListDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
+            this.dvgJournalListDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
             // 
             // colName
             // 
@@ -181,7 +181,8 @@
             // 
             // colPrimary
             // 
-            this.colPrimary.Caption = "VchBillNo";
+            this.colPrimary.Caption = "Vch/BillNo";
+            this.colPrimary.FieldName = "VoucherNo";
             this.colPrimary.Name = "colPrimary";
             this.colPrimary.Visible = true;
             this.colPrimary.VisibleIndex = 1;
@@ -335,7 +336,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgAccList;
+            this.layoutControlItem3.Control = this.dvgJournalList;
             this.layoutControlItem3.Location = new System.Drawing.Point(35, 41);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(786, 419);
@@ -420,20 +421,20 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // JournalVouchers
+            // JournalVouchersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "JournalVouchers";
-            this.Text = "Transactions List";
-            this.Load += new System.EventHandler(this.JournalVouchers_Load);
+            this.Name = "JournalVouchersList";
+            this.Text = "Journal List";
+            this.Load += new System.EventHandler(this.JournalVouchersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgJournalList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgJournalListDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -465,8 +466,8 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraGrid.GridControl dvgAccList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gdvAccGroupDetails;
+        private DevExpress.XtraGrid.GridControl dvgJournalList;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgJournalListDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colPrimary;

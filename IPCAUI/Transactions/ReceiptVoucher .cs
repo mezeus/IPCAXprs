@@ -19,6 +19,7 @@ namespace IPCAUI.Transactions
     public partial class ReceiptVoucher : Form
     {
         RecieptVoucherBL objRecBL = new RecieptVoucherBL();
+        DataTable dt = new DataTable();
         public static int Recpt_Id = 0;
         public ReceiptVoucher()
         {
@@ -32,13 +33,15 @@ namespace IPCAUI.Transactions
 
         private void ReceiptVoucher_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+           
             dt.Columns.Add("S.No");
             dt.Columns.Add("DC");
             dt.Columns.Add("Account");
             dt.Columns.Add("Debit");
             dt.Columns.Add("Credit");
             dt.Columns.Add("Narration");
+            dt.Columns.Add("ParentId");
+            dt.Columns.Add("Ac_Id");
             gdvMainReceipt.DataSource = dt;
             InitData();
             Models.AccountLookup acc = new Models.AccountLookup();
@@ -168,7 +171,7 @@ namespace IPCAUI.Transactions
             objRecipt.RV_Date = Convert.ToDateTime(dtDate.Text);
             objRecipt.Type = tbxType.Text.Trim();
             objRecipt.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objRecipt.LongNarration = tbxLongNarration.Text.Trim()==null?string.Empty:tbxLongNarration.Text.Trim();
+            objRecipt.LongNarration = tbxLongNarration.Text.Trim()==string.Empty?string.Empty:tbxLongNarration.Text.Trim();
             objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
             objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
 
@@ -183,9 +186,9 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
-                objacc.Narration = row["Narration"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0" : row["Debit"]);
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"]);
+                objacc.Narration = row["Narration"].ToString() == string.Empty ? string.Empty : row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
             objRecipt.RecieptAccountModel = lstAccounts;
@@ -226,16 +229,16 @@ namespace IPCAUI.Transactions
 
             for (int i = 0; i < gdvReceipt.DataRowCount; i++)
             {
-                AccountModel row;
-                row = gdvReceipt.GetRow(i) as AccountModel;
+                DataRow row = gdvReceipt.GetDataRow(i);
 
                 objacc = new AccountModel();
-                objacc.AC_Id = Convert.ToInt32(row.AC_Id.ToString());
-                objacc.DC = row.DC.ToString();
-                objacc.Account = row.Account.ToString();
-                objacc.Debit = Convert.ToDecimal(row.Debit.ToString());
-                objacc.Credit = Convert.ToDecimal(row.Credit.ToString());
-                objacc.Narration = row.Narration.ToString();
+                objacc.ParentId = Convert.ToInt32(row["ParentId"].ToString()==string.Empty?"0": row["ParentId"]);
+                objacc.AC_Id = Convert.ToInt32(row["Ac_Id"].ToString() == string.Empty ? "0" : row["Ac_Id"]);
+                objacc.DC = row["DC"].ToString();
+                objacc.Account = row["Account"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()== string.Empty ? "0" : row["Debit"]);
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"]);
+                objacc.Narration = row["Narration"].ToString() == string.Empty ?string.Empty : row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
             objRecipt.RecieptAccountModel = lstAccounts;
@@ -244,6 +247,19 @@ namespace IPCAUI.Transactions
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
+                Transaction.List.ReceiptVouchersList frmList = new Transaction.List.ReceiptVouchersList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+
+                if (Recpt_Id != 0)
+                {
+                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    tbxVoucherSeries.Focus();
+                    FillRecieptVoucherInfo();
+                }
             }
         }
 
@@ -276,9 +292,67 @@ namespace IPCAUI.Transactions
             //objReciept.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);
             //objReciept.TotalDebitAmt = Convert.ToDecimal(dr["TotalDebitAmt"]);
 
+            dt.Rows.Clear();
 
-            gdvMainReceipt.DataSource = objReciept.FirstOrDefault().RecieptAccountModel;
+            DataRow dr;
+
+             foreach(AccountModel objmod in objReciept.FirstOrDefault().RecieptAccountModel)
+            {
+                 dr = dt.NewRow();
+
+                dr["DC"] = objmod.DC;
+                dr["Account"] = objmod.Account;
+                dr["Debit"] = objmod.Debit;
+                dr["Credit"] = objmod.Credit;
+                dr["Narration"] = objmod.Narration;
+                dr["ParentId"]= objmod.ParentId;
+                dr["Ac_Id"] = objmod.AC_Id;
+                dt.Rows.Add(dr);
+            }
+
+            gdvMainReceipt.DataSource = dt;
            
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objRecBL.DeleteRecieptVoucher(Recpt_Id);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                ClearFormValues();
+                Transaction.List.PaymentVouchersList frmList = new Transaction.List.PaymentVouchersList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                if (Recpt_Id != 0)
+                {
+                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    tbxVoucherSeries.Focus();
+                    FillRecieptVoucherInfo();
+                }
+            }
+        }
+        public void ClearFormValues()
+        {
+            tbxLongNarration.Text = string.Empty;
+            tbxType.Text = string.Empty;
+            tbxVchNumber.Text = string.Empty;
+            dtDate.Text = string.Empty;
+            dtPDCDate.Text = string.Empty;
+            tbxVoucherSeries.Text = string.Empty;
+            Recpt_Id = 0;
+            dt.Rows.Clear();
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ClearFormValues();
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
     }
 }

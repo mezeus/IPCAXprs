@@ -18,6 +18,8 @@ namespace eSunSpeedDomain
         public string Party { get; set; }
         public string MatCenter { get; set; }
         public string LongNarration { get; set; }
+        public decimal TotalCreditAmt { get; set; }
+        public decimal TotalDebitAmt { get; set; }
 
         public bool IsDeleted { get; set; }
 

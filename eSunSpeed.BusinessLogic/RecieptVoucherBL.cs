@@ -250,15 +250,17 @@ namespace eSunSpeed.BusinessLogic
         //Delete RecieptVoucherModel
         public bool DeleteRecieptVoucher(int id)
         {
-            bool isDelete = true;
+            bool isDelete = false;
             try
             {
-                DeleteRecieptAccounts(id);
-                string Query = "DELETE * FROM Reciept_Voucher WHERE Reciept_Id=" + id;
+                if(DeleteRecieptAccounts(id));
+                {
+                    string Query = "DELETE FROM `Reciept_Voucher_Master` WHERE `Reciept_Id`=" + id;
 
-                if (_dbHelper.ExecuteNonQuery(Query) > 0)
-                                  
-                    isDelete = true;
+                    if (_dbHelper.ExecuteNonQuery(Query) > 0)
+
+                        isDelete = true;
+                }              
             }
             catch (Exception ex)
             {
@@ -270,10 +272,10 @@ namespace eSunSpeed.BusinessLogic
 
         public bool DeleteRecieptAccounts(int id)
         {
-            bool isDelete = true;
+            bool isDelete = false;
             try
             {
-                string Query = "DELETE * FROM Reciept_Voucher_Accounts WHERE Reciept_Id=" + id;
+                string Query = "DELETE  FROM `Reciept_Voucher_Details` WHERE `Reciept_Id`=" + id;
 
                 if (_dbHelper.ExecuteNonQuery(Query) > 0)
                     isDelete = true;

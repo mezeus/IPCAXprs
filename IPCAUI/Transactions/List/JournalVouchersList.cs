@@ -12,19 +12,19 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class JournalVouchers : Form
+    public partial class JournalVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public JournalVouchers()
+        JournalVoucherModelBL objJournalBl = new JournalVoucherModelBL();
+        public JournalVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void JournalVouchers_Load(object sender, EventArgs e)
+        private void JournalVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<ListModel> lstJournal = objJournalBl.GetAllJournalVoucher();
+            dvgJournalList.DataSource = lstJournal;
 
         }
                 
@@ -32,7 +32,7 @@ namespace IPCAUI.Transaction.List
         {
             AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
+            lstItems = (AccountGroupModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
             string cellValue = lstItems.GroupId.ToString();
         }
     
@@ -40,7 +40,7 @@ namespace IPCAUI.Transaction.List
         {
             AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
+            lstItems = (AccountGroupModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
           //  Accountgroup.groupId = lstItems.GroupId;
 
               this.Close();            

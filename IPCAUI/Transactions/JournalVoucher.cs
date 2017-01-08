@@ -19,6 +19,8 @@ namespace IPCAUI.Transactions
     public partial class JournalVoucher : Form
     {
         JournalVoucherModelBL objJVbal = new JournalVoucherModelBL();
+        DataTable dt = new DataTable();
+        public static int Journl_Id = 0; 
         public JournalVoucher()
         {
             InitializeComponent();
@@ -40,6 +42,15 @@ namespace IPCAUI.Transactions
         
         private void JournalVoucher_Load(object sender, EventArgs e)
         {
+            dt.Columns.Add("S.No");
+            dt.Columns.Add("DC");
+            dt.Columns.Add("Account");
+            dt.Columns.Add("Debit");
+            dt.Columns.Add("Credit");
+            dt.Columns.Add("Narration");
+            dt.Columns.Add("ParentId");
+            dt.Columns.Add("Ac_Id");
+            dvgJournalMain.DataSource = dt;
             Models.AccountLookup acc = new Models.AccountLookup();
 
             //gdvJournal.DataSource = DataSets.JournalDs.;
@@ -69,8 +80,8 @@ namespace IPCAUI.Transactions
 
             // Assign the in-place LookupEdit control to the grid's CategoryID column.
             // Note that the data types of the "ID" and "CategoryID" fields match.
-            gdvJournal.Columns["Account"].ColumnEdit = riLookup;
-            gdvJournal.BestFitColumns();
+            gdvJournalDetails.Columns["Account"].ColumnEdit = riLookup;
+            gdvJournalDetails.BestFitColumns();
 
             //Series Lookup Edit
             SeriesLookup objSeries = new SeriesLookup();
@@ -79,7 +90,7 @@ namespace IPCAUI.Transactions
 
             RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
             riDCLookup.DataSource = new string[] { "D", "C" };
-            gdvJournal.Columns["DC"].ColumnEdit = riDCLookup;
+            gdvJournalDetails.Columns["DC"].ColumnEdit = riDCLookup;
 
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             riDCLookup.AutoSearchColumnIndex = 1;
@@ -106,8 +117,8 @@ namespace IPCAUI.Transactions
         {
             if (e.FocusedColumn.FieldName == "Account")
             {
-                gdvJournal.ShowEditor();
-                ((LookUpEdit)gdvJournal.ActiveEditor).ShowPopup();
+                gdvJournalDetails.ShowEditor();
+                ((LookUpEdit)gdvJournalDetails.ActiveEditor).ShowPopup();
             }
         }
 
@@ -121,31 +132,29 @@ namespace IPCAUI.Transactions
                 return;
             }
             objJVmodel.Voucher_Series = tbxVoucherSeries.Text.Trim();
-            objJVmodel.Voucher_Number = Convert.ToInt32(tbxVchNo.Text.Trim());
             objJVmodel.JV_Date = Convert.ToDateTime(dtDate.Text);
-            objJVmodel.Type = tbxType.Text.Trim();
+            objJVmodel.Type = tbxType.Text.Trim()==null?string.Empty:tbxType.Text.Trim();
+            objJVmodel.Voucher_Number = Convert.ToInt32(tbxVchNo.Text.Trim());
             objJVmodel.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objJVmodel.LongNarration = tbxLongNarration.Text.Trim();
-            
-            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+            objJVmodel.LongNarration = tbxLongNarration.Text.Trim() == null ? string.Empty : tbxLongNarration.Text.Trim();
+            objJVmodel.TotalCreditAmt= Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objJVmodel.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
 
-            //Accounts Grid
+            //Journal details
             AccountModel objacc;
             List<AccountModel> lstAccounts = new List<AccountModel>();
 
-            for (int i = 0; i < gdvJournal.DataRowCount; i++)
+            for (int i = 0; i < gdvJournalDetails.DataRowCount; i++)
             {
-                DataRow row = gdvJournal.GetDataRow(i);
+                DataRow row = gdvJournalDetails.GetDataRow(i);
 
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
 
                 objacc.Account = row["Account"].ToString(); 
-                //objacc.Unit = row["Unit"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
-                objacc.Narration = row["Narration"].ToString();
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()==string.Empty?"0":row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString() == string.Empty ? string.Empty : row["Debit"].ToString();
                 lstAccounts.Add(objacc);
             }
 
@@ -155,9 +164,29 @@ namespace IPCAUI.Transactions
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
-                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                // d.ShowDialog();
             }
+        }
+
+        private void btnJournalList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.JournalVouchersList frmList = new Transaction.List.JournalVouchersList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+
+            if (Journl_Id != 0)
+            {
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxVoucherSeries.Focus();
+                FillJournalVoucherInfo();
+            }
+       
+    }
+        public void FillJournalVoucherInfo()
+        {
+
         }
     }
 }

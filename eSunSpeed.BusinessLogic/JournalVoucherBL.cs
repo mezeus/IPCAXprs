@@ -28,8 +28,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Type", objjvmodel.Type));
                 paramCollection.Add(new DBParameter("@PDCDate", objjvmodel.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objjvmodel.LongNarration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount",objjvmodel.TotalCreditAmt, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objjvmodel.TotalDebitAmt, System.Data.DbType.Decimal));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
@@ -67,8 +67,8 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@JournalId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
