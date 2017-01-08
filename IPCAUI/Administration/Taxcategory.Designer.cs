@@ -45,6 +45,8 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colParentid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRateId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -144,6 +146,9 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxServiceTax.Properties)).BeginInit();
@@ -201,10 +206,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.tbxServiceTax);
             this.layoutControl1.Controls.Add(this.dvgTaxratesList);
             this.layoutControl1.Controls.Add(this.btnUpdate);
@@ -232,7 +240,7 @@
             this.layoutControlItem8});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(629, 523, 537, 350);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(360, 0, 537, 406);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(920, 578);
             this.layoutControl1.TabIndex = 0;
@@ -273,7 +281,9 @@
             this.Narration,
             this.gridColumn2,
             this.gridColumn3,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.colParentid,
+            this.colRateId});
             this.dvgTaxrateDetails.GridControl = this.dvgTaxratesList;
             this.dvgTaxrateDetails.Name = "dvgTaxrateDetails";
             this.dvgTaxrateDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -405,6 +415,22 @@
             this.gridColumn4.VisibleIndex = 6;
             this.gridColumn4.Width = 99;
             // 
+            // colParentid
+            // 
+            this.colParentid.Caption = "ParentId";
+            this.colParentid.FieldName = "TaxCat_Id";
+            this.colParentid.Name = "colParentid";
+            this.colParentid.Visible = true;
+            this.colParentid.VisibleIndex = 9;
+            // 
+            // colRateId
+            // 
+            this.colRateId.Caption = "RateId";
+            this.colRateId.FieldName = "TaxRate_Id";
+            this.colRateId.Name = "colRateId";
+            this.colRateId.Visible = true;
+            this.colRateId.VisibleIndex = 10;
+            // 
             // repositoryItemLookUpEdit2
             // 
             this.repositoryItemLookUpEdit2.AutoHeight = false;
@@ -415,12 +441,13 @@
             // btnUpdate
             // 
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(474, 544);
+            this.btnUpdate.Location = new System.Drawing.Point(480, 544);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(87, 22);
+            this.btnUpdate.Size = new System.Drawing.Size(68, 22);
             this.btnUpdate.StyleController = this.layoutControl1;
             this.btnUpdate.TabIndex = 62;
             this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // navBarControl1
             // 
@@ -886,9 +913,9 @@
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(595, 544);
+            this.btnQuit.Location = new System.Drawing.Point(705, 544);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(88, 22);
+            this.btnQuit.Size = new System.Drawing.Size(81, 22);
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
@@ -948,6 +975,7 @@
             this.tbxName.Size = new System.Drawing.Size(232, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 5;
+            this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
             // 
             // cbxTaxationtype
             // 
@@ -974,6 +1002,7 @@
             this.cbxTaxonmrp.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
+            this.cbxTaxonmrp.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxTaxonmrp.Size = new System.Drawing.Size(442, 20);
             this.cbxTaxonmrp.StyleController = this.layoutControl1;
             this.cbxTaxonmrp.TabIndex = 17;
@@ -1011,7 +1040,9 @@
             this.emptySpaceItem2,
             this.emptySpaceItem4,
             this.layoutControlItem4,
-            this.layoutControlGroup2});
+            this.layoutControlGroup2,
+            this.lblDelete,
+            this.emptySpaceItem8});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(920, 578);
@@ -1073,18 +1104,18 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnQuit;
-            this.layoutControlItem9.Location = new System.Drawing.Point(583, 532);
+            this.layoutControlItem9.Location = new System.Drawing.Point(693, 532);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(92, 26);
+            this.layoutControlItem9.Size = new System.Drawing.Size(85, 26);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(553, 532);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(653, 532);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(30, 26);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(40, 26);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
@@ -1098,9 +1129,9 @@
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(675, 532);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(778, 532);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(183, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(80, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
@@ -1149,9 +1180,9 @@
             // lblUpdate
             // 
             this.lblUpdate.Control = this.btnUpdate;
-            this.lblUpdate.Location = new System.Drawing.Point(462, 532);
+            this.lblUpdate.Location = new System.Drawing.Point(468, 532);
             this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(91, 26);
+            this.lblUpdate.Size = new System.Drawing.Size(72, 26);
             this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpdate.TextVisible = false;
             // 
@@ -1160,7 +1191,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(444, 532);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(18, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(24, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
@@ -1297,6 +1328,34 @@
             this.layoutControlItem7.Text = "Service Tax Rate";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(106, 13);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(587, 544);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(74, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 64;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // lblDelete
+            // 
+            this.lblDelete.Control = this.btnDelete;
+            this.lblDelete.Location = new System.Drawing.Point(575, 532);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(78, 26);
+            this.lblDelete.TextSize = new System.Drawing.Size(0, 0);
+            this.lblDelete.TextVisible = false;
+            // 
+            // emptySpaceItem8
+            // 
+            this.emptySpaceItem8.AllowHotTrack = false;
+            this.emptySpaceItem8.Location = new System.Drawing.Point(540, 532);
+            this.emptySpaceItem8.Name = "emptySpaceItem8";
+            this.emptySpaceItem8.Size = new System.Drawing.Size(35, 26);
+            this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // Taxcategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1365,6 +1424,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1486,5 +1547,10 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraEditors.TextEdit tbxServiceTax;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraGrid.Columns.GridColumn colParentid;
+        private DevExpress.XtraGrid.Columns.GridColumn colRateId;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraLayout.LayoutControlItem lblDelete;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
     }
 }

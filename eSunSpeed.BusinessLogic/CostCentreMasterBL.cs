@@ -27,7 +27,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Name", objCCM.Name));
                 paramCollection.Add(new DBParameter("@Alias", objCCM.Alias));
                 paramCollection.Add(new DBParameter("@Group", objCCM.Group));
-                paramCollection.Add(new DBParameter("@opBal", objCCM.opBal));
+                paramCollection.Add(new DBParameter("@opBal", objCCM.opBal,System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@DrCr", objCCM.DrCr));
                 paramCollection.Add(new DBParameter("@CreatedBy", objCCM.CreatedBy));
 
@@ -59,7 +59,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Name", objCCM.Name));
                 paramCollection.Add(new DBParameter("@Alias", objCCM.Alias));
                 paramCollection.Add(new DBParameter("@Group", objCCM.Group));
-                paramCollection.Add(new DBParameter("@opBal", objCCM.opBal));
+                paramCollection.Add(new DBParameter("@opBal", objCCM.opBal,System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@DrCr", objCCM.DrCr));
                 paramCollection.Add(new DBParameter("@ModifiedBy", objCCM.ModifiedBy));
                 paramCollection.Add(new DBParameter("@CCM_ID", objCCM.CCM_ID));
@@ -110,7 +110,24 @@ namespace eSunSpeed.BusinessLogic
 
             return isDeleted;
         }
-
+        //Delete Cost Center master By Id
+        public bool DeleteCostCenterMasterById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM CostCentreMaster WHERE CCM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //List
         public List<CostCentreMasterModel> GetAllCostCentreMaster()
         {
@@ -166,8 +183,41 @@ namespace eSunSpeed.BusinessLogic
 
             return objCCM;
         }
-       
-        //Delete CostCenter
+
+        //Master Name Exist or Not
+        public bool IsCostMasterExists(string MasterName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM CostCentreMaster WHERE Name='{0}'", MasterName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
+        //Get CostCenterMasterName By CostGroup Name
+        public CostCentreMasterModel GetCostNameByGroupname(string groupname)
+        {
+            CostCentreMasterModel objcostModel = new CostCentreMasterModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT Name FROM `CostCentreMaster` WHERE `Group`='" + groupname + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objcostModel = new eSunSpeedDomain.CostCentreMasterModel();
+
+                objcostModel.Name = dr["Name"].ToString();
+            }
+            return objcostModel;
+
+        }
 
     }
 }

@@ -111,6 +111,7 @@
             this.dvgItemgrpDetails.Name = "dvgItemgrpDetails";
             this.dvgItemgrpDetails.OptionsBehavior.ReadOnly = true;
             this.dvgItemgrpDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgItemgrpDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgItemgrpDetails_KeyDown);
             this.dvgItemgrpDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgItemgrpDetails_KeyPress);
             // 
             // colName

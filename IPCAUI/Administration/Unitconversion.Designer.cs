@@ -195,6 +195,7 @@
             this.cbxSubunit.Name = "cbxSubunit";
             this.cbxSubunit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxSubunit.Properties.Appearance.Options.UseFont = true;
+            this.cbxSubunit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSubunit.Size = new System.Drawing.Size(335, 20);
             this.cbxSubunit.StyleController = this.layoutControl1;
             this.cbxSubunit.TabIndex = 61;
@@ -627,11 +628,15 @@
             this.cbxMainunit.Name = "cbxMainunit";
             this.cbxMainunit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxMainunit.Properties.Appearance.Options.UseFont = true;
+            this.cbxMainunit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxMainunit.Size = new System.Drawing.Size(335, 20);
             this.cbxMainunit.StyleController = this.layoutControl1;
             this.cbxMainunit.TabIndex = 5;
+            this.cbxMainunit.SelectedIndexChanged += new System.EventHandler(this.cbxMainunit_SelectedIndexChanged);
             this.cbxMainunit.Enter += new System.EventHandler(this.cbxMainunit_Enter);
+            this.cbxMainunit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbxMainunit_KeyDown);
             this.cbxMainunit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxMainunit_KeyPress);
+            this.cbxMainunit.Leave += new System.EventHandler(this.cbxMainunit_Leave);
             // 
             // cbxConfactor
             // 
@@ -916,6 +921,7 @@
             this.ClientSize = new System.Drawing.Size(613, 248);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "Unitconversion";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

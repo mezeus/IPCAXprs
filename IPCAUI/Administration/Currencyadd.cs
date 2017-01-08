@@ -135,5 +135,29 @@ namespace IPCAUI.Administration
         {
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
+
+        private void tbxCurrencysymbol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                if (tbxCurrencysymbol.Text.Trim() == "")
+                {
+                    MessageBox.Show("Master Name Can Not Be Blank!");
+                    tbxCurrencysymbol.Focus();
+                    return;
+                }
+                //if (objccm.IsCostMasterExists(tbxName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Master Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxName.Focus();
+                //    return;
+                //}
+            }
+        }
+
+        private void tbxCurrencystring_Enter(object sender, EventArgs e)
+        {
+            tbxCurrencystring.Text = tbxCurrencysymbol.Text.Trim();
+        }
     }
 }

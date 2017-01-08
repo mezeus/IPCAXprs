@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialCenter));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.cbxSaleAccount = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxPurchaseAccount = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -127,7 +128,6 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -217,6 +217,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(710, 504);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(492, 427);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(63, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 63;
+            this.simpleButton1.Text = "Delete";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // btnUpdate
             // 
@@ -754,6 +765,7 @@
             this.tbxGroupName.TabIndex = 5;
             this.tbxGroupName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
             this.tbxGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
+            this.tbxGroupName.Leave += new System.EventHandler(this.tbxGroupName_Leave);
             // 
             // labelControl1
             // 
@@ -1190,17 +1202,6 @@
             this.emptySpaceItem8.Size = new System.Drawing.Size(11, 26);
             this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(492, 427);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(63, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 63;
-            this.simpleButton1.Text = "Delete";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // lblDelete
             // 

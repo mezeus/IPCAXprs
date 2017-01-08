@@ -78,8 +78,7 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
 
-        //Delete
-        
+        //Delete Multiple Groups
         public bool DeletCostCentreGroup(List<int> lstIds)
         {
             string Query = string.Empty;
@@ -110,6 +109,24 @@ namespace eSunSpeed.BusinessLogic
             return isDeleted;
         }
 
+        //Delete Single Cost CenterGroup
+        public bool DeleteCostCenterGroupById(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM CostCentreGroupMaster WHERE CCG_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //List
         public List<CostCentreGroupModel> GetAllCostCentreGroups()
         {
@@ -159,5 +176,19 @@ namespace eSunSpeed.BusinessLogic
             return objCCG;
         }
 
+        //Is Costcenter Group Exist or Not
+        public bool IsCostCenterGroupExists(string groupName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM CostCentreGroupMaster WHERE GroupName='{0}'", groupName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

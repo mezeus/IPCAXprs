@@ -14,10 +14,58 @@ namespace IPCAUI.Menu
     public partial class MastersMenu : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         XtraForm1 frm;
+        public static string Form = string.Empty;
         public MastersMenu(XtraForm1 frm)
         {
             InitializeComponent();
             this.frm = frm;
+        }
+        public void LoadForms(string name)
+        {
+            string selectedPage = name;
+
+            switch (selectedPage)
+            {
+                case "Unit Master":
+                    Administration.Unitmaster frm;
+                    frm = new Administration.Unitmaster(); //generate new instance 
+                    frm.Owner = this;
+                    frm.TopLevel = false;
+
+                    sptCtrlMastermenu.Panel2.Controls.Add(frm);
+                    frm.Show();
+                    break;
+                //case "Reports":
+                //    this.Hide();
+                //    IPCAUI.Menu.ReportMenu frmReport = new IPCAUI.Menu.ReportMenu(this);
+                //    frmReport.Show();
+                //    break;
+                //case "Transactions":
+                //    this.Hide();
+                //    IPCAUI.Menu.TransactionsMenu frmTransMenu = new IPCAUI.Menu.TransactionsMenu(this);
+                //    frmTransMenu.Show();
+                //    break;
+                //case "Master":
+                //    this.Hide();
+                //    IPCAUI.Menu.MastersMenu frmMasterMenu = new IPCAUI.Menu.MastersMenu(this);
+                //    frmMasterMenu.Show();
+                //    break;
+                //case "Configuration":
+                //    this.Hide();
+                //    IPCAUI.Menu.ConfigurationMenu frmConfigMenu = new IPCAUI.Menu.ConfigurationMenu(this);
+                //    frmConfigMenu.Show();
+                //    break;
+                //case "Merged Accounts":
+                //    break;
+                //case "Single Column":
+                //    break;
+                //case "Multiple Column":
+                //    break;
+                //case "Bank Book(As per Clr.Date)":
+                //    break;
+                default:
+                    break;
+            }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
        {
@@ -35,6 +83,7 @@ namespace IPCAUI.Menu
 
         private void barbtnAccount_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
             Administration.Account frm;
             frm = new Administration.Account(); //generate new instance 
             frm.Owner = this;
@@ -380,6 +429,17 @@ namespace IPCAUI.Menu
         {
             Administration.Salaraycomponent frm;
             frm = new Administration.Salaraycomponent(); //generate new instance 
+            frm.Owner = this;
+            frm.TopLevel = false;
+
+            sptCtrlMastermenu.Panel2.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnItemCompany_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Administration.ItemCompany frm;
+            frm = new Administration.ItemCompany(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

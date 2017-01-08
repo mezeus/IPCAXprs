@@ -99,7 +99,7 @@ namespace eSunSpeed.BusinessLogic
                           "`ITEM_FREEZEMCFORITEM`,`ITEM_TOTALNUMBEROFAUTHORS`,`ITEM_PICKITEMSIZEFROMDESC`,`ITEM_SPECIFYDEFAULTVENDOR`,`CreatedBy`)" +
                           "VALUES"+
                           "(@ITEM_Name,@ITEM_PrintName,@ITEM_ALIAS,@ITEM_GROUP,@ITEM_COMPANY,@ITEM_MAINUNIT,@ALT_UNIT,@ITEM_CONFACTOR,@ITEM_OPSTOCKVALUE,@ITEM_UNIT,@ITEM_RATE,@ITEM_PER,@ITEM_VALUE,@ITEM_APPLYSALEPRICE,@ITEM_APPLYPURCPRICE,@ITEM_SALEPRICE," +
-                          "@ITEM_PURCHASEPRICE,@ITEM_MRP," +
+                          "@ITEM_PURCEPRICE,@ITEM_MRP," + 
                           "@ITEM_MINSALEPRICE,@ITEM_SELFVALUEPRICE,@ITEM_SALEDISCOUNT,@ITEM_PURCHASEDISCOUNT," +
                           "@ITEM_SpecifySaleDiscStructure,@ITEM_SpecifyPurDiscStructure,@ITEM_StockValMethod," +
                           "@ITEM_TAXCATEGORY,@ITEM_DESCRIPTION1," +
@@ -108,6 +108,7 @@ namespace eSunSpeed.BusinessLogic
 
           return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;                    
       }
+
          //Get All Items By Id
         public ItemMasterModel GetAllItemsById(int id)
         {
@@ -127,21 +128,21 @@ namespace eSunSpeed.BusinessLogic
                 objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
                 objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
                 objItem.Confactor =Convert.ToInt32(dr["ITEM_CONFACTOR"].ToString());
-                objItem.OpStockQty =Convert.ToInt32(dr["ITEM_OPSTOCK"].ToString());
+                objItem.OpStockQty =Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
                 objItem.Unit = dr["ITEM_UNIT"].ToString();
-                objItem.Rate =Convert.ToInt32(dr["ITEM_RATE"].ToString());
+                objItem.Rate =Convert.ToDouble(dr["ITEM_RATE"].ToString());
                 objItem.Per = dr["ITEM_PER"].ToString();
-                objItem.Value =Convert.ToInt32( dr["ITEM_VALUE"].ToString());
+                objItem.Value =Convert.ToDouble( dr["ITEM_VALUE"].ToString());
                 objItem.ApplySalesPrice = Convert.ToBoolean(dr["ITEM_SALEPRICETOAPPLY"]);
                 objItem.ApplyPurchPrice = Convert.ToBoolean(dr["ITEM_PURCPRICETOAPPLY"]);
 
-                objItem.SalePrice =Convert.ToInt32(dr["ITEM_SALEPRICE"].ToString());
-                objItem.Purprice = Convert.ToInt32(dr["ITEM_PURCHASEPRICE"].ToString());
-                objItem.MRP = Convert.ToInt32(dr["ITEM_MRP"].ToString());
-                objItem.MinSalePrice = Convert.ToInt32(dr["ITEM_MINSALEPRICE"].ToString());
-                objItem.SelfValuePrice = Convert.ToInt32(dr["ITEM_SELFVALUEPRICE"].ToString());
-                objItem.SaleDiscount = Convert.ToInt32(dr["ITEM_SALEDISCOUNT"].ToString());
-                objItem.PurDiscount = Convert.ToInt32(dr["ITEM_PURCHASEDISCOUNT"].ToString());
+                objItem.SalePrice =Convert.ToDouble(dr["ITEM_SALEPRICE"].ToString());
+                objItem.Purprice = Convert.ToDouble(dr["ITEM_PURCHASEPRICE"].ToString());
+                objItem.MRP = Convert.ToDouble(dr["ITEM_MRP"].ToString());
+                objItem.MinSalePrice = Convert.ToDouble(dr["ITEM_MINSALEPRICE"].ToString());
+                objItem.SelfValuePrice = Convert.ToDouble(dr["ITEM_SELFVALUEPRICE"].ToString());
+                objItem.SaleDiscount = Convert.ToDouble(dr["ITEM_SALEDISCOUNT"].ToString());
+                objItem.PurDiscount = Convert.ToDouble(dr["ITEM_PURCHASEDISCOUNT"].ToString());
 
                 objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"]);
                 objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"]);
@@ -176,6 +177,7 @@ namespace eSunSpeed.BusinessLogic
             return objItem;
 
         }
+
         //Update Item Master
         public bool UpdateItemMaster(eSunSpeedDomain.ItemMasterModel objItem)
       {
@@ -263,6 +265,7 @@ namespace eSunSpeed.BusinessLogic
           return _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;
 
       }
+
         //List All Item Master
       public List<ItemMasterModel> GetAllItems()
       {
@@ -281,7 +284,7 @@ namespace eSunSpeed.BusinessLogic
               objItem.Name = dr["ITEM_Name"].ToString();
               objItem.Alias = dr["ITEM_ALIAS"].ToString();
               objItem.Group = dr["ITEM_GROUP"].ToString();
-              objItem.OpStockValue = Convert.ToInt32(dr["ITEM_OPSTOCK"].ToString());
+              objItem.OpStockValue = Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
               objItem.Unit = dr["ITEM_UNIT"].ToString();             
               lstItems.Add(objItem);
           
@@ -289,6 +292,7 @@ namespace eSunSpeed.BusinessLogic
           return lstItems;
 
       }
+
         //Get Item Details By Name
         public ItemMasterModel GetItemsByName(string itemname)
         {
@@ -319,6 +323,7 @@ namespace eSunSpeed.BusinessLogic
             return objItem;
 
         }
+
         //Delete Multiple Items
         public bool DeleteItemMaster(List<int> lstIds)
         {
@@ -349,6 +354,7 @@ namespace eSunSpeed.BusinessLogic
 
             return isDeleted;
         }
+
         //Delete Single Item
         public bool DeleteItemMasterById(int id)
         {
@@ -366,6 +372,60 @@ namespace eSunSpeed.BusinessLogic
                 throw ex;
             }
             return isDelete;
+        }
+
+        //Is Item Master Exists Or Not
+        public bool IsItemMasterExists(string ItemName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM `itemmaster` WHERE `ITEM_Name`='{0}'", ItemName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+        //Get Item Name By Item Group
+        public ItemMasterModel GetItemNameByGroupname(string groupname)
+        {
+            ItemMasterModel objItem = new ItemMasterModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT ITEM_Name FROM itemmaster WHERE ITEM_GROUP='" + groupname + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objItem = new eSunSpeedDomain.ItemMasterModel();
+              
+                objItem.Name = dr["ITEM_Name"].ToString();
+            }
+            return objItem;
+
+        }
+
+        //Get Item Name By TaxCategory Name
+        public ItemMasterModel GetItemNameByTaxCategoryname(string TaxName)
+        {
+            ItemMasterModel objItem = new ItemMasterModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT ITEM_Name FROM `itemmaster` WHERE `ITEM_TAXCATEGORY` ='" + TaxName + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objItem = new eSunSpeedDomain.ItemMasterModel();
+
+                objItem.Name = dr["ITEM_Name"].ToString();
+            }
+            return objItem;
+
         }
     }
 }

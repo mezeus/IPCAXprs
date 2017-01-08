@@ -35,6 +35,11 @@ namespace IPCAUI.Administration.List
 
         private void dvgMCgrpDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
+        }
+
+        private void dvgMCgrpDetails_KeyDown(object sender, KeyEventArgs e)
+        {
             MaterialCentreGroupMasterModel lstMaterials;
 
             lstMaterials = (MaterialCentreGroupMasterModel)dvgMCgrpDetails.GetRow(dvgMCgrpDetails.FocusedRowHandle);

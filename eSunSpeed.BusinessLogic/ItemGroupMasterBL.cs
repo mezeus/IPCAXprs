@@ -185,5 +185,20 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+
+        //Is ItemGroup Master Exist or Not
+        public bool IsItemGroupExists(string groupName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM itemgroupmaster WHERE ItemGroup='{0}'", groupName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

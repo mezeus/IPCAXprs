@@ -110,6 +110,12 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\ItemCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\ItemCompany.Designer.cs">
+      <DependentUpon>ItemCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\ItemMasterNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3157,6 +3163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\ItemCompany.resx">
+      <DependentUpon>ItemCompany.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\ItemMasterNew.resx">
       <DependentUpon>ItemMasterNew.cs</DependentUpon>

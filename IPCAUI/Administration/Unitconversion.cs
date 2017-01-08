@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
+using IPCAUI.Menu;
+
 
 namespace IPCAUI.Administration
 {
@@ -55,14 +57,17 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
+            if(UCId!=0)
+            {
+                btnSave.Visible = false;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                cbxMainunit.Focus();
 
-            btnSave.Visible = false;
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            cbxMainunit.Focus();
+                FillUnitConversionInfo();
 
-            FillUnitConversionInfo();
+            }
 
         }
 
@@ -79,6 +84,7 @@ namespace IPCAUI.Administration
         {
             cbxSubunit.Text = string.Empty;
             cbxMainunit.Text = string.Empty;
+            cbxConfactor.Text = "1.00";
         }
 
         private void Unitconversion_Load(object sender, EventArgs e)
@@ -112,17 +118,27 @@ namespace IPCAUI.Administration
             bool isSuccess = objunc.UpdateUC(objUnitCon);
             if (isSuccess)
             {
-                MessageBox.Show("Saved Successfully!");
+                MessageBox.Show("Update Successfully!");
+                ClearControls();
+                Administration.List.UnitconversionList frmList = new Administration.List.UnitconversionList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillUnitConversionInfo();
             }
         }
 
         private void cbxMainunit_Enter(object sender, EventArgs e)
         {
-            cbxMainunit.SelectedIndex = 0;
+            LodaUnits();
+            //ComboBox cmb = new ComboBox();
+            //cmb.DroppedDown = true;
+          
         }
 
         private void cbxSubunit_Enter(object sender, EventArgs e)
         {
+            LodaUnits();
             cbxSubunit.SelectedIndex = 0;
         }
 
@@ -151,6 +167,11 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Delete Successfully!");
                 ClearControls();
+                Administration.List.UnitconversionList frmList = new Administration.List.UnitconversionList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillUnitConversionInfo();
             }
         }
 
@@ -170,6 +191,41 @@ namespace IPCAUI.Administration
 
         private void cbxMainunit_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\r')
+            {
+                if (objunc.IsUnitConversionExists(cbxMainunit.Text.Trim()))
+                {
+                    MessageBox.Show("Unit Name already Exists!");
+                    cbxMainunit.Focus();
+                    return;
+                }
+            }
+
+        }
+
+        private void cbxMainunit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F3)
+            {
+                //IPCAUI.Menu.MastersMenu.Form = "Unit Master";
+                //IPCAUI.Menu.MastersMenu frmMaster;
+                //frmMaster.LoadForms("Unit Master");
+            }
+        }
+
+        private void cbxMainunit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxMainunit_Leave(object sender, EventArgs e)
+        {
+            if (objunc.IsUnitConversionExists(cbxMainunit.Text.Trim()))
+            {
+                MessageBox.Show("Unit Name already Exists!");
+                cbxMainunit.Focus();
+                return;
+            }
         }
     }
 }

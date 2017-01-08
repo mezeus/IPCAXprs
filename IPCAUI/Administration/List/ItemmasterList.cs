@@ -22,7 +22,7 @@ namespace IPCAUI.Administration.List
         }
 
         private void ItemmasterList_Load(object sender, EventArgs e)
-        {
+            {
             List<eSunSpeedDomain.ItemMasterModel> lstmasters = objitembl.GetAllItems();
             dvgItemmasterList.DataSource = lstmasters;
         }

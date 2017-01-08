@@ -18,6 +18,8 @@ namespace IPCAUI.Administration
         ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
         UnitMaster objUnitBl = new UnitMaster();
         TaxCategory objTaxBl = new TaxCategory();
+        AccountMasterBL objaccbl = new AccountMasterBL();
+        
         public static int Item_Id = 0;
         public ItemMasterNew()
         {
@@ -47,7 +49,7 @@ namespace IPCAUI.Administration
 
             objModel.MainUnit = cbxMainUnit.SelectedItem.ToString();
             objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
-            objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
+            //objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
           
             objModel.Unit = cbxUnit.SelectedItem.ToString();
             objModel.OpStockValue = Convert.ToDouble(tbxOpStock.Text.Trim());
@@ -82,7 +84,7 @@ namespace IPCAUI.Administration
             objModel.MRPWiseDetails = cbxMRPWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
             objModel.BatchwiseDetails = cbxBatchWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
             objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim());
+            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim()==null?"0":tbxExpDays.Text.Trim());
             objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
             objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
             objModel.DontMaintainStockBal = cbxMaintainStock.SelectedItem.ToString() == "Y" ? true : false;
@@ -134,9 +136,10 @@ namespace IPCAUI.Administration
         }
         public void LoadDefaultValues()
         {
+            tbxName.Focus();
             cbxAltUnit.SelectedIndex = 0;
             cbxTaxCat.SelectedIndex = 0;
-            cbxGroup.SelectedIndex = 0;
+           
             cbxCreticallevel.SelectedIndex = 0;
             cbxApplySalesPrice.SelectedIndex = 0;
             cbxApplyPurchPrice.SelectedIndex = 0;
@@ -166,7 +169,7 @@ namespace IPCAUI.Administration
             foreach (UnitMasterModel objunit in lstUnits)
             {
                 cbxMainUnit.Properties.Items.Add(objunit.UnitName);
-                cbxUnit.Properties.Items.Add(objunit.UnitName);
+                //cbxUnit.Properties.Items.Add(objunit.UnitName);
                 cbxAltUnit.Properties.Items.Add(objunit.UnitName);
                 tbxPer.Properties.Items.Add(objunit.UnitName);
             }
@@ -183,32 +186,51 @@ namespace IPCAUI.Administration
             {
                 cbxTaxCat.Properties.Items.Add(objTax.Name);
             }
+            //Sale Account& Purchase Account Comboboxs
+            List<AccountMasterModel> lstAccounts = objaccbl.GetListofAccount();
+            foreach(AccountMasterModel objAccMast in lstAccounts)
+            {
+                cbxSalesAccount.Properties.Items.Add(objAccMast.AccountName);
+                cbxPurchAccount.Properties.Items.Add(objAccMast.AccountName);
+            }
+            cbxSalesAccount.SelectedIndex = 0;
+            cbxPurchAccount.SelectedIndex = 0;
+
         }
         private void ItemMasterNew_Load(object sender, EventArgs e)
-        {
-            
+        {            
             LoadDefaultValues();
         }
-        public void ClearFormValues()
+        public void ClearControls()
         {
             tbxName.Text = string.Empty;
             tbxPrintname.Text = string.Empty;
             tbxAlias.Text = string.Empty;
+            //tbxconFactor.Text = string.Empty;
+            tbxOpStock.Text = "0.00";
+            tbxRate.Text = "0.00";
+            tbxValue.Text = "0.00";
+            tbxSalesPrice.Text = "0.00";
 
+            
         }
+      
         private void ItemList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.ItemmasterList frmList = new Administration.List.ItemmasterList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            tbxName.Focus();
+            if(Item_Id!=0)
+            {
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxName.Focus();
 
-            FillItemMasterInfo();
+                FillItemMasterInfo();
+            }
+            
         }
 
         private void FillItemMasterInfo()
@@ -221,7 +243,7 @@ namespace IPCAUI.Administration
             cbxCompany.SelectedItem= objItem.Company;
             cbxMainUnit.SelectedItem = objItem.MainUnit;
             cbxAltUnit.SelectedItem = objItem.AltUnit;
-            tbxconFactor.Text=objItem.Confactor.ToString();
+            //tbxconFactor.Text=objItem.Confactor.ToString();
             tbxOpStock.Text= objItem.OpStockQty.ToString();
             cbxUnit.SelectedItem = objItem.Unit;
             tbxRate.Text = objItem.Rate.ToString();
@@ -238,8 +260,8 @@ namespace IPCAUI.Administration
             tbxSaleDiscount.Text = objItem.SaleDiscount. ToString();
             tbxPurcDiscount.Text = objItem.PurDiscount.ToString();
 
-            //objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"].ToString() == "1" ? true : false);
-            //objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"].ToString() == "1" ? true : false);
+            cbxEnableSalesDiscStruct.SelectedItem = (objItem.SpecifySaleDiscStructure) ? "Y" : "N";
+            cbxEnablePurcDiscStruct.SelectedItem = (objItem.SpecifyPurDiscStructure) ? "Y" : "N";
             tbxStockValMethod.Text =objItem.StockValMethod.ToString();
 
             cbxTaxCat.SelectedItem = objItem.TaxCategory;
@@ -291,17 +313,23 @@ namespace IPCAUI.Administration
 
         private void cbxUnit_Enter(object sender, EventArgs e)
         {
-            cbxUnit.SelectedIndex = 0;
+            cbxUnit.Properties.Items.Clear();
+
+            cbxUnit.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString().Trim());
+            cbxUnit.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString().Trim());
         }
 
         private void tbxPer_Enter(object sender, EventArgs e)
         {
-            tbxPer.SelectedIndex = 0;
+            tbxPer.Properties.Items.Clear();
+
+            tbxPer.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString().Trim());
+            tbxPer.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString().Trim());
         }
 
         private void cbxTaxCat_Enter(object sender, EventArgs e)
         {
-            cbxTaxCat.SelectedIndex = 0;
+           
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -321,7 +349,7 @@ namespace IPCAUI.Administration
 
             objModel.MainUnit = cbxMainUnit.SelectedItem.ToString();
             objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
-            objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
+            //objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
 
             objModel.Unit = cbxUnit.SelectedItem.ToString();
             objModel.OpStockValue = Convert.ToDouble(tbxOpStock.Text.Trim());
@@ -408,17 +436,182 @@ namespace IPCAUI.Administration
             if(isDelete)
             {
                 MessageBox.Show("Delete Successfully!");
-                ClearFormValues();
+                ClearControls();
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
+       {
             if (keyData == Keys.Escape)
             {
                 this.Close();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            tbxAlias.Text = tbxName.Text.Trim();
+            tbxPrintname.Text = tbxName.Text.Trim();
+        }
+
+        private void tbxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                if (tbxName.Text.Trim() == "")
+                {
+                    MessageBox.Show("Item Name Can Not Be Blank!");
+                    tbxName.Focus();
+                    return;
+                }
+                if (objIMBL.IsItemMasterExists(tbxName.Text.Trim()))
+                {
+                    MessageBox.Show("Group Name already Exists!");
+                    tbxName.Focus();
+                    return;
+                }
+               
+            }
+        }
+
+        private void tbxName_Leave(object sender, EventArgs e)
+        {
+            //if (objIMBL.IsItemMasterExists(tbxName.Text.Trim()))
+            //{
+            //    MessageBox.Show("Group Name already Exists!");
+            //    tbxName.Focus();
+            //    return;
+            //}
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+           
+        }
+
+        private void cbxGroup_Enter(object sender, EventArgs e)
+        {
+            //Group&Company Combobox
+            //List<ItemGroupMasterModel> lstItemGroups = objgrpbl.GetAllItemGroup();
+            //foreach (ItemGroupMasterModel objgroup in lstItemGroups)
+            //{
+            //    cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
+            //}
+            //cbxGroup.SelectedIndex = 0;
+        }
+
+        private void cbxCompany_Enter(object sender, EventArgs e)
+        {
+            //Group&Company Combobox
+            //List<ItemGroupMasterModel> lstItemGroups = objgrpbl.GetAllItemGroup();
+            //foreach (ItemGroupMasterModel objgroup in lstItemGroups)
+            //{
+            //    cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
+            //    cbxCompany.Properties.Items.Add(objgroup.ItemGroup);
+            //}
+            cbxCompany.SelectedIndex = 0;
+        }
+
+        private void tbxValue_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void tbxPer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //decimal a, b, c;
+
+            //bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
+            //bool isBValid = decimal.TryParse(tbxRate.Text, out b);
+            ////bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
+
+            //if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
+            //{
+            //    tbxValue.Text = (a * b).ToString();
+            //}
+            //if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
+            //{
+            //    tbxValue.Text = (a * b ).ToString();
+            //}
+
+            //Main unit
+            //if(tbxPer.SelectedItem.ToString().Equals("Tonne") || tbxPer.SelectedItem.ToString().Equals("Tonne"))
+
+        }
+
+        private void cbxMainUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+            //tbxPer.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString());
+
+        }
+
+        private void cbxAltUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            //tbxPer.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString());
+        }
+
+        private void tbxconFactor_TextChanged(object sender, EventArgs e)
+        {
+            decimal a, b, c;
+
+            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
+            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
+            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
+
+            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b).ToString();
+            }
+            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b).ToString();
+            }
+
+                   }
+
+        private void tbxRate_TextChanged(object sender, EventArgs e)
+        {
+            decimal a, b, c;
+
+            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
+            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
+            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
+
+            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b).ToString();
+            }
+            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b ).ToString();
+            }
+        }
+
+        private void tbxOpStock_TextChanged(object sender, EventArgs e)
+        {
+            decimal a, b, c;
+
+            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
+            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
+            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
+
+            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b).ToString();
+            }
+            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
+            {
+                tbxValue.Text = (a * b ).ToString();
+            }
+        }
+
+        private void tbxConFrom_Enter(object sender, EventArgs e)
+        {
+            lblAltunit.Text = cbxAltUnit.SelectedItem.ToString();
+            lblMainUnit.Text = cbxMainUnit.SelectedItem.ToString();
         }
     }
 }

@@ -33,10 +33,7 @@ namespace IPCAUI.Administration.List
 
         private void dvgCostcenterDetails_DoubleClick(object sender, EventArgs e)
         {
-            CostCentreMasterModel lstItems;
-
-            lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
-            string cellValue = lstItems.CCM_ID.ToString();
+            
         }
 
         private void dvgCostcenterDetails_KeyPress(object sender, KeyPressEventArgs e)

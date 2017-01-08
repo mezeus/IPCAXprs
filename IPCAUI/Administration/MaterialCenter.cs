@@ -28,12 +28,15 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            btnSave.Visible = false;
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            if(MCId!=0)
+            {
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-            FillMaterialCenterInfo();
+                FillMaterialCenterInfo();
+            }
+            
         }
 
         private void FillMaterialCenterInfo()
@@ -88,6 +91,7 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
                 ClearControls();
+                MCId = 0;
             }
         }
          public void ClearControls()
@@ -99,6 +103,9 @@ namespace IPCAUI.Administration
             tbxAddress1.Text = string.Empty;
             tbxAddress2.Text = string.Empty;
             tbxAddress3.Text = string.Empty;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }
 
         private void MaterialCenter_Load(object sender, EventArgs e)
@@ -144,16 +151,26 @@ namespace IPCAUI.Administration
             bool isSuccess = objmatcenbl.UpdateMaterialMaster(objGroup);
             if (isSuccess)
             {
-                MessageBox.Show("Update Successfully!");
+                MessageBox.Show("Update Successfully!");                
+                MCId = 0;
+                Administration.List.MaterialcenterList frmList = new Administration.List.MaterialcenterList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                if (MCId != 0)
+                {
+                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+                    FillMaterialCenterInfo();
+                }
+                ClearControls();
             }
         }
-
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            tbxGroupName.Text = string.Empty;
-            tbxPrintname.Text = string.Empty;
-            tbxAliasname.Text = string.Empty;
-            tbxAddress.Text = string.Empty;
+            ClearControls();
         }
 
         private void tbxGroupName_TextChanged(object sender, EventArgs e)
@@ -187,13 +204,12 @@ namespace IPCAUI.Administration
                     tbxGroupName.Focus();
                     return;
                 }
-                //if (objmatcenbl.GetAllMaterialsById(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
-                //e.Handled = true; // Mark the event as handled
+                if (objmatcenbl.IsMaterialCenterMasterExists(tbxGroupName.Text.Trim()))
+                {
+                    MessageBox.Show("Group Name already Exists!");
+                    tbxGroupName.Focus();
+                    return;
+                }
             }
         }
 
@@ -205,6 +221,25 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Delete Successfully!");
                 ClearControls();
             }
+        }
+
+        private void tbxGroupName_Leave(object sender, EventArgs e)
+        {
+            if (objmatcenbl.IsMaterialCenterMasterExists(tbxGroupName.Text.Trim()))
+            {
+                MessageBox.Show("Group Name already Exists!");
+                tbxGroupName.Focus();
+                return;
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

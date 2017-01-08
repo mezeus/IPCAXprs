@@ -7,13 +7,13 @@ using eSunSpeed.DataAccess;
 
 namespace eSunSpeed.BusinessLogic
 {
-   public class MaterialCentreMasterBL
-       {
+    public class MaterialCentreMasterBL
+    {
         MaterialCentreGroupMasterModel objmatceng = new MaterialCentreGroupMasterModel();
 
         private DBHelper _dbHelper = new DBHelper();
-       
-       public bool SaveMaterialMaster(MaterialCentreMasterModel objMCM)
+
+        public bool SaveMaterialMaster(MaterialCentreMasterModel objMCM)
         {
             string Query = string.Empty;
             bool isSaved = true;
@@ -28,10 +28,10 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PrintName", objMCM.PrintName));
                 paramCollection.Add(new DBParameter("@Group", objMCM.Group));
                 paramCollection.Add(new DBParameter("@StockAccount", objMCM.StockAccount));
-                paramCollection.Add(new DBParameter("@EnableStockinBal", objMCM.EnableStockinBal,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@EnableStockinBal", objMCM.EnableStockinBal, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@SalesAccount", objMCM.SalesAccount));
                 paramCollection.Add(new DBParameter("@PurchaseAccount", objMCM.PurchaseAccount));
-                paramCollection.Add(new DBParameter("@EnableAccinTransfer", objMCM.EnableAccinTransfer,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@EnableAccinTransfer", objMCM.EnableAccinTransfer, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@Address", objMCM.Address));
                 paramCollection.Add(new DBParameter("@Address1", objMCM.Address1));
                 paramCollection.Add(new DBParameter("@Address2", objMCM.Address2));
@@ -44,7 +44,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PinCode", objMCM.PinCode));
                 paramCollection.Add(new DBParameter("@Mobile", objMCM.Mobile));
 
-                paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
+                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                 Query = "INSERT INTO materialcentremaster(`Name`,`Alias`,`PrintName`,`Group`,`StockAccount`,`EnableStockinBal`,`SalesAccount`,`PurchaseAccount`," +
                 "`EnableAccinTransfer`,`Address`,`Address1`,`Address2`,`Address3`,`Street`,`City`,`State`,`Country`,`PinCode`,`Mobile`,`CreatedBy`)" +
@@ -63,7 +63,7 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-       public bool UpdateMaterialMaster(MaterialCentreMasterModel objMCM)
+        public bool UpdateMaterialMaster(MaterialCentreMasterModel objMCM)
         {
             string Query = string.Empty;
             bool isSaved = true;
@@ -104,13 +104,13 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-       public List<MaterialCentreMasterModel> GetAllMaterials()
-       {
-           List<MaterialCentreMasterModel> lstMaterials=new List<MaterialCentreMasterModel>();
-           MaterialCentreMasterModel objMat;
+        public List<MaterialCentreMasterModel> GetAllMaterials()
+        {
+            List<MaterialCentreMasterModel> lstMaterials = new List<MaterialCentreMasterModel>();
+            MaterialCentreMasterModel objMat;
 
-         string  Query = "SELECT * FROM `materialcentremaster`";
-          System.Data.IDataReader dr= _dbHelper.ExecuteDataReader(Query,_dbHelper.GetConnObject());
+            string Query = "SELECT * FROM `materialcentremaster`";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
@@ -120,18 +120,18 @@ namespace eSunSpeed.BusinessLogic
                 objMat.GroupName = dr["Name"].ToString();
                 objMat.Alias = dr["Alias"].ToString();
                 objMat.Group = dr["Group"].ToString();
- 
+
                 lstMaterials.Add(objMat);
 
             }
-          return lstMaterials;
-       }
+            return lstMaterials;
+        }
         //List of Material Centermaster By Id
         public MaterialCentreMasterModel GetAllMaterialsById(int id)
         {
             MaterialCentreMasterModel objMat = new MaterialCentreMasterModel();
-           
-            string Query = "SELECT * FROM `materialcentremaster` WHERE MC_Id="+id+"";
+
+            string Query = "SELECT * FROM `materialcentremaster` WHERE MC_Id=" + id + "";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -147,7 +147,7 @@ namespace eSunSpeed.BusinessLogic
                 objMat.EnableStockinBal = Convert.ToBoolean(dr["EnableStockinBal"]);
                 objMat.SalesAccount = dr["SalesAccount"].ToString();
                 objMat.PurchaseAccount = dr["PurchaseAccount"].ToString();
-                objMat.EnableAccinTransfer= Convert.ToBoolean(dr["EnableAccinTransfer"]);
+                objMat.EnableAccinTransfer = Convert.ToBoolean(dr["EnableAccinTransfer"]);
                 objMat.Address = dr["Address"].ToString();
                 objMat.Address1 = dr["Address1"].ToString();
                 objMat.Address2 = dr["Address2"].ToString();
@@ -204,6 +204,40 @@ namespace eSunSpeed.BusinessLogic
                 throw ex;
             }
             return isDelete;
+        }
+
+        //Is Material Center Master Exist or Not
+        public bool IsMaterialCenterMasterExists(string MasterName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM `materialcentremaster` WHERE `Name`='{0}'", MasterName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
+        //Get MaterialCenter By Material Group
+        public MaterialCentreMasterModel GetMaterialCenterByGroupname(string groupname)
+        {
+            MaterialCentreMasterModel objMaterial = new MaterialCentreMasterModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT Name FROM `materialcentremaster` WHERE `Group`='" + groupname + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objMaterial = new eSunSpeedDomain.MaterialCentreMasterModel();
+
+                objMaterial.GroupName = dr["Name"].ToString();
+            }
+            return objMaterial;
         }
     }
 }

@@ -109,6 +109,7 @@
             this.dvgCCgrpDetails.GridControl = this.dvgCCgrpList;
             this.dvgCCgrpDetails.Name = "dvgCCgrpDetails";
             this.dvgCCgrpDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgCCgrpDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCCgrpDetails_KeyDown);
             this.dvgCCgrpDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCCgrpDetails_KeyPress);
             // 
             // colName

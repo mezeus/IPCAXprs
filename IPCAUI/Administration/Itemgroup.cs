@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Itemgroup : Form
     {
         ItemGroupMasterBL objItemBL = new ItemGroupMasterBL();
+        ItemMasterBL objItemMasterBl = new ItemMasterBL();
         public static int ItemgrpId = 0;
         public Itemgroup()
         {
@@ -32,12 +33,15 @@ namespace IPCAUI.Administration
             ItemGroupMasterModel objModel = new ItemGroupMasterModel();
             objModel.ItemGroup = tbxGroupName.Text.Trim();
 
-            objModel.Alias = tbxAliasname.Text.Trim();
+            objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
             objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
-            objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
-            objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
+            if (cbxPrimarygroup.SelectedItem.ToString() == "N")
+            {
+                objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            }
+            //objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
+            //objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
+            //objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
             objModel.SeparateConfig =false;
             objModel.DefaultConfig =false;
             if(rbnDefaultConfig.SelectedIndex==0)
@@ -48,31 +52,41 @@ namespace IPCAUI.Administration
             {
                 objModel.SeparateConfig = true;
             }
-            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==null?"0":tbxParameters.Text.Trim());
+            //objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==null?"0":tbxParameters.Text.Trim());
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objItemBL.SaveIGM(objModel);
             if(isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+                ClearControls();
+                
             }
         }
-
+        public void ClearControls()
+        {
+            tbxGroupName.Text = string.Empty;
+            tbxAliasname.Text = string.Empty;
+            cbxPrimarygroup.SelectedIndex = 1;
+        }
         private void ListItemgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.ItemgroupList frmList = new Administration.List.ItemgroupList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            if(ItemgrpId!=0)
+            {
+                layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-            btnSave.Visible = false;
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            tbxGroupName.Focus();
-            //tbxGroupName.ReadOnly = true;
-            FillItemGroupInfo();
+                btnSave.Visible = false;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxGroupName.Focus();
+                FillItemGroupInfo();
+            }
+            
 
         }
 
@@ -87,6 +101,14 @@ namespace IPCAUI.Administration
             cbxStockaccount.SelectedItem= objIGM.StockAccount;
             cbxSalesaccount.SelectedItem= objIGM.SalesAccount;
             cbxPurchaseAccount.SelectedItem= objIGM.PurchaseAccount;
+            if(objIGM.DefaultConfig)
+            {
+                rbnDefaultConfig.SelectedIndex = 0;
+            }
+            if(objIGM.SeparateConfig)
+            {
+                rbnDefaultConfig.SelectedIndex = 1;
+            }
             //rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
             //rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
             tbxParameters.Text=Convert.ToString(objIGM.Parameters);
@@ -117,10 +139,14 @@ namespace IPCAUI.Administration
                 if (tbxGroupName.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("Item Group Can Not Be Blank!");
-                    this.ActiveControl = tbxGroupName;
+                    tbxGroupName.Focus();
                     return;
-                    
-
+                }
+                if (objItemBL.IsItemGroupExists(tbxGroupName.Text.Trim()))
+                {
+                    MessageBox.Show("Group Name already Exists!");
+                    tbxGroupName.Focus();
+                    return;
                 }
             }
         }
@@ -130,12 +156,15 @@ namespace IPCAUI.Administration
             ItemGroupMasterModel objModel = new ItemGroupMasterModel();
 
             objModel.ItemGroup = tbxGroupName.Text.Trim();
-            objModel.Alias = tbxAliasname.Text.Trim();
+            objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
             objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
-            objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
-            objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
+            if(cbxPrimarygroup.SelectedItem.ToString() =="N")
+            {
+                objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+            }           
+            //objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
+            //objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
+            //objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
             objModel.SeparateConfig = false;
             objModel.DefaultConfig = false;
             if (rbnDefaultConfig.SelectedIndex == 0)
@@ -146,7 +175,7 @@ namespace IPCAUI.Administration
             {
                 objModel.SeparateConfig = true;
             }
-            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
+            //objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
             objModel.IGM_id = ItemgrpId;
             objModel.ModifiedBy = "Admin";
 
@@ -154,6 +183,14 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
+                ItemgrpId = 0;
+                ClearControls();
+                
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxGroupName.Focus();
+                FillItemGroupInfo();
             }
         }
 
@@ -208,12 +245,22 @@ namespace IPCAUI.Administration
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            bool isDelete = objItemBL.DeleteItemGroupById(ItemgrpId);
-            if (isDelete)
+            ItemMasterModel objmodel = objItemMasterBl.GetItemNameByGroupname(tbxGroupName.Text.Trim());
+            if (objmodel.Name != null)
             {
-                MessageBox.Show("Delete Successfully!");
-                ClearFormValues();
+                MessageBox.Show("Can Not Delete Group Name Under Tag With Item Name.." + objmodel.Name);
+                tbxGroupName.Focus();
+            }          
+            if(objmodel.Name==null)
+            {
+                bool isDelete = objItemBL.DeleteItemGroupById(ItemgrpId);
+                if (isDelete)
+                {
+                    MessageBox.Show("Delete Successfully!");
+                    ClearFormValues();
+                }
             }
+            
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -223,6 +270,33 @@ namespace IPCAUI.Administration
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void tbxGroupName_MouseLeave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tbxGroupName_Leave(object sender, EventArgs e)
+        {
+           
+            //{
+            //    MessageBox.Show("Group Name already Exists!");
+            //    tbxGroupName.Focus();
+            //    return;
+            //}
+        }
+
+        private void cbxPrimarygroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxPrimarygroup.SelectedItem.ToString() =="Y")
+            {
+                lblUndergroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            else
+            {
+                lblUndergroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
         }
     }
 }

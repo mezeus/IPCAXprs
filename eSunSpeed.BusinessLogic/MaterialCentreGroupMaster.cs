@@ -171,7 +171,23 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+
+        //Is Material Center Group Exist or Not
+        public bool IsMaterialGroupExists(string groupName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM `MaterialCentreGroupMaster` WHERE `Group` ='{0}'", groupName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
+        }
     }
 
 
-}

@@ -185,5 +185,21 @@ namespace eSunSpeed.BusinessLogic
 
             return obj;
         }
+
+        //Is Unit Master Exist
+        //Is Costcenter Group Exist or Not
+        public bool IsUnitMasterExists(string MasterName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM UnitMaster WHERE UnitName='{0}'", MasterName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

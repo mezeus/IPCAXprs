@@ -35,6 +35,11 @@ namespace IPCAUI.Administration.List
 
         private void dvgUnitConDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
+        }
+
+        private void dvgUnitConDetails_KeyDown(object sender, KeyEventArgs e)
+        {
             UnitConversionModel lstUnitCover;
 
             lstUnitCover = (UnitConversionModel)dvgUnitConDetails.GetRow(dvgUnitConDetails.FocusedRowHandle);

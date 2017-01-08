@@ -185,5 +185,39 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+
+        //Is Unit Conversion Exists
+        public bool IsUnitConversionExists(string UnitName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM UnitConversion WHERE MainUnit='{0}'", UnitName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
+        //Get Unit Conversion By Unit Name
+        public UnitConversionModel GetUnitConversionByUnitname(string Unitname)
+        {
+            UnitConversionModel objUnitCon = new UnitConversionModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT SubUnit FROM `UnitConversion` WHERE `MainUnit`='" + Unitname + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objUnitCon = new eSunSpeedDomain.UnitConversionModel();
+
+                objUnitCon.SubUnit = dr["SubUnit"].ToString();
+            }
+            return objUnitCon;
+        }
     }
 }

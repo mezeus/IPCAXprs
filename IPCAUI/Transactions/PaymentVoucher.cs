@@ -128,12 +128,11 @@ namespace IPCAUI.Transactions
             objPayment.Voucher_Series = tbxVoucherSeries.Text.Trim();
             objPayment.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objPayment.Pay_Date = Convert.ToDateTime(dtDate.Text);
-            objPayment.Type = tbxType.Text.Trim();
+            objPayment.Type = tbxType.Text.Trim() == null ? string.Empty : tbxType.Text.Trim(); ;
             objPayment.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objPayment.LongNarration = tbxLongNarration.Text.Trim();
-            //objPurc.PurchaseVoucher_MatCenter = tbxMatCentre.Text.Trim();
-            //objPurc.Narration = tbxNarration.Text.Trim();
+            objPayment.LongNarration = tbxLongNarration.Text.Trim()==null?string.Empty:tbxLongNarration.Text.Trim();
 
+            objPayment.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
             //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
             //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
 

@@ -48,9 +48,7 @@ namespace IPCAUI.Administration
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-
+        { 
             
             if (tbxName.Text.Equals(string.Empty))
             {
@@ -127,6 +125,32 @@ namespace IPCAUI.Administration
             if ((e.KeyData == Keys.Enter))
             {
                 SelectNextControl(ActiveControl, true, true, true, true);
+            }
+        }
+
+        private void tbxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                if (tbxName.Text.Trim() == "")
+                {
+                    MessageBox.Show("Name Can Not Be Blank!");
+                    tbxName.Focus();
+                    return;
+                }
+                //if (objbl.IsGroupExists(tbxGroupName.Text.Trim()))
+                //{
+                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                //    tbxGroupName.Focus();
+                //    return;
+                //}
+
+                if (this.ActiveControl != null)
+                {
+                    this.SelectNextControl(this.ActiveControl, true, true, true, true);
+
+                }
+                e.Handled = true; // Mark the event as handled
             }
         }
     }

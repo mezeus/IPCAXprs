@@ -107,6 +107,7 @@
             this.dvgMCgrpDetails.Name = "dvgMCgrpDetails";
             this.dvgMCgrpDetails.OptionsBehavior.ReadOnly = true;
             this.dvgMCgrpDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgMCgrpDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgMCgrpDetails_KeyDown);
             this.dvgMCgrpDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgMCgrpDetails_KeyPress);
             // 
             // colName

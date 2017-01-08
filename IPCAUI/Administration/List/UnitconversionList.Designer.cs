@@ -168,6 +168,7 @@
             this.dvgUnitConDetails.Name = "dvgUnitConDetails";
             this.dvgUnitConDetails.OptionsBehavior.ReadOnly = true;
             this.dvgUnitConDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgUnitConDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgUnitConDetails_KeyDown);
             this.dvgUnitConDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgUnitConDetails_KeyPress);
             // 
             // colMainUnit

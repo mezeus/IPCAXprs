@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Itemgroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.rbnDefaultConfig = new DevExpress.XtraEditors.RadioGroup();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -96,7 +97,7 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblUndergroup = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblSave = new DevExpress.XtraLayout.LayoutControlItem();
@@ -117,7 +118,6 @@
             this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -139,7 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUndergroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSave)).BeginInit();
@@ -194,9 +194,21 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(430, 269);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(76, 24);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 63;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // rbnDefaultConfig
             // 
-            this.rbnDefaultConfig.Location = new System.Drawing.Point(88, 228);
+            this.rbnDefaultConfig.EnterMoveNextControl = true;
+            this.rbnDefaultConfig.Location = new System.Drawing.Point(114, 228);
             this.rbnDefaultConfig.Name = "rbnDefaultConfig";
             this.rbnDefaultConfig.Properties.Columns = 2;
             this.rbnDefaultConfig.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -209,7 +221,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(302, 269);
+            this.btnUpdate.Location = new System.Drawing.Point(328, 269);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(74, 24);
             this.btnUpdate.StyleController = this.layoutControl1;
@@ -272,9 +284,9 @@
             this.navBarItem40});
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 60;
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 86;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(60, 281);
+            this.navBarControl1.Size = new System.Drawing.Size(86, 281);
             this.navBarControl1.TabIndex = 58;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -580,7 +592,7 @@
             // btnConfig
             // 
             this.btnConfig.Enabled = false;
-            this.btnConfig.Location = new System.Drawing.Point(503, 228);
+            this.btnConfig.Location = new System.Drawing.Point(529, 228);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(67, 25);
             this.btnConfig.StyleController = this.layoutControl1;
@@ -590,7 +602,7 @@
             // tbxParameters
             // 
             this.tbxParameters.EnterMoveNextControl = true;
-            this.tbxParameters.Location = new System.Drawing.Point(442, 228);
+            this.tbxParameters.Location = new System.Drawing.Point(468, 228);
             this.tbxParameters.Name = "tbxParameters";
             this.tbxParameters.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxParameters.Properties.Appearance.Options.UseFont = true;
@@ -601,7 +613,7 @@
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(494, 269);
+            this.btnQuit.Location = new System.Drawing.Point(520, 269);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(78, 24);
             this.btnQuit.StyleController = this.layoutControl1;
@@ -612,7 +624,7 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(200, 269);
+            this.btnSave.Location = new System.Drawing.Point(226, 269);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 24);
             this.btnSave.StyleController = this.layoutControl1;
@@ -623,7 +635,7 @@
             // cbxUndergroup
             // 
             this.cbxUndergroup.EnterMoveNextControl = true;
-            this.cbxUndergroup.Location = new System.Drawing.Point(172, 102);
+            this.cbxUndergroup.Location = new System.Drawing.Point(198, 102);
             this.cbxUndergroup.Name = "cbxUndergroup";
             this.cbxUndergroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxUndergroup.Properties.Appearance.Options.UseFont = true;
@@ -631,6 +643,7 @@
             "General",
             "Sales",
             "Purchase"});
+            this.cbxUndergroup.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxUndergroup.Size = new System.Drawing.Size(410, 20);
             this.cbxUndergroup.StyleController = this.layoutControl1;
             this.cbxUndergroup.TabIndex = 8;
@@ -639,23 +652,23 @@
             // cbxPrimarygroup
             // 
             this.cbxPrimarygroup.EnterMoveNextControl = true;
-            this.cbxPrimarygroup.Location = new System.Drawing.Point(172, 78);
+            this.cbxPrimarygroup.Location = new System.Drawing.Point(198, 78);
             this.cbxPrimarygroup.Name = "cbxPrimarygroup";
             this.cbxPrimarygroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxPrimarygroup.Properties.Appearance.Options.UseFont = true;
-            this.cbxPrimarygroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxPrimarygroup.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
+            this.cbxPrimarygroup.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxPrimarygroup.Size = new System.Drawing.Size(54, 20);
             this.cbxPrimarygroup.StyleController = this.layoutControl1;
             this.cbxPrimarygroup.TabIndex = 7;
+            this.cbxPrimarygroup.SelectedIndexChanged += new System.EventHandler(this.cbxPrimarygroup_SelectedIndexChanged);
             // 
             // tbxAliasname
             // 
             this.tbxAliasname.EnterMoveNextControl = true;
-            this.tbxAliasname.Location = new System.Drawing.Point(172, 54);
+            this.tbxAliasname.Location = new System.Drawing.Point(198, 54);
             this.tbxAliasname.Name = "tbxAliasname";
             this.tbxAliasname.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxAliasname.Properties.Appearance.Options.UseFont = true;
@@ -666,7 +679,7 @@
             // tbxGroupName
             // 
             this.tbxGroupName.EnterMoveNextControl = true;
-            this.tbxGroupName.Location = new System.Drawing.Point(172, 30);
+            this.tbxGroupName.Location = new System.Drawing.Point(198, 30);
             this.tbxGroupName.Name = "tbxGroupName";
             this.tbxGroupName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxGroupName.Properties.Appearance.Options.UseFont = true;
@@ -676,12 +689,14 @@
             this.tbxGroupName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
             this.tbxGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxGroupName_KeyDown);
             this.tbxGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
+            this.tbxGroupName.Leave += new System.EventHandler(this.tbxGroupName_Leave);
+            this.tbxGroupName.MouseLeave += new System.EventHandler(this.tbxGroupName_MouseLeave);
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(179, 12);
+            this.labelControl1.Location = new System.Drawing.Point(205, 12);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(75, 14);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -706,12 +721,13 @@
             // cbxStockaccount
             // 
             this.cbxStockaccount.EnterMoveNextControl = true;
-            this.cbxStockaccount.Location = new System.Drawing.Point(172, 126);
+            this.cbxStockaccount.Location = new System.Drawing.Point(198, 126);
             this.cbxStockaccount.Name = "cbxStockaccount";
             this.cbxStockaccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxStockaccount.Properties.Appearance.Options.UseFont = true;
             this.cbxStockaccount.Properties.Items.AddRange(new object[] {
             "Stock Account"});
+            this.cbxStockaccount.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxStockaccount.Size = new System.Drawing.Size(410, 20);
             this.cbxStockaccount.StyleController = this.layoutControl1;
             this.cbxStockaccount.TabIndex = 13;
@@ -720,12 +736,13 @@
             // cbxSalesaccount
             // 
             this.cbxSalesaccount.EnterMoveNextControl = true;
-            this.cbxSalesaccount.Location = new System.Drawing.Point(172, 150);
+            this.cbxSalesaccount.Location = new System.Drawing.Point(198, 150);
             this.cbxSalesaccount.Name = "cbxSalesaccount";
             this.cbxSalesaccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxSalesaccount.Properties.Appearance.Options.UseFont = true;
             this.cbxSalesaccount.Properties.Items.AddRange(new object[] {
             "Sales Account"});
+            this.cbxSalesaccount.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSalesaccount.Size = new System.Drawing.Size(410, 20);
             this.cbxSalesaccount.StyleController = this.layoutControl1;
             this.cbxSalesaccount.TabIndex = 14;
@@ -734,12 +751,13 @@
             // cbxPurchaseAccount
             // 
             this.cbxPurchaseAccount.EnterMoveNextControl = true;
-            this.cbxPurchaseAccount.Location = new System.Drawing.Point(172, 174);
+            this.cbxPurchaseAccount.Location = new System.Drawing.Point(198, 174);
             this.cbxPurchaseAccount.Name = "cbxPurchaseAccount";
             this.cbxPurchaseAccount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxPurchaseAccount.Properties.Appearance.Options.UseFont = true;
             this.cbxPurchaseAccount.Properties.Items.AddRange(new object[] {
             "Purchase Account"});
+            this.cbxPurchaseAccount.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxPurchaseAccount.Size = new System.Drawing.Size(410, 20);
             this.cbxPurchaseAccount.StyleController = this.layoutControl1;
             this.cbxPurchaseAccount.TabIndex = 15;
@@ -760,7 +778,7 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.layoutControlItem5,
+            this.lblUndergroup,
             this.emptySpaceItem1,
             this.emptySpaceItem3,
             this.lblSave,
@@ -788,7 +806,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.labelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(167, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(193, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(79, 18);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -797,7 +815,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.tbxGroupName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(64, 18);
+            this.layoutControlItem2.Location = new System.Drawing.Point(90, 18);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -809,7 +827,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.tbxAliasname;
-            this.layoutControlItem3.Location = new System.Drawing.Point(64, 42);
+            this.layoutControlItem3.Location = new System.Drawing.Point(90, 42);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -818,22 +836,22 @@
             this.layoutControlItem3.Text = "Alias";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(93, 13);
             // 
-            // layoutControlItem5
+            // lblUndergroup
             // 
-            this.layoutControlItem5.Control = this.cbxUndergroup;
-            this.layoutControlItem5.Location = new System.Drawing.Point(64, 90);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(510, 24);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(510, 24);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(510, 24);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "Under Group";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(93, 13);
+            this.lblUndergroup.Control = this.cbxUndergroup;
+            this.lblUndergroup.Location = new System.Drawing.Point(90, 90);
+            this.lblUndergroup.MaxSize = new System.Drawing.Size(510, 24);
+            this.lblUndergroup.MinSize = new System.Drawing.Size(510, 24);
+            this.lblUndergroup.Name = "lblUndergroup";
+            this.lblUndergroup.Size = new System.Drawing.Size(510, 24);
+            this.lblUndergroup.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lblUndergroup.Text = "Under Group";
+            this.lblUndergroup.TextSize = new System.Drawing.Size(93, 13);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(64, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(90, 0);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(103, 18);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(103, 18);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -844,7 +862,7 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(246, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(272, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(328, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -852,7 +870,7 @@
             // lblSave
             // 
             this.lblSave.Control = this.btnSave;
-            this.lblSave.Location = new System.Drawing.Point(188, 257);
+            this.lblSave.Location = new System.Drawing.Point(214, 257);
             this.lblSave.MaxSize = new System.Drawing.Size(84, 28);
             this.lblSave.MinSize = new System.Drawing.Size(84, 28);
             this.lblSave.Name = "lblSave";
@@ -864,7 +882,7 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnQuit;
-            this.layoutControlItem9.Location = new System.Drawing.Point(482, 257);
+            this.layoutControlItem9.Location = new System.Drawing.Point(508, 257);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(82, 28);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(82, 28);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -876,7 +894,7 @@
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(368, 257);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(394, 257);
             this.emptySpaceItem5.MaxSize = new System.Drawing.Size(24, 28);
             this.emptySpaceItem5.MinSize = new System.Drawing.Size(24, 28);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
@@ -887,7 +905,7 @@
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(64, 257);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(90, 257);
             this.emptySpaceItem6.MaxSize = new System.Drawing.Size(124, 28);
             this.emptySpaceItem6.MinSize = new System.Drawing.Size(124, 28);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
@@ -898,7 +916,7 @@
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(564, 257);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(590, 257);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
             this.emptySpaceItem7.Size = new System.Drawing.Size(10, 28);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -906,7 +924,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.cbxPrimarygroup;
-            this.layoutControlItem4.Location = new System.Drawing.Point(64, 66);
+            this.layoutControlItem4.Location = new System.Drawing.Point(90, 66);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(154, 24);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(154, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -918,7 +936,8 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.cbxStockaccount;
-            this.layoutControlItem6.Location = new System.Drawing.Point(64, 114);
+            this.layoutControlItem6.Enabled = false;
+            this.layoutControlItem6.Location = new System.Drawing.Point(90, 114);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -930,7 +949,8 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.cbxSalesaccount;
-            this.layoutControlItem11.Location = new System.Drawing.Point(64, 138);
+            this.layoutControlItem11.Enabled = false;
+            this.layoutControlItem11.Location = new System.Drawing.Point(90, 138);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem11.Name = "layoutControlItem11";
@@ -942,7 +962,8 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.cbxPurchaseAccount;
-            this.layoutControlItem12.Location = new System.Drawing.Point(64, 162);
+            this.layoutControlItem12.Enabled = false;
+            this.layoutControlItem12.Location = new System.Drawing.Point(90, 162);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem12.Name = "layoutControlItem12";
@@ -956,14 +977,14 @@
             this.layoutControlItem16.Control = this.navBarControl1;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(64, 285);
+            this.layoutControlItem16.Size = new System.Drawing.Size(90, 285);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(218, 66);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(244, 66);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
             this.emptySpaceItem8.Size = new System.Drawing.Size(356, 24);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
@@ -974,7 +995,7 @@
             this.layoutControlItem14,
             this.layoutControlItem15,
             this.layoutControlItem7});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(64, 186);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(90, 186);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(510, 71);
             this.layoutControlGroup2.Text = "Parameterized Stock  Details Configuration";
@@ -982,6 +1003,7 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.tbxParameters;
+            this.layoutControlItem14.Enabled = false;
             this.layoutControlItem14.Location = new System.Drawing.Point(258, 0);
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(157, 29);
             this.layoutControlItem14.MinSize = new System.Drawing.Size(157, 29);
@@ -994,6 +1016,7 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.btnConfig;
+            this.layoutControlItem15.Enabled = false;
             this.layoutControlItem15.Location = new System.Drawing.Point(415, 0);
             this.layoutControlItem15.MaxSize = new System.Drawing.Size(71, 29);
             this.layoutControlItem15.MinSize = new System.Drawing.Size(71, 29);
@@ -1015,15 +1038,15 @@
             // emptySpaceItem13
             // 
             this.emptySpaceItem13.AllowHotTrack = false;
-            this.emptySpaceItem13.Location = new System.Drawing.Point(574, 0);
+            this.emptySpaceItem13.Location = new System.Drawing.Point(600, 0);
             this.emptySpaceItem13.Name = "emptySpaceItem13";
-            this.emptySpaceItem13.Size = new System.Drawing.Size(116, 285);
+            this.emptySpaceItem13.Size = new System.Drawing.Size(90, 285);
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblUpdate
             // 
             this.lblUpdate.Control = this.btnUpdate;
-            this.lblUpdate.Location = new System.Drawing.Point(290, 257);
+            this.lblUpdate.Location = new System.Drawing.Point(316, 257);
             this.lblUpdate.MaxSize = new System.Drawing.Size(78, 28);
             this.lblUpdate.MinSize = new System.Drawing.Size(78, 28);
             this.lblUpdate.Name = "lblUpdate";
@@ -1035,7 +1058,7 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(272, 257);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(298, 257);
             this.emptySpaceItem4.MaxSize = new System.Drawing.Size(18, 28);
             this.emptySpaceItem4.MinSize = new System.Drawing.Size(18, 28);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
@@ -1043,21 +1066,10 @@
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(404, 269);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(76, 24);
-            this.btnDelete.StyleController = this.layoutControl1;
-            this.btnDelete.TabIndex = 63;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // lblDelete
             // 
             this.lblDelete.Control = this.btnDelete;
-            this.lblDelete.Location = new System.Drawing.Point(392, 257);
+            this.lblDelete.Location = new System.Drawing.Point(418, 257);
             this.lblDelete.MaxSize = new System.Drawing.Size(80, 28);
             this.lblDelete.MinSize = new System.Drawing.Size(80, 28);
             this.lblDelete.Name = "lblDelete";
@@ -1069,7 +1081,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(472, 257);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(498, 257);
             this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 28);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 28);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
@@ -1085,7 +1097,7 @@
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Itemgroup";
-            this.Text = "SalesVoucher";
+            this.Text = "Item Group";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Itemgroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -1107,7 +1119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUndergroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSave)).EndInit();
@@ -1150,7 +1162,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem lblUndergroup;
         private DevExpress.XtraEditors.SimpleButton btnQuit;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;

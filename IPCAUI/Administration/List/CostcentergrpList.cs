@@ -45,5 +45,10 @@ namespace IPCAUI.Administration.List
 
             this.Close();
         }
+
+        private void dvgCCgrpDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Unitmaster : Form
     {
         UnitMaster objunm = new UnitMaster();
+        UnitConversion objunitConBl = new UnitConversion();
         public static int UMId = 0;
         public Unitmaster()
         {
@@ -50,12 +51,16 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            btnSave.Visible = false;
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
 
-            FillUnitMasterInfo();
+            if(UMId!=0)
+            {
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
+                FillUnitMasterInfo();
+            }
+            
         }
 
         private void FillUnitMasterInfo()
@@ -80,19 +85,18 @@ namespace IPCAUI.Administration
         {
             if (e.KeyChar == '\r')
             {
-                //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
                 if (tbxUnitName.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("Unit Name Can Not Be Blank!");
                     this.ActiveControl = tbxUnitName;
                     return;
                 }
-                //e.Handled = true; // Mark the event as handled
+                if (objunm.IsUnitMasterExists(tbxUnitName.Text.Trim()))
+                {
+                   MessageBox.Show("Unit Name already Exists!");
+                    tbxUnitName.Focus();
+                    return;
+                }
             }
         }
 
@@ -121,6 +125,13 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfuly!");
+                ClearControls();
+                UMId = 0;
+                Administration.List.UnitmasterList frmList = new Administration.List.UnitmasterList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillUnitMasterInfo();
             }
         }
 
@@ -150,12 +161,28 @@ namespace IPCAUI.Administration
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            bool isDelete = objunm.DeleteUnitMasterById(UMId);
-            if (isDelete)
+            UnitConversionModel objmodel = objunitConBl.GetUnitConversionByUnitname(tbxUnitName.Text.Trim());
+            if (objmodel.SubUnit != null)
             {
-                MessageBox.Show("Delete Successfully!");
-                ClearControls();
+                MessageBox.Show("Can Not Delete Unit Under Tag With Unit Name.." + objmodel.SubUnit);
+                tbxUnitName.Focus();
             }
+            if(objmodel.SubUnit ==null)
+            {
+                bool isDelete = objunm.DeleteUnitMasterById(UMId);
+                if (isDelete)
+                {
+                    MessageBox.Show("Delete Successfully!");
+                    ClearControls();
+                    UMId = 0;
+                    Administration.List.UnitmasterList frmList = new Administration.List.UnitmasterList();
+                    frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                    frmList.ShowDialog();
+                    FillUnitMasterInfo();
+                }
+            }
+            
         }
     }
 }
