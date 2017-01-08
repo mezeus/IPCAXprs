@@ -25,12 +25,11 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@VoucherNumber", objReciept.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objReciept.Voucher_Series));
                 paramCollection.Add(new DBParameter("@RecieptDate", objReciept.RV_Date, System.Data.DbType.DateTime));
-
                 paramCollection.Add(new DBParameter("@Type", objReciept.Type));
                 paramCollection.Add(new DBParameter("@PDCDate", objReciept.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objReciept.LongNarration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objReciept.TotalCreditAmt,System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount",objReciept.TotalDebitAmt, System.Data.DbType.Decimal));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
@@ -68,8 +67,8 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@RecieptId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit,System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
@@ -114,21 +113,22 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@Series", objRecipt.Voucher_Series));
-                paramCollection.Add(new DBParameter("@Date", objRecipt.RV_Date));
+                paramCollection.Add(new DBParameter("@Date", objRecipt.RV_Date,System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Voucher_Number", objRecipt.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Type", objRecipt.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objRecipt.PDCDate));
-                //paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
-                //paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
+                paramCollection.Add(new DBParameter("@PDDate", objRecipt.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objRecipt.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmt",objRecipt.TotalCreditAmt, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmt",objRecipt.TotalDebitAmt, System.Data.DbType.Decimal));
 
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@id", objRecipt.RV_Id));
 
-                Query = "UPDATE Reciept_Voucher SET [Series]=@Series,[Reciept_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                         "[Type]=@Type,[PDC_Date]=@PDDate,[ModifiedBy]=@ModifiedBy," +
-                        "[ModifiedDate]=@ModifiedDate " +
-                        "WHERE Reciept_Id=@id";
+                Query = "UPDATE Reciept_Voucher_Master SET `Series`=@Series,`Reciept_Date`=@Date,`VoucherNo`=@Voucher_Number," +
+                         "`Type`=@Type,`PDC_Date`=@PDDate,`LongNarration`=@LongNarration,`TotalCreditAmt`=@TotalCreditAmt,`TotalDebitAmt`=@TotalDebitAmt,`ModifiedBy`=@ModifiedBy," +
+                        "`ModifiedDate`=@ModifiedDate " +
+                        "WHERE `Reciept_Id`=@id";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
@@ -144,17 +144,17 @@ namespace eSunSpeed.BusinessLogic
 
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
+                            paramCollection.Add(new DBParameter("@Debit", act.Debit, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Credit", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                             paramCollection.Add(new DBParameter("@ACT_ID", act.AC_Id));
 
-                            Query = "UPDATE Reciept_Voucher_Accounts SET [DC]=@DC," +
-                            "[Account]=@Account,[Debit]=@Debit,[Credit]=@Credit,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                            "WHERE [AC_Id]=@ACT_ID";
+                            Query = "UPDATE Reciept_Voucher_Details SET `DC`=@DC," +
+                            "`Account`=@Account,`Debit`=@Debit,`Credit`=@Credit,`Narration`=@Narration,`ModifiedBy`=@ModifiedBy,`ModifiedDate`=@ModifiedDate " +
+                            "WHERE `AC_Id`=@ACT_ID";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                             {
@@ -165,18 +165,18 @@ namespace eSunSpeed.BusinessLogic
                         {
                             paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@DN_ID", (act.ParentId)));
+                            paramCollection.Add(new DBParameter("@RV_ID", (objRecipt.RV_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
+                            paramCollection.Add(new DBParameter("@Debit", act.Debit, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Credit", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
 
-                            Query = "INSERT INTO Reciept_Voucher_Accounts([Reciept_Id],[DC],[Account],[Debit]," +
-                                               "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
+                            Query = "INSERT INTO Reciept_Voucher_Details (`Reciept_Id`,`DC`,`Account`,`Debit`," +
+                                               "`Credit`,`Narration`,`CreatedBy`,`CreatedDate`) VALUES " +
                                                "(@RV_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -293,8 +293,8 @@ namespace eSunSpeed.BusinessLogic
 
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.Append("SELECT C.RECIEPT_ID, C.RECIEPT_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM RECIEPT_VOUCHER C ");
-            sbQuery.Append("INNER JOIN RECIEPT_VOUCHER_ACCOUNTS A ");
+            sbQuery.Append("SELECT C.RECIEPT_ID, C.RECIEPT_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM RECIEPT_VOUCHER_MASTER C ");
+            sbQuery.Append("INNER JOIN RECIEPT_VOUCHER_DETAILS A ");
             sbQuery.Append("ON A.RECIEPT_ID = C.RECIEPT_ID WHERE DC='C';");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
@@ -322,7 +322,7 @@ namespace eSunSpeed.BusinessLogic
             List<RecieptVoucherModel> lstReciept = new List<RecieptVoucherModel>();
             RecieptVoucherModel objReciept;
 
-            string Query = "SELECT * FROM Reciept_Voucher WHERE Reciept_Id=" + id;
+            string Query = "SELECT * FROM `Reciept_Voucher_Master` WHERE `Reciept_Id`=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -334,12 +334,14 @@ namespace eSunSpeed.BusinessLogic
                 objReciept.RV_Date = DataFormat.GetDateTime(dr["Reciept_Date"]);
                 objReciept.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objReciept.Type = dr["Type"].ToString();
-                if (dr["PDC_Date"].ToString() != "")
-                    objReciept.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objReciept.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objReciept.LongNarration = dr["LongNarration"].ToString();
+                objReciept.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);
+                objReciept.TotalDebitAmt = Convert.ToDecimal(dr["TotalDebitAmt"]);
+                
+                //SELECT Payment Voucher Details
 
-                //SELECT Payment Voucher Accounts
-
-                string itemQuery = "SELECT * FROM Reciept_Voucher_Accounts WHERE Reciept_Id=" + objReciept.RV_Id;
+                string itemQuery = "SELECT * FROM `Reciept_Voucher_Details` WHERE `Reciept_Id`=" + objReciept.RV_Id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
                 objReciept.RecieptAccountModel = new List<AccountModel>();

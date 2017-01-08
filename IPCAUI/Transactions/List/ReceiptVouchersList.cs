@@ -12,38 +12,31 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class ReceiptVouchers : Form
+    public partial class ReceiptVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public ReceiptVouchers()
+        RecieptVoucherBL objRecbl = new RecieptVoucherBL();
+        public ReceiptVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void ReceiptVouchers_Load(object sender, EventArgs e)
+        private void ReceiptVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<ListModel> lstReceipt = objRecbl.GetAllRecieptVoucher();
+            dvgReceiptMain.DataSource = lstReceipt;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
+               
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgReceiptDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            ListModel lstReceipt;
+
+            lstReceipt = (ListModel)dvgReceiptDetails.GetRow(dvgReceiptDetails.FocusedRowHandle);
+            Transactions.ReceiptVoucher.Recpt_Id = lstReceipt.Id;
+       
+            this.Close();
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            AccountGroupModel lstItems;
-
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
     }
 }

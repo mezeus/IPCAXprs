@@ -12,38 +12,31 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class PaymentVouchers : Form
+    public partial class PaymentVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public PaymentVouchers()
+        PaymentVoucherBL objPayBl = new PaymentVoucherBL();
+        public PaymentVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void PaymentVouchers_Load(object sender, EventArgs e)
+        private void PaymentVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<ListModel> lstPayment = objPayBl.GetAllPaymentVoucher();
+            dvgPaymentList.DataSource = lstPayment;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
+              
+      
+        private void dvgPaymentListDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            AccountGroupModel lstItems;
+            ListModel lstPaymet;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+            lstPaymet = (ListModel)dvgPaymentListDetails.GetRow(dvgPaymentListDetails.FocusedRowHandle);
+            Transactions.PaymentVoucher.Payid = lstPaymet.Id;
+
+            this.Close();
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            AccountGroupModel lstItems;
-
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
     }
 }

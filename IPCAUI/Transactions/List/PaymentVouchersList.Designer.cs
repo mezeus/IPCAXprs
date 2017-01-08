@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Transaction.List
 {
-    partial class PaymentVouchers
+    partial class PaymentVouchersList
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dvgAccList = new DevExpress.XtraGrid.GridControl();
-            this.gdvAccGroupDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrimary = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUnderGroup = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dvgPaymentList = new DevExpress.XtraGrid.GridControl();
+            this.dvgPaymentListDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVchNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Debit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDebit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -61,11 +63,10 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgPaymentList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgPaymentListDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -90,7 +91,7 @@
             this.layoutControl1.Controls.Add(this.label5);
             this.layoutControl1.Controls.Add(this.label4);
             this.layoutControl1.Controls.Add(this.label3);
-            this.layoutControl1.Controls.Add(this.dvgAccList);
+            this.layoutControl1.Controls.Add(this.dvgPaymentList);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -133,60 +134,64 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "From";
             // 
-            // dvgAccList
+            // dvgPaymentList
             // 
-            this.dvgAccList.Location = new System.Drawing.Point(47, 53);
-            this.dvgAccList.MainView = this.gdvAccGroupDetails;
-            this.dvgAccList.Name = "dvgAccList";
-            this.dvgAccList.Size = new System.Drawing.Size(782, 415);
-            this.dvgAccList.TabIndex = 9;
-            this.dvgAccList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvAccGroupDetails});
+            gridLevelNode1.RelationName = "Level1";
+            this.dvgPaymentList.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.dvgPaymentList.Location = new System.Drawing.Point(47, 53);
+            this.dvgPaymentList.MainView = this.dvgPaymentListDetails;
+            this.dvgPaymentList.Name = "dvgPaymentList";
+            this.dvgPaymentList.Size = new System.Drawing.Size(782, 415);
+            this.dvgPaymentList.TabIndex = 9;
+            this.dvgPaymentList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgPaymentListDetails});
             // 
-            // gdvAccGroupDetails
+            // dvgPaymentListDetails
             // 
-            this.gdvAccGroupDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gdvAccGroupDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colName,
-            this.colPrimary,
-            this.colUnderGroup,
+            this.dvgPaymentListDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.dvgPaymentListDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDate,
+            this.colVchNo,
+            this.colAccount,
             this.Id,
             this.gridColumn1,
-            this.Debit,
-            this.gridColumn3,
-            this.gridColumn4,
+            this.colDebit,
+            this.colCredit,
+            this.colNarration,
             this.gridColumn5});
-            this.gdvAccGroupDetails.GridControl = this.dvgAccList;
-            this.gdvAccGroupDetails.Name = "gdvAccGroupDetails";
-            this.gdvAccGroupDetails.OptionsBehavior.ReadOnly = true;
-            this.gdvAccGroupDetails.OptionsView.ShowGroupPanel = false;
-            this.gdvAccGroupDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
-            this.gdvAccGroupDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
+            this.dvgPaymentListDetails.GridControl = this.dvgPaymentList;
+            this.dvgPaymentListDetails.Name = "dvgPaymentListDetails";
+            this.dvgPaymentListDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgPaymentListDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgPaymentListDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgPaymentListDetails_KeyDown);
             // 
-            // colName
+            // colDate
             // 
-            this.colName.FieldName = "Date";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            this.colName.Width = 79;
+            this.colDate.Caption = "Date";
+            this.colDate.FieldName = "Date";
+            this.colDate.Name = "colDate";
+            this.colDate.Visible = true;
+            this.colDate.VisibleIndex = 0;
+            this.colDate.Width = 79;
             // 
-            // colPrimary
+            // colVchNo
             // 
-            this.colPrimary.Caption = "VchBillNo";
-            this.colPrimary.Name = "colPrimary";
-            this.colPrimary.Visible = true;
-            this.colPrimary.VisibleIndex = 1;
-            this.colPrimary.Width = 127;
+            this.colVchNo.Caption = "VchBillNo";
+            this.colVchNo.FieldName = "VoucherNo";
+            this.colVchNo.Name = "colVchNo";
+            this.colVchNo.Visible = true;
+            this.colVchNo.VisibleIndex = 1;
+            this.colVchNo.Width = 127;
             // 
-            // colUnderGroup
+            // colAccount
             // 
-            this.colUnderGroup.Caption = "Account";
-            this.colUnderGroup.FieldName = "Particulars";
-            this.colUnderGroup.Name = "colUnderGroup";
-            this.colUnderGroup.Visible = true;
-            this.colUnderGroup.VisibleIndex = 2;
-            this.colUnderGroup.Width = 141;
+            this.colAccount.Caption = "Account";
+            this.colAccount.FieldName = "Account";
+            this.colAccount.Name = "colAccount";
+            this.colAccount.Visible = true;
+            this.colAccount.VisibleIndex = 2;
+            this.colAccount.Width = 141;
             // 
             // Id
             // 
@@ -200,32 +205,38 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Width = 106;
             // 
-            // Debit
+            // colDebit
             // 
-            this.Debit.Caption = "Debit";
-            this.Debit.FieldName = "Item Details";
-            this.Debit.Name = "Debit";
-            this.Debit.Visible = true;
-            this.Debit.VisibleIndex = 3;
-            this.Debit.Width = 106;
+            this.colDebit.Caption = "Debit";
+            this.colDebit.FieldName = "Debit";
+            this.colDebit.Name = "colDebit";
+            this.colDebit.Visible = true;
+            this.colDebit.VisibleIndex = 3;
+            this.colDebit.Width = 106;
             // 
-            // gridColumn3
+            // colCredit
             // 
-            this.gridColumn3.Caption = "Credit";
-            this.gridColumn3.FieldName = "Quantity";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
-            this.gridColumn3.Width = 126;
+            this.colCredit.Caption = "Credit";
+            this.colCredit.FieldName = "Credit";
+            this.colCredit.Name = "colCredit";
+            this.colCredit.Visible = true;
+            this.colCredit.VisibleIndex = 4;
+            this.colCredit.Width = 126;
             // 
-            // gridColumn4
+            // colNarration
             // 
-            this.gridColumn4.Caption = "ShortNarration";
-            this.gridColumn4.FieldName = "Unit";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 5;
-            this.gridColumn4.Width = 79;
+            this.colNarration.Caption = "ShortNarration";
+            this.colNarration.FieldName = "Narration";
+            this.colNarration.Name = "colNarration";
+            this.colNarration.Visible = true;
+            this.colNarration.VisibleIndex = 5;
+            this.colNarration.Width = 79;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 6;
             // 
             // navBarControl1
             // 
@@ -328,7 +339,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgAccList;
+            this.layoutControlItem3.Control = this.dvgPaymentList;
             this.layoutControlItem3.Location = new System.Drawing.Point(35, 41);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(786, 419);
@@ -412,26 +423,20 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(352, 24);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
-            // 
-            // PaymentVouchers
+            // PaymentVouchersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "PaymentVouchers";
-            this.Text = "Transactions List";
-            this.Load += new System.EventHandler(this.PaymentVouchers_Load);
+            this.Name = "PaymentVouchersList";
+            this.Text = "Payment Voucher List";
+            this.Load += new System.EventHandler(this.PaymentVouchersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgPaymentList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgPaymentListDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -463,20 +468,20 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraGrid.GridControl dvgAccList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gdvAccGroupDetails;
+        private DevExpress.XtraGrid.GridControl dvgPaymentList;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgPaymentListDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraGrid.Columns.GridColumn colName;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrimary;
-        private DevExpress.XtraGrid.Columns.GridColumn colUnderGroup;
+        private DevExpress.XtraGrid.Columns.GridColumn colDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colVchNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccount;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
         private DevExpress.XtraGrid.Columns.GridColumn Id;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn Debit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn colDebit;
+        private DevExpress.XtraGrid.Columns.GridColumn colCredit;
+        private DevExpress.XtraGrid.Columns.GridColumn colNarration;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

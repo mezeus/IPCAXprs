@@ -303,12 +303,62 @@ namespace IPCAUI.Administration
 
         private void cbxMainUnit_Enter(object sender, EventArgs e)
         {
-            cbxMainUnit.SelectedIndex = 0;
+
+           // cbxMainUnit.SelectedIndex = 0;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
         }
 
         private void cbxAltUnit_Enter(object sender, EventArgs e)
         {
-            cbxAltUnit.SelectedIndex = 0;
+            tbxConFrom.Enabled = true;
+            tbxConTo.Enabled = true;
+
+            if (cbxAltUnit.SelectedItem.ToString().Equals("None"))
+            {
+                tbxConFrom.Enabled = false;
+                tbxConTo.Enabled = false;
+            }
+
+         //   cbxAltUnit.SelectedIndex = 0;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
         }
 
         private void cbxUnit_Enter(object sender, EventArgs e)
@@ -317,14 +367,23 @@ namespace IPCAUI.Administration
 
             cbxUnit.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString().Trim());
             cbxUnit.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString().Trim());
+                        
+            cbxUnit.Properties.Items.Remove("None");
+
+            cbxUnit.SelectedIndex = 0;
         }
 
         private void tbxPer_Enter(object sender, EventArgs e)
         {
             tbxPer.Properties.Items.Clear();
 
-            tbxPer.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString().Trim());
+            tbxPer.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString().Trim());            
             tbxPer.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString().Trim());
+
+            tbxPer.Properties.Items.Remove("None");
+            cbxUnit.Properties.Items.Remove("None");
+
+            tbxPer.SelectedIndex = 0;
         }
 
         private void cbxTaxCat_Enter(object sender, EventArgs e)
@@ -515,103 +574,295 @@ namespace IPCAUI.Administration
 
         private void tbxValue_TextChanged(object sender, EventArgs e)
         {
+            CalculateRate();
+        }
+
+        private void CalculateRate()
+        {
+            if (cbxUnit.SelectedItem == null)
+                return;
+
+            if (tbxPer.SelectedItem.ToString().Equals(cbxUnit.SelectedItem.ToString()))
+            {
+                if (Convert.ToDecimal(tbxValue.Text)>0 && Convert.ToDecimal(tbxOpStock.Text)>0)
+                tbxRate.Text = (Convert.ToDecimal(tbxValue.Text) / Convert.ToDecimal(tbxOpStock.Text)).ToString();
+            }
+
+            else if (tbxPer.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxValue.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxRate.Text = (cal / (Convert.ToDecimal(tbxOpStock.Text)) * Convert.ToDecimal(tbxConFrom.Text)).ToString();
+            }
+
+            else if (tbxPer.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxValue.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxRate.Text = (cal / (Convert.ToDecimal(tbxOpStock.Text)) * Convert.ToDecimal(tbxConTo.Text)).ToString();
+            }
+        }
+        private void tbxPer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalculateOpStockValue();
            
         }
 
-        private void tbxPer_SelectedIndexChanged(object sender, EventArgs e)
+        private void CalculateOpStockValue()
         {
-            //decimal a, b, c;
+            if (cbxUnit.SelectedItem == null)
+                return;
 
-            //bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
-            //bool isBValid = decimal.TryParse(tbxRate.Text, out b);
-            ////bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
 
-            //if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
-            //{
-            //    tbxValue.Text = (a * b).ToString();
-            //}
-            //if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
-            //{
-            //    tbxValue.Text = (a * b ).ToString();
-            //}
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
 
-            //Main unit
-            //if(tbxPer.SelectedItem.ToString().Equals("Tonne") || tbxPer.SelectedItem.ToString().Equals("Tonne"))
-
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
         }
 
         private void cbxMainUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-            //tbxPer.Properties.Items.Add(cbxMainUnit.SelectedItem.ToString());
+
+            cbxAltUnit.Properties.Items.Clear();
+            cbxAltUnit.Properties.Items.Add("None");
+            cbxAltUnit.Properties.Items.AddRange(cbxMainUnit.Properties.Items);
+
+            cbxAltUnit.Properties.Items.Remove(cbxMainUnit.SelectedItem);
+
+            //Change lables for sales/purch
+
+            lblSalesPriceMain.Text = "Sales Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
+            lblPurchPriceMain.Text = "Purch. Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
+
+            lblMRPMain.Text= "M.R.P(" + cbxMainUnit.SelectedItem.ToString() + ")";
+
+            if (cbxAltUnit.SelectedItem == null)
+                return;
+
+            lblSalesPriceAlt.Text = "Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
+            lblPurchPriceAlt.Text = "Purch. Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
+
 
         }
 
         private void cbxAltUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //tbxPer.Properties.Items.Add(cbxAltUnit.SelectedItem.ToString());
+            tbxConFrom.Enabled = true;
+            tbxConTo.Enabled = true;
+
+            if (cbxAltUnit.SelectedItem.ToString().Equals("None"))
+            {
+                tbxConFrom.Enabled = false;
+                tbxConTo.Enabled = false;
+
+                tbxConTo.Text = string.Empty;
+                tbxConFrom.Text = string.Empty;
+
+                lblMainUnit.Text = string.Empty;
+                lblAltunit.Text = string.Empty;
+            }
+
+            //Change lables for sales/purch
+
+            lblSalesPriceMain.Text = "Sales Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
+            lblPurchPriceMain.Text = "Purch. Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
+
+            lblMRPMain.Text = "M.R.P(" + cbxMainUnit.SelectedItem.ToString() + ")";
+
+            if (cbxAltUnit.SelectedItem == null)
+                return;
+
+            lblSalesPriceAlt.Text = "Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
+            lblPurchPriceAlt.Text = "Purch. Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
+
         }
 
         private void tbxconFactor_TextChanged(object sender, EventArgs e)
         {
-            decimal a, b, c;
-
-            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
-            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
-            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
-
-            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b).ToString();
-            }
-            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b).ToString();
-            }
-
-                   }
+            CalculateOpStockValue();
+        }
 
         private void tbxRate_TextChanged(object sender, EventArgs e)
         {
-            decimal a, b, c;
-
-            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
-            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
-            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
-
-            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b).ToString();
-            }
-            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b ).ToString();
-            }
+            CalculateOpStockValue();
         }
 
         private void tbxOpStock_TextChanged(object sender, EventArgs e)
         {
-            decimal a, b, c;
-
-            bool isAValid = decimal.TryParse(tbxOpStock.Text, out a);
-            bool isBValid = decimal.TryParse(tbxRate.Text, out b);
-            //bool isCValid = decimal.TryParse(tbxconFactor.Text, out c);
-
-            if (tbxPer.SelectedItem.ToString() == cbxMainUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b).ToString();
-            }
-            if (tbxPer.SelectedItem.ToString() == cbxAltUnit.SelectedItem.ToString())
-            {
-                tbxValue.Text = (a * b ).ToString();
-            }
+            CalculateOpStockValue();
         }
 
         private void tbxConFrom_Enter(object sender, EventArgs e)
-        {
+        {         
+
             lblAltunit.Text = cbxAltUnit.SelectedItem.ToString();
             lblMainUnit.Text = cbxMainUnit.SelectedItem.ToString();
+            
+            CalculateOpStockValue();
+        }
+
+        private void tbxConTo_Enter(object sender, EventArgs e)
+        {
+            if (cbxUnit.SelectedItem == null)
+                return;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+        }
+
+        private void tbxOpStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxUnit.SelectedItem == null)
+                return;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+        }
+
+        private void cbxUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxUnit.SelectedItem == null)
+                return;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+        }
+
+        private void tbxRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxUnit.SelectedItem == null)
+                return;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+        }
+
+        private void cbxAltUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            tbxConFrom.Enabled = true;
+            tbxConTo.Enabled = true;
+
+            if (cbxAltUnit.SelectedItem == null || cbxMainUnit.SelectedItem==null || cbxUnit.SelectedItem==null)
+                return;
+
+            if (cbxAltUnit.SelectedItem.ToString().Equals("None"))
+            {
+                tbxConFrom.Enabled = false;
+                tbxConTo.Enabled = false;
+
+                tbxConTo.Text = string.Empty;
+                tbxConFrom.Text = string.Empty;
+
+                lblMainUnit.Text = string.Empty;
+                lblAltunit.Text = string.Empty;
+            }
+
+            //   cbxAltUnit.SelectedIndex = 0;
+
+            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            {
+                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            }
+            //Find the matching unit to calculate op stock value
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+
+            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            {
+                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            }
+        }
+
+        private void cbxApplySalesPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        //            Main Unit
+        //Alt Unit
+        //Both Unit
+        //Date - Wise Price Info
+
         }
     }
 }

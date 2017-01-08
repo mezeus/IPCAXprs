@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Transaction.List
 {
-    partial class ReceiptVouchers
+    partial class ReceiptVouchersList
     {
         /// <summary>
         /// Required designer variable.
@@ -34,8 +34,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dvgAccList = new DevExpress.XtraGrid.GridControl();
-            this.gdvAccGroupDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgReceiptMain = new DevExpress.XtraGrid.GridControl();
+            this.dvgReceiptDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrimary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnderGroup = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,8 +64,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgReceiptMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgReceiptDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -91,7 +91,7 @@
             this.layoutControl1.Controls.Add(this.label4);
             this.layoutControl1.Controls.Add(this.label3);
             this.layoutControl1.Controls.Add(this.label2);
-            this.layoutControl1.Controls.Add(this.dvgAccList);
+            this.layoutControl1.Controls.Add(this.dvgReceiptMain);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -142,20 +142,20 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "label2";
             // 
-            // dvgAccList
+            // dvgReceiptMain
             // 
-            this.dvgAccList.Location = new System.Drawing.Point(47, 53);
-            this.dvgAccList.MainView = this.gdvAccGroupDetails;
-            this.dvgAccList.Name = "dvgAccList";
-            this.dvgAccList.Size = new System.Drawing.Size(782, 415);
-            this.dvgAccList.TabIndex = 9;
-            this.dvgAccList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvAccGroupDetails});
+            this.dvgReceiptMain.Location = new System.Drawing.Point(47, 53);
+            this.dvgReceiptMain.MainView = this.dvgReceiptDetails;
+            this.dvgReceiptMain.Name = "dvgReceiptMain";
+            this.dvgReceiptMain.Size = new System.Drawing.Size(782, 415);
+            this.dvgReceiptMain.TabIndex = 9;
+            this.dvgReceiptMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgReceiptDetails});
             // 
-            // gdvAccGroupDetails
+            // dvgReceiptDetails
             // 
-            this.gdvAccGroupDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gdvAccGroupDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgReceiptDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.dvgReceiptDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colPrimary,
             this.colUnderGroup,
@@ -164,12 +164,11 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4});
-            this.gdvAccGroupDetails.GridControl = this.dvgAccList;
-            this.gdvAccGroupDetails.Name = "gdvAccGroupDetails";
-            this.gdvAccGroupDetails.OptionsBehavior.ReadOnly = true;
-            this.gdvAccGroupDetails.OptionsView.ShowGroupPanel = false;
-            this.gdvAccGroupDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
-            this.gdvAccGroupDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
+            this.dvgReceiptDetails.GridControl = this.dvgReceiptMain;
+            this.dvgReceiptDetails.Name = "dvgReceiptDetails";
+            this.dvgReceiptDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgReceiptDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgReceiptDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgReceiptDetails_KeyDown);
             // 
             // colName
             // 
@@ -181,7 +180,8 @@
             // 
             // colPrimary
             // 
-            this.colPrimary.Caption = "VchBillNo";
+            this.colPrimary.Caption = "Vch/BillNo";
+            this.colPrimary.FieldName = "VoucherNo";
             this.colPrimary.Name = "colPrimary";
             this.colPrimary.Visible = true;
             this.colPrimary.VisibleIndex = 1;
@@ -190,6 +190,7 @@
             // colUnderGroup
             // 
             this.colUnderGroup.Caption = "Account";
+            this.colUnderGroup.FieldName = "Account";
             this.colUnderGroup.Name = "colUnderGroup";
             this.colUnderGroup.Visible = true;
             this.colUnderGroup.VisibleIndex = 2;
@@ -210,6 +211,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Debit";
+            this.gridColumn2.FieldName = "Debit";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 3;
@@ -218,6 +220,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Credit";
+            this.gridColumn3.FieldName = "Credit";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
@@ -226,7 +229,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "ShortNarration";
-            this.gridColumn4.FieldName = "Unit";
+            this.gridColumn4.FieldName = "Narration";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
@@ -333,7 +336,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgAccList;
+            this.layoutControlItem3.Control = this.dvgReceiptMain;
             this.layoutControlItem3.Location = new System.Drawing.Point(35, 41);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(786, 419);
@@ -343,9 +346,9 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(689, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(680, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(132, 17);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(141, 17);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem1
@@ -353,7 +356,7 @@
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.Location = new System.Drawing.Point(346, 0);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(343, 17);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(334, 17);
             this.simpleLabelItem1.Text = "List of Receipt Vouchers";
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(115, 13);
             // 
@@ -418,20 +421,20 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // ReceiptVouchers
+            // ReceiptVouchersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ReceiptVouchers";
-            this.Text = "Transactions List";
-            this.Load += new System.EventHandler(this.ReceiptVouchers_Load);
+            this.Name = "ReceiptVouchersList";
+            this.Text = "Reciept List";
+            this.Load += new System.EventHandler(this.ReceiptVouchersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAccList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvAccGroupDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgReceiptMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgReceiptDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -463,8 +466,8 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraGrid.GridControl dvgAccList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gdvAccGroupDetails;
+        private DevExpress.XtraGrid.GridControl dvgReceiptMain;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgReceiptDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colPrimary;

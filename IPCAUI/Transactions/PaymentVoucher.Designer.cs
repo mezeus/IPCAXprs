@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentVoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.tbxType = new DevExpress.XtraEditors.TextEdit();
             this.gdvMainPayment = new DevExpress.XtraGrid.GridControl();
             this.paymentVoucherDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,6 +45,8 @@
             this.colCredit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Account = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -59,9 +63,9 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnPaymentList = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnModify = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.tbxVchNumber = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
             this.tbxLongNarration = new DevExpress.XtraEditors.TextEdit();
@@ -74,7 +78,7 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblSave = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -82,14 +86,10 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).BeginInit();
@@ -112,7 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -150,6 +150,26 @@
             this.layoutControl1.Size = new System.Drawing.Size(1006, 593);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(854, 559);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(62, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 31;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(755, 559);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(78, 22);
+            this.btnUpdate.StyleController = this.layoutControl1;
+            this.btnUpdate.TabIndex = 30;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tbxType
             // 
@@ -196,7 +216,7 @@
             this.colNarration,
             this.Account,
             this.gridColumn1,
-            this.col});
+            this.colAcId});
             this.gdvPayment.GridControl = this.gdvMainPayment;
             this.gdvPayment.Name = "gdvPayment";
             this.gdvPayment.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -223,7 +243,7 @@
             this.colSNo.OptionsColumn.ReadOnly = true;
             this.colSNo.Visible = true;
             this.colSNo.VisibleIndex = 0;
-            this.colSNo.Width = 58;
+            this.colSNo.Width = 50;
             // 
             // DC
             // 
@@ -233,7 +253,7 @@
             this.DC.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
             this.DC.Visible = true;
             this.DC.VisibleIndex = 1;
-            this.DC.Width = 45;
+            this.DC.Width = 38;
             // 
             // colDebit
             // 
@@ -246,7 +266,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
             this.colDebit.Visible = true;
             this.colDebit.VisibleIndex = 3;
-            this.colDebit.Width = 64;
+            this.colDebit.Width = 92;
             // 
             // repositoryItemTextEdit1
             // 
@@ -263,10 +283,10 @@
             this.colCredit.FieldName = "Credit";
             this.colCredit.Name = "colCredit";
             this.colCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Min, "Credit", "MIN={0}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
             this.colCredit.Visible = true;
             this.colCredit.VisibleIndex = 4;
-            this.colCredit.Width = 64;
+            this.colCredit.Width = 116;
             // 
             // colNarration
             // 
@@ -275,7 +295,7 @@
             this.colNarration.Name = "colNarration";
             this.colNarration.Visible = true;
             this.colNarration.VisibleIndex = 5;
-            this.colNarration.Width = 378;
+            this.colNarration.Width = 303;
             // 
             // Account
             // 
@@ -284,7 +304,21 @@
             this.Account.Name = "Account";
             this.Account.Visible = true;
             this.Account.VisibleIndex = 2;
-            this.Account.Width = 199;
+            this.Account.Width = 172;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ParentId";
+            this.gridColumn1.FieldName = "ParentId";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 59;
+            // 
+            // colAcId
+            // 
+            this.colAcId.Caption = "Ac_Id";
+            this.colAcId.FieldName = "Ac_Id";
+            this.colAcId.Name = "colAcId";
+            this.colAcId.Width = 65;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -315,7 +349,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup3;
+            this.navBarControl1.ActiveGroup = this.navBarGroup5;
             this.navBarControl1.Appearance.GroupHeader.BackColor = System.Drawing.Color.Lavender;
             this.navBarControl1.Appearance.GroupHeader.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.navBarControl1.Appearance.GroupHeader.Options.UseBackColor = true;
@@ -330,9 +364,9 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem4,
-            this.navBarItem7,
-            this.navBarItem8,
-            this.navBarItem9,
+            this.btnPaymentList,
+            this.btnModify,
+            this.btnNewEntery,
             this.navBarItem10,
             this.navBarItem11,
             this.navBarItem12,
@@ -349,7 +383,6 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "Images";
-            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
@@ -427,36 +460,41 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "Add/Modify";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnPaymentList),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnModify),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // navBarItem7
+            // btnPaymentList
             // 
-            this.navBarItem7.Caption = "List";
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.SmallImage")));
+            this.btnPaymentList.Caption = "List";
+            this.btnPaymentList.Name = "btnPaymentList";
+            this.btnPaymentList.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnPaymentList.SmallImage")));
+            this.btnPaymentList.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnPaymentList_LinkClicked);
             // 
-            // navBarItem8
+            // btnModify
             // 
-            this.navBarItem8.Caption = "Modify";
-            this.navBarItem8.Name = "navBarItem8";
-            this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
+            this.btnModify.Caption = "Modify";
+            this.btnModify.Name = "btnModify";
+            this.btnModify.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnModify.SmallImage")));
             // 
-            // navBarItem9
+            // btnNewEntery
             // 
-            this.navBarItem9.Caption = "New Entry";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
+            this.btnNewEntery.Caption = "New Entry";
+            this.btnNewEntery.Name = "btnNewEntery";
+            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
+            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
             // 
             // tbxVchNumber
             // 
             this.tbxVchNumber.EnterMoveNextControl = true;
             this.tbxVchNumber.Location = new System.Drawing.Point(542, 28);
             this.tbxVchNumber.Name = "tbxVchNumber";
+            this.tbxVchNumber.Properties.Mask.EditMask = "n0";
+            this.tbxVchNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tbxVchNumber.Size = new System.Drawing.Size(152, 20);
             this.tbxVchNumber.StyleController = this.layoutControl1;
             this.tbxVchNumber.TabIndex = 3;
@@ -528,7 +566,7 @@
             this.layoutControlItem11,
             this.layoutControlItem4,
             this.emptySpaceItem4,
-            this.layoutControlItem14,
+            this.lblSave,
             this.layoutControlItem15,
             this.emptySpaceItem6,
             this.layoutControlItem3,
@@ -593,14 +631,14 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(518, 26);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem14
+            // lblSave
             // 
-            this.layoutControlItem14.Control = this.btnSave;
-            this.layoutControlItem14.Location = new System.Drawing.Point(653, 547);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(78, 26);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
+            this.lblSave.Control = this.btnSave;
+            this.lblSave.Location = new System.Drawing.Point(653, 547);
+            this.lblSave.Name = "lblSave";
+            this.lblSave.Size = new System.Drawing.Size(78, 26);
+            this.lblSave.TextSize = new System.Drawing.Size(0, 0);
+            this.lblSave.TextVisible = false;
             // 
             // layoutControlItem15
             // 
@@ -668,15 +706,6 @@
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(755, 559);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(78, 22);
-            this.btnUpdate.StyleController = this.layoutControl1;
-            this.btnUpdate.TabIndex = 30;
-            this.btnUpdate.Text = "Update";
-            // 
             // lblUpdate
             // 
             this.lblUpdate.Control = this.btnUpdate;
@@ -685,15 +714,6 @@
             this.lblUpdate.Size = new System.Drawing.Size(82, 26);
             this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpdate.TextVisible = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(854, 559);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(62, 22);
-            this.btnDelete.StyleController = this.layoutControl1;
-            this.btnDelete.TabIndex = 31;
-            this.btnDelete.Text = "Delete";
             // 
             // lblDelete
             // 
@@ -719,20 +739,6 @@
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(17, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ParentId";
-            this.gridColumn1.FieldName = "ParentId";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 6;
-            // 
-            // col
-            // 
-            this.col.Name = "col";
-            this.col.Visible = true;
-            this.col.VisibleIndex = 7;
             // 
             // PaymentVoucher
             // 
@@ -767,7 +773,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
@@ -801,9 +807,9 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem btnPaymentList;
+        private DevExpress.XtraNavBar.NavBarItem btnModify;
+        private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
         private DevExpress.XtraNavBar.NavBarItem navBarItem11;
         private DevExpress.XtraNavBar.NavBarItem navBarItem12;
@@ -813,7 +819,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraEditors.SimpleButton btnQuit;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem lblSave;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraGrid.GridControl gdvMainPayment;
@@ -844,6 +850,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn col;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcId;
     }
 }

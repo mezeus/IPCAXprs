@@ -19,6 +19,7 @@ namespace IPCAUI.Transactions
     public partial class ReceiptVoucher : Form
     {
         RecieptVoucherBL objRecBL = new RecieptVoucherBL();
+        public static int Recpt_Id = 0;
         public ReceiptVoucher()
         {
             InitializeComponent();
@@ -31,6 +32,14 @@ namespace IPCAUI.Transactions
 
         private void ReceiptVoucher_Load(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("S.No");
+            dt.Columns.Add("DC");
+            dt.Columns.Add("Account");
+            dt.Columns.Add("Debit");
+            dt.Columns.Add("Credit");
+            dt.Columns.Add("Narration");
+            gdvMainReceipt.DataSource = dt;
             InitData();
             Models.AccountLookup acc = new Models.AccountLookup();
 
@@ -154,15 +163,14 @@ namespace IPCAUI.Transactions
                 MessageBox.Show("Voucher Number Can Not Be Blank!");
                 return;
             }
-
+            objRecipt.Voucher_Series = tbxVoucherSeries.Text.Trim();
             objRecipt.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objRecipt.RV_Date = Convert.ToDateTime(dtDate.Text);
             objRecipt.Type = tbxType.Text.Trim();
             objRecipt.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
-            objRecipt.LongNarration = tbxLongNarration.Text.Trim();
-
-            //objcredit.TotalCreditAmt= Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+            objRecipt.LongNarration = tbxLongNarration.Text.Trim()==null?string.Empty:tbxLongNarration.Text.Trim();
+            objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+            objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
 
             //Receipt Account Details
             AccountModel objacc;
@@ -174,9 +182,7 @@ namespace IPCAUI.Transactions
 
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
-
-                objacc.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
-                //objacc.Unit = row["Unit"].ToString();
+                objacc.Account = row["Account"].ToString();
                 objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
                 objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
                 objacc.Narration = row["Narration"].ToString();
@@ -188,9 +194,91 @@ namespace IPCAUI.Transactions
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
-                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                // d.ShowDialog();
             }
+        }
+
+        private void gdvMainReceipt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            RecieptVoucherModel objRecipt = new RecieptVoucherModel();
+
+            if (tbxVchNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+            objRecipt.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objRecipt.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
+            objRecipt.RV_Date = Convert.ToDateTime(dtDate.Text);
+            objRecipt.Type = tbxType.Text.Trim();
+            objRecipt.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
+            objRecipt.LongNarration = tbxLongNarration.Text.Trim() == null ? string.Empty : tbxLongNarration.Text.Trim();
+            objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+            objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+
+            //Receipt Account Details
+            AccountModel objacc;
+            List<AccountModel> lstAccounts = new List<AccountModel>();
+
+            for (int i = 0; i < gdvReceipt.DataRowCount; i++)
+            {
+                AccountModel row;
+                row = gdvReceipt.GetRow(i) as AccountModel;
+
+                objacc = new AccountModel();
+                objacc.AC_Id = Convert.ToInt32(row.AC_Id.ToString());
+                objacc.DC = row.DC.ToString();
+                objacc.Account = row.Account.ToString();
+                objacc.Debit = Convert.ToDecimal(row.Debit.ToString());
+                objacc.Credit = Convert.ToDecimal(row.Credit.ToString());
+                objacc.Narration = row.Narration.ToString();
+                lstAccounts.Add(objacc);
+            }
+            objRecipt.RecieptAccountModel = lstAccounts;
+            objRecipt.RV_Id = Recpt_Id;
+            bool isSuccess = objRecBL.UpdateRecieptVoucher(objRecipt);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+            }
+        }
+
+        private void btnReceiptList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.ReceiptVouchersList frmList = new Transaction.List.ReceiptVouchersList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+
+            if (Recpt_Id != 0)
+            {
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxVoucherSeries.Focus();
+                FillRecieptVoucherInfo();
+            }
+        }
+        public void FillRecieptVoucherInfo()
+        {
+            List<RecieptVoucherModel> objReciept = objRecBL.GetRecieptbyId(Recpt_Id);
+
+            tbxVoucherSeries.Text = objReciept.FirstOrDefault().Voucher_Series.ToString();
+            dtDate.Text = objReciept.FirstOrDefault().RV_Date.ToString();
+            tbxVchNumber.Text = objReciept.FirstOrDefault().Voucher_Number.ToString();
+            tbxType.Text = objReciept.FirstOrDefault().Type.ToString();
+            dtPDCDate.Text = objReciept.FirstOrDefault().PDCDate.ToString();
+            tbxLongNarration.Text = objReciept.FirstOrDefault().LongNarration.ToString();
+            //objReciept.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);
+            //objReciept.TotalDebitAmt = Convert.ToDecimal(dr["TotalDebitAmt"]);
+
+
+            gdvMainReceipt.DataSource = objReciept.FirstOrDefault().RecieptAccountModel;
+           
         }
     }
 }
