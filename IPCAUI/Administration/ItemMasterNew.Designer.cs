@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration
 {
-    partial class ItemMasterNew
+    partial class frmItemMaster
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemMasterNew));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemMaster));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lblMainUnit = new DevExpress.XtraEditors.LabelControl();
             this.tbxConTo = new DevExpress.XtraEditors.TextEdit();
@@ -1027,6 +1027,7 @@
             this.cbxGroup.StyleController = this.layoutControl1;
             this.cbxGroup.TabIndex = 9;
             this.cbxGroup.Enter += new System.EventHandler(this.cbxGroup_Enter);
+            this.cbxGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxGroup_KeyPress);
             // 
             // cbxMainUnit
             // 
@@ -2692,14 +2693,14 @@
             this.layoutControlGroup7.Name = "layoutControlGroup7";
             this.layoutControlGroup7.Size = new System.Drawing.Size(212, 538);
             // 
-            // ItemMasterNew
+            // frmItemMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 612);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-           // this.Name = "ItemMasterNew";
+           // this.Name = "frmItemMaster";
             this.Text = "Item Master";
             this.Load += new System.EventHandler(this.ItemMasterNew_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

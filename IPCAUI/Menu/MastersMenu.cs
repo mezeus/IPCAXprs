@@ -74,6 +74,30 @@ namespace IPCAUI.Menu
                 this.Close();
                 return true;
             }
+
+            if (keyData == Keys.F3)
+            {
+                  
+                //will be helpful in future to find last active form
+                //var lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1];
+
+                bool isFocus = Administration.frmItemMaster.isGroupF3;
+                                
+                if(Administration.frmItemMaster.isGroupF3)
+                {
+                    Administration.Itemgroup frm;
+                    frm = new Administration.Itemgroup(); //generate new instance 
+
+                    frm.Owner = this;
+                    frm.TopLevel = false;
+
+                    sptCtrlMastermenu.Panel2.Controls.Add(frm);
+                    frm.Show();
+                }
+
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
         private void MastersMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -218,8 +242,8 @@ namespace IPCAUI.Menu
 
         private void barbtnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.ItemMasterNew frm;
-            frm = new Administration.ItemMasterNew(); //generate new instance 
+            Administration.frmItemMaster frm;
+            frm = new Administration.frmItemMaster(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

@@ -12,7 +12,7 @@ using eSunSpeed.BusinessLogic;
 
 namespace IPCAUI.Administration
 {
-    public partial class ItemMasterNew : DevExpress.XtraEditors.XtraForm
+    public partial class frmItemMaster : DevExpress.XtraEditors.XtraForm
     {
         ItemMasterBL objIMBL = new ItemMasterBL();
         ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
@@ -21,7 +21,9 @@ namespace IPCAUI.Administration
         AccountMasterBL objaccbl = new AccountMasterBL();
         
         public static int Item_Id = 0;
-        public ItemMasterNew()
+        public static bool isGroupF3 = false;
+
+        public frmItemMaster()
         {
             InitializeComponent();
         }
@@ -304,26 +306,28 @@ namespace IPCAUI.Administration
         private void cbxMainUnit_Enter(object sender, EventArgs e)
         {
 
-           // cbxMainUnit.SelectedIndex = 0;
+            // cbxMainUnit.SelectedIndex = 0;
 
-            if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
-            {
-                tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
-            }
-            //Find the matching unit to calculate op stock value
-            else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
-            {
-                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
+            CalculateOpStockValue();
 
-                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
-            }
+            //if (cbxUnit.SelectedItem.ToString().Equals(tbxPer.SelectedItem.ToString()))
+            //{
+            //    tbxValue.Text = (Convert.ToDecimal(tbxOpStock.Text) * Convert.ToDecimal(tbxRate.Text)).ToString();
+            //}
+            ////Find the matching unit to calculate op stock value
+            //else if (cbxUnit.SelectedItem.ToString().Equals(lblMainUnit.Text))
+            //{
+            //    decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConTo.Text);
 
-            else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
-            {
-                decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+            //    tbxValue.Text = (cal * (Convert.ToDecimal(tbxConFrom.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            //}
 
-                tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
-            }
+            //else if (cbxUnit.SelectedItem.ToString().Equals(lblAltunit.Text))
+            //{
+            //    decimal cal = Convert.ToDecimal(tbxOpStock.Text) / Convert.ToDecimal(tbxConFrom.Text);
+
+            //    tbxValue.Text = (cal * (Convert.ToDecimal(tbxConTo.Text) * Convert.ToDecimal(tbxRate.Text))).ToString();
+            //}
 
         }
 
@@ -505,7 +509,29 @@ namespace IPCAUI.Administration
                 this.Close();
                 return true;
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+
+            if (keyData == Keys.F3 && cbxGroup.Focused)
+            {
+                isGroupF3 = true;
+            }
+            else
+            {
+                isGroupF3 = false;
+            }
+                //    this.Close();
+
+                //    Transactions.Accountgroup frmgrp = new Transactions.Accountgroup();
+
+                //    frmgrp.Owner = this;
+                //    frmgrp.TopLevel = false;
+
+                //    //sptCtrlMastermenu.Panel2.Controls.Add(frmgrp);
+                //    frmgrp.Show();
+
+                //    return true;
+                //}
+
+                return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)
@@ -863,6 +889,16 @@ namespace IPCAUI.Administration
         //Both Unit
         //Date - Wise Price Info
 
+        }
+
+        private void cbxGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (keyData == Keys.F3)
+            //{
+            //    this.Close();
+            //    return true;
+            //}
+            //return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

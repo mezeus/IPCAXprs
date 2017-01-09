@@ -37,7 +37,7 @@ namespace IPCAUI.Administration.List
             ItemMasterModel lstItems;
 
             lstItems = (ItemMasterModel)dvgItemDetails.GetRow(dvgItemDetails.FocusedRowHandle);
-            ItemMasterNew.Item_Id = lstItems.ItemId;
+            frmItemMaster.Item_Id = lstItems.ItemId;
             this.Close();
         }
     }
