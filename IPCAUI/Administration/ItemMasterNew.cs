@@ -12,18 +12,20 @@ using eSunSpeed.BusinessLogic;
 
 namespace IPCAUI.Administration
 {
-    public partial class frmItemMaster : DevExpress.XtraEditors.XtraForm
+    public partial class ItemMasterNew : DevExpress.XtraEditors.XtraForm
     {
         ItemMasterBL objIMBL = new ItemMasterBL();
         ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
         UnitMaster objUnitBl = new UnitMaster();
         TaxCategory objTaxBl = new TaxCategory();
         AccountMasterBL objaccbl = new AccountMasterBL();
-        
+
+        public static ItemMasterModel objModel=new ItemMasterModel();
+
         public static int Item_Id = 0;
         public static bool isGroupF3 = false;
 
-        public frmItemMaster()
+        public ItemMasterNew()
         {
             InitializeComponent();
         }
@@ -41,7 +43,7 @@ namespace IPCAUI.Administration
             //    cbxUnderGrp.Focus();
             //    return;
             //}
-            ItemMasterModel objModel = new ItemMasterModel();
+            //objModel = new ItemMasterModel();
 
             objModel.Name = tbxName.Text.Trim();
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
@@ -59,17 +61,39 @@ namespace IPCAUI.Administration
             objModel.Per = tbxPer.SelectedItem.ToString();
             objModel.Value = Convert.ToDouble(tbxValue.Text.Trim());
 
-            objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.SalePrice = Convert.ToDouble(tbxSalesPrice.Text.Trim());
-            objModel.Purprice = Convert.ToDouble(tbxPurcPrice.Text.Trim());
-            objModel.MRP = Convert.ToDouble(tbxMRP.Text.Trim());
-            objModel.MinSalePrice = Convert.ToDouble(tbxMinSalesPrice.Text.Trim());
-            objModel.SelfValuePrice = Convert.ToDouble(tbxSelfValPrice.Text.Trim());
-            objModel.SaleDiscount = Convert.ToDouble(tbxSaleDiscount.Text.Trim());
-            objModel.PurDiscount = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
-            objModel.SpecifySaleDiscStructure = cbxEnableSalesDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.SpecifyPurDiscStructure = cbxEnablePurcDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString();
+            objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString();
+            objModel.MainSalePrice = Convert.ToDecimal(tbxMainSalesPrice.Text.Trim());
+            objModel.MainPurprice = Convert.ToDecimal(tbxMainPurcPrice.Text.Trim());
+            objModel.MainMRP = Convert.ToDecimal(tbxMainMRP.Text.Trim());
+            objModel.MainMinSalePrice = Convert.ToDecimal(tbxMainMinSalesPrice.Text.Trim());
+            objModel.SelfValuePrice = Convert.ToDecimal(tbxSelfValPrice.Text.Trim() == null ? "0" : tbxSelfValPrice.Text.Trim());
+
+            objModel.AltSalePrice = Convert.ToDecimal(tbxAltSalesPrice.Text.Trim());
+            objModel.AltPurprice = Convert.ToDecimal(tbxAltPurcPrice.Text.Trim()==null?"0": tbxAltPurcPrice.Text.Trim());
+            objModel.AltMinSalePrice = Convert.ToDecimal(tbxAltMinSalesPrice.Text.Trim() == null ? "0.00" : tbxAltMinSalesPrice.Text.Trim());
+            objModel.AltMRP = Convert.ToDecimal(tbxAltMRP.Text.Trim() == null ? "0" : tbxAltMRP.Text.Trim());
+
+            objModel.DiscountInfo = cbxDiscountInfo.SelectedItem.ToString() == "Y" ? true : false;
+            if(objModel.DiscountInfo)
+            {
+                Convert.ToDecimal(objModel.SaleDiscount);
+                Convert.ToDecimal(objModel.PurDiscount);
+                Convert.ToDecimal(objModel.SaleCompoundDiscount);
+                Convert.ToDecimal(objModel.PurCompoundDiscount);
+                Convert.ToBoolean(objModel.SpecifySaleDiscStructure);
+                Convert.ToBoolean(objModel.SpecifyPurDiscStructure);
+            }
+            objModel.MarkupInfo = cbxMarkupInfo.SelectedItem.ToString() == "Y" ? true : false;
+            if(objModel.MarkupInfo)
+            {
+                Convert.ToDecimal(objModel.SaleDiscount);
+                Convert.ToDecimal(objModel.PurDiscount);
+                Convert.ToDecimal(objModel.SaleCompoundDiscount);
+                Convert.ToDecimal(objModel.PurCompoundDiscount);
+                Convert.ToBoolean(objModel.SpecifySaleDiscStructure);
+                Convert.ToBoolean(objModel.SpecifyPurDiscStructure);
+            }
             objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
 
             objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
@@ -82,9 +106,33 @@ namespace IPCAUI.Administration
             objModel.MaintainRG23D = cbxMaintainRG.SelectedItem.ToString() == "Y" ? true : false;
             objModel.TariffHeading = tbxTariffHeading.Text == null ? string.Empty : tbxTariffHeading.Text.Trim();
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() !="0"))
+            {
+                PopupScreens.SerialnoWiseDetails frmserial = new PopupScreens.SerialnoWiseDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.ParameterizedDetails = cbxParamDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxParamDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.ParameterizedStock frmserial = new PopupScreens.ParameterizedStock();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.MRPWiseDetails = cbxMRPWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxMRPWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.MRPwiseDetails frmserial = new PopupScreens.MRPwiseDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.BatchwiseDetails = cbxBatchWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxBatchWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.ItemBatchDetails frmserial = new PopupScreens.ItemBatchDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString() == "Y" ? true : false;
             objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim()==null?"0":tbxExpDays.Text.Trim());
             objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
@@ -146,22 +194,22 @@ namespace IPCAUI.Administration
             cbxApplySalesPrice.SelectedIndex = 0;
             cbxApplyPurchPrice.SelectedIndex = 0;
             cbxMaintainRG.SelectedIndex = 0;
-            cbxMRPWiseDetails.SelectedIndex = 0;
-            cbxBatchWiseDetails.SelectedIndex = 0;
+            cbxMRPWiseDetails.SelectedIndex = 1;
+            cbxBatchWiseDetails.SelectedIndex = 1;
             cbxSalesAccount.SelectedIndex = 0;
             cbxPurchAccount.SelectedIndex = 0;
             cbxSpecifyDefaultMC.SelectedIndex = 0;
             cbxFreezeMC.SelectedIndex = 0;
-            cbxSrlWiseDetails.SelectedIndex = 0;
-            cbxParamDetails.SelectedIndex = 0;
+            cbxSrlWiseDetails.SelectedIndex = 1;
+            cbxParamDetails.SelectedIndex = 1;
             cbxEnableExpDate.SelectedIndex = 0;
             cbxMaintainStock.SelectedIndex = 0;
             cbxPickitemforsizing.SelectedIndex = 0;
             cbxSpecifyDefaultVendor.SelectedIndex = 0;
             
-            cbxEnablePurcDiscStruct.SelectedIndex = 0;
-            cbxEnableSalesDiscStruct.SelectedIndex = 0;
-            cbxEnableSalesMarkupStruct.SelectedIndex = 0;
+            cbxDiscountInfo.SelectedIndex = 1;
+            cbxMarkupInfo.SelectedIndex = 1;
+            //cbxEnableSalesMarkupStruct.SelectedIndex = 0;
             tbxStockValMethod.SelectedIndex = 0;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
@@ -212,7 +260,7 @@ namespace IPCAUI.Administration
             tbxOpStock.Text = "0.00";
             tbxRate.Text = "0.00";
             tbxValue.Text = "0.00";
-            tbxSalesPrice.Text = "0.00";
+            tbxMainSalesPrice.Text = "0.00";
 
             
         }
@@ -251,19 +299,19 @@ namespace IPCAUI.Administration
             tbxRate.Text = objItem.Rate.ToString();
             tbxPer.Text = objItem.Per.ToString();
             tbxValue.Text = objItem.Value.ToString();
-            cbxApplySalesPrice.SelectedItem = objItem.ApplySalesPrice?"Y":"N";
-            cbxApplyPurchPrice.SelectedItem = objItem.ApplyPurchPrice?"Y":"N";
+            cbxApplySalesPrice.SelectedItem = objItem.ApplySalesPrice;
+            cbxApplyPurchPrice.SelectedItem = objItem.ApplyPurchPrice;
 
-            tbxSalesPrice.Text = objItem.SalePrice.ToString();
-            tbxPurcPrice.Text= objItem.Purprice.ToString();
-            tbxMRP.Text = objItem.MRP.ToString();
-            tbxMinSalesPrice.Text= objItem.MinSalePrice.ToString();
+            tbxMainSalesPrice.Text = objItem.MainSalePrice.ToString();
+            tbxMainPurcPrice.Text= objItem.MainPurprice.ToString();
+            tbxMainMRP.Text = objItem.MainMRP.ToString();
+            tbxMainMinSalesPrice.Text= objItem.MainMinSalePrice.ToString();
             tbxSelfValPrice.Text = objItem.SelfValuePrice.ToString();
-            tbxSaleDiscount.Text = objItem.SaleDiscount. ToString();
-            tbxPurcDiscount.Text = objItem.PurDiscount.ToString();
+            //tbxSaleDiscount.Text = objItem.SaleDiscount. ToString();
+            //tbxPurcDiscount.Text = objItem.PurDiscount.ToString();
 
-            cbxEnableSalesDiscStruct.SelectedItem = (objItem.SpecifySaleDiscStructure) ? "Y" : "N";
-            cbxEnablePurcDiscStruct.SelectedItem = (objItem.SpecifyPurDiscStructure) ? "Y" : "N";
+            //cbxEnableSalesDiscStruct.SelectedItem = (objItem.SpecifySaleDiscStructure) ? "Y" : "N";
+            //cbxEnablePurcDiscStruct.SelectedItem = (objItem.SpecifyPurDiscStructure) ? "Y" : "N";
             tbxStockValMethod.Text =objItem.StockValMethod.ToString();
 
             cbxTaxCat.SelectedItem = objItem.TaxCategory;
@@ -420,17 +468,17 @@ namespace IPCAUI.Administration
             objModel.Per = tbxPer.SelectedItem.ToString();
             objModel.Value = Convert.ToDouble(tbxValue.Text.Trim());
 
-            objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.SalePrice = Convert.ToDouble(tbxSalesPrice.Text.Trim());
-            objModel.Purprice = Convert.ToDouble(tbxPurcPrice.Text.Trim());
-            objModel.MRP = Convert.ToDouble(tbxMRP.Text.Trim());
-            objModel.MinSalePrice = Convert.ToDouble(tbxMinSalesPrice.Text.Trim());
-            objModel.SelfValuePrice = Convert.ToDouble(tbxSelfValPrice.Text.Trim());
-            objModel.SaleDiscount = Convert.ToDouble(tbxSaleDiscount.Text.Trim());
-            objModel.PurDiscount = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
-            objModel.SpecifySaleDiscStructure = cbxEnableSalesDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.SpecifyPurDiscStructure = cbxEnablePurcDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString();
+            objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString();
+            objModel.MainSalePrice = Convert.ToDecimal(tbxMainSalesPrice.Text.Trim());
+            objModel.MainPurprice = Convert.ToDecimal(tbxMainPurcPrice.Text.Trim());
+            objModel.MainMRP = Convert.ToDecimal(tbxMainMRP.Text.Trim());
+            objModel.MainMinSalePrice = Convert.ToDecimal(tbxMainMinSalesPrice.Text.Trim());
+            objModel.SelfValuePrice = Convert.ToDecimal(tbxSelfValPrice.Text.Trim());
+            //objModel.SaleDiscount = Convert.ToDecimal(tbxSaleDiscount.Text.Trim());
+            //objModel.PurDiscount = Convert.ToDecimal(tbxPurcDiscount.Text.Trim());
+            //objModel.SpecifySaleDiscStructure = cbxEnableSalesDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            //objModel.SpecifyPurDiscStructure = cbxEnablePurcDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
             objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
 
             objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
@@ -899,6 +947,36 @@ namespace IPCAUI.Administration
             //    return true;
             //}
             //return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void cbxDiscountInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDiscountInfo.SelectedItem.ToString()=="Y")
+            {
+                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
+                frmdiscount.StartPosition = FormStartPosition.CenterScreen;
+                frmdiscount.ShowDialog();
+            }
+            else
+            {
+                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
+                frmdiscount.Close();
+            }
+        }
+
+        private void cbxMarkupInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxMarkupInfo.SelectedItem.ToString()=="Y")
+            {
+                PopupScreens.MarkupInfo frmMarkup = new PopupScreens.MarkupInfo();
+                frmMarkup.StartPosition = FormStartPosition.CenterScreen;
+                frmMarkup.ShowDialog();
+            }
+        }
+
+        private void cbxSrlWiseDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

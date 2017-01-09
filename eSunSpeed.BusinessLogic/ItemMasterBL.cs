@@ -25,28 +25,34 @@ namespace eSunSpeed.BusinessLogic
 
           paramCollection.Add(new DBParameter("@ITEM_MAINUNIT", objItem.MainUnit));
           paramCollection.Add(new DBParameter("@ALT_UNIT", objItem.AltUnit));
-          paramCollection.Add(new DBParameter("@ITEM_CONFACTOR", objItem.Confactor));
-          paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
+          paramCollection.Add(new DBParameter("@ITEM_CONAlt", objItem.ConAltUnit, System.Data.DbType.Decimal));
+          paramCollection.Add(new DBParameter("@ITEM_CONMain", objItem.ConMainUnit, System.Data.DbType.Decimal));
+
+            paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
             paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
             paramCollection.Add(new DBParameter("@ITEM_RATE", objItem.Rate));
           paramCollection.Add(new DBParameter("@ITEM_PER",objItem.Per ));
           paramCollection.Add(new DBParameter("@ITEM_VALUE",objItem.Value ));
 
-            paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.SalePrice));
-            paramCollection.Add(new DBParameter("@ITEM_PURCEPRICE", objItem.Purprice));
-            paramCollection.Add(new DBParameter("@ITEM_MRP", objItem.MRP));
-            paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE", objItem.MinSalePrice));
-            paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE", objItem.SelfValuePrice));
-            paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount));
-            paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount));
+            paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice));
+            paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice));
+            paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.MainSalePrice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_ALTSALEPRICE", objItem.AltSalePrice,System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_PURCEPRICE", objItem.MainPurprice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_ALTPURCEPRICE", objItem.AltPurprice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_MRP", objItem.MainMRP, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_ALTMRP", objItem.AltMRP, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE", objItem.MainMinSalePrice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_ALTMINSALEPRICE", objItem.AltMinSalePrice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE", objItem.SelfValuePrice, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNTCOMP", objItem.SaleCompoundDiscount, System.Data.DbType.Decimal));
+            paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", objItem.PurDiscount, System.Data.DbType.Decimal));
             paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", objItem.SpecifySaleDiscStructure,System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ITEM_StockValMethod", objItem.StockValMethod ));
 
-            //paramCollection.Add(new DBParameter("@ITEM_SALECOMPDISCOUNT", objItem.SaleCompoundDiscount ));
-            //paramCollection.Add(new DBParameter("@ITEM_PURCHCOMPDISCOUNT", objItem.PurCompoundDiscount));
             //paramCollection.Add(new DBParameter("@ITEM_SALEMARKUP",objItem.SaleMarkup ));
             //paramCollection.Add(new DBParameter("@ITEM_PURMARKUP",objItem.PurMarkup ));
             paramCollection.Add(new DBParameter("@ITEM_TAXCATEGORY", objItem.TaxCategory));
@@ -90,17 +96,17 @@ namespace eSunSpeed.BusinessLogic
           
             Query =
                     "INSERT INTO itemmaster(`ITEM_Name`,`ITEM_PRINTName`,`ITEM_ALIAS`,`ITEM_GROUP`,`ITEM_COMPANY`," +
-                    "`ITEM_MAINUNIT`,`ITEM_ALTUNIT`,`ITEM_CONFACTOR`,`ITEM_OPSTOCK`,`ITEM_UNIT`,`ITEM_RATE`,`ITEM_PER`,`ITEM_VALUE`,`ITEM_SALEPRICETOAPPLY`,`ITEM_PURCPRICETOAPPLY`,`ITEM_SALEPRICE`," +
-                          "`ITEM_PURCHASEPRICE`,`ITEM_MRP`,`ITEM_MINSALEPRICE`,`ITEM_SELFVALUEPRICE`,`ITEM_SALEDISCOUNT`,`ITEM_PURCHASEDISCOUNT`," +
+                    "`ITEM_MAINUNIT`,`ITEM_ALTUNIT`,`ITEM_CONALTUNIT`,`ITEM_CONMAINUNIT`,`ITEM_OPSTOCK`,`ITEM_UNIT`,`ITEM_RATE`,`ITEM_PER`,`ITEM_VALUE`,`ITEM_SALEPRICETOAPPLY`,`ITEM_PURCPRICETOAPPLY`,`ITEM_SALEPRICE`,`ITEM_ALTSALEPRICE`," +
+                          "`ITEM_PURCHASEPRICE`,`ITEM_ALTPURCPRICE`,`ITEM_MRP`,`ITEM_ALTMRP`,`ITEM_MINSALEPRICE`,`ITEM_ALTMINSALEPRICE`,`ITEM_SELFVALUEPRICE`,`ITEM_SALEDISCOUNT`,`ITEM_PURCHASEDISCOUNT`,`ITEM_SALECOMPDISCOUNT`,`ITEM_PURCHCOMPDISCOUNT`," +
                           "`ITEM_SPECIFYSALEDISCSTRUCT`,`ITEM_SPECIFYPURDISCSTRUCT`,`ITEM_STOCKVALMETHOD`," +
                           "`ITEM_TAXCATEGORY`,`ITEM_DESCRIPTION1`,`ITEM_DESCRIPTION2`,`ITEM_DESCRIPTION3`,`ITEM_DESCRIPTION4`," +
                           "`ITEM_SETCRITICALLEVEL`,`ITEM_MAINTAINRG23D`,`ITEM_TARIFHEADING`,`ITEM_SERIALWISEDETAILS`,`ITEM_PARAMETERIZEDDETAILS`,`ITEM_MRPWISEDETAILS`," +
                           "`ITEM_BATCHWISEDETAILS`,`ITEM_EXPDATEREQUIRED`,`ITEM_EXPIRYDAYS`,`ITEM_SALESACCOUNT`,`ITEM_PURCACCOUNT`,`ITEM_MAINTAINSTOCKBAL`,`ITEM_SPECIFYDEFAULTMC`," +
                           "`ITEM_FREEZEMCFORITEM`,`ITEM_TOTALNUMBEROFAUTHORS`,`ITEM_PICKITEMSIZEFROMDESC`,`ITEM_SPECIFYDEFAULTVENDOR`,`CreatedBy`)" +
                           "VALUES"+
-                          "(@ITEM_Name,@ITEM_PrintName,@ITEM_ALIAS,@ITEM_GROUP,@ITEM_COMPANY,@ITEM_MAINUNIT,@ALT_UNIT,@ITEM_CONFACTOR,@ITEM_OPSTOCKVALUE,@ITEM_UNIT,@ITEM_RATE,@ITEM_PER,@ITEM_VALUE,@ITEM_APPLYSALEPRICE,@ITEM_APPLYPURCPRICE,@ITEM_SALEPRICE," +
-                          "@ITEM_PURCEPRICE,@ITEM_MRP," + 
-                          "@ITEM_MINSALEPRICE,@ITEM_SELFVALUEPRICE,@ITEM_SALEDISCOUNT,@ITEM_PURCHASEDISCOUNT," +
+                          "(@ITEM_Name,@ITEM_PrintName,@ITEM_ALIAS,@ITEM_GROUP,@ITEM_COMPANY,@ITEM_MAINUNIT,@ALT_UNIT,@ITEM_CONAlt,@ITEM_CONMain,@ITEM_CONFACTOR,@ITEM_OPSTOCKVALUE,@ITEM_UNIT,@ITEM_RATE,@ITEM_PER,@ITEM_VALUE,@ITEM_APPLYSALEPRICE,@ITEM_APPLYPURCPRICE,@ITEM_SALEPRICE,@ITEM_ALTSALEPRICE" +
+                          "@ITEM_PURCEPRICE,@ITEM_ALTPURCEPRICE,@ITEM_MRP,@ITEM_ALTMRP," +
+                          "@ITEM_MINSALEPRICE,@ITEM_ALTMINSALEPRICE,@ITEM_SELFVALUEPRICE,@ITEM_SALEDISCOUNT,@ITEM_PURCHASEDISCOUNT,@ITEM_SALEDISCOUNTCOMP,@ITEM_PURCHASEDISCOUNTCOMP," +
                           "@ITEM_SpecifySaleDiscStructure,@ITEM_SpecifyPurDiscStructure,@ITEM_StockValMethod," +
                           "@ITEM_TAXCATEGORY,@ITEM_DESCRIPTION1," +
                           "@ITEM_DESCRIPTION2,@ITEM_DESCRIPTION3,@ITEM_DESCRIPTION4,@ITEM_SETCRITICALLEVEL,@ITEM_MAINTAINRG23D,@ITEM_TARIFHEADING,@ITEM_SERIALWISEDETAILS," +
@@ -127,22 +133,22 @@ namespace eSunSpeed.BusinessLogic
                 objItem.Company = dr["ITEM_COMPANY"].ToString();
                 objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
                 objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
-                objItem.Confactor =Convert.ToInt32(dr["ITEM_CONFACTOR"].ToString());
+                //objItem.Confactor =Convert.ToInt32(dr["ITEM_CONFACTOR"].ToString());
                 objItem.OpStockQty =Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
                 objItem.Unit = dr["ITEM_UNIT"].ToString();
                 objItem.Rate =Convert.ToDouble(dr["ITEM_RATE"].ToString());
                 objItem.Per = dr["ITEM_PER"].ToString();
                 objItem.Value =Convert.ToDouble( dr["ITEM_VALUE"].ToString());
-                objItem.ApplySalesPrice = Convert.ToBoolean(dr["ITEM_SALEPRICETOAPPLY"]);
-                objItem.ApplyPurchPrice = Convert.ToBoolean(dr["ITEM_PURCPRICETOAPPLY"]);
+                objItem.ApplySalesPrice = dr["ITEM_SALEPRICETOAPPLY"].ToString();
+                objItem.ApplyPurchPrice = dr["ITEM_PURCPRICETOAPPLY"].ToString();
 
-                objItem.SalePrice =Convert.ToDouble(dr["ITEM_SALEPRICE"].ToString());
-                objItem.Purprice = Convert.ToDouble(dr["ITEM_PURCHASEPRICE"].ToString());
-                objItem.MRP = Convert.ToDouble(dr["ITEM_MRP"].ToString());
-                objItem.MinSalePrice = Convert.ToDouble(dr["ITEM_MINSALEPRICE"].ToString());
-                objItem.SelfValuePrice = Convert.ToDouble(dr["ITEM_SELFVALUEPRICE"].ToString());
-                objItem.SaleDiscount = Convert.ToDouble(dr["ITEM_SALEDISCOUNT"].ToString());
-                objItem.PurDiscount = Convert.ToDouble(dr["ITEM_PURCHASEDISCOUNT"].ToString());
+                objItem.MainSalePrice =Convert.ToDecimal(dr["ITEM_SALEPRICE"].ToString());
+                objItem.MainPurprice = Convert.ToDecimal(dr["ITEM_PURCHASEPRICE"].ToString());
+                objItem.MainMRP = Convert.ToDecimal(dr["ITEM_MRP"].ToString());
+                objItem.MainMinSalePrice = Convert.ToDecimal(dr["ITEM_MINSALEPRICE"].ToString());
+                objItem.SelfValuePrice = Convert.ToDecimal(dr["ITEM_SELFVALUEPRICE"].ToString());
+                objItem.SaleDiscount = Convert.ToDecimal(dr["ITEM_SALEDISCOUNT"].ToString());
+                objItem.PurDiscount = Convert.ToDecimal(dr["ITEM_PURCHASEDISCOUNT"].ToString());
 
                 objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"]);
                 objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"]);
@@ -193,7 +199,7 @@ namespace eSunSpeed.BusinessLogic
 
             paramCollection.Add(new DBParameter("@ITEM_MAINUNIT", objItem.MainUnit));
             paramCollection.Add(new DBParameter("@ALT_UNIT", objItem.AltUnit));
-            paramCollection.Add(new DBParameter("@ITEM_CONFACTOR", objItem.Confactor));
+            //paramCollection.Add(new DBParameter("@ITEM_CONFACTOR", objItem.Confactor));
             paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
             paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
             paramCollection.Add(new DBParameter("@ITEM_RATE", objItem.Rate));
@@ -202,10 +208,10 @@ namespace eSunSpeed.BusinessLogic
 
             paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice, System.Data.DbType.Boolean));
-            paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.SalePrice));
-            paramCollection.Add(new DBParameter("@ITEM_PURCEPRICE", objItem.Purprice));
-            paramCollection.Add(new DBParameter("@ITEM_MRP", objItem.MRP));
-            paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE", objItem.MinSalePrice));
+            paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", objItem.MainSalePrice));
+            paramCollection.Add(new DBParameter("@ITEM_PURCEPRICE", objItem.MainPurprice));
+            paramCollection.Add(new DBParameter("@ITEM_MRP", objItem.MainMRP));
+            paramCollection.Add(new DBParameter("@ITEM_MINSALEPRICE", objItem.MainSalePrice));
             paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE", objItem.SelfValuePrice));
             paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount));
             paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount));
@@ -312,12 +318,12 @@ namespace eSunSpeed.BusinessLogic
                 objItem.Unit = dr["ITEM_UNIT"].ToString();
                 objItem.OpStockQty = Convert.ToDouble(dr["ITEM_OPSTOCKQTY"]);
                 objItem.OpStockValue = Convert.ToDouble(dr["ITEM_OPSTOCKVALUE"]);
-                objItem.SalePrice = Convert.ToDouble(dr["ITEM_SALEPRICE"]);
+                objItem.MainSalePrice = Convert.ToDecimal(dr["ITEM_SALEPRICE"]);
 
-                objItem.MRP = Convert.ToDouble(dr["ITEM_MRP"]);
-                objItem.MinSalePrice = Convert.ToDouble(dr["ITEM_MINSALEPRICE"]);
-                objItem.SelfValuePrice = Convert.ToDouble(dr["ITEM_SELFVALUEPRICE"]);
-                objItem.SaleDiscount = Convert.ToDouble(dr["ITEM_SALEDISCOUNT"]);
+                objItem.MainMRP = Convert.ToDecimal(dr["ITEM_MRP"]);
+                objItem.MainMinSalePrice = Convert.ToDecimal(dr["ITEM_MINSALEPRICE"]);
+                objItem.SelfValuePrice = Convert.ToDecimal(dr["ITEM_SELFVALUEPRICE"]);
+                objItem.SaleDiscount = Convert.ToDecimal(dr["ITEM_SALEDISCOUNT"]);
                                
             }
             return objItem;

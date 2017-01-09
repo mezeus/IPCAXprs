@@ -10,23 +10,16 @@ using System.Windows.Forms;
 
 namespace IPCAUI.Administration.PopupScreens
 {
-    public partial class ItemAliasPopup : Form
+    public partial class SerialnoWiseDetails : Form
     {
-        public ItemAliasPopup()
+        public SerialnoWiseDetails()
         {
             InitializeComponent();
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnOk_Click(object sender, EventArgs e)
         {
-            //Loop through the grid and get the values
-            
-            //Administration.ItemMasterNew.objModel.BarCodes.Add()
+            this.Close();
         }
     }
 }

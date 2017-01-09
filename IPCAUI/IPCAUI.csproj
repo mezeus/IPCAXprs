@@ -314,11 +314,53 @@
     <Compile Include="Administration\Miscellaneousmaster.Designer.cs">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\PopupScreens\DefineCriticalLevels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\DefineCriticalLevels.Designer.cs">
+      <DependentUpon>DefineCriticalLevels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\DiscountInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\DiscountInfo.Designer.cs">
+      <DependentUpon>DiscountInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PopupScreens\ItemAliasPopup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administration\PopupScreens\ItemAliasPopup.Designer.cs">
       <DependentUpon>ItemAliasPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemBatchDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemBatchDetails.Designer.cs">
+      <DependentUpon>ItemBatchDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MarkupInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MarkupInfo.Designer.cs">
+      <DependentUpon>MarkupInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MRPwiseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MRPwiseDetails.Designer.cs">
+      <DependentUpon>MRPwiseDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ParameterizedStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ParameterizedStock.Designer.cs">
+      <DependentUpon>ParameterizedStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\SerialnoWiseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\SerialnoWiseDetails.Designer.cs">
+      <DependentUpon>SerialnoWiseDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\Referencegroup.cs">
       <SubType>Form</SubType>
@@ -3266,8 +3308,29 @@
     <EmbeddedResource Include="Administration\Miscellaneousmaster.resx">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\DefineCriticalLevels.resx">
+      <DependentUpon>DefineCriticalLevels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\DiscountInfo.resx">
+      <DependentUpon>DiscountInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\ItemAliasPopup.resx">
       <DependentUpon>ItemAliasPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\ItemBatchDetails.resx">
+      <DependentUpon>ItemBatchDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\MarkupInfo.resx">
+      <DependentUpon>MarkupInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\MRPwiseDetails.resx">
+      <DependentUpon>MRPwiseDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\ParameterizedStock.resx">
+      <DependentUpon>ParameterizedStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\SerialnoWiseDetails.resx">
+      <DependentUpon>SerialnoWiseDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Referencegroup.resx">
       <DependentUpon>Referencegroup.cs</DependentUpon>

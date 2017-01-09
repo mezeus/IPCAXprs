@@ -26,9 +26,9 @@ namespace eSunSpeedDomain
 
         public string AltUnit { get; set; }
         public string Unit { get; set; }
+        public decimal ConAltUnit { get; set; }
+        public decimal ConMainUnit { get; set; }
 
-        public double Confactor { get; set; }
-        
         public string ConType { get; set; }
         
         public double AltOpQty { get; set; }
@@ -36,36 +36,43 @@ namespace eSunSpeedDomain
         public string Per { get; set; }
         public double Value { get; set; }
 
-        public bool ApplySalesPrice { get; set; }
-        public bool ApplyPurchPrice { get; set; }
+        public string ApplySalesPrice { get; set; }
+        public string ApplyPurchPrice { get; set; }
 
-        //Item Price Info
-        public double SalePrice { get; set; }
-        public double Purprice { get; set; }
-        public double MRP { get; set; }
-        public double MinSalePrice { get; set; }
-        public double SelfValuePrice { get; set; }
+        //Item Main Unit Price Info
+        public decimal MainSalePrice { get; set; }
+        public decimal MainPurprice { get; set; }
+        public decimal MainMRP { get; set; }
+        public decimal MainMinSalePrice { get; set; }
+        public decimal SelfValuePrice { get; set; }
         public string StockValMethod { get; set; }
 
+        //Item Alt Unit Price Info
+        public decimal AltSalePrice { get; set; }
+        public decimal AltPurprice { get; set; }
+        public decimal AltMRP { get; set; }
+        public decimal AltMinSalePrice { get; set; }
+        
         //Discount
-        
-        public double SaleDiscount { get; set; }
-        
-        public double PurDiscount { get; set; }
-        
-        public double SaleCompoundDiscount { get; set; }
-        
-        public double PurCompoundDiscount { get; set; }
+        public decimal SaleDiscount { get; set; }      
+        public decimal PurDiscount { get; set; }        
+        public decimal SaleCompoundDiscount { get; set; }     
+        public decimal PurCompoundDiscount { get; set; }
 
-        //Settings
+        //
+        public bool DiscountInfo { get; set; }
+        public bool MarkupInfo { get; set; }
+        //Settings 
+
         public bool SpecifySaleDiscStructure { get; set; }
         public bool SpecifyPurDiscStructure { get; set; }
+        //Need To Add Two Parameters
 
+        //Markup
         public string SaleMarkup { get; set; }
         public string PurMarkup { get; set; }
         public string SaleCompMarkup { get; set; }
         public string PurCompMarkup { get; set; }
-
         public bool SpecifySaleMarkupStruct { get; set; }
         public bool SpecifyPurMarkupStruct { get; set; }
 
@@ -111,6 +118,8 @@ namespace eSunSpeedDomain
         public bool DontMaintainStockBal { get; set; }
         public bool PickItemSizefromDescription { get; set; }
         public bool SpecifyDefaultVendor { get; set; }
+
+        public List<string> BarCodes { get; set; }
 
         //Audit 
         public string CreatedBy { get; set; }
