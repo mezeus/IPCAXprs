@@ -110,6 +110,18 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\MarkupStructureMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\MarkupStructureMaster.Designer.cs">
+      <DependentUpon>MarkupStructureMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\DiscountStructureMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\DiscountStructureMaster.Designer.cs">
+      <DependentUpon>DiscountStructureMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\ItemCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3205,6 +3217,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\MarkupStructureMaster.resx">
+      <DependentUpon>MarkupStructureMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\DiscountStructureMaster.resx">
+      <DependentUpon>DiscountStructureMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\ItemCompany.resx">
       <DependentUpon>ItemCompany.cs</DependentUpon>

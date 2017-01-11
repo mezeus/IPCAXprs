@@ -23,7 +23,7 @@ namespace IPCAUI.Administration
         public static ItemMasterModel objModel=new ItemMasterModel();
         public static int Item_Id = 0;
         public static bool isGroupF3 = false;
-
+        public static string FormName ="";
         public ItemMasterNew()
         {
             InitializeComponent();
@@ -542,28 +542,47 @@ namespace IPCAUI.Administration
                 return true;
             }
 
-            if (keyData == Keys.F3 && cbxGroup.Focused)
+            //if (keyData == Keys.F3 && cbxGroup.Focused)
+            //{
+            //    isGroupF3 = true;
+            //}
+            //else
+            //{
+            //    isGroupF3 = false;
+            //}
+            if (keyData == Keys.F3)
             {
-                isGroupF3 = true;
+                if (cbxGroup.Focused)
+                {
+                    FormName = "ItemGroup";
+                }
+                if (cbxMainUnit.Focused)
+                {
+                    FormName = "UnitMaster";
+                }
+                if (cbxTaxCat.Focused)
+                {
+                    FormName = "TaxCategory";
+                }
             }
             else
             {
-                isGroupF3 = false;
+                FormName = "";
             }
-                //    this.Close();
+            //    this.Close();
 
-                //    Transactions.Accountgroup frmgrp = new Transactions.Accountgroup();
+            //    Transactions.Accountgroup frmgrp = new Transactions.Accountgroup();
 
-                //    frmgrp.Owner = this;
-                //    frmgrp.TopLevel = false;
+            //    frmgrp.Owner = this;
+            //    frmgrp.TopLevel = false;
 
-                //    //sptCtrlMastermenu.Panel2.Controls.Add(frmgrp);
-                //    frmgrp.Show();
+            //    //sptCtrlMastermenu.Panel2.Controls.Add(frmgrp);
+            //    frmgrp.Show();
 
-                //    return true;
-                //}
+            //    return true;
+            //}
 
-                return base.ProcessCmdKey(ref msg, keyData);
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)
@@ -927,12 +946,11 @@ namespace IPCAUI.Administration
 
         private void cbxGroup_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (keyData == Keys.F3)
-            //{
-            //    this.Close();
-            //    return true;
-            //}
-            //return base.ProcessCmdKey(ref msg, keyData);
+            List<ItemGroupMasterModel> lstItemGroups = objgrpbl.GetAllItemGroup();
+            foreach (ItemGroupMasterModel objgroup in lstItemGroups)
+            {
+                cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
+            }
         }
 
         private void cbxDiscountInfo_SelectedIndexChanged(object sender, EventArgs e)
@@ -972,6 +990,52 @@ namespace IPCAUI.Administration
                 PopupScreens.DefineCriticalLevels frmCritical = new PopupScreens.DefineCriticalLevels();
                 frmCritical.StartPosition = FormStartPosition.CenterScreen;
                 frmCritical.ShowDialog();
+            }
+        }
+
+        private void cbxGroup_Click(object sender, EventArgs e)
+        {
+            //List<ItemGroupMasterModel> lstItemGroups = objgrpbl.GetAllItemGroup();
+            //foreach (ItemGroupMasterModel objgroup in lstItemGroups)
+            //{
+            //    cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
+            //}
+        }
+
+        private void cbxMainUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
+            foreach (UnitMasterModel objunit in lstUnits)
+            {
+                cbxMainUnit.Properties.Items.Add(objunit.UnitName);
+            }
+        }
+
+        private void cbxMainUnit_Click(object sender, EventArgs e)
+        {
+            List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
+            foreach (UnitMasterModel objunit in lstUnits)
+            {
+                cbxMainUnit.Properties.Items.Add(objunit.UnitName);
+                cbxAltUnit.Properties.Items.Add(objunit.UnitName);
+            }
+        }
+
+        private void cbxTaxCat_Click(object sender, EventArgs e)
+        {
+            //List<TaxCategoryModel> lstTaxCategeory = objTaxBl.GetAllTaxCategories();
+            //foreach (TaxCategoryModel objTax in lstTaxCategeory)
+            //{
+            //    cbxTaxCat.Properties.Items.Add(objTax.Name);
+            //}
+        }
+
+        private void cbxTaxCat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            List<TaxCategoryModel> lstTaxCategeory = objTaxBl.GetAllTaxCategories();
+            foreach (TaxCategoryModel objTax in lstTaxCategeory)
+            {
+                cbxTaxCat.Properties.Items.Add(objTax.Name);
             }
         }
     }

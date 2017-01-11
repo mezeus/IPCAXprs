@@ -77,24 +77,60 @@ namespace IPCAUI.Menu
 
             if (keyData == Keys.F3)
             {
-                  
+
                 //will be helpful in future to find last active form
                 //var lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1];
 
-                bool isFocus = Administration.ItemMasterNew.isGroupF3;
-                                
-                if(Administration.ItemMasterNew.isGroupF3)
+                //bool isFocus = Administration.ItemMasterNew.isGroupF3;
+
+                //if(Administration.ItemMasterNew.isGroupF3)
+                //{
+                //    Administration.Itemgroup frm;
+                //    frm = new Administration.Itemgroup(); //generate new instance 
+
+                //    frm.Owner = this;
+                //    frm.TopLevel = false;
+
+                //    sptCtrlMastermenu.Panel2.Controls.Add(frm);
+                //    frm.Show();
+                //}
+                string name = Administration.ItemMasterNew.FormName;
+                switch(name)
                 {
-                    Administration.Itemgroup frm;
-                    frm = new Administration.Itemgroup(); //generate new instance 
+                    case "ItemGroup":
+                        Administration.Itemgroup frmItem;
+                        frmItem = new Administration.Itemgroup(); //generate new instance 
 
-                    frm.Owner = this;
-                    frm.TopLevel = false;
+                        frmItem.Owner = this;
+                        frmItem.TopLevel = false;
 
-                    sptCtrlMastermenu.Panel2.Controls.Add(frm);
-                    frm.Show();
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmItem);
+                        frmItem.Show();
+                        break;
+                    case "UnitMaster":
+                        Administration.Unitmaster frmUnitMaster;
+                        frmUnitMaster = new Administration.Unitmaster(); //generate new instance 
+
+                        frmUnitMaster.Owner = this;
+                        frmUnitMaster.TopLevel = false;
+
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmUnitMaster);
+                        frmUnitMaster.Show();
+                        break;
+                    case "TaxCategory":
+                        Administration.Taxcategory frmTaxCat;
+                        frmTaxCat = new Administration.Taxcategory(); //generate new instance 
+
+                        frmTaxCat.Owner = this;
+                        frmTaxCat.TopLevel = false;
+
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmTaxCat);
+                        frmTaxCat.Show();
+                        break;
+                    default:
+                        break;
+                        
                 }
-
                 return true;
             }
 
@@ -418,8 +454,8 @@ namespace IPCAUI.Menu
 
         private void barbtnMiscellaneousmaster_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Miscellaneousmaster frm;
-            frm = new Administration.Miscellaneousmaster(); //generate new instance 
+            Administration.DiscountStructureMaster frm;
+            frm = new Administration.DiscountStructureMaster(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

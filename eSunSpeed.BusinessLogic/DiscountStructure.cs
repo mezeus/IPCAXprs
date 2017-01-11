@@ -45,55 +45,49 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ItemListPrice", objDS.ItemListPrice, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@CreatedBy", objDS.CreatedBy));
 
-                Query = "INSERT INTO DiscountStructure ([StructureName],[SimpleDiscount],[CD_withSameNature]," +
-                    "[CD_DifferentNature],[NoOfDiscounts],[SpecifyCaptionForDiscount],[AbsoluteAmount],[PerMainQty]," +
-                    "[Percentage],[PerAltQty],[ItemPrice],[ItemMRP],[ItemAmount],[ItemListPrice],[CreatedBy]) " +
-                    "VALUES(@StructureName,@SimpleDiscount,@CompoundDiscountwithSameNature,@CompoundDiscountDifferentNature," +
-                    "@NoOfDiscounts,@SpecifyCaptionForDiscount,@AbsoluteAmount,@PerMainQty,@Percentage,@PerAltQty,@ItemPrice," +
-                    "@ItemMRP,@ItemAmount,@ItemListPrice,@CreatedBy)";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isSaved = true;
+                System.Data.IDataReader dr =
+                       _dbHelper.ExecuteDataReader("spInsertDiscountStructure", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveAccountPosting(objDS.ListofAccountPosting, id);
             }
             catch (Exception ex)
             {
                 isSaved = false;
                 throw ex;
             }
-
+          
             return isSaved;
         }
 
-        public bool SaveAccountPosting(DSAccountPosting objDSPosting)
+        public bool SaveAccountPosting(List<DSAccountPosting> lstDSPosting,int parentid)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            try
+            foreach (DSAccountPosting objDSPosting in lstDSPosting)
             {
+                objDSPosting.DS_Id = parentid;
+                try
+                {
 
-                objDSPosting.DS_Id = GetDiscountStructId();
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
-                DBParameterCollection paramCollection = new DBParameterCollection();
+                    paramCollection.Add(new DBParameter("@DS_Id", objDSPosting.DS_Id));
+                    paramCollection.Add(new DBParameter("@AccountPosting", objDSPosting.AccountPost, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@AccountHeadPost", objDSPosting.AccountHeadPost));
+                    paramCollection.Add(new DBParameter("@AffectsGoods", objDSPosting.AffectsGoods, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@CreatedBy", objDSPosting.CreatedBy));
 
-                paramCollection.Add(new DBParameter("@DS_Id", objDSPosting.DS_Id));
-                paramCollection.Add(new DBParameter("@AccountPosting", objDSPosting.AccountPost, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@AccountHeadPost", objDSPosting.AccountHeadPost));
-                paramCollection.Add(new DBParameter("@AffectsGoods", objDSPosting.AffectsGoods, System.Data.DbType.Boolean));                
-                paramCollection.Add(new DBParameter("@CreatedBy", objDSPosting.CreatedBy));
-
-                Query = "INSERT INTO DS_AccountPosting ([DS_Id],[AccountPosting],[AccountHeadPost]," +
-                    "[AffectsGoods],[CreatedBy]) " +
-                    "VALUES(@DS_Id,@AccountPosting,@AccountHeadPost,@AffectsGoods," +                   
-                    "@CreatedBy)";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    System.Data.IDataReader dr =
+                          _dbHelper.ExecuteDataReader("spInsertDSAccountPosting", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                     isSaved = true;
-            }
-            catch (Exception ex)
-            {
-                isSaved = false;
-                throw ex;
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
             }
 
             return isSaved;

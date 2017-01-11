@@ -989,6 +989,7 @@
             this.cbxGroup.Size = new System.Drawing.Size(379, 20);
             this.cbxGroup.StyleController = this.layoutControl1;
             this.cbxGroup.TabIndex = 9;
+            this.cbxGroup.Click += new System.EventHandler(this.cbxGroup_Click);
             this.cbxGroup.Enter += new System.EventHandler(this.cbxGroup_Enter);
             this.cbxGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxGroup_KeyPress);
             // 
@@ -1002,7 +1003,9 @@
             this.cbxMainUnit.StyleController = this.layoutControl1;
             this.cbxMainUnit.TabIndex = 10;
             this.cbxMainUnit.SelectedIndexChanged += new System.EventHandler(this.cbxMainUnit_SelectedIndexChanged);
+            this.cbxMainUnit.Click += new System.EventHandler(this.cbxMainUnit_Click);
             this.cbxMainUnit.Enter += new System.EventHandler(this.cbxMainUnit_Enter);
+            this.cbxMainUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxMainUnit_KeyPress);
             // 
             // cbxApplySalesPrice
             // 
@@ -1140,7 +1143,9 @@
             this.cbxTaxCat.Size = new System.Drawing.Size(360, 20);
             this.cbxTaxCat.StyleController = this.layoutControl1;
             this.cbxTaxCat.TabIndex = 5;
+            this.cbxTaxCat.Click += new System.EventHandler(this.cbxTaxCat_Click);
             this.cbxTaxCat.Enter += new System.EventHandler(this.cbxTaxCat_Enter);
+            this.cbxTaxCat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxTaxCat_KeyPress);
             // 
             // tbxItemdesc4
             // 

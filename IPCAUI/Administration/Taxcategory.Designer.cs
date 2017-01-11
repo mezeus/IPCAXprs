@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Taxcategory));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.tbxServiceTax = new DevExpress.XtraEditors.TextEdit();
             this.dvgTaxratesList = new DevExpress.XtraGrid.GridControl();
             this.dvgTaxrateDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -146,7 +147,6 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -246,8 +246,20 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(587, 544);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(74, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 64;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // tbxServiceTax
             // 
+            this.tbxServiceTax.EnterMoveNextControl = true;
             this.tbxServiceTax.Location = new System.Drawing.Point(267, 108);
             this.tbxServiceTax.Name = "tbxServiceTax";
             this.tbxServiceTax.Size = new System.Drawing.Size(587, 20);
@@ -338,8 +350,6 @@
             this.Extra.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Extra.FieldName = "Tax_Type";
             this.Extra.Name = "Extra";
-            this.Extra.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
             this.Extra.Visible = true;
             this.Extra.VisibleIndex = 4;
             this.Extra.Width = 83;
@@ -356,8 +366,6 @@
             this.BSAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.BSAmount.FieldName = "Tax_Central";
             this.BSAmount.Name = "BSAmount";
-            this.BSAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
             this.BSAmount.Visible = true;
             this.BSAmount.VisibleIndex = 5;
             this.BSAmount.Width = 81;
@@ -1327,17 +1335,6 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(700, 24);
             this.layoutControlItem7.Text = "Service Tax Rate";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(587, 544);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(74, 22);
-            this.btnDelete.StyleController = this.layoutControl1;
-            this.btnDelete.TabIndex = 64;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblDelete
             // 

@@ -118,6 +118,7 @@
             // 
             // chkTrackInstallWaranty
             // 
+            this.chkTrackInstallWaranty.EnterMoveNextControl = true;
             this.chkTrackInstallWaranty.Location = new System.Drawing.Point(12, 230);
             this.chkTrackInstallWaranty.Name = "chkTrackInstallWaranty";
             this.chkTrackInstallWaranty.Properties.Caption = "Track Installation Warranty";
@@ -127,6 +128,7 @@
             // 
             // chkSaleWarranty
             // 
+            this.chkSaleWarranty.EnterMoveNextControl = true;
             this.chkSaleWarranty.Location = new System.Drawing.Point(12, 207);
             this.chkSaleWarranty.Name = "chkSaleWarranty";
             this.chkSaleWarranty.Properties.Caption = "Track Sale Warranty";
@@ -136,6 +138,7 @@
             // 
             // chkPurchaseWarranty
             // 
+            this.chkPurchaseWarranty.EnterMoveNextControl = true;
             this.chkPurchaseWarranty.Location = new System.Drawing.Point(12, 184);
             this.chkPurchaseWarranty.Name = "chkPurchaseWarranty";
             this.chkPurchaseWarranty.Properties.Caption = "Track Purchase Warranty";
@@ -154,6 +157,7 @@
             // 
             // chkGenerateAutoNo
             // 
+            this.chkGenerateAutoNo.EnterMoveNextControl = true;
             this.chkGenerateAutoNo.Location = new System.Drawing.Point(12, 158);
             this.chkGenerateAutoNo.Name = "chkGenerateAutoNo";
             this.chkGenerateAutoNo.Properties.Caption = "Regenerate Auto No. Also";
@@ -172,6 +176,7 @@
             // 
             // tbxStructureName
             // 
+            this.tbxStructureName.EnterMoveNextControl = true;
             this.tbxStructureName.Location = new System.Drawing.Point(132, 132);
             this.tbxStructureName.Name = "tbxStructureName";
             this.tbxStructureName.Size = new System.Drawing.Size(86, 20);
@@ -180,6 +185,7 @@
             // 
             // tbxStartingNumber
             // 
+            this.tbxStartingNumber.EnterMoveNextControl = true;
             this.tbxStartingNumber.Location = new System.Drawing.Point(132, 84);
             this.tbxStartingNumber.Name = "tbxStartingNumber";
             this.tbxStartingNumber.Size = new System.Drawing.Size(163, 20);
@@ -188,6 +194,7 @@
             // 
             // tbxrenumberingFreq
             // 
+            this.tbxrenumberingFreq.EnterMoveNextControl = true;
             this.tbxrenumberingFreq.Location = new System.Drawing.Point(132, 108);
             this.tbxrenumberingFreq.Name = "tbxrenumberingFreq";
             this.tbxrenumberingFreq.Size = new System.Drawing.Size(163, 20);
@@ -196,6 +203,7 @@
             // 
             // rbnSerialNumber
             // 
+            this.rbnSerialNumber.EnterMoveNextControl = true;
             this.rbnSerialNumber.Location = new System.Drawing.Point(12, 12);
             this.rbnSerialNumber.Name = "rbnSerialNumber";
             this.rbnSerialNumber.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
