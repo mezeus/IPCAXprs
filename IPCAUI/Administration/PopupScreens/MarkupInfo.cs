@@ -23,14 +23,23 @@ namespace IPCAUI.Administration.PopupScreens
             Administration.ItemMasterNew.objModel.PurMarkup = tbxPurcMarkup.Text.Trim()==null?string.Empty:tbxPurcMarkup.Text.Trim();
             Administration.ItemMasterNew.objModel.SaleCompMarkup = tbxSaleCompMarkup.Text.Trim() == null?string.Empty:tbxSaleCompMarkup.Text.Trim();
             Administration.ItemMasterNew.objModel.PurCompMarkup = tbxPurcCompMarkup.Text.Trim()==null?string.Empty:tbxPurcCompMarkup.Text.Trim();
-            Administration.ItemMasterNew.objModel.SpecifySaleMarkupStruct = (tbxSpSaleStru.SelectedItem.ToString() == "Y" ? true : false);
-            Administration.ItemMasterNew.objModel.SpecifyPurDiscStructure = (tbxSpPurcStru.SelectedItem.ToString() == "Y" ? true : false);
+            Administration.ItemMasterNew.objModel.SpecifySaleMarkupStruct = (tbxSpSaleMarkupStru.SelectedItem.ToString() == "Y" ? true : false);
+            Administration.ItemMasterNew.objModel.SpecifyPurDiscStructure = (tbxSpPurcMarkupStru.SelectedItem.ToString() == "Y" ? true : false);
             this.Close();
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

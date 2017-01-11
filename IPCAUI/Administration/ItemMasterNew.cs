@@ -21,7 +21,6 @@ namespace IPCAUI.Administration
         AccountMasterBL objaccbl = new AccountMasterBL();
 
         public static ItemMasterModel objModel=new ItemMasterModel();
-
         public static int Item_Id = 0;
         public static bool isGroupF3 = false;
 
@@ -37,13 +36,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Item Group Name can not be blank!");
                 return;
             }
-            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-            //objModel = new ItemMasterModel();
 
             objModel.Name = tbxName.Text.Trim();
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
@@ -87,12 +79,12 @@ namespace IPCAUI.Administration
             objModel.MarkupInfo = cbxMarkupInfo.SelectedItem.ToString() == "Y" ? true : false;
             if(objModel.MarkupInfo)
             {
-                Convert.ToDecimal(objModel.SaleDiscount);
-                Convert.ToDecimal(objModel.PurDiscount);
-                Convert.ToDecimal(objModel.SaleCompoundDiscount);
-                Convert.ToDecimal(objModel.PurCompoundDiscount);
-                Convert.ToBoolean(objModel.SpecifySaleDiscStructure);
-                Convert.ToBoolean(objModel.SpecifyPurDiscStructure);
+                Convert.ToString(objModel.SaleMarkup);
+                Convert.ToString(objModel.PurMarkup);
+                Convert.ToString(objModel.SaleCompMarkup);
+                Convert.ToString(objModel.PurCompMarkup);
+                Convert.ToBoolean(objModel.SpecifySaleMarkupStruct);
+                Convert.ToBoolean(objModel.SpecifyPurMarkupStruct);
             }
             objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
 
@@ -106,11 +98,19 @@ namespace IPCAUI.Administration
             objModel.MaintainRG23D = cbxMaintainRG.SelectedItem.ToString() == "Y" ? true : false;
             objModel.TariffHeading = tbxTariffHeading.Text == null ? string.Empty : tbxTariffHeading.Text.Trim();
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
-            if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() !="0"))
+            if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxOpStock.Text.Trim() !="0.00"))
             {
                 PopupScreens.SerialnoWiseDetails frmserial = new PopupScreens.SerialnoWiseDetails();
                 frmserial.StartPosition = FormStartPosition.CenterScreen;
                 frmserial.ShowDialog();
+
+                //Convert.ToBoolean(ItemMasterNew.objModel.ManualNuber);
+                //Convert.ToBoolean(ItemMasterNew.objModel.AutoNumber);
+                //Convert.ToInt32(ItemMasterNew.objModel.StaringAutoNo);
+                //Convert.ToString(ItemMasterNew.objModel.StructureName);
+                //Convert.ToBoolean(ItemMasterNew.objModel.TrackSaleWaranty);
+                //Convert.ToBoolean(ItemMasterNew.objModel.TrackPurcWaranty);
+                //Convert.ToBoolean(ItemMasterNew.objModel.ItemSerialNumber.FirstOrDefau.TrackInstallationWaranty);
             }
             objModel.ParameterizedDetails = cbxParamDetails.SelectedItem.ToString() == "Y" ? true : false;
             if (cbxParamDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
@@ -155,26 +155,10 @@ namespace IPCAUI.Administration
             if (objModel.SpecifySaleDiscStructure)
                 //lblPurDiscAmt.Visible = true;
 
-            //objModel.SaleMarkup = tbxSalesMarkup.Text.Trim();
-            //objModel.PurMarkup = tbxPurchMarkup.Text.Trim();
-            //objModel.SaleCompMarkup = tbxSalesCompMarkup.Text.Trim();
-            //objModel.PurCompMarkup = tbxPurchCompMarkup.Text.Trim();
-
-            //objModel.SpecifySaleMarkupStruct = cbxEnableSalesMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
-            //objModel.SpecifyPurMarkupStruct = cbxEnablePurchMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
-            //objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
-            //objModel.TaxonMRP = tbxMRP.SelectedItem.ToString() == "Y" ? true : false;
-            //objModel.TaxType = cbxTaxCat.SelectedItem.ToString();
-
-            //objModel.ServiceTaxRate = Convert.ToDouble(tbxServiceTaxRate.Text.Trim());
-            //objModel.RateofTax_Local = Convert.ToDouble(tbxLocalTax.Text.Trim());
-            //objModel.RateofTax_Central = Convert.ToDouble(tbxCentralTax.Text.Trim());
-            //objModel.HSNCode = tbxHSNCode.Text.Trim();
-
             objModel.CreatedBy = "Admin";
 
-            bool isSuccess = objIMBL.SaveItemMaster(objModel);
-            if (isSuccess)
+            bool isSaved = objIMBL.SaveItemMaster(objModel);
+            if (isSaved)
             {
                 MessageBox.Show("Saved Successfully!");
             }
@@ -719,15 +703,16 @@ namespace IPCAUI.Administration
 
             lblSalesPriceMain.Text = "Sales Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
             lblPurchPriceMain.Text = "Purch. Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
-
-            lblMRPMain.Text= "M.R.P(" + cbxMainUnit.SelectedItem.ToString() + ")";
+            lblMRPMain.Text = "M.R.P(" + cbxMainUnit.SelectedItem.ToString() + ")";
+            lblMinSaleMain.Text = "Min. Sales Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
 
             if (cbxAltUnit.SelectedItem == null)
                 return;
 
             lblSalesPriceAlt.Text = "Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
             lblPurchPriceAlt.Text = "Purch. Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
-
+            lblMrpAlt.Text = "(M.R.P(" + cbxAltUnit.SelectedItem.ToString() + ")";
+            lblMinSaleAlt.Text = "(Min. Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
 
         }
 
@@ -754,13 +739,14 @@ namespace IPCAUI.Administration
             lblPurchPriceMain.Text = "Purch. Price(" + cbxMainUnit.SelectedItem.ToString() + ")";
 
             lblMRPMain.Text = "M.R.P(" + cbxMainUnit.SelectedItem.ToString() + ")";
-
+            lblMinSaleMain.Text = "Min. Sales Price("+ cbxMainUnit.SelectedItem.ToString() + ")";
             if (cbxAltUnit.SelectedItem == null)
                 return;
 
             lblSalesPriceAlt.Text = "Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
             lblPurchPriceAlt.Text = "Purch. Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
-
+            lblMrpAlt.Text = "(M.R.P(" + cbxAltUnit.SelectedItem.ToString() + ")";
+            lblMinSaleAlt.Text= "(Min. Sales Price(" + cbxAltUnit.SelectedItem.ToString() + ")";
         }
 
         private void tbxconFactor_TextChanged(object sender, EventArgs e)
@@ -966,17 +952,27 @@ namespace IPCAUI.Administration
 
         private void cbxMarkupInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbxMarkupInfo.SelectedItem.ToString()=="Y")
+            if (cbxMarkupInfo.SelectedItem.ToString() == "Y")
             {
-                PopupScreens.MarkupInfo frmMarkup = new PopupScreens.MarkupInfo();
-                frmMarkup.StartPosition = FormStartPosition.CenterScreen;
-                frmMarkup.ShowDialog();
+                PopupScreens.MarkupInfo frmdiscount = new PopupScreens.MarkupInfo();
+                frmdiscount.StartPosition = FormStartPosition.CenterScreen;
+                frmdiscount.ShowDialog();
             }
         }
 
         private void cbxSrlWiseDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            
+        }
+
+        private void btnCritical_Click(object sender, EventArgs e)
+        {
+            if(cbxCreticallevel.SelectedItem.ToString()=="Y")
+            {
+                PopupScreens.DefineCriticalLevels frmCritical = new PopupScreens.DefineCriticalLevels();
+                frmCritical.StartPosition = FormStartPosition.CenterScreen;
+                frmCritical.ShowDialog();
+            }
         }
     }
 }

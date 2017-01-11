@@ -35,5 +35,20 @@ namespace IPCAUI.Administration.PopupScreens
         {
             this.Close();
         }
+
+        private void DiscountInfo_Load(object sender, EventArgs e)
+        {
+            cbxSpSaleDiscStr.SelectedIndex = 1;
+            cbxSpPurcDiscStr.SelectedIndex = 1;
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

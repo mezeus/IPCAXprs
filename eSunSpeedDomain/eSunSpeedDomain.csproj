@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillsofMaterialDetailsModel.cs" />
+    <Compile Include="DefineCriticalLevelModel.cs" />
     <Compile Include="InventorySettingsModel.cs" />
     <Compile Include="AccountSettingsModel.cs" />
     <Compile Include="ContactmasterModel.cs" />
@@ -61,9 +62,13 @@
     <Compile Include="AuthorModel.cs" />
     <Compile Include="CompanyModel.cs" />
     <Compile Include="ItemAliasModel.cs" />
+    <Compile Include="ItemBatchWiseDetailsModel.cs" />
     <Compile Include="ItemConsumedModel.cs" />
+    <Compile Include="ItemParameterizedModel.cs" />
+    <Compile Include="ItemSerialnoDetailsModel.cs" />
     <Compile Include="ListVoucherModel.cs" />
     <Compile Include="MasterseriesModel.cs" />
+    <Compile Include="ItemMRPWiseDetailsModel.cs" />
     <Compile Include="PhysicalStockModel.cs" />
     <Compile Include="PurchaseTypeModel.cs" />
     <Compile Include="ReferenceGroupModel.cs" />

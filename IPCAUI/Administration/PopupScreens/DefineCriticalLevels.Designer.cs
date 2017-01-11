@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.tbxRecordLvlDays = new DevExpress.XtraEditors.TextEdit();
+            this.tbxMinLvlDays = new DevExpress.XtraEditors.TextEdit();
+            this.tbxMaxLvlQty = new DevExpress.XtraEditors.TextEdit();
+            this.tbxRecordLvlQty = new DevExpress.XtraEditors.TextEdit();
+            this.tbxMinLvlQty = new DevExpress.XtraEditors.TextEdit();
+            this.tbxMaxLvlDays = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -57,24 +57,24 @@
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxRecordLvlDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMinLvlDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMaxLvlQty.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxRecordLvlQty.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMinLvlQty.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMaxLvlDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
@@ -87,12 +87,12 @@
             // 
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.textEdit6);
-            this.layoutControl1.Controls.Add(this.textEdit5);
-            this.layoutControl1.Controls.Add(this.textEdit4);
-            this.layoutControl1.Controls.Add(this.textEdit3);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.tbxRecordLvlDays);
+            this.layoutControl1.Controls.Add(this.tbxMinLvlDays);
+            this.layoutControl1.Controls.Add(this.tbxMaxLvlQty);
+            this.layoutControl1.Controls.Add(this.tbxRecordLvlQty);
+            this.layoutControl1.Controls.Add(this.tbxMinLvlQty);
+            this.layoutControl1.Controls.Add(this.tbxMaxLvlDays);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -101,6 +101,91 @@
             this.layoutControl1.Size = new System.Drawing.Size(369, 301);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Location = new System.Drawing.Point(208, 267);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(67, 22);
+            this.btnQuit.StyleController = this.layoutControl1;
+            this.btnQuit.TabIndex = 11;
+            this.btnQuit.Text = "Quit";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(127, 267);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(67, 22);
+            this.btnSave.StyleController = this.layoutControl1;
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // tbxRecordLvlDays
+            // 
+            this.tbxRecordLvlDays.EnterMoveNextControl = true;
+            this.tbxRecordLvlDays.Location = new System.Drawing.Point(132, 189);
+            this.tbxRecordLvlDays.Name = "tbxRecordLvlDays";
+            this.tbxRecordLvlDays.Properties.Mask.EditMask = "n2";
+            this.tbxRecordLvlDays.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxRecordLvlDays.Size = new System.Drawing.Size(213, 20);
+            this.tbxRecordLvlDays.StyleController = this.layoutControl1;
+            this.tbxRecordLvlDays.TabIndex = 9;
+            // 
+            // tbxMinLvlDays
+            // 
+            this.tbxMinLvlDays.EnterMoveNextControl = true;
+            this.tbxMinLvlDays.Location = new System.Drawing.Point(132, 145);
+            this.tbxMinLvlDays.Name = "tbxMinLvlDays";
+            this.tbxMinLvlDays.Properties.Mask.EditMask = "n2";
+            this.tbxMinLvlDays.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxMinLvlDays.Size = new System.Drawing.Size(213, 20);
+            this.tbxMinLvlDays.StyleController = this.layoutControl1;
+            this.tbxMinLvlDays.TabIndex = 8;
+            // 
+            // tbxMaxLvlQty
+            // 
+            this.tbxMaxLvlQty.EnterMoveNextControl = true;
+            this.tbxMaxLvlQty.Location = new System.Drawing.Point(132, 101);
+            this.tbxMaxLvlQty.Name = "tbxMaxLvlQty";
+            this.tbxMaxLvlQty.Properties.Mask.EditMask = "n2";
+            this.tbxMaxLvlQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxMaxLvlQty.Size = new System.Drawing.Size(213, 20);
+            this.tbxMaxLvlQty.StyleController = this.layoutControl1;
+            this.tbxMaxLvlQty.TabIndex = 7;
+            // 
+            // tbxRecordLvlQty
+            // 
+            this.tbxRecordLvlQty.EnterMoveNextControl = true;
+            this.tbxRecordLvlQty.Location = new System.Drawing.Point(132, 60);
+            this.tbxRecordLvlQty.Name = "tbxRecordLvlQty";
+            this.tbxRecordLvlQty.Properties.Mask.EditMask = "n2";
+            this.tbxRecordLvlQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxRecordLvlQty.Size = new System.Drawing.Size(213, 20);
+            this.tbxRecordLvlQty.StyleController = this.layoutControl1;
+            this.tbxRecordLvlQty.TabIndex = 6;
+            // 
+            // tbxMinLvlQty
+            // 
+            this.tbxMinLvlQty.EnterMoveNextControl = true;
+            this.tbxMinLvlQty.Location = new System.Drawing.Point(132, 24);
+            this.tbxMinLvlQty.Name = "tbxMinLvlQty";
+            this.tbxMinLvlQty.Properties.Mask.EditMask = "n2";
+            this.tbxMinLvlQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxMinLvlQty.Size = new System.Drawing.Size(213, 20);
+            this.tbxMinLvlQty.StyleController = this.layoutControl1;
+            this.tbxMinLvlQty.TabIndex = 5;
+            // 
+            // tbxMaxLvlDays
+            // 
+            this.tbxMaxLvlDays.EnterMoveNextControl = true;
+            this.tbxMaxLvlDays.Location = new System.Drawing.Point(132, 231);
+            this.tbxMaxLvlDays.Name = "tbxMaxLvlDays";
+            this.tbxMaxLvlDays.Properties.Mask.EditMask = "n2";
+            this.tbxMaxLvlDays.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxMaxLvlDays.Size = new System.Drawing.Size(213, 20);
+            this.tbxMaxLvlDays.StyleController = this.layoutControl1;
+            this.tbxMaxLvlDays.TabIndex = 4;
             // 
             // layoutControlGroup1
             // 
@@ -118,118 +203,6 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(369, 301);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(133, 231);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(212, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 4;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.textEdit1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 207);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem1.Text = "Maximun Level (Days)";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(133, 24);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(212, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 5;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.textEdit2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem2.Text = "Minimum Level (Qty.)";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.Location = new System.Drawing.Point(133, 60);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(212, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 6;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.textEdit3;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 36);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem3.Text = "Record Level (Qty.)";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // textEdit4
-            // 
-            this.textEdit4.Location = new System.Drawing.Point(133, 101);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(212, 20);
-            this.textEdit4.StyleController = this.layoutControl1;
-            this.textEdit4.TabIndex = 7;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.textEdit4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 77);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem4.Text = "Maximum Level (Qty.)";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.Location = new System.Drawing.Point(133, 145);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(212, 20);
-            this.textEdit5.StyleController = this.layoutControl1;
-            this.textEdit5.TabIndex = 8;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.textEdit5;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 121);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem5.Text = "Minimum Level (Days)";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // textEdit6
-            // 
-            this.textEdit6.Location = new System.Drawing.Point(133, 189);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Size = new System.Drawing.Size(212, 20);
-            this.textEdit6.StyleController = this.layoutControl1;
-            this.textEdit6.TabIndex = 9;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.textEdit6;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 165);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(325, 24);
-            this.layoutControlItem6.Text = "Record Level (Days)";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(127, 267);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(67, 22);
-            this.btnSave.StyleController = this.layoutControl1;
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
@@ -238,15 +211,6 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(71, 26);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.Location = new System.Drawing.Point(208, 267);
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(67, 22);
-            this.btnQuit.StyleController = this.layoutControl1;
-            this.btnQuit.TabIndex = 11;
-            this.btnQuit.Text = "Quit";
             // 
             // layoutControlItem8
             // 
@@ -291,6 +255,60 @@
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(349, 255);
             this.layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.tbxMinLvlQty;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem2.Text = "Minimum Level (Qty.)";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(105, 13);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.tbxRecordLvlQty;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 36);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem3.Text = "Record Level (Qty.)";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(105, 13);
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.tbxMaxLvlQty;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 77);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem4.Text = "Maximum Level (Qty.)";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(105, 13);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.tbxMinLvlDays;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 121);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem5.Text = "Minimum Level (Days)";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(105, 13);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.tbxMaxLvlDays;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 207);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem1.Text = "Maximun Level (Days)";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(105, 13);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.tbxRecordLvlDays;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 165);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(325, 24);
+            this.layoutControlItem6.Text = "Record Level (Days)";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(105, 13);
             // 
             // emptySpaceItem3
             // 
@@ -346,28 +364,29 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 301);
             this.Controls.Add(this.layoutControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DefineCriticalLevels";
             this.Text = "DefineCriticalLevels";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxRecordLvlDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMinLvlDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMaxLvlQty.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxRecordLvlQty.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMinLvlQty.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxMaxLvlDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
@@ -384,12 +403,12 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.SimpleButton btnQuit;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxRecordLvlDays;
+        private DevExpress.XtraEditors.TextEdit tbxMinLvlDays;
+        private DevExpress.XtraEditors.TextEdit tbxMaxLvlQty;
+        private DevExpress.XtraEditors.TextEdit tbxRecordLvlQty;
+        private DevExpress.XtraEditors.TextEdit tbxMinLvlQty;
+        private DevExpress.XtraEditors.TextEdit tbxMaxLvlDays;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;

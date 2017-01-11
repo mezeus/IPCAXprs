@@ -31,8 +31,6 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.tbxSpPurcMarkupStru = new DevExpress.XtraEditors.TextEdit();
-            this.tbxSpSaleMarkupStru = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tbxSaleMarkup = new DevExpress.XtraEditors.TextEdit();
             this.tbxSaleCompMarkup = new DevExpress.XtraEditors.TextEdit();
@@ -59,10 +57,10 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.tbxSpSaleMarkupStru = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.tbxSpPurcMarkupStru = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSpPurcMarkupStru.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSpSaleMarkupStru.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSaleMarkup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSaleCompMarkup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPurcMarkup.Properties)).BeginInit();
@@ -88,14 +86,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSpSaleMarkupStru.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSpPurcMarkupStru.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.tbxSpPurcMarkupStru);
-            this.layoutControl1.Controls.Add(this.tbxSpSaleMarkupStru);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.tbxSaleMarkup);
             this.layoutControl1.Controls.Add(this.tbxSaleCompMarkup);
@@ -103,6 +101,8 @@
             this.layoutControl1.Controls.Add(this.tbxPurcCompMarkup);
             this.layoutControl1.Controls.Add(this.tbxSpSaleStru);
             this.layoutControl1.Controls.Add(this.tbxSpPurcStru);
+            this.layoutControl1.Controls.Add(this.tbxSpSaleMarkupStru);
+            this.layoutControl1.Controls.Add(this.tbxSpPurcMarkupStru);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -131,24 +131,6 @@
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // tbxSpPurcMarkupStru
-            // 
-            this.tbxSpPurcMarkupStru.EnterMoveNextControl = true;
-            this.tbxSpPurcMarkupStru.Location = new System.Drawing.Point(406, 77);
-            this.tbxSpPurcMarkupStru.Name = "tbxSpPurcMarkupStru";
-            this.tbxSpPurcMarkupStru.Size = new System.Drawing.Size(73, 20);
-            this.tbxSpPurcMarkupStru.StyleController = this.layoutControl1;
-            this.tbxSpPurcMarkupStru.TabIndex = 10;
-            // 
-            // tbxSpSaleMarkupStru
-            // 
-            this.tbxSpSaleMarkupStru.EnterMoveNextControl = true;
-            this.tbxSpSaleMarkupStru.Location = new System.Drawing.Point(164, 77);
-            this.tbxSpSaleMarkupStru.Name = "tbxSpSaleMarkupStru";
-            this.tbxSpSaleMarkupStru.Size = new System.Drawing.Size(86, 20);
-            this.tbxSpSaleMarkupStru.StyleController = this.layoutControl1;
-            this.tbxSpSaleMarkupStru.TabIndex = 9;
             // 
             // labelControl1
             // 
@@ -412,6 +394,32 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(134, 28);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // tbxSpSaleMarkupStru
+            // 
+            this.tbxSpSaleMarkupStru.Location = new System.Drawing.Point(164, 77);
+            this.tbxSpSaleMarkupStru.Name = "tbxSpSaleMarkupStru";
+            this.tbxSpSaleMarkupStru.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxSpSaleMarkupStru.Properties.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.tbxSpSaleMarkupStru.Size = new System.Drawing.Size(86, 20);
+            this.tbxSpSaleMarkupStru.StyleController = this.layoutControl1;
+            this.tbxSpSaleMarkupStru.TabIndex = 9;
+            // 
+            // tbxSpPurcMarkupStru
+            // 
+            this.tbxSpPurcMarkupStru.Location = new System.Drawing.Point(406, 77);
+            this.tbxSpPurcMarkupStru.Name = "tbxSpPurcMarkupStru";
+            this.tbxSpPurcMarkupStru.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxSpPurcMarkupStru.Properties.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.tbxSpPurcMarkupStru.Size = new System.Drawing.Size(73, 20);
+            this.tbxSpPurcMarkupStru.StyleController = this.layoutControl1;
+            this.tbxSpPurcMarkupStru.TabIndex = 10;
+            // 
             // MarkupInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,8 +431,6 @@
             this.Text = "MarkupInfo";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSpPurcMarkupStru.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSpSaleMarkupStru.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSaleMarkup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSaleCompMarkup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPurcMarkup.Properties)).EndInit();
@@ -450,6 +456,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSpSaleMarkupStru.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSpPurcMarkupStru.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,8 +480,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraEditors.TextEdit tbxSpPurcMarkupStru;
-        private DevExpress.XtraEditors.TextEdit tbxSpSaleMarkupStru;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.ComboBoxEdit tbxSpSaleStru;
@@ -487,5 +493,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraEditors.ComboBoxEdit tbxSpSaleMarkupStru;
+        private DevExpress.XtraEditors.ComboBoxEdit tbxSpPurcMarkupStru;
     }
 }

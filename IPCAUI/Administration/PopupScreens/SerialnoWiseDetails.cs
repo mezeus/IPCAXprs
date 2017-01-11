@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.PopupScreens
 {
@@ -19,7 +20,33 @@ namespace IPCAUI.Administration.PopupScreens
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            ItemMasterNew.objModel.ManualNuber = false;
+            ItemMasterNew.objModel.AutoNumber = false;
+            if (rbnSerialNumber.SelectedIndex == 0)
+            {
+                Administration.ItemMasterNew.objModel.ManualNuber = true;
+            }
+            if (rbnSerialNumber.SelectedIndex == 1)
+            {
+                Administration.ItemMasterNew.objModel.AutoNumber = true;
+            }
+            ItemMasterNew.objModel.StaringAutoNo = Convert.ToInt32(tbxStartingNumber.Text.Trim() == null ? string.Empty : tbxStartingNumber.Text);
+            ItemMasterNew.objModel.StructureName = tbxStructureName.Text.Trim() == null ? string.Empty : tbxStructureName.Text;
+            ItemMasterNew.objModel.NumberingFreq = tbxrenumberingFreq.Text.Trim() == null ? string.Empty : tbxrenumberingFreq.Text;
+            ItemMasterNew.objModel.RegenarateAutoNo = Convert.ToBoolean(chkGenerateAutoNo.Checked == true ? true : false);
+            ItemMasterNew.objModel.TrackSaleWaranty =Convert.ToBoolean(chkSaleWarranty.Checked == true?true : false);
+            ItemMasterNew.objModel.TrackPurcWaranty = Convert.ToBoolean(chkPurchaseWarranty.Checked == true ? true : false);
+            ItemMasterNew.objModel.TrackInstallationWaranty = Convert.ToBoolean(chkTrackInstallWaranty.Checked == true ? true : false);
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

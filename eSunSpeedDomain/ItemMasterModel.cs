@@ -119,24 +119,28 @@ namespace eSunSpeedDomain
         public bool PickItemSizefromDescription { get; set; }
         public bool SpecifyDefaultVendor { get; set; }
 
+        //Popup Screens Lists
         public List<string> BarCodes { get; set; }
+        public List<ItemParameterizedModel> ItemParameterized { get; set; }
+        public List<ItemBatchWiseDetailsModel> ItemBatchWise { get; set; }
+        public List<ItemMRPWiseDetailsModel> ItemMRPWise { get; set; }
+        public List<DefineCriticalLevelModel> ItemCriticalLevel { get; set; }
 
+
+        public int SL_ID { get; set; }
+        public int parent_Id { get; set; }
+        public bool ManualNuber { get; set; }
+        public bool AutoNumber { get; set; }
+        public int StaringAutoNo { get; set; }
+        public string NumberingFreq { get; set; }
+        public string StructureName { get; set; }
+        public bool RegenarateAutoNo { get; set; }
+        public bool TrackPurcWaranty { get; set; }
+        public bool TrackSaleWaranty { get; set; }
+        public bool TrackInstallationWaranty { get; set; }
         //Audit 
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
-
-        //public ItemMasterModel()
-        //{
-        //    foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(this))
-        //    {
-        //        DefaultValueAttribute myAttribute = (DefaultValueAttribute)property.Attributes[typeof(DefaultValueAttribute)];
-
-        //        if (myAttribute != null)
-        //        {
-        //            property.SetValue(this, myAttribute.Value);
-        //        }
-        //    }
-        //}
 
     }
 }
