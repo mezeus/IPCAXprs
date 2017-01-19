@@ -14,8 +14,8 @@ namespace IPCAUI.Administration
 {
     public partial class MarkupStructureMaster : Form
     {
-        DataTable dtDiscount = new DataTable();
-        DiscountStructure objDisBL = new DiscountStructure();
+        DataTable dtMarkup = new DataTable();
+        MarkupStructureBL objMakBL = new MarkupStructureBL();
         public MarkupStructureMaster()
         {
             InitializeComponent();
@@ -24,11 +24,11 @@ namespace IPCAUI.Administration
         private void MarkupStructureMaster_Load(object sender, EventArgs e)
         {
             tbxStrName.Focus();
-            dtDiscount.Columns.Add("AccountPost");
-            dtDiscount.Columns.Add("AccountHeadPost");
-            dtDiscount.Columns.Add("AffectsGoods");
+            dtMarkup.Columns.Add("AccountPost");
+            dtMarkup.Columns.Add("AccountHeadPost");
+            dtMarkup.Columns.Add("AffectsGoods");
 
-            dvgDisscountStr.DataSource = dtDiscount;
+            dvgMarkupStr.DataSource = dtMarkup;
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -42,72 +42,72 @@ namespace IPCAUI.Administration
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DiscountStructureMasterModel objdiscount = new DiscountStructureMasterModel();
+            MarkupStructureMasterModel objmarkup = new MarkupStructureMasterModel();
 
-            objdiscount.StructureName = tbxStrName.Text.Trim() == null ? string.Empty : tbxStrName.Text.Trim();
-            objdiscount.SimpleDiscount = false;
-            objdiscount.CompoundDiscountwithSameNature = false;
-            objdiscount.CompoundDiscountDifferentNature = false;
-            if(rbnDiscountType.SelectedIndex==0)
+            objmarkup.StructureName = tbxStrName.Text.Trim() == null ? string.Empty : tbxStrName.Text.Trim();
+            objmarkup.SimpleDiscount = false;
+            objmarkup.CompoundMarkupwithSameNature = false;
+            objmarkup.CompoundMarkupDifferentNature = false;
+            if(rbnMarkupType.SelectedIndex==0)
             {
-                objdiscount.SimpleDiscount = true;
+                objmarkup.SimpleDiscount = true;
             }
-            if (rbnDiscountType.SelectedIndex == 1)
+            if (rbnMarkupType.SelectedIndex == 1)
             {
-                objdiscount.CompoundDiscountwithSameNature = true;
+                objmarkup.CompoundMarkupwithSameNature = true;
             }
-            if (rbnDiscountType.SelectedIndex == 2)
+            if (rbnMarkupType.SelectedIndex == 2)
             {
-                objdiscount.CompoundDiscountDifferentNature = true;
+                objmarkup.CompoundMarkupDifferentNature = true;
             }
-            objdiscount.NoOfDiscounts =Convert.ToInt32(tbxNoDiscounts.Text.Trim() == null ?"0": tbxNoDiscounts.Text.Trim());
-            objdiscount.AbsoluteDiscount = false;
-            objdiscount.PerMainQty = false;
-            objdiscount.Percentage = false;
-            objdiscount.PerAltQty = false;
-            if (rbnAccountDiscount.SelectedIndex == 0)
+            objmarkup.NoOfMarkups =Convert.ToInt32(tbxNoDiscounts.Text.Trim() == null ?"0": tbxNoDiscounts.Text.Trim());
+            objmarkup.AbsoluteDiscount = false;
+            objmarkup.PerMainQty = false;
+            objmarkup.Percentage = false;
+            objmarkup.PerAltQty = false;
+            if (rbnAccountMarkup.SelectedIndex == 0)
             {
-                objdiscount.AbsoluteDiscount = true;
+                objmarkup.AbsoluteDiscount = true;
             }
-            if (rbnAccountDiscount.SelectedIndex == 1)
+            if (rbnAccountMarkup.SelectedIndex == 1)
             {
-                objdiscount.PerMainQty = true;
+                objmarkup.PerMainQty = true;
             }
-            if (rbnAccountDiscount.SelectedIndex == 2)
+            if (rbnAccountMarkup.SelectedIndex == 2)
             {
-                objdiscount.Percentage = true;
+                objmarkup.Percentage = true;
             }
-            if (rbnAccountDiscount.SelectedIndex == 3)
+            if (rbnAccountMarkup.SelectedIndex == 3)
             {
-                objdiscount.PerAltQty = true;
+                objmarkup.PerAltQty = true;
             }
-            objdiscount.ItemPrice = false;
-            objdiscount.ItemMRP = false;
-            objdiscount.ItemAmount = false;
-            objdiscount.ItemPrice = false;
+            objmarkup.ItemPrice = false;
+            objmarkup.ItemMRP = false;
+            objmarkup.ItemAmount = false;
+            objmarkup.ItemPrice = false;
             if (rbnPercentage.SelectedIndex == 0)
             {
-                objdiscount.ItemPrice = true;
+                objmarkup.ItemPrice = true;
             }
             if (rbnPercentage.SelectedIndex == 1)
             {
-                objdiscount.ItemMRP = true;
+                objmarkup.ItemMRP = true;
             }
             if (rbnPercentage.SelectedIndex == 2)
             {
-                objdiscount.ItemAmount = true;
+                objmarkup.ItemAmount = true;
             }
             if (rbnPercentage.SelectedIndex == 3)
             {
-                objdiscount.ItemPrice = true;
+                objmarkup.ItemPrice = true;
             }
-            objdiscount.SpecifyCaptionForDiscount = tbxCaptionDiscount.Text.Trim() == null ? string.Empty : tbxCaptionDiscount.Text.Trim();
+            objmarkup.SpecifyCaptionForMarkup = tbxCaptionMarkup.Text.Trim() == null ? string.Empty : tbxCaptionMarkup.Text.Trim();
 
             DSAccountPosting objdsAccount;
             List<DSAccountPosting> lstAccountPost = new List<DSAccountPosting>();
-            for(int i=0;i < dvgDisscountStrDetails.DataRowCount;i++)
+            for(int i=0;i < dvgMarkupStrDetails.DataRowCount;i++)
             {
-                DataRow row = dvgDisscountStrDetails.GetDataRow(i);
+                DataRow row = dvgMarkupStrDetails.GetDataRow(i);
                 objdsAccount = new DSAccountPosting();
                 objdsAccount.AccountPost = Convert.ToBoolean(row["AccountPost"].ToString()=="Y"?true:false);
                 objdsAccount.AccountHeadPost = row["AccountHeadPost"].ToString() == null ? string.Empty : row["AccountHeadPost"].ToString();
@@ -115,8 +115,8 @@ namespace IPCAUI.Administration
 
                 lstAccountPost.Add(objdsAccount);
             }
-            objdiscount.ListofAccountPosting =lstAccountPost;
-            bool IsSaved = objDisBL.SaveStructure(objdiscount);
+            objmarkup.ListofAccountPosting =lstAccountPost;
+            bool IsSaved = objMakBL.SaveMarkupStructure(objmarkup);
             if(IsSaved)
             {
                 MessageBox.Show("Saved Sussfully");

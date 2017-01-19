@@ -104,7 +104,7 @@ namespace eSunSpeedDomain
         public bool MRPWiseDetails { get; set; }
         public bool ParameterizedDetails { get; set; }
         public bool BatchwiseDetails { get; set; }
-        public bool ExpDateRequired { get; set; }
+        public string ExpDateRequired { get; set; }
         public int ExpiryDays { get; set; }
 
         public string SalesAccount { get; set; }

@@ -40,13 +40,35 @@ namespace IPCAUI.Administration.PopupScreens
             this.Close();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
+         {
             if (keyData == Keys.Escape)
             {
                 this.Close();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void SerialnoWiseDetails_Load(object sender, EventArgs e)
+        {
+            if(ItemMasterNew.objModel.ItemId!=0)
+            {
+                if(ItemMasterNew.objModel.ManualNuber)
+                {
+                    rbnSerialNumber.SelectedIndex= 0;
+                }
+                if (ItemMasterNew.objModel.AutoNumber)
+                {
+                    rbnSerialNumber.SelectedIndex = 1;
+                }
+                tbxStartingNumber.Text = ItemMasterNew.objModel.StaringAutoNo.ToString();
+                tbxStructureName.Text = ItemMasterNew.objModel.StructureName.ToString();
+                tbxrenumberingFreq.Text = ItemMasterNew.objModel.NumberingFreq.ToString();
+                chkGenerateAutoNo.Checked = ItemMasterNew.objModel.RegenarateAutoNo;
+                chkSaleWarranty.Checked = ItemMasterNew.objModel.TrackSaleWaranty;
+                chkPurchaseWarranty.Checked = ItemMasterNew.objModel.TrackPurcWaranty;
+                chkTrackInstallWaranty.Checked = ItemMasterNew.objModel.TrackInstallationWaranty;
+            }
         }
     }
 }

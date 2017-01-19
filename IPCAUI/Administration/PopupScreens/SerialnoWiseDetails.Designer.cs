@@ -378,6 +378,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SerialnoWiseDetails";
             this.Text = "SerialnoWiseDetails";
+            this.Load += new System.EventHandler(this.SerialnoWiseDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkTrackInstallWaranty.Properties)).EndInit();

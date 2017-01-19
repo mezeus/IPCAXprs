@@ -67,6 +67,7 @@
     <Compile Include="ItemParameterizedModel.cs" />
     <Compile Include="ItemSerialnoDetailsModel.cs" />
     <Compile Include="ListVoucherModel.cs" />
+    <Compile Include="MarkupStructureMasterModel.cs" />
     <Compile Include="MasterseriesModel.cs" />
     <Compile Include="ItemMRPWiseDetailsModel.cs" />
     <Compile Include="PhysicalStockModel.cs" />
