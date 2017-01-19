@@ -902,6 +902,20 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\CheckLicense.cs" />
+    <Compile Include="License\frmActivation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\frmActivation.Designer.cs">
+      <DependentUpon>frmActivation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\Helper\CheckLicense.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -957,6 +971,8 @@
       <DependentUpon>TransactionsMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountLookup.cs" />
+    <Compile Include="Models\LicenseBehaviour.cs" />
+    <Compile Include="Models\ItemLicense.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Accountbooks\AccountGroupLedger.cs">
@@ -3491,6 +3507,12 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\frmActivation.resx">
+      <DependentUpon>frmActivation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -5154,6 +5176,8 @@
     <None Include="DataSets\UnitmasterList.xss">
       <DependentUpon>UnitmasterList.xsd</DependentUpon>
     </None>
+    <EmbeddedResource Include="License\LicenseSign.pfx" />
+    <EmbeddedResource Include="License\LicenseVerify.cer" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IPCAUI.DataSets.ContraVoucher.datasource" />
     <None Include="Properties\Settings.settings">
@@ -5176,6 +5200,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ActivationControls4Win\ActivationControls4Win.csproj">
+      <Project>{ddf06eac-02df-4bda-a883-98b856bc1765}</Project>
+      <Name>ActivationControls4Win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoLicense\DemoLicense.csproj">
+      <Project>{9f0bd6df-f288-451b-828e-6431e5441db8}</Project>
+      <Name>DemoLicense</Name>
+    </ProjectReference>
     <ProjectReference Include="..\eSunSpeed.BusinessLogic\eSunSpeed.BusinessLogic.csproj">
       <Project>{4babd10d-caec-4e15-b4bf-1a215d19dc40}</Project>
       <Name>eSunSpeed.BusinessLogic</Name>
@@ -5183,6 +5215,10 @@
     <ProjectReference Include="..\eSunSpeedDomain\eSunSpeedDomain.csproj">
       <Project>{4cb6460e-8efe-4019-a9c0-711ecb1f6557}</Project>
       <Name>eSunSpeedDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLicense\QLicense.csproj">
+      <Project>{1980e43f-c5e4-4a2b-95a6-1aebdc7ee2b7}</Project>
+      <Name>QLicense</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

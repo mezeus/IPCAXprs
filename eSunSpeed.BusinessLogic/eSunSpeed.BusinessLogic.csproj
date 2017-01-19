@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BalanceSheetBL.cs" />
+    <Compile Include="Company\BackupRestore.cs" />
+    <Compile Include="Helpers\Common.cs" />
     <Compile Include="InventorySettingsBL.cs" />
     <Compile Include="AccountSettingsBL.cs" />
     <Compile Include="ContactmasterBL.cs" />

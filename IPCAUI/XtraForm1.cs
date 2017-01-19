@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars.Ribbon;
+using IPCAUI.Models;
 
 namespace IPCAUI
 {
     public partial class XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        
         public XtraForm1()
         {
             InitializeComponent();
@@ -26,6 +28,22 @@ namespace IPCAUI
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
 
+            IPCAUI.License.CheckLicense chkLicense = new License.CheckLicense();
+           
+            if (!chkLicense.IsLicenseExists())
+            {
+                IPCAUI.Models.LicenseBehaviour.LockEntries = true;
+                MessageBox.Show("You do not have a valid License! \n Please activate your License. \n Some of the features may not work correctly. \n Thank you.",
+                    "IPCA Software Solutions",MessageBoxButtons.OKCancel,MessageBoxIcon.Information);
+            }
+            else
+            {
+                chkLicense.SetLicensetoApplication();
+                //Master.Visible = LicenseBehaviour.EnableMaster;
+                //Reports.Visible = LicenseBehaviour.EnableReports;
+                //Transactions.Visible = LicenseBehaviour.EnableTransaction;
+
+            }
             //lblDay.Text = DateTime.Today.DayOfWeek.ToString();
             //lblDate.Text = DateTime.Now.ToShortDateString();
         }
@@ -183,12 +201,19 @@ namespace IPCAUI
 
         private void tileLicensing_ItemClick(object sender, TileItemEventArgs e)
         {
-
+            License.frmMain frm = new License.frmMain();
+            frm.ShowDialog();
         }
 
         private void navBarControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tileItem1_ItemClick(object sender, TileItemEventArgs e)
+        {
+            License.frmLicense frm = new License.frmLicense();
+            frm.ShowDialog();
         }
     }
 }
