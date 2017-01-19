@@ -26,7 +26,28 @@ namespace IPCAUI.Administration.PopupScreens
             dt.Columns.Add("S.No");
             dt.Columns.Add("ItemName");
             dt.Columns.Add("Qty");
+            dt.Columns.Add("ParmId");
+            dt.Columns.Add("ParentId");
             dvgParamStock.DataSource = dt;
+            if(ItemMasterNew.objModel.ItemId!=0)
+            {
+                dt.Rows.Clear();
+
+                DataRow dr;
+
+                foreach (ItemParameterizedModel objParm in ItemMasterNew.objModel.ItemParameterized)
+                {
+                    dr = dt.NewRow();
+
+                    dr["ItemName"] = objParm.ItemName;
+                    dr["Qty"] = objParm.Qty;
+                    dr["ParmId"] = objParm.Param_Id;
+                    dr["ParentId"] = objParm.Parent_Id;
+                    dt.Rows.Add(dr);
+                }
+
+                dvgParamStock.DataSource = dt;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -41,8 +62,11 @@ namespace IPCAUI.Administration.PopupScreens
                 objparam = new ItemParameterizedModel();
                 objparam.ItemName = row["ItemName"].ToString()==null?string.Empty: row["ItemName"].ToString();
                 objparam.Qty =Convert.ToInt32(row["Qty"].ToString()==null?string.Empty: row["Qty"].ToString());
-
-
+                if(ItemMasterNew.objModel.ItemId!=0)
+                {
+                    objparam.Parent_Id = Convert.ToInt32(row["ParentId"].ToString() == string.Empty ?"0": row["ParentId"]);
+                    objparam.Param_Id = Convert.ToInt32(row["ParmId"].ToString() == string.Empty ? "0" : row["ParmId"]);
+                }
                 ItemMasterNew.objModel.ItemParameterized.Add(objparam);
 
             }

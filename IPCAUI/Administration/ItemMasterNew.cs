@@ -27,6 +27,7 @@ namespace IPCAUI.Administration
         public ItemMasterNew()
         {
             InitializeComponent();
+            objModel = new ItemMasterModel();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -133,7 +134,7 @@ namespace IPCAUI.Administration
                 frmserial.StartPosition = FormStartPosition.CenterScreen;
                 frmserial.ShowDialog();
             }
-            objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString();
             objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim()==null?"0":tbxExpDays.Text.Trim());
             objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
             objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
@@ -237,6 +238,7 @@ namespace IPCAUI.Administration
         }
         public void ClearControls()
         {
+            Item_Id = 0;
             tbxName.Text = string.Empty;
             tbxPrintname.Text = string.Empty;
             tbxAlias.Text = string.Empty;
@@ -245,8 +247,7 @@ namespace IPCAUI.Administration
             tbxRate.Text = "0.00";
             tbxValue.Text = "0.00";
             tbxMainSalesPrice.Text = "0.00";
-
-            
+            tbxMainPurcPrice.Text = "0.00";
         }
       
         private void ItemList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -258,7 +259,7 @@ namespace IPCAUI.Administration
             if(Item_Id!=0)
             {
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                //lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 tbxName.Focus();
 
@@ -269,59 +270,67 @@ namespace IPCAUI.Administration
 
         private void FillItemMasterInfo()
         {
-            ItemMasterModel objItem = objIMBL.GetAllItemsById(Item_Id);
-            tbxName.Text= objItem.Name;
-            tbxPrintname.Text = objItem.PrintName;
-            tbxAlias.Text= objItem.Alias;
-            cbxGroup.SelectedItem = objItem.Group;
-            cbxCompany.SelectedItem= objItem.Company;
-            cbxMainUnit.SelectedItem = objItem.MainUnit;
-            cbxAltUnit.SelectedItem = objItem.AltUnit;
-            //tbxconFactor.Text=objItem.Confactor.ToString();
-            tbxOpStock.Text= objItem.OpStockQty.ToString();
-            cbxUnit.SelectedItem = objItem.Unit;
-            tbxRate.Text = objItem.Rate.ToString();
-            tbxPer.Text = objItem.Per.ToString();
-            tbxValue.Text = objItem.Value.ToString();
-            cbxApplySalesPrice.SelectedItem = objItem.ApplySalesPrice;
-            cbxApplyPurchPrice.SelectedItem = objItem.ApplyPurchPrice;
+            objModel = objIMBL.GetAllItemsById(Item_Id);
+            tbxName.Text= objModel.Name;
+            tbxPrintname.Text = objModel.PrintName;
+            tbxAlias.Text= objModel.Alias;
+            cbxGroup.SelectedItem = objModel.Group;
+            cbxCompany.SelectedItem= objModel.Company;
+            cbxMainUnit.SelectedItem = objModel.MainUnit;
+            cbxAltUnit.SelectedItem = objModel.AltUnit;
+            //tbxconFactor.Text=objModel.Confactor.ToString();
+            tbxOpStock.Text= objModel.OpStockQty.ToString();
+            cbxUnit.Text = objModel.Unit;
+            tbxRate.Text = objModel.Rate.ToString();
+            tbxPer.Text = objModel.Per.ToString();
+            tbxValue.Text = objModel.Value.ToString();
+            cbxApplySalesPrice.SelectedItem = objModel.ApplySalesPrice;
+            cbxApplyPurchPrice.SelectedItem = objModel.ApplyPurchPrice;
 
-            tbxMainSalesPrice.Text = objItem.MainSalePrice.ToString();
-            tbxMainPurcPrice.Text= objItem.MainPurprice.ToString();
-            tbxMainMRP.Text = objItem.MainMRP.ToString();
-            tbxMainMinSalesPrice.Text= objItem.MainMinSalePrice.ToString();
-            tbxSelfValPrice.Text = objItem.SelfValuePrice.ToString();
-            //tbxSaleDiscount.Text = objItem.SaleDiscount. ToString();
-            //tbxPurcDiscount.Text = objItem.PurDiscount.ToString();
+            tbxMainSalesPrice.Text = objModel.MainSalePrice.ToString();
+            tbxMainPurcPrice.Text= objModel.MainPurprice.ToString();
+            tbxMainMRP.Text = objModel.MainMRP.ToString();
+            tbxMainMinSalesPrice.Text= objModel.MainMinSalePrice.ToString();
 
-            //cbxEnableSalesDiscStruct.SelectedItem = (objItem.SpecifySaleDiscStructure) ? "Y" : "N";
-            //cbxEnablePurcDiscStruct.SelectedItem = (objItem.SpecifyPurDiscStructure) ? "Y" : "N";
-            tbxStockValMethod.Text =objItem.StockValMethod.ToString();
+            tbxAltSalesPrice.Text = objModel.AltSalePrice.ToString();
+            tbxAltPurcPrice.Text = objModel.AltPurprice.ToString();
+            tbxAltMRP.Text = objModel.AltMRP.ToString();
+            tbxAltMinSalesPrice.Text = objModel.AltMinSalePrice.ToString();
+            tbxSelfValPrice.Text = objModel.SelfValuePrice.ToString();
 
-            cbxTaxCat.SelectedItem = objItem.TaxCategory;
-            tbxItemdesc1.Text = objItem.ItemDescription1;
-            tbxItemdesc2.Text = objItem.ItemDescription2;
-            tbxItemdesc3.Text = objItem.ItemDescription3;
-            tbxItemdesc4.Text = objItem.ItemDescription4;
+            cbxDiscountInfo.SelectedItem = (objModel.DiscountInfo) ? "Y" : "N";
+            cbxMarkupInfo.SelectedItem = (objModel.MarkupInfo) ? "Y" : "N";
+            //tbxSaleDiscount.Text = objModel.SaleDiscount. ToString();
+            //tbxPurcDiscount.Text = objModel.PurDiscount.ToString();
 
-            cbxCreticallevel.SelectedItem = (objItem.SetCriticalLevel)? "Y" : "N";
+            //cbxEnableSalesDiscStruct.SelectedItem = (objModel.SpecifySaleDiscStructure) ? "Y" : "N";
+            //cbxEnablePurcDiscStruct.SelectedItem = (objModel.SpecifyPurDiscStructure) ? "Y" : "N";
+            tbxStockValMethod.Text =objModel.StockValMethod.ToString();
 
-            cbxMaintainRG.SelectedItem = (objItem.MaintainRG23D)?"Y":"N";
-            tbxTariffHeading.Text = objItem.TariffHeading;
-            cbxSrlWiseDetails.SelectedItem = (objItem.SerialNumberwiseDetails)?"Y":"N";
-            cbxMRPWiseDetails.SelectedItem =(objItem.MRPWiseDetails) ? "Y" : "N";
-            cbxParamDetails.SelectedItem = (objItem.ParameterizedDetails) ?"Y" : "N";
-            cbxBatchWiseDetails.SelectedItem= (objItem.BatchwiseDetails) ? "Y" : "N";
-            cbxEnableExpDate.SelectedItem = (objItem.ExpDateRequired)?"Y":"N";
-            tbxExpDays.Text = objItem.ExpiryDays.ToString();
-            cbxSalesAccount.SelectedItem = objItem.SalesAccount.ToString();
-            cbxPurchAccount.SelectedItem = objItem.PurcAccount.ToString();
-            cbxSpecifyDefaultMC.SelectedItem = (objItem.SpecifyDefaultMC)?"Y":"N";
-            cbxFreezeMC.SelectedItem = (objItem.FreezeMCforItem)?"Y":"N";
-            tbxAuthors.Text = objItem.TotalNumberofAuthors.ToString();
-            cbxMaintainStock.SelectedItem = (objItem.DontMaintainStockBal)?"Y":"N";
-            cbxPickitemforsizing.SelectedItem =(objItem.PickItemSizefromDescription)?"Y":"N";
-            cbxSpecifyDefaultVendor.SelectedItem = (objItem.SpecifyDefaultVendor)?"Y":"N";
+            cbxTaxCat.SelectedItem = objModel.TaxCategory;
+            tbxItemdesc1.Text = objModel.ItemDescription1;
+            tbxItemdesc2.Text = objModel.ItemDescription2;
+            tbxItemdesc3.Text = objModel.ItemDescription3;
+            tbxItemdesc4.Text = objModel.ItemDescription4;
+
+            cbxCreticallevel.SelectedItem = (objModel.SetCriticalLevel)? "Y" : "N";
+
+            cbxMaintainRG.SelectedItem = (objModel.MaintainRG23D)?"Y":"N";
+            tbxTariffHeading.Text = objModel.TariffHeading;
+            cbxSrlWiseDetails.SelectedItem = (objModel.SerialNumberwiseDetails)?"Y":"N";
+            cbxMRPWiseDetails.SelectedItem =(objModel.MRPWiseDetails) ? "Y" : "N";
+            cbxParamDetails.SelectedItem = (objModel.ParameterizedDetails) ?"Y" : "N";
+            cbxBatchWiseDetails.SelectedItem= (objModel.BatchwiseDetails) ? "Y" : "N";
+            cbxEnableExpDate.SelectedItem =objModel.ExpDateRequired.ToString();
+            tbxExpDays.Text = objModel.ExpiryDays.ToString();
+            cbxSalesAccount.SelectedItem = objModel.SalesAccount.ToString();
+            cbxPurchAccount.SelectedItem = objModel.PurcAccount.ToString();
+            cbxSpecifyDefaultMC.SelectedItem = (objModel.SpecifyDefaultMC)?"Y":"N";
+            cbxFreezeMC.SelectedItem = (objModel.FreezeMCforItem)?"Y":"N";
+            tbxAuthors.Text = objModel.TotalNumberofAuthors.ToString();
+            cbxMaintainStock.SelectedItem = (objModel.DontMaintainStockBal)?"Y":"N";
+            cbxPickitemforsizing.SelectedItem =(objModel.PickItemSizefromDescription)?"Y":"N";
+            cbxSpecifyDefaultVendor.SelectedItem = (objModel.SpecifyDefaultVendor)?"Y":"N";
         }
 
 
@@ -434,8 +443,6 @@ namespace IPCAUI.Administration
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ItemMasterModel objModel = new ItemMasterModel();
-
             objModel.Name = tbxName.Text.Trim();
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
             objModel.Alias = tbxAlias.Text == null ? string.Empty : tbxAlias.Text.Trim();
@@ -458,11 +465,33 @@ namespace IPCAUI.Administration
             objModel.MainPurprice = Convert.ToDecimal(tbxMainPurcPrice.Text.Trim());
             objModel.MainMRP = Convert.ToDecimal(tbxMainMRP.Text.Trim());
             objModel.MainMinSalePrice = Convert.ToDecimal(tbxMainMinSalesPrice.Text.Trim());
-            objModel.SelfValuePrice = Convert.ToDecimal(tbxSelfValPrice.Text.Trim());
-            //objModel.SaleDiscount = Convert.ToDecimal(tbxSaleDiscount.Text.Trim());
-            //objModel.PurDiscount = Convert.ToDecimal(tbxPurcDiscount.Text.Trim());
-            //objModel.SpecifySaleDiscStructure = cbxEnableSalesDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
-            //objModel.SpecifyPurDiscStructure = cbxEnablePurcDiscStruct.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.SelfValuePrice = Convert.ToDecimal(tbxSelfValPrice.Text.Trim() == null ? "0" : tbxSelfValPrice.Text.Trim());
+
+            objModel.AltSalePrice = Convert.ToDecimal(tbxAltSalesPrice.Text.Trim());
+            objModel.AltPurprice = Convert.ToDecimal(tbxAltPurcPrice.Text.Trim() == null ? "0" : tbxAltPurcPrice.Text.Trim());
+            objModel.AltMinSalePrice = Convert.ToDecimal(tbxAltMinSalesPrice.Text.Trim() == null ? "0.00" : tbxAltMinSalesPrice.Text.Trim());
+            objModel.AltMRP = Convert.ToDecimal(tbxAltMRP.Text.Trim() == null ? "0" : tbxAltMRP.Text.Trim());
+
+            objModel.DiscountInfo = cbxDiscountInfo.SelectedItem.ToString() == "Y" ? true : false;
+            if (objModel.DiscountInfo)
+            {
+                Convert.ToDecimal(objModel.SaleDiscount);
+                Convert.ToDecimal(objModel.PurDiscount);
+                Convert.ToDecimal(objModel.SaleCompoundDiscount);
+                Convert.ToDecimal(objModel.PurCompoundDiscount);
+                Convert.ToBoolean(objModel.SpecifySaleDiscStructure);
+                Convert.ToBoolean(objModel.SpecifyPurDiscStructure);
+            }
+            objModel.MarkupInfo = cbxMarkupInfo.SelectedItem.ToString() == "Y" ? true : false;
+            if (objModel.MarkupInfo)
+            {
+                Convert.ToString(objModel.SaleMarkup);
+                Convert.ToString(objModel.PurMarkup);
+                Convert.ToString(objModel.SaleCompMarkup);
+                Convert.ToString(objModel.PurCompMarkup);
+                Convert.ToBoolean(objModel.SpecifySaleMarkupStruct);
+                Convert.ToBoolean(objModel.SpecifyPurMarkupStruct);
+            }
             objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
 
             objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
@@ -475,11 +504,35 @@ namespace IPCAUI.Administration
             objModel.MaintainRG23D = cbxMaintainRG.SelectedItem.ToString() == "Y" ? true : false;
             objModel.TariffHeading = tbxTariffHeading.Text == null ? string.Empty : tbxTariffHeading.Text.Trim();
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxOpStock.Text.Trim() != "0.00"))
+            {
+                PopupScreens.SerialnoWiseDetails frmserial = new PopupScreens.SerialnoWiseDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.ParameterizedDetails = cbxParamDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxParamDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.ParameterizedStock frmserial = new PopupScreens.ParameterizedStock();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.MRPWiseDetails = cbxMRPWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
+            if (cbxMRPWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.MRPwiseDetails frmserial = new PopupScreens.MRPwiseDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
             objModel.BatchwiseDetails = cbxBatchWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim());
+            if (cbxBatchWiseDetails.SelectedItem.ToString() == "Y" && (tbxValue.Text.Trim() != "0"))
+            {
+                PopupScreens.ItemBatchDetails frmserial = new PopupScreens.ItemBatchDetails();
+                frmserial.StartPosition = FormStartPosition.CenterScreen;
+                frmserial.ShowDialog();
+            }
+            objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString();
+            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim() == null ? "0" : tbxExpDays.Text.Trim());
             objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
             objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
             objModel.DontMaintainStockBal = cbxMaintainStock.SelectedItem.ToString() == "Y" ? true : false;
@@ -489,8 +542,7 @@ namespace IPCAUI.Administration
             objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultVendor = cbxSpecifyDefaultVendor.SelectedItem.ToString() == "Y" ? true : false;
 
-            //objModel.SaleCompoundDiscount = Convert.ToDouble(tbxSalesCompDisc.Text.Trim());
-            //objModel.DontMaintainStockBal = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
+            objModel.ItemId = Item_Id;
 
 
             if (objModel.SpecifySaleDiscStructure)
@@ -500,22 +552,6 @@ namespace IPCAUI.Administration
                 if (objModel.SpecifySaleDiscStructure)
                     //lblPurDiscAmt.Visible = true;
 
-                    //objModel.SaleMarkup = tbxSalesMarkup.Text.Trim();
-                    //objModel.PurMarkup = tbxPurchMarkup.Text.Trim();
-                    //objModel.SaleCompMarkup = tbxSalesCompMarkup.Text.Trim();
-                    //objModel.PurCompMarkup = tbxPurchCompMarkup.Text.Trim();
-
-                    //objModel.SpecifySaleMarkupStruct = cbxEnableSalesMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
-                    //objModel.SpecifyPurMarkupStruct = cbxEnablePurchMarkupStruct.SelectedItem.ToString() == "Y" ? true : false;
-                    //objModel.TaxCategory = cbxTaxCat.SelectedItem.ToString();
-                    //objModel.TaxonMRP = tbxMRP.SelectedItem.ToString() == "Y" ? true : false;
-                    //objModel.TaxType = cbxTaxCat.SelectedItem.ToString();
-
-                    //objModel.ServiceTaxRate = Convert.ToDouble(tbxServiceTaxRate.Text.Trim());
-                    //objModel.RateofTax_Local = Convert.ToDouble(tbxLocalTax.Text.Trim());
-                    //objModel.RateofTax_Central = Convert.ToDouble(tbxCentralTax.Text.Trim());
-                    //objModel.HSNCode = tbxHSNCode.Text.Trim();
-                    objModel.ItemId = Item_Id;
                     objModel.CreatedBy = "Admin";
 
             bool isSuccess = objIMBL.UpdateItemMaster(objModel);
@@ -623,8 +659,10 @@ namespace IPCAUI.Administration
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-           
-        }
+            ClearControls();
+            objModel = new ItemMasterModel();
+
+    }
 
         private void cbxGroup_Enter(object sender, EventArgs e)
         {
@@ -955,27 +993,12 @@ namespace IPCAUI.Administration
 
         private void cbxDiscountInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxDiscountInfo.SelectedItem.ToString()=="Y")
-            {
-                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
-                frmdiscount.StartPosition = FormStartPosition.CenterScreen;
-                frmdiscount.ShowDialog();
-            }
-            else
-            {
-                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
-                frmdiscount.Close();
-            }
+            
         }
 
         private void cbxMarkupInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxMarkupInfo.SelectedItem.ToString() == "Y")
-            {
-                PopupScreens.MarkupInfo frmdiscount = new PopupScreens.MarkupInfo();
-                frmdiscount.StartPosition = FormStartPosition.CenterScreen;
-                frmdiscount.ShowDialog();
-            }
+            
         }
 
         private void cbxSrlWiseDetails_SelectedIndexChanged(object sender, EventArgs e)
@@ -985,12 +1008,9 @@ namespace IPCAUI.Administration
 
         private void btnCritical_Click(object sender, EventArgs e)
         {
-            if(cbxCreticallevel.SelectedItem.ToString()=="Y")
-            {
-                PopupScreens.DefineCriticalLevels frmCritical = new PopupScreens.DefineCriticalLevels();
-                frmCritical.StartPosition = FormStartPosition.CenterScreen;
-                frmCritical.ShowDialog();
-            }
+            PopupScreens.DefineCriticalLevels frmCritical = new PopupScreens.DefineCriticalLevels();
+            frmCritical.StartPosition = FormStartPosition.CenterScreen;
+            frmCritical.ShowDialog();
         }
 
         private void cbxGroup_Click(object sender, EventArgs e)
@@ -1013,12 +1033,7 @@ namespace IPCAUI.Administration
 
         private void cbxMainUnit_Click(object sender, EventArgs e)
         {
-            List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
-            foreach (UnitMasterModel objunit in lstUnits)
-            {
-                cbxMainUnit.Properties.Items.Add(objunit.UnitName);
-                cbxAltUnit.Properties.Items.Add(objunit.UnitName);
-            }
+     
         }
 
         private void cbxTaxCat_Click(object sender, EventArgs e)
@@ -1036,6 +1051,43 @@ namespace IPCAUI.Administration
             foreach (TaxCategoryModel objTax in lstTaxCategeory)
             {
                 cbxTaxCat.Properties.Items.Add(objTax.Name);
+            }
+        }
+
+        private void cbxDiscountInfo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxDiscountInfo.SelectedItem.ToString() == "Y")
+            {
+                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
+                frmdiscount.StartPosition = FormStartPosition.CenterScreen;
+                frmdiscount.ShowDialog();
+            }
+            else
+            {
+                PopupScreens.DiscountInfo frmdiscount = new PopupScreens.DiscountInfo();
+                frmdiscount.Close();
+            }
+        }
+
+        private void cbxMarkupInfo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxMarkupInfo.SelectedItem.ToString() == "Y")
+            {
+                PopupScreens.MarkupInfo frmMarkup = new PopupScreens.MarkupInfo();
+                frmMarkup.StartPosition = FormStartPosition.CenterScreen;
+                frmMarkup.ShowDialog();
+            }
+        }
+
+        private void cbxCreticallevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxCreticallevel.SelectedItem.ToString()=="N")
+            {
+                btnCritical.Enabled = false;
+            }
+            else
+            {
+                btnCritical.Enabled = true;
             }
         }
     }

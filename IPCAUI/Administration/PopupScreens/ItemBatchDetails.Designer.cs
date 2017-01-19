@@ -36,9 +36,11 @@
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBatchNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMfg = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colExp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colMfg = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.colExp = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -58,13 +60,17 @@
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem2 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.colBatchId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colParentId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBatchWise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBatchwiseDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -82,10 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -146,7 +148,9 @@
             this.colBatchNo,
             this.colQty,
             this.colMfg,
-            this.colExp});
+            this.colExp,
+            this.colBatchId,
+            this.colParentId});
             this.dvgBatchwiseDetails.GridControl = this.dvgBatchWise;
             this.dvgBatchwiseDetails.Name = "dvgBatchwiseDetails";
             this.dvgBatchwiseDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -200,6 +204,13 @@
             this.colQty.VisibleIndex = 2;
             this.colQty.Width = 105;
             // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Strong;
+            this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
             // colMfg
             // 
             this.colMfg.Caption = "Mfg.Date";
@@ -209,6 +220,15 @@
             this.colMfg.Visible = true;
             this.colMfg.VisibleIndex = 3;
             this.colMfg.Width = 71;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
             // colExp
             // 
@@ -220,12 +240,14 @@
             this.colExp.VisibleIndex = 4;
             this.colExp.Width = 85;
             // 
-            // repositoryItemTextEdit1
+            // repositoryItemDateEdit2
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Strong;
-            this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.repositoryItemDateEdit2.AutoHeight = false;
+            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -404,23 +426,17 @@
             this.emptySpaceItem8.Size = new System.Drawing.Size(106, 17);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // repositoryItemDateEdit1
+            // colBatchId
             // 
-            this.repositoryItemDateEdit1.AutoHeight = false;
-            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            this.colBatchId.Caption = "BatchId";
+            this.colBatchId.FieldName = "BatchId";
+            this.colBatchId.Name = "colBatchId";
             // 
-            // repositoryItemDateEdit2
+            // colParentId
             // 
-            this.repositoryItemDateEdit2.AutoHeight = false;
-            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
+            this.colParentId.Caption = "ParentId";
+            this.colParentId.FieldName = "ParentId";
+            this.colParentId.Name = "colParentId";
             // 
             // ItemBatchDetails
             // 
@@ -437,6 +453,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dvgBatchWise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBatchwiseDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -454,10 +474,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -496,5 +512,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
+        private DevExpress.XtraGrid.Columns.GridColumn colBatchId;
+        private DevExpress.XtraGrid.Columns.GridColumn colParentId;
     }
 }

@@ -80,8 +80,8 @@
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
-            this.dvgDisscountStr = new DevExpress.XtraGrid.GridControl();
-            this.dvgDisscountStrDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgMarkupStr = new DevExpress.XtraGrid.GridControl();
+            this.dvgMarkupStrDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAccountPost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -93,12 +93,12 @@
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.tbxCaptionDiscount = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCaptionMarkup = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tbxNoDiscounts = new DevExpress.XtraEditors.TextEdit();
             this.rbnPercentage = new DevExpress.XtraEditors.RadioGroup();
-            this.rbnAccountDiscount = new DevExpress.XtraEditors.RadioGroup();
-            this.rbnDiscountType = new DevExpress.XtraEditors.RadioGroup();
+            this.rbnAccountMarkup = new DevExpress.XtraEditors.RadioGroup();
+            this.rbnMarkupType = new DevExpress.XtraEditors.RadioGroup();
             this.tbxStrName = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -135,8 +135,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgDisscountStr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgDisscountStrDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMarkupStr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMarkupStrDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -146,11 +146,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCaptionDiscount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCaptionMarkup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxNoDiscounts.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbnPercentage.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbnAccountDiscount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbnDiscountType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbnAccountMarkup.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbnMarkupType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxStrName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -194,13 +194,13 @@
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.dvgDisscountStr);
-            this.layoutControl1.Controls.Add(this.tbxCaptionDiscount);
+            this.layoutControl1.Controls.Add(this.dvgMarkupStr);
+            this.layoutControl1.Controls.Add(this.tbxCaptionMarkup);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.tbxNoDiscounts);
             this.layoutControl1.Controls.Add(this.rbnPercentage);
-            this.layoutControl1.Controls.Add(this.rbnAccountDiscount);
-            this.layoutControl1.Controls.Add(this.rbnDiscountType);
+            this.layoutControl1.Controls.Add(this.rbnAccountMarkup);
+            this.layoutControl1.Controls.Add(this.rbnMarkupType);
             this.layoutControl1.Controls.Add(this.tbxStrName);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -616,12 +616,12 @@
             this.navBarItem6.Name = "navBarItem6";
             this.navBarItem6.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem6.SmallImage")));
             // 
-            // dvgDisscountStr
+            // dvgMarkupStr
             // 
-            this.dvgDisscountStr.Location = new System.Drawing.Point(159, 274);
-            this.dvgDisscountStr.MainView = this.dvgDisscountStrDetails;
-            this.dvgDisscountStr.Name = "dvgDisscountStr";
-            this.dvgDisscountStr.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.dvgMarkupStr.Location = new System.Drawing.Point(159, 274);
+            this.dvgMarkupStr.MainView = this.dvgMarkupStrDetails;
+            this.dvgMarkupStr.Name = "dvgMarkupStr";
+            this.dvgMarkupStr.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1,
             this.repositoryItemDateEdit1,
@@ -629,35 +629,35 @@
             this.repositoryItemComboBox1,
             this.repositoryItemSpinEdit1,
             this.repositoryItemTextEdit2});
-            this.dvgDisscountStr.Size = new System.Drawing.Size(698, 153);
-            this.dvgDisscountStr.TabIndex = 14;
-            this.dvgDisscountStr.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dvgDisscountStrDetails});
+            this.dvgMarkupStr.Size = new System.Drawing.Size(698, 153);
+            this.dvgMarkupStr.TabIndex = 14;
+            this.dvgMarkupStr.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgMarkupStrDetails});
             // 
-            // dvgDisscountStrDetails
+            // dvgMarkupStrDetails
             // 
-            this.dvgDisscountStrDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.dvgDisscountStrDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgMarkupStrDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.dvgMarkupStrDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
             this.colAccountPost,
             this.colAccountHead,
             this.colAffects});
-            this.dvgDisscountStrDetails.GridControl = this.dvgDisscountStr;
-            this.dvgDisscountStrDetails.Name = "dvgDisscountStrDetails";
-            this.dvgDisscountStrDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgDisscountStrDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.dvgDisscountStrDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
-            this.dvgDisscountStrDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgDisscountStrDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgDisscountStrDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgDisscountStrDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.dvgDisscountStrDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.dvgDisscountStrDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.dvgDisscountStrDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.dvgDisscountStrDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgDisscountStrDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.dvgDisscountStrDetails.OptionsView.ShowFooter = true;
-            this.dvgDisscountStrDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgMarkupStrDetails.GridControl = this.dvgMarkupStr;
+            this.dvgMarkupStrDetails.Name = "dvgMarkupStrDetails";
+            this.dvgMarkupStrDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgMarkupStrDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
+            this.dvgMarkupStrDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.dvgMarkupStrDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgMarkupStrDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgMarkupStrDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgMarkupStrDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.dvgMarkupStrDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.dvgMarkupStrDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.dvgMarkupStrDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.dvgMarkupStrDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgMarkupStrDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.dvgMarkupStrDetails.OptionsView.ShowFooter = true;
+            this.dvgMarkupStrDetails.OptionsView.ShowGroupPanel = false;
             // 
             // colSNo
             // 
@@ -751,14 +751,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
-            // tbxCaptionDiscount
+            // tbxCaptionMarkup
             // 
-            this.tbxCaptionDiscount.EnterMoveNextControl = true;
-            this.tbxCaptionDiscount.Location = new System.Drawing.Point(294, 250);
-            this.tbxCaptionDiscount.Name = "tbxCaptionDiscount";
-            this.tbxCaptionDiscount.Size = new System.Drawing.Size(201, 20);
-            this.tbxCaptionDiscount.StyleController = this.layoutControl1;
-            this.tbxCaptionDiscount.TabIndex = 13;
+            this.tbxCaptionMarkup.EnterMoveNextControl = true;
+            this.tbxCaptionMarkup.Location = new System.Drawing.Point(294, 250);
+            this.tbxCaptionMarkup.Name = "tbxCaptionMarkup";
+            this.tbxCaptionMarkup.Size = new System.Drawing.Size(201, 20);
+            this.tbxCaptionMarkup.StyleController = this.layoutControl1;
+            this.tbxCaptionMarkup.TabIndex = 13;
             // 
             // labelControl1
             // 
@@ -795,34 +795,34 @@
             this.rbnPercentage.StyleController = this.layoutControl1;
             this.rbnPercentage.TabIndex = 10;
             // 
-            // rbnAccountDiscount
+            // rbnAccountMarkup
             // 
-            this.rbnAccountDiscount.EnterMoveNextControl = true;
-            this.rbnAccountDiscount.Location = new System.Drawing.Point(511, 83);
-            this.rbnAccountDiscount.Name = "rbnAccountDiscount";
-            this.rbnAccountDiscount.Properties.Columns = 2;
-            this.rbnAccountDiscount.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            this.rbnAccountMarkup.EnterMoveNextControl = true;
+            this.rbnAccountMarkup.Location = new System.Drawing.Point(511, 83);
+            this.rbnAccountMarkup.Name = "rbnAccountMarkup";
+            this.rbnAccountMarkup.Properties.Columns = 2;
+            this.rbnAccountMarkup.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Absolute Amount"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Percentage"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Per Main Qty."),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Per Alt. Qty.")});
-            this.rbnAccountDiscount.Size = new System.Drawing.Size(334, 61);
-            this.rbnAccountDiscount.StyleController = this.layoutControl1;
-            this.rbnAccountDiscount.TabIndex = 9;
+            this.rbnAccountMarkup.Size = new System.Drawing.Size(334, 61);
+            this.rbnAccountMarkup.StyleController = this.layoutControl1;
+            this.rbnAccountMarkup.TabIndex = 9;
             // 
-            // rbnDiscountType
+            // rbnMarkupType
             // 
-            this.rbnDiscountType.EnterMoveNextControl = true;
-            this.rbnDiscountType.Location = new System.Drawing.Point(171, 83);
-            this.rbnDiscountType.Name = "rbnDiscountType";
-            this.rbnDiscountType.Properties.Columns = 1;
-            this.rbnDiscountType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            this.rbnMarkupType.EnterMoveNextControl = true;
+            this.rbnMarkupType.Location = new System.Drawing.Point(171, 83);
+            this.rbnMarkupType.Name = "rbnMarkupType";
+            this.rbnMarkupType.Properties.Columns = 1;
+            this.rbnMarkupType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Simple MarkUp"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Compound Markup With Same Nature (e.g. 50+40+..)"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Compound Markup With Different Nature")});
-            this.rbnDiscountType.Size = new System.Drawing.Size(312, 71);
-            this.rbnDiscountType.StyleController = this.layoutControl1;
-            this.rbnDiscountType.TabIndex = 8;
+            this.rbnMarkupType.Size = new System.Drawing.Size(312, 71);
+            this.rbnMarkupType.StyleController = this.layoutControl1;
+            this.rbnMarkupType.TabIndex = 8;
             // 
             // tbxStrName
             // 
@@ -888,7 +888,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.tbxCaptionDiscount;
+            this.layoutControlItem11.Control = this.tbxCaptionMarkup;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 221);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(340, 24);
@@ -926,7 +926,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.rbnDiscountType;
+            this.layoutControlItem6.Control = this.rbnMarkupType;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(316, 75);
@@ -974,7 +974,7 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.rbnAccountDiscount;
+            this.layoutControlItem7.Control = this.rbnAccountMarkup;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(338, 65);
@@ -1012,7 +1012,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgDisscountStr;
+            this.layoutControlItem3.Control = this.dvgMarkupStr;
             this.layoutControlItem3.Location = new System.Drawing.Point(147, 262);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(702, 157);
@@ -1158,8 +1158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgDisscountStr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgDisscountStrDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMarkupStr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgMarkupStrDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -1169,11 +1169,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCaptionDiscount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCaptionMarkup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxNoDiscounts.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbnPercentage.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbnAccountDiscount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbnDiscountType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbnAccountMarkup.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbnMarkupType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxStrName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -1215,12 +1215,12 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit tbxCaptionDiscount;
+        private DevExpress.XtraEditors.TextEdit tbxCaptionMarkup;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit tbxNoDiscounts;
         private DevExpress.XtraEditors.RadioGroup rbnPercentage;
-        private DevExpress.XtraEditors.RadioGroup rbnAccountDiscount;
-        private DevExpress.XtraEditors.RadioGroup rbnDiscountType;
+        private DevExpress.XtraEditors.RadioGroup rbnAccountMarkup;
+        private DevExpress.XtraEditors.RadioGroup rbnMarkupType;
         private DevExpress.XtraEditors.TextEdit tbxStrName;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
@@ -1235,8 +1235,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
-        private DevExpress.XtraGrid.GridControl dvgDisscountStr;
-        private DevExpress.XtraGrid.Views.Grid.GridView dvgDisscountStrDetails;
+        private DevExpress.XtraGrid.GridControl dvgMarkupStr;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgMarkupStrDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
         private DevExpress.XtraGrid.Columns.GridColumn colAccountPost;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;

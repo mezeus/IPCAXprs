@@ -34,7 +34,12 @@ namespace IPCAUI.Administration.PopupScreens
                 objMRPwise.SalesPrice = Convert.ToDecimal(row["SalePrice"].ToString() == null ? string.Empty : row["SalePrice"].ToString());
                 objMRPwise.Quantity = Convert.ToDecimal(row["Quantity"].ToString() == null ? string.Empty : row["Quantity"].ToString());
                 objMRPwise.Amount = Convert.ToDecimal(row["Amount"].ToString() == null ? string.Empty : row["Amount"].ToString());
+                if(ItemMasterNew.objModel.ItemId!=0)
+                {
+                    objMRPwise.MRP_Id = Convert.ToInt32(row["MRPId"].ToString() == String.Empty ? "0": row["MRPId"]);
+                    objMRPwise.ParentId = Convert.ToInt32(row["ParentId"].ToString() == String.Empty ? "0" : row["ParentId"]);
 
+                }
                 ItemMasterNew.objModel.ItemMRPWise.Add(objMRPwise);
 
             }
@@ -49,8 +54,30 @@ namespace IPCAUI.Administration.PopupScreens
             dt.Columns.Add("SalePrice");
             dt.Columns.Add("Quantity");
             dt.Columns.Add("Amount");
-
+            dt.Columns.Add("MRPId");
+            dt.Columns.Add("ParentId");
             dvgMrpwise.DataSource = dt;
+            if(ItemMasterNew.objModel.ItemId !=0)
+            {
+                dt.Rows.Clear();
+
+                DataRow dr;
+
+                foreach (ItemMRPWiseDetailsModel objmod in ItemMasterNew.objModel.ItemMRPWise)
+                {
+                    dr = dt.NewRow();
+
+                    dr["MRP"] = objmod.MRP;
+                    dr["SalePrice"] = objmod.SalesPrice;
+                    dr["Quantity"] = objmod.Quantity;
+                    dr["Amount"] = objmod.Amount;
+                    dr["MRPId"] = objmod.MRP_Id;
+                    dr["ParentId"] = objmod.ParentId;
+                    dt.Rows.Add(dr);
+                }
+
+                dvgMrpwise.DataSource = dt;
+            }
         }
 
         private void dvgMrpwiseDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

@@ -26,8 +26,31 @@ namespace IPCAUI.Administration.PopupScreens
             dt.Columns.Add("Qty");
             dt.Columns.Add("MfgDate");
             dt.Columns.Add("ExpDate");
+            dt.Columns.Add("BatchId");
+            dt.Columns.Add("ParentId");
 
             dvgBatchWise.DataSource = dt;
+            if(ItemMasterNew.objModel.ItemId!=0)
+            {
+                dt.Rows.Clear();
+
+                DataRow dr;
+
+                foreach (ItemBatchWiseDetailsModel objBatch in ItemMasterNew.objModel.ItemBatchWise)
+                {
+                    dr = dt.NewRow();
+
+                    dr["BatchNo"] = objBatch.BatchNo.ToString();
+                    dr["Qty"] = objBatch.Qty;
+                    dr["MfgDate"] = objBatch.MfgDate.ToString();
+                    dr["ExpDate"] = objBatch.Expdate.ToString();
+                    dr["BatchId"] = objBatch.Batch_Id;
+                    dr["ParentId"] = objBatch.Parent_Id;
+                    dt.Rows.Add(dr);
+                }
+
+                dvgBatchWise.DataSource = dt;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -40,11 +63,15 @@ namespace IPCAUI.Administration.PopupScreens
             {
                 DataRow row = dvgBatchwiseDetails.GetDataRow(i);
                 objBatchwise = new ItemBatchWiseDetailsModel();
-                objBatchwise.BatchNo =Convert.ToInt32(row["BatchNo"].ToString() == null ? string.Empty : row["BatchNo"].ToString());
-                objBatchwise.Qty = Convert.ToInt32(row["Qty"].ToString() == null ? string.Empty : row["Qty"].ToString());
+                objBatchwise.BatchNo =Convert.ToInt32(row["BatchNo"].ToString() == string.Empty?"0": row["BatchNo"]);
+                objBatchwise.Qty = Convert.ToInt32(row["Qty"].ToString() == string.Empty?"0": row["Qty"].ToString());
                 objBatchwise.MfgDate = Convert.ToDateTime(row["MfgDate"].ToString() == null ? string.Empty : row["MfgDate"].ToString());
                 objBatchwise.Expdate = Convert.ToDateTime(row["Expdate"].ToString() == null ? string.Empty : row["Expdate"].ToString());
-
+                if(ItemMasterNew.objModel.ItemId!=0)
+                {
+                    objBatchwise.Parent_Id= Convert.ToInt32(row["ParentId"].ToString() ==string.Empty?"0": row["ParentId"]);
+                    objBatchwise.Batch_Id = Convert.ToInt32(row["BatchId"].ToString() == string.Empty ? "0" : row["BatchId"]);
+                }
                 ItemMasterNew.objModel.ItemBatchWise.Add(objBatchwise);
 
             }

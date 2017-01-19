@@ -41,5 +41,20 @@ namespace IPCAUI.Administration.PopupScreens
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void MarkupInfo_Load(object sender, EventArgs e)
+        {
+            if(ItemMasterNew.objModel.ItemId!=0 || ItemMasterNew.objModel.MarkupInfo)
+            {
+                tbxSaleMarkup.Text = ItemMasterNew.objModel.SaleMarkup.ToString();
+                tbxSaleCompMarkup.Text = ItemMasterNew.objModel.SaleCompMarkup.ToString();
+                tbxPurcMarkup.Text = ItemMasterNew.objModel.PurMarkup.ToString();
+                tbxPurcCompMarkup.Text = ItemMasterNew.objModel.PurCompMarkup.ToString();
+                tbxSpSaleMarkupStru.SelectedItem = (ItemMasterNew.objModel.SpecifySaleDiscStructure) ? "Y" : "N";
+                tbxSpPurcMarkupStru.SelectedItem = (ItemMasterNew.objModel.SpecifyPurDiscStructure) ? "Y" : "N";
+                //cbxPurcStrc.SelectedItem=
+                //cbxSaleStrc.SelectedItem=
+            }
+        }
     }
 }

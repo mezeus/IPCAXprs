@@ -424,9 +424,9 @@
             // 
             // btnCritical
             // 
-            this.btnCritical.Location = new System.Drawing.Point(912, 198);
+            this.btnCritical.Location = new System.Drawing.Point(926, 198);
             this.btnCritical.Name = "btnCritical";
-            this.btnCritical.Size = new System.Drawing.Size(76, 22);
+            this.btnCritical.Size = new System.Drawing.Size(62, 22);
             this.btnCritical.StyleController = this.layoutControl1;
             this.btnCritical.TabIndex = 84;
             this.btnCritical.Text = "....";
@@ -1124,13 +1124,13 @@
             // tbxStockValMethod
             // 
             this.tbxStockValMethod.EnterMoveNextControl = true;
-            this.tbxStockValMethod.Location = new System.Drawing.Point(682, 224);
+            this.tbxStockValMethod.Location = new System.Drawing.Point(664, 224);
             this.tbxStockValMethod.Name = "tbxStockValMethod";
             this.tbxStockValMethod.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxStockValMethod.Properties.Items.AddRange(new object[] {
             "Weigted Av"});
-            this.tbxStockValMethod.Size = new System.Drawing.Size(306, 20);
+            this.tbxStockValMethod.Size = new System.Drawing.Size(324, 20);
             this.tbxStockValMethod.StyleController = this.layoutControl1;
             this.tbxStockValMethod.TabIndex = 22;
             // 
@@ -1194,9 +1194,10 @@
             "Y",
             "N"});
             this.cbxCreticallevel.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbxCreticallevel.Size = new System.Drawing.Size(244, 20);
+            this.cbxCreticallevel.Size = new System.Drawing.Size(258, 20);
             this.cbxCreticallevel.StyleController = this.layoutControl1;
             this.cbxCreticallevel.TabIndex = 37;
+            this.cbxCreticallevel.SelectedIndexChanged += new System.EventHandler(this.cbxCreticallevel_SelectedIndexChanged);
             // 
             // cbxMaintainRG
             // 
@@ -1332,7 +1333,9 @@
             this.cbxEnableExpDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxEnableExpDate.Properties.Items.AddRange(new object[] {
-            "Both"});
+            "Both",
+            "Exp.Date",
+            "Mfg.Date"});
             this.cbxEnableExpDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxEnableExpDate.Size = new System.Drawing.Size(90, 20);
             this.cbxEnableExpDate.StyleController = this.layoutControl1;
@@ -1488,6 +1491,7 @@
             this.cbxDiscountInfo.StyleController = this.layoutControl1;
             this.cbxDiscountInfo.TabIndex = 82;
             this.cbxDiscountInfo.SelectedIndexChanged += new System.EventHandler(this.cbxDiscountInfo_SelectedIndexChanged);
+            this.cbxDiscountInfo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxDiscountInfo_KeyPress);
             // 
             // cbxMarkupInfo
             // 
@@ -1503,6 +1507,7 @@
             this.cbxMarkupInfo.StyleController = this.layoutControl1;
             this.cbxMarkupInfo.TabIndex = 82;
             this.cbxMarkupInfo.SelectedIndexChanged += new System.EventHandler(this.cbxMarkupInfo_SelectedIndexChanged);
+            this.cbxMarkupInfo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxMarkupInfo_KeyPress);
             // 
             // layoutControlGroup1
             // 
@@ -2090,7 +2095,7 @@
             this.layoutControlItem45.CustomizationFormText = "Set Cretical Level (Y/N)";
             this.layoutControlItem45.Location = new System.Drawing.Point(0, 186);
             this.layoutControlItem45.Name = "layoutControlItem45";
-            this.layoutControlItem45.Size = new System.Drawing.Size(364, 26);
+            this.layoutControlItem45.Size = new System.Drawing.Size(378, 26);
             this.layoutControlItem45.Text = "Set Cretical Level (Y/N)";
             this.layoutControlItem45.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem45.TextSize = new System.Drawing.Size(111, 13);
@@ -2338,17 +2343,17 @@
             this.layoutControlItem27.Location = new System.Drawing.Point(0, 212);
             this.layoutControlItem27.Name = "layoutControlItem27";
             this.layoutControlItem27.Size = new System.Drawing.Size(444, 24);
-            this.layoutControlItem27.Text = "Stock-Val. Method              ";
+            this.layoutControlItem27.Text = "Stock-Val. Method        ";
             this.layoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem27.TextSize = new System.Drawing.Size(129, 13);
+            this.layoutControlItem27.TextSize = new System.Drawing.Size(111, 13);
             this.layoutControlItem27.TextToControlDistance = 5;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnCritical;
-            this.layoutControlItem6.Location = new System.Drawing.Point(364, 186);
+            this.layoutControlItem6.Location = new System.Drawing.Point(378, 186);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(80, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(66, 26);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -2459,7 +2464,7 @@
             this.ClientSize = new System.Drawing.Size(1000, 575);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            
+            //this.Name = "ItemMasterNew";
             this.Text = "Item Master";
             this.Load += new System.EventHandler(this.ItemMasterNew_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

@@ -54,6 +54,8 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.colMRPId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colParentId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMrpwise)).BeginInit();
@@ -101,9 +103,9 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(157, 341);
+            this.btnOk.Location = new System.Drawing.Point(161, 341);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(74, 22);
+            this.btnOk.Size = new System.Drawing.Size(70, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 11;
             this.btnOk.Text = "Ok";
@@ -130,7 +132,9 @@
             this.colMrp,
             this.colSalePrice,
             this.colQuantity,
-            this.colAmount});
+            this.colAmount,
+            this.colMRPId,
+            this.colParentId});
             this.dvgMrpwiseDetails.GridControl = this.dvgMrpwise;
             this.dvgMrpwiseDetails.Name = "dvgMrpwiseDetails";
             this.dvgMrpwiseDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -311,9 +315,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnOk;
-            this.layoutControlItem1.Location = new System.Drawing.Point(145, 329);
+            this.layoutControlItem1.Location = new System.Drawing.Point(149, 329);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(78, 26);
+            this.layoutControlItem1.Size = new System.Drawing.Size(74, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -330,7 +334,7 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 329);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(145, 26);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(149, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -349,6 +353,18 @@
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(205, 17);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // colMRPId
+            // 
+            this.colMRPId.Caption = "MRPId";
+            this.colMRPId.FieldName = "MRPId";
+            this.colMRPId.Name = "colMRPId";
+            // 
+            // colParentId
+            // 
+            this.colParentId.Caption = "ParentId";
+            this.colParentId.FieldName = "ParentId";
+            this.colParentId.Name = "colParentId";
             // 
             // MRPwiseDetails
             // 
@@ -409,5 +425,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn colMRPId;
+        private DevExpress.XtraGrid.Columns.GridColumn colParentId;
     }
 }
