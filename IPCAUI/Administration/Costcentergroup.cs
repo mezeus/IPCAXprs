@@ -36,13 +36,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Group Name can not be blank!");
                 return;
             }
-            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-
             CostCentreGroupModel objModel = new CostCentreGroupModel();
             
             objModel.GroupName = tbxGroupName.Text.Trim();
@@ -54,7 +47,6 @@ namespace IPCAUI.Administration
             }
                  
             objModel.CreatedBy = "Admin";
-
             bool isSuccess = objCG.SaveCCG(objModel);
             if(isSuccess)
             {
@@ -69,6 +61,7 @@ namespace IPCAUI.Administration
             tbxGroupName.Text = string.Empty;
             tbxAlias.Text = string.Empty;
             cbxPrimarygroup.SelectedIndex = 1;
+            cbxUndergroup.Text = string.Empty;
         }
         private void Listccgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -92,9 +85,13 @@ namespace IPCAUI.Administration
         }
 
         private void FillCostCenterGroupInfo()
-        {
+        {        
+            if(groupId==0)
+            {
+                tbxGroupName.Focus();
+                return;
+            }
             CostCentreGroupModel objMaster = objCG.GetAllCostCentreGroupsById(groupId);
-
             tbxGroupName.Text = objMaster.GroupName;
             tbxAlias.Text = objMaster.Alias;
             cbxPrimarygroup.SelectedItem = (objMaster.PrimaryGroup)?"Y" : "N";
@@ -120,11 +117,14 @@ namespace IPCAUI.Administration
                     tbxGroupName.Focus();
                     return;
                 }
-                if (objCG.IsCostCenterGroupExists(tbxGroupName.Text.Trim()))
+                if(groupId==0)
                 {
-                    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                    tbxGroupName.Focus();
-                    return;
+                    if (objCG.IsCostCenterGroupExists(tbxGroupName.Text.Trim()))
+                    {
+                        MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                        tbxGroupName.Focus();
+                        return;
+                    }
                 }
             }
         }

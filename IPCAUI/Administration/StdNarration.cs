@@ -124,5 +124,15 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Update Successfully!");
             }
         }
+
+        private void cbxVouchertype_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbxVouchertype_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cbxVouchertype.ShowPopup();
+        }
     }
 }

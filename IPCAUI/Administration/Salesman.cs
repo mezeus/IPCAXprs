@@ -48,32 +48,24 @@ namespace IPCAUI.Administration
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        { 
-            
+        {         
             if (tbxName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Group Name can not be blank!");
                 return;
             }
-
-            //if (accObj.IsGroupExists(tbxGroupName.Text.Trim()))
-            //{
-            //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-            //    cbxUnderGrp.Focus();
-            //    return;
-            //}
-
             eSunSpeedDomain.SalesManModel objsalesmman = new eSunSpeedDomain.SalesManModel();
 
             objsalesmman.SM_Name = tbxName.Text;
 
-            objsalesmman.SM_Alias = tbxAlias.Text;
-            objsalesmman.SM_PrintName = tbxPrintName.Text.Trim();
-            objsalesmman.EnableDefCommision = cbxEnableDefComm.SelectedItem.ToString().Equals("Yes") ? true : false;
+            objsalesmman.SM_Alias = tbxAlias.Text.Trim()==string.Empty?string.Empty: tbxAlias.Text.Trim();
+            objsalesmman.SM_PrintName = tbxPrintName.Text.Trim() == string.Empty ? string.Empty : tbxPrintName.Text.Trim();
+            objsalesmman.EnableDefCommision = cbxEnableDefComm.SelectedItem.ToString()=="Y"? true : false;
             objsalesmman.Commision_Mode = cbxDefCommMode.SelectedItem.ToString();
             objsalesmman.DefCommision = Convert.ToDecimal(tbxDefComm.Text.Trim());
             objsalesmman.FreezeCommision = cbxDefFreeze.SelectedItem.ToString().Equals("Yes") ? true : false;
 
+            objsalesmman.SM_AccounttobeCredited = cbxSalesAccountCredited.SelectedItem.ToString() == string.Empty ? string.Empty : cbxSalesAccountCredited.SelectedItem.ToString();
             objsalesmman.Sales_DebitMode = cbxSaleDebitMode.SelectedItem.ToString();
             objsalesmman.Sales_AccDebited = cbxSalesDebited.SelectedItem.ToString();
             //objsalesmman.FreezeCommision = cbxDefFreeze.SelectedItem.ToString().Equals("Yes") ? true : false;
@@ -152,6 +144,11 @@ namespace IPCAUI.Administration
                 }
                 e.Handled = true; // Mark the event as handled
             }
+        }
+
+        private void cbxSalesAccountCredited_Enter(object sender, EventArgs e)
+        {
+            cbxSalesAccountCredited.ShowPopup();
         }
     }
 }

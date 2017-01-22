@@ -127,6 +127,26 @@ namespace IPCAUI.Menu
                         sptCtrlMastermenu.Panel2.Controls.Add(frmTaxCat);
                         frmTaxCat.Show();
                         break;
+                    case "ItemCompany":
+                        Administration.ItemCompany frmItemCompany;
+                        frmItemCompany = new Administration.ItemCompany(); //generate new instance 
+
+                        frmItemCompany.Owner = this;
+                        frmItemCompany.TopLevel = false;
+
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmItemCompany);
+                        frmItemCompany.Show();
+                        break;
+                    case "ItemMaster":
+                        Administration.ItemMasterNew frmItemMaster;
+                        frmItemMaster = new Administration.ItemMasterNew(); //generate new instance 
+
+                        frmItemMaster.Owner = this;
+                        frmItemMaster.TopLevel = false;
+
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmItemMaster);
+                        frmItemMaster.Show();
+                        break;
                     default:
                         break;
                         

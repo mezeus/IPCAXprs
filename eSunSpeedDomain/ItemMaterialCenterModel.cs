@@ -5,11 +5,12 @@ using System.Text;
 
 namespace eSunSpeedDomain
 {
-    public class ItemAliasModel
+    public class ItemMaterialCenterModel
     {
-        public int BarcodeId { get; set; }
+        public int MCId { get; set; }
         public int ParentId { get; set; }
-        public string Barcodes { get; set; }
+        public string Materialcenter { get; set; }
+        public decimal Qty { get; set; }
 
     }
 }

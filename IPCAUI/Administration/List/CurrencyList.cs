@@ -33,12 +33,39 @@ namespace IPCAUI.Administration.List
 
         private void dvgCurrencyDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+           
+        }
+
+        private void dvgCurrencyDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             CurrencyMasterModel lstCurrency;
 
             lstCurrency = (CurrencyMasterModel)dvgCurrencyDetails.GetRow(dvgCurrencyDetails.FocusedRowHandle);
             Currencyadd.CurrecyId = lstCurrency.CM_ID;
 
             this.Close();
+        }
+
+        private void dvgCurrencyDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == '\r')
+            {
+                CurrencyMasterModel lstCurrency;
+
+                lstCurrency = (CurrencyMasterModel)dvgCurrencyDetails.GetRow(dvgCurrencyDetails.FocusedRowHandle);
+                Currencyadd.CurrecyId = lstCurrency.CM_ID;
+
+                this.Close();
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

@@ -64,6 +64,8 @@
     <Compile Include="ItemAliasModel.cs" />
     <Compile Include="ItemBatchWiseDetailsModel.cs" />
     <Compile Include="ItemConsumedModel.cs" />
+    <Compile Include="ItemCompanyMasterModel.cs" />
+    <Compile Include="ItemMaterialCenterModel.cs" />
     <Compile Include="ItemParameterizedModel.cs" />
     <Compile Include="ItemSerialnoDetailsModel.cs" />
     <Compile Include="ListVoucherModel.cs" />

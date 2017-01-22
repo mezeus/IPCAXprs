@@ -82,7 +82,42 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
-     
+        public List<MarkupStructureMasterModel> GetAllMarkupStructure()
+        {
+            List<eSunSpeedDomain.MarkupStructureMasterModel> lstMarkup = new List<MarkupStructureMasterModel>();
+            eSunSpeedDomain.MarkupStructureMasterModel objMS;
+
+            string Query = "SELECT * FROM `markupstructure`";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+
+                objMS = new MarkupStructureMasterModel();
+
+                objMS.Ms_id = Convert.ToInt32(dr["MS_Id"]);
+                objMS.StructureName = dr["StructureName"].ToString();
+                objMS.SimpleDiscount = Convert.ToBoolean(dr["SimpleDiscount"]);
+                objMS.CompoundMarkupwithSameNature = Convert.ToBoolean(dr["CM_withSameNature"]);
+                objMS.CompoundMarkupDifferentNature = Convert.ToBoolean(dr["CM_DifferentNature"]);
+                objMS.NoOfMarkups = dr["NoOfMarkups"] == null || dr["NoOfMarkups"].ToString() == "" ? 0 : Convert.ToInt32(dr["NoOfMarkups"]);
+                objMS.SpecifyCaptionForMarkup = dr["SpecifyCaptionForMarkup"].ToString();
+                objMS.AbsoluteDiscount = Convert.ToBoolean(dr["AbsoluteAmount"]);
+                objMS.PerMainQty = Convert.ToBoolean(dr["PerMainQty"]);
+                objMS.Percentage = Convert.ToBoolean(dr["Percentage"]);
+                objMS.PerAltQty = Convert.ToBoolean(dr["PerAltQty"]);
+                objMS.ItemPrice = Convert.ToBoolean(dr["ItemPrice"]);
+                objMS.ItemMRP = Convert.ToBoolean(dr["ItemMRP"]);
+                objMS.ItemAmount = Convert.ToBoolean(dr["ItemAmount"]);
+                objMS.ItemListPrice = Convert.ToBoolean(dr["ItemListPrice"]);
+
+                lstMarkup.Add(objMS);
+
+            }
+
+            return lstMarkup;
+        }
+
     }
 }
 

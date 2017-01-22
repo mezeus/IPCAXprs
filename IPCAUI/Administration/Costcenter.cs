@@ -76,7 +76,6 @@ namespace IPCAUI.Administration
                 lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 tbxName.Focus();
-
                 FillCostCenterInfo();
             }
         }
@@ -84,7 +83,11 @@ namespace IPCAUI.Administration
         private void FillCostCenterInfo()
         {
             CostCentreMasterModel objMaster = objccm.GetAllCostCentreMasterById(costId);
-
+            if(costId==0)
+            {
+                tbxName.Focus();
+                return;
+            }
 
             tbxName.Text = objMaster.Name;
             tbxAliasname.Text = objMaster.Alias;
@@ -102,6 +105,7 @@ namespace IPCAUI.Administration
         }
         private void Costcenter_Load(object sender, EventArgs e)
         {
+            costId = 0;
             List<CostCentreGroupModel> lstCostGroups = objCgroupBl.GetAllCostCentreGroups();
             foreach(CostCentreGroupModel objmodel in lstCostGroups)
             {
@@ -188,6 +192,7 @@ namespace IPCAUI.Administration
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxName.Focus();
         }
 
         private void tbxName_KeyPress(object sender, KeyPressEventArgs e)
@@ -200,12 +205,15 @@ namespace IPCAUI.Administration
                     tbxName.Focus();
                     return;
                 }
-                if (objccm.IsCostMasterExists(tbxName.Text.Trim()))
+                if(costId==0)
                 {
-                    MessageBox.Show("Master Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                    tbxName.Focus();
-                    return;
-                }
+                    if (objccm.IsCostMasterExists(tbxName.Text.Trim()))
+                    {
+                        MessageBox.Show("Master Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                        tbxName.Focus();
+                        return;
+                    }
+                } 
             }
         }
     }

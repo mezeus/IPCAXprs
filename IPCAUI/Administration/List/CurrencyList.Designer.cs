@@ -111,6 +111,8 @@
             this.dvgCurrencyDetails.Name = "dvgCurrencyDetails";
             this.dvgCurrencyDetails.OptionsBehavior.ReadOnly = true;
             this.dvgCurrencyDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgCurrencyDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgCurrencyDetails_RowClick);
+            this.dvgCurrencyDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCurrencyDetails_KeyDown);
             this.dvgCurrencyDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCurrencyDetails_KeyPress);
             // 
             // colCurrencySymbol

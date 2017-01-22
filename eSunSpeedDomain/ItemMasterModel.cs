@@ -65,16 +65,19 @@ namespace eSunSpeedDomain
         //Settings 
 
         public bool SpecifySaleDiscStructure { get; set; }
+        public string SaleDiscStructure { get; set; }
         public bool SpecifyPurDiscStructure { get; set; }
-        //Need To Add Two Parameters
+        public string PurcDiscStructure { get; set; }
 
         //Markup
-        public string SaleMarkup { get; set; }
-        public string PurMarkup { get; set; }
-        public string SaleCompMarkup { get; set; }
-        public string PurCompMarkup { get; set; }
+        public decimal SaleMarkup { get; set; }
+        public decimal PurMarkup { get; set; }
+        public decimal SaleCompMarkup { get; set; }
+        public decimal PurCompMarkup { get; set; }
         public bool SpecifySaleMarkupStruct { get; set; }
         public bool SpecifyPurMarkupStruct { get; set; }
+        public string SaleMarkupStructure { get; set; }
+        public string PurcMarkupStructure { get; set; }
 
         //Tax Details
         public string TaxCategory { get; set; }
@@ -112,6 +115,7 @@ namespace eSunSpeedDomain
 
 
         public bool SpecifyDefaultMC { get; set; }
+        public string DefaultMaterialCenter { get; set; }
         public bool FreezeMCforItem { get; set; }
 
         public int TotalNumberofAuthors { get; set; }
@@ -121,12 +125,13 @@ namespace eSunSpeedDomain
 
         //Popup Screens Lists
         public List<string> BarCodes { get; set; }
+        public List<ItemAliasModel> ItemBarcode { get; set; }
         public List<ItemParameterizedModel> ItemParameterized { get; set; }
         public List<ItemBatchWiseDetailsModel> ItemBatchWise { get; set; }
         public List<ItemMRPWiseDetailsModel> ItemMRPWise { get; set; }
         public List<DefineCriticalLevelModel> ItemCriticalLevel { get; set; }
-
-
+        public List<ItemSerialnoDetailsModel> ItemSerialNo { get; set; }
+        public List<ItemMaterialCenterModel> ItemMC{ get; set; }
         public int SL_ID { get; set; }
         public int parent_Id { get; set; }
         public bool ManualNuber { get; set; }

@@ -34,7 +34,6 @@ namespace eSunSpeed.BusinessLogic
                 Query = "INSERT INTO CostCentreMaster(`Name`,`Alias`,`Group`,`opBal`,`DrCr`,`CreatedBy`)" +
                         "VALUES(@Name,@Alias,@Group,@opBal,@DrCr,@CreatedBy)";
 
-
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;
             }
