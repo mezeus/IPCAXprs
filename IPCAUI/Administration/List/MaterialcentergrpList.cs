@@ -40,12 +40,34 @@ namespace IPCAUI.Administration.List
 
         private void dvgMCgrpDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            MaterialCentreGroupMasterModel lstMaterials;
+            if (e.KeyValue == '\r')
+            {
+                MaterialCentreGroupMasterModel lstMaterials;
 
-            lstMaterials = (MaterialCentreGroupMasterModel)dvgMCgrpDetails.GetRow(dvgMCgrpDetails.FocusedRowHandle);
-            Materialcentergroup.MCGId = lstMaterials.MCG_ID;
+                lstMaterials = (MaterialCentreGroupMasterModel)dvgMCgrpDetails.GetRow(dvgMCgrpDetails.FocusedRowHandle);
+                Materialcentergroup.MCGId = lstMaterials.MCG_ID;
 
-            this.Close();
+                this.Close();
+            }
+        }
+
+        private void dvgMCgrpDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            //MaterialCentreGroupMasterModel lstMaterials;
+
+            //lstMaterials = (MaterialCentreGroupMasterModel)dvgMCgrpDetails.GetRow(dvgMCgrpDetails.FocusedRowHandle);
+            //Materialcentergroup.MCGId = lstMaterials.MCG_ID;
+
+            //this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

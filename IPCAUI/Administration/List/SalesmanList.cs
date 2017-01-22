@@ -30,5 +30,37 @@ namespace IPCAUI.Administration.List
         {
             this.Close();
         }
+
+        private void dvgSalesManDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == '\r')
+            {
+                SalesManModel lstSalesMan;
+
+                lstSalesMan = (SalesManModel)dvgSalesManDetails.GetRow(dvgSalesManDetails.FocusedRowHandle);
+                Salesman.SMId = lstSalesMan.SalesMan_Id;
+
+                this.Close();
+            }
+        }
+
+        private void dvgSalesManDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            SalesManModel lstSalesMan;
+
+            lstSalesMan = (SalesManModel)dvgSalesManDetails.GetRow(dvgSalesManDetails.FocusedRowHandle);
+            Salesman.SMId = lstSalesMan.SalesMan_Id;
+
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

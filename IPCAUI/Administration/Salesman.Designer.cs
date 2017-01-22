@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salesman));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.cbxPurchaseDebited = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxPurchaseDebitMode = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxSalesDebited = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -100,14 +100,15 @@
             this.tbxTelephone = new DevExpress.XtraEditors.TextEdit();
             this.tbxMobile = new DevExpress.XtraEditors.TextEdit();
             this.tbxEmail = new DevExpress.XtraEditors.TextEdit();
+            this.cbxSalesAccountCredited = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblSave = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblQuit = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -138,11 +139,10 @@
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblUpdate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.cbxSalesAccountCredited = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxPurchaseDebited.Properties)).BeginInit();
@@ -166,14 +166,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxTelephone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMobile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSalesAccountCredited.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblQuit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
@@ -204,17 +205,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSalesAccountCredited.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.simpleButton2);
-            this.layoutControl1.Controls.Add(this.simpleButton1);
+            this.layoutControl1.Controls.Add(this.btnDelete);
+            this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.cbxPurchaseDebited);
             this.layoutControl1.Controls.Add(this.cbxPurchaseDebitMode);
             this.layoutControl1.Controls.Add(this.cbxSalesDebited);
@@ -250,25 +250,25 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // simpleButton2
+            // btnDelete
             // 
-            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(514, 372);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(76, 22);
-            this.simpleButton2.StyleController = this.layoutControl1;
-            this.simpleButton2.TabIndex = 67;
-            this.simpleButton2.Text = "Delete";
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(514, 372);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(76, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 67;
+            this.btnDelete.Text = "Delete";
             // 
-            // simpleButton1
+            // btnUpdate
             // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(420, 372);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(76, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 66;
-            this.simpleButton1.Text = "Update";
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(420, 372);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(76, 22);
+            this.btnUpdate.StyleController = this.layoutControl1;
+            this.btnUpdate.TabIndex = 66;
+            this.btnUpdate.Text = "Update";
             // 
             // cbxPurchaseDebited
             // 
@@ -280,8 +280,7 @@
             this.cbxPurchaseDebited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxPurchaseDebited.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
+            "Load Account Master"});
             this.cbxPurchaseDebited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxPurchaseDebited.Size = new System.Drawing.Size(167, 20);
             this.cbxPurchaseDebited.StyleController = this.layoutControl1;
@@ -297,8 +296,9 @@
             this.cbxPurchaseDebitMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxPurchaseDebitMode.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
+            "Specifiy Account Here",
+            "Adjust In Purc. Account",
+            "Adjust In Party Account"});
             this.cbxPurchaseDebitMode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxPurchaseDebitMode.Size = new System.Drawing.Size(167, 20);
             this.cbxPurchaseDebitMode.StyleController = this.layoutControl1;
@@ -314,8 +314,7 @@
             this.cbxSalesDebited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxSalesDebited.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
+            "Load Account Master"});
             this.cbxSalesDebited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSalesDebited.Size = new System.Drawing.Size(167, 20);
             this.cbxSalesDebited.StyleController = this.layoutControl1;
@@ -331,8 +330,9 @@
             this.cbxSaleDebitMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxSaleDebitMode.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
+            "Specifiy Account Here",
+            "Adjust In Sale Account",
+            "Adjust In Party Account"});
             this.cbxSaleDebitMode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSaleDebitMode.Size = new System.Drawing.Size(167, 20);
             this.cbxSaleDebitMode.StyleController = this.layoutControl1;
@@ -362,9 +362,12 @@
             this.tbxDefComm.Name = "tbxDefComm";
             this.tbxDefComm.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.tbxDefComm.Properties.Appearance.Options.UseFont = true;
+            this.tbxDefComm.Properties.Mask.EditMask = "n2";
+            this.tbxDefComm.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tbxDefComm.Size = new System.Drawing.Size(167, 20);
             this.tbxDefComm.StyleController = this.layoutControl1;
             this.tbxDefComm.TabIndex = 60;
+            this.tbxDefComm.Enter += new System.EventHandler(this.tbxDefComm_Enter);
             // 
             // cbxDefCommMode
             // 
@@ -376,8 +379,10 @@
             this.cbxDefCommMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxDefCommMode.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
+            "Percentage",
+            "Lumpsum Amt",
+            "Per Main Qty.",
+            "Per Alt Qty"});
             this.cbxDefCommMode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxDefCommMode.Size = new System.Drawing.Size(167, 20);
             this.cbxDefCommMode.StyleController = this.layoutControl1;
@@ -923,6 +928,24 @@
             this.tbxEmail.StyleController = this.layoutControl1;
             this.tbxEmail.TabIndex = 10;
             // 
+            // cbxSalesAccountCredited
+            // 
+            this.cbxSalesAccountCredited.EnterMoveNextControl = true;
+            this.cbxSalesAccountCredited.Location = new System.Drawing.Point(613, 168);
+            this.cbxSalesAccountCredited.Name = "cbxSalesAccountCredited";
+            this.cbxSalesAccountCredited.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.cbxSalesAccountCredited.Properties.Appearance.Options.UseFont = true;
+            this.cbxSalesAccountCredited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSalesAccountCredited.Properties.Items.AddRange(new object[] {
+            "Load Account Master"});
+            this.cbxSalesAccountCredited.Properties.PopupSizeable = true;
+            this.cbxSalesAccountCredited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbxSalesAccountCredited.Size = new System.Drawing.Size(191, 20);
+            this.cbxSalesAccountCredited.StyleController = this.layoutControl1;
+            this.cbxSalesAccountCredited.TabIndex = 43;
+            this.cbxSalesAccountCredited.Enter += new System.EventHandler(this.cbxSalesAccountCredited_Enter);
+            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.gridControl2;
@@ -939,8 +962,8 @@
             this.emptySpaceItem1,
             this.emptySpaceItem3,
             this.emptySpaceItem4,
-            this.layoutControlItem7,
-            this.layoutControlItem9,
+            this.lblSave,
+            this.lblQuit,
             this.emptySpaceItem5,
             this.emptySpaceItem6,
             this.emptySpaceItem7,
@@ -957,8 +980,8 @@
             this.layoutControlItem19,
             this.emptySpaceItem10,
             this.layoutControlItem3,
-            this.layoutControlItem18,
-            this.layoutControlItem21,
+            this.lblUpdate,
+            this.lblDelete,
             this.emptySpaceItem9,
             this.emptySpaceItem11});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
@@ -999,23 +1022,23 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(664, 147);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem7
+            // lblSave
             // 
-            this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(311, 360);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(85, 26);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
+            this.lblSave.Control = this.btnSave;
+            this.lblSave.Location = new System.Drawing.Point(311, 360);
+            this.lblSave.Name = "lblSave";
+            this.lblSave.Size = new System.Drawing.Size(85, 26);
+            this.lblSave.TextSize = new System.Drawing.Size(0, 0);
+            this.lblSave.TextVisible = false;
             // 
-            // layoutControlItem9
+            // lblQuit
             // 
-            this.layoutControlItem9.Control = this.btnQuit;
-            this.layoutControlItem9.Location = new System.Drawing.Point(597, 360);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(77, 26);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
+            this.lblQuit.Control = this.btnQuit;
+            this.lblQuit.Location = new System.Drawing.Point(597, 360);
+            this.lblQuit.Name = "lblQuit";
+            this.lblQuit.Size = new System.Drawing.Size(77, 26);
+            this.lblQuit.TextSize = new System.Drawing.Size(0, 0);
+            this.lblQuit.TextVisible = false;
             // 
             // emptySpaceItem5
             // 
@@ -1324,23 +1347,23 @@
             this.layoutControlItem3.Text = "Specify Default Commission Details";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(167, 13);
             // 
-            // layoutControlItem18
+            // lblUpdate
             // 
-            this.layoutControlItem18.Control = this.simpleButton1;
-            this.layoutControlItem18.Location = new System.Drawing.Point(408, 360);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(80, 26);
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem18.TextVisible = false;
+            this.lblUpdate.Control = this.btnUpdate;
+            this.lblUpdate.Location = new System.Drawing.Point(408, 360);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(80, 26);
+            this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
+            this.lblUpdate.TextVisible = false;
             // 
-            // layoutControlItem21
+            // lblDelete
             // 
-            this.layoutControlItem21.Control = this.simpleButton2;
-            this.layoutControlItem21.Location = new System.Drawing.Point(502, 360);
-            this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(80, 26);
-            this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem21.TextVisible = false;
+            this.lblDelete.Control = this.btnDelete;
+            this.lblDelete.Location = new System.Drawing.Point(502, 360);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(80, 26);
+            this.lblDelete.TextSize = new System.Drawing.Size(0, 0);
+            this.lblDelete.TextVisible = false;
             // 
             // emptySpaceItem9
             // 
@@ -1357,22 +1380,6 @@
             this.emptySpaceItem11.Name = "emptySpaceItem11";
             this.emptySpaceItem11.Size = new System.Drawing.Size(14, 26);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // cbxSalesAccountCredited
-            // 
-            this.cbxSalesAccountCredited.EnterMoveNextControl = true;
-            this.cbxSalesAccountCredited.Location = new System.Drawing.Point(613, 168);
-            this.cbxSalesAccountCredited.Name = "cbxSalesAccountCredited";
-            this.cbxSalesAccountCredited.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.cbxSalesAccountCredited.Properties.Appearance.Options.UseFont = true;
-            this.cbxSalesAccountCredited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSalesAccountCredited.Properties.PopupSizeable = true;
-            this.cbxSalesAccountCredited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbxSalesAccountCredited.Size = new System.Drawing.Size(191, 20);
-            this.cbxSalesAccountCredited.StyleController = this.layoutControl1;
-            this.cbxSalesAccountCredited.TabIndex = 43;
-            this.cbxSalesAccountCredited.Enter += new System.EventHandler(this.cbxSalesAccountCredited_Enter);
             // 
             // Salesman
             // 
@@ -1410,14 +1417,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxTelephone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMobile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSalesAccountCredited.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblQuit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
@@ -1448,11 +1456,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSalesAccountCredited.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1470,8 +1477,8 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem lblSave;
+        private DevExpress.XtraLayout.LayoutControlItem lblQuit;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
@@ -1566,10 +1573,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraEditors.ComboBoxEdit cbxPurchaseDebited;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraEditors.SimpleButton btnUpdate;
+        private DevExpress.XtraLayout.LayoutControlItem lblUpdate;
+        private DevExpress.XtraLayout.LayoutControlItem lblDelete;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
         private DevExpress.XtraEditors.ComboBoxEdit cbxSalesAccountCredited;

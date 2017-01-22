@@ -10,6 +10,7 @@ namespace eSunSpeedDomain
         public int SN_Id { get; set; }
         public string Vouchertype { get; set; }
         public string Narration { get; set; }
+        public string Narration2 { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
     }

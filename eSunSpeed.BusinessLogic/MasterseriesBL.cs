@@ -71,6 +71,21 @@ namespace eSunSpeed.BusinessLogic
             return isUpdate;
         }
 
+        //Is Material Series Exists
+        public bool IsMaterialSeriesExists(string SeriesName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM masterseriesgroup WHERE Name='{0}'", SeriesName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
         public bool DeletITG(List<int> lstIds)
         {
             string Query = string.Empty;
@@ -100,7 +115,25 @@ namespace eSunSpeed.BusinessLogic
 
             return isUpdated;
         }
-
+        
+        //Delete MasterSeries Group
+        public bool DeleteMasterSeriesGroup(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM masterseriesgroup WHERE masid=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         public List<eSunSpeedDomain.MasterseriesModel> GetListofMasterSeries()
         {
             List<eSunSpeedDomain.MasterseriesModel> lstmasterseries = new List<eSunSpeedDomain.MasterseriesModel>();

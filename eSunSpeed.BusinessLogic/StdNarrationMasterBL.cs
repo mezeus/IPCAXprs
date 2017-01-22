@@ -22,10 +22,11 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Vouchertype", objSNM.Vouchertype));
                 paramCollection.Add(new DBParameter("@Narration", objSNM.Narration));
+                paramCollection.Add(new DBParameter("@Narration2", objSNM.Narration2));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
-                Query = "INSERT INTO StdNarrationMaster(`Vouchertype`,`Narration`,`CreatedBy`) " +
-                    "VALUES(@Vouchertype,@Narration,@CreatedBy)";
+                Query = "INSERT INTO StdNarrationMaster(`Vouchertype`,`Narration`,`Narration2`,`CreatedBy`) " +
+                    "VALUES(@Vouchertype,@Narration,@Narration2,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;
@@ -50,11 +51,12 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Vouchertype", objSNM.Vouchertype));
                 paramCollection.Add(new DBParameter("@Narration", objSNM.Narration));
+                paramCollection.Add(new DBParameter("@Narration2", objSNM.Narration2));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
                 paramCollection.Add(new DBParameter("@ModifiedDate",DateTime.Now));
                 paramCollection.Add(new DBParameter("@SN_Id", objSNM.SN_Id));
 
-                Query = "UPDATE StdNarrationMaster SET Vouchertype=@Vouchertype,Narration=@Narration,ModifiedBy=@ModifiedBy " +
+                Query = "UPDATE StdNarrationMaster SET Vouchertype=@Vouchertype,Narration=@Narration,Narration2=@Narration2,ModifiedBy=@ModifiedBy " +
                         "WHERE SN_Id=@SN_Id;";
                     
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -105,43 +107,28 @@ namespace eSunSpeed.BusinessLogic
                 objNarr.SN_Id = Convert.ToInt32(dr["SN_ID"]);
                 objNarr.Vouchertype = dr["Vouchertype"].ToString();
                 objNarr.Narration = dr["Narration"].ToString();
-
+                objNarr.Narration2 = dr["Narration2"].ToString();
             }
             return objNarr;
         }
 
-
-        #region Delete Standard Narration
-
-        public bool DeleteNarration(List<int> lstIds)
+        //Delete Standed Narration
+        public bool DeletStdNarration(int id)
         {
-            string Query = string.Empty;
-            bool isUpdated = true;
-
+            bool isDelete = false;
             try
             {
-                DBParameterCollection paramCollection;
-
-                foreach (int id in lstIds)
-                {
-                    paramCollection = new DBParameterCollection();
-
-                    paramCollection.Add(new DBParameter("@SN_id", id));
-                    Query = "Delete from stdnarrationmaster WHERE [SN_id]=@SN_id";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isUpdated = true;
-                }
-
+                string Query = "DELETE FROM stdnarrationmaster WHERE SN_Id=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
             }
             catch (Exception ex)
             {
-                isUpdated = false;
+                isDelete = false;
                 throw ex;
             }
-
-            return isUpdated;
+            return isDelete;
         }
-        #endregion
     }
 }
