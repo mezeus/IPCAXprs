@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XtraForm1));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
             this.MainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -91,12 +91,6 @@
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.imageSlider1 = new DevExpress.XtraEditors.Controls.ImageSlider();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
             this.navReports = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -121,10 +115,9 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
@@ -149,10 +142,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageSlider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
             this.navBarControl2.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -161,8 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
@@ -181,6 +168,7 @@
             this.MainRibbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory1});
             this.MainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1,
             this.Company,
             this.Master,
             this.Reports,
@@ -234,11 +222,11 @@
             // 
             this.ribbonPageGroup1.Glyph = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup1.Glyph")));
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            toolTipTitleItem1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipTitleItem1.Appearance.Options.UseImage = true;
-            toolTipTitleItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolTipTitleItem1.Image")));
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            this.ribbonPageGroup1.SuperTip = superToolTip1;
+            toolTipTitleItem3.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem3.Appearance.Options.UseImage = true;
+            toolTipTitleItem3.Image = ((System.Drawing.Image)(resources.GetObject("toolTipTitleItem3.Image")));
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            this.ribbonPageGroup1.SuperTip = superToolTip3;
             this.ribbonPageGroup1.Text = "Company";
             // 
             // ribbonPageGroup2
@@ -700,8 +688,6 @@
             // layoutControl2
             // 
             this.layoutControl2.Controls.Add(this.navBarControl1);
-            this.layoutControl2.Controls.Add(this.panelControl1);
-            this.layoutControl2.Controls.Add(this.panel1);
             this.layoutControl2.Controls.Add(this.ribbonStatusBar1);
             this.layoutControl2.Controls.Add(this.navBarControl2);
             this.layoutControl2.Controls.Add(this.tileControl1);
@@ -723,10 +709,10 @@
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem3});
-            this.navBarControl1.Location = new System.Drawing.Point(1117, 12);
+            this.navBarControl1.Location = new System.Drawing.Point(1110, 12);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 109;
-            this.navBarControl1.Size = new System.Drawing.Size(109, 313);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 116;
+            this.navBarControl1.Size = new System.Drawing.Size(116, 352);
             this.navBarControl1.TabIndex = 14;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinExplorerBarViewInfoRegistrator("VS2010");
@@ -757,64 +743,6 @@
             this.navBarItem3.Caption = "Add Master";
             this.navBarItem3.Name = "navBarItem3";
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.labelControl3);
-            this.panelControl1.Location = new System.Drawing.Point(116, 329);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1110, 34);
-            this.panelControl1.TabIndex = 10;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(825, 15);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(63, 13);
-            this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "labelControl2";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(487, 17);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(63, 13);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "labelControl1";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(66, 15);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(63, 13);
-            this.labelControl3.TabIndex = 0;
-            this.labelControl3.Text = "labelControl3";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.imageSlider1);
-            this.panel1.Location = new System.Drawing.Point(12, 329);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 34);
-            this.panel1.TabIndex = 9;
-            // 
-            // imageSlider1
-            // 
-            this.imageSlider1.CurrentImageIndex = 0;
-            this.imageSlider1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.imageSlider1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images"))));
-            this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images1"))));
-            this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images2"))));
-            this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside;
-            this.imageSlider1.Location = new System.Drawing.Point(0, 0);
-            this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(100, 34);
-            this.imageSlider1.TabIndex = 0;
-            this.imageSlider1.Text = "imageSlider1";
-            this.imageSlider1.UseDisabledStatePainter = true;
-            // 
             // navBarControl2
             // 
             this.navBarControl2.ActiveGroup = this.navReports;
@@ -829,7 +757,7 @@
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 131;
             this.navBarControl2.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
             this.navBarControl2.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl2.Size = new System.Drawing.Size(32, 313);
+            this.navBarControl2.Size = new System.Drawing.Size(32, 352);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
             this.navBarControl2.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
@@ -909,11 +837,11 @@
             this.tileControl1.Groups.Add(this.tileGroup5);
             this.tileControl1.Groups.Add(this.tileGroup6);
             this.tileControl1.Groups.Add(this.tileGroup7);
-            this.tileControl1.Location = new System.Drawing.Point(116, 12);
+            this.tileControl1.Location = new System.Drawing.Point(48, 12);
             this.tileControl1.MaxId = 7;
             this.tileControl1.Name = "tileControl1";
             this.tileControl1.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
-            this.tileControl1.Size = new System.Drawing.Size(997, 313);
+            this.tileControl1.Size = new System.Drawing.Size(1058, 352);
             this.tileControl1.TabIndex = 6;
             this.tileControl1.Text = "tileControl1";
             // 
@@ -925,9 +853,9 @@
             // 
             // tileItem1
             // 
-            tileItemElement1.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement1.Image")));
-            tileItemElement1.Text = "Dashboard";
-            this.tileItem1.Elements.Add(tileItemElement1);
+            tileItemElement11.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement11.Image")));
+            tileItemElement11.Text = "Dashboard";
+            this.tileItem1.Elements.Add(tileItemElement11);
             this.tileItem1.Id = 0;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.tileItem1.Name = "tileItem1";
@@ -941,9 +869,9 @@
             // tileLicensing
             // 
             this.tileLicensing.ContentAnimation = DevExpress.XtraEditors.TileItemContentAnimationType.Fade;
-            tileItemElement2.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement2.Image")));
-            tileItemElement2.Text = "Licensing";
-            this.tileLicensing.Elements.Add(tileItemElement2);
+            tileItemElement12.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement12.Image")));
+            tileItemElement12.Text = "Licensing";
+            this.tileLicensing.Elements.Add(tileItemElement12);
             this.tileLicensing.Id = 4;
             this.tileLicensing.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileLicensing.Name = "tileLicensing";
@@ -956,9 +884,9 @@
             // 
             // tileItem2
             // 
-            tileItemElement3.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement3.Image")));
-            tileItemElement3.Text = "Custom Reports";
-            this.tileItem2.Elements.Add(tileItemElement3);
+            tileItemElement13.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement13.Image")));
+            tileItemElement13.Text = "Custom Reports";
+            this.tileItem2.Elements.Add(tileItemElement13);
             this.tileItem2.Id = 3;
             this.tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem2.Name = "tileItem2";
@@ -970,9 +898,9 @@
             // 
             // tileItem4
             // 
-            tileItemElement4.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement4.Image")));
-            tileItemElement4.Text = "Training Videos";
-            this.tileItem4.Elements.Add(tileItemElement4);
+            tileItemElement14.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement14.Image")));
+            tileItemElement14.Text = "Training Videos";
+            this.tileItem4.Elements.Add(tileItemElement14);
             this.tileItem4.Id = 5;
             this.tileItem4.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.tileItem4.Name = "tileItem4";
@@ -984,9 +912,9 @@
             // 
             // tileItem5
             // 
-            tileItemElement5.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement5.Image")));
-            tileItemElement5.Text = "Announcements";
-            this.tileItem5.Elements.Add(tileItemElement5);
+            tileItemElement15.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement15.Image")));
+            tileItemElement15.Text = "Announcements";
+            this.tileItem5.Elements.Add(tileItemElement15);
             this.tileItem5.Id = 6;
             this.tileItem5.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem5.Name = "tileItem5";
@@ -1003,8 +931,6 @@
             this.layoutControlItem10,
             this.layoutControlItem12,
             this.layoutControlItem13,
-            this.layoutControlItem14,
-            this.layoutControlItem15,
             this.layoutControlItem11});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
@@ -1014,9 +940,9 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.tileControl1;
-            this.layoutControlItem10.Location = new System.Drawing.Point(104, 0);
+            this.layoutControlItem10.Location = new System.Drawing.Point(36, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(1001, 317);
+            this.layoutControlItem10.Size = new System.Drawing.Size(1062, 356);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -1025,45 +951,27 @@
             this.layoutControlItem12.Control = this.navBarControl2;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(104, 317);
+            this.layoutControlItem12.Size = new System.Drawing.Size(36, 356);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.ribbonStatusBar1;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 355);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 356);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(1218, 34);
+            this.layoutControlItem13.Size = new System.Drawing.Size(1218, 33);
             this.layoutControlItem13.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextToControlDistance = 0;
             this.layoutControlItem13.TextVisible = false;
             // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.panel1;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 317);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(104, 38);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.panelControl1;
-            this.layoutControlItem15.Location = new System.Drawing.Point(104, 317);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(1114, 38);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.navBarControl1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(1105, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(1098, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(113, 317);
+            this.layoutControlItem11.Size = new System.Drawing.Size(120, 356);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -1074,6 +982,12 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(122, 296);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage1.Image")));
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Dashboard";
             // 
             // XtraForm1
             // 
@@ -1117,11 +1031,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageSlider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
             this.navBarControl2.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -1130,8 +1039,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
@@ -1214,14 +1121,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraEditors.Controls.ImageSlider imageSlider1;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
@@ -1229,5 +1128,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
     }
 }

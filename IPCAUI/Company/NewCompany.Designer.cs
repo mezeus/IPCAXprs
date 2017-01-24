@@ -945,8 +945,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 541);
             this.Controls.Add(this.layoutControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewCompany";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Company";
             this.Load += new System.EventHandler(this.NewCompany_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

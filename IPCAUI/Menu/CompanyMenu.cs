@@ -52,7 +52,12 @@ namespace IPCAUI.Menu
 
         private void CompanyMenu_Load(object sender, EventArgs e)
         {
+            Company.NewCompany frm = new Company.NewCompany();
 
+            frm.Owner = this;
+            frm.TopLevel = false;
+            splitContainerControl1.Panel2.Controls.Add(frm);
+            frm.Show();
         }
 
         private void rbCtrlCompany_Click(object sender, EventArgs e)
