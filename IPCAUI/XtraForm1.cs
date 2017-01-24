@@ -212,7 +212,7 @@ namespace IPCAUI
 
         private void tileItem1_ItemClick(object sender, TileItemEventArgs e)
         {
-            License.frmLicense frm = new License.frmLicense();
+            License.frmActivation frm = new License.frmActivation();
             frm.ShowDialog();
         }
     }

@@ -56,6 +56,12 @@
     <Compile Include="DBParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eSunSpeedDomain\eSunSpeedDomain.csproj">
+      <Project>{4cb6460e-8efe-4019-a9c0-711ecb1f6557}</Project>
+      <Name>eSunSpeedDomain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

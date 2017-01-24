@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillsofMaterialDetailsModel.cs" />
+    <Compile Include="MainCompanyInfo.cs" />
+    <Compile Include="CompanyPathInfo.cs" />
     <Compile Include="DefineCriticalLevelModel.cs" />
     <Compile Include="InventorySettingsModel.cs" />
     <Compile Include="AccountSettingsModel.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="PurchaseTypeModel.cs" />
     <Compile Include="ReferenceGroupModel.cs" />
     <Compile Include="Reports\DayBookModel.cs" />
+    <Compile Include="SessionVariables.cs" />
     <Compile Include="StockItemsModel.cs" />
     <Compile Include="StockJournalModel.cs" />
     <Compile Include="TdsModel.cs" />

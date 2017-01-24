@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MastersMenu));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -80,6 +80,7 @@
             this.barbtnExecutive = new DevExpress.XtraBars.BarButtonItem();
             this.btnItemCompany = new DevExpress.XtraBars.BarButtonItem();
             this.btnTIN = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMarkupStructure = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.NewSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.SalesReturn = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -122,6 +123,7 @@
             this.ribbonPageGroup34 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage10 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.PhysicalStock = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup27 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.sptCtrlMastermenu = new DevExpress.XtraEditors.SplitContainerControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -130,8 +132,6 @@
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
-            this.ribbonPageGroup27 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnMarkupStructure = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -556,6 +556,13 @@
             this.btnTIN.Id = 40;
             this.btnTIN.Name = "btnTIN";
             // 
+            // btnMarkupStructure
+            // 
+            this.btnMarkupStructure.Caption = "Markup Structure Mastre";
+            this.btnMarkupStructure.Id = 41;
+            this.btnMarkupStructure.Name = "btnMarkupStructure";
+            this.btnMarkupStructure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMarkupStructure_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -572,12 +579,12 @@
             this.ribbonPage1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage1.Image")));
             this.ribbonPage1.KeyTip = "SA";
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation1.Group = null;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
             this.ribbonPage1.Text = "Accounts";
             // 
             // NewSales
@@ -868,6 +875,12 @@
             this.PhysicalStock.Name = "PhysicalStock";
             this.PhysicalStock.Text = "Physical Stock";
             // 
+            // ribbonPageGroup27
+            // 
+            this.ribbonPageGroup27.ItemLinks.Add(this.btnMarkupStructure);
+            this.ribbonPageGroup27.Name = "ribbonPageGroup27";
+            this.ribbonPageGroup27.Text = "ribbonPageGroup27";
+            // 
             // sptCtrlMastermenu
             // 
             this.sptCtrlMastermenu.Location = new System.Drawing.Point(12, 12);
@@ -944,19 +957,6 @@
             this.backstageViewTabItem1.KeyTip = "B";
             this.backstageViewTabItem1.Name = "backstageViewTabItem1";
             this.backstageViewTabItem1.Selected = false;
-            // 
-            // ribbonPageGroup27
-            // 
-            this.ribbonPageGroup27.ItemLinks.Add(this.btnMarkupStructure);
-            this.ribbonPageGroup27.Name = "ribbonPageGroup27";
-            this.ribbonPageGroup27.Text = "ribbonPageGroup27";
-            // 
-            // btnMarkupStructure
-            // 
-            this.btnMarkupStructure.Caption = "Markup Structure Mastre";
-            this.btnMarkupStructure.Id = 41;
-            this.btnMarkupStructure.Name = "btnMarkupStructure";
-            this.btnMarkupStructure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMarkupStructure_ItemClick);
             // 
             // MastersMenu
             // 

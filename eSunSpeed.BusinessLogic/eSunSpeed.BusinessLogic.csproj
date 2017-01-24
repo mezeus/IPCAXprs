@@ -65,6 +65,7 @@
     <Compile Include="Arch.cs" />
     <Compile Include="AuthorMaster.cs" />
     <Compile Include="CompanyBL.cs" />
+    <Compile Include="MarkupStructureBL.cs" />
     <Compile Include="MasterseriesBL.cs" />
     <Compile Include="MatRcvdBL.cs" />
     <Compile Include="IssuedVoucherBL.cs" />

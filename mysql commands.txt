@@ -1,0 +1,5 @@
+--extracting all stored procedures from sunspeed database
+mysqldump -n -t -d -R sunspeed -uroot -pcool > mysp.sql
+
+--pull everything
+mysqldump -R sunspeed -uroot -pcool > allsp.sql
