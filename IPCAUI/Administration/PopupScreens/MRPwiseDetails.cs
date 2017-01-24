@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using eSunSpeedDomain;
+using DevExpress.XtraEditors.Repository;
 
 namespace IPCAUI.Administration.PopupScreens
 {
@@ -30,10 +31,12 @@ namespace IPCAUI.Administration.PopupScreens
             {
                 DataRow row = dvgMrpwiseDetails.GetDataRow(i);
                 objMRPwise = new ItemMRPWiseDetailsModel();
+                objMRPwise.Quantity = Convert.ToDecimal(row["Quantity"].ToString() == null ? string.Empty : row["Quantity"].ToString());
+                objMRPwise.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
                 objMRPwise.MRP = Convert.ToDecimal(row["MRP"].ToString() == null ? string.Empty : row["MRP"].ToString());
                 objMRPwise.SalesPrice = Convert.ToDecimal(row["SalePrice"].ToString() == null ? string.Empty : row["SalePrice"].ToString());
-                objMRPwise.Quantity = Convert.ToDecimal(row["Quantity"].ToString() == null ? string.Empty : row["Quantity"].ToString());
-                objMRPwise.Amount = Convert.ToDecimal(row["Amount"].ToString() == null ? string.Empty : row["Amount"].ToString());
+                objMRPwise.Costprice = Convert.ToDecimal(row["Costprice"].ToString() == null ? string.Empty : row["Costprice"].ToString());
+                objMRPwise.Barcode = row["Barcode"].ToString() == null ? string.Empty : row["Barcode"].ToString();
                 if(ItemMasterNew.objModel.ItemId!=0)
                 {
                     objMRPwise.MRP_Id = Convert.ToInt32(row["MRPId"].ToString() == String.Empty ? "0": row["MRPId"]);
@@ -50,14 +53,23 @@ namespace IPCAUI.Administration.PopupScreens
         {
             // Administration.ItemMasterNew.objModel.Name.ToString();
 
-            dt.Columns.Add("MRP");
-            dt.Columns.Add("SalePrice");
             dt.Columns.Add("Quantity");
-            dt.Columns.Add("Amount");
+            dt.Columns.Add("Unit");
+            dt.Columns.Add("MRP");
+            dt.Columns.Add("SalePrice");           
+            dt.Columns.Add("Costprice");
+            dt.Columns.Add("Barcode");
             dt.Columns.Add("MRPId");
             dt.Columns.Add("ParentId");
             dvgMrpwise.DataSource = dt;
-            if(ItemMasterNew.objModel.ItemId !=0)
+            RepositoryItemLookUpEdit riLookupUnit = new RepositoryItemLookUpEdit();
+            riLookupUnit.DataSource = new string[] { ItemMasterNew.objModel.AltUnit, ItemMasterNew.objModel.MainUnit };
+            //riLookup.DataSource = lstUnits;
+            riLookupUnit.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            riLookupUnit.AutoSearchColumnIndex = 1;
+            dvgMrpwiseDetails.Columns["Unit"].ColumnEdit = riLookupUnit;
+            dvgMrpwiseDetails.BestFitColumns();
+            if (ItemMasterNew.objModel.ItemId !=0)
             {
                 dt.Rows.Clear();
 
@@ -67,10 +79,12 @@ namespace IPCAUI.Administration.PopupScreens
                 {
                     dr = dt.NewRow();
 
+                    dr["Quantity"] = objmod.Quantity;
+                    dr["Unit"] = objmod.Unit;
                     dr["MRP"] = objmod.MRP;
                     dr["SalePrice"] = objmod.SalesPrice;
-                    dr["Quantity"] = objmod.Quantity;
-                    dr["Amount"] = objmod.Amount;
+                    dr["Costprice"] = objmod.Costprice;
+                    dr["Barcode"] = objmod.Barcode;
                     dr["MRPId"] = objmod.MRP_Id;
                     dr["ParentId"] = objmod.ParentId;
                     dt.Rows.Add(dr);
@@ -101,6 +115,32 @@ namespace IPCAUI.Administration.PopupScreens
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dvgMrpwiseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            
+        }
+
+        private void dvgMrpwiseDetails_ColumnChanged(object sender, EventArgs e)
+        {
+            //if (dvgMrpwiseDetails.Columns["Quantity"] == null)
+            //{
+            //    btnOk.Focus();
+            //}
+        }
+
+        private void dvgMrpwiseDetails_RowClick(object sender, RowClickEventArgs e)
+        {
+            
+        }
+
+        private void dvgMrpwiseDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (dvgMrpwiseDetails.Columns["Quantity"] == null)
+            //{
+            //    btnOk.Focus();
+            //}
         }
     }
 }

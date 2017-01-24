@@ -28,17 +28,29 @@ namespace IPCAUI.Administration.List
 
         private void dvgStdnarration_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.KeyValue == '\r')
+            {
+                StdNarrationMasterModel lstStdnarr;
+
+                lstStdnarr = (StdNarrationMasterModel)dvgStdnarrationDetails.GetRow(dvgStdnarrationDetails.FocusedRowHandle);
+                StdNarration.StdId = lstStdnarr.SN_Id;
+
+                this.Close();
+            }
         }
 
         private void dvgStdnarrationDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
-            StdNarrationMasterModel lstStdnarr;
-
-            lstStdnarr = (StdNarrationMasterModel)dvgStdnarrationDetails.GetRow(dvgStdnarrationDetails.FocusedRowHandle);
-            StdNarration.StdId = lstStdnarr.SN_Id;
-
-            this.Close();
+           
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

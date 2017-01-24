@@ -5,20 +5,13 @@ using System.Text;
 
 namespace eSunSpeedDomain
 {
-    public class ItemGroupMasterModel
+    public class ItemCompanyMasterModel
     {
-        public int IGM_id { get; set; }
-        public string ItemGroup { get; set; }
-        public string Alias { get; set; }
-        public bool PrimaryGroup { get; set; }
-        public string UnderGroup { get; set; }
+        public int ICM_id { get; set; }
+        public string ItemCompany { get; set; }
         public string StockAccount { get; set; }
         public string SalesAccount { get; set; }
         public string PurchaseAccount { get; set; }
-        public bool DefaultConfig { get; set; }
-        public bool SeparateConfig { get; set; }
-        public int Parameters { get; set; }
-
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

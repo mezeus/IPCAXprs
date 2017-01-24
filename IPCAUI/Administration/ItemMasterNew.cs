@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeedDomain;
 using eSunSpeed.BusinessLogic;
+using DevExpress.XtraTab;
 
 namespace IPCAUI.Administration
 {
@@ -16,14 +17,17 @@ namespace IPCAUI.Administration
     {
         ItemMasterBL objIMBL = new ItemMasterBL();
         ItemGroupMasterBL objgrpbl = new ItemGroupMasterBL();
+        ItemCompanyMasterBL objcompbl = new ItemCompanyMasterBL();
         UnitMaster objUnitBl = new UnitMaster();
         TaxCategory objTaxBl = new TaxCategory();
         AccountMasterBL objaccbl = new AccountMasterBL();
-
+        MaterialCentreMasterBL objMatBL = new MaterialCentreMasterBL();
         public static ItemMasterModel objModel=new ItemMasterModel();
         public static int Item_Id = 0;
         public static bool isGroupF3 = false;
         public static string FormName ="";
+        private object xtraTabControl1;
+
         public ItemMasterNew()
         {
             InitializeComponent();
@@ -42,17 +46,17 @@ namespace IPCAUI.Administration
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
             objModel.Alias = tbxAlias.Text == null?string.Empty:tbxAlias.Text.Trim();
             objModel.Group = cbxGroup.SelectedItem.ToString();
-            objModel.Company = cbxGroup.SelectedItem.ToString();
+            objModel.Company = cbxCompany.SelectedItem.ToString();
 
             objModel.MainUnit = cbxMainUnit.SelectedItem.ToString();
             objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
-            //objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
-          
+            objModel.ConAltUnit = Convert.ToDecimal(tbxConFrom.Text.Trim()==null?"0.00":tbxConFrom.Text.Trim());
+            objModel.ConMainUnit = Convert.ToDecimal(tbxConTo.Text.Trim() == null ? "0.00" : tbxConTo.Text.Trim());
             objModel.Unit = cbxUnit.SelectedItem.ToString();
-            objModel.OpStockValue = Convert.ToDouble(tbxOpStock.Text.Trim());
+            objModel.OpStockQty = Convert.ToDouble(tbxOpStock.Text.Trim());
             objModel.Rate = Convert.ToDouble(tbxRate.Text.Trim());
             objModel.Per = tbxPer.SelectedItem.ToString();
-            objModel.Value = Convert.ToDouble(tbxValue.Text.Trim());
+            objModel.OpStockValue = Convert.ToDouble(tbxValue.Text.Trim());
 
             objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString();
             objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString();
@@ -80,12 +84,14 @@ namespace IPCAUI.Administration
             objModel.MarkupInfo = cbxMarkupInfo.SelectedItem.ToString() == "Y" ? true : false;
             if(objModel.MarkupInfo)
             {
-                Convert.ToString(objModel.SaleMarkup);
-                Convert.ToString(objModel.PurMarkup);
-                Convert.ToString(objModel.SaleCompMarkup);
-                Convert.ToString(objModel.PurCompMarkup);
+                Convert.ToDecimal(objModel.SaleMarkup);
+                Convert.ToDecimal(objModel.PurMarkup);
+                Convert.ToDecimal(objModel.SaleCompMarkup);
+                Convert.ToDecimal(objModel.PurCompMarkup);
                 Convert.ToBoolean(objModel.SpecifySaleMarkupStruct);
                 Convert.ToBoolean(objModel.SpecifyPurMarkupStruct);
+                Convert.ToString(objModel.SaleDiscStructure);
+                Convert.ToString(objModel.PurcDiscStructure);
             }
             objModel.StockValMethod = tbxStockValMethod.SelectedItem.ToString();
 
@@ -101,7 +107,7 @@ namespace IPCAUI.Administration
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
             if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxOpStock.Text.Trim() !="0.00"))
             {
-                PopupScreens.SerialnoWiseDetails frmserial = new PopupScreens.SerialnoWiseDetails();
+                PopupScreens.ItemSerialnoWiseDetails frmserial = new PopupScreens.ItemSerialnoWiseDetails();
                 frmserial.StartPosition = FormStartPosition.CenterScreen;
                 frmserial.ShowDialog();
 
@@ -135,13 +141,21 @@ namespace IPCAUI.Administration
                 frmserial.ShowDialog();
             }
             objModel.ExpDateRequired = cbxEnableExpDate.SelectedItem.ToString();
-            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim()==null?"0":tbxExpDays.Text.Trim());
+            objModel.ExpiryDays = Convert.ToInt32(tbxExpDays.Text.Trim()==string.Empty?"0":tbxExpDays.Text.Trim());
             objModel.SalesAccount = cbxSalesAccount.SelectedItem.ToString();
             objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
             objModel.DontMaintainStockBal = cbxMaintainStock.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultMC = cbxSpecifyDefaultMC.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.DefaultMaterialCenter = string.Empty;
+            if(objModel.SpecifyDefaultMC)
+            {
+                objModel.DefaultMaterialCenter = cbxMaterialCenter.Text.Trim();
+                PopupScreens.ItemDefaultMaterialCenter frmMC = new PopupScreens.ItemDefaultMaterialCenter();
+                frmMC.StartPosition = FormStartPosition.CenterScreen;
+                frmMC.ShowDialog();
+            }
             objModel.FreezeMCforItem = cbxFreezeMC.SelectedItem.ToString() == "Y" ? true : false;
-            objModel.TotalNumberofAuthors = Convert.ToInt32(tbxAuthors.Text.Trim());
+            objModel.TotalNumberofAuthors = Convert.ToInt32(tbxAuthors.Text.Trim()==string.Empty?"0":tbxAuthors.Text.Trim());
             objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultVendor = cbxSpecifyDefaultVendor.SelectedItem.ToString() == "Y" ? true : false;
 
@@ -162,6 +176,7 @@ namespace IPCAUI.Administration
             if (isSaved)
             {
                 MessageBox.Show("Saved Successfully!");
+                ClearControls();
             }
         }
 
@@ -175,7 +190,7 @@ namespace IPCAUI.Administration
             cbxAltUnit.SelectedIndex = 0;
             cbxTaxCat.SelectedIndex = 0;
            
-            cbxCreticallevel.SelectedIndex = 0;
+            cbxCreticallevel.SelectedIndex = 1;
             cbxApplySalesPrice.SelectedIndex = 0;
             cbxApplyPurchPrice.SelectedIndex = 0;
             cbxMaintainRG.SelectedIndex = 0;
@@ -183,7 +198,7 @@ namespace IPCAUI.Administration
             cbxBatchWiseDetails.SelectedIndex = 1;
             cbxSalesAccount.SelectedIndex = 0;
             cbxPurchAccount.SelectedIndex = 0;
-            cbxSpecifyDefaultMC.SelectedIndex = 0;
+            cbxSpecifyDefaultMC.SelectedIndex =1;
             cbxFreezeMC.SelectedIndex = 0;
             cbxSrlWiseDetails.SelectedIndex = 1;
             cbxParamDetails.SelectedIndex = 1;
@@ -213,7 +228,11 @@ namespace IPCAUI.Administration
             foreach (ItemGroupMasterModel objgroup in lstItemGroups)
             {
                 cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
-                cbxCompany.Properties.Items.Add(objgroup.ItemGroup);
+            }
+            List<ItemCompanyMasterModel> lstItemCompany = objcompbl.GetAllItemCompany();
+            foreach (ItemCompanyMasterModel objcompany in lstItemCompany)
+            {
+                cbxCompany.Properties.Items.Add(objcompany.ItemCompany);
             }
             //TaxCategory Combobox
             List<TaxCategoryModel> lstTaxCategeory = objTaxBl.GetAllTaxCategories();
@@ -228,8 +247,8 @@ namespace IPCAUI.Administration
                 cbxSalesAccount.Properties.Items.Add(objAccMast.AccountName);
                 cbxPurchAccount.Properties.Items.Add(objAccMast.AccountName);
             }
-            cbxSalesAccount.SelectedIndex = 0;
-            cbxPurchAccount.SelectedIndex = 0;
+            cbxSalesAccount.SelectedItem="Sales";
+            cbxPurchAccount.SelectedItem= "Purchase";
 
         }
         private void ItemMasterNew_Load(object sender, EventArgs e)
@@ -238,16 +257,17 @@ namespace IPCAUI.Administration
         }
         public void ClearControls()
         {
-            Item_Id = 0;
-            tbxName.Text = string.Empty;
+            Item_Id = 0;   
             tbxPrintname.Text = string.Empty;
             tbxAlias.Text = string.Empty;
-            //tbxconFactor.Text = string.Empty;
+            //Need To some Parameter From Grid
+            tbxConFrom.Text = string.Empty;
             tbxOpStock.Text = "0.00";
             tbxRate.Text = "0.00";
             tbxValue.Text = "0.00";
             tbxMainSalesPrice.Text = "0.00";
             tbxMainPurcPrice.Text = "0.00";
+            objModel = new ItemMasterModel();
         }
       
         private void ItemList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -259,7 +279,7 @@ namespace IPCAUI.Administration
             if(Item_Id!=0)
             {
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                //lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 tbxName.Focus();
 
@@ -278,12 +298,13 @@ namespace IPCAUI.Administration
             cbxCompany.SelectedItem= objModel.Company;
             cbxMainUnit.SelectedItem = objModel.MainUnit;
             cbxAltUnit.SelectedItem = objModel.AltUnit;
-            //tbxconFactor.Text=objModel.Confactor.ToString();
+            tbxConFrom.Text = objModel.ConAltUnit.ToString();
+            tbxConTo.Text = objModel.ConMainUnit.ToString(); 
             tbxOpStock.Text= objModel.OpStockQty.ToString();
             cbxUnit.Text = objModel.Unit;
             tbxRate.Text = objModel.Rate.ToString();
             tbxPer.Text = objModel.Per.ToString();
-            tbxValue.Text = objModel.Value.ToString();
+            tbxValue.Text = objModel.OpStockValue.ToString();
             cbxApplySalesPrice.SelectedItem = objModel.ApplySalesPrice;
             cbxApplyPurchPrice.SelectedItem = objModel.ApplyPurchPrice;
 
@@ -314,7 +335,6 @@ namespace IPCAUI.Administration
             tbxItemdesc4.Text = objModel.ItemDescription4;
 
             cbxCreticallevel.SelectedItem = (objModel.SetCriticalLevel)? "Y" : "N";
-
             cbxMaintainRG.SelectedItem = (objModel.MaintainRG23D)?"Y":"N";
             tbxTariffHeading.Text = objModel.TariffHeading;
             cbxSrlWiseDetails.SelectedItem = (objModel.SerialNumberwiseDetails)?"Y":"N";
@@ -347,7 +367,7 @@ namespace IPCAUI.Administration
         private void cbxMainUnit_Enter(object sender, EventArgs e)
         {
 
-            // cbxMainUnit.SelectedIndex = 0;
+            cbxMainUnit.SelectedIndex = 0;
 
             CalculateOpStockValue();
 
@@ -433,7 +453,7 @@ namespace IPCAUI.Administration
 
         private void cbxTaxCat_Enter(object sender, EventArgs e)
         {
-           
+            cbxTaxCat.SelectedIndex = 0;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -443,21 +463,25 @@ namespace IPCAUI.Administration
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if(objModel.ItemId==0)
+            {
+                return;
+            }
             objModel.Name = tbxName.Text.Trim();
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
             objModel.Alias = tbxAlias.Text == null ? string.Empty : tbxAlias.Text.Trim();
             objModel.Group = cbxGroup.SelectedItem.ToString();
-            objModel.Company = cbxGroup.SelectedItem.ToString();
+            objModel.Company = cbxCompany.SelectedItem.ToString();
 
             objModel.MainUnit = cbxMainUnit.SelectedItem.ToString();
             objModel.AltUnit = cbxAltUnit.SelectedItem.ToString();
             //objModel.Confactor = Convert.ToDouble(tbxconFactor.Text.Trim());
 
             objModel.Unit = cbxUnit.SelectedItem.ToString();
-            objModel.OpStockValue = Convert.ToDouble(tbxOpStock.Text.Trim());
+            objModel.OpStockQty = Convert.ToDouble(tbxOpStock.Text.Trim());
             objModel.Rate = Convert.ToDouble(tbxRate.Text.Trim());
             objModel.Per = tbxPer.SelectedItem.ToString();
-            objModel.Value = Convert.ToDouble(tbxValue.Text.Trim());
+            objModel.OpStockValue = Convert.ToDouble(tbxValue.Text.Trim());
 
             objModel.ApplyPurchPrice = cbxApplyPurchPrice.SelectedItem.ToString();
             objModel.ApplySalesPrice = cbxApplySalesPrice.SelectedItem.ToString();
@@ -506,7 +530,7 @@ namespace IPCAUI.Administration
             objModel.SerialNumberwiseDetails = cbxSrlWiseDetails.SelectedItem.ToString() == "Y" ? true : false;
             if (cbxSrlWiseDetails.SelectedItem.ToString() == "Y" && (tbxOpStock.Text.Trim() != "0.00"))
             {
-                PopupScreens.SerialnoWiseDetails frmserial = new PopupScreens.SerialnoWiseDetails();
+                PopupScreens.ItemSerialnoWiseDetails frmserial = new PopupScreens.ItemSerialnoWiseDetails();
                 frmserial.StartPosition = FormStartPosition.CenterScreen;
                 frmserial.ShowDialog();
             }
@@ -537,6 +561,14 @@ namespace IPCAUI.Administration
             objModel.PurcAccount = cbxPurchAccount.SelectedItem.ToString();
             objModel.DontMaintainStockBal = cbxMaintainStock.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultMC = cbxSpecifyDefaultMC.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.DefaultMaterialCenter = string.Empty;
+            if (objModel.SpecifyDefaultMC)
+            {
+                objModel.DefaultMaterialCenter = cbxMaterialCenter.Text.Trim();
+                PopupScreens.ItemDefaultMaterialCenter frmMC = new PopupScreens.ItemDefaultMaterialCenter();
+                frmMC.StartPosition = FormStartPosition.CenterScreen;
+                frmMC.ShowDialog();
+            }
             objModel.FreezeMCforItem = cbxFreezeMC.SelectedItem.ToString() == "Y" ? true : false;
             objModel.TotalNumberofAuthors = Convert.ToInt32(tbxAuthors.Text.Trim());
             objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
@@ -600,6 +632,10 @@ namespace IPCAUI.Administration
                 {
                     FormName = "TaxCategory";
                 }
+                if(cbxCompany.Focused)
+                {
+                    FormName = "ItemCompany";
+                }
             }
             else
             {
@@ -660,7 +696,7 @@ namespace IPCAUI.Administration
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             ClearControls();
-            objModel = new ItemMasterModel();
+            
 
     }
 
@@ -672,7 +708,7 @@ namespace IPCAUI.Administration
             //{
             //    cbxGroup.Properties.Items.Add(objgroup.ItemGroup);
             //}
-            //cbxGroup.SelectedIndex = 0;
+            cbxGroup.SelectedIndex = 0;
         }
 
         private void cbxCompany_Enter(object sender, EventArgs e)
@@ -1047,6 +1083,7 @@ namespace IPCAUI.Administration
 
         private void cbxTaxCat_KeyPress(object sender, KeyPressEventArgs e)
         {
+            cbxTaxCat.Properties.Items.Clear();
             List<TaxCategoryModel> lstTaxCategeory = objTaxBl.GetAllTaxCategories();
             foreach (TaxCategoryModel objTax in lstTaxCategeory)
             {
@@ -1088,6 +1125,90 @@ namespace IPCAUI.Administration
             else
             {
                 btnCritical.Enabled = true;
+            }
+        }
+
+        private void cbxUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxAltUnit_Enter_1(object sender, EventArgs e)
+        {
+            cbxAltUnit.SelectedIndex = 0;
+        }
+
+        private void cbxSpecifyDefaultMC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cbxSpecifyDefaultMC.SelectedItem.ToString()=="N")
+            {
+                lblMaterialCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            else
+            {
+                lblMaterialCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+        }
+
+        private void cbxSpecifyDefaultMC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSpecifyDefaultMC.SelectedItem.ToString() == "N")
+            {
+                lblMaterialCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            }
+            else
+            {
+                //PopupScreens.ItemDefaultMaterialCenter frmMC = new PopupScreens.ItemDefaultMaterialCenter();
+                //frmMC.StartPosition = FormStartPosition.CenterScreen;
+                //frmMC.ShowDialog();
+                lblMaterialCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+        }
+
+        private void cbxMaterialCenter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            List<string> lstMaterial = new List<string>();
+            List<MaterialCentreMasterModel> lstmat = objMatBL.GetAllMaterials();
+            foreach (MaterialCentreMasterModel objmod in lstmat)
+            {
+                lstMaterial.Add(objmod.GroupName);
+            }
+            cbxMaterialCenter.Properties.DataSource = lstMaterial;
+        }
+
+        private void ItemMasterNew_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
+
+        private void cbxTaxCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbxTaxCat.SelectedIndex = 0;
+        }
+
+        private void cbxMaterialCenter_Enter(object sender, EventArgs e)
+        {
+            List<string> lstMaterial = new List<string>();
+            List<MaterialCentreMasterModel> lstmat = objMatBL.GetAllMaterials();
+            foreach (MaterialCentreMasterModel objmod in lstmat)
+            {
+                lstMaterial.Add(objmod.GroupName);
+            }
+            cbxMaterialCenter.Properties.DataSource = lstMaterial;
+            cbxMaterialCenter.ShowPopup();
+            //((LookUpEdit)dvgBatchwiseDetails.ActiveEditor).ShowPopup();
+        }
+
+        private void cbxCompany_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cbxCompany.Properties.Items.Clear();
+            List<ItemCompanyMasterModel> lstItemCompanys = objcompbl.GetAllItemCompany();
+            foreach (ItemCompanyMasterModel objcompany in lstItemCompanys)
+            {
+                cbxCompany.Properties.Items.Add(objcompany.ItemCompany);
             }
         }
     }

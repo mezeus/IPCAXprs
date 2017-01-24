@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.PopupScreens
 {
@@ -26,22 +27,47 @@ namespace IPCAUI.Administration.PopupScreens
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Administration.ItemMasterNew.objModel.BarCodes = new List<string>();
-            //Loop through the grid and get the values
-
+            ItemAliasModel objBarcode;
+            Administration.ItemMasterNew.objModel.ItemBarcode = new List<ItemAliasModel>();
             for (int i = 0; i < dvgBarcodeDetails.DataRowCount; i++)
             {
                 DataRow row = dvgBarcodeDetails.GetDataRow(i);
-
-                Administration.ItemMasterNew.objModel.BarCodes.Add(row["Barcode"].ToString()==null?string.Empty: row["Barcode"].ToString());
+                objBarcode = new ItemAliasModel();
+                objBarcode.Barcodes=row["Barcodes"].ToString()==null?string.Empty: row["Barcodes"].ToString();
+                if(ItemMasterNew.objModel.ItemId!=0)
+                {
+                    objBarcode.BarcodeId = Convert.ToInt32(row["BarcodeId"].ToString() == string.Empty ? "0" : row["BarcodeId"].ToString());
+                    objBarcode.ParentId = Convert.ToInt32(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"].ToString());
+                }
+                ItemMasterNew.objModel.ItemBarcode.Add(objBarcode);
             }
             this.Close();
             }
 
         private void ItemAliasPopup_Load(object sender, EventArgs e)
         {
-            dt.Columns.Add("Barcode");
+            dt.Columns.Add("Barcodes");
+            dt.Columns.Add("BarcodeId");
+            dt.Columns.Add("ParentId");
             dvgBarcode.DataSource = dt;
+            if(ItemMasterNew.objModel.ItemId!=0)
+            {
+                dt.Rows.Clear();
+
+                DataRow dr;
+
+                foreach (ItemAliasModel objBarcodes in ItemMasterNew.objModel.ItemBarcode)
+                {
+                    dr = dt.NewRow();
+
+                    dr["Barcodes"] = objBarcodes.Barcodes.ToString();
+                    dr["BarcodeId"] = objBarcodes.BarcodeId;
+                    dr["ParentId"] = objBarcodes.ParentId;
+                    dt.Rows.Add(dr);
+                }
+
+                dvgBarcode.DataSource = dt;
+            }
         }
 
         private void dvgBarcodeDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

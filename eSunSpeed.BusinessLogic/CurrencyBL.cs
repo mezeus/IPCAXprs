@@ -23,7 +23,7 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@Symbol", objCur.Symbol));
-                paramCollection.Add(new DBParameter("@String", objCur.SubString));
+                paramCollection.Add(new DBParameter("@String", objCur.CString));
                 paramCollection.Add(new DBParameter("@SubString", objCur.SubString));
                 paramCollection.Add(new DBParameter("@ConversionMode", objCur.ConvertionMode));
                 paramCollection.Add(new DBParameter("@CreatedBy", objCur.CreatedBy));                                
@@ -75,39 +75,24 @@ namespace eSunSpeed.BusinessLogic
 
             return isUpdated;
         }
-
-        //Delete
-        
-        public bool DeletCurrency(List<int> lstIds)
+        //Delete Single Currency
+        public bool DeletCurrency(int id)
         {
-            string Query = string.Empty;
-            bool isUpdated = true;
-
+            bool isDelete = false;
             try
             {
-                DBParameterCollection paramCollection;
-
-                foreach (int CM_ID in lstIds)
-                {
-                    paramCollection = new DBParameterCollection();
-
-                    paramCollection.Add(new DBParameter("@CM_ID", CM_ID));
-                    Query = "Delete from CurrencyMaster WHERE [CM_ID]=@CM_ID";
-
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isUpdated = true;
-                }
-
+                string Query = "DELETE FROM currencymaster WHERE CM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
             }
             catch (Exception ex)
             {
-                isUpdated = false;
+                isDelete = false;
                 throw ex;
             }
-
-            return isUpdated;
+            return isDelete;
         }
-
         //List
         public List<CurrencyMasterModel> GetAllCurrency()
         {
@@ -153,6 +138,20 @@ namespace eSunSpeed.BusinessLogic
 
             return objCurr;
         }
-       
+
+        //If is Currency Exists
+        public bool IsCurrencyExists(string MasterName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM currencymaster WHERE Symbol='{0}'", MasterName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

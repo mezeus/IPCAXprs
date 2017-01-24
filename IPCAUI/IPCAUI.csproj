@@ -110,6 +110,12 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\List\ItemcompanyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\List\ItemcompanyList.Designer.cs">
+      <DependentUpon>ItemcompanyList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\MarkupStructureMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +361,18 @@
     </Compile>
     <Compile Include="Administration\PopupScreens\MarkupInfo.Designer.cs">
       <DependentUpon>MarkupInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemSerialnoWiseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemSerialnoWiseDetails.Designer.cs">
+      <DependentUpon>ItemSerialnoWiseDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemDefaultMaterialCenter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\ItemDefaultMaterialCenter.Designer.cs">
+      <DependentUpon>ItemDefaultMaterialCenter.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\PopupScreens\MRPwiseDetails.cs">
       <SubType>Form</SubType>
@@ -3252,6 +3270,9 @@
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\List\ItemcompanyList.resx">
+      <DependentUpon>ItemcompanyList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\MarkupStructureMaster.resx">
       <DependentUpon>MarkupStructureMaster.cs</DependentUpon>
     </EmbeddedResource>
@@ -3374,6 +3395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\MarkupInfo.resx">
       <DependentUpon>MarkupInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\ItemSerialnoWiseDetails.resx">
+      <DependentUpon>ItemSerialnoWiseDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\ItemDefaultMaterialCenter.resx">
+      <DependentUpon>ItemDefaultMaterialCenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\MRPwiseDetails.resx">
       <DependentUpon>MRPwiseDetails.cs</DependentUpon>

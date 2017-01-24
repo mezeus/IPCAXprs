@@ -112,6 +112,7 @@
             this.dvgBillmaterialDetails.Name = "dvgBillmaterialDetails";
             this.dvgBillmaterialDetails.OptionsBehavior.ReadOnly = true;
             this.dvgBillmaterialDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgBillmaterialDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgBillmaterialDetails_KeyDown);
             this.dvgBillmaterialDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgBillmaterialDetails_KeyPress);
             // 
             // colName

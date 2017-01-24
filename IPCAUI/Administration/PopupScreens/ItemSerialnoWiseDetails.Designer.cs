@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration.PopupScreens
 {
-    partial class MRPwiseDetails
+    partial class ItemSerialnoWiseDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -31,24 +31,24 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
-            this.dvgMrpwise = new DevExpress.XtraGrid.GridControl();
-            this.dvgMrpwiseDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgSerialno = new DevExpress.XtraGrid.GridControl();
+            this.dvgSerialnoDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMrp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSalePrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSerialNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMRPId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSnId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSalesPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBarcode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMRP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -57,16 +57,14 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgMrpwise)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgMrpwiseDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSerialno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSerialnoDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
@@ -81,9 +79,8 @@
             // 
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.btnOk);
-            this.layoutControl1.Controls.Add(this.dvgMrpwise);
+            this.layoutControl1.Controls.Add(this.dvgSerialno);
             this.layoutControl1.Controls.Add(this.labelControl5);
-            this.layoutControl1.Controls.Add(this.labelControl4);
             this.layoutControl1.Controls.Add(this.labelControl3);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -113,53 +110,52 @@
             this.btnOk.Text = "Ok";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // dvgMrpwise
+            // dvgSerialno
             // 
-            this.dvgMrpwise.Location = new System.Drawing.Point(12, 63);
-            this.dvgMrpwise.MainView = this.dvgMrpwiseDetails;
-            this.dvgMrpwise.Name = "dvgMrpwise";
-            this.dvgMrpwise.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.dvgSerialno.Location = new System.Drawing.Point(12, 63);
+            this.dvgSerialno.MainView = this.dvgSerialnoDetails;
+            this.dvgSerialno.Name = "dvgSerialno";
+            this.dvgSerialno.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1});
-            this.dvgMrpwise.Size = new System.Drawing.Size(594, 233);
-            this.dvgMrpwise.TabIndex = 10;
-            this.dvgMrpwise.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dvgMrpwiseDetails});
+            this.dvgSerialno.Size = new System.Drawing.Size(594, 233);
+            this.dvgSerialno.TabIndex = 10;
+            this.dvgSerialno.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgSerialnoDetails});
+            this.dvgSerialno.Click += new System.EventHandler(this.dvgSerialno_Click);
             // 
-            // dvgMrpwiseDetails
+            // dvgSerialnoDetails
             // 
-            this.dvgMrpwiseDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.dvgMrpwiseDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgSerialnoDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.dvgSerialnoDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
-            this.colMrp,
-            this.colSalePrice,
+            this.colSerialNo,
             this.colQuantity,
-            this.colMRPId,
+            this.colUnit,
+            this.colSnId,
             this.colParentId,
+            this.colSalesPrice,
             this.colCost,
             this.colBarcode,
-            this.colUnit});
-            this.dvgMrpwiseDetails.GridControl = this.dvgMrpwise;
-            this.dvgMrpwiseDetails.Name = "dvgMrpwiseDetails";
-            this.dvgMrpwiseDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgMrpwiseDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.dvgMrpwiseDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
-            this.dvgMrpwiseDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgMrpwiseDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgMrpwiseDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgMrpwiseDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.dvgMrpwiseDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.dvgMrpwiseDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.dvgMrpwiseDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.dvgMrpwiseDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgMrpwiseDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.dvgMrpwiseDetails.OptionsView.ShowFooter = true;
-            this.dvgMrpwiseDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgMrpwiseDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgMrpwiseDetails_RowClick);
-            this.dvgMrpwiseDetails.ColumnChanged += new System.EventHandler(this.dvgMrpwiseDetails_ColumnChanged);
-            this.dvgMrpwiseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgMrpwiseDetails_CellValueChanged);
-            this.dvgMrpwiseDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgMrpwiseDetails_CustomColumnDisplayText);
-            this.dvgMrpwiseDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgMrpwiseDetails_KeyPress);
+            this.colMRP});
+            this.dvgSerialnoDetails.GridControl = this.dvgSerialno;
+            this.dvgSerialnoDetails.Name = "dvgSerialnoDetails";
+            this.dvgSerialnoDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgSerialnoDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
+            this.dvgSerialnoDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.dvgSerialnoDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgSerialnoDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgSerialnoDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgSerialnoDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.dvgSerialnoDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.dvgSerialnoDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.dvgSerialnoDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.dvgSerialnoDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgSerialnoDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.dvgSerialnoDetails.OptionsView.ShowFooter = true;
+            this.dvgSerialnoDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgSerialnoDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgSerialnoDetails_FocusedColumnChanged);
+            this.dvgSerialnoDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgMrpwiseDetails_CustomColumnDisplayText);
             // 
             // colSNo
             // 
@@ -168,47 +164,45 @@
             this.colSNo.OptionsColumn.ReadOnly = true;
             this.colSNo.Visible = true;
             this.colSNo.VisibleIndex = 0;
-            this.colSNo.Width = 43;
+            this.colSNo.Width = 42;
             // 
-            // colMrp
+            // colSerialNo
             // 
-            this.colMrp.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMrp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMrp.Caption = "MRP";
-            this.colMrp.FieldName = "MRP";
-            this.colMrp.Name = "colMrp";
-            this.colMrp.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
-            this.colMrp.Visible = true;
-            this.colMrp.VisibleIndex = 3;
-            this.colMrp.Width = 92;
-            // 
-            // colSalePrice
-            // 
-            this.colSalePrice.AppearanceHeader.Options.UseTextOptions = true;
-            this.colSalePrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colSalePrice.Caption = "Sale Price";
-            this.colSalePrice.FieldName = "SalePrice";
-            this.colSalePrice.Name = "colSalePrice";
-            this.colSalePrice.Visible = true;
-            this.colSalePrice.VisibleIndex = 4;
-            this.colSalePrice.Width = 91;
+            this.colSerialNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSerialNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSerialNo.Caption = "Item Serial Number";
+            this.colSerialNo.FieldName = "Itemserialno";
+            this.colSerialNo.Name = "colSerialNo";
+            this.colSerialNo.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.colSerialNo.Visible = true;
+            this.colSerialNo.VisibleIndex = 1;
+            this.colSerialNo.Width = 113;
             // 
             // colQuantity
             // 
-            this.colQuantity.Caption = "Quantity";
+            this.colQuantity.Caption = "Qty";
             this.colQuantity.FieldName = "Quantity";
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", "SUM={0:0.##}")});
             this.colQuantity.Visible = true;
-            this.colQuantity.VisibleIndex = 1;
-            this.colQuantity.Width = 62;
+            this.colQuantity.VisibleIndex = 2;
+            this.colQuantity.Width = 57;
             // 
-            // colMRPId
+            // colUnit
             // 
-            this.colMRPId.Caption = "MRPId";
-            this.colMRPId.FieldName = "MRPId";
-            this.colMRPId.Name = "colMRPId";
+            this.colUnit.Caption = "Unit";
+            this.colUnit.FieldName = "Unit";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Visible = true;
+            this.colUnit.VisibleIndex = 3;
+            this.colUnit.Width = 65;
+            // 
+            // colSnId
+            // 
+            this.colSnId.Caption = "MRPId";
+            this.colSnId.FieldName = "SnId";
+            this.colSnId.Name = "colSnId";
             // 
             // colParentId
             // 
@@ -216,13 +210,23 @@
             this.colParentId.FieldName = "ParentId";
             this.colParentId.Name = "colParentId";
             // 
+            // colSalesPrice
+            // 
+            this.colSalesPrice.Caption = "SalesPrice";
+            this.colSalesPrice.FieldName = "Saleprice";
+            this.colSalesPrice.Name = "colSalesPrice";
+            this.colSalesPrice.Visible = true;
+            this.colSalesPrice.VisibleIndex = 5;
+            this.colSalesPrice.Width = 70;
+            // 
             // colCost
             // 
             this.colCost.Caption = "CostPrice";
             this.colCost.FieldName = "Costprice";
             this.colCost.Name = "colCost";
             this.colCost.Visible = true;
-            this.colCost.VisibleIndex = 5;
+            this.colCost.VisibleIndex = 6;
+            this.colCost.Width = 70;
             // 
             // colBarcode
             // 
@@ -230,7 +234,15 @@
             this.colBarcode.FieldName = "Barcode";
             this.colBarcode.Name = "colBarcode";
             this.colBarcode.Visible = true;
-            this.colBarcode.VisibleIndex = 6;
+            this.colBarcode.VisibleIndex = 7;
+            // 
+            // colMRP
+            // 
+            this.colMRP.Caption = "MRP";
+            this.colMRP.FieldName = "MRP";
+            this.colMRP.Name = "colMRP";
+            this.colMRP.Visible = true;
+            this.colMRP.VisibleIndex = 4;
             // 
             // repositoryItemTextEdit1
             // 
@@ -255,15 +267,6 @@
             this.labelControl5.TabIndex = 9;
             this.labelControl5.Text = "Op.Amount";
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(63, 29);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(63, 13);
-            this.labelControl4.StyleController = this.layoutControl1;
-            this.labelControl4.TabIndex = 8;
-            this.labelControl4.Text = "labelControl4";
-            // 
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(12, 29);
@@ -279,7 +282,6 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4,
-            this.layoutControlItem5,
             this.layoutControlItem6,
             this.emptySpaceItem1,
             this.layoutControlItem7,
@@ -298,18 +300,9 @@
             this.layoutControlItem4.Control = this.labelControl3;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 17);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(51, 17);
+            this.layoutControlItem4.Size = new System.Drawing.Size(598, 17);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.labelControl4;
-            this.layoutControlItem5.Location = new System.Drawing.Point(51, 17);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(547, 17);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
@@ -330,7 +323,7 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.dvgMrpwise;
+            this.layoutControlItem7.Control = this.dvgSerialno;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 51);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(598, 237);
@@ -379,33 +372,24 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(300, 17);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // colUnit
-            // 
-            this.colUnit.Caption = "Unit";
-            this.colUnit.FieldName = "Unit";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Visible = true;
-            this.colUnit.VisibleIndex = 2;
-            // 
-            // MRPwiseDetails
+            // ItemSerialnoWiseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(618, 334);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "MRPwiseDetails";
-            this.Text = "MRP /Sale Price - Wise Opening Stock";
-            this.Load += new System.EventHandler(this.MRPwiseDetails_Load);
+            this.Name = "ItemSerialnoWiseDetails";
+            this.Text = "Input Item Serial No Wise Details";
+            this.Load += new System.EventHandler(this.ItemSerialnoWiseDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgMrpwise)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgMrpwiseDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSerialno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSerialnoDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
@@ -423,18 +407,16 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraGrid.GridControl dvgMrpwise;
-        private DevExpress.XtraGrid.Views.Grid.GridView dvgMrpwiseDetails;
+        private DevExpress.XtraGrid.GridControl dvgSerialno;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgSerialnoDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colMrp;
-        private DevExpress.XtraGrid.Columns.GridColumn colSalePrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colSerialNo;
         private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn colUnit;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
@@ -445,10 +427,11 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private DevExpress.XtraGrid.Columns.GridColumn colMRPId;
+        private DevExpress.XtraGrid.Columns.GridColumn colSnId;
         private DevExpress.XtraGrid.Columns.GridColumn colParentId;
+        private DevExpress.XtraGrid.Columns.GridColumn colSalesPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colCost;
         private DevExpress.XtraGrid.Columns.GridColumn colBarcode;
-        private DevExpress.XtraGrid.Columns.GridColumn colUnit;
+        private DevExpress.XtraGrid.Columns.GridColumn colMRP;
     }
 }

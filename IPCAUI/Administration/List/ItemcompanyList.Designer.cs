@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration.List
 {
-    partial class CostcenterList
+    partial class ItemcompanyList
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.dvgCostcenter = new DevExpress.XtraGrid.GridControl();
-            this.dvgCostcenterDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgItemCompList = new DevExpress.XtraGrid.GridControl();
+            this.dvgItemcompDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colParentGroup = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cardView1 = new DevExpress.XtraGrid.Views.Card.CardView();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -51,8 +49,9 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostcenter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostcenterDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgItemCompList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgItemcompDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -68,12 +67,12 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.labelControl1);
-            this.layoutControl1.Controls.Add(this.dvgCostcenter);
+            this.layoutControl1.Controls.Add(this.dvgItemCompList);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(439, 260, 250, 350);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(555, 382, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(841, 480);
             this.layoutControl1.TabIndex = 0;
@@ -81,78 +80,52 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(388, 12);
+            this.labelControl1.Location = new System.Drawing.Point(368, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(105, 14);
+            this.labelControl1.Size = new System.Drawing.Size(89, 13);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "Cost Center List";
+            this.labelControl1.Text = "Item Company List";
             // 
-            // dvgCostcenter
+            // dvgItemCompList
             // 
-            this.dvgCostcenter.Location = new System.Drawing.Point(47, 30);
-            this.dvgCostcenter.MainView = this.dvgCostcenterDetails;
-            this.dvgCostcenter.Name = "dvgCostcenter";
-            this.dvgCostcenter.Size = new System.Drawing.Size(782, 438);
-            this.dvgCostcenter.TabIndex = 9;
-            this.dvgCostcenter.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dvgCostcenterDetails});
-            this.dvgCostcenter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCostcenter_KeyDown);
+            gridLevelNode1.RelationName = "Level1";
+            this.dvgItemCompList.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.dvgItemCompList.Location = new System.Drawing.Point(47, 29);
+            this.dvgItemCompList.MainView = this.dvgItemcompDetails;
+            this.dvgItemCompList.Name = "dvgItemCompList";
+            this.dvgItemCompList.Size = new System.Drawing.Size(782, 439);
+            this.dvgItemCompList.TabIndex = 9;
+            this.dvgItemCompList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgItemcompDetails,
+            this.cardView1});
+            
             // 
-            // dvgCostcenterDetails
+            // dvgItemcompDetails
             // 
-            this.dvgCostcenterDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colName,
-            this.colAlias,
-            this.colParentGroup,
-            this.gridColumn1,
-            this.gridColumn2});
-            this.dvgCostcenterDetails.GridControl = this.dvgCostcenter;
-            this.dvgCostcenterDetails.Name = "dvgCostcenterDetails";
-            this.dvgCostcenterDetails.OptionsBehavior.ReadOnly = true;
-            this.dvgCostcenterDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgCostcenterDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCostcenterDetails_KeyDown);
-            this.dvgCostcenterDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCostcenterDetails_KeyPress);
-            this.dvgCostcenterDetails.DoubleClick += new System.EventHandler(this.dvgCostcenterDetails_DoubleClick);
+            this.dvgItemcompDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colName});
+            this.dvgItemcompDetails.GridControl = this.dvgItemCompList;
+            this.dvgItemcompDetails.Name = "dvgItemcompDetails";
+            this.dvgItemcompDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgItemcompDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgItemcompDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgItemcompDetails_KeyDown);
+           
             // 
             // colName
             // 
-            this.colName.FieldName = "Name";
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "ItemCompany";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             // 
-            // colAlias
+            // cardView1
             // 
-            this.colAlias.FieldName = "Alias";
-            this.colAlias.Name = "colAlias";
-            this.colAlias.Visible = true;
-            this.colAlias.VisibleIndex = 1;
-            // 
-            // colParentGroup
-            // 
-            this.colParentGroup.FieldName = "Group";
-            this.colParentGroup.Name = "colParentGroup";
-            this.colParentGroup.Visible = true;
-            this.colParentGroup.VisibleIndex = 2;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "OP Bal(Rs.)";
-            this.gridColumn1.FieldName = "opBal";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 3;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Cr/Dr";
-            this.gridColumn2.FieldName = "DrCr";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 4;
+            this.cardView1.FocusedCardTopFieldIndex = 0;
+            this.cardView1.GridControl = this.dvgItemCompList;
+            this.cardView1.Name = "cardView1";
             // 
             // navBarControl1
             // 
@@ -163,7 +136,7 @@
             this.navBarGroup2});
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 132;
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 146;
             this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
             this.navBarControl1.Size = new System.Drawing.Size(31, 456);
             this.navBarControl1.TabIndex = 8;
@@ -185,7 +158,7 @@
             this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer1.Controls.Add(this.treeList1);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(130, 339);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(144, 339);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // treeList1
@@ -206,7 +179,7 @@
             "Refresh"}, -1);
             this.treeList1.EndUnboundLoad();
             this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.Size = new System.Drawing.Size(130, 339);
+            this.treeList1.Size = new System.Drawing.Size(144, 339);
             this.treeList1.TabIndex = 0;
             // 
             // treeListColumn1
@@ -249,19 +222,19 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.dvgCostcenter;
-            this.layoutControlItem3.Location = new System.Drawing.Point(35, 18);
+            this.layoutControlItem3.Control = this.dvgItemCompList;
+            this.layoutControlItem3.Location = new System.Drawing.Point(35, 17);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(786, 442);
+            this.layoutControlItem3.Size = new System.Drawing.Size(786, 443);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.labelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(376, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(356, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(109, 18);
+            this.layoutControlItem4.Size = new System.Drawing.Size(93, 17);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -270,31 +243,32 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(35, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(341, 18);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(321, 17);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(485, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(449, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(336, 18);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(372, 17);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // CostcenterList
+            // ItemcompanyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 480);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "CostcenterList";
-            this.Text = "Cost Center List";
-            this.Load += new System.EventHandler(this.CostcenterList_Load);
+            this.Name = "ItemcompanyList";
+            this.Text = "Item Company List";
+            this.Load += new System.EventHandler(this.ItemcompanyList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostcenter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostcenterDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgItemCompList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgItemcompDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -320,17 +294,14 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraGrid.GridControl dvgCostcenter;
-        private DevExpress.XtraGrid.Views.Grid.GridView dvgCostcenterDetails;
+        private DevExpress.XtraGrid.GridControl dvgItemCompList;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgItemcompDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
-        private DevExpress.XtraGrid.Columns.GridColumn colAlias;
-        private DevExpress.XtraGrid.Columns.GridColumn colParentGroup;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraGrid.Views.Card.CardView cardView1;
     }
 }

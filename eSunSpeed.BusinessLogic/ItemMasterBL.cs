@@ -31,11 +31,11 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_CONAlt", objItem.ConAltUnit, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ITEM_CONMain", objItem.ConMainUnit, System.Data.DbType.Decimal));
 
-                paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
+                paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockQty));
                 paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
                 paramCollection.Add(new DBParameter("@ITEM_RATE", objItem.Rate));
                 paramCollection.Add(new DBParameter("@ITEM_PER", objItem.Per));
-                paramCollection.Add(new DBParameter("@ITEM_VALUE", objItem.Value));
+                paramCollection.Add(new DBParameter("@ITEM_VALUE", objItem.OpStockValue));
 
                 paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice));
                 paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice));
@@ -54,9 +54,11 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNTCOMP", objItem.SaleCompoundDiscount, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", objItem.PurDiscount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", objItem.PurCompoundDiscount, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", objItem.SpecifySaleDiscStructure, System.Data.DbType.Boolean));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleDiscStructure", objItem.SaleDiscStructure));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcDiscStructure", objItem.PurcDiscStructure));
                 }
                 else
                 {
@@ -66,16 +68,20 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", "0.00"));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", false, System.Data.DbType.Boolean));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleDiscStructure",String.Empty));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcDiscStructure",String.Empty));
                 }
                 paramCollection.Add(new DBParameter("@ITEM_MARKUPINFO", objItem.MarkupInfo, System.Data.DbType.Boolean));
                 if(objItem.MarkupInfo)
                 {
-                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkup", objItem.SaleMarkup));
-                    paramCollection.Add(new DBParameter("@ITEM_PurMarkup", objItem.PurMarkup));
-                    paramCollection.Add(new DBParameter("@ITEM_SaleCompMarkup", objItem.SaleCompMarkup));
-                    paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", objItem.PurCompMarkup));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkup", objItem.SaleMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PurMarkup", objItem.PurMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleCompMarkup", objItem.SaleCompMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", objItem.PurCompMarkup, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifySaleMarkupStruct", objItem.SpecifySaleMarkupStruct, System.Data.DbType.Boolean));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifyPurMarkupStruct", objItem.SpecifyPurMarkupStruct, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkupStructure", objItem.SaleMarkupStructure));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcMarkupStructure", objItem.PurcMarkupStructure));
                 }
                 else
                 {
@@ -85,6 +91,8 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", "0.00"));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifySaleMarkupStruct",false, System.Data.DbType.Boolean));
                     paramCollection.Add(new DBParameter("@ITEM_SpecifyPurMarkupStruct", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkupStructure",String.Empty));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcMarkupStructure", String.Empty));
                 }
                 
 
@@ -110,6 +118,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_PURCACCOUNT", objItem.PurcAccount));
                 paramCollection.Add(new DBParameter("@ITEM_MAINTAINSTOCKBAL", objItem.DontMaintainStockBal, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTMC", objItem.SpecifyDefaultMC, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ITEM_MATERIALCENTER", objItem.DefaultMaterialCenter));
                 paramCollection.Add(new DBParameter("@ITEM_FREEZEMCFORITEM", objItem.FreezeMCforItem, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_TOTALNUMBEROFAUTHORS", objItem.TotalNumberofAuthors));
 
@@ -123,8 +132,11 @@ namespace eSunSpeed.BusinessLogic
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
 
-                //SaveItemBarcodes(objItem.BarCodes,id);
-
+                //SaveItemBarcodes(objItem.ItemBarcode,id);
+                if(objItem.SpecifyDefaultMC)
+                {
+                    SaveItemMaterialCenterDetails(objItem.ItemMC, id);
+                }
                 if (objItem.ParameterizedDetails && objItem.OpStockValue.ToString() != "0.00")
                 {
                     SaveItemParameterizedDetails(objItem.ItemParameterized, id);
@@ -144,39 +156,35 @@ namespace eSunSpeed.BusinessLogic
 
                 if (objItem.SerialNumberwiseDetails && objItem.OpStockValue.ToString() != "0.00")
                 {
-                    SaveSerialNumberWiseDeatils(objItem, id);
+                    SaveItemSerialWiseDetails(objItem.ItemSerialNo, id);
                 }
             }
             catch(Exception ex)
             {
                 isSaved = false;
-                throw ex;
+                //throw ex;
             }
             return isSaved;
         }
 
         //Save Item Barcodes
-        public bool SaveItemBarcodes(List<string> lstItems,int id)
+        public bool SaveItemBarcodes(List<ItemAliasModel> lstBarcodes,int id)
         {
             string Query = string.Empty;
             bool isSaved = true;
-            foreach (string item in lstItems)
+            foreach (ItemAliasModel item in lstBarcodes)
             {
-               
-
+                item.ParentId = id;
                 try
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@Item_Id",id));
-                    paramCollection.Add(new DBParameter("@Item_Barcode", item));
+                    paramCollection.Add(new DBParameter("@Item_Id",item.ParentId));
+                    paramCollection.Add(new DBParameter("@Item_Barcode",item.Barcodes));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
                     _dbHelper.ExecuteDataReader("spInsertItemBarcodes", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-
-                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    //    isSaved = true;
                 }
                 catch (Exception ex)
                 {
@@ -188,48 +196,43 @@ namespace eSunSpeed.BusinessLogic
         }
 
         //Update Item Barcodes
-        //public bool UpdateItemBarcodes(List<string> lstItems, int id)
-        //{
-        //    string Query = string.Empty;
-        //    bool isSaved = true;
-        //    foreach (string item in lstItems)
-        //    {
-        //        Parameter.Parent_Id = id;
-        //        if (Parameter.Param_Id > 0)
-        //        {
+        public bool UpdateItemBarcodes(List<ItemAliasModel> lstBarcodes, int id)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+            foreach (ItemAliasModel item in lstBarcodes)
+            {
+                item.ParentId = id;
+                if (item.BarcodeId > 0)
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+                    paramCollection.Add(new DBParameter("@Item_Id", item.ParentId));
+                    paramCollection.Add(new DBParameter("@SL_ID", item.BarcodeId));
+                    paramCollection.Add(new DBParameter("@ITEM_Barcode", item.Barcodes));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                    Query = "UPDATE itembarcodes SET `ITEM_BARCODE`=@ITEM_Barcode," +
+                           "`ModifiedBy`=@ModifiedBy " +
+                           "WHERE `ITM_ID`=@Item_Id AND `SL_ID`=@SL_ID";
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    {
+                        isUpdate = true;
+                    }
 
+                }
+                else
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
-        //            DBParameterCollection paramCollection = new DBParameterCollection();
-        //            paramCollection.Add(new DBParameter("@Item_Id", Parameter.Parent_Id));
-        //            paramCollection.Add(new DBParameter("@SL_NO", Parameter.Param_Id));
-        //            paramCollection.Add(new DBParameter("@ITEM_NAME", Parameter.ItemName));
-        //            paramCollection.Add(new DBParameter("@ITEM_QTY", Parameter.Qty));
-        //            paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-        //            Query = "UPDATE itemparameterizeddetails SET `ITEM_NAME`=@ITEM_NAME," +
-        //                   "`ITEM_QTY`=@ITEM_QTY,`ModifiedBy`=@ModifiedBy " +
-        //                   "WHERE `ITM_ID`=@Item_Id AND `SL_NO`=@SL_NO";
+                    paramCollection.Add(new DBParameter("@Item_Id", item.ParentId));
+                    paramCollection.Add(new DBParameter("@Item_Barcode", item.Barcodes));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
-        //            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-        //            {
-        //                isUpdate = true;
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            DBParameterCollection paramCollection = new DBParameterCollection();
-
-        //            paramCollection.Add(new DBParameter("@Item_Id", Parameter.Parent_Id));
-        //            paramCollection.Add(new DBParameter("@ITEM_NAME", Parameter.ItemName));
-        //            paramCollection.Add(new DBParameter("@ITEM_QTY", Parameter.Qty));
-        //            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-
-        //            System.Data.IDataReader dr =
-        //            _dbHelper.ExecuteDataReader("spInsertItemParameterized", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-        //        }
-        //    }
-        //    return isUpdate = true;
-        //}
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertItemBarcodes", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+            }
+            return isUpdate = true;
+        }
         //Save Item Serieal Number Wise Details From PopupWindow.
         public bool SaveSerialNumberWiseDeatils(ItemMasterModel Serial, int id)
         {
@@ -274,7 +277,6 @@ namespace eSunSpeed.BusinessLogic
             Serial.parent_Id = id;
             if (Serial.SL_ID > 0)
             {
-
 
                 try
                 {
@@ -340,6 +342,12 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@Item_Id", Parameter.Parent_Id));
                     paramCollection.Add(new DBParameter("@ITEM_NAME", Parameter.ItemName));
                     paramCollection.Add(new DBParameter("@ITEM_QTY", Parameter.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Parameter.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Parameter.MRP,System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Parameter.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Parameter.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Parameter.Barcode));
+
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -372,9 +380,15 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@SL_NO", Parameter.Param_Id));
                     paramCollection.Add(new DBParameter("@ITEM_NAME", Parameter.ItemName));
                     paramCollection.Add(new DBParameter("@ITEM_QTY", Parameter.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Parameter.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Parameter.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Parameter.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Parameter.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Parameter.Barcode));
                     paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+
                     Query = "UPDATE itemparameterizeddetails SET `ITEM_NAME`=@ITEM_NAME," +
-                           "`ITEM_QTY`=@ITEM_QTY,`ModifiedBy`=@ModifiedBy " +
+                           "`ITEM_QTY`=@ITEM_QTY,`ITEM_UNIT`=@ITEM_UNIT,`ITEM_MRP`=@ITEM_MRP,`ITEM_SALEPRICE`=@ITEM_SALEPRICE,`ITEM_COSTPRICE`=@ITEM_COSTPRICE,`ITEM_BARCODE`=@ITEM_BARCODE,`ModifiedBy`=@ModifiedBy " +
                            "WHERE `ITM_ID`=@Item_Id AND `SL_NO`=@SL_NO";
 
                     if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -390,6 +404,12 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@Item_Id", Parameter.Parent_Id));
                     paramCollection.Add(new DBParameter("@ITEM_NAME", Parameter.ItemName));
                     paramCollection.Add(new DBParameter("@ITEM_QTY", Parameter.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Parameter.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Parameter.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Parameter.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Parameter.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Parameter.Barcode));
+
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -412,9 +432,15 @@ namespace eSunSpeed.BusinessLogic
 
                     paramCollection.Add(new DBParameter("@Item_Id", Batchwise.Parent_Id));
                     paramCollection.Add(new DBParameter("@ITEM_BATCHNO", Batchwise.BatchNo));
-                    paramCollection.Add(new DBParameter("@ITEM_QTY", Batchwise.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_QTY", Batchwise.Qty,System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Batchwise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Batchwise.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Batchwise.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Batchwise.CostPrice, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_MFGDATE", Batchwise.MfgDate,System.Data.DbType.DateTime));
                     paramCollection.Add(new DBParameter("@ITEM_EXPDATE", Batchwise.Expdate, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Batchwise.Barcode));
+                    paramCollection.Add(new DBParameter("@ITEM_NARRATION", Batchwise.Narration));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -428,7 +454,6 @@ namespace eSunSpeed.BusinessLogic
             }
             return isSaved;
         }
-
         //Update Batch Wise Details
         public bool UpdateItemBatchWiseDetails(List<ItemBatchWiseDetailsModel> lstBatch, int id)
         {
@@ -445,12 +470,18 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@Batch_Id", Batchwise.Batch_Id));
                     paramCollection.Add(new DBParameter("@ITEM_BATCHNO", Batchwise.BatchNo));
                     paramCollection.Add(new DBParameter("@ITEM_QTY", Batchwise.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Batchwise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Batchwise.MRP));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Batchwise.SalePrice));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Batchwise.CostPrice));
                     paramCollection.Add(new DBParameter("@ITEM_MFGDATE", Batchwise.MfgDate, System.Data.DbType.DateTime));
                     paramCollection.Add(new DBParameter("@ITEM_EXPDATE", Batchwise.Expdate, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ITEM_NARRATION", Batchwise.Narration));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Batchwise.Barcode));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     Query = "UPDATE itembatchwisedetails SET `ITEM_BATCHNO`=@ITEM_BATCHNO," +
-                           "`ITEM_QTY`=@ITEM_QTY,`ITEM_MFGDATE`=@ITEM_MFGDATE,`ITEM_EXPDATE`=@ITEM_EXPDATE,`CreatedBy`=@CreatedBy " +
+                           "`ITEM_QTY`=@ITEM_QTY,`ITEM_UNIT`=@ITEM_UNIT,`ITEM_MRP`=@ITEM_MRP,`ITEM_SALESPRICE`=@ITEM_SALEPRICE,`ITEM_COSTPRICE`=@ITEM_COSTPRICE,`ITEM_MFGDATE`=@ITEM_MFGDATE,`ITEM_EXPDATE`=@ITEM_EXPDATE,`ITEM_BARCODE`=@ITEM_BARCODE,`NARRATION`=@ITEM_NARRATION,`CreatedBy`=@CreatedBy " +
                            "WHERE `ITM_ID`=@Item_Id AND `SL_NO`=@Batch_Id";
 
                     if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -465,9 +496,15 @@ namespace eSunSpeed.BusinessLogic
 
                     paramCollection.Add(new DBParameter("@Item_Id", Batchwise.Parent_Id));
                     paramCollection.Add(new DBParameter("@ITEM_BATCHNO", Batchwise.BatchNo));
-                    paramCollection.Add(new DBParameter("@ITEM_QTY", Batchwise.Qty));
+                    paramCollection.Add(new DBParameter("@ITEM_QTY", Batchwise.Qty, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", Batchwise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", Batchwise.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEPRICE", Batchwise.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", Batchwise.CostPrice, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_MFGDATE", Batchwise.MfgDate, System.Data.DbType.DateTime));
                     paramCollection.Add(new DBParameter("@ITEM_EXPDATE", Batchwise.Expdate, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", Batchwise.Barcode));
+                    paramCollection.Add(new DBParameter("@ITEM_NARRATION", Batchwise.Narration));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -489,10 +526,12 @@ namespace eSunSpeed.BusinessLogic
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
                     paramCollection.Add(new DBParameter("@Item_Id", MRPwise.ParentId));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", MRPwise.Unit));
                     paramCollection.Add(new DBParameter("@ITEM_MRP", MRPwise.MRP, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", MRPwise.SalesPrice, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_AMOUNT", MRPwise.Amount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", MRPwise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", MRPwise.Barcode));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -507,6 +546,93 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
+        public bool SaveItemSerialWiseDetails(List<ItemSerialnoDetailsModel> lstSerial, int id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (ItemSerialnoDetailsModel SerialWise in lstSerial)
+            {
+                SerialWise.parent_Id = id;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", SerialWise.parent_Id));
+                    paramCollection.Add(new DBParameter("@ITEM_SERIALNO", SerialWise.SerialNumber));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", SerialWise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", SerialWise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", SerialWise.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", SerialWise.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", SerialWise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", SerialWise.Barcode));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertItemSerialNoWiseDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+
+        public bool UpdateItemSerialNoWiseDetails(List<ItemSerialnoDetailsModel> lstSerial, int id)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+            foreach (ItemSerialnoDetailsModel SerialWise in lstSerial)
+            {
+                SerialWise.parent_Id = id;
+                if (SerialWise.SL_ID > 0)
+                {
+
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", SerialWise.parent_Id));
+                    paramCollection.Add(new DBParameter("@SL_Id", SerialWise.SL_ID));
+                    paramCollection.Add(new DBParameter("@ITEM_SERIALNO", SerialWise.SerialNumber));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", SerialWise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", SerialWise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", SerialWise.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", SerialWise.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", SerialWise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", SerialWise.Barcode));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+
+                    Query = "UPDATE itemserialnowisedetails SET `ITEM_SERIALNO`=@ITEM_SERIALNO,`ITEM_MRP`=@ITEM_MRP," +
+                           "`ITEM_SALESPRICE`=@ITEM_SALESPRICE,`ITEM_QUANTITY`=@ITEM_QUANTITY,`ITEM_UNIT`=@ITEM_UNIT,`ITEM_COSTPRICE`=@ITEM_COSTPRICE,`ITEM_BARCODE`=@ITEM_BARCODE,`ModifiedBy`=@ModifiedBy " +
+                           "WHERE `ITM_ID`=@Item_Id AND `SN_ID`=@SL_Id";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    {
+                        isUpdate = true;
+                    }
+
+                }
+                else
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", SerialWise.parent_Id));
+                    paramCollection.Add(new DBParameter("@ITEM_SERIALNO", SerialWise.SerialNumber));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", SerialWise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", SerialWise.Unit));
+                    paramCollection.Add(new DBParameter("@ITEM_MRP", SerialWise.MRP, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", SerialWise.SalePrice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", SerialWise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", SerialWise.Barcode));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertItemSerialNoWiseDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+            }
+            return isUpdate = true;
+
+        }
         //Update Item MRPWise Details From PopupWindow
         public bool UpdateItemMRPWiseDetails(List<ItemMRPWiseDetailsModel> lstMRPWISE, int id)
         {
@@ -523,13 +649,16 @@ namespace eSunSpeed.BusinessLogic
 
                     paramCollection.Add(new DBParameter("@Item_Id", MRPwise.ParentId));
                     paramCollection.Add(new DBParameter("@MRP_Id", MRPwise.MRP_Id));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", MRPwise.Unit));
                     paramCollection.Add(new DBParameter("@ITEM_MRP", MRPwise.MRP, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", MRPwise.SalesPrice, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_AMOUNT", MRPwise.Amount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", MRPwise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", MRPwise.Barcode));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
                     Query = "UPDATE itemmrpwisedetails SET `ITEM_MRP`=@ITEM_MRP," +
-                           "`ITEM_SALESPRICE`=@ITEM_SALESPRICE,`ITEM_QUANTITY`=@ITEM_QUANTITY,`ITEM_AMOUNT`=@ITEM_AMOUNT,`ModifiedBy`=@ModifiedBy " +
+                           "`ITEM_SALESPRICE`=@ITEM_SALESPRICE,`ITEM_QUANTITY`=@ITEM_QUANTITY,`ITEM_UNIT`=@ITEM_UNIT,`ITEM_COSTPRICE`=@ITEM_COSTPRICE,`ITEM_BARCODE`=@ITEM_BARCODE,`ModifiedBy`=@ModifiedBy " +
                            "WHERE `ITM_ID`=@Item_Id AND `SL_ID`=@MRP_Id";
 
                     if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -543,10 +672,12 @@ namespace eSunSpeed.BusinessLogic
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
                     paramCollection.Add(new DBParameter("@Item_Id", MRPwise.ParentId));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_UNIT", MRPwise.Unit));
                     paramCollection.Add(new DBParameter("@ITEM_MRP", MRPwise.MRP, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@ITEM_SALESPRICE", MRPwise.SalesPrice, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", MRPwise.Quantity, System.Data.DbType.Decimal));
-                    paramCollection.Add(new DBParameter("@ITEM_AMOUNT", MRPwise.Amount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_COSTPRICE", MRPwise.Costprice, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_BARCODE", MRPwise.Barcode));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                     System.Data.IDataReader dr =
@@ -608,12 +739,13 @@ namespace eSunSpeed.BusinessLogic
                 objItem.Company = dr["ITEM_COMPANY"].ToString();
                 objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
                 objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
-                //objItem.Confactor =Convert.ToInt32(dr["ITEM_CONFACTOR"].ToString());
+                objItem.ConAltUnit =Convert.ToDecimal(dr["ITEM_CONALTUNIT"].ToString());
+                objItem.ConMainUnit = Convert.ToDecimal(dr["ITEM_CONMAINUNIT"].ToString());
                 objItem.OpStockQty =Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
                 objItem.Unit = dr["ITEM_UNIT"].ToString();
                 objItem.Rate =Convert.ToDouble(dr["ITEM_RATE"].ToString());
                 objItem.Per = dr["ITEM_PER"].ToString();
-                objItem.Value =Convert.ToDouble( dr["ITEM_VALUE"].ToString());
+                objItem.OpStockValue =Convert.ToDouble( dr["ITEM_VALUE"].ToString());
                 objItem.ApplySalesPrice = dr["ITEM_SALEPRICETOAPPLY"].ToString();
                 objItem.ApplyPurchPrice = dr["ITEM_PURCPRICETOAPPLY"].ToString();
 
@@ -629,13 +761,24 @@ namespace eSunSpeed.BusinessLogic
 
                 objItem.SelfValuePrice = Convert.ToDecimal(dr["ITEM_SELFVALUEPRICE"].ToString());
                 objItem.DiscountInfo = Convert.ToBoolean(dr["ITEM_DISCOUNTINFO"].ToString());
+                objItem.MarkupInfo = Convert.ToBoolean(dr["ITEM_MARKUPINFO"].ToString());
                 objItem.SaleDiscount = Convert.ToDecimal(dr["ITEM_SALEDISCOUNT"].ToString());
                 objItem.SaleCompoundDiscount = Convert.ToDecimal(dr["ITEM_SALECOMPDISCOUNT"].ToString());              
                 objItem.PurDiscount = Convert.ToDecimal(dr["ITEM_PURCHASEDISCOUNT"].ToString());
                 objItem.PurCompoundDiscount = Convert.ToDecimal(dr["ITEM_PURCHCOMPDISCOUNT"].ToString());
-
                 objItem.SpecifySaleDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYSALEDISCSTRUCT"]);
                 objItem.SpecifyPurDiscStructure = Convert.ToBoolean(dr["ITEM_SPECIFYPURDISCSTRUCT"]);
+                objItem.SaleDiscStructure = dr["ITEM_SALEDISCOUNTSTRUCT"].ToString();
+                objItem.PurcDiscStructure = dr["ITEM_PURCDISCOUNTSTRUCT"].ToString();
+
+                objItem.SaleMarkup = Convert.ToDecimal(dr["ITEM_SALEMARKUP"].ToString());
+                objItem.SaleCompMarkup = Convert.ToDecimal(dr["ITEM_SALECOMPMARKUP"].ToString());
+                objItem.PurMarkup = Convert.ToDecimal(dr["ITEM_PURMARKUP"].ToString());
+                objItem.PurCompMarkup = Convert.ToDecimal(dr["ITEM_PURCCOMPMARKUP"].ToString());
+                objItem.SpecifySaleMarkupStruct = Convert.ToBoolean(dr["ITEM_SPECIFYSALEMARKUPSTRUCT"]);
+                objItem.SpecifyPurMarkupStruct = Convert.ToBoolean(dr["ITEM_SPECIFYPURCMARKUPSTRUCT"]);
+                objItem.SaleMarkupStructure = dr["ITEM_SALEMARKUPSTRUCT"].ToString();
+                objItem.PurcMarkupStructure = dr["ITEM_PURCMARKUPSTRUCT"].ToString();
                 objItem.StockValMethod = dr["ITEM_STOCKVALMETHOD"].ToString();
 
                 objItem.TaxCategory = dr["ITEM_TAXCATEGORY"].ToString();
@@ -673,21 +816,25 @@ namespace eSunSpeed.BusinessLogic
                 objItem.TariffHeading = dr["ITEM_TARIFHEADING"].ToString();
                 if(objItem.SerialNumberwiseDetails = Convert.ToBoolean(dr["ITEM_SERIALWISEDETAILS"]))
                 {
-                    string itemQuery = "SELECT * FROM itemserialnodetails WHERE ITM_ID=" + id;
-                    System.Data.IDataReader drCr = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
+                    string itemQuery = "SELECT * FROM itemserialnowisedetails WHERE ITM_ID=" + id;
+                    System.Data.IDataReader drSer = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
-                    while (drCr.Read())
+                    objItem.ItemSerialNo = new List<ItemSerialnoDetailsModel>();
+                    ItemSerialnoDetailsModel objSerial;
+
+                    while (drSer.Read())
                     {
-                        objItem.SL_ID = Convert.ToInt32(drCr["SL_NO"]);
-                        objItem.ManualNuber = Convert.ToBoolean(drCr["ITEM_MANUALNO"]);
-                        objItem.AutoNumber = Convert.ToBoolean(drCr["ITEM_AUTONO"]);
-                        objItem.StaringAutoNo = Convert.ToInt32(drCr["ITEM_STARTINGAUTONO"]);
-                        objItem.NumberingFreq = Convert.ToString(drCr["ITEM_NUMBERINGFREQ"]);
-                        objItem.StructureName = Convert.ToString(drCr["ITEM_STRUCTUENAME"]);
-                        objItem.RegenarateAutoNo = Convert.ToBoolean(drCr["ITEM_REGENARATEAUTONO"]);
-                        objItem.TrackSaleWaranty = Convert.ToBoolean(drCr["ITEM_SALESWARRANTY"]);
-                        objItem.TrackPurcWaranty = Convert.ToBoolean(drCr["ITEM_PURCHASEWARRANTY"]);
-                        objItem.TrackInstallationWaranty = Convert.ToBoolean(drCr["ITEM_INSTALLWARRANTY"]);
+                        objSerial = new ItemSerialnoDetailsModel();
+                        objSerial.SL_ID = Convert.ToInt32(drSer["SN_ID"]);
+                        objSerial.parent_Id = Convert.ToInt32(drSer["ITM_ID"]);
+                        objSerial.SerialNumber = Convert.ToInt32(drSer["ITEM_SERIALNO"]);
+                        objSerial.Quantity = Convert.ToDecimal(drSer["ITEM_QUANTITY"]);
+                        objSerial.Unit = drSer["ITEM_UNIT"].ToString();
+                        objSerial.MRP = Convert.ToDecimal(drSer["ITEM_MRP"]);
+                        objSerial.SalePrice = Convert.ToDecimal(drSer["ITEM_SALESPRICE"]);
+                        objSerial.Costprice = Convert.ToDecimal(drSer["ITEM_COSTPRICE"]);
+                        objSerial.Barcode = drSer["ITEM_BARCODE"].ToString();
+                        objItem.ItemSerialNo.Add(objSerial);
                     }
                 }
                 if(objItem.MRPWiseDetails = Convert.ToBoolean(dr["ITEM_MRPWISEDETAILS"]))
@@ -703,10 +850,12 @@ namespace eSunSpeed.BusinessLogic
                         objMRPWise = new ItemMRPWiseDetailsModel();
                         objMRPWise.MRP_Id = Convert.ToInt32(drMRP["SL_ID"]);
                         objMRPWise.ParentId = Convert.ToInt32(drMRP["ITM_ID"]);
+                        objMRPWise.Quantity = Convert.ToDecimal(drMRP["ITEM_QUANTITY"]);
+                        objMRPWise.Unit = drMRP["ITEM_UNIT"].ToString();
                         objMRPWise.MRP = Convert.ToDecimal(drMRP["ITEM_MRP"]);
                         objMRPWise.SalesPrice = Convert.ToDecimal(drMRP["ITEM_SALESPRICE"]);
-                        objMRPWise.Quantity = Convert.ToDecimal(drMRP["ITEM_QUANTITY"]);
-                        objMRPWise.Amount = Convert.ToDecimal(drMRP["ITEM_AMOUNT"]);
+                        objMRPWise.Costprice = Convert.ToDecimal(drMRP["ITEM_COSTPRICE"]);
+                        objMRPWise.Barcode =drMRP["ITEM_BARCODE"].ToString();
                         objItem.ItemMRPWise.Add(objMRPWise);
                     }
                 }
@@ -725,11 +874,32 @@ namespace eSunSpeed.BusinessLogic
                         objParam.Parent_Id = Convert.ToInt32(drParm["ITM_ID"]);
                         objParam.ItemName = drParm["ITEM_NAME"].ToString()==null?string.Empty: drParm["ITEM_NAME"].ToString();
                         objParam.Qty = Convert.ToInt32(drParm["ITEM_QTY"]);
+                        objParam.Unit = drParm["ITEM_UNIT"].ToString();
+                        objParam.MRP = Convert.ToDecimal(drParm["ITEM_MRP"]);
+                        objParam.SalePrice = Convert.ToDecimal(drParm["ITEM_SALEPRICE"]);
+                        objParam.Costprice = Convert.ToDecimal(drParm["ITEM_COSTPRICE"]);
+                        objParam.Barcode = drParm["ITEM_BARCODE"].ToString();
 
                         objItem.ItemParameterized.Add(objParam);
                     }
                 }
-                if(objItem.BatchwiseDetails = Convert.ToBoolean(dr["ITEM_BATCHWISEDETAILS"]))
+                string itemBarCodeQuery = "SELECT * FROM itembarcodes WHERE ITM_ID=" + id;
+                System.Data.IDataReader drBar = _dbHelper.ExecuteDataReader(itemBarCodeQuery, _dbHelper.GetConnObject());
+
+                objItem.ItemBarcode = new List<ItemAliasModel>();
+                ItemAliasModel objBarcode;
+
+                while (drBar.Read())
+                {
+                    objBarcode = new ItemAliasModel();
+                    objBarcode.BarcodeId = Convert.ToInt32(drBar["SL_ID"]);
+                    objBarcode.ParentId = Convert.ToInt32(drBar["ITM_ID"]);
+                    objBarcode.Barcodes = drBar["ITEM_BARCODE"].ToString() == null ? string.Empty : drBar["ITEM_BARCODE"].ToString();
+
+                    objItem.ItemBarcode.Add(objBarcode);
+                }
+
+                if (objItem.BatchwiseDetails = Convert.ToBoolean(dr["ITEM_BATCHWISEDETAILS"]))
                 {
                     string itemQuery = "SELECT * FROM itembatchwisedetails WHERE ITM_ID=" + id;
                     System.Data.IDataReader drBt = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
@@ -744,12 +914,34 @@ namespace eSunSpeed.BusinessLogic
                         objBatch.Parent_Id = Convert.ToInt32(drBt["ITM_ID"]);
                         objBatch.BatchNo = Convert.ToInt32(drBt["ITEM_BATCHNO"]);
                         objBatch.Qty = Convert.ToInt32(drBt["ITEM_QTY"]);
+                        objBatch.Unit = drBt["ITEM_UNIT"].ToString();
+                        objBatch.MRP = Convert.ToDecimal(drBt["ITEM_MRP"]);
+                        objBatch.SalePrice = Convert.ToDecimal(drBt["ITEM_SALESPRICE"]);
+                        objBatch.CostPrice = Convert.ToDecimal(drBt["ITEM_COSTPRICE"]);
                         objBatch.MfgDate = Convert.ToDateTime(drBt["ITEM_MFGDATE"]);
                         objBatch.Expdate = Convert.ToDateTime(drBt["ITEM_EXPDATE"]);
-
+                        objBatch.Barcode = drBt["ITEM_BARCODE"].ToString();
+                        objBatch.Narration = drBt["NARRATION"].ToString();
                         objItem.ItemBatchWise.Add(objBatch);
                     }
                 }
+                if(objItem.SpecifyDefaultMC = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTMC"]))
+                {
+                    objItem.DefaultMaterialCenter = dr["ITEM_MATERIALCENTER"].ToString();
+                    string itemQuery = "SELECT * FROM itemmaterialcenterdetails WHERE ITM_ID=" + id;
+                    System.Data.IDataReader drMC = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
+                    objItem.ItemMC = new List<ItemMaterialCenterModel>();
+                    ItemMaterialCenterModel objMatreial;
+                    while (drMC.Read())
+                    {
+                        objMatreial = new ItemMaterialCenterModel();
+                        objMatreial.MCId = Convert.ToInt32(drMC["MC_ID"]);
+                        objMatreial.ParentId = Convert.ToInt32(drMC["ITM_ID"]);
+                        objMatreial.Materialcenter = drMC["ITEM_MATERIALCENTER"].ToString();
+                        objMatreial.Qty = Convert.ToDecimal(drMC["ITEM_QUANTITY"]);
+                        objItem.ItemMC.Add(objMatreial);
+                    }
+               }
                 objItem.ExpDateRequired = dr["ITEM_EXPDATEREQUIRED"].ToString();
                 objItem.ExpiryDays = Convert.ToInt32(dr["ITEM_EXPIRYDAYS"]);
                 objItem.SalesAccount = dr["ITEM_SALESACCOUNT"].ToString();
@@ -790,11 +982,11 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_CONAlt", objItem.ConAltUnit, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ITEM_CONMain", objItem.ConMainUnit, System.Data.DbType.Decimal));
 
-                paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockValue));
+                paramCollection.Add(new DBParameter("@ITEM_OPSTOCKVALUE", objItem.OpStockQty));
                 paramCollection.Add(new DBParameter("@ITEM_UNIT", objItem.Unit));
                 paramCollection.Add(new DBParameter("@ITEM_RATE", objItem.Rate));
                 paramCollection.Add(new DBParameter("@ITEM_PER", objItem.Per));
-                paramCollection.Add(new DBParameter("@ITEM_VALUE", objItem.Value));
+                paramCollection.Add(new DBParameter("@ITEM_VALUE", objItem.OpStockValue));
 
                 paramCollection.Add(new DBParameter("@ITEM_APPLYSALEPRICE", objItem.ApplySalesPrice));
                 paramCollection.Add(new DBParameter("@ITEM_APPLYPURCPRICE", objItem.ApplyPurchPrice));
@@ -808,21 +1000,51 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_ALTMINSALEPRICE", objItem.AltMinSalePrice, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ITEM_SELFVALUEPRICE", objItem.SelfValuePrice, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ITEM_DISSCOUNTINFO", objItem.DiscountInfo, System.Data.DbType.Boolean));
+                if (objItem.DiscountInfo)
+                {
+                    paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNTCOMP", objItem.SaleCompoundDiscount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", objItem.PurCompoundDiscount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", objItem.SpecifySaleDiscStructure, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleDiscStructure", objItem.SaleDiscStructure));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcDiscStructure", objItem.PurcDiscStructure));
+                }
+                else
+                {
+                    paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNTCOMP", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleDiscStructure", String.Empty));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcDiscStructure", String.Empty));
+                }
                 paramCollection.Add(new DBParameter("@ITEM_MARKUPINFO", objItem.MarkupInfo, System.Data.DbType.Boolean));
-
-                paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNT", objItem.SaleDiscount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNT", objItem.PurDiscount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ITEM_SALEDISCOUNTCOMP", objItem.SaleCompoundDiscount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ITEM_PURCHASEDISCOUNTCOMP", objItem.PurDiscount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@ITEM_SpecifySaleDiscStructure", objItem.SpecifySaleDiscStructure, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ITEM_SpecifyPurDiscStructure", objItem.SpecifyPurDiscStructure, System.Data.DbType.Boolean));
-
-                paramCollection.Add(new DBParameter("@ITEM_SaleMarkup", objItem.SaleMarkup));
-                paramCollection.Add(new DBParameter("@ITEM_PurMarkup", objItem.PurMarkup));
-                paramCollection.Add(new DBParameter("@ITEM_SaleCompMarkup", objItem.SaleCompMarkup));
-                paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", objItem.PurCompMarkup));
-                paramCollection.Add(new DBParameter("@ITEM_SpecifySaleMarkupStruct", objItem.SpecifySaleMarkupStruct, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ITEM_SpecifyPurMarkupStruct", objItem.SpecifyPurMarkupStruct, System.Data.DbType.Boolean));
+                if (objItem.MarkupInfo)
+                {
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkup", objItem.SaleMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PurMarkup", objItem.PurMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleCompMarkup", objItem.SaleCompMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", objItem.PurCompMarkup, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifySaleMarkupStruct", objItem.SpecifySaleMarkupStruct, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifyPurMarkupStruct", objItem.SpecifyPurMarkupStruct, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkupStructure", objItem.SaleMarkupStructure));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcMarkupStructure", objItem.PurcMarkupStructure));
+                }
+                else
+                {
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkup", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_PurMarkup", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleCompMarkup", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_PurCompMarkup", "0.00"));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifySaleMarkupStruct", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SpecifyPurMarkupStruct", false, System.Data.DbType.Boolean));
+                    paramCollection.Add(new DBParameter("@ITEM_SaleMarkupStructure", String.Empty));
+                    paramCollection.Add(new DBParameter("@ITEM_PurcMarkupStructure", String.Empty));
+                }
 
                 paramCollection.Add(new DBParameter("@ITEM_StockValMethod", objItem.StockValMethod));
 
@@ -846,6 +1068,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_PURCACCOUNT", objItem.PurcAccount));
                 paramCollection.Add(new DBParameter("@ITEM_MAINTAINSTOCKBAL", objItem.DontMaintainStockBal, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_SPECIFYDEFAULTMC", objItem.SpecifyDefaultMC, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@ITEM_MATERIALCENTER", objItem.DefaultMaterialCenter));
                 paramCollection.Add(new DBParameter("@ITEM_FREEZEMCFORITEM", objItem.FreezeMCforItem, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_TOTALNUMBEROFAUTHORS", objItem.TotalNumberofAuthors));
 
@@ -857,13 +1080,15 @@ namespace eSunSpeed.BusinessLogic
 
                 System.Data.IDataReader dr =
                                _dbHelper.ExecuteDataReader("spUpdateItemMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+
+                UpdateItemBarcodes(objItem.ItemBarcode, objItem.ItemId);
                 if (objItem.SetCriticalLevel)
                 {
                     UpdateItemCriticalLevelDetails(objItem.ItemCriticalLevel, objItem.ItemId);
                 }
                 if (objItem.SerialNumberwiseDetails && objItem.OpStockValue.ToString() != "0.00")
                 {
-                    UpdateSerialNumberWiseDeatils(objItem, objItem.ItemId);
+                    UpdateItemSerialNoWiseDetails(objItem.ItemSerialNo, objItem.ItemId);
                 }
                 if (objItem.ParameterizedDetails && objItem.OpStockValue.ToString() != "0.00")
                 {
@@ -876,6 +1101,10 @@ namespace eSunSpeed.BusinessLogic
                 if (objItem.BatchwiseDetails && objItem.OpStockValue.ToString() != "0.00")
                 {
                     UpdateItemBatchWiseDetails(objItem.ItemBatchWise, objItem.ItemId);
+                }
+                if(objItem.SpecifyDefaultMC)
+                {
+                    UpdateItemMaterialCenterDetails(objItem.ItemMC, objItem.ItemId);
                 }
             }
             catch(Exception ex)
@@ -959,7 +1188,7 @@ namespace eSunSpeed.BusinessLogic
               objItem.Name = dr["ITEM_Name"].ToString();
               objItem.Alias = dr["ITEM_ALIAS"].ToString();
               objItem.Group = dr["ITEM_GROUP"].ToString();
-              objItem.OpStockValue = Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
+              objItem.OpStockQty = Convert.ToDouble(dr["ITEM_OPSTOCK"].ToString());
               objItem.Unit = dr["ITEM_UNIT"].ToString();             
               lstItems.Add(objItem);
           
@@ -969,13 +1198,14 @@ namespace eSunSpeed.BusinessLogic
       }
 
         //Get Item Details By Name
-        public ItemMasterModel GetItemsByName(string itemname)
+        public List<ItemMasterModel> GetItemsByName(string itemname)
         {
-            ItemMasterModel objItem = new ItemMasterModel();
+            List<ItemMasterModel> lstItems = new List<ItemMasterModel>();
+            ItemMasterModel objItem;
 
             string Query = string.Empty;
 
-            Query = "SELECT * FROM ITEM_MASTER WHERE ITEM_Name='" + itemname + "'" ;
+            Query = "SELECT * FROM itemmaster WHERE ITEM_Name='" + itemname + "'";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -983,19 +1213,13 @@ namespace eSunSpeed.BusinessLogic
                 objItem = new eSunSpeedDomain.ItemMasterModel();
                 objItem.Name = dr["ITEM_Name"].ToString();
                 objItem.Alias = dr["ITEM_ALIAS"].ToString();
-                
-                objItem.Unit = dr["ITEM_UNIT"].ToString();
-                objItem.OpStockQty = Convert.ToDouble(dr["ITEM_OPSTOCKQTY"]);
-                objItem.OpStockValue = Convert.ToDouble(dr["ITEM_OPSTOCKVALUE"]);
-                objItem.MainSalePrice = Convert.ToDecimal(dr["ITEM_SALEPRICE"]);
 
-                objItem.MainMRP = Convert.ToDecimal(dr["ITEM_MRP"]);
-                objItem.MainMinSalePrice = Convert.ToDecimal(dr["ITEM_MINSALEPRICE"]);
-                objItem.SelfValuePrice = Convert.ToDecimal(dr["ITEM_SELFVALUEPRICE"]);
-                objItem.SaleDiscount = Convert.ToDecimal(dr["ITEM_SALEDISCOUNT"]);
-                               
+                objItem.Unit = dr["ITEM_UNIT"].ToString();
+                objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
+                objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
+                lstItems.Add(objItem);
             }
-            return objItem;
+            return lstItems;
 
         }
 
@@ -1046,10 +1270,17 @@ namespace eSunSpeed.BusinessLogic
                             {
                                 if(DeleteBatchWiseDetails(id))
                                 {
-                                    string Query = "DELETE FROM itemmaster WHERE ITM_ID=" + id;
-                                    int rowes = _dbHelper.ExecuteNonQuery(Query);
-                                    if (rowes > 0)
-                                        isDelete = true;
+                                    if(DeleteItemMaterialCenterDetails(id))
+                                    {
+                                        if(DeleteItemSerialNoWiseDetails(id))
+                                        {
+                                            string Query = "DELETE FROM itemmaster WHERE ITM_ID=" + id;
+                                            int rowes = _dbHelper.ExecuteNonQuery(Query);
+                                            if (rowes > 0)
+                                                isDelete = true;
+                                        }
+                                      
+                                    }
                                 }
                               
                             }
@@ -1158,6 +1389,24 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+        //Delete Item Serial No wise Details Grid
+        public bool DeleteItemSerialNoWiseDetails(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE FROM `itemserialnowisedetails` WHERE ITM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //Is Item Master Exists Or Not
         public bool IsItemMasterExists(string ItemName)
         {
@@ -1191,6 +1440,25 @@ namespace eSunSpeed.BusinessLogic
             return objItem;
 
         }
+        //Get Item Name By Item Company
+        public ItemMasterModel GetItemNameByCompanyname(string companyname)
+        {
+            ItemMasterModel objItem = new ItemMasterModel();
+
+            string Query = string.Empty;
+
+            Query = "SELECT ITEM_Name FROM itemmaster WHERE ITEM_COMPANY='" + companyname + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objItem = new eSunSpeedDomain.ItemMasterModel();
+
+                objItem.Name = dr["ITEM_Name"].ToString();
+            }
+            return objItem;
+
+        }
 
         //Get Item Name By TaxCategory Name
         public ItemMasterModel GetItemNameByTaxCategoryname(string TaxName)
@@ -1210,6 +1478,99 @@ namespace eSunSpeed.BusinessLogic
             }
             return objItem;
 
+        }
+        //Save Item Material Center Details
+        public bool SaveItemMaterialCenterDetails(List<ItemMaterialCenterModel> lstMC, int id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (ItemMaterialCenterModel Material in lstMC)
+            {
+                Material.ParentId = id;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", Material.ParentId));
+                    paramCollection.Add(new DBParameter("@ITEM_MATERIALCENTER", Material.Materialcenter));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", Material.Qty));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertItemMaterialCenterDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+
+        //Update Item Material Center Details
+        public bool UpdateItemMaterialCenterDetails(List<ItemMaterialCenterModel> lstMC, int id)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+            foreach (ItemMaterialCenterModel Material in lstMC)
+            {
+                Material.ParentId = id;
+                if (Material.MCId > 0)
+                {
+
+
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", Material.ParentId));
+                    paramCollection.Add(new DBParameter("@MC_Id", Material.MCId));
+                    paramCollection.Add(new DBParameter("@ITEM_MATERIALCENTER", Material.Materialcenter));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", Material.Qty));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+
+                    Query = "UPDATE itemmaterialcenterdetails SET `ITEM_MATERIALCENTER`=@ITEM_MATERIALCENTER," +
+                           "`ITEM_QUANTITY`=@ITEM_QUANTITY,`ModifiedBy`=@ModifiedBy " +
+                           "WHERE `ITM_ID`=@Item_Id AND `MC_Id`=@MC_Id";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    {
+                        isUpdate = true;
+                    }
+
+                }
+                else
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Item_Id", Material.ParentId));
+                    paramCollection.Add(new DBParameter("@ITEM_MATERIALCENTER", Material.Materialcenter));
+                    paramCollection.Add(new DBParameter("@ITEM_QUANTITY", Material.Qty));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertItemMaterialCenterDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+            }
+            return isUpdate = true;
+
+        }
+        //Delete Item Material Center Details
+        public bool DeleteItemMaterialCenterDetails(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE FROM `itemmaterialcenterdetails` WHERE ITM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
         }
     }
 }

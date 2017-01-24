@@ -14,9 +14,9 @@ namespace IPCAUI.Administration
 {
     public partial class ItemCompany : Form
     {
-        ItemGroupMasterBL objItemBL = new ItemGroupMasterBL();
+        ItemCompanyMasterBL objICBL = new ItemCompanyMasterBL();
         ItemMasterBL objItemMasterBl = new ItemMasterBL();
-        public static int ItemgrpId = 0;
+        public static int ItemcompId = 0;
         public ItemCompany()
         {
             InitializeComponent();
@@ -24,102 +24,50 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (tbxCompanyName.Text.Equals(string.Empty))
-            //{
-            //    MessageBox.Show("Group Name can not be blank!");
-            //    return;
-            //}
+            if (tbxCompanyName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Company Name can not be blank!");
+                return;
+            }
 
-            //ItemGroupMasterModel objModel = new ItemGroupMasterModel();
-            //objModel.ItemGroup = tbxCompanyName.Text.Trim();
+            ItemCompanyMasterModel objCompany = new ItemCompanyMasterModel();
+            objCompany.ItemCompany = tbxCompanyName.Text.Trim();
+            objCompany.StockAccount = cbxStockaccount.Text.Trim()==null?string.Empty:cbxStockaccount.Text.Trim();
+            objCompany.SalesAccount = cbxSalesaccount.Text.Trim() == null ? string.Empty : cbxSalesaccount.Text.Trim();
+            objCompany.PurchaseAccount = cbxPurchaseAccount.Text.Trim() == null ? string.Empty : cbxPurchaseAccount.Text.Trim();
+            objCompany.CreatedBy = "Admin";
 
-            //objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
-            //objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            //if (cbxPrimarygroup.SelectedItem.ToString() == "N")
-            //{
-            //    objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            //}
-            ////objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
-            ////objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
-            ////objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
-            //objModel.SeparateConfig =false;
-            //objModel.DefaultConfig =false;
-            //if(rbnDefaultConfig.SelectedIndex==0)
-            //{
-            //    objModel.DefaultConfig = true;
-            //}
-            //if (rbnDefaultConfig.SelectedIndex == 1)
-            //{
-            //    objModel.SeparateConfig = true;
-            //}
-            ////objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==null?"0":tbxParameters.Text.Trim());
-            //objModel.CreatedBy = "Admin";
-
-            //bool isSuccess = objItemBL.SaveIGM(objModel);
-            //if(isSuccess)
-            //{
-            //    MessageBox.Show("Saved Successfully!");
-            //    ClearControls();
-                
-            //}
+            bool isSuccess = objICBL.SaveItemCompany(objCompany);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                ClearControls();
+                tbxCompanyName.Focus();
+            }
         }
         public void ClearControls()
         {
-            //tbxCompanyName.Text = string.Empty;
-            //tbxAliasname.Text = string.Empty;
-            //cbxPrimarygroup.SelectedIndex = 1;
+            tbxCompanyName.Text = string.Empty;
+            cbxStockaccount.Text = string.Empty;
+            cbxSalesaccount.Text = string.Empty;
+            cbxPurchaseAccount.Text = string.Empty;
         }
-        private void ListItemgroup_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void FillItemCompanyInfo()
         {
-            Administration.List.ItemgroupList frmList = new Administration.List.ItemgroupList();
-            frmList.StartPosition = FormStartPosition.CenterScreen;
+            ItemCompanyMasterModel objICM = objICBL.GetAllItemCompanyById(ItemcompId);
 
-            frmList.ShowDialog();
-            if(ItemgrpId!=0)
-            {
-                layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-                btnSave.Visible = false;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxCompanyName.Focus();
-                FillItemGroupInfo();
-            }
-            
-
-        }
-
-        private void FillItemGroupInfo()
-        {
-            ItemGroupMasterModel objIGM = objItemBL.GetAllItemGroupById(ItemgrpId);
-
-            //tbxCompanyName.Text = objIGM.ItemGroup;
-            //tbxAliasname.Text = objIGM.Alias;
-            //cbxPrimarygroup.SelectedItem =Convert.ToString((objIGM.PrimaryGroup)?"Y":"N");
-            //cbxUndergroup.SelectedItem=objIGM.UnderGroup;
-            //cbxStockaccount.SelectedItem= objIGM.StockAccount;
-            //cbxSalesaccount.SelectedItem= objIGM.SalesAccount;
-            //cbxPurchaseAccount.SelectedItem= objIGM.PurchaseAccount;
-            //if(objIGM.DefaultConfig)
-            //{
-            //    rbnDefaultConfig.SelectedIndex = 0;
-            //}
-            //if(objIGM.SeparateConfig)
-            //{
-            //    rbnDefaultConfig.SelectedIndex = 1;
-            //}
-            ////rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
-            ////rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
-            //tbxParameters.Text=Convert.ToString(objIGM.Parameters);
+            tbxCompanyName.Text = objICM.ItemCompany;
+            cbxStockaccount.SelectedItem= objICM.StockAccount;
+            cbxSalesaccount.SelectedItem= objICM.SalesAccount;
+            cbxPurchaseAccount.SelectedItem= objICM.PurchaseAccount;
         }
 
 
         private void ItemCompany_Load(object sender, EventArgs e)
         {
-            //cbxPrimarygroup.SelectedIndex = 1;
-            //lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxCompanyName.Focus();
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -134,69 +82,45 @@ namespace IPCAUI.Administration
 
         private void tbxGroupName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '\r')
-            {
-                if (tbxCompanyName.Text.Trim() == string.Empty)
-                {
-                    MessageBox.Show("Item Group Can Not Be Blank!");
-                    tbxCompanyName.Focus();
-                    return;
-                }
-                if (objItemBL.IsItemGroupExists(tbxCompanyName.Text.Trim()))
-                {
-                    MessageBox.Show("Group Name already Exists!");
-                    tbxCompanyName.Focus();
-                    return;
-                }
-            }
+            
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ItemGroupMasterModel objModel = new ItemGroupMasterModel();
+            if(ItemcompId==0)
+            {
+                tbxCompanyName.Focus();
+                return;
+            }
+            ItemCompanyMasterModel objCompany = new ItemCompanyMasterModel();
+            objCompany.ItemCompany = tbxCompanyName.Text.Trim();
+            objCompany.StockAccount = cbxStockaccount.Text.Trim() == null ? string.Empty : cbxStockaccount.Text.Trim();
+            objCompany.SalesAccount = cbxSalesaccount.Text.Trim() == null ? string.Empty : cbxSalesaccount.Text.Trim();
+            objCompany.PurchaseAccount = cbxPurchaseAccount.Text.Trim() == null ? string.Empty : cbxPurchaseAccount.Text.Trim();
+            objCompany.ModifiedBy = "Admin";
+            objCompany.ICM_id = ItemcompId;
+            bool isSuccess = objICBL.UpdateItemCompany(objCompany);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+                ItemcompId = 0;
+                ClearControls();
 
-            //objModel.ItemGroup = tbxCompanyName.Text.Trim();
-            //objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
-            //objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
-            //if(cbxPrimarygroup.SelectedItem.ToString() =="N")
-            //{
-            //    objModel.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            //}           
-            ////objModel.StockAccount = cbxStockaccount.SelectedItem.ToString();
-            ////objModel.SalesAccount = cbxSalesaccount.SelectedItem.ToString();
-            ////objModel.PurchaseAccount = cbxPurchaseAccount.SelectedItem.ToString();
-            //objModel.SeparateConfig = false;
-            //objModel.DefaultConfig = false;
-            //if (rbnDefaultConfig.SelectedIndex == 0)
-            //{
-            //    objModel.DefaultConfig = true;
-            //}
-            //if (rbnDefaultConfig.SelectedIndex == 1)
-            //{
-            //    objModel.SeparateConfig = true;
-            //}
-            ////objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
-            //objModel.IGM_id = ItemgrpId;
-            //objModel.ModifiedBy = "Admin";
-
-            //bool isSuccess = objItemBL.UpdateIGM(objModel);
-            //if (isSuccess)
-            //{
-            //    MessageBox.Show("Update Successfully!");
-            //    ItemgrpId = 0;
-            //    ClearControls();
-                
-            //    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            //    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //    tbxCompanyName.Focus();
-            //    FillItemGroupInfo();
-            //}
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                tbxCompanyName.Focus();
+            }
         }
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-           
+            ClearControls();
+            ItemcompId = 0;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxCompanyName.Focus();
         }
 
         private void tbxGroupName_TextChanged(object sender, EventArgs e)
@@ -223,35 +147,28 @@ namespace IPCAUI.Administration
         {
             cbxStockaccount.SelectedIndex = 0;
         }
-        public void ClearFormValues()
-        {
-            //tbxCompanyName.Text = string.Empty;
-            //tbxAliasname.Text = string.Empty;
-            //tbxParameters.Text = string.Empty;
-            //cbxPrimarygroup.SelectedIndex = 1;
-            //cbxStockaccount.SelectedItem = "";
-            //cbxSalesaccount.SelectedItem = "";
-            //cbxPurchaseAccount.SelectedItem = "";
-
-        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            ItemMasterModel objmodel = objItemMasterBl.GetItemNameByGroupname(tbxCompanyName.Text.Trim());
+            ItemMasterModel objmodel = objItemMasterBl.GetItemNameByCompanyname(tbxCompanyName.Text.Trim());
             if (objmodel.Name != null)
             {
-                MessageBox.Show("Can Not Delete Group Name Under Tag With Item Name.." + objmodel.Name);
+                MessageBox.Show("Can Not Delete Company Name Under Tag With Item Name.." + objmodel.Name);
                 tbxCompanyName.Focus();
-            }          
-            if(objmodel.Name==null)
-            {
-                bool isDelete = objItemBL.DeleteItemGroupById(ItemgrpId);
-                if (isDelete)
-                {
-                    MessageBox.Show("Delete Successfully!");
-                    ClearFormValues();
-                }
             }
-            
+            if (objmodel.Name==null)
+            {
+                if(ItemcompId!=0)
+                {
+                    bool isDelete = objICBL.DeleteItemCompanyById(ItemcompId);
+                    if (isDelete)
+                    {
+                        MessageBox.Show("Delete Successfully!");
+                        ClearControls();
+                    }
+                }
+               
+            }
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -262,25 +179,43 @@ namespace IPCAUI.Administration
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        private void tbxGroupName_MouseLeave(object sender, EventArgs e)
+        private void ListItemCompany_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            
+            Administration.List.ItemcompanyList frmList = new Administration.List.ItemcompanyList();
+            frmList.StartPosition = FormStartPosition.CenterScreen;
+
+            frmList.ShowDialog();
+            if (ItemcompId != 0)
+            {
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;            
+                FillItemCompanyInfo();
+                tbxCompanyName.Focus();
+            }
+
         }
 
-        private void tbxGroupName_Leave(object sender, EventArgs e)
+        private void tbxCompanyName_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
-            //{
-            //    MessageBox.Show("Group Name already Exists!");
-            //    tbxGroupName.Focus();
-            //    return;
-            //}
-        }
-
-        private void cbxPrimarygroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+            if (e.KeyChar == '\r')
+            {
+                if (tbxCompanyName.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Item Company Can Not Be Blank!");
+                    tbxCompanyName.Focus();
+                    return;
+                }
+                if(ItemcompId==0)
+                {
+                    if (objICBL.IsItemCompanyExists(tbxCompanyName.Text.Trim()))
+                    {
+                        MessageBox.Show("Group Name already Exists!");
+                        tbxCompanyName.Focus();
+                        return;
+                    }
+                } 
+            }
         }
     }
 }

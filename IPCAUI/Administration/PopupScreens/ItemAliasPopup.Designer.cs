@@ -45,6 +45,9 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.colBarcodeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colParentId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBarcode)).BeginInit();
@@ -114,7 +117,9 @@
             this.dvgBarcodeDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.dvgBarcodeDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
-            this.colItemAlias});
+            this.colItemAlias,
+            this.colBarcodeId,
+            this.colParentId});
             this.dvgBarcodeDetails.GridControl = this.dvgBarcode;
             this.dvgBarcodeDetails.Name = "dvgBarcodeDetails";
             this.dvgBarcodeDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -147,7 +152,7 @@
             this.colItemAlias.AppearanceHeader.Options.UseTextOptions = true;
             this.colItemAlias.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colItemAlias.Caption = "Alias / Barcode";
-            this.colItemAlias.FieldName = "Barcode";
+            this.colItemAlias.FieldName = "Barcodes";
             this.colItemAlias.Name = "colItemAlias";
             this.colItemAlias.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
             this.colItemAlias.Visible = true;
@@ -235,6 +240,24 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(116, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // colBarcodeId
+            // 
+            this.colBarcodeId.Caption = "BarcodeId";
+            this.colBarcodeId.FieldName = "BarcodeId";
+            this.colBarcodeId.Name = "colBarcodeId";
+            // 
+            // colParentId
+            // 
+            this.colParentId.Caption = "ParentId";
+            this.colParentId.FieldName = "ParentId";
+            this.colParentId.Name = "colParentId";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            // 
             // ItemAliasPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,5 +303,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn colBarcodeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colParentId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

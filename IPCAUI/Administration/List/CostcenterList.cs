@@ -38,6 +38,11 @@ namespace IPCAUI.Administration.List
 
         private void dvgCostcenterDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+           
+        }
+
+        private void dvgCostcenterDetails_KeyDown(object sender, KeyEventArgs e)
+        {
             CostCentreMasterModel lstItems;
 
             lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);

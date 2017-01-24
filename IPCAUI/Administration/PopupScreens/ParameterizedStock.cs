@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeedDomain;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors.Repository;
 
 
 namespace IPCAUI.Administration.PopupScreens
@@ -25,11 +26,28 @@ namespace IPCAUI.Administration.PopupScreens
         {
             dt.Columns.Add("S.No");
             dt.Columns.Add("ItemName");
+            dt.Columns.Add("Size");
+            dt.Columns.Add("Color");
+            dt.Columns.Add("Arno");
+            dt.Columns.Add("Degin");
             dt.Columns.Add("Qty");
+            dt.Columns.Add("Unit");
+            dt.Columns.Add("MRP");
+            dt.Columns.Add("SalePrice");
+            dt.Columns.Add("Costprice");
+            dt.Columns.Add("Barcode");
             dt.Columns.Add("ParmId");
             dt.Columns.Add("ParentId");
             dvgParamStock.DataSource = dt;
-            if(ItemMasterNew.objModel.ItemId!=0)
+            RepositoryItemLookUpEdit riLookupUnit = new RepositoryItemLookUpEdit();
+            riLookupUnit.DataSource = new string[] { ItemMasterNew.objModel.AltUnit, ItemMasterNew.objModel.MainUnit };
+            //riLookup.DataSource = lstUnits;
+            riLookupUnit.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            riLookupUnit.AutoSearchColumnIndex = 1;
+            dvgParamStockDetails.Columns["Unit"].ColumnEdit = riLookupUnit;
+            dvgParamStockDetails.BestFitColumns();
+
+            if (ItemMasterNew.objModel.ItemId!=0)
             {
                 dt.Rows.Clear();
 
@@ -41,6 +59,11 @@ namespace IPCAUI.Administration.PopupScreens
 
                     dr["ItemName"] = objParm.ItemName;
                     dr["Qty"] = objParm.Qty;
+                    dr["Unit"] = objParm.Unit;
+                    dr["MRP"] = objParm.MRP;
+                    dr["SalePrice"] = objParm.SalePrice;
+                    dr["Costprice"] = objParm.Costprice;
+                    dr["Barcode"] = objParm.Barcode;
                     dr["ParmId"] = objParm.Param_Id;
                     dr["ParentId"] = objParm.Parent_Id;
                     dt.Rows.Add(dr);
@@ -62,7 +85,13 @@ namespace IPCAUI.Administration.PopupScreens
                 objparam = new ItemParameterizedModel();
                 objparam.ItemName = row["ItemName"].ToString()==null?string.Empty: row["ItemName"].ToString();
                 objparam.Qty =Convert.ToInt32(row["Qty"].ToString()==null?string.Empty: row["Qty"].ToString());
-                if(ItemMasterNew.objModel.ItemId!=0)
+                objparam.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
+                objparam.MRP = Convert.ToDecimal(row["MRP"].ToString() == string.Empty ? "0.00" : row["MRP"].ToString());
+                objparam.SalePrice = Convert.ToDecimal(row["SalePrice"].ToString() == string.Empty ? "0.00" : row["SalePrice"].ToString());
+                objparam.Costprice = Convert.ToDecimal(row["Costprice"].ToString() == string.Empty ? "0.00" : row["Costprice"].ToString());
+                objparam.Barcode = row["Barcode"].ToString() == null ? string.Empty : row["Barcode"].ToString();
+
+                if (ItemMasterNew.objModel.ItemId!=0)
                 {
                     objparam.Parent_Id = Convert.ToInt32(row["ParentId"].ToString() == string.Empty ?"0": row["ParentId"]);
                     objparam.Param_Id = Convert.ToInt32(row["ParmId"].ToString() == string.Empty ? "0" : row["ParmId"]);
@@ -94,6 +123,11 @@ namespace IPCAUI.Administration.PopupScreens
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dvgParamStock_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

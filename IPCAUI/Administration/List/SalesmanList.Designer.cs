@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dvgSalesmanList = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgSalesManDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -50,7 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgSalesmanList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSalesManDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
@@ -91,34 +90,38 @@
             // dvgSalesmanList
             // 
             this.dvgSalesmanList.Location = new System.Drawing.Point(47, 30);
-            this.dvgSalesmanList.MainView = this.gridView1;
+            this.dvgSalesmanList.MainView = this.dvgSalesManDetails;
             this.dvgSalesmanList.Name = "dvgSalesmanList";
             this.dvgSalesmanList.Size = new System.Drawing.Size(782, 438);
             this.dvgSalesmanList.TabIndex = 9;
             this.dvgSalesmanList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dvgSalesManDetails});
             this.dvgSalesmanList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgSalesmanList_KeyDown);
             // 
-            // gridView1
+            // dvgSalesManDetails
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgSalesManDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colAlias});
-            this.gridView1.GridControl = this.dvgSalesmanList;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.dvgSalesManDetails.GridControl = this.dvgSalesmanList;
+            this.dvgSalesManDetails.Name = "dvgSalesManDetails";
+            this.dvgSalesManDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgSalesManDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgSalesManDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgSalesManDetails_RowClick);
+            this.dvgSalesManDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgSalesManDetails_KeyDown);
             // 
             // colName
             // 
-            this.colName.FieldName = "Name";
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "SM_Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             // 
             // colAlias
             // 
-            this.colAlias.Caption = "Export/Local";
-            this.colAlias.FieldName = "Alias";
+            this.colAlias.Caption = "Alias";
+            this.colAlias.FieldName = "SM_Alias";
             this.colAlias.Name = "colAlias";
             this.colAlias.Visible = true;
             this.colAlias.VisibleIndex = 1;
@@ -263,7 +266,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgSalesmanList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSalesManDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
@@ -290,7 +293,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgSalesmanList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgSalesManDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colAlias;

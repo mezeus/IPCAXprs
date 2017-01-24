@@ -30,12 +30,7 @@ namespace IPCAUI.Administration.List
 
         private void dvgBillmaterialDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
-            BillofMaterialModel lstBillmaterials;
-
-            lstBillmaterials = (BillofMaterialModel)dvgBillmaterialDetails.GetRow(dvgBillmaterialDetails.FocusedRowHandle);
-            BillsofMaterial.BMId = lstBillmaterials.Bom_Id;
-
-            this.Close();
+            
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -46,6 +41,16 @@ namespace IPCAUI.Administration.List
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dvgBillmaterialDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            BillofMaterialModel lstBillmaterials;
+
+            lstBillmaterials = (BillofMaterialModel)dvgBillmaterialDetails.GetRow(dvgBillmaterialDetails.FocusedRowHandle);
+            BillsofMaterial.BMId = lstBillmaterials.Bom_Id;
+
+            this.Close();
         }
     }
 }

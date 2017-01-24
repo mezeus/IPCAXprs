@@ -12,7 +12,8 @@ namespace eSunSpeedDomain
         public decimal MRP { get; set; }
         public decimal SalesPrice { get; set; }
         public decimal Quantity { get; set; }
-        public decimal Amount { get; set; }
-
+        public decimal Costprice { get; set; }
+        public string Unit { get; set; }
+        public string Barcode { get; set; }
     }
 }

@@ -91,7 +91,54 @@ namespace eSunSpeed.BusinessLogic
             }
             return isSaved;
         }
+        //Update Item Raw Material Consued
+        public bool UpdateBillsofMaterialConsumed(List<BillsofMaterialDetailsModel> lstConsumed,int id)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+            foreach (BillsofMaterialDetailsModel objConsumed in lstConsumed)
+            {             
+                  objConsumed.ParentId = id;
+                if(objConsumed.id>0)
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
+                    paramCollection.Add(new DBParameter("@BillsId", objConsumed.ParentId));
+                    paramCollection.Add(new DBParameter("@Consumed_Id", objConsumed.id));
+                    paramCollection.Add(new DBParameter("@Consumed_Item", objConsumed.ItemName));
+                    paramCollection.Add(new DBParameter("@Consumed_Qty", objConsumed.Qty));
+                    paramCollection.Add(new DBParameter("@Consumed_Unit", objConsumed.Unit));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+
+                    Query = "UPDATE bom_consumed_details SET `ItemName`=@Consumed_Item," +
+                            "`Qty`=@Consumed_Qty,`Unit`=@Consumed_Unit,`ModifiedBy`=@ModifiedBy " +
+                            "WHERE `Bom_Id`=@BillsId AND `Consumed_Id`=@Consumed_Id";
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    {
+                        isUpdate = true;
+                    }
+                }
+                else
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@BillsId",objConsumed.ParentId));
+                    paramCollection.Add(new DBParameter("@Consumed_Item", objConsumed.ItemName));
+                    paramCollection.Add(new DBParameter("@Consumed_Qty", objConsumed.Qty));
+                    paramCollection.Add(new DBParameter("@Consumed_Unit", objConsumed.Unit));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    Query = "INSERT INTO bom_consumed_details(`Bom_Id`,`ItemName`,`Qty`,`Unit`,`CreatedBy`)" +
+                            "VALUES(@BillsId,@Consumed_Item,@Consumed_Qty,@Consumed_Unit,@CreatedBy)";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                        isUpdate = true;
+                }   
+
+            
+            }
+            return isUpdate;
+        }
         //Save Item Raw Material Generated
         public bool SaveMaterialGenerated(List<BillsofMaterialDetailsModel> lstGenerate)
         {
@@ -127,6 +174,54 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
+        //Update Item Raw Material generated
+        public bool UpdateBillsofMaterialGenerate(List<BillsofMaterialDetailsModel> lstGenerate, int id)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+            foreach (BillsofMaterialDetailsModel objGenerate in lstGenerate)
+            {
+                objGenerate.ParentId = id;
+                if (objGenerate.id > 0)
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@BillsId", objGenerate.ParentId));
+                    paramCollection.Add(new DBParameter("@Generate_Id", objGenerate.id));
+                    paramCollection.Add(new DBParameter("@Generate_Item", objGenerate.ItemName));
+                    paramCollection.Add(new DBParameter("@Generate_Qty", objGenerate.Qty));
+                    paramCollection.Add(new DBParameter("@Generate_Unit", objGenerate.Unit));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+
+                    Query = "UPDATE bom_generate_details SET `ItemName`=@Generate_Item," +
+                            "`Qty`=@Generate_Qty,`Unit`=@Generate_Unit,`ModifiedBy`=@ModifiedBy " +
+                            "WHERE `Bom_Id`=@BillsId AND `Generate_Id`=@Generate_Id";
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    {
+                        isUpdate = true;
+                    }
+                }
+                else
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@Parent_Id", objGenerate.ParentId));
+                    paramCollection.Add(new DBParameter("@Generate_Item", objGenerate.ItemName));
+                    paramCollection.Add(new DBParameter("@Generate_Qty", objGenerate.Qty));
+                    paramCollection.Add(new DBParameter("@Generate_Unit", objGenerate.Unit));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+
+                    Query = "INSERT INTO bom_generate_details(`Bom_Id`,`ItemName`,`Qty`,`Unit`,`CreatedBy`)" +
+                            "VALUES(@Parent_Id,@Generate_Item,@Generate_Qty,@Generate_Unit,@CreatedBy)";
+
+                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                        isUpdate = true;
+                }
+
+
+            }
+            return isUpdate;
+        }
         //updatebom
         public bool UpdateBOM(eSunSpeedDomain.BillofMaterialModel objBOM)
         {
@@ -138,7 +233,7 @@ namespace eSunSpeed.BusinessLogic
 
 
                 paramCollection.Add(new DBParameter("@BOMName", objBOM.BOMName));
-                paramCollection.Add(new DBParameter("@ItemProduct", objBOM.Itemtoproduce));
+                paramCollection.Add(new DBParameter("@Itemtoproduce", objBOM.Itemtoproduce));
                 paramCollection.Add(new DBParameter("@Quantity", objBOM.Quantity, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ItemUnit", objBOM.ItemUnit));
                 paramCollection.Add(new DBParameter("@Expenses", objBOM.Expenses, System.Data.DbType.Decimal));
@@ -151,18 +246,12 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Unit", objBOM.Unit, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objBOM.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@Bom_Id", objBOM.Bom_Id));
+                paramCollection.Add(new DBParameter("@BillsId",objBOM.id));
 
-
-                Query = "UPDATE BillsofMaterial SET [BOMName]=@BOMName,[ItemProduct]=@ItemProduct,[Quantity]=@Quantity,[ItemUnit]=@ItemUnit,[Expenses]=@Expenses,[SpecifyMCGenerated]=@SpecifyMCGenerated, " +
-                   "[SpecifyDefaultMCforItemConsumed]=@SpecifyDefaultMCforItemConsumed,[AppMc]=@AppMc,[SNo]=@SNo,[ItemName]=@ItemName, " +
-                   "[Qty]=@Qty,[Unit]=@Unit,[TotalofConsumedqtyUnit]=@TotalofConsumedqtyUnit,[ModifiedBy]=@ModifiedBy " +
-                   "WHERE BOM_Id=@BOM_Id";
-
-
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isUpdated = true;
+                System.Data.IDataReader dr =
+                        _dbHelper.ExecuteDataReader("spUpdateBillsOfMaterial", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                UpdateBillsofMaterialConsumed(objBOM.MaterialConsumed, objBOM.id);
+                UpdateBillsofMaterialGenerate(objBOM.MaterialGenerated, objBOM.id);
             }
             catch (Exception ex)
             {
@@ -209,7 +298,67 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
         #endregion
+        //Delete Single BOM Details
+        public bool DeleteBillsOfMaterial(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                if (DeleteBoMConsumed(id))
+                {
+                    if(DeleteBomGenerate(id))
+                    {
+                        string Query = "DELETE FROM `billsofmaterial` WHERE `Bom_Id`=" + id;
 
+                        if (_dbHelper.ExecuteNonQuery(Query) > 0)
+
+                            isDelete = true;
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
+        //Delete Raw Material Consumed details
+        public bool DeleteBoMConsumed(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE  FROM `bom_consumed_details` WHERE `Bom_Id`=" + id;
+
+                if (_dbHelper.ExecuteNonQuery(Query) > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
+        //Delete Raw Material Generate Details
+        public bool DeleteBomGenerate(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE  FROM `bom_generate_details` WHERE `Bom_Id`=" + id;
+                if (_dbHelper.ExecuteNonQuery(Query) > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //List In Bills og Material
 
         public List<eSunSpeedDomain.BillofMaterialModel> GetAllBillofMaterial()
@@ -224,7 +373,7 @@ namespace eSunSpeed.BusinessLogic
             {
 
                 objBom = new BillofMaterialModel();
-
+                objBom.Bom_Id = Convert.ToInt32(dr["Bom_Id"].ToString());
                 objBom.BOMName = dr["BOMName"].ToString();
                 objBom.Itemtoproduce= dr["Itemtoproduce"].ToString();
                 objBom.Quantity = Convert.ToDecimal(dr["Quantity"]);
@@ -249,6 +398,7 @@ namespace eSunSpeed.BusinessLogic
 
             while (dr.Read())
             {
+                objBom.Bom_Id = Convert.ToInt32(dr["Bom_Id"].ToString());
                 objBom.BOMName = dr["BOMName"].ToString();
                 objBom.Itemtoproduce = dr["Itemtoproduce"].ToString();
                 objBom.Quantity = Convert.ToDecimal(dr["Quantity"]);
@@ -257,6 +407,40 @@ namespace eSunSpeed.BusinessLogic
                 objBom.SpecifyMCGenerated = Convert.ToBoolean(dr["SpecifyMCGenerated"]);
                 objBom.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(dr["SpecifyDefaultMCforItemConsumed"]);
 
+                string QueryCon = "SELECT * FROM bom_consumed_details WHERE Bom_Id=" + id;
+                System.Data.IDataReader drCon = _dbHelper.ExecuteDataReader(QueryCon, _dbHelper.GetConnObject());
+
+                objBom.MaterialConsumed = new List<BillsofMaterialDetailsModel>();
+                BillsofMaterialDetailsModel objMaterial;
+
+                while (drCon.Read())
+                {
+                    objMaterial = new BillsofMaterialDetailsModel();
+                    objMaterial.id = Convert.ToInt32(drCon["Consumed_Id"]);
+                    objMaterial.ParentId = Convert.ToInt32(drCon["Bom_Id"]);
+                    objMaterial.ItemName = drCon["ItemName"].ToString();
+                    objMaterial.Qty = Convert.ToDecimal(drCon["Qty"]);
+                    objMaterial.Unit = drCon["Unit"].ToString();
+
+                    objBom.MaterialConsumed.Add(objMaterial);
+                }
+
+                string QueryGen = "SELECT * FROM bom_generate_details WHERE Bom_Id=" + id;
+                System.Data.IDataReader drGen = _dbHelper.ExecuteDataReader(QueryGen, _dbHelper.GetConnObject());
+
+                objBom.MaterialGenerated = new List<BillsofMaterialDetailsModel>();
+                BillsofMaterialDetailsModel objMatGen;
+
+                while (drGen.Read())
+                {
+                    objMatGen = new BillsofMaterialDetailsModel();
+                    objMatGen.id = Convert.ToInt32(drGen["Generate_Id"]);
+                    objMatGen.ParentId = Convert.ToInt32(drGen["Bom_Id"]);
+                    objMatGen.ItemName = drGen["ItemName"].ToString();
+                    objMatGen.Qty = Convert.ToDecimal(drGen["Qty"]);
+                    objMatGen.Unit = drGen["Unit"].ToString();
+                    objBom.MaterialGenerated.Add(objMatGen);
+                }
             }
             return objBom;
         }
@@ -278,6 +462,20 @@ namespace eSunSpeed.BusinessLogic
 
             return id;
         }
+        //Is ItemGroup Master Exist or Not
+        public bool IsBOMExists(string BOMName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM billsofmaterial WHERE BomName='{0}'", BOMName);
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
+
     }
 }
     

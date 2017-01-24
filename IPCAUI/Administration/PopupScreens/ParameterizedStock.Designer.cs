@@ -37,8 +37,12 @@
             this.dvgParamStock = new DevExpress.XtraGrid.GridControl();
             this.dvgParamStockDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colItemAlias = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMRP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSalesPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCostprice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBarcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -166,14 +170,19 @@
             this.dvgParamStock.TabIndex = 7;
             this.dvgParamStock.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgParamStockDetails});
+            this.dvgParamStock.Click += new System.EventHandler(this.dvgParamStock_Click);
             // 
             // dvgParamStockDetails
             // 
             this.dvgParamStockDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.dvgParamStockDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
-            this.colItemAlias,
-            this.colQty});
+            this.colQty,
+            this.colUnit,
+            this.colMRP,
+            this.colSalesPrice,
+            this.colCostprice,
+            this.colBarcode});
             this.dvgParamStockDetails.GridControl = this.dvgParamStock;
             this.dvgParamStockDetails.Name = "dvgParamStockDetails";
             this.dvgParamStockDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -199,18 +208,7 @@
             this.colSNo.OptionsColumn.ReadOnly = true;
             this.colSNo.Visible = true;
             this.colSNo.VisibleIndex = 0;
-            this.colSNo.Width = 55;
-            // 
-            // colItemAlias
-            // 
-            this.colItemAlias.AppearanceHeader.Options.UseTextOptions = true;
-            this.colItemAlias.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colItemAlias.FieldName = "ItemName";
-            this.colItemAlias.Name = "colItemAlias";
-            this.colItemAlias.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
-            this.colItemAlias.Visible = true;
-            this.colItemAlias.VisibleIndex = 1;
-            this.colItemAlias.Width = 442;
+            this.colSNo.Width = 37;
             // 
             // colQty
             // 
@@ -223,7 +221,51 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "SUM={0:0.##}")});
             this.colQty.Visible = true;
             this.colQty.VisibleIndex = 2;
-            this.colQty.Width = 109;
+            this.colQty.Width = 102;
+            // 
+            // colUnit
+            // 
+            this.colUnit.Caption = "Unit";
+            this.colUnit.FieldName = "Unit";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Visible = true;
+            this.colUnit.VisibleIndex = 3;
+            this.colUnit.Width = 69;
+            // 
+            // colMRP
+            // 
+            this.colMRP.Caption = "MRP";
+            this.colMRP.FieldName = "MRP";
+            this.colMRP.Name = "colMRP";
+            this.colMRP.Visible = true;
+            this.colMRP.VisibleIndex = 4;
+            this.colMRP.Width = 69;
+            // 
+            // colSalesPrice
+            // 
+            this.colSalesPrice.Caption = "SalesPrice";
+            this.colSalesPrice.FieldName = "SalePrice";
+            this.colSalesPrice.Name = "colSalesPrice";
+            this.colSalesPrice.Visible = true;
+            this.colSalesPrice.VisibleIndex = 5;
+            this.colSalesPrice.Width = 69;
+            // 
+            // colCostprice
+            // 
+            this.colCostprice.Caption = "CostPrice";
+            this.colCostprice.FieldName = "Costprice";
+            this.colCostprice.Name = "colCostprice";
+            this.colCostprice.Visible = true;
+            this.colCostprice.VisibleIndex = 6;
+            this.colCostprice.Width = 79;
+            // 
+            // colBarcode
+            // 
+            this.colBarcode.Caption = "BarCode";
+            this.colBarcode.FieldName = "Barcode";
+            this.colBarcode.Name = "colBarcode";
+            this.colBarcode.Visible = true;
+            this.colBarcode.VisibleIndex = 7;
             // 
             // repositoryItemTextEdit1
             // 
@@ -487,7 +529,6 @@
         private DevExpress.XtraGrid.GridControl dvgParamStock;
         private DevExpress.XtraGrid.Views.Grid.GridView dvgParamStockDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colItemAlias;
         private DevExpress.XtraGrid.Columns.GridColumn colQty;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
@@ -512,5 +553,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraGrid.Columns.GridColumn colUnit;
+        private DevExpress.XtraGrid.Columns.GridColumn colMRP;
+        private DevExpress.XtraGrid.Columns.GridColumn colSalesPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colCostprice;
+        private DevExpress.XtraGrid.Columns.GridColumn colBarcode;
     }
 }

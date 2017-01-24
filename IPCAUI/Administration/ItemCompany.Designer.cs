@@ -34,7 +34,7 @@
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.ListItemgroup = new DevExpress.XtraNavBar.NavBarItem();
+            this.ListItemCompany = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -202,7 +202,7 @@
             this.navBarItem4,
             this.navBarItem5,
             this.navBarItem6,
-            this.ListItemgroup,
+            this.ListItemCompany,
             this.navBarItem8,
             this.btnNewEntery,
             this.navbtnAccountsettings,
@@ -250,18 +250,18 @@
             this.navBarGroup5.Caption = "Add/Modify";
             this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.ListItemgroup),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ListItemCompany),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // ListItemgroup
+            // ListItemCompany
             // 
-            this.ListItemgroup.Caption = "List";
-            this.ListItemgroup.Name = "ListItemgroup";
-            this.ListItemgroup.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListItemgroup.SmallImage")));
-            this.ListItemgroup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListItemgroup_LinkClicked);
+            this.ListItemCompany.Caption = "List";
+            this.ListItemCompany.Name = "ListItemCompany";
+            this.ListItemCompany.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListItemCompany.SmallImage")));
+            this.ListItemCompany.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListItemCompany_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -577,9 +577,9 @@
             this.tbxCompanyName.TabIndex = 5;
             this.tbxCompanyName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
             this.tbxCompanyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxGroupName_KeyDown);
-            this.tbxCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxGroupName_KeyPress);
-            this.tbxCompanyName.Leave += new System.EventHandler(this.tbxGroupName_Leave);
-            this.tbxCompanyName.MouseLeave += new System.EventHandler(this.tbxGroupName_MouseLeave);
+            this.tbxCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCompanyName_KeyPress);
+            
+            
             // 
             // labelControl1
             // 
@@ -787,7 +787,6 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.cbxStockaccount;
-            this.layoutControlItem6.Enabled = false;
             this.layoutControlItem6.Location = new System.Drawing.Point(90, 42);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(510, 24);
@@ -800,7 +799,6 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.cbxSalesaccount;
-            this.layoutControlItem11.Enabled = false;
             this.layoutControlItem11.Location = new System.Drawing.Point(90, 66);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(510, 24);
@@ -813,7 +811,6 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.cbxPurchaseAccount;
-            this.layoutControlItem12.Enabled = false;
             this.layoutControlItem12.Location = new System.Drawing.Point(90, 90);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(510, 24);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(510, 24);
@@ -992,7 +989,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem ListItemgroup;
+        private DevExpress.XtraNavBar.NavBarItem ListItemCompany;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;

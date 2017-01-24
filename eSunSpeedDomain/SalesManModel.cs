@@ -13,6 +13,7 @@ namespace eSunSpeedDomain
         public string SM_PrintName { get; set; }                
         public bool EnableDefCommision { get; set; }
 
+        public string SM_AccounttobeCredited { get; set; }
 
         public string Commision_Mode { get; set; }
         public decimal DefCommision { get; set; }

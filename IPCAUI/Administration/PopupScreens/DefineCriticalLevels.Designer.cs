@@ -123,6 +123,7 @@
             // 
             // tbxRecordLvlDays
             // 
+            this.tbxRecordLvlDays.EditValue = "0.00";
             this.tbxRecordLvlDays.EnterMoveNextControl = true;
             this.tbxRecordLvlDays.Location = new System.Drawing.Point(132, 189);
             this.tbxRecordLvlDays.Name = "tbxRecordLvlDays";
@@ -134,6 +135,7 @@
             // 
             // tbxMinLvlDays
             // 
+            this.tbxMinLvlDays.EditValue = "0.00";
             this.tbxMinLvlDays.EnterMoveNextControl = true;
             this.tbxMinLvlDays.Location = new System.Drawing.Point(132, 145);
             this.tbxMinLvlDays.Name = "tbxMinLvlDays";
@@ -145,6 +147,7 @@
             // 
             // tbxMaxLvlQty
             // 
+            this.tbxMaxLvlQty.EditValue = "0.00";
             this.tbxMaxLvlQty.EnterMoveNextControl = true;
             this.tbxMaxLvlQty.Location = new System.Drawing.Point(132, 101);
             this.tbxMaxLvlQty.Name = "tbxMaxLvlQty";
@@ -156,6 +159,7 @@
             // 
             // tbxRecordLvlQty
             // 
+            this.tbxRecordLvlQty.EditValue = "0.00";
             this.tbxRecordLvlQty.EnterMoveNextControl = true;
             this.tbxRecordLvlQty.Location = new System.Drawing.Point(132, 60);
             this.tbxRecordLvlQty.Name = "tbxRecordLvlQty";
@@ -167,6 +171,7 @@
             // 
             // tbxMinLvlQty
             // 
+            this.tbxMinLvlQty.EditValue = "0.00";
             this.tbxMinLvlQty.EnterMoveNextControl = true;
             this.tbxMinLvlQty.Location = new System.Drawing.Point(132, 24);
             this.tbxMinLvlQty.Name = "tbxMinLvlQty";
@@ -178,6 +183,7 @@
             // 
             // tbxMaxLvlDays
             // 
+            this.tbxMaxLvlDays.EditValue = "0.00";
             this.tbxMaxLvlDays.EnterMoveNextControl = true;
             this.tbxMaxLvlDays.Location = new System.Drawing.Point(132, 231);
             this.tbxMaxLvlDays.Name = "tbxMaxLvlDays";
