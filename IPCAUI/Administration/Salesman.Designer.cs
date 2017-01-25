@@ -44,7 +44,7 @@
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.ListSalesman = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navbtnAccountsettings = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
@@ -259,6 +259,7 @@
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 67;
             this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -269,6 +270,7 @@
             this.btnUpdate.StyleController = this.layoutControl1;
             this.btnUpdate.TabIndex = 66;
             this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // cbxPurchaseDebited
             // 
@@ -279,12 +281,11 @@
             this.cbxPurchaseDebited.Properties.Appearance.Options.UseFont = true;
             this.cbxPurchaseDebited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxPurchaseDebited.Properties.Items.AddRange(new object[] {
-            "Load Account Master"});
             this.cbxPurchaseDebited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxPurchaseDebited.Size = new System.Drawing.Size(167, 20);
             this.cbxPurchaseDebited.StyleController = this.layoutControl1;
             this.cbxPurchaseDebited.TabIndex = 65;
+            this.cbxPurchaseDebited.Enter += new System.EventHandler(this.cbxPurchaseDebited_Enter);
             // 
             // cbxPurchaseDebitMode
             // 
@@ -313,12 +314,11 @@
             this.cbxSalesDebited.Properties.Appearance.Options.UseFont = true;
             this.cbxSalesDebited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSalesDebited.Properties.Items.AddRange(new object[] {
-            "Load Account Master"});
             this.cbxSalesDebited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSalesDebited.Size = new System.Drawing.Size(167, 20);
             this.cbxSalesDebited.StyleController = this.layoutControl1;
             this.cbxSalesDebited.TabIndex = 63;
+            this.cbxSalesDebited.Enter += new System.EventHandler(this.cbxSalesDebited_Enter);
             // 
             // cbxSaleDebitMode
             // 
@@ -404,7 +404,6 @@
             this.cbxEnableDefComm.Size = new System.Drawing.Size(191, 20);
             this.cbxEnableDefComm.StyleController = this.layoutControl1;
             this.cbxEnableDefComm.TabIndex = 58;
-            this.cbxEnableDefComm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbxEnableDefComm_KeyDown);
             // 
             // navBarControl1
             // 
@@ -427,7 +426,7 @@
             this.navBarItem6,
             this.ListSalesman,
             this.navBarItem8,
-            this.navBarItem9,
+            this.btnNewEntery,
             this.navbtnAccountsettings,
             this.navBarItem11,
             this.GeneralAccountScreen,
@@ -467,7 +466,6 @@
             this.navBarControl1.TabIndex = 57;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
-            this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
             // 
             // navBarGroup5
             // 
@@ -476,7 +474,7 @@
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.ListSalesman),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
@@ -493,11 +491,12 @@
             this.navBarItem8.Name = "navBarItem8";
             this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
             // 
-            // navBarItem9
+            // btnNewEntery
             // 
-            this.navBarItem9.Caption = "New Entry";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
+            this.btnNewEntery.Caption = "New Entry";
+            this.btnNewEntery.Name = "btnNewEntery";
+            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
+            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -775,6 +774,7 @@
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click_1);
             // 
             // btnSave
             // 
@@ -823,6 +823,7 @@
             this.tbxName.Size = new System.Drawing.Size(227, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 1;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
             // 
             // tbxAlias
@@ -935,11 +936,6 @@
             this.cbxSalesAccountCredited.Name = "cbxSalesAccountCredited";
             this.cbxSalesAccountCredited.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxSalesAccountCredited.Properties.Appearance.Options.UseFont = true;
-            this.cbxSalesAccountCredited.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSalesAccountCredited.Properties.Items.AddRange(new object[] {
-            "Load Account Master"});
-            this.cbxSalesAccountCredited.Properties.PopupSizeable = true;
             this.cbxSalesAccountCredited.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSalesAccountCredited.Size = new System.Drawing.Size(191, 20);
             this.cbxSalesAccountCredited.StyleController = this.layoutControl1;
@@ -1026,8 +1022,11 @@
             // 
             this.lblSave.Control = this.btnSave;
             this.lblSave.Location = new System.Drawing.Point(311, 360);
+            this.lblSave.MaxSize = new System.Drawing.Size(85, 26);
+            this.lblSave.MinSize = new System.Drawing.Size(85, 26);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(85, 26);
+            this.lblSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblSave.TextSize = new System.Drawing.Size(0, 0);
             this.lblSave.TextVisible = false;
             // 
@@ -1035,8 +1034,11 @@
             // 
             this.lblQuit.Control = this.btnQuit;
             this.lblQuit.Location = new System.Drawing.Point(597, 360);
+            this.lblQuit.MaxSize = new System.Drawing.Size(77, 26);
+            this.lblQuit.MinSize = new System.Drawing.Size(77, 26);
             this.lblQuit.Name = "lblQuit";
             this.lblQuit.Size = new System.Drawing.Size(77, 26);
+            this.lblQuit.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblQuit.TextSize = new System.Drawing.Size(0, 0);
             this.lblQuit.TextVisible = false;
             // 
@@ -1351,8 +1353,11 @@
             // 
             this.lblUpdate.Control = this.btnUpdate;
             this.lblUpdate.Location = new System.Drawing.Point(408, 360);
+            this.lblUpdate.MaxSize = new System.Drawing.Size(80, 26);
+            this.lblUpdate.MinSize = new System.Drawing.Size(80, 26);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(80, 26);
+            this.lblUpdate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpdate.TextVisible = false;
             // 
@@ -1360,8 +1365,11 @@
             // 
             this.lblDelete.Control = this.btnDelete;
             this.lblDelete.Location = new System.Drawing.Point(502, 360);
+            this.lblDelete.MaxSize = new System.Drawing.Size(80, 26);
+            this.lblDelete.MinSize = new System.Drawing.Size(80, 26);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(80, 26);
+            this.lblDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblDelete.TextSize = new System.Drawing.Size(0, 0);
             this.lblDelete.TextVisible = false;
             // 
@@ -1551,7 +1559,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
         private DevExpress.XtraNavBar.NavBarItem ListSalesman;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem6;

@@ -144,7 +144,6 @@
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lblMaintainbillbybill = new DevExpress.XtraLayout.LayoutControlItem();
             this.grpCreditdays = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -162,7 +161,7 @@
             this.lblIReceviable = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblAllocateAmont = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblMulticurrency = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblMaintainbillbybill = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblSave = new DevExpress.XtraLayout.LayoutControlItem();
@@ -194,6 +193,7 @@
             this.layoutControlItem52 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -269,7 +269,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblMaintainbillbybill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
@@ -287,7 +286,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblIReceviable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAllocateAmont)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMulticurrency)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMaintainbillbybill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSave)).BeginInit();
@@ -319,6 +318,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
@@ -1486,7 +1486,6 @@
             this.layoutLedger.Size = new System.Drawing.Size(377, 24);
             this.layoutLedger.Text = "Ledger Type";
             this.layoutLedger.TextSize = new System.Drawing.Size(133, 13);
-            this.layoutLedger.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutSubledger
             // 
@@ -1496,7 +1495,6 @@
             this.layoutSubledger.Size = new System.Drawing.Size(94, 24);
             this.layoutSubledger.TextSize = new System.Drawing.Size(0, 0);
             this.layoutSubledger.TextVisible = false;
-            this.layoutSubledger.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lciGroup
             // 
@@ -1543,16 +1541,6 @@
             this.layoutControlItem15.Text = "Prev. Year Bal.";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(133, 13);
             // 
-            // lblMaintainbillbybill
-            // 
-            this.lblMaintainbillbybill.Control = this.cbxMaintainBalancing;
-            this.lblMaintainbillbybill.Location = new System.Drawing.Point(0, 192);
-            this.lblMaintainbillbybill.Name = "lblMaintainbillbybill";
-            this.lblMaintainbillbybill.Size = new System.Drawing.Size(235, 24);
-            this.lblMaintainbillbybill.Text = "Maintain Bill By Bill Balancing";
-            this.lblMaintainbillbybill.TextSize = new System.Drawing.Size(133, 13);
-            this.lblMaintainbillbybill.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
             // grpCreditdays
             // 
             this.grpCreditdays.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1562,7 +1550,6 @@
             this.grpCreditdays.Name = "grpCreditdays";
             this.grpCreditdays.Size = new System.Drawing.Size(471, 66);
             this.grpCreditdays.Text = "Credit Days";
-            this.grpCreditdays.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem18
             // 
@@ -1612,7 +1599,6 @@
             this.lblDefaultSaleType.Size = new System.Drawing.Size(471, 24);
             this.lblDefaultSaleType.Text = "Default Sale Type";
             this.lblDefaultSaleType.TextSize = new System.Drawing.Size(133, 13);
-            this.lblDefaultSaleType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblDefaultPurcType
             // 
@@ -1622,7 +1608,6 @@
             this.lblDefaultPurcType.Size = new System.Drawing.Size(471, 24);
             this.lblDefaultPurcType.Text = "Default Purc. Type";
             this.lblDefaultPurcType.TextSize = new System.Drawing.Size(133, 13);
-            this.lblDefaultPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblIPayable
             // 
@@ -1658,7 +1643,6 @@
             this.lblSpecifyPurcType.Size = new System.Drawing.Size(228, 24);
             this.lblSpecifyPurcType.Text = "Specify Default Purc. Type";
             this.lblSpecifyPurcType.TextSize = new System.Drawing.Size(133, 13);
-            this.lblSpecifyPurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblSpecifySaletype
             // 
@@ -1668,7 +1652,6 @@
             this.lblSpecifySaletype.Size = new System.Drawing.Size(228, 24);
             this.lblSpecifySaletype.Text = "Specify Default Sale Type";
             this.lblSpecifySaletype.TextSize = new System.Drawing.Size(133, 13);
-            this.lblSpecifySaletype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblFreezetype
             // 
@@ -1678,7 +1661,6 @@
             this.lblFreezetype.Size = new System.Drawing.Size(243, 24);
             this.lblFreezetype.Text = "Freeze Sale Type";
             this.lblFreezetype.TextSize = new System.Drawing.Size(133, 13);
-            this.lblFreezetype.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblFreezePurcType
             // 
@@ -1688,7 +1670,6 @@
             this.lblFreezePurcType.Size = new System.Drawing.Size(243, 24);
             this.lblFreezePurcType.Text = "Freeze Purc. Type";
             this.lblFreezePurcType.TextSize = new System.Drawing.Size(133, 13);
-            this.lblFreezePurcType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblIReceviable
             // 
@@ -1708,7 +1689,6 @@
             this.lblAllocateAmont.Size = new System.Drawing.Size(236, 24);
             this.lblAllocateAmont.Text = "Allocate Amount To Items";
             this.lblAllocateAmont.TextSize = new System.Drawing.Size(133, 13);
-            this.lblAllocateAmont.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // lblMulticurrency
             // 
@@ -1718,16 +1698,15 @@
             this.lblMulticurrency.Size = new System.Drawing.Size(471, 24);
             this.lblMulticurrency.Text = "Multi Currecny";
             this.lblMulticurrency.TextSize = new System.Drawing.Size(133, 13);
-            this.lblMulticurrency.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
-            // layoutControlItem40
+            // lblMaintainbillbybill
             // 
-            this.layoutControlItem40.Control = this.tbxContactPerson;
-            this.layoutControlItem40.Location = new System.Drawing.Point(0, 216);
-            this.layoutControlItem40.Name = "layoutControlItem40";
-            this.layoutControlItem40.Size = new System.Drawing.Size(422, 24);
-            this.layoutControlItem40.Text = "Contact Person";
-            this.layoutControlItem40.TextSize = new System.Drawing.Size(133, 13);
+            this.lblMaintainbillbybill.Control = this.cbxMaintainBalancing;
+            this.lblMaintainbillbybill.Location = new System.Drawing.Point(0, 192);
+            this.lblMaintainbillbybill.Name = "lblMaintainbillbybill";
+            this.lblMaintainbillbybill.Size = new System.Drawing.Size(235, 24);
+            this.lblMaintainbillbybill.Text = "Maintain Bill By Bill Balancing";
+            this.lblMaintainbillbybill.TextSize = new System.Drawing.Size(133, 13);
             // 
             // layoutControlItem56
             // 
@@ -2064,6 +2043,15 @@
             this.emptySpaceItem7.Size = new System.Drawing.Size(112, 62);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem40
+            // 
+            this.layoutControlItem40.Control = this.tbxContactPerson;
+            this.layoutControlItem40.Location = new System.Drawing.Point(0, 216);
+            this.layoutControlItem40.Name = "layoutControlItem40";
+            this.layoutControlItem40.Size = new System.Drawing.Size(422, 24);
+            this.layoutControlItem40.Text = "Contact Person";
+            this.layoutControlItem40.TextSize = new System.Drawing.Size(133, 13);
+            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -2206,7 +2194,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblMaintainbillbybill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCreditdays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
@@ -2224,7 +2211,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblIReceviable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAllocateAmont)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMulticurrency)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMaintainbillbybill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSave)).EndInit();
@@ -2256,6 +2243,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();

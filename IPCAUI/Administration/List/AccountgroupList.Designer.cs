@@ -98,6 +98,8 @@
             this.gdvAccGroupDetails.Name = "gdvAccGroupDetails";
             this.gdvAccGroupDetails.OptionsBehavior.ReadOnly = true;
             this.gdvAccGroupDetails.OptionsView.ShowGroupPanel = false;
+            this.gdvAccGroupDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gdvAccGroupDetails_RowClick);
+            this.gdvAccGroupDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gdvAccGroupDetails_KeyDown);
             this.gdvAccGroupDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gdvAccGroupDetails_KeyPress);
             this.gdvAccGroupDetails.DoubleClick += new System.EventHandler(this.gdvAccGroupDetails_DoubleClick);
             // 

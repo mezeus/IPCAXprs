@@ -32,10 +32,16 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@DefaultConfig", objIGM.DefaultConfig, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@SeparateConfig", objIGM.SeparateConfig, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@Parameters", objIGM.Parameters));
+                paramCollection.Add(new DBParameter("@SpecifyBillReferencegrp", objIGM.SpecifyBillReferencegrp, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@BillReferencegrp", objIGM.BillReferencegrp));
+                paramCollection.Add(new DBParameter("@CrDaysforSale", objIGM.CrDaysforSale, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@CrDaysforPurc", objIGM.CrDaysforPurc, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
                 
-                Query = "INSERT INTO itemgroupmaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`DefaultConfig`,`SeparateConfig`,`Parameters`,`CreatedBy`) " +
-                    "VALUES(@ItemGroup,@Alias,@PrimaryGroup,@UnderGroup,@StockAccount,@SalesAccount,@PurchaseAccount,@DefaultConfig,@SeparateConfig,@Parameters,@CreatedBy)";
+                Query = "INSERT INTO itemgroupmaster (`ItemGroup`,`Alias`,`PrimaryGroup`,`UnderGroup`,`StockAccount`,`SalesAccount`,`PurchaseAccount`,`DefaultConfig`,`SeparateConfig`,"+
+                    "`Parameters`,`SpecifyBillReferencegrp`,`BillReferencegrp`,`CrDaysforSale`,`CrDaysforPurc`,`CreatedBy`) " +
+                    "VALUES(@ItemGroup,@Alias,@PrimaryGroup,@UnderGroup,@StockAccount,@SalesAccount,@PurchaseAccount,@DefaultConfig,@SeparateConfig,@Parameters,"+
+                    "@SpecifyBillReferencegrp,@BillReferencegrp,@CrDaysforSale,@CrDaysforPurc,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                     isSaved = true;
@@ -69,11 +75,16 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@DefaultConfig", objIGM.DefaultConfig, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@SeparateConfig", objIGM.SeparateConfig, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@Parameters", objIGM.Parameters));
+                paramCollection.Add(new DBParameter("@SpecifyBillReferencegrp", objIGM.SpecifyBillReferencegrp, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@BillReferencegrp", objIGM.BillReferencegrp));
+                paramCollection.Add(new DBParameter("@CrDaysforSale", objIGM.CrDaysforSale, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@CrDaysforPurc", objIGM.CrDaysforPurc, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
                 paramCollection.Add(new DBParameter("@IGM_Id",objIGM.IGM_id));
 
                 Query = "UPDATE ItemGroupMaster SET ItemGroup=@ItemGroup,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,UnderGroup=@UnderGroup,StockAccount=@StockAccount,SalesAccount=@SalesAccount," +
                    "PurchaseAccount=@PurchaseAccount,`DefaultConfig`=@DefaultConfig,`SeparateConfig`=@SeparateConfig,Parameters=@Parameters,ModifiedBy=@ModifiedBy " +
+                   "SpecifyBillReferencegrp=@SpecifyBillReferencegrp,BillReferencegrp=@BillReferencegrp,CrDaysforSale=@CrDaysforSale,CrDaysforPurc=@CrDaysforPurc " +
                    "WHERE IGM_Id=@IGM_Id";
                 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -133,6 +144,7 @@ namespace eSunSpeed.BusinessLogic
                 objIGM.DefaultConfig =Convert.ToBoolean(dr["DefaultConfig"]);
                 objIGM.SeparateConfig = Convert.ToBoolean(dr["SeparateConfig"]);
                 objIGM.Parameters =Convert.ToInt32(dr["Parameters"].ToString());
+                objIGM.SpecifyBillReferencegrp = Convert.ToBoolean(dr["BillReferencegrp"].ToString());
             }
 
             return objIGM;

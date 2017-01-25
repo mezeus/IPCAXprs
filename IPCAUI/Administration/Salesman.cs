@@ -15,6 +15,7 @@ namespace IPCAUI.Administration
     public partial class Salesman : Form
     {
         SalesManBL objbl = new SalesManBL();
+        AccountMasterBL objAccBL = new AccountMasterBL();
         public static int SMId = 0;
         public Salesman()
         {
@@ -35,18 +36,14 @@ namespace IPCAUI.Administration
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void navBarControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ListSalesman_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.SalesmanList frmList = new Administration.List.SalesmanList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-
+            FillSalesManInfo();
+            tbxName.Focus();
         }
         private void FillSalesManInfo()
         {
@@ -59,34 +56,34 @@ namespace IPCAUI.Administration
                 return;
             }
             SalesManModel objModel = objbl.GetAllSalesManById(SMId);
-      
-            tbxName.Text= objModel.SM_Name.ToString();
-            tbxAlias.Text= objModel.SM_Alias.ToString();
-            tbxPrintName.Text= objModel.SM_PrintName.ToString();
+
+            tbxName.Text = objModel.SM_Name.ToString();
+            tbxAlias.Text = objModel.SM_Alias.ToString();
+            tbxPrintName.Text = objModel.SM_PrintName.ToString();
             cbxEnableDefComm.SelectedItem = (objModel.EnableDefCommision) ? "Y" : "N";
-            cbxDefCommMode.SelectedItem=objModel.Commision_Mode.ToString();
-            //objModel.DefCommision = Convert.ToDecimal(dr["DefCommision"]);
-            //objModel.FreezeCommision = Convert.ToBoolean(dr["FreezeCommision"]);
-            //objModel.Sales_DebitMode = dr["Sales_DebitMode"].ToString();
-            ////objModel.Sales_ACCredited = dr["Sales_ACCredited"].ToString();
-            //objModel.Sales_AccDebited = dr["Sales_AccDebited"].ToString();
-            //objModel.SM_AccounttobeCredited = dr["Salesman_AccountToCredit"].ToString();
-            //objModel.Purchase_DebitMode = dr["Purchase_DebitMode"].ToString();
+            cbxDefCommMode.SelectedItem = objModel.Commision_Mode.ToString();
+            tbxDefComm.Text = objModel.DefCommision.ToString();
+            cbxDefFreeze.SelectedItem = objModel.FreezeCommision ? "Y" : "N";
+            cbxSaleDebitMode.SelectedItem = objModel.Sales_DebitMode.ToString();
+            //objModel.Sales_ACCredited = dr["Sales_ACCredited"].ToString();
+            cbxSalesDebited.SelectedItem = objModel.Sales_AccDebited.ToString();
+            cbxSalesAccountCredited.SelectedItem = objModel.SM_AccounttobeCredited.ToString();
+            cbxPurchaseDebitMode.SelectedItem = objModel.Purchase_DebitMode.ToString();
             ////objModel.Purchase_AccCredited = dr["Purchase_DebitMode"].ToString();
-            //objModel.Purchase_AccDebited = dr["Purchase_AccDebited"].ToString();
-            //objModel.Address = dr["Address"].ToString();
-            //objModel.Address1 = dr["Address1"].ToString();
-            //objModel.Address2 = dr["Address2"].ToString();
-            //objModel.Address3 = dr["Address3"].ToString();
-            //objModel.Telephone = Convert.ToInt64(dr["Tel.No"].ToString() == string.Empty ? "0" : dr["Tel.No"].ToString());
-            //objModel.Mobile = Convert.ToInt64(dr["Mobile"].ToString() == string.Empty ? "0" : dr["Mobile"].ToString());
-            //objModel.Email = dr["E-Mail"].ToString();
+            cbxPurchaseDebitMode.SelectedItem = objModel.Purchase_AccDebited.ToString();
+            tbxAddress.Text = objModel.Address.ToString();
+            tbxAddress1.Text = objModel.Address1.ToString();
+            tbxAddress2.Text = objModel.Address2.ToString();
+            tbxAddress3.Text = objModel.Address3.ToString();
+            tbxTelephone.Text = objModel.Telephone.ToString();
+            tbxMobile.Text = objModel.Mobile.ToString();
+            tbxEmail.Text = objModel.Email.ToString();
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }
         private void btnSave_Click(object sender, EventArgs e)
-        {         
+        {
             if (tbxName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Group Name can not be blank!");
@@ -96,12 +93,12 @@ namespace IPCAUI.Administration
 
             objsalesmman.SM_Name = tbxName.Text;
 
-            objsalesmman.SM_Alias = tbxAlias.Text.Trim()==string.Empty?string.Empty: tbxAlias.Text.Trim();
+            objsalesmman.SM_Alias = tbxAlias.Text.Trim() == string.Empty ? string.Empty : tbxAlias.Text.Trim();
             objsalesmman.SM_PrintName = tbxPrintName.Text.Trim() == string.Empty ? string.Empty : tbxPrintName.Text.Trim();
-            objsalesmman.EnableDefCommision = cbxEnableDefComm.SelectedItem.ToString()=="Y"? true : false;
+            objsalesmman.EnableDefCommision = cbxEnableDefComm.SelectedItem.ToString() == "Y" ? true : false;
             objsalesmman.Commision_Mode = cbxDefCommMode.SelectedItem.ToString();
-            objsalesmman.DefCommision = Convert.ToDecimal(tbxDefComm.Text.Trim()==string.Empty?"0.00": tbxDefComm.Text.Trim());
-            objsalesmman.FreezeCommision = cbxDefFreeze.SelectedItem.ToString()=="Y"? true : false;
+            objsalesmman.DefCommision = Convert.ToDecimal(tbxDefComm.Text.Trim() == string.Empty ? "0.00" : tbxDefComm.Text.Trim());
+            objsalesmman.FreezeCommision = cbxDefFreeze.SelectedItem.ToString() == "Y" ? true : false;
 
             objsalesmman.SM_AccounttobeCredited = cbxSalesAccountCredited.SelectedItem.ToString() == string.Empty ? string.Empty : cbxSalesAccountCredited.SelectedItem.ToString();
             objsalesmman.Sales_DebitMode = cbxSaleDebitMode.SelectedItem.ToString();
@@ -114,20 +111,24 @@ namespace IPCAUI.Administration
             objsalesmman.Address2 = tbxAddress2.Text.Trim();
             objsalesmman.Address3 = tbxAddress3.Text.Trim();
             objsalesmman.Telephone = Convert.ToInt64(tbxTelephone.Text.Trim() == string.Empty ? "0" : tbxTelephone.Text.Trim());
-            objsalesmman.Mobile = Convert.ToInt64(tbxMobile.Text.Trim()==string.Empty?"0": tbxMobile.Text.Trim());
+            objsalesmman.Mobile = Convert.ToInt64(tbxMobile.Text.Trim() == string.Empty ? "0" : tbxMobile.Text.Trim());
             objsalesmman.Email = tbxEmail.Text.Trim();
 
             string message = string.Empty;
 
             bool isSuccess = objbl.SaveSalesMan(objsalesmman);
-            if(isSuccess)
+            if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+                ClearControls();
             }
         }
 
         private void Salesman_Load(object sender, EventArgs e)
         {
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             cbxDefCommMode.SelectedIndex = 0;
             cbxDefFreeze.SelectedIndex = 1;
             cbxEnableDefComm.SelectedIndex = 0;
@@ -135,12 +136,13 @@ namespace IPCAUI.Administration
             cbxPurchaseDebitMode.SelectedIndex = 0;
             cbxSaleDebitMode.SelectedIndex = 0;
             cbxSalesDebited.SelectedIndex = 0;
-
-        }
-
-        private void cbxEnableDefComm_KeyDown(object sender, KeyEventArgs e)
-        {
-            
+            List<AccountMasterModel> lstaccounts = objAccBL.GetListofAccount();
+            foreach(AccountMasterModel objaccount in lstaccounts)
+            {
+                cbxSalesAccountCredited.Properties.Items.Add(objaccount.AccountName);
+                cbxSalesDebited.Properties.Items.Add(objaccount.AccountName);
+                cbxPurchaseDebited.Properties.Items.Add(objaccount.AccountName);
+            }
         }
 
         private void Salesman_KeyDown(object sender, KeyEventArgs e)
@@ -161,17 +163,14 @@ namespace IPCAUI.Administration
                     tbxName.Focus();
                     return;
                 }
-                //if (objbl.IsGroupExists(tbxGroupName.Text.Trim()))
-                //{
-                //    MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
-                //    tbxGroupName.Focus();
-                //    return;
-                //}
-
-                if (this.ActiveControl != null)
+                if (SMId == 0)
                 {
-                    this.SelectNextControl(this.ActiveControl, true, true, true, true);
-
+                    if (objbl.IsSalesManExists(tbxName.Text.Trim()))
+                    {
+                        MessageBox.Show("SalesMan Name already Exists!");
+                        tbxName.Focus();
+                        return;
+                    }
                 }
                 e.Handled = true; // Mark the event as handled
             }
@@ -184,7 +183,135 @@ namespace IPCAUI.Administration
 
         private void tbxDefComm_Enter(object sender, EventArgs e)
         {
+            if(tbxDefComm.Text==string.Empty)
+            {
+                tbxDefComm.Text = "0.00";
+            }   
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            tbxAlias.Text = tbxName.Text.Trim();
+            tbxPrintName.Text = tbxName.Text.Trim();
+        }
+
+        private void btnQuit_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (tbxName.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Group Name can not be blank!");
+                return;
+            }
+            eSunSpeedDomain.SalesManModel objsalesmman = new eSunSpeedDomain.SalesManModel();
+
+            objsalesmman.SM_Name = tbxName.Text;
+
+            objsalesmman.SM_Alias = tbxAlias.Text.Trim() == string.Empty ? string.Empty : tbxAlias.Text.Trim();
+            objsalesmman.SM_PrintName = tbxPrintName.Text.Trim() == string.Empty ? string.Empty : tbxPrintName.Text.Trim();
+            objsalesmman.EnableDefCommision = cbxEnableDefComm.SelectedItem.ToString() == "Y" ? true : false;
+            objsalesmman.Commision_Mode = cbxDefCommMode.SelectedItem.ToString();
+            objsalesmman.DefCommision = Convert.ToDecimal(tbxDefComm.Text.Trim() == string.Empty ? "0.00" : tbxDefComm.Text.Trim());
+            objsalesmman.FreezeCommision = cbxDefFreeze.SelectedItem.ToString() == "Y" ? true : false;
+
+            objsalesmman.SM_AccounttobeCredited = cbxSalesAccountCredited.SelectedItem.ToString() == string.Empty ? string.Empty : cbxSalesAccountCredited.SelectedItem.ToString();
+            objsalesmman.Sales_DebitMode = cbxSaleDebitMode.SelectedItem.ToString();
+            objsalesmman.Sales_AccDebited = cbxSalesDebited.SelectedItem.ToString();
+            objsalesmman.Purchase_DebitMode = cbxPurchaseDebitMode.SelectedItem.ToString();
+            objsalesmman.Purchase_AccDebited = cbxPurchaseDebited.SelectedItem.ToString();
+
+            objsalesmman.Address = tbxAddress.Text.Trim();
+            objsalesmman.Address1 = tbxAddress1.Text.Trim();
+            objsalesmman.Address2 = tbxAddress2.Text.Trim();
+            objsalesmman.Address3 = tbxAddress3.Text.Trim();
+            objsalesmman.Telephone = Convert.ToInt64(tbxTelephone.Text.Trim() == string.Empty ? "0" : tbxTelephone.Text.Trim());
+            objsalesmman.Mobile = Convert.ToInt64(tbxMobile.Text.Trim() == string.Empty ? "0" : tbxMobile.Text.Trim());
+            objsalesmman.Email = tbxEmail.Text.Trim();
+            objsalesmman.SalesMan_Id = SMId;
+            string message = string.Empty;
+
+            bool isSuccess = objbl.UpdateSalesMan(objsalesmman);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+                ClearControls();
+                SMId = 0;
+                Administration.List.SalesmanList frmList = new Administration.List.SalesmanList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillSalesManInfo();
+                tbxName.Focus();
+            }
+        }
+        private void ClearControls()
+        {
+            tbxName.Text = string.Empty;
+            tbxPrintName.Text = string.Empty;
+            tbxAlias.Text = string.Empty;
+            tbxAddress.Text= string.Empty;
+            tbxAddress1.Text = string.Empty;
+            tbxAddress2.Text = string.Empty;
+            tbxAddress3.Text = string.Empty;
+            tbxTelephone.Text = string.Empty;
+            tbxMobile.Text = string.Empty;
+            tbxEmail.Text = string.Empty;
+            cbxEnableDefComm.SelectedIndex = 1;
+            cbxDefCommMode.Text = string.Empty;
             tbxDefComm.Text = "0.00";
+            cbxDefFreeze.Text = string.Empty;
+            cbxSalesAccountCredited.Text = string.Empty;
+            cbxSaleDebitMode.Text = string.Empty;
+            cbxSalesDebited.Text = string.Empty;
+            cbxPurchaseDebitMode.Text = string.Empty;
+            cbxPurchaseDebited.Text = string.Empty;
+            //foreach (Control ctrl in this.Controls)
+            //{
+            //    if (ctrl is DevExpress.XtraEditors.TextEdit)
+            //    {
+            //        DevExpress.XtraEditors.TextEdit tb = (DevExpress.XtraEditors.TextEdit)ctrl;
+            //        if (tb != null)
+            //        {
+            //            tb.Text = string.Empty;
+            //        }
+            //    }
+            //}
+        }
+    
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objbl.DeleteSalesManDetails(SMId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                //ClearControls();
+                SMId = 0;
+                Administration.List.SalesmanList frmList = new Administration.List.SalesmanList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillSalesManInfo();
+                tbxName.Focus();
+            }
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ClearControls();
+        }
+
+        private void cbxSalesDebited_Enter(object sender, EventArgs e)
+        {
+            cbxSalesDebited.ShowPopup();
+        }
+
+        private void cbxPurchaseDebited_Enter(object sender, EventArgs e)
+        {
+            cbxPurchaseDebited.ShowPopup();
         }
     }
 }

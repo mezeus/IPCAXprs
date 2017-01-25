@@ -215,23 +215,25 @@ namespace eSunSpeed.BusinessLogic
                 //paramCollection.Add(new DBParameter("@ACC_DEFAULT_CHEQUE_FORMAT", ""));
                 //paramCollection.Add(new DBParameter("@ENABLE_CHEQUE_PRINTING", 1, System.Data.DbType.Boolean));
                 //paramCollection.Add(new DBParameter("@ACC_Cheque_PrintName", objAcctMaster.ChequePrintName));                
-                
-                Query =
-                "INSERT INTO accountmaster(`ACC_NAME`,`ACC_SHORTNAME`,`ACC_PRINTNAME`,`ACC_LedgerType`,`ACC_MultiCurr`,`ACC_Group`,`ACC_OpBal`," +
-                                "`ACC_PrevYearBal`,`ACC_DrCrOpenBal`,`ACC_DrCrPrevBal`,`ACC_MaintainBitwise`,`ACC_ActivateInterestCal`,`ACC_CreditDays_ForSale`,`ACC_CreditDays_ForPurch`," +
-                                "`ACC_Transport`,`ACC_Station`,`ACC_SpecifyDefaultSaleType`,`ACC_DefaultSaleType`,`ACC_FreezeSaleType`,`ACC_SpecifyDefaultPurType`,`ACC_DefaultPurcType`," +
-                                "`ACC_LockSalesType`,`ACC_LockPurcType`,`ACC_address1`,`ACC_address2`,`ACC_Address3`,`ACC_Address4`,`ACC_State`,`ACC_TelephoneNumber`,`ACC_Fax`,`ACC_MobileNumber`," +
-                                "`ACC_email`,`ACC_Website`,`ACC_enablemailquery`,`ACC_enableSMSquery`,`ACC_contactperson`,`ACC_ITPanNumber`,`ACC_LSTNumber`,`ACC_CSTNumber`,`ACC_TIN`," +
-                                "`ACC_ServiceTax`,`ACC_BankAccountNumber`,`ACC_IECode`,`ACC_CreatedBy`)" +
-                                "VALUES(@ACC_NAME,@ACC_SHORTNAME,@ACC_PRINTNAME,@ACC_LedgerType,@ACC_MultiCurr,@ACC_Group,@ACC_OpBal,@ACC_PrevYearBal,@ACC_DrCrOpenBal," +
-                                "@ACC_DrCrPrevBal,@ACC_MaintainBitwise,@ACC_ActivateInterestCal,@ACC_CreditDays_ForSale,@ACC_CreditDays_ForPurch," +
-                                "@ACC_Transport,@ACC_Station,@ACC_SpecifyDefaultSaleType,@ACC_DefaultSaleType,@ACC_FreezeSaleType,@ACC_SpecifyDefaultPurType,@ACC_DefaultPurcType," +
-                                "@ACC_LockSalesType,@ACC_LockPurcType,@ACC_address1,@ACC_address2,@ACC_Address3,@ACC_Address4,@ACC_State,@ACC_TelephoneNumber,@ACC_Fax,@ACC_MobileNumber," +
-                                "@ACC_email,@ACC_Website,@ACC_enablemailquery,@ACC_enableSMSquery,@ACC_contactperson,@ACC_ITPanNumber,@ACC_LSTNumber,@ACC_CSTNumber,@ACC_TIN," +
-                                "@ACC_ServiceTax,@ACC_BankAccountNumber,@ACC_IECode,@ACC_CreatedBy)";
 
-                _dbHelper.ExecuteNonQuery(Query, paramCollection);
+                //Query =
+                //"INSERT INTO accountmaster(`ACC_NAME`,`ACC_SHORTNAME`,`ACC_PRINTNAME`,`ACC_LedgerType`,`ACC_MultiCurr`,`ACC_Group`,`ACC_OpBal`," +
+                //                "`ACC_PrevYearBal`,`ACC_DrCrOpenBal`,`ACC_DrCrPrevBal`,`ACC_MaintainBitwise`,`ACC_ActivateInterestCal`,`ACC_CreditDays_ForSale`,`ACC_CreditDays_ForPurch`," +
+                //                "`ACC_Transport`,`ACC_Station`,`ACC_SpecifyDefaultSaleType`,`ACC_DefaultSaleType`,`ACC_FreezeSaleType`,`ACC_SpecifyDefaultPurType`,`ACC_DefaultPurcType`," +
+                //                "`ACC_LockSalesType`,`ACC_LockPurcType`,`ACC_address1`,`ACC_address2`,`ACC_Address3`,`ACC_Address4`,`ACC_State`,`ACC_TelephoneNumber`,`ACC_Fax`,`ACC_MobileNumber`," +
+                //                "`ACC_email`,`ACC_Website`,`ACC_enablemailquery`,`ACC_enableSMSquery`,`ACC_contactperson`,`ACC_ITPanNumber`,`ACC_LSTNumber`,`ACC_CSTNumber`,`ACC_TIN`," +
+                //                "`ACC_ServiceTax`,`ACC_BankAccountNumber`,`ACC_IECode`,`ACC_CreatedBy`)" +
+                //                "VALUES(@ACC_NAME,@ACC_SHORTNAME,@ACC_PRINTNAME,@ACC_LedgerType,@ACC_MultiCurr,@ACC_Group,@ACC_OpBal,@ACC_PrevYearBal,@ACC_DrCrOpenBal," +
+                //                "@ACC_DrCrPrevBal,@ACC_MaintainBitwise,@ACC_ActivateInterestCal,@ACC_CreditDays_ForSale,@ACC_CreditDays_ForPurch," +
+                //                "@ACC_Transport,@ACC_Station,@ACC_SpecifyDefaultSaleType,@ACC_DefaultSaleType,@ACC_FreezeSaleType,@ACC_SpecifyDefaultPurType,@ACC_DefaultPurcType," +
+                //                "@ACC_LockSalesType,@ACC_LockPurcType,@ACC_address1,@ACC_address2,@ACC_Address3,@ACC_Address4,@ACC_State,@ACC_TelephoneNumber,@ACC_Fax,@ACC_MobileNumber," +
+                //                "@ACC_email,@ACC_Website,@ACC_enablemailquery,@ACC_enableSMSquery,@ACC_contactperson,@ACC_ITPanNumber,@ACC_LSTNumber,@ACC_CSTNumber,@ACC_TIN," +
+                //                "@ACC_ServiceTax,@ACC_BankAccountNumber,@ACC_IECode,@ACC_CreatedBy)";
 
+                //_dbHelper.ExecuteNonQuery(Query, paramCollection);
+                SaveBillByBillDetails(objAcctMaster.BillbyBillDetails, objAcctMaster.AccountId);
+                SaveCostCenterDetails(objAcctMaster.CostcenterDetails, objAcctMaster.AccountId);
+                SaveSalesManDetails(objAcctMaster);
             }
             catch (Exception ex)
             {
@@ -241,18 +243,108 @@ namespace eSunSpeed.BusinessLogic
 
             return true;
             }
-        
 
-       
+        //Save Maintain Bill By Details
+        public bool SaveBillByBillDetails(List<MaintainBillbyBillModel> lstBillbyBill, int id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (MaintainBillbyBillModel BillbyBill in lstBillbyBill)
+            {
+                BillbyBill.ParentId =2;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
-    #endregion
+                    paramCollection.Add(new DBParameter("@Parent_Id", BillbyBill.ParentId));
+                    paramCollection.Add(new DBParameter("@Reference", BillbyBill.Reference));
+                    paramCollection.Add(new DBParameter("@Date", BillbyBill.Dated, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@Amount", BillbyBill.Amount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@DC", BillbyBill.DC));
+                    paramCollection.Add(new DBParameter("@Duedate", BillbyBill.Duedate, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@GroupName", BillbyBill.Group));
+                    paramCollection.Add(new DBParameter("@Narration", BillbyBill.Narration));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,System.Data.DbType.DateTime));
 
-    #region Get List of Account Groups
-    /// <summary>
-    /// List of Account Groups
-    /// </summary>
-    /// <returns>List of Groups</returns>
-    public List<eSunSpeedDomain.AccountGroupModel> GetListofAccountsGroups()
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spinsertbillbybilldetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+        //Update Maintain Bill By Bill Details
+        //Save Costcenter Details
+        public bool SaveCostCenterDetails(List<CostcenterPopupModel> lstCostCenter, int id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (CostcenterPopupModel objCost in lstCostCenter)
+            {
+                objCost.ParentId = 2;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@AccountId", objCost.ParentId));
+                    paramCollection.Add(new DBParameter("@CostCentre", objCost.Costcenter));
+                    paramCollection.Add(new DBParameter("@Amount", objCost.Amount, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@DC", objCost.DC));
+                    paramCollection.Add(new DBParameter("@ShortNarration", objCost.Shortnarration));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spinsertAccountCostCentreDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+        //Save SalesMan Details
+        public bool SaveSalesManDetails(AccountMasterModel objAccount)
+        {
+            try
+            {
+                string Query = string.Empty;
+                DBParameterCollection paramCollection = new DBParameterCollection();
+                paramCollection.Add(new DBParameter("@AccountId","1"));
+                paramCollection.Add(new DBParameter("@SpecifyDefaultSM", objAccount.SpecifyDefaultSM,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@SalesMan", objAccount.SalesMan));
+                paramCollection.Add(new DBParameter("@freezeSalesMan", objAccount.freezeSalesMan, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@DefaultCommission", objAccount.DefaultCommission, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CommissionMode", objAccount.CommissionMode));
+                paramCollection.Add(new DBParameter("@CommissionPercentage", objAccount.CommissionPercentage,DbType.Decimal));
+                paramCollection.Add(new DBParameter("@FreezeCommission", objAccount.FreezeCommission, DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
+                paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,DbType.DateTime));
+
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spinsertAccSalesManDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return true;
+        }
+        #endregion
+
+            #region Get List of Account Groups
+            /// <summary>
+            /// List of Account Groups
+            /// </summary>
+            /// <returns>List of Groups</returns>
+        public List<eSunSpeedDomain.AccountGroupModel> GetListofAccountsGroups()
         {
             List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
             eSunSpeedDomain.AccountGroupModel accountGroup;

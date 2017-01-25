@@ -110,6 +110,12 @@
     <Compile Include="Administration\Currencyconversion.Designer.cs">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\CurrencyConversionMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\CurrencyConversionMaster.Designer.cs">
+      <DependentUpon>CurrencyConversionMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\List\ItemcompanyList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,6 +338,18 @@
     <Compile Include="Administration\Miscellaneousmaster.Designer.cs">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\PopupScreens\CostcenterPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\CostcenterPopup.Designer.cs">
+      <DependentUpon>CostcenterPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\CreditLimitforAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\CreditLimitforAccount.Designer.cs">
+      <DependentUpon>CreditLimitforAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PopupScreens\DefineCriticalLevels.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,6 +392,12 @@
     <Compile Include="Administration\PopupScreens\ItemDefaultMaterialCenter.Designer.cs">
       <DependentUpon>ItemDefaultMaterialCenter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\PopupScreens\MaintainBillByBillDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MaintainBillByBillDetails.Designer.cs">
+      <DependentUpon>MaintainBillByBillDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PopupScreens\MRPwiseDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +409,12 @@
     </Compile>
     <Compile Include="Administration\PopupScreens\ParameterizedStock.Designer.cs">
       <DependentUpon>ParameterizedStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\SalesManDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\SalesManDetails.Designer.cs">
+      <DependentUpon>SalesManDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\PopupScreens\SerialnoWiseDetails.cs">
       <SubType>Form</SubType>
@@ -3252,6 +3282,9 @@
     <EmbeddedResource Include="Administration\Currencyconversion.resx">
       <DependentUpon>Currencyconversion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\CurrencyConversionMaster.resx">
+      <DependentUpon>CurrencyConversionMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\List\ItemcompanyList.resx">
       <DependentUpon>ItemcompanyList.cs</DependentUpon>
     </EmbeddedResource>
@@ -3363,6 +3396,12 @@
     <EmbeddedResource Include="Administration\Miscellaneousmaster.resx">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\CostcenterPopup.resx">
+      <DependentUpon>CostcenterPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\CreditLimitforAccount.resx">
+      <DependentUpon>CreditLimitforAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\DefineCriticalLevels.resx">
       <DependentUpon>DefineCriticalLevels.cs</DependentUpon>
     </EmbeddedResource>
@@ -3384,11 +3423,17 @@
     <EmbeddedResource Include="Administration\PopupScreens\ItemDefaultMaterialCenter.resx">
       <DependentUpon>ItemDefaultMaterialCenter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\MaintainBillByBillDetails.resx">
+      <DependentUpon>MaintainBillByBillDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\MRPwiseDetails.resx">
       <DependentUpon>MRPwiseDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\ParameterizedStock.resx">
       <DependentUpon>ParameterizedStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\SalesManDetails.resx">
+      <DependentUpon>SalesManDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\SerialnoWiseDetails.resx">
       <DependentUpon>SerialnoWiseDetails.cs</DependentUpon>

@@ -18,7 +18,10 @@ namespace eSunSpeedDomain
         public bool DefaultConfig { get; set; }
         public bool SeparateConfig { get; set; }
         public int Parameters { get; set; }
-
+        public bool SpecifyBillReferencegrp { get; set; }
+        public string BillReferencegrp { get; set; }
+        public int CrDaysforSale { get; set; }
+        public int CrDaysforPurc { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

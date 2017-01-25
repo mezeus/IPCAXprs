@@ -254,8 +254,8 @@ namespace IPCAUI.Menu
 
         private void barbtnCurrencyconv_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Currencyconversion frm;
-            frm = new Administration.Currencyconversion(); //generate new instance 
+            Administration.CurrencyConversionMaster frm;
+            frm = new Administration.CurrencyConversionMaster(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

@@ -9,7 +9,7 @@ namespace eSunSpeedDomain
     {
         public int CcID { get; set; }
         public DateTime Date { get; set; }
-        
+        public List<CurrencyConversionDetailsModel> CurrenyDetails { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public string ModifiedBy { get; set; }

@@ -108,6 +108,8 @@
             this.dvgAutorDetails.Name = "dvgAutorDetails";
             this.dvgAutorDetails.OptionsBehavior.ReadOnly = true;
             this.dvgAutorDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgAutorDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgAutorDetails_RowClick);
+            this.dvgAutorDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgAutorDetails_KeyDown);
             this.dvgAutorDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgAutorDetails_KeyPress);
             // 
             // colName
