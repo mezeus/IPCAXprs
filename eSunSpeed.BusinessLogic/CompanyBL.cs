@@ -15,6 +15,37 @@ namespace eSunSpeed.BusinessLogic
         CompanyModel objcommod = new CompanyModel();
         private DBHelper _dbHelper = new DBHelper();
 
+        public List<CompanyModel> GetAllCompany()
+        {
+
+            List<CompanyModel> lstCompanies = new List<CompanyModel>();
+            CompanyModel objModel;  
+            try
+            {
+                DBParameterCollection paramCollection = new DBParameterCollection();
+                
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("select companyId,companyName from Company; ", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.Text);
+
+                while(dr.Read())
+                {
+                    objModel = new CompanyModel();
+
+                    objModel.CompanyId = Convert.ToInt32(dr[0]);
+                    objModel.Name = dr[1].ToString();
+
+                    lstCompanies.Add(objModel);
+                }
+               
+
+            }
+            catch (Exception ex)
+            {              
+                throw ex;
+            }
+            return lstCompanies;
+        }
+
         public bool CheckIsCompanyExists(string companyName,decimal id)
         {
             string Query = string.Empty;

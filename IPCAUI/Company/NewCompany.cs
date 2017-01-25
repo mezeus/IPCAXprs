@@ -12,7 +12,7 @@ using eSunSpeedDomain;
 using System.IO;
 using System.Threading;
 using System.Configuration;
-
+using IPCAUI.Menu;
 namespace IPCAUI.Company
 {
     public partial class NewCompany : Form
@@ -22,9 +22,12 @@ namespace IPCAUI.Company
         string strPath;
         bool isExternalDrive = false;
 
-        public NewCompany()
+        CompanyMenu _frmMenu = null;
+
+        public NewCompany(CompanyMenu frmMenu)
         {
             InitializeComponent();
+            this._frmMenu = frmMenu;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -80,7 +83,7 @@ namespace IPCAUI.Company
             //Check for company existence in Main db
             if (objcombl.CheckIsCompanyExists(tbxname.Text.Trim(), 0))
             {
-                MessageBox.Show("Company already exists! \n Thank you.");
+                MessageBox.Show("Company already exists! \n Please try with a different Name.");
                 return;
             }
             else
@@ -105,20 +108,18 @@ namespace IPCAUI.Company
 
                         oThread.Abort();
 
-                        this.Close();
+                        CreateUser frmUser = new CreateUser();
+                        frmUser.ShowDialog();
+
+                        _frmMenu.Close();
                     }
 
 
-                    //CompanyPathInfo infoCompanyPath = new CompanyPathInfo();
-
-                    //SessionVariables._decCurrentCompanyId = companyId;
-                    //infoCompanyPath.CompanyPath = Application.StartupPath + "\\Data\\" + SessionVariables._decCurrentCompanyId;
-                    //objcombl.CompanyPathAdd(infoCompanyPath);
 
                 }
             }           
         }
-
+     
         /// <summary>
         /// creates company 
         /// </summary>

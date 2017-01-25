@@ -4,50 +4,79 @@ using System.Text;
 using System.Data;
 using eSunSpeed.DataAccess;
 using eSunSpeed.Formatting;
+using eSunSpeedDomain;
 
 namespace eSunSpeed.BusinessLogic
 {
-    public class Users
+    public class UsersBL
     {
         private DBHelper _dbHelper = new DBHelper();
         private DataSecurity _securityProvider = new DataSecurity();
 
         private Arch _arch = new Arch();
-
-        /// <summary>
-        /// Createates new user for the specified values.
-        /// </summary>
-        /// <param name="roleId">Role id</param>
-        /// <param name="userName">User name</param>
-        /// <param name="password">Password</param>
-        /// <param name="firstName">First name</param>
-        /// <param name="lastName">Last name</param>
-        /// <param name="email">Email id</param>
-        /// <param name="mobile">Mobile number</param>
-        /// <param name="isActive">true if user is active otherwise false</param>
-        /// <returns>true if success otherwise false</returns>       
-        public bool CreateNewUser(int roleId, string userName, string password, string firstName, string lastName, string email, string mobile, bool isActive)
+        
+        public bool UserAdd(UserInfoModel userinfo)
         {
-            int isActiveFlag = isActive ? 1 : 0;
-            string Query = string.Empty;            
-      
-            DBParameterCollection paramCollection = new DBParameterCollection();
-            paramCollection.Add(new DBParameter("@roleId", roleId));
-            paramCollection.Add(new DBParameter("@userName", userName));
-            paramCollection.Add(new DBParameter("@password", _securityProvider.Encrypt(password)));
-            paramCollection.Add(new DBParameter("@firstName", firstName));
-            paramCollection.Add(new DBParameter("@lastName", lastName));            
-            paramCollection.Add(new DBParameter("@email", email));
-            paramCollection.Add(new DBParameter("@mobile", mobile));            
-            
-            Query = "INSERT INTO User_Info(RoleId, User_Name, Pwd, First_Name, Last_Name, " +
-                "Last_Login_Date,Password_Change_Date, Email, Mobile ,IsActive) VALUES (" +
-                "@roleId , @userName , @password, @firstName, @lastName, " +
-                "'"+ DateTime.Now.ToString() + "', '" +  DateTime.Now.ToString() + "', @email, @mobile, 1)";
-            
-            return  _dbHelper.ExecuteNonQuery(Query, paramCollection) > 0;                
+            try
+            {
+
+                int isActiveFlag = userinfo.Active ? 1 : 0;
+                string Query = string.Empty;
+
+                DBParameterCollection paramCollection = new DBParameterCollection();
+
+                paramCollection.Add(new DBParameter("@S_userName", userinfo.UserName));
+                paramCollection.Add(new DBParameter("@S_password", _securityProvider.Encrypt(userinfo.Password)));
+                paramCollection.Add(new DBParameter("@S_active", isActiveFlag,System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@S_roleId", userinfo.RoleId));
+                paramCollection.Add(new DBParameter("@S_narration", userinfo.Narration));
+                paramCollection.Add(new DBParameter("@S_extra1", userinfo.Extra1));
+                paramCollection.Add(new DBParameter("@S_extra2", userinfo.Extra2));
+                
+                return _dbHelper.ExecuteNonQuery(SessionVariables.DBName.ToLower() + ".spUserAdd", paramCollection,CommandType.StoredProcedure) > 0;
+              
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+
+            }
         }
 
+        public UserInfoModel CheckUserLogin(string username,string password)
+        {
+            UserInfoModel objModel = new UserInfoModel();
+
+            try
+            {
+            
+                DBParameterCollection paramCollection = new DBParameterCollection();
+
+                paramCollection.Add(new DBParameter("@S_userName", username));
+                paramCollection.Add(new DBParameter("@S_password", password));
+                
+               IDataReader dr=  _dbHelper.ExecuteDataReader(SessionVariables.DBName.ToLower() + ".spCheckLogin", _dbHelper.GetConnObject(), paramCollection, CommandType.StoredProcedure) ;
+
+                while(dr.Read())
+                {
+                    objModel.UserId = Convert.ToDecimal(dr["userId"]);
+                    objModel.Password = _securityProvider.Decrypt(dr["password"].ToString());
+                    objModel.RoleId = Convert.ToDecimal(dr["roleId"]);
+                }                
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+
+            }
+            return objModel;
+        }
 
         /// <summary>
         /// Updates the user details with the specified values.

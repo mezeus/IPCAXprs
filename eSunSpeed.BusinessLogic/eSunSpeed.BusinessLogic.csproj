@@ -133,7 +133,7 @@
     <Compile Include="UnitConversion.cs" />
     <Compile Include="UnitMaster.cs" />
     <Compile Include="UserAuthentication.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="UsersBL.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -572,6 +572,18 @@
     <Compile Include="Company\Backupdata.Designer.cs">
       <DependentUpon>Backupdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Company\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\frmWait.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,6 +631,12 @@
     </Compile>
     <Compile Include="Company\Setdatadirectory.Designer.cs">
       <DependentUpon>Setdatadirectory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Company\OpenCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\OpenCompany.Designer.cs">
+      <DependentUpon>OpenCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Company\Splitfinancialyear.cs">
       <SubType>Form</SubType>
@@ -3501,6 +3519,12 @@
     <EmbeddedResource Include="Company\Backupdata.resx">
       <DependentUpon>Backupdata.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Company\CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Company\frmWait.resx">
       <DependentUpon>frmWait.cs</DependentUpon>
     </EmbeddedResource>
@@ -3524,6 +3548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Setdatadirectory.resx">
       <DependentUpon>Setdatadirectory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\OpenCompany.resx">
+      <DependentUpon>OpenCompany.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Splitfinancialyear.resx">
       <DependentUpon>Splitfinancialyear.cs</DependentUpon>
