@@ -99,6 +99,7 @@
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxaddress2.Properties)).BeginInit();
@@ -220,17 +221,17 @@
             // 
             // tbxaddress2
             // 
-            this.tbxaddress2.Location = new System.Drawing.Point(469, 60);
+            this.tbxaddress2.Location = new System.Drawing.Point(382, 60);
             this.tbxaddress2.Name = "tbxaddress2";
-            this.tbxaddress2.Size = new System.Drawing.Size(260, 20);
+            this.tbxaddress2.Size = new System.Drawing.Size(347, 20);
             this.tbxaddress2.StyleController = this.layoutControl1;
             this.tbxaddress2.TabIndex = 40;
             // 
             // tbxaddress1
             // 
-            this.tbxaddress1.Location = new System.Drawing.Point(469, 36);
+            this.tbxaddress1.Location = new System.Drawing.Point(382, 36);
             this.tbxaddress1.Name = "tbxaddress1";
-            this.tbxaddress1.Size = new System.Drawing.Size(260, 20);
+            this.tbxaddress1.Size = new System.Drawing.Size(347, 20);
             this.tbxaddress1.StyleController = this.layoutControl1;
             this.tbxaddress1.TabIndex = 39;
             // 
@@ -346,27 +347,27 @@
             // tbxFax
             // 
             this.tbxFax.EnterMoveNextControl = true;
-            this.tbxFax.Location = new System.Drawing.Point(679, 132);
+            this.tbxFax.Location = new System.Drawing.Point(671, 132);
             this.tbxFax.Name = "tbxFax";
-            this.tbxFax.Size = new System.Drawing.Size(50, 20);
+            this.tbxFax.Size = new System.Drawing.Size(58, 20);
             this.tbxFax.StyleController = this.layoutControl1;
             this.tbxFax.TabIndex = 19;
             // 
             // tbxTelNo
             // 
             this.tbxTelNo.EnterMoveNextControl = true;
-            this.tbxTelNo.Location = new System.Drawing.Point(506, 132);
+            this.tbxTelNo.Location = new System.Drawing.Point(491, 132);
             this.tbxTelNo.Name = "tbxTelNo";
-            this.tbxTelNo.Size = new System.Drawing.Size(50, 20);
+            this.tbxTelNo.Size = new System.Drawing.Size(57, 20);
             this.tbxTelNo.StyleController = this.layoutControl1;
             this.tbxTelNo.TabIndex = 18;
             // 
             // tbxWard
             // 
             this.tbxWard.EnterMoveNextControl = true;
-            this.tbxWard.Location = new System.Drawing.Point(627, 108);
+            this.tbxWard.Location = new System.Drawing.Point(628, 108);
             this.tbxWard.Name = "tbxWard";
-            this.tbxWard.Size = new System.Drawing.Size(102, 20);
+            this.tbxWard.Size = new System.Drawing.Size(101, 20);
             this.tbxWard.StyleController = this.layoutControl1;
             this.tbxWard.TabIndex = 17;
             // 
@@ -375,7 +376,7 @@
             this.tbxITPan.EnterMoveNextControl = true;
             this.tbxITPan.Location = new System.Drawing.Point(379, 108);
             this.tbxITPan.Name = "tbxITPan";
-            this.tbxITPan.Size = new System.Drawing.Size(125, 20);
+            this.tbxITPan.Size = new System.Drawing.Size(126, 20);
             this.tbxITPan.StyleController = this.layoutControl1;
             this.tbxITPan.TabIndex = 16;
             // 
@@ -393,7 +394,7 @@
             this.tbxPrintName.EnterMoveNextControl = true;
             this.tbxPrintName.Location = new System.Drawing.Point(131, 36);
             this.tbxPrintName.Name = "tbxPrintName";
-            this.tbxPrintName.Size = new System.Drawing.Size(334, 20);
+            this.tbxPrintName.Size = new System.Drawing.Size(247, 20);
             this.tbxPrintName.StyleController = this.layoutControl1;
             this.tbxPrintName.TabIndex = 8;
             // 
@@ -402,7 +403,7 @@
             this.tbxname.EnterMoveNextControl = true;
             this.tbxname.Location = new System.Drawing.Point(131, 12);
             this.tbxname.Name = "tbxname";
-            this.tbxname.Size = new System.Drawing.Size(249, 20);
+            this.tbxname.Size = new System.Drawing.Size(247, 20);
             this.tbxname.StyleController = this.layoutControl1;
             this.tbxname.TabIndex = 4;
             // 
@@ -411,16 +412,16 @@
             this.tbxshortname.EnterMoveNextControl = true;
             this.tbxshortname.Location = new System.Drawing.Point(131, 60);
             this.tbxshortname.Name = "tbxshortname";
-            this.tbxshortname.Size = new System.Drawing.Size(334, 20);
+            this.tbxshortname.Size = new System.Drawing.Size(247, 20);
             this.tbxshortname.StyleController = this.layoutControl1;
             this.tbxshortname.TabIndex = 6;
             // 
             // tbxaddress
             // 
             this.tbxaddress.EnterMoveNextControl = true;
-            this.tbxaddress.Location = new System.Drawing.Point(503, 12);
+            this.tbxaddress.Location = new System.Drawing.Point(501, 12);
             this.tbxaddress.Name = "tbxaddress";
-            this.tbxaddress.Size = new System.Drawing.Size(226, 20);
+            this.tbxaddress.Size = new System.Drawing.Size(228, 20);
             this.tbxaddress.StyleController = this.layoutControl1;
             this.tbxaddress.TabIndex = 5;
             // 
@@ -436,27 +437,27 @@
             // tbxtype
             // 
             this.tbxtype.EnterMoveNextControl = true;
-            this.tbxtype.Location = new System.Drawing.Point(659, 180);
+            this.tbxtype.Location = new System.Drawing.Point(666, 180);
             this.tbxtype.Name = "tbxtype";
             this.tbxtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxtype.Properties.Items.AddRange(new object[] {
             "VAT",
             "GST"});
-            this.tbxtype.Size = new System.Drawing.Size(71, 20);
+            this.tbxtype.Size = new System.Drawing.Size(64, 20);
             this.tbxtype.StyleController = this.layoutControl1;
             this.tbxtype.TabIndex = 23;
             // 
             // tbxCaption
             // 
             this.tbxCaption.EnterMoveNextControl = true;
-            this.tbxCaption.Location = new System.Drawing.Point(612, 204);
+            this.tbxCaption.Location = new System.Drawing.Point(619, 204);
             this.tbxCaption.Name = "tbxCaption";
             this.tbxCaption.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxCaption.Properties.Items.AddRange(new object[] {
             "schg"});
-            this.tbxCaption.Size = new System.Drawing.Size(118, 20);
+            this.tbxCaption.Size = new System.Drawing.Size(111, 20);
             this.tbxCaption.StyleController = this.layoutControl1;
             this.tbxCaption.TabIndex = 32;
             // 
@@ -475,7 +476,7 @@
             this.tbxfybeginningfrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.tbxfybeginningfrom.Properties.Mask.EditMask = "";
             this.tbxfybeginningfrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.tbxfybeginningfrom.Size = new System.Drawing.Size(252, 20);
+            this.tbxfybeginningfrom.Size = new System.Drawing.Size(237, 20);
             this.tbxfybeginningfrom.StyleController = this.layoutControl1;
             this.tbxfybeginningfrom.TabIndex = 12;
             // 
@@ -537,7 +538,7 @@
             this.tbxEnableVAT.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.tbxEnableVAT.Size = new System.Drawing.Size(50, 20);
+            this.tbxEnableVAT.Size = new System.Drawing.Size(57, 20);
             this.tbxEnableVAT.StyleController = this.layoutControl1;
             this.tbxEnableVAT.TabIndex = 31;
             // 
@@ -550,7 +551,7 @@
             this.tbxEnableAddTax.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.tbxEnableAddTax.Size = new System.Drawing.Size(50, 20);
+            this.tbxEnableAddTax.Size = new System.Drawing.Size(57, 20);
             this.tbxEnableAddTax.StyleController = this.layoutControl1;
             this.tbxEnableAddTax.TabIndex = 24;
             // 
@@ -632,7 +633,7 @@
             this.layoutControlItem9.Control = this.tbxfybeginningfrom;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(375, 24);
+            this.layoutControlItem9.Size = new System.Drawing.Size(360, 24);
             this.layoutControlItem9.Text = "F.Y.Beginning from";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -642,7 +643,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(372, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(370, 24);
             this.layoutControlItem1.Text = "Name";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(116, 13);
@@ -652,7 +653,7 @@
             this.layoutControlItem3.Control = this.tbxPrintName;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(457, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(370, 24);
             this.layoutControlItem3.Text = "PrintName";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -662,7 +663,7 @@
             this.layoutControlItem5.CustomizationFormText = "layoutControlItem3";
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(457, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(370, 24);
             this.layoutControlItem5.Text = "ShortName";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(116, 13);
@@ -671,9 +672,9 @@
             // 
             this.layoutControlItem2.Control = this.tbxaddress;
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(372, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(370, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(349, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem2.Text = "Address";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(116, 13);
@@ -681,27 +682,27 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.tbxWard;
-            this.layoutControlItem14.Location = new System.Drawing.Point(496, 96);
+            this.layoutControlItem14.Location = new System.Drawing.Point(497, 96);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(225, 24);
+            this.layoutControlItem14.Size = new System.Drawing.Size(224, 24);
             this.layoutControlItem14.Text = "Ward";
             this.layoutControlItem14.TextSize = new System.Drawing.Size(116, 13);
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.tbxTelNo;
-            this.layoutControlItem15.Location = new System.Drawing.Point(375, 120);
+            this.layoutControlItem15.Location = new System.Drawing.Point(360, 120);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(173, 24);
+            this.layoutControlItem15.Size = new System.Drawing.Size(180, 24);
             this.layoutControlItem15.Text = "Tel No.";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(116, 13);
             // 
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.tbxFax;
-            this.layoutControlItem16.Location = new System.Drawing.Point(548, 120);
+            this.layoutControlItem16.Location = new System.Drawing.Point(540, 120);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(173, 24);
+            this.layoutControlItem16.Size = new System.Drawing.Size(181, 24);
             this.layoutControlItem16.Text = "Fax";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -719,18 +720,18 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.tbxaddress1;
-            this.layoutControlItem10.Location = new System.Drawing.Point(457, 24);
+            this.layoutControlItem10.Location = new System.Drawing.Point(370, 24);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(264, 24);
+            this.layoutControlItem10.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.tbxaddress2;
-            this.layoutControlItem11.Location = new System.Drawing.Point(457, 48);
+            this.layoutControlItem11.Location = new System.Drawing.Point(370, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(264, 24);
+            this.layoutControlItem11.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -766,7 +767,7 @@
             this.layoutControlItem13.Control = this.tbxITPan;
             this.layoutControlItem13.Location = new System.Drawing.Point(248, 96);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(248, 24);
+            this.layoutControlItem13.Size = new System.Drawing.Size(249, 24);
             this.layoutControlItem13.Text = "IT PAN";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -827,9 +828,9 @@
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.tbxtype;
-            this.layoutControlItem20.Location = new System.Drawing.Point(528, 168);
+            this.layoutControlItem20.Location = new System.Drawing.Point(535, 168);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(194, 24);
+            this.layoutControlItem20.Size = new System.Drawing.Size(187, 24);
             this.layoutControlItem20.Text = "Type";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -838,7 +839,7 @@
             this.layoutControlItem28.Control = this.tbxEnableVAT;
             this.layoutControlItem28.Location = new System.Drawing.Point(355, 168);
             this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(173, 24);
+            this.layoutControlItem28.Size = new System.Drawing.Size(180, 24);
             this.layoutControlItem28.Text = "Enable VAT/GST";
             this.layoutControlItem28.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -847,16 +848,16 @@
             this.layoutControlItem21.Control = this.tbxEnableAddTax;
             this.layoutControlItem21.Location = new System.Drawing.Point(308, 192);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(173, 24);
+            this.layoutControlItem21.Size = new System.Drawing.Size(180, 24);
             this.layoutControlItem21.Text = "Enable Add Tax/Schg";
             this.layoutControlItem21.TextSize = new System.Drawing.Size(116, 13);
             // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.tbxCaption;
-            this.layoutControlItem29.Location = new System.Drawing.Point(481, 192);
+            this.layoutControlItem29.Location = new System.Drawing.Point(488, 192);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(241, 24);
+            this.layoutControlItem29.Size = new System.Drawing.Size(234, 24);
             this.layoutControlItem29.Text = "Caption";
             this.layoutControlItem29.TextSize = new System.Drawing.Size(116, 13);
             // 
@@ -944,8 +945,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 541);
             this.Controls.Add(this.layoutControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewCompany";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Company";
             this.Load += new System.EventHandler(this.NewCompany_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -1097,5 +1099,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
         private DevExpress.XtraEditors.ComboBoxEdit tbxEnableVAT;
         private DevExpress.XtraEditors.ComboBoxEdit tbxEnableAddTax;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

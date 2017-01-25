@@ -255,3 +255,8 @@ ModelManifest.xml
 /IPCAUI/DataSets/ReceiptDs1.Designer.cs
 /IPCAUI/License/Helper
 /IPCAUI/License/frmLicense_.resx
+/IPCAUI/Resources/mysql.sql
+/IPCAUI/Resources/Main.sql
+/IPCAUI/Resources/IPCAStoredProcedures.sql
+/IPCAUI/Resources/IPCACOMPANY.sql
+/IPCAUI/Resources/Company.sql

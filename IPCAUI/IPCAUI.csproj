@@ -602,6 +602,12 @@
     <Compile Include="Company\Backupdata.Designer.cs">
       <DependentUpon>Backupdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\frmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\frmWait.Designer.cs">
+      <DependentUpon>frmWait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\Getsoftlocklicence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -950,12 +956,24 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoading.Designer.cs">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\CheckLicense.cs" />
     <Compile Include="License\frmActivation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="License\frmActivation.Designer.cs">
       <DependentUpon>frmActivation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\frmLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\frmLicense.Designer.cs">
+      <DependentUpon>frmLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="License\frmMain.cs">
       <SubType>Form</SubType>
@@ -3528,6 +3546,9 @@
     <EmbeddedResource Include="Company\Backupdata.resx">
       <DependentUpon>Backupdata.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Company\frmWait.resx">
+      <DependentUpon>frmWait.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Company\Getsoftlocklicence.resx">
       <DependentUpon>Getsoftlocklicence.cs</DependentUpon>
     </EmbeddedResource>
@@ -3579,8 +3600,14 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLoading.resx">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\frmActivation.resx">
       <DependentUpon>frmActivation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\frmLicense.resx">
+      <DependentUpon>frmLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="License\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -3621,6 +3648,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reports\Accountbooks\AccountGroupLedger.resx">
       <DependentUpon>AccountGroupLedger.cs</DependentUpon>
@@ -5292,6 +5320,17 @@
       <Project>{1980e43f-c5e4-4a2b-95a6-1aebdc7ee2b7}</Project>
       <Name>QLicense</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AllSql.sql" />
+    <Content Include="Resources\Company.sql" />
+    <Content Include="Resources\database-mysql.png" />
+    <Content Include="Resources\images.png" />
+    <Content Include="Resources\IPCACOMPANY.sql" />
+    <Content Include="Resources\LoadingBar.gif" />
+    <Content Include="Resources\Main.sql" />
+    <Content Include="Resources\Om-mysql.png" />
+    <Content Include="Resources\Setting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -53,15 +53,15 @@ namespace IPCAUI.License
 
                 _certPubicKeyData = _mem.ToArray();
             }
-
+            
             DemoLicense.MyLicense _lic = GetLicense(_certPubicKeyData);    
             
             if(_lic.BasicLicense)
             {
                 //Testing only, this will change
                 LicenseBehaviour.EnableTransaction = true;
-                LicenseBehaviour.EnableMaster.EnableItemMaster_BatchWiseDetails = true;
-                LicenseBehaviour.EnableMaster.EnableItemMaster_MultipleMRP = false; 
+               // LicenseBehaviour.EnableMaster.EnableItemMaster_BatchWiseDetails = true;
+                //LicenseBehaviour.EnableMaster.EnableItemMaster_MultipleMRP = false; 
             }     
                         
         }

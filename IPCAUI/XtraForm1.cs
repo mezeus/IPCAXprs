@@ -28,6 +28,8 @@ namespace IPCAUI
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
 
+            MenuSettings();
+
             IPCAUI.License.CheckLicense chkLicense = new License.CheckLicense();
            
             if (!chkLicense.IsLicenseExists())
@@ -46,6 +48,14 @@ namespace IPCAUI
             }
             //lblDay.Text = DateTime.Today.DayOfWeek.ToString();
             //lblDate.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private void MenuSettings()
+        {
+            Master.Visible = false;
+            Reports.Visible = false;
+            Transactions.Visible = false;
+
         }
 
         private void windowsUIView1_QueryControl(object sender, DevExpress.XtraBars.Docking2010.Views.QueryControlEventArgs e)
@@ -212,7 +222,7 @@ namespace IPCAUI
 
         private void tileItem1_ItemClick(object sender, TileItemEventArgs e)
         {
-            License.frmLicense frm = new License.frmLicense();
+            License.frmActivation frm = new License.frmActivation();
             frm.ShowDialog();
         }
     }
