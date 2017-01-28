@@ -85,6 +85,8 @@
     <Compile Include="StockItemsModel.cs" />
     <Compile Include="StockJournalModel.cs" />
     <Compile Include="TdsModel.cs" />
+    <Compile Include="UnclearedChecqueDetailsModel.cs" />
+    <Compile Include="UserInfoModel.cs" />
     <Compile Include="VatJournalInputTaxModel.cs" />
     <Compile Include="VatJournalModel.cs" />
     <Compile Include="VatJournalOutputTaxModel.cs" />
