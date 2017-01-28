@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration.PopupScreens
 {
-    partial class CostcenterPopup
+    partial class UnclearChequeDeposite
     {
         /// <summary>
         /// Required designer variable.
@@ -33,15 +33,17 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
-            this.dvgCostCenter = new DevExpress.XtraGrid.GridControl();
-            this.dvgCostCenterDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dvgChequeDeposite = new DevExpress.XtraGrid.GridControl();
+            this.dvgChequeDepositeDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCostcenter = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCCId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.colCDid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBalance = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNarration = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVchNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShortNarration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -54,8 +56,10 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostCenter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostCenterDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgChequeDeposite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgChequeDepositeDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -70,13 +74,13 @@
             // 
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.btnOk);
-            this.layoutControl1.Controls.Add(this.dvgCostCenter);
+            this.layoutControl1.Controls.Add(this.dvgChequeDeposite);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(699, 327, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(469, 339);
+            this.layoutControl1.Size = new System.Drawing.Size(615, 339);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -86,7 +90,7 @@
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Location = new System.Drawing.Point(12, 290);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(445, 37);
+            this.panelControl1.Size = new System.Drawing.Size(591, 37);
             this.panelControl1.TabIndex = 13;
             // 
             // labelControl3
@@ -111,56 +115,58 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(204, 264);
+            this.btnOk.Location = new System.Drawing.Point(266, 264);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(76, 22);
+            this.btnOk.Size = new System.Drawing.Size(102, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 12;
             this.btnOk.Text = "Ok";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // dvgCostCenter
+            // dvgChequeDeposite
             // 
-            this.dvgCostCenter.Location = new System.Drawing.Point(12, 28);
-            this.dvgCostCenter.MainView = this.dvgCostCenterDetails;
-            this.dvgCostCenter.Name = "dvgCostCenter";
-            this.dvgCostCenter.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.dvgChequeDeposite.Location = new System.Drawing.Point(12, 28);
+            this.dvgChequeDeposite.MainView = this.dvgChequeDepositeDetails;
+            this.dvgChequeDeposite.Name = "dvgChequeDeposite";
+            this.dvgChequeDeposite.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
-            this.repositoryItemLookUpEdit1});
-            this.dvgCostCenter.Size = new System.Drawing.Size(445, 232);
-            this.dvgCostCenter.TabIndex = 11;
-            this.dvgCostCenter.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dvgCostCenterDetails});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemDateEdit1});
+            this.dvgChequeDeposite.Size = new System.Drawing.Size(591, 232);
+            this.dvgChequeDeposite.TabIndex = 11;
+            this.dvgChequeDeposite.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgChequeDepositeDetails});
             // 
-            // dvgCostCenterDetails
+            // dvgChequeDepositeDetails
             // 
-            this.dvgCostCenterDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.dvgCostCenterDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgChequeDepositeDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.dvgChequeDepositeDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSNo,
-            this.colCostcenter,
-            this.colCCId,
+            this.colDate,
+            this.colCDid,
             this.colParentId,
-            this.colBalance,
-            this.colDC,
-            this.colNarration});
-            this.dvgCostCenterDetails.GridControl = this.dvgCostCenter;
-            this.dvgCostCenterDetails.Name = "dvgCostCenterDetails";
-            this.dvgCostCenterDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgCostCenterDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.dvgCostCenterDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
-            this.dvgCostCenterDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgCostCenterDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgCostCenterDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgCostCenterDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.dvgCostCenterDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.dvgCostCenterDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.dvgCostCenterDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.dvgCostCenterDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgCostCenterDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.dvgCostCenterDetails.OptionsView.ShowFooter = true;
-            this.dvgCostCenterDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgCostCenterDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgCostCenterDetails_FocusedColumnChanged);
-            this.dvgCostCenterDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgCostCenterDetails_CustomColumnDisplayText);
+            this.colVchNo,
+            this.colAccount,
+            this.colAmount,
+            this.colShortNarration});
+            this.dvgChequeDepositeDetails.GridControl = this.dvgChequeDeposite;
+            this.dvgChequeDepositeDetails.Name = "dvgChequeDepositeDetails";
+            this.dvgChequeDepositeDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgChequeDepositeDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
+            this.dvgChequeDepositeDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.dvgChequeDepositeDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgChequeDepositeDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgChequeDepositeDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgChequeDepositeDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.dvgChequeDepositeDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.dvgChequeDepositeDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.dvgChequeDepositeDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.dvgChequeDepositeDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgChequeDepositeDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.dvgChequeDepositeDetails.OptionsView.ShowFooter = true;
+            this.dvgChequeDepositeDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgChequeDepositeDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgChequeDepositeDetails_FocusedColumnChanged);
+            this.dvgChequeDepositeDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgChequeDepositeDetails_CustomColumnDisplayText);
             // 
             // colSNo
             // 
@@ -171,20 +177,30 @@
             this.colSNo.VisibleIndex = 0;
             this.colSNo.Width = 43;
             // 
-            // colCostcenter
+            // colDate
             // 
-            this.colCostcenter.Caption = "Cost Center ";
-            this.colCostcenter.FieldName = "Costcenter";
-            this.colCostcenter.Name = "colCostcenter";
-            this.colCostcenter.Visible = true;
-            this.colCostcenter.VisibleIndex = 1;
-            this.colCostcenter.Width = 62;
+            this.colDate.Caption = "Date";
+            this.colDate.ColumnEdit = this.repositoryItemDateEdit1;
+            this.colDate.FieldName = "Date";
+            this.colDate.Name = "colDate";
+            this.colDate.Visible = true;
+            this.colDate.VisibleIndex = 1;
+            this.colDate.Width = 62;
             // 
-            // colCCId
+            // repositoryItemDateEdit1
             // 
-            this.colCCId.Caption = "CCId";
-            this.colCCId.FieldName = "CCId";
-            this.colCCId.Name = "colCCId";
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // colCDid
+            // 
+            this.colCDid.Caption = "CDId";
+            this.colCDid.FieldName = "Id";
+            this.colCDid.Name = "colCDid";
             // 
             // colParentId
             // 
@@ -192,31 +208,39 @@
             this.colParentId.FieldName = "ParentId";
             this.colParentId.Name = "colParentId";
             // 
-            // colBalance
+            // colVchNo
             // 
-            this.colBalance.Caption = "Balance";
-            this.colBalance.FieldName = "Balance";
-            this.colBalance.Name = "colBalance";
-            this.colBalance.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Balance", "SUM={0:0.##}")});
-            this.colBalance.Visible = true;
-            this.colBalance.VisibleIndex = 2;
+            this.colVchNo.Caption = "Vch. No.";
+            this.colVchNo.FieldName = "Vchno";
+            this.colVchNo.Name = "colVchNo";
+            this.colVchNo.Visible = true;
+            this.colVchNo.VisibleIndex = 2;
             // 
-            // colDC
+            // colAccount
             // 
-            this.colDC.Caption = "DC";
-            this.colDC.FieldName = "DC";
-            this.colDC.Name = "colDC";
-            this.colDC.Visible = true;
-            this.colDC.VisibleIndex = 3;
+            this.colAccount.Caption = "Account";
+            this.colAccount.FieldName = "Account";
+            this.colAccount.Name = "colAccount";
+            this.colAccount.Visible = true;
+            this.colAccount.VisibleIndex = 3;
             // 
-            // colNarration
+            // colAmount
             // 
-            this.colNarration.Caption = "Short Narration";
-            this.colNarration.FieldName = "Shortnarration";
-            this.colNarration.Name = "colNarration";
-            this.colNarration.Visible = true;
-            this.colNarration.VisibleIndex = 4;
+            this.colAmount.Caption = "Amount (Rs.)";
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 4;
+            // 
+            // colShortNarration
+            // 
+            this.colShortNarration.Caption = "Short Narration";
+            this.colShortNarration.FieldName = "Shortnarration";
+            this.colShortNarration.Name = "colShortNarration";
+            this.colShortNarration.Visible = true;
+            this.colShortNarration.VisibleIndex = 5;
             // 
             // repositoryItemTextEdit1
             // 
@@ -244,25 +268,25 @@
             this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(469, 339);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(615, 339);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.dvgCostCenter;
+            this.layoutControlItem1.Control = this.dvgChequeDeposite;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(449, 252);
-            this.layoutControlItem1.Text = "Cost Center";
+            this.layoutControlItem1.Size = new System.Drawing.Size(595, 252);
+            this.layoutControlItem1.Text = "Uncleared Cheques Deposited";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 13);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(144, 13);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(192, 252);
+            this.layoutControlItem2.Location = new System.Drawing.Point(254, 252);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(80, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(106, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -271,15 +295,15 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 252);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(192, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(254, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(272, 252);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(360, 252);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(177, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(235, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
@@ -287,27 +311,29 @@
             this.layoutControlItem3.Control = this.panelControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 278);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(449, 41);
+            this.layoutControlItem3.Size = new System.Drawing.Size(595, 41);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // CostcenterPopup
+            // UnclearChequeDeposite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 339);
+            this.ClientSize = new System.Drawing.Size(615, 339);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "CostcenterPopup";
-            this.Text = "CostcenterPopup";
-            this.Load += new System.EventHandler(this.CostcenterPopup_Load);
+            this.Name = "UnclearChequeDeposite";
+            this.Text = "Uncleared Cheques Deposited";
+            this.Load += new System.EventHandler(this.UnclearChequeDeposite_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostCenter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgCostCenterDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgChequeDeposite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgChequeDepositeDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -324,13 +350,13 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraGrid.GridControl dvgCostCenter;
-        private DevExpress.XtraGrid.Views.Grid.GridView dvgCostCenterDetails;
+        private DevExpress.XtraGrid.GridControl dvgChequeDeposite;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgChequeDepositeDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colCostcenter;
-        private DevExpress.XtraGrid.Columns.GridColumn colCCId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colCDid;
         private DevExpress.XtraGrid.Columns.GridColumn colParentId;
-        private DevExpress.XtraGrid.Columns.GridColumn colBalance;
+        private DevExpress.XtraGrid.Columns.GridColumn colVchNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -342,7 +368,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraGrid.Columns.GridColumn colDC;
-        private DevExpress.XtraGrid.Columns.GridColumn colNarration;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccount;
+        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colShortNarration;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }

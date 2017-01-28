@@ -338,6 +338,24 @@
     <Compile Include="Administration\Miscellaneousmaster.Designer.cs">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\PopupScreens\BudgetsforAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\BudgetsforAccount.Designer.cs">
+      <DependentUpon>BudgetsforAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\UnclearChequeIssued.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\UnclearChequeIssued.Designer.cs">
+      <DependentUpon>UnclearChequeIssued.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\UnclearChequeDeposite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\UnclearChequeDeposite.Designer.cs">
+      <DependentUpon>UnclearChequeDeposite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PopupScreens\CostcenterPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3413,6 +3431,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\Miscellaneousmaster.resx">
       <DependentUpon>Miscellaneousmaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\BudgetsforAccount.resx">
+      <DependentUpon>BudgetsforAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\UnclearChequeIssued.resx">
+      <DependentUpon>UnclearChequeIssued.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\UnclearChequeDeposite.resx">
+      <DependentUpon>UnclearChequeDeposite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\CostcenterPopup.resx">
       <DependentUpon>CostcenterPopup.cs</DependentUpon>

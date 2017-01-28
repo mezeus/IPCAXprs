@@ -59,6 +59,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colSalesman = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -93,7 +94,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(581, 285, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(699, 311);
+            this.layoutControl1.Size = new System.Drawing.Size(915, 311);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -103,7 +104,7 @@
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Location = new System.Drawing.Point(12, 265);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(675, 34);
+            this.panelControl1.Size = new System.Drawing.Size(891, 34);
             this.panelControl1.TabIndex = 13;
             // 
             // labelControl3
@@ -128,7 +129,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(266, 12);
+            this.labelControl1.Location = new System.Drawing.Point(347, 12);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(136, 13);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -137,9 +138,9 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(301, 239);
+            this.btnOk.Location = new System.Drawing.Point(393, 239);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(84, 22);
+            this.btnOk.Size = new System.Drawing.Size(112, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 11;
             this.btnOk.Text = "Ok";
@@ -155,7 +156,7 @@
             this.repositoryItemLookUpEdit1,
             this.repositoryItemDateEdit1,
             this.repositoryItemDateEdit2});
-            this.dvgBillbyBill.Size = new System.Drawing.Size(675, 206);
+            this.dvgBillbyBill.Size = new System.Drawing.Size(891, 206);
             this.dvgBillbyBill.TabIndex = 10;
             this.dvgBillbyBill.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgBillbyBillDetails});
@@ -173,7 +174,8 @@
             this.colGroup,
             this.colDated,
             this.colBillId,
-            this.colNarration});
+            this.colNarration,
+            this.colSalesman});
             this.dvgBillbyBillDetails.GridControl = this.dvgBillbyBill;
             this.dvgBillbyBillDetails.Name = "dvgBillbyBillDetails";
             this.dvgBillbyBillDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -190,6 +192,7 @@
             this.dvgBillbyBillDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.dvgBillbyBillDetails.OptionsView.ShowFooter = true;
             this.dvgBillbyBillDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgBillbyBillDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgBillbyBillDetails_FocusedColumnChanged);
             this.dvgBillbyBillDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgBillbyBillDetails_CustomColumnDisplayText);
             // 
             // colSNo
@@ -212,7 +215,7 @@
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 3;
+            this.colAmount.VisibleIndex = 4;
             this.colAmount.Width = 92;
             // 
             // colDC
@@ -223,7 +226,7 @@
             this.colDC.FieldName = "DC";
             this.colDC.Name = "colDC";
             this.colDC.Visible = true;
-            this.colDC.VisibleIndex = 4;
+            this.colDC.VisibleIndex = 5;
             this.colDC.Width = 91;
             // 
             // colRef
@@ -248,7 +251,8 @@
             this.colDueDate.FieldName = "Duedate";
             this.colDueDate.Name = "colDueDate";
             this.colDueDate.Visible = true;
-            this.colDueDate.VisibleIndex = 5;
+            this.colDueDate.VisibleIndex = 6;
+            this.colDueDate.Width = 70;
             // 
             // repositoryItemDateEdit2
             // 
@@ -265,7 +269,7 @@
             this.colGroup.FieldName = "Group";
             this.colGroup.Name = "colGroup";
             this.colGroup.Visible = true;
-            this.colGroup.VisibleIndex = 6;
+            this.colGroup.VisibleIndex = 7;
             // 
             // colDated
             // 
@@ -274,7 +278,8 @@
             this.colDated.FieldName = "Dated";
             this.colDated.Name = "colDated";
             this.colDated.Visible = true;
-            this.colDated.VisibleIndex = 2;
+            this.colDated.VisibleIndex = 3;
+            this.colDated.Width = 70;
             // 
             // repositoryItemDateEdit1
             // 
@@ -297,7 +302,7 @@
             this.colNarration.FieldName = "Narration";
             this.colNarration.Name = "colNarration";
             this.colNarration.Visible = true;
-            this.colNarration.VisibleIndex = 7;
+            this.colNarration.VisibleIndex = 8;
             // 
             // repositoryItemTextEdit1
             // 
@@ -328,7 +333,7 @@
             this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(699, 311);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(915, 311);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -344,16 +349,16 @@
             this.layoutControlItem7.Control = this.dvgBillbyBill;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 17);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(679, 210);
+            this.layoutControlItem7.Size = new System.Drawing.Size(895, 210);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnOk;
-            this.layoutControlItem1.Location = new System.Drawing.Point(289, 227);
+            this.layoutControlItem1.Location = new System.Drawing.Point(381, 227);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(88, 26);
+            this.layoutControlItem1.Size = new System.Drawing.Size(116, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -376,7 +381,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.labelControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(254, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(335, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(140, 17);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -395,15 +400,23 @@
             this.layoutControlItem3.Control = this.panelControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 253);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(679, 38);
+            this.layoutControlItem3.Size = new System.Drawing.Size(895, 38);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
+            // 
+            // colSalesman
+            // 
+            this.colSalesman.Caption = "Sales Man / Collection Boy";
+            this.colSalesman.FieldName = "Salesman";
+            this.colSalesman.Name = "colSalesman";
+            this.colSalesman.Visible = true;
+            this.colSalesman.VisibleIndex = 2;
             // 
             // MaintainBillByBillDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 311);
+            this.ClientSize = new System.Drawing.Size(915, 311);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MaintainBillByBillDetails";
@@ -468,5 +481,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNarration;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSalesman;
     }
 }

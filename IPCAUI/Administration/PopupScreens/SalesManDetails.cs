@@ -28,7 +28,20 @@ namespace IPCAUI.Administration.PopupScreens
 
         private void SalesManDetails_Load(object sender, EventArgs e)
         {
-
+            cbxDefaultSM.Focus();
+            if(Account.objAccount.AccountId!=0)
+            {
+                cbxDefaultSM.SelectedItem = Account.objAccount.SpecifyDefaultSM ? "Y" : "N";
+                cbxSalesMan.SelectedItem = Account.objAccount.SalesMan;
+                cbxFreezeSM.SelectedItem = Account.objAccount.freezeSalesMan ? "Y" : "N";
+                cbxDefaultCommission.SelectedItem = Account.objAccount.DefaultCommission ? "Y" : "N";
+                if(Account.objAccount.DefaultCommission)
+                {
+                    cbxMode.SelectedItem = Account.objAccount.CommissionMode;
+                    tbxCommissionPer.Text = Account.objAccount.CommissionPercentage.ToString();
+                    cbxFreezeCommission.SelectedItem = Account.objAccount.FreezeCommission ? "Y" : "N";
+                }
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)

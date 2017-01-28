@@ -10,6 +10,7 @@ namespace eSunSpeedDomain
         public int BillId { get; set; }
         public int ParentId { get; set; }
         public string Reference { get; set; }
+        public string Salesman { get; set; }
         public DateTime Dated { get; set; }
         public decimal Amount { get; set; }
         public string DC { get; set; }

@@ -114,6 +114,7 @@
             this.dvgAccountDetails.OptionsBehavior.ReadOnly = true;
             this.dvgAccountDetails.OptionsView.ShowFooter = true;
             this.dvgAccountDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgAccountDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgAccountDetails_RowClick);
             // 
             // colName
             // 

@@ -28,6 +28,23 @@ namespace IPCAUI.Administration.List
 
         private void dvgMasterseries_KeyPress(object sender, KeyPressEventArgs e)
         {
+        }
+
+        private void dvgMasterseries_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                MasterseriesModel lstmasters;
+
+                lstmasters = (MasterseriesModel)dvgMasterseries.GetRow(dvgMasterseries.FocusedRowHandle);
+                Masterseriesgroup.MsGId = lstmasters.MasterId;
+
+                this.Close();
+            }          
+        }
+
+        private void dvgMasterseries_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             MasterseriesModel lstmasters;
 
             lstmasters = (MasterseriesModel)dvgMasterseries.GetRow(dvgMasterseries.FocusedRowHandle);

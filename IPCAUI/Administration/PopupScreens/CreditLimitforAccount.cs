@@ -36,5 +36,18 @@ namespace IPCAUI.Administration.PopupScreens
             }
             this.Close();
         }
+
+        private void CreditLimitforAccount_Load(object sender, EventArgs e)
+        {
+            cbxDefineCrLimit.Focus();
+            if(Account.groupId!=0)
+            {
+                cbxDefineCrLimit.SelectedItem = Account.objAccount.DefineCrLimit?"Y":"N";
+                if(Account.objAccount.DefineCrLimit)
+                {
+                    tbxMaxCredit.Text=Account.objAccount.MaxCredit.ToString();
+                }
+            }
+        }
     }
 }

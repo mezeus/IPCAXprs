@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using eSunSpeedDomain;
 using DevExpress.XtraEditors.Repository;
+using eSunSpeed.BusinessLogic;
+using DevExpress.XtraEditors;
 
 namespace IPCAUI.Administration.PopupScreens
 {
     public partial class MaintainBillByBillDetails : Form
     {
         DataTable dt = new DataTable();
+        SalesManBL objSMBL = new SalesManBL();
+        ReferenceGroupBL objRefBL = new ReferenceGroupBL();
         public MaintainBillByBillDetails()
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace IPCAUI.Administration.PopupScreens
                 DataRow row = dvgBillbyBillDetails.GetDataRow(i);
                 objbillbybill = new MaintainBillbyBillModel();
                 objbillbybill.Reference = row["Reference"].ToString() == null ? string.Empty : row["Reference"].ToString();
+                objbillbybill.Reference = row["Salesman"].ToString() == null ? string.Empty : row["Salesman"].ToString();
                 objbillbybill.Dated = Convert.ToDateTime(row["Dated"].ToString() == null ? string.Empty : row["Dated"].ToString());
                 objbillbybill.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty?"0.00" : row["Amount"].ToString());
                 objbillbybill.DC = row["DC"].ToString() ==null? string.Empty : row["DC"].ToString();
@@ -51,9 +56,10 @@ namespace IPCAUI.Administration.PopupScreens
 
         private void MaintainBillByBillDetails_Load(object sender, EventArgs e)
         {
-            // Administration.ItemMasterNew.objModel.Name.ToString();
+            dvgBillbyBill.Focus();
 
             dt.Columns.Add("Reference");
+            dt.Columns.Add("Salesman");
             dt.Columns.Add("Dated");
             dt.Columns.Add("Amount");           
             dt.Columns.Add("DC");
@@ -63,13 +69,7 @@ namespace IPCAUI.Administration.PopupScreens
             dt.Columns.Add("BillId");
             dt.Columns.Add("ParentId");
             dvgBillbyBill.DataSource = dt;
-            RepositoryItemLookUpEdit riLookupUnit = new RepositoryItemLookUpEdit();
-            riLookupUnit.DataSource = new string[] { ItemMasterNew.objModel.AltUnit, ItemMasterNew.objModel.MainUnit };
-            //riLookup.DataSource = lstUnits;
-            riLookupUnit.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
-            riLookupUnit.AutoSearchColumnIndex = 1;
-            dvgBillbyBillDetails.Columns["Unit"].ColumnEdit = riLookupUnit;
-            dvgBillbyBillDetails.BestFitColumns();
+            LoadColumns();
             if (Account.objAccount.AccountId !=0)
             {
                 dt.Rows.Clear();
@@ -81,6 +81,7 @@ namespace IPCAUI.Administration.PopupScreens
                     dr = dt.NewRow();
 
                     dr["Reference"] = objmod.Reference;
+                    dr["Salesman"] = objmod.Salesman;
                     dr["Dated"] = objmod.Dated;
                     dr["Amount"] = objmod.Amount;
                     dr["DC"] = objmod.DC;
@@ -116,6 +117,65 @@ namespace IPCAUI.Administration.PopupScreens
                 {
                     e.DisplayText = "";
                 }
+            }
+        }
+
+        private void LoadColumns()
+        {
+            RepositoryItemLookUpEdit SalesmanLookup = new RepositoryItemLookUpEdit();
+            List<SalesManModel> lstSalesMans = objSMBL.GetAllSalesMan();
+            List<string> lstSMs = new List<string>();
+            foreach (SalesManModel objSales in lstSalesMans)
+            {
+                lstSMs.Add(objSales.SM_Name);
+            }
+            SalesmanLookup.DataSource = lstSMs;
+            SalesmanLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            SalesmanLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            SalesmanLookup.AutoSearchColumnIndex = 1;
+            dvgBillbyBillDetails.Columns["Salesman"].ColumnEdit = SalesmanLookup;
+            dvgBillbyBillDetails.BestFitColumns();
+
+            RepositoryItemLookUpEdit ReferenceLookup = new RepositoryItemLookUpEdit();
+            List<ReferenceGroupModel> lstReferences = objRefBL.GetAllReferenceGroups();
+            List<string> lstGroups = new List<string>();
+            foreach (ReferenceGroupModel objRef in lstReferences)
+            {
+                lstGroups.Add(objRef.Name);
+            }
+            ReferenceLookup.DataSource = lstGroups;
+            ReferenceLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            ReferenceLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            ReferenceLookup.AutoSearchColumnIndex = 1;
+            dvgBillbyBillDetails.Columns["Group"].ColumnEdit = ReferenceLookup;
+            dvgBillbyBillDetails.BestFitColumns();
+            RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
+            riDCLookup.DataSource = new string[] { "D", "C" };
+            dvgBillbyBillDetails.Columns["DC"].ColumnEdit = riDCLookup;
+            dvgBillbyBillDetails.BestFitColumns();
+            riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            riDCLookup.AutoSearchColumnIndex = 1;
+        }
+
+        private void dvgBillbyBillDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            if (e.FocusedColumn.FieldName == "Salesman")
+            {
+                dvgBillbyBillDetails.ShowEditor();
+                ((LookUpEdit)dvgBillbyBillDetails.ActiveEditor).ShowPopup();
+
+            }
+            if (e.FocusedColumn.FieldName == "Group")
+            {
+                dvgBillbyBillDetails.ShowEditor();
+                ((LookUpEdit)dvgBillbyBillDetails.ActiveEditor).ShowPopup();
+
+            }
+            if (e.FocusedColumn.FieldName == "DC")
+            {
+                dvgBillbyBillDetails.ShowEditor();
+                ((LookUpEdit)dvgBillbyBillDetails.ActiveEditor).ShowPopup();
+
             }
         }
     }

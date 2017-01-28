@@ -109,12 +109,12 @@
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emtSpaceGrossProfit = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lactrlDelete = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lactrlUnderemptySpace = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emtSpaceNature = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lactrlDelete = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -148,12 +148,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emtSpaceGrossProfit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlUnderemptySpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emtSpaceNature)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.SuspendLayout();
             // 
@@ -247,7 +247,9 @@
             this.cbxNaturegroup.Properties.Appearance.Options.UseFont = true;
             this.cbxNaturegroup.Properties.Items.AddRange(new object[] {
             "Incomes",
-            "Expences"});
+            "Expences",
+            "Assects",
+            "Libilites"});
             this.cbxNaturegroup.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxNaturegroup.Size = new System.Drawing.Size(152, 20);
             this.cbxNaturegroup.StyleController = this.layoutControl1;
@@ -943,29 +945,6 @@
             this.emtSpaceGrossProfit.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emtSpaceGrossProfit.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lactrlDelete
-            // 
-            this.lactrlDelete.Control = this.btnDelete;
-            this.lactrlDelete.Location = new System.Drawing.Point(396, 161);
-            this.lactrlDelete.MaxSize = new System.Drawing.Size(78, 28);
-            this.lactrlDelete.MinSize = new System.Drawing.Size(78, 28);
-            this.lactrlDelete.Name = "lactrlDelete";
-            this.lactrlDelete.Size = new System.Drawing.Size(78, 28);
-            this.lactrlDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lactrlDelete.TextSize = new System.Drawing.Size(0, 0);
-            this.lactrlDelete.TextVisible = false;
-            // 
-            // emptySpaceItem10
-            // 
-            this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(378, 161);
-            this.emptySpaceItem10.MaxSize = new System.Drawing.Size(18, 28);
-            this.emptySpaceItem10.MinSize = new System.Drawing.Size(18, 28);
-            this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(18, 28);
-            this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
@@ -1000,6 +979,29 @@
             this.emtSpaceNature.Size = new System.Drawing.Size(295, 24);
             this.emtSpaceNature.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emtSpaceNature.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lactrlDelete
+            // 
+            this.lactrlDelete.Control = this.btnDelete;
+            this.lactrlDelete.Location = new System.Drawing.Point(396, 161);
+            this.lactrlDelete.MaxSize = new System.Drawing.Size(78, 28);
+            this.lactrlDelete.MinSize = new System.Drawing.Size(78, 28);
+            this.lactrlDelete.Name = "lactrlDelete";
+            this.lactrlDelete.Size = new System.Drawing.Size(78, 28);
+            this.lactrlDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lactrlDelete.TextSize = new System.Drawing.Size(0, 0);
+            this.lactrlDelete.TextVisible = false;
+            // 
+            // emptySpaceItem10
+            // 
+            this.emptySpaceItem10.AllowHotTrack = false;
+            this.emptySpaceItem10.Location = new System.Drawing.Point(378, 161);
+            this.emptySpaceItem10.MaxSize = new System.Drawing.Size(18, 28);
+            this.emptySpaceItem10.MinSize = new System.Drawing.Size(18, 28);
+            this.emptySpaceItem10.Name = "emptySpaceItem10";
+            this.emptySpaceItem10.Size = new System.Drawing.Size(18, 28);
+            this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem11
             // 
@@ -1053,12 +1055,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emtSpaceGrossProfit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlUnderemptySpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emtSpaceNature)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.ResumeLayout(false);
 

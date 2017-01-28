@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeedDomain;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors.Repository;
+using eSunSpeed.BusinessLogic;
+using DevExpress.XtraEditors;
 
 namespace IPCAUI.Administration.PopupScreens
 {
     public partial class CostcenterPopup : Form
     {
         DataTable dt = new DataTable();
+        CostCentreMasterBL objCostBL = new CostCentreMasterBL();
         public CostcenterPopup()
         {
             InitializeComponent();
@@ -55,6 +59,26 @@ namespace IPCAUI.Administration.PopupScreens
             dt.Columns.Add("CCId");
             dt.Columns.Add("ParentId");
             dvgCostCenter.DataSource = dt;
+            LoadCostCenter();
+            if (Account.groupId!=0)
+            {
+                dt.Rows.Clear();
+                DataRow dr;
+                foreach (CostcenterPopupModel objCost in Account.objAccount.CostcenterDetails)
+                {
+                    dr = dt.NewRow();
+
+                    dr["Costcenter"] = objCost.Costcenter.ToString();
+                    dr["Balance"] = objCost.Amount;
+                    dr["DC"] = objCost.DC;
+                    dr["Shortnarration"] = objCost.Shortnarration;
+                    dr["CCId"] = objCost.CCId;
+                    dr["ParentId"] = objCost.ParentId;
+                    dt.Rows.Add(dr);
+                }
+
+                dvgCostCenter.DataSource = dt;
+            }
         }
 
         private void dvgCostCenterDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
@@ -68,6 +92,53 @@ namespace IPCAUI.Administration.PopupScreens
                 {
                     e.DisplayText = "";
                 }
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void LoadCostCenter()
+        {
+            RepositoryItemLookUpEdit CostcenterLookup = new RepositoryItemLookUpEdit();
+            List<CostCentreMasterModel> lstCostCenters = objCostBL.GetAllCostCentreMaster();
+            List<string> lstCost = new List<string>();
+            foreach (CostCentreMasterModel objcost in lstCostCenters)
+            {
+                lstCost.Add(objcost.Name);
+            }
+            CostcenterLookup.DataSource = lstCost;
+            CostcenterLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            CostcenterLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            CostcenterLookup.AutoSearchColumnIndex = 1;
+            dvgCostCenterDetails.Columns["Costcenter"].ColumnEdit = CostcenterLookup;
+            dvgCostCenterDetails.BestFitColumns();
+            RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
+            riDCLookup.DataSource = new string[] { "D", "C" };
+            dvgCostCenterDetails.Columns["DC"].ColumnEdit = riDCLookup;
+            dvgCostCenterDetails.BestFitColumns();
+            riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            riDCLookup.AutoSearchColumnIndex = 1;
+        }
+
+        private void dvgCostCenterDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            if (e.FocusedColumn.FieldName == "Costcenter")
+            {
+                dvgCostCenterDetails.ShowEditor();
+                ((LookUpEdit)dvgCostCenterDetails.ActiveEditor).ShowPopup();
+
+            }
+            if (e.FocusedColumn.FieldName == "DC")
+            {
+                dvgCostCenterDetails.ShowEditor();
+                ((LookUpEdit)dvgCostCenterDetails.ActiveEditor).ShowPopup();
+
             }
         }
     }

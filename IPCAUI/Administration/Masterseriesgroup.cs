@@ -55,10 +55,7 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
 
-            tbxName.Focus();
-
             FillMasterSeriesInfo();
-
         }
 
         private void FillMasterSeriesInfo()
@@ -73,6 +70,7 @@ namespace IPCAUI.Administration
             }
             MasterseriesModel objMaster = objmasbl.GetListofMasterSeriesById(MsGId);
             tbxName.Text = objMaster.MasterName;
+            tbxName.Focus();
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;

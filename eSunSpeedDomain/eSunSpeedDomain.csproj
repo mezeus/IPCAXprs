@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillsofMaterialDetailsModel.cs" />
+    <Compile Include="CostcenterPopupModel.cs" />
+    <Compile Include="CurrencyConversionDetailsModel.cs" />
     <Compile Include="MainCompanyInfo.cs" />
     <Compile Include="CompanyPathInfo.cs" />
     <Compile Include="DefineCriticalLevelModel.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="ItemParameterizedModel.cs" />
     <Compile Include="ItemSerialnoDetailsModel.cs" />
     <Compile Include="ListVoucherModel.cs" />
+    <Compile Include="MaintainBillbyBillModel.cs" />
     <Compile Include="MarkupStructureMasterModel.cs" />
     <Compile Include="MasterseriesModel.cs" />
     <Compile Include="ItemMRPWiseDetailsModel.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="StockItemsModel.cs" />
     <Compile Include="StockJournalModel.cs" />
     <Compile Include="TdsModel.cs" />
+    <Compile Include="UnclearedChecqueDetailsModel.cs" />
     <Compile Include="VatJournalInputTaxModel.cs" />
     <Compile Include="VatJournalModel.cs" />
     <Compile Include="VatJournalOutputTaxModel.cs" />

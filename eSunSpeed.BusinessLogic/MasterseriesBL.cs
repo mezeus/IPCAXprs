@@ -155,7 +155,7 @@ namespace eSunSpeed.BusinessLogic
 
             return lstmasterseries;
         }
-
+        //get Master Series Details By Id
         public MasterseriesModel GetListofMasterSeriesById(int id)
         {
             MasterseriesModel masterseries = new MasterseriesModel();

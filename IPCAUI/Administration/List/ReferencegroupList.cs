@@ -22,13 +22,45 @@ namespace IPCAUI.Administration.List
 
         private void ReferencegroupList_Load(object sender, EventArgs e)
         {
-            //List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            //dvgAccList.DataSource = lstGroups;
+            List<ReferenceGroupModel> lstGroups = objrefbl.GetAllReferenceGroups();
+            dvgReferencegroupList.DataSource = lstGroups;
         }
 
         private void dvgReferencegroupList_KeyDown(object sender, KeyEventArgs e)
         {
-            this.Close();
+            if (e.KeyValue == '\r')
+            {
+                ReferenceGroupModel lstReference;
+
+                lstReference = (ReferenceGroupModel)dvgRefgrpDetails.GetRow(dvgRefgrpDetails.FocusedRowHandle);
+                Referencegroup.RefId = lstReference.ReferenceId;
+
+                this.Close();
+            }
+        }
+
+        private void dvgRefgrpDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            //ReferenceGroupModel lstReference;
+
+            //lstReference = (ReferenceGroupModel)dvgRefgrpDetails.GetRow(dvgRefgrpDetails.FocusedRowHandle);
+            //Referencegroup.RefId = lstReference.ReferenceId;
+
+            //this.Close();
+        }
+
+        private void dvgRefgrpDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

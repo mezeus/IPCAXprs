@@ -132,6 +132,9 @@
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
+            this.barBtnRefer = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup28 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barbtnReference = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -155,7 +158,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 96);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(986, 401);
+            this.layoutControl1.Size = new System.Drawing.Size(1141, 456);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -164,10 +167,10 @@
             this.navBarControl1.ActiveGroup = this.navBarGroup1;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1});
-            this.navBarControl1.Location = new System.Drawing.Point(883, 12);
+            this.navBarControl1.Location = new System.Drawing.Point(1023, 12);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 91;
-            this.navBarControl1.Size = new System.Drawing.Size(91, 348);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 106;
+            this.navBarControl1.Size = new System.Drawing.Size(106, 399);
             this.navBarControl1.TabIndex = 17;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -182,10 +185,10 @@
             this.ribbonStatusBar1.Dock = System.Windows.Forms.DockStyle.None;
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
             this.ribbonStatusBar1.ItemLinks.Add(this.btnCompany);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(12, 362);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(12, 417);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(962, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1117, 27);
             // 
             // barStaticItem1
             // 
@@ -249,9 +252,11 @@
             this.btnItemCompany,
             this.btnCompany,
             this.btnTIN,
-            this.btnMarkupStructure});
+            this.btnMarkupStructure,
+            this.barBtnRefer,
+            this.barbtnReference});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 42;
+            this.ribbonControl1.MaxItemId = 44;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -262,8 +267,9 @@
             this.ribbonPage9,
             this.ribbonPage10});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.TabletOffice;
-            this.ribbonControl1.Size = new System.Drawing.Size(986, 96);
+            this.ribbonControl1.Size = new System.Drawing.Size(1141, 96);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
+            this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
             // barButtonItem1
             // 
@@ -575,7 +581,8 @@
             this.ribbonPageGroup15,
             this.ribbonPageGroup16,
             this.ribbonPageGroup17,
-            this.ribbonPageGroup18});
+            this.ribbonPageGroup18,
+            this.ribbonPageGroup28});
             this.ribbonPage1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage1.Image")));
             this.ribbonPage1.KeyTip = "SA";
             this.ribbonPage1.Name = "ribbonPage1";
@@ -888,7 +895,7 @@
             this.sptCtrlMastermenu.Panel1.Text = "Panel1";
             this.sptCtrlMastermenu.Panel2.Text = "Panel2";
             this.sptCtrlMastermenu.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
-            this.sptCtrlMastermenu.Size = new System.Drawing.Size(867, 348);
+            this.sptCtrlMastermenu.Size = new System.Drawing.Size(1007, 399);
             this.sptCtrlMastermenu.SplitterPosition = 144;
             this.sptCtrlMastermenu.TabIndex = 4;
             this.sptCtrlMastermenu.Text = "splitContainerControl1";
@@ -903,7 +910,7 @@
             this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 401);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1141, 456);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -911,25 +918,25 @@
             this.layoutControlItem1.Control = this.sptCtrlMastermenu;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(871, 352);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1011, 403);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.ribbonStatusBar1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 352);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 403);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(966, 29);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1121, 33);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.navBarControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(871, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(1011, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(95, 352);
+            this.layoutControlItem3.Size = new System.Drawing.Size(110, 403);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -958,11 +965,30 @@
             this.backstageViewTabItem1.Name = "backstageViewTabItem1";
             this.backstageViewTabItem1.Selected = false;
             // 
+            // barBtnRefer
+            // 
+            this.barBtnRefer.Caption = "Reference Group";
+            this.barBtnRefer.Id = 42;
+            this.barBtnRefer.Name = "barBtnRefer";
+            // 
+            // ribbonPageGroup28
+            // 
+            this.ribbonPageGroup28.ItemLinks.Add(this.barbtnReference);
+            this.ribbonPageGroup28.Name = "ribbonPageGroup28";
+            this.ribbonPageGroup28.Text = "ribbonPageGroup28";
+            // 
+            // barbtnReference
+            // 
+            this.barbtnReference.Caption = "Reference Group";
+            this.barbtnReference.Id = 43;
+            this.barbtnReference.Name = "barbtnReference";
+            this.barbtnReference.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnReference_ItemClick);
+            // 
             // MastersMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 497);
+            this.ClientSize = new System.Drawing.Size(1141, 552);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.ribbonControl1);
@@ -1094,5 +1120,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraBars.BarButtonItem btnMarkupStructure;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup27;
+        private DevExpress.XtraBars.BarButtonItem barBtnRefer;
+        private DevExpress.XtraBars.BarButtonItem barbtnReference;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup28;
     }
 }
