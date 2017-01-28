@@ -15,7 +15,7 @@ namespace IPCAUI
 {
     public partial class XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        
+        public static XtraForm1 MDIObj;
         public XtraForm1()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace IPCAUI
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
 
-           // MenuSettings();
+            MenuSettings();
 
             IPCAUI.License.CheckLicense chkLicense = new License.CheckLicense();
            
@@ -49,12 +49,12 @@ namespace IPCAUI
             //lblDay.Text = DateTime.Today.DayOfWeek.ToString();
             //lblDate.Text = DateTime.Now.ToShortDateString();
         }
-
-        private void MenuSettings()
+       
+        public void MenuSettings(bool enable)
         {
-            Master.Visible = false;
-            Reports.Visible = false;
-            Transactions.Visible = false;
+            Master.Visible = enable;
+            Reports.Visible = enable;
+            Transactions.Visible = enable;
 
         }
 
@@ -162,7 +162,7 @@ namespace IPCAUI
 
         private void XtraForm1_Load(object sender, EventArgs e)
         {
-
+            MDIObj = this;
         }
 
         private void MainRibbonControl_Click(object sender, EventArgs e)
@@ -175,6 +175,7 @@ namespace IPCAUI
                     this.Hide();
                     IPCAUI.Menu.CompanyMenu frmCompanyMenu = new IPCAUI.Menu.CompanyMenu(this);
                     frmCompanyMenu.Show();
+                    
                     break;
                 case "Reports":
                     this.Hide();
@@ -224,6 +225,11 @@ namespace IPCAUI
         {
             License.frmActivation frm = new License.frmActivation();
             frm.ShowDialog();
+        }
+
+        private void XtraForm1_VisibleChanged(object sender, EventArgs e)
+        {
+            //MenuSettings(true);
         }
     }
 }

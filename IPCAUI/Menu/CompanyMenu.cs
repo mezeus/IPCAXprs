@@ -32,7 +32,7 @@ namespace IPCAUI.Menu
       
         private void btnCreateComp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Company.NewCompany frm = new Company.NewCompany();
+            Company.NewCompany frm = new Company.NewCompany(this);
 
             frm.Owner = this;
             frm.TopLevel = false;
@@ -52,7 +52,7 @@ namespace IPCAUI.Menu
 
         private void CompanyMenu_Load(object sender, EventArgs e)
         {
-            Company.NewCompany frm = new Company.NewCompany();
+            Company.NewCompany frm = new Company.NewCompany(this);
 
             frm.Owner = this;
             frm.TopLevel = false;
@@ -67,12 +67,26 @@ namespace IPCAUI.Menu
             switch (selectedPage)
             {
                 case "CreateCompany":
-                    Company.NewCompany frm = new Company.NewCompany();
+
+                    splitContainerControl1.Panel2.Controls.RemoveByKey("OpenCompany");
+
+                    Company.NewCompany frm = new Company.NewCompany(this);
 
                     frm.Owner = this;
                     frm.TopLevel = false;
                     splitContainerControl1.Panel2.Controls.Add(frm);
                     frm.Show();
+                    break;
+                case "OpenCompany":
+
+                    splitContainerControl1.Panel2.Controls.RemoveByKey("NewCompany");
+                    
+                    Company.OpenCompany frmOpen = new Company.OpenCompany(this.frm);
+
+                    frmOpen.Owner = this;
+                    frmOpen.TopLevel = false;
+                    splitContainerControl1.Panel2.Controls.Add(frmOpen);
+                    frmOpen.Show();
                     break;
                 default:
                     break;
