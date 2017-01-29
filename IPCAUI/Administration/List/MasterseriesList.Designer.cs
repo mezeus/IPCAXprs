@@ -102,6 +102,8 @@
             this.dvgMasterseries.Name = "dvgMasterseries";
             this.dvgMasterseries.OptionsBehavior.ReadOnly = true;
             this.dvgMasterseries.OptionsView.ShowGroupPanel = false;
+            this.dvgMasterseries.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgMasterseries_RowClick);
+            this.dvgMasterseries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgMasterseries_KeyDown);
             this.dvgMasterseries.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgMasterseries_KeyPress);
             // 
             // colName

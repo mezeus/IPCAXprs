@@ -23,13 +23,15 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Date", objCurcov.Date));
-                                            
+                paramCollection.Add(new DBParameter("@CurrencyDate", objCurcov.Date,System.Data.DbType.Date));
+                paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
 
-                Query = "INSERT INTO CurrencyConversion(`Date`) " +
-                         "VALUES(@Date)";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertCurrencyConversion", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                int id = 0;
+                dr.Read();
+                id = Convert.ToInt32(dr[0]);
+                SaveCurrencyConDetails(objCurcov.CurrenyDetails, id);
                     isSaved = true;
             }
             catch (Exception ex)
@@ -41,95 +43,211 @@ namespace eSunSpeed.BusinessLogic
             return isSaved;
         }
 
-        //UPDATE
-        public bool UpdateCurrency(CurrencyMasterModel objCur)
+        //Save Currency Conversion Details
+        public bool SaveCurrencyConDetails(List<CurrencyConversionDetailsModel> lstCurrency, int ParentId)
         {
             string Query = string.Empty;
-            bool isUpdated = true;
+            bool isSaved = true;
+            foreach (CurrencyConversionDetailsModel objCurrency in lstCurrency)
+            {
+                objCurrency.ParentId = ParentId;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+                    paramCollection.Add(new DBParameter("@ParentId", (objCurrency.ParentId)));
+                    paramCollection.Add(new DBParameter("@Currency", (objCurrency.Currency)));
+                    paramCollection.Add(new DBParameter("@TandardRate", objCurrency.StandardRate,System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@SellingRate", objCurrency.SellingRate, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@BuyingRate", objCurrency.BuyingRate, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+
+                    System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spInsertCurrencyConversionDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
+        //UPDATE Currency Convresion
+        public bool UpdateCurrencyconversion(CurrencyConversionModel objCurcov)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
+
             try
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
+                paramCollection.Add(new DBParameter("@CurrencyDate", objCurcov.Date, System.Data.DbType.Date));
+                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@ParentId",objCurcov.CcID));
 
-                paramCollection.Add(new DBParameter("@Symbol", objCur.Symbol));
-                paramCollection.Add(new DBParameter("@String", objCur.CString));
-                paramCollection.Add(new DBParameter("@SubString", objCur.SubString));
-                paramCollection.Add(new DBParameter("@ConversionMode", objCur.ConvertionMode));
-                paramCollection.Add(new DBParameter("@ModifiedBy",objCur.ModifiedBy));
-                paramCollection.Add(new DBParameter("@CM_ID", objCur.CM_ID));
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spUpdateCurrencyConversion", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
+                List<CurrencyConversionDetailsModel> lstConn = new List<CurrencyConversionDetailsModel>();
 
-                Query = "UPDATE CurrencyMaster SET [Symbol]=@Symbol,[CString]=@String,[SubString]=@SubString,[ConversionMode]=@ConversionMode,[ModifiedBy]=@ModifiedBy " +
-                        "WHERE CM_ID=@CM_ID";
+                //UPDATE Currency Conversion Grid
+                foreach (CurrencyConversionDetailsModel conver in objCurcov.CurrenyDetails)
+                {
+                    if (conver.id > 0)
+                    {
 
+                        paramCollection = new DBParameterCollection();
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isUpdated = true;
+                        paramCollection.Add(new DBParameter("@ParentId", (conver.ParentId)));
+                        paramCollection.Add(new DBParameter("@Currency", (conver.Currency)));
+                        paramCollection.Add(new DBParameter("@TandardRate", conver.StandardRate, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@SellingRate", conver.SellingRate, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@BuyingRate", conver.BuyingRate, System.Data.DbType.Decimal));                       
+                        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CurrencyId", conver.id));
+
+                        System.Data.IDataReader drcurr =
+                   _dbHelper.ExecuteDataReader("spUpdateCurrencyConversionDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                    else
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@ParentId", (objCurcov.CcID)));
+                        paramCollection.Add(new DBParameter("@Currency", (conver.Currency)));
+                        paramCollection.Add(new DBParameter("@TandardRate", conver.StandardRate, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@SellingRate", conver.SellingRate, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@BuyingRate", conver.BuyingRate, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+
+                        System.Data.IDataReader drcurr =
+                       _dbHelper.ExecuteDataReader("spInsertCurrencyConversionDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                }
+                isUpdate = true;
             }
             catch (Exception ex)
             {
-                isUpdated = false;
+                isUpdate = false;
                 throw ex;
             }
 
-            return isUpdated;
+            return isUpdate;
         }
-
-        //Delete
-        
-        public bool DeletCurrency(List<int> lstIds)
+        //Delete Currency Conversion
+        public bool DeleteCurrencyConversion(int id)
         {
-            string Query = string.Empty;
-            bool isUpdated = true;
-
+            bool isDelete = false;
             try
             {
-                DBParameterCollection paramCollection;
-
-                foreach (int CM_ID in lstIds)
+                if (DeleteCurrencyConversionDetails(id))
                 {
-                    paramCollection = new DBParameterCollection();
+                    string Query = "DELETE FROM `currencyconversion` WHERE `CC_Id`=" + id;
 
-                    paramCollection.Add(new DBParameter("@CM_ID", CM_ID));
-                    Query = "Delete from CurrencyMaster WHERE [CM_ID]=@CM_ID";
+                    if (_dbHelper.ExecuteNonQuery(Query) > 0)
 
-                    if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                        isUpdated = true;
+                        isDelete = true;
                 }
-
             }
             catch (Exception ex)
             {
-                isUpdated = false;
+                isDelete = false;
                 throw ex;
             }
-
-            return isUpdated;
+            return isDelete;
+        }
+        //Delete Currency Conversion Details
+        public bool DeleteCurrencyConversionDetails(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE  FROM `currencyconversiondetails` WHERE `CC_Id`=" + id;
+                if (_dbHelper.ExecuteNonQuery(Query) > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
         }
 
-        //List
-        public List<CurrencyMasterModel> GetAllCurrency()
+        //List All Currencys
+        public List<CurrencyConversionDetailsModel> GetAllCurrencyConversions()
         {
-            List<CurrencyMasterModel> lstCurr = new List<CurrencyMasterModel>();
-            CurrencyMasterModel objCurr;
-           
-            string Query = "SELECT * FROM CurrencyMaster";
-            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+            List<CurrencyConversionDetailsModel> lstCurr = new List<CurrencyConversionDetailsModel>();
+            CurrencyConversionDetailsModel objCurr;
+
+            StringBuilder sbQuery = new StringBuilder();
+
+            sbQuery.Append("SELECT C.Date,C.CC_Id,A.Currency,A.TandardRate, A.SellingRate,A.BuyingRate FROM currencyconversion C ");
+            sbQuery.Append("INNER JOIN currencyconversiondetails A ");
+            sbQuery.Append("ON A.CC_Id = C.CC_Id ");
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
+
 
             while (dr.Read())
             {
-                objCurr = new CurrencyMasterModel();
-                objCurr.CM_ID = Convert.ToInt32(dr["CM_ID"]);
-                objCurr.Symbol = dr["Symbol"].ToString();
-                objCurr.CString = dr["CString"].ToString();
-                objCurr.SubString = dr["SubString"].ToString();
-                objCurr.ConvertionMode = dr["ConversionMode"].ToString();
-                //objCurr.ModifiedBy = dr["ModifiedBy"].ToString();
+                objCurr = new CurrencyConversionDetailsModel();
+                objCurr.Date = Convert.ToDateTime(dr["Date"]);
+                objCurr.id = Convert.ToInt32(dr["CC_Id"]);
+                objCurr.Currency = dr["Currency"].ToString();
+                objCurr.StandardRate = Convert.ToDecimal(dr["TandardRate"].ToString());
+                objCurr.SellingRate =Convert.ToDecimal(dr["SellingRate"].ToString());
+                objCurr.BuyingRate =Convert.ToDecimal(dr["BuyingRate"].ToString());
 
                lstCurr.Add(objCurr);                
             }
 
             return lstCurr;
+        }
+
+        //Get List of Currency Conversions
+        public List<CurrencyConversionModel> GetCurrencyConversionbyId(int id)
+        {
+            List<CurrencyConversionModel> lstCurrCon = new List<CurrencyConversionModel>();
+            CurrencyConversionModel objCurrCon;
+            string Query = "SELECT * FROM `currencyconversion` WHERE `CC_Id`=" + id;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objCurrCon = new CurrencyConversionModel();
+
+                objCurrCon.CcID = Convert.ToInt32(dr["CC_Id"]);
+                objCurrCon.Date =Convert.ToDateTime(dr["Date"].ToString());         
+                
+                //SELECT Currency Conversion Details
+                string CurrQuery = "SELECT * FROM `currencyconversiondetails` WHERE `CC_Id`=" +id;
+                System.Data.IDataReader drConn = _dbHelper.ExecuteDataReader(CurrQuery, _dbHelper.GetConnObject());
+
+                objCurrCon.CurrenyDetails = new List<CurrencyConversionDetailsModel>();
+                CurrencyConversionDetailsModel objCurrency;
+
+                while (drConn.Read())
+                {
+                    objCurrency = new CurrencyConversionDetailsModel();
+
+                    objCurrency.id = Convert.ToInt32(drConn["Currency_Id"]);
+                    objCurrency.ParentId = Convert.ToInt32(drConn["CC_Id"]);
+                    objCurrency.StandardRate = Convert.ToDecimal(drConn["TandardRate"]);
+                    objCurrency.SellingRate = Convert.ToDecimal(drConn["SellingRate"]);
+                    objCurrency.BuyingRate = Convert.ToDecimal(drConn["BuyingRate"]);
+                    objCurrency.Currency = drConn["Currency"].ToString();
+                    objCurrCon.CurrenyDetails.Add(objCurrency);
+
+                }
+
+                lstCurrCon.Add(objCurrCon);
+
+            }
+            return lstCurrCon;
         }
     }
 }

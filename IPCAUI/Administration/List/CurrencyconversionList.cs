@@ -22,10 +22,27 @@ namespace IPCAUI.Administration.List
 
         private void CurrencyconversionList_Load(object sender, EventArgs e)
         {
-            
+            List<CurrencyConversionDetailsModel> lstCurrency = objccbl.GetAllCurrencyConversions();
+            dvgCurrencyconversionList.DataSource = lstCurrency;
         }
         private void dvgCurrencyconversionList_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                CurrencyConversionDetailsModel lstCurrency;
+
+                lstCurrency = (CurrencyConversionDetailsModel)dvgCurrencyConnDetails.GetRow(dvgCurrencyConnDetails.FocusedRowHandle);
+                CurrencyConversionMaster.Con_Id = lstCurrency.id;
+                this.Close();
+            }            
+        }
+
+        private void dvgCurrencyConnDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            CurrencyConversionDetailsModel lstCurrency;
+
+            lstCurrency = (CurrencyConversionDetailsModel)dvgCurrencyConnDetails.GetRow(dvgCurrencyConnDetails.FocusedRowHandle);
+            CurrencyConversionMaster.Con_Id = lstCurrency.id;
             this.Close();
         }
     }

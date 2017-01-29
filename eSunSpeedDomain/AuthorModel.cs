@@ -13,9 +13,12 @@ namespace eSunSpeedDomain
         public string PrintName { get; set; }
         public bool ConnectAcc { get; set; }
         public string Address { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
         public string Street { get; set; }
-        public string MobileNo { get; set; }
-        public string Telephone { get; set; }
+        public long MobileNo { get; set; }
+        public long Telephone { get; set; }
         public string Email { get; set; }
         public string City { get; set; }
         public string PinCode { get; set; }

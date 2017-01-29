@@ -254,8 +254,8 @@ namespace IPCAUI.Menu
 
         private void barbtnCurrencyconv_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Currencyconversion frm;
-            frm = new Administration.Currencyconversion(); //generate new instance 
+            Administration.CurrencyConversionMaster frm;
+            frm = new Administration.CurrencyConversionMaster(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 
@@ -531,6 +531,22 @@ namespace IPCAUI.Menu
         {
             Administration.MarkupStructureMaster frm;
             frm = new Administration.MarkupStructureMaster(); //generate new instance 
+            frm.Owner = this;
+            frm.TopLevel = false;
+
+            sptCtrlMastermenu.Panel2.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void ribbonControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barbtnReference_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Administration.Referencegroup frm;
+            frm = new Administration.Referencegroup(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

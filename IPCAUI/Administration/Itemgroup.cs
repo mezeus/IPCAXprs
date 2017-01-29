@@ -52,7 +52,11 @@ namespace IPCAUI.Administration
             {
                 objModel.SeparateConfig = true;
             }
-            //objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==null?"0":tbxParameters.Text.Trim());
+            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==string.Empty?"0":tbxParameters.Text.Trim());
+            objModel.SpecifyBillReferencegrp= cbxTagBillReference.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.BillReferencegrp = cbxBillReferenceGroup.Text.Trim() == null? string.Empty : cbxBillReferenceGroup.Text.Trim();
+            objModel.CrDaysforSale = Convert.ToInt32(tbxCrDaysforSale.Text.Trim() == string.Empty ? "0" : tbxCrDaysforSale.Text.Trim());
+            objModel.CrDaysforPurc = Convert.ToInt32(tbxCrDaysforPurc.Text.Trim() == string.Empty ? "0" : tbxCrDaysforPurc.Text.Trim());
             objModel.CreatedBy = "Admin";
 
             bool isSuccess = objItemBL.SaveIGM(objModel);

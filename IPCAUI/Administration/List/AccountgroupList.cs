@@ -30,20 +30,44 @@ namespace IPCAUI.Administration.List
                 
         private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
         {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
         }
     
         private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                 
+        }
+
+        private void gdvAccGroupDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                AccountGroupModel lstItems;
+
+                lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
+                Accountgroup.groupId = lstItems.GroupId;
+
+                this.Close();
+            }      
+        }
+
+        private void gdvAccGroupDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             AccountGroupModel lstItems;
 
             lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
             Accountgroup.groupId = lstItems.GroupId;
 
-              this.Close();            
-        }        
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

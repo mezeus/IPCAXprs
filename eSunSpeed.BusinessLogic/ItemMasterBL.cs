@@ -373,8 +373,6 @@ namespace eSunSpeed.BusinessLogic
                 Parameter.Parent_Id = id;
                 if (Parameter.Param_Id > 0)
                 {
-
-
                     DBParameterCollection paramCollection = new DBParameterCollection();
                     paramCollection.Add(new DBParameter("@Item_Id", Parameter.Parent_Id));
                     paramCollection.Add(new DBParameter("@SL_NO", Parameter.Param_Id));
@@ -957,7 +955,6 @@ namespace eSunSpeed.BusinessLogic
             return objItem;
 
         }
-
 
         //Update Item Master
         public bool UpdateItemMaster(eSunSpeedDomain.ItemMasterModel objItem)

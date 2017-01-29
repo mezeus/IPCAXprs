@@ -39,9 +39,9 @@ namespace IPCAUI.Administration.List
 
                 lstSalesMan = (SalesManModel)dvgSalesManDetails.GetRow(dvgSalesManDetails.FocusedRowHandle);
                 Salesman.SMId = lstSalesMan.SalesMan_Id;
-
                 this.Close();
             }
+            return;
         }
 
         private void dvgSalesManDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)

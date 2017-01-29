@@ -64,9 +64,14 @@ namespace eSunSpeedDomain
         public string BankAccountNumber { get; set; }
         public string Ward { get; set; }
 
-        public string CreditLimit { get; set; }
         public string CreditDays { get; set; }
         public bool MaintainBillwiseAccounts { get; set; }
+        public bool AllocateAmountItems { get; set; }
+        public List<MaintainBillbyBillModel> BillbyBillDetails { get; set; }
+        public List<CostcenterPopupModel> CostcenterDetails { get; set; }
+        //Account Uncleard Cheques popups
+        public List<UnclearedChecqueDetailsModel> ChequesDeposites { get; set; }
+        public List<UnclearedChecqueDetailsModel> ChequesIssued { get; set; }
         public bool ActivateInterestCal { get; set; }
 
         public string DrCrOpeningBal { get; set; }
@@ -83,6 +88,33 @@ namespace eSunSpeedDomain
         public string DLNO1 { get; set; }
         public string No1 { get; set; }
         public string allowwebbasedreporting { get; set; }
+        //Sales Man Details Popup Window
+        public int SM_Id { get; set; }
+        public bool SpecifyDefaultSM { get; set; }
+        public string SalesMan { get; set; }
+        public bool freezeSalesMan { get; set; }
+        public bool DefaultCommission { get; set; }
+        public string CommissionMode { get; set; }
+        public decimal CommissionPercentage { get; set; }
+        public bool FreezeCommission { get; set; }
+        //Credit Limit For Account Parameters
+        public bool DefineCrLimit { get; set; }
+        public decimal MaxCredit { get; set; }
+        //Budgets Popup Parameters
+        public bool DefineBudgets { get; set; }
+        public decimal AnnualBudgets { get; set; }
+        public decimal JanuaryBd { get; set; }
+        public decimal FebruaryBd { get; set; }
+        public decimal MarchBd { get; set; }
+        public decimal AprilBd { get; set; }
+        public decimal MayBd { get; set; }
+        public decimal JuneBd { get; set; }
+        public decimal JulyBd { get; set; }
+        public decimal AugustBd { get; set; }
+        public decimal SeptemberBd { get; set; }
+        public decimal OctoberBd { get; set; }
+        public decimal NovemberBd { get; set; }
+        public decimal DecemberBd { get; set; }
 
         public string CreatedBy { get; set; }        
         public string ModifiedBy { get; set; }

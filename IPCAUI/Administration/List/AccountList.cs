@@ -44,12 +44,15 @@ namespace IPCAUI.Administration.List
 
         private void dvgAccountList_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AccountMasterModel lstMasters;
+            if (e.KeyChar =='\r')
+            {
+                AccountMasterModel lstMasters;
 
-            lstMasters = (AccountMasterModel)dvgAccountDetails.GetRow(dvgAccountDetails.FocusedRowHandle);
-            Account.groupId = lstMasters.AccountId;
+                lstMasters = (AccountMasterModel)dvgAccountDetails.GetRow(dvgAccountDetails.FocusedRowHandle);
+                Account.groupId = lstMasters.AccountId;
 
-            this.Close();
+                this.Close();
+            }            
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -59,6 +62,16 @@ namespace IPCAUI.Administration.List
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dvgAccountDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            AccountMasterModel lstMasters;
+
+            lstMasters = (AccountMasterModel)dvgAccountDetails.GetRow(dvgAccountDetails.FocusedRowHandle);
+            Account.groupId = lstMasters.AccountId;
+
+            this.Close();
         }
     }
 }

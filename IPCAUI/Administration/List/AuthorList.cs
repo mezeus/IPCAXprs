@@ -23,11 +23,31 @@ namespace IPCAUI.Administration.List
 
         private void AuthorList_Load(object sender, EventArgs e)
         {
+            Author.AuthorId = 0;
             List<eSunSpeedDomain.AuthorModel> lstAuthor = objautbl.GetAllAuthors();
             dvgAuthorList.DataSource = lstAuthor;
         }
 
         private void dvgAutorDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void dvgAutorDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == '\r')
+            {
+                AuthorModel lstAuthors;
+
+                lstAuthors = (AuthorModel)dvgAutorDetails.GetRow(dvgAutorDetails.FocusedRowHandle);
+                Author.AuthorId = lstAuthors.Author_Id;
+
+                this.Close();
+            }
+            return;
+        }
+
+        private void dvgAutorDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             AuthorModel lstAuthors;
 
@@ -36,5 +56,15 @@ namespace IPCAUI.Administration.List
 
             this.Close();
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        
     }
 }

@@ -30,7 +30,7 @@ namespace eSunSpeed.DataAccess
         {
             get
             {
-                //return string.Format("server={0};user id={1}; password={2}; database={3}", ConfigurationManager.AppSettings["MySqlServer"].ToString(), ConfigurationManager.AppSettings["MySqlUserId"].ToString(), ConfigurationManager.AppSettings["MySqlPassword"].ToString(), SessionVariables.DBName);
+              //  return string.Format("server={0};user id={1}; password={2}; database={3}", ConfigurationManager.AppSettings["MySqlServer"].ToString(), ConfigurationManager.AppSettings["MySqlUserId"].ToString(), ConfigurationManager.AppSettings["MySqlPassword"].ToString(), SessionVariables.DBName);
                 //Need to correct it
                 return ConfigurationManager.ConnectionStrings[DefaultConnection].ConnectionString;
             }

@@ -47,7 +47,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
 
                  Query = "INSERT INTO salesmanmaster(`SM_Name`,`SM_Alias`,`SM_PrintName`,`EnableDefCommision`,`Commision_Mode`,`DefCommision`,`FreezeCommision`,`Sales_DebitMode`,`Sales_AccDebited`,`Salesman_AccountToCredit`,`Purchase_DebitMode`,`Purchase_AccDebited`,`Address`," +
-                    "`Address1`,`Address2`,`Address3`,`Tel.No`,`Mobile`,`E-Mail`,`CreatedBy`) " +
+                    "`Address1`,`Address2`,`Address3`,`TelNo`,`Mobile`,`EMail`,`CreatedBy`) " +
                     "VALUES(@Name,@Alias,@Printname,@Enabledef,@Commissionmode,@Defcommission,@Freezecommission,@Saledebit,@SaleaccDebit,@SalesmanAccountToCredit,@purchasedebit,@purchaseaccdebit,@Address," +
                     "@Address1,@Address2,@Address3,@Telenumber,@mobile,@email,@CreatedBy)";
 
@@ -62,54 +62,48 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
-        //updatebom
-        //public bool UpdateSalesMan(SalesManModel objModel)
-        //{
-        //    string Query = string.Empty;
-        //    bool isUpdated = true;
-        //    try
-        //    {
-        //        DBParameterCollection paramCollection = new DBParameterCollection();
+        //Update Sales man Details
+        public bool UpdateSalesMan(SalesManModel objModel)
+        {
+            string Query = string.Empty;
+            bool isUpdate = true;
 
+            try
+            {
+                DBParameterCollection paramCollection = new DBParameterCollection();
 
-        //        paramCollection.Add(new DBParameter("@BOMName", objModel.SM_Name));
-        //        paramCollection.Add(new DBParameter("@ItemProduct", objModel.ItemProduct));
-        //        paramCollection.Add(new DBParameter("@Quantity", objModel.Quantity, System.Data.DbType.Decimal));
-        //        paramCollection.Add(new DBParameter("@ItemUnit", objModel.ItemUnit));
-        //        paramCollection.Add(new DBParameter("@Expenses", objModel.Expenses, System.Data.DbType.Decimal));
-        //        paramCollection.Add(new DBParameter("@SpecifyMCGenerated", objModel.SpecifyMCGenerated, System.Data.DbType.Boolean));
-        //        paramCollection.Add(new DBParameter("@SpecifyDefaultMCforItemConsumed", objModel.SpecifyDefaultMCforItemConsumed, System.Data.DbType.Boolean));
-        //        paramCollection.Add(new DBParameter("@AppMc", objModel.AppMc));
-        //        paramCollection.Add(new DBParameter("@SNo", objModel.SNo));
-        //        paramCollection.Add(new DBParameter("@ItemName", objModel.ItemName));
-        //        paramCollection.Add(new DBParameter("@Qty", objModel.Qty, System.Data.DbType.Decimal));
-        //        paramCollection.Add(new DBParameter("@Unit", objModel.Unit, System.Data.DbType.Decimal));
-        //        paramCollection.Add(new DBParameter("@TotalofConsumedqtyUnit", objModel.TotalofConsumedqtyUnit, System.Data.DbType.Decimal));
-        //        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-        //        paramCollection.Add(new DBParameter("@Bom_Id", objModel.Bom_Id));
+                paramCollection.Add(new DBParameter("@SM_Name", objModel.SM_Name));
+                paramCollection.Add(new DBParameter("@SM_Alias", objModel.SM_Alias));
+                paramCollection.Add(new DBParameter("@SM_PrintName", objModel.SM_PrintName));
+                paramCollection.Add(new DBParameter("@EnableDefCommision", objModel.EnableDefCommision, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@Commision_Mode", objModel.Commision_Mode));
+                paramCollection.Add(new DBParameter("@DefCommision", objModel.DefCommision, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@FreezeCommision", objModel.FreezeCommision, DbType.Boolean));
+                paramCollection.Add(new DBParameter("@Sales_DebitMode", objModel.Sales_DebitMode));
+                paramCollection.Add(new DBParameter("@Sales_AccDebited", objModel.Sales_AccDebited));
+                paramCollection.Add(new DBParameter("@Salesman_AccountToCredit", objModel.SM_AccounttobeCredited));
+                paramCollection.Add(new DBParameter("@Purchase_DebitMode", objModel.Purchase_DebitMode));
+                paramCollection.Add(new DBParameter("@Purchase_AccDebited", objModel.Purchase_AccDebited));
+                paramCollection.Add(new DBParameter("@Address", objModel.Address));
+                paramCollection.Add(new DBParameter("@Address1", objModel.Address1));
+                paramCollection.Add(new DBParameter("@Address2", objModel.Address2));
+                paramCollection.Add(new DBParameter("@Address3", objModel.Address3));
+                paramCollection.Add(new DBParameter("@TelNo", objModel.Telephone));
+                paramCollection.Add(new DBParameter("@Mobile", objModel.Mobile));
+                paramCollection.Add(new DBParameter("@EMail", objModel.Email));
+                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@SM_Id", objModel.SalesMan_Id));
 
-
-        //        Query = "UPDATE BillsofMaterial SET [BOMName]=@BOMName,[ItemProduct]=@ItemProduct,[Quantity]=@Quantity,[ItemUnit]=@ItemUnit,[Expenses]=@Expenses,[SpecifyMCGenerated]=@SpecifyMCGenerated, " +
-        //           "[SpecifyDefaultMCforItemConsumed]=@SpecifyDefaultMCforItemConsumed,[AppMc]=@AppMc,[SNo]=@SNo,[ItemName]=@ItemName, " +
-        //           "[Qty]=@Qty,[Unit]=@Unit,[TotalofConsumedqtyUnit]=@TotalofConsumedqtyUnit,[ModifiedBy]=@ModifiedBy " +
-        //           "WHERE BOM_Id=@BOM_Id";
-
-
-
-        //        if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-        //            isUpdated = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        isUpdated = false;
-        //        throw ex;
-        //    }
-
-        //    return isUpdated;
-        //}
-
-    
-        //Delete
+                System.Data.IDataReader dr =
+                        _dbHelper.ExecuteDataReader("spUpdateSalesMan", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                isUpdate = false;
+                throw ex;
+            }
+            return isUpdate;
+        }
         public bool DeleteSalesMan(List<int> lstIds)
         {
             string Query = string.Empty;
@@ -167,15 +161,32 @@ namespace eSunSpeed.BusinessLogic
                 objModel.Address1 = dr["Address1"].ToString();
                 objModel.Address2 = dr["Address2"].ToString();
                 objModel.Address3 = dr["Address3"].ToString();
-                objModel.Telephone =Convert.ToInt64(dr["Tel.No"].ToString()==string.Empty?"0": dr["Tel.No"].ToString());
+                objModel.Telephone =Convert.ToInt64(dr["TelNo"].ToString()==string.Empty?"0": dr["TelNo"].ToString());
                 objModel.Mobile = Convert.ToInt64(dr["Mobile"].ToString() == string.Empty ? "0" : dr["Mobile"].ToString());
-                objModel.Email = dr["E-Mail"].ToString();
+                objModel.Email = dr["EMail"].ToString();
             }
 
             return objModel;
         }
+        //Delete SalesMan Details
+        public bool DeleteSalesManDetails(int id)
+        {
+            bool isDelete = false;
+            try
+            {
+                string Query = "DELETE FROM salesmanmaster WHERE SalesMan_Id=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //List
-
         public List<SalesManModel> GetAllSalesMan()
         {
             List<SalesManModel> lstSaleMan = new List<SalesManModel>();
@@ -222,7 +233,7 @@ namespace eSunSpeed.BusinessLogic
         public bool IsSalesManExists(string Name)
         {
             StringBuilder _sbQuery = new StringBuilder();
-            _sbQuery.AppendFormat("SELECT COUNT(*) FROM AccountGroups WHERE Groupname='{0}'", Name);
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM salesmanmaster WHERE SM_Name='{0}'", Name);
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
             dr.Read();
