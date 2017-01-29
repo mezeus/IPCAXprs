@@ -325,8 +325,9 @@ namespace eSunSpeed.BusinessLogic
         /// </summary>
         /// <param name="objAcctMaster"></param>
         /// <returns>True/False</returns>
-        public bool SaveAccount(AccountMasterModel objAcctMaster)
+        public int SaveAccount(AccountMasterModel objAcctMaster)
         {
+            int id = 0;
             try
             {
                 string Query = string.Empty;
@@ -425,11 +426,11 @@ namespace eSunSpeed.BusinessLogic
 
                 System.Data.IDataReader dr =
                     _dbHelper.ExecuteDataReader("spInsertAccountMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-                int id = 0;
+               
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
-                SaveBillByBillDetails(objAcctMaster.BillbyBillDetails,id);
-                SaveCostCenterDetails(objAcctMaster.CostcenterDetails,id);
+                SaveBillByBillDetails(objAcctMaster.BillbyBillDetails, id);
+                SaveCostCenterDetails(objAcctMaster.CostcenterDetails, id);
                 SaveChequeDepositeDetails(objAcctMaster.ChequesDeposites, id);
                 SaveChequeIssuedDetails(objAcctMaster.ChequesIssued, id);
             }
@@ -439,7 +440,7 @@ namespace eSunSpeed.BusinessLogic
             }
 
 
-            return true;
+            return id;
             }
 
         //Save Maintain Bill By Details
@@ -660,7 +661,7 @@ namespace eSunSpeed.BusinessLogic
         public bool IsAccountExists(string Name)
         {
             StringBuilder _sbQuery = new StringBuilder();
-            _sbQuery.AppendFormat("SELECT COUNT(*) FROM accountmaster1 WHERE ACC_NAME='{0}'",Name);
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM accountmaster WHERE ACC_NAME='{0}'",Name);
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
             dr.Read();
@@ -832,7 +833,7 @@ namespace eSunSpeed.BusinessLogic
             AccountMasterModel _acctMaster;
 
             try {
-                string Query = "SELECT DISTINCT Ac_ID,ACC_NAME,ACC_SHORTNAME,`ACC_Group`,ACC_OpBal,ACC_DrCrOpenBal FROM `accountmaster1`";
+                string Query = "SELECT DISTINCT Ac_ID,ACC_NAME,ACC_SHORTNAME,`ACC_Group`,ACC_OpBal,ACC_DrCrOpenBal FROM `accountmaster`";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
                 while (dr.Read())

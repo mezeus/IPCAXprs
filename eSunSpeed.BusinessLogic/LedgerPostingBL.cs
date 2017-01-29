@@ -18,7 +18,7 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@S_date", ledgerpostinginfo.Date));
+                paramCollection.Add(new DBParameter("@S_date", ledgerpostinginfo.Date, DbType.DateTime));
                 paramCollection.Add(new DBParameter("@S_voucherTypeId", ledgerpostinginfo.VoucherTypeId));
                 paramCollection.Add(new DBParameter("@S_voucherNo", ledgerpostinginfo.VoucherNo));
                 paramCollection.Add(new DBParameter("@S_ledgerId", ledgerpostinginfo.LedgerId));
@@ -28,7 +28,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@S_yearId", ledgerpostinginfo.YearId));
                 paramCollection.Add(new DBParameter("@S_invoiceNo", ledgerpostinginfo.InvoiceNo));
                 paramCollection.Add(new DBParameter("@S_chequeNo", ledgerpostinginfo.ChequeNo));
-                paramCollection.Add(new DBParameter("@S_chequeDate", ledgerpostinginfo.ChequeDate));
+                paramCollection.Add(new DBParameter("@S_chequeDate", ledgerpostinginfo.ChequeDate,DbType.DateTime));
                 paramCollection.Add(new DBParameter("@S_extra1", ledgerpostinginfo.Extra1));
                 paramCollection.Add(new DBParameter("@S_extra2", ledgerpostinginfo.Extra2));
 
