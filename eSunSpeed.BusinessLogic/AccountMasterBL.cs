@@ -35,15 +35,19 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
                 paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@UnderGroupId", objAccountGrp.UnderGroupId));
-                paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
-                paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
+                paramCollection.Add(new DBParameter("@NatureGroupId", objAccountGrp.NatureGroupId));
+                paramCollection.Add(new DBParameter("@DC", objAccountGrp.DC));
                 paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@CreatedBy", objAccountGrp.CreatedBy));
+                paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy",""));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
-                Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UndergroupID`,`UnderGroup`,`NatureGroup`,`IsAffectGrossProfit`,`CreatedBy`) VALUES (@GroupName,@AliasName,@Primary,@UnderGroupId,@UnderGroup,@NatureGroup,@IsAffectGrossProfit,@CreatedBy)";
+                Query = "INSERT INTO accountgroups(`GroupName`,`AliasName`,`Primary`,`UG_ID`,`NG_ID`,`DC`,`IsAffectGrossProfit`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`)"+
+                    "VALUES (@GroupName,@AliasName,@Primary,@UnderGroupId,@NatureGroupId,@DC,@IsAffectGrossProfit,@CreatedBy,@CreatedDate,@ModifiedBy,@ModifiedDate)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    SaveAGMasterSeriesGroup(objAccountGrp.AGMasterSeries);
+                    //SaveAGMasterSeriesGroup(objAccountGrp.AGMasterSeries);
                         isSaved = true;
             }
             catch(Exception ex)
@@ -685,18 +689,16 @@ namespace eSunSpeed.BusinessLogic
             List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
             eSunSpeedDomain.AccountGroupModel accountGroup;
 
-            string Query = "SELECT DISTINCT AG_ID,GroupName,AliasName,`primary`, UnderGroup FROM `AccountGroups`";
+            string Query = "SELECT DISTINCT AG_ID,GroupName,AliasName,`primary` FROM `AccountGroups`";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
                 accountGroup = new eSunSpeedDomain.AccountGroupModel();
 
-                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
-                //accountGroup.CanDelete = Convert.ToBoolean(dr["CanDelete"]); 
+                accountGroup.UnderGroupId = Convert.ToInt32(dr["AG_ID"]);
                 accountGroup.GroupName = dr["GroupName"].ToString();
                 accountGroup.AliasName = dr["AliasName"].ToString();
-                accountGroup.UnderGroup = dr["UnderGroup"].ToString();
                 accountGroup.Primary =Convert.ToBoolean(dr["Primary"].ToString());
 
                 lstAccountGroups.Add(accountGroup);
@@ -704,6 +706,29 @@ namespace eSunSpeed.BusinessLogic
             }
               
             return lstAccountGroups;
+
+        }
+        
+        //List Of Natureof Groups
+        public List<eSunSpeedDomain.AccountGroupModel> GetListofNatureofGroups()
+        {
+            List<eSunSpeedDomain.AccountGroupModel> lstNatureGroups = new List<eSunSpeedDomain.AccountGroupModel>();
+            eSunSpeedDomain.AccountGroupModel NatureGroup;
+
+            string Query = "SELECT DISTINCT NG_ID,NatureofGroup,DC FROM `natureofgroups`";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                NatureGroup = new eSunSpeedDomain.AccountGroupModel();
+
+                NatureGroup.NatureGroupId = Convert.ToInt32(dr["NG_ID"]);
+                NatureGroup.NatureGroup = dr["NatureofGroup"].ToString();
+                NatureGroup.DC = dr["DC"].ToString();
+                lstNatureGroups.Add(NatureGroup);
+            }
+
+            return lstNatureGroups;
 
         }
         public List<eSunSpeedDomain.AccountGroupModel> GetUnderGroupIdByGroupName(string groupname)
@@ -785,18 +810,22 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-
                 paramCollection.Add(new DBParameter("@GroupName", objAccountGrp.GroupName));
                 paramCollection.Add(new DBParameter("@AliasName", objAccountGrp.AliasName));
-                paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary,System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@UnderGroup", objAccountGrp.UnderGroup));
-                paramCollection.Add(new DBParameter("@NatureGroup", objAccountGrp.NatureGroup));
-                paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit,System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@ModifiedBy", objAccountGrp.ModifiedBy));
+                paramCollection.Add(new DBParameter("@Primary", objAccountGrp.Primary, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@UnderGroupId", objAccountGrp.UnderGroupId));
+                paramCollection.Add(new DBParameter("@NatureGroupId", objAccountGrp.NatureGroupId));
+                paramCollection.Add(new DBParameter("@DC", objAccountGrp.DC));
+                paramCollection.Add(new DBParameter("@IsAffectGrossProfit", objAccountGrp.IsAffectGrossProfit, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CreatedBy",""));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
                 paramCollection.Add(new DBParameter("@GroupId", objAccountGrp.GroupId));
 
-                Query = "UPDATE AccountGroups SET GroupName=@GroupName,AliasName=@AliasName,`Primary`=@Primary,UnderGroup=@UnderGroup,NatureGroup=@NatureGroup,IsAffectGrossProfit=@IsAffectGrossProfit,ModifiedBy=@ModifiedBy " +
+                Query = "UPDATE AccountGroups SET GroupName=@GroupName,AliasName=@AliasName,`Primary`=@Primary,UG_ID=@UnderGroupId,NG_ID=@NatureGroupId,"+
+                    "DC=@DC,IsAffectGrossProfit=@IsAffectGrossProfit,CreatedBy=@CreatedBy,CreatedDate=@CreatedDate,ModifiedBy=@ModifiedBy,ModifiedDate=@ModifiedDate " +
                         "WHERE AG_ID=@GroupId";
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
@@ -1284,24 +1313,41 @@ namespace eSunSpeed.BusinessLogic
             return accountGroup;
 
         }
-
+        //Get Accountgroupid & NatureofgroupId By undergroupname
         public AccountGroupModel GetAccountGroupIdByGroupName(string groupname)
         {
             AccountGroupModel accountGroup = new AccountGroupModel();
 
-            string Query = "SELECT  AG_ID,DC FROM `accountgroups` where GroupName='"+groupname+"'";
+            string Query = "SELECT * FROM `accountgroups` where GroupName='"+groupname+"'";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
-                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
+                accountGroup.UnderGroupId = Convert.ToInt32(dr["AG_ID"]);
+                accountGroup.NatureGroupId= Convert.ToInt32(dr["NG_ID"]);
                 accountGroup.DC = dr["DC"].ToString();
             }
 
             return accountGroup;
 
         }
-        //Get Nature of Group Details By 
+        //Get NatureofgroupId & C/D By undergroupname
+        public AccountGroupModel GetNatureGroupIdByGroupName(string Naturename)
+        {
+            AccountGroupModel objNarture = new AccountGroupModel();
+
+            string Query = "SELECT  NG_ID,DC FROM `natureofgroups` where NatureofGroup='" + Naturename + "'";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objNarture.NatureGroupId = Convert.ToInt32(dr["NG_ID"]);
+                objNarture.DC = dr["DC"].ToString();
+            }
+
+            return objNarture;
+
+        }
         #endregion  
 
         //Delete Single Account By Id

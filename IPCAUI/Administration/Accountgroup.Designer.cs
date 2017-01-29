@@ -249,6 +249,7 @@
             this.cbxNaturegroup.Size = new System.Drawing.Size(152, 20);
             this.cbxNaturegroup.StyleController = this.layoutControl1;
             this.cbxNaturegroup.TabIndex = 9;
+            this.cbxNaturegroup.Enter += new System.EventHandler(this.cbxNaturegroup_Enter);
             // 
             // cbxUndergroup
             // 
