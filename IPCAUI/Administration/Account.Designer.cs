@@ -39,7 +39,7 @@
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.ListAccount = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navbtnAccountsettings = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
@@ -479,7 +479,7 @@
             this.navBarItem6,
             this.ListAccount,
             this.navBarItem8,
-            this.navBarItem9,
+            this.btnNewEntery,
             this.navbtnAccountsettings,
             this.navBarItem11,
             this.GeneralAccountScreen,
@@ -527,7 +527,7 @@
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.ListAccount),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
@@ -544,11 +544,12 @@
             this.navBarItem8.Name = "navBarItem8";
             this.navBarItem8.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem8.SmallImage")));
             // 
-            // navBarItem9
+            // btnNewEntery
             // 
-            this.navBarItem9.Caption = "New Entry";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem9.SmallImage")));
+            this.btnNewEntery.Caption = "New Entry";
+            this.btnNewEntery.Name = "btnNewEntery";
+            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
+            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -2423,7 +2424,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
         private DevExpress.XtraNavBar.NavBarItem ListAccount;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem18;

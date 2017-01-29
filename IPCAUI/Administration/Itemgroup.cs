@@ -179,7 +179,8 @@ namespace IPCAUI.Administration
             {
                 objModel.SeparateConfig = true;
             }
-            //objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim());
+            objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==string.Empty?"0": tbxParameters.Text.Trim());
+
             objModel.IGM_id = ItemgrpId;
             objModel.ModifiedBy = "Admin";
 

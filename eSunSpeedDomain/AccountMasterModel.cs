@@ -73,7 +73,8 @@ namespace eSunSpeedDomain
         public List<UnclearedChecqueDetailsModel> ChequesDeposites { get; set; }
         public List<UnclearedChecqueDetailsModel> ChequesIssued { get; set; }
         public bool ActivateInterestCal { get; set; }
-
+        //Master Series Group Popup Grid
+        public List<MasterseriesModel> MasterSeries { get; set; }
         public string DrCrOpeningBal { get; set; }
         public string DrCrPrevBal { get; set; }
         public string LstNumber { get; set; }

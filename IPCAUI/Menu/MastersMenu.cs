@@ -147,6 +147,16 @@ namespace IPCAUI.Menu
                         sptCtrlMastermenu.Panel2.Controls.Add(frmItemMaster);
                         frmItemMaster.Show();
                         break;
+                    case "MasterSeriesGroup":
+                        Administration.Masterseriesgroup frmMaster;
+                        frmMaster = new Administration.Masterseriesgroup(); //generate new instance 
+
+                        frmMaster.Owner = this;
+                        frmMaster.TopLevel = false;
+
+                        sptCtrlMastermenu.Panel2.Controls.Add(frmMaster);
+                        frmMaster.Show();
+                        break;
                     default:
                         break;
                         

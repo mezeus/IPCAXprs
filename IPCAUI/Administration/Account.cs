@@ -119,18 +119,22 @@ namespace IPCAUI.Administration
             frmSM.ShowDialog();
             //objAccount.CreditLimit = tbxcred.Text;
             PopupScreens.CreditLimitforAccount frmCredit = new PopupScreens.CreditLimitforAccount();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmCredit.StartPosition = FormStartPosition.CenterParent;
             frmCredit.ShowDialog();
             PopupScreens.UnclearChequeDeposite frmDeposites = new PopupScreens.UnclearChequeDeposite();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmDeposites.StartPosition = FormStartPosition.CenterParent;
             frmDeposites.ShowDialog();
             PopupScreens.BudgetsforAccount frmBudget = new PopupScreens.BudgetsforAccount();
-            frmSM.StartPosition = FormStartPosition.CenterScreen;
+            frmBudget.StartPosition = FormStartPosition.CenterParent;
             frmBudget.ShowDialog();
 
             PopupScreens.UnclearChequeIssued frmIssued = new PopupScreens.UnclearChequeIssued();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmIssued.StartPosition = FormStartPosition.CenterParent;
             frmIssued.ShowDialog();
+
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
 
             objAccount.Transport = tbxTransport.Text==null?string.Empty:tbxTransport.Text;
             objAccount.Station = tbxStation.Text == null ? string.Empty : tbxStation.Text;
@@ -181,6 +185,7 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Saved Successfully!");
                 ClearControls();
+                tbxName.Focus();
                 groupId = 0;
             }
 
@@ -266,7 +271,7 @@ namespace IPCAUI.Administration
             tbxInterestrateReceviable.Text= objAccount.InterestRateReceivable.ToString();
             laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            //laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             tbxName.Focus();
         }
 
@@ -498,19 +503,21 @@ namespace IPCAUI.Administration
             frmSM.ShowDialog();
             //objAccount.CreditLimit = tbxcred.Text;
             PopupScreens.CreditLimitforAccount frmCredit = new PopupScreens.CreditLimitforAccount();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmCredit.StartPosition = FormStartPosition.CenterParent;
             frmCredit.ShowDialog();
             PopupScreens.UnclearChequeDeposite frmDeposites = new PopupScreens.UnclearChequeDeposite();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmDeposites.StartPosition = FormStartPosition.CenterParent;
             frmDeposites.ShowDialog();
             PopupScreens.BudgetsforAccount frmBudget = new PopupScreens.BudgetsforAccount();
-            frmSM.StartPosition = FormStartPosition.CenterScreen;
+            frmBudget.StartPosition = FormStartPosition.CenterScreen;
             frmBudget.ShowDialog();
 
             PopupScreens.UnclearChequeIssued frmIssued = new PopupScreens.UnclearChequeIssued();
-            frmSM.StartPosition = FormStartPosition.CenterParent;
+            frmIssued.StartPosition = FormStartPosition.CenterParent;
             frmIssued.ShowDialog();
-
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
             objAccount.Transport = tbxTransport.Text == null ? string.Empty : tbxTransport.Text;
             objAccount.Station = tbxStation.Text == null ? string.Empty : tbxStation.Text;
 
@@ -667,6 +674,16 @@ namespace IPCAUI.Administration
                     }
                 }
             }          
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            objAccount = new AccountMasterModel();
+            ClearControls();
+            groupId = 0;
+            laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }
     }
 }

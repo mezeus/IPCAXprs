@@ -8,6 +8,7 @@ namespace eSunSpeedDomain
     public class MasterseriesModel
     {
         public int MasterId { get; set; }
+        public int ParentId { get; set; }
         public string MasterName { get; set; }
     }
 }

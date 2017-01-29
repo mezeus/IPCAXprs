@@ -344,6 +344,12 @@
     <Compile Include="Administration\PopupScreens\BudgetsforAccount.Designer.cs">
       <DependentUpon>BudgetsforAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\PopupScreens\MasterSeriesGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PopupScreens\MasterSeriesGroup.Designer.cs">
+      <DependentUpon>MasterSeriesGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PopupScreens\UnclearChequeIssued.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3452,6 +3458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\BudgetsforAccount.resx">
       <DependentUpon>BudgetsforAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PopupScreens\MasterSeriesGroup.resx">
+      <DependentUpon>MasterSeriesGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\PopupScreens\UnclearChequeIssued.resx">
       <DependentUpon>UnclearChequeIssued.cs</DependentUpon>

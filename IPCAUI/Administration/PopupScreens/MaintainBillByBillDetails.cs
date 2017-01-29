@@ -36,7 +36,7 @@ namespace IPCAUI.Administration.PopupScreens
                 DataRow row = dvgBillbyBillDetails.GetDataRow(i);
                 objbillbybill = new MaintainBillbyBillModel();
                 objbillbybill.Reference = row["Reference"].ToString() == null ? string.Empty : row["Reference"].ToString();
-                objbillbybill.Reference = row["Salesman"].ToString() == null ? string.Empty : row["Salesman"].ToString();
+                objbillbybill.Salesman = row["Salesman"].ToString() == null ? string.Empty : row["Salesman"].ToString();
                 objbillbybill.Dated = Convert.ToDateTime(row["Dated"].ToString() == null ? string.Empty : row["Dated"].ToString());
                 objbillbybill.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty?"0.00" : row["Amount"].ToString());
                 objbillbybill.DC = row["DC"].ToString() ==null? string.Empty : row["DC"].ToString();
