@@ -48,6 +48,7 @@
     <Compile Include="BillsofMaterialDetailsModel.cs" />
     <Compile Include="CostcenterPopupModel.cs" />
     <Compile Include="CurrencyConversionDetailsModel.cs" />
+    <Compile Include="LedgerpostingModel.cs" />
     <Compile Include="MainCompanyInfo.cs" />
     <Compile Include="CompanyPathInfo.cs" />
     <Compile Include="DefineCriticalLevelModel.cs" />

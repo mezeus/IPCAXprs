@@ -28,7 +28,7 @@ namespace IPCAUI
             treeList1.OptionsView.ShowHorzLines = false;
             treeList1.OptionsView.ShowVertLines = false;
 
-            MenuSettings(true);
+            //MenuSettings(false);
 
             IPCAUI.License.CheckLicense chkLicense = new License.CheckLicense();
            

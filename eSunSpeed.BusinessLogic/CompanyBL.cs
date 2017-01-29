@@ -49,25 +49,24 @@ namespace eSunSpeed.BusinessLogic
         public bool CheckIsCompanyExists(string companyName,decimal id)
         {
             string Query = string.Empty;
-            bool isExists = true;
+            bool isExists = false;
+
+            Query = string.Format("SELECT COMPANYNAME FROM COMPANY WHERE companyName='{0}';", companyName);
 
             try
             {
-                DBParameterCollection paramCollection = new DBParameterCollection();
-
-                paramCollection.Add(new DBParameter("@companyName", companyName));
-                paramCollection.Add(new DBParameter("@companyId", id));
-
                 System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spCompanyCheckExistence", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject(), System.Data.CommandType.Text);
 
-                dr.Read();
-                if (Convert.ToInt32(dr[0]) > 0)
-                    isExists = true;
-                else
-                    isExists = false;
-             
-               }
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == "")
+                        isExists = false;
+                    else
+                        isExists = true;
+                }
+
+            }
             catch (Exception ex)
             {
                 isExists = true;
@@ -76,6 +75,7 @@ namespace eSunSpeed.BusinessLogic
 
             return isExists;
         }
+
         public int SaveCompany(CompanyModel objCompany)
         {
             string Query = string.Empty;
@@ -152,6 +152,7 @@ namespace eSunSpeed.BusinessLogic
             }
             return ina;
         }
+
         public void CompanyPathAdd(CompanyPathInfo companypathinfo)
         {
             try
@@ -204,6 +205,7 @@ namespace eSunSpeed.BusinessLogic
             }
             return isTrue;
         }
+
         /// <summary>
         /// Function for Restore the DataBase
         /// </summary>

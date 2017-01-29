@@ -20,6 +20,9 @@ namespace IPCAUI.Administration
         public static AccountMasterModel objAccount = new AccountMasterModel();
         AccountSettingsModel lstSettings;
 
+        decimal decOpeningBalance = 0;
+        int decLedgerId = 0;
+
         public Account()
         {
             InitializeComponent();
@@ -180,9 +183,10 @@ namespace IPCAUI.Administration
             //objAccount.BankAccountNumber=
             string message = string.Empty;
 
-            bool isSuccess = accMaster.SaveAccount(objAccount);
-            if (isSuccess)
+           decLedgerId= accMaster.SaveAccount(objAccount);
+            if (decLedgerId>0)
             {
+                LedgerPostingAdd();
                 MessageBox.Show("Saved Successfully!");
                 ClearControls();
                 tbxName.Focus();
@@ -190,7 +194,47 @@ namespace IPCAUI.Administration
             }
 
         }
+        public void LedgerPostingAdd()
+        {
+            try
+            {
+                string strfinancialId;
+                decOpeningBalance = Convert.ToDecimal(tbxOpbal.Text.Trim());
+                LedgerPostingBL objBL = new LedgerPostingBL();
+                LedgerPostingModel infoLedgerPosting = new LedgerPostingModel();
+                //FinancialYearSP spFinancialYear = new FinancialYearSP();
+                //FinancialYearInfo infoFinancialYear = new FinancialYearInfo();
+                //infoFinancialYear = spFinancialYear.FinancialYearViewForAccountLedger(1);
 
+                //strfinancialId = infoFinancialYear.FromDate.ToString("dd-MMM-yyyy"); -NEED TO REVIEW AND RELEASE THIS
+
+                infoLedgerPosting.VoucherTypeId = 1;
+                infoLedgerPosting.Date = Convert.ToDateTime(DateTime.Today.ToString());
+                infoLedgerPosting.LedgerId = decLedgerId;
+                infoLedgerPosting.VoucherNo = decLedgerId.ToString();
+
+                if (cbxCrDr.Text == "D")
+                {
+                    infoLedgerPosting.Debit = decOpeningBalance;
+                }
+                else
+                {
+                    infoLedgerPosting.Credit = decOpeningBalance;
+                }
+                infoLedgerPosting.DetailsId = 0;
+                infoLedgerPosting.YearId = SessionVariables._decCurrentFinancialYearId;
+                infoLedgerPosting.InvoiceNo = decLedgerId.ToString();
+                infoLedgerPosting.ChequeNo = string.Empty;
+                infoLedgerPosting.ChequeDate = DateTime.Now;
+                infoLedgerPosting.Extra1 = string.Empty;
+                infoLedgerPosting.Extra2 = string.Empty;
+                objBL.LedgerPostingAdd(infoLedgerPosting);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         private void ListAccount_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.AccountList frmList = new Administration.List.AccountList();
