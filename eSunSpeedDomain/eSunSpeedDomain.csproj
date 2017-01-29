@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillsofMaterialDetailsModel.cs" />
+    <Compile Include="LedgerpostingModel.cs" />
     <Compile Include="MainCompanyInfo.cs" />
     <Compile Include="CompanyPathInfo.cs" />
     <Compile Include="DefineCriticalLevelModel.cs" />

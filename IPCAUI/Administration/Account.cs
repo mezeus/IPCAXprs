@@ -16,8 +16,9 @@ namespace IPCAUI.Administration
 
         AccountMasterBL accMaster = new AccountMasterBL();
         AccountSettingsBL objacbl = new AccountSettingsBL();
+        decimal decOpeningBalance = 0;
         public static int groupId = 0;
-
+        int decLedgerId = 0;
         AccountSettingsModel lstSettings;
 
         public Account()
@@ -65,6 +66,112 @@ namespace IPCAUI.Administration
             Settings.Accountsettings frm = new Settings.Accountsettings();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowDialog();
+        }
+
+        /// <summary>
+        ///Function to save ledgerposting incase of opening balance
+        /// </summary>
+        public void LedgerPostingAdd()
+        {
+            try
+            {
+                string strfinancialId;
+                decOpeningBalance = Convert.ToDecimal(tbxOpbal.Text.Trim());
+                LedgerPostingBL objBL = new LedgerPostingBL();
+                LedgerPostingModel infoLedgerPosting = new LedgerPostingModel();
+                //FinancialYearSP spFinancialYear = new FinancialYearSP();
+                //FinancialYearInfo infoFinancialYear = new FinancialYearInfo();
+                //infoFinancialYear = spFinancialYear.FinancialYearViewForAccountLedger(1);
+
+                //strfinancialId = infoFinancialYear.FromDate.ToString("dd-MMM-yyyy"); -NEED TO REVIEW AND RELEASE THIS
+
+                infoLedgerPosting.VoucherTypeId = 1;
+                infoLedgerPosting.Date = Convert.ToDateTime(DateTime.Today.ToString());
+                infoLedgerPosting.LedgerId = decLedgerId;
+                infoLedgerPosting.VoucherNo = decLedgerId.ToString();
+
+                if (cbxCrDr.Text == "Dr")
+                {
+                    infoLedgerPosting.Debit = decOpeningBalance;
+                }
+                else
+                {
+                    infoLedgerPosting.Credit = decOpeningBalance;
+                }
+                infoLedgerPosting.DetailsId = 0;
+                infoLedgerPosting.YearId = SessionVariables._decCurrentFinancialYearId;
+                infoLedgerPosting.InvoiceNo = decLedgerId.ToString();
+                infoLedgerPosting.ChequeNo = string.Empty;
+                infoLedgerPosting.ChequeDate = DateTime.Now;
+                infoLedgerPosting.Extra1 = string.Empty;
+                infoLedgerPosting.Extra2 = string.Empty;
+                objBL.LedgerPostingAdd(infoLedgerPosting);
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+        /// <summary>
+        ///Function to edit ledgerposting incase of opening balance
+        /// </summary> 
+        public void LedgerPostingEdit()
+        {
+            //try
+            //{
+            //    string strfinancialId;
+            //    decOpeningBalance = Convert.ToDecimal(((txtOpeningBalance.Text == "") ? "0" : txtOpeningBalance.Text.Trim()));
+            //    LedgerPostingSP spLedgerPosting = new LedgerPostingSP();
+            //    LedgerPostingInfo infoLedgerPosting = new LedgerPostingInfo();
+            //    AccountLedgerSP spAccountLedger = new AccountLedgerSP();
+            //    FinancialYearSP spFinancialYear = new FinancialYearSP();
+            //    FinancialYearInfo infoFinancialYear = new FinancialYearInfo();
+            //    infoFinancialYear = spFinancialYear.FinancialYearViewForAccountLedger(1);
+            //    strfinancialId = infoFinancialYear.FromDate.ToString("dd-MMM-yyyy");
+            //    infoLedgerPosting.VoucherTypeId = 1;
+            //    infoLedgerPosting.Date = Convert.ToDateTime(strfinancialId.ToString());
+            //    if (cmbOpeningBalanceCrOrDr.Text == "Dr")
+            //    {
+            //        infoLedgerPosting.Debit = decOpeningBalance;
+            //    }
+            //    else
+            //    {
+            //        infoLedgerPosting.Credit = decOpeningBalance;
+            //    }
+            //    infoLedgerPosting.DetailsId = 0;
+            //    infoLedgerPosting.YearId = PublicVariables._decCurrentFinancialYearId;
+            //    infoLedgerPosting.InvoiceNo = decAccountLedgerId.ToString();
+            //    infoLedgerPosting.Extra1 = string.Empty;
+            //    infoLedgerPosting.Extra2 = string.Empty;
+            //    infoLedgerPosting.LedgerId = decAccountLedgerId;
+            //    infoLedgerPosting.VoucherNo = decAccountLedgerId.ToString();
+            //    infoLedgerPosting.ChequeNo = string.Empty;
+            //    infoLedgerPosting.ChequeDate = DateTime.Now;
+            //    DataTable dtbl = spLedgerPosting.GetLedgerPostingIds(decAccountLedgerId.ToString(), 1);
+            //    if (dtbl.Rows.Count > 0)
+            //    {
+            //        if (decOpeningBalance > 0)
+            //        {
+            //            //Edit
+            //            infoLedgerPosting.LedgerPostingId = Convert.ToDecimal(dtbl.Rows[0][0].ToString());
+            //            spLedgerPosting.LedgerPostingEdit(infoLedgerPosting);
+            //        }
+            //        else
+            //        {
+            //            //Delete
+            //            spAccountLedger.LedgerPostingDeleteByVoucherTypeAndVoucherNo(decAccountLedgerId.ToString(), 1);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //Add new row
+            //        spLedgerPosting.LedgerPostingAdd(infoLedgerPosting);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    formMDI.infoError.ErrorString = "AL5:" + ex.Message;
+            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -151,9 +258,13 @@ namespace IPCAUI.Administration
 
             string message = string.Empty;
 
-            bool isSuccess = accMaster.SaveAccount(obj);
-            if (isSuccess)
+             decLedgerId = accMaster.SaveAccount(obj);
+            if (decLedgerId>0)
             {
+                if (Convert.ToDecimal(tbxOpbal.Text.Trim()) > 0)
+                {
+                    LedgerPostingAdd();
+                }
                 MessageBox.Show("Saved Successfully!");
             }
 
