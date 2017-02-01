@@ -4,4 +4,4 @@ mysqldump -n -t -d -R sunspeed -uroot -pcool > mysp.sql
 --pull everything
 mysqldump -R sunspeed -uroot -pcool > allsp.sql
 
-F:\gitcheckin\IPCAUI\bin\Debug\MySql\bin
+E:\gitcheckins\IPCAUI\bin\Debug\MySql\bin

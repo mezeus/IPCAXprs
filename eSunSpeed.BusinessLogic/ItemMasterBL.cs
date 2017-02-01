@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using eSunSpeedDomain;
+using System.Data;
 
 namespace eSunSpeed.BusinessLogic
 {
@@ -103,7 +104,8 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION2", objItem.ItemDescription2));
                 paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION3", objItem.ItemDescription3));
                 paramCollection.Add(new DBParameter("@ITEM_DESCRIPTION4", objItem.ItemDescription4));
-
+                paramCollection.Add(new DBParameter("@ITEM_Image", objItem.ItemImageData));
+                //MySql.Data.MySqlClient.MySqlDbType.LongBlob
                 paramCollection.Add(new DBParameter("@ITEM_SETCRITICALLEVEL", objItem.SetCriticalLevel, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_MAINTAINRG23D", objItem.MaintainRG23D, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ITEM_TARIFHEADING", objItem.TariffHeading));
@@ -131,9 +133,9 @@ namespace eSunSpeed.BusinessLogic
                 int id = 0;
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
-
+                SaveIGMasterSeriesGroup(objItem.ItemSeriesDetails, id);
                 //SaveItemBarcodes(objItem.ItemBarcode,id);
-                if(objItem.SpecifyDefaultMC)
+                if (objItem.SpecifyDefaultMC)
                 {
                     SaveItemMaterialCenterDetails(objItem.ItemMC, id);
                 }
@@ -162,11 +164,50 @@ namespace eSunSpeed.BusinessLogic
             catch(Exception ex)
             {
                 isSaved = false;
-                //throw ex;
+                throw ex;
             }
             return isSaved;
         }
+        //Save Item MasterSeries Daetails
+        public bool SaveIGMasterSeriesGroup(List<MasterseriesModel> lstMaster,int id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (MasterseriesModel objMaster in lstMaster)
+            {
+                objMaster.ParentId = id;
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
 
+                    paramCollection.Add(new DBParameter("@AccountId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@AccountGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@ItemId", objMaster.ParentId));
+                    paramCollection.Add(new DBParameter("@ItemGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@MaterialCenterId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@MaterialCenterGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@CostCenterId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@CostCenterGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@BillSundaryId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@SaleId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@PurcId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", string.Empty));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertMasterSeriesGroupDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
+        }
         //Save Item Barcodes
         public bool SaveItemBarcodes(List<ItemAliasModel> lstBarcodes,int id)
         {
@@ -949,8 +990,22 @@ namespace eSunSpeed.BusinessLogic
                 objItem.TotalNumberofAuthors = Convert.ToInt32(dr["ITEM_TOTALNUMBEROFAUTHORS"]);
                 objItem.DontMaintainStockBal = Convert.ToBoolean(dr["ITEM_MAINTAINSTOCKBAL"]);
                 objItem.PickItemSizefromDescription = Convert.ToBoolean(dr["ITEM_PICKITEMSIZEFROMDESC"]);
-                objItem.SpecifyDefaultVendor = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTVENDOR"]);              
+                objItem.SpecifyDefaultVendor = Convert.ToBoolean(dr["ITEM_SPECIFYDEFAULTVENDOR"]);
 
+                string MasterQuery = "SELECT * FROM masterseriesgrpdetails WHERE ITM_ID=" + id;
+                System.Data.IDataReader drms = _dbHelper.ExecuteDataReader(MasterQuery, _dbHelper.GetConnObject());
+
+                objItem.ItemSeriesDetails = new List<MasterseriesModel>();
+                MasterseriesModel objMaster;
+                while (drms.Read())
+                {
+                    objMaster = new MasterseriesModel();
+                    objMaster.MasterId = Convert.ToInt32(drms["MasterId"]);
+                    objMaster.ParentId = Convert.ToInt32(drms["ITM_ID"]);
+                    objMaster.MasterName = drms["MasterName"].ToString();
+
+                    objItem.ItemSeriesDetails.Add(objMaster);
+                }
             }
             return objItem;
 
@@ -960,7 +1015,7 @@ namespace eSunSpeed.BusinessLogic
         public bool UpdateItemMaster(eSunSpeedDomain.ItemMasterModel objItem)
       {
           string Query = string.Empty;
-            bool issaved = false;
+            bool isUpdate = false;
 
             try
             {
@@ -1077,7 +1132,51 @@ namespace eSunSpeed.BusinessLogic
 
                 System.Data.IDataReader dr =
                                _dbHelper.ExecuteDataReader("spUpdateItemMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                List<MasterseriesModel> lstSeries = new List<MasterseriesModel>();
+                foreach (MasterseriesModel objMaster in objItem.ItemSeriesDetails)
+                {
+                    objMaster.ParentId = objItem.ItemId;
+                    if (objMaster.MasterId > 0)
+                    {
+                        paramCollection = new DBParameterCollection();
 
+                        paramCollection.Add(new DBParameter("@ParentId", objMaster.ParentId));
+                        paramCollection.Add(new DBParameter("@SeriesId", objMaster.MasterId));
+                        paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                        paramCollection.Add(new DBParameter("@CreatedBy", ""));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                        System.Data.IDataReader drms =
+                        _dbHelper.ExecuteDataReader("spUpdateItemMasterSeriesGroup", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                        isUpdate = true;
+                    }
+                    else
+                    {
+                        paramCollection = new DBParameterCollection();
+                        paramCollection.Add(new DBParameter("@AccountId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@AccountGroupId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@ItemId",objMaster.ParentId));
+                        paramCollection.Add(new DBParameter("@ItemGroupId","0"));
+                        paramCollection.Add(new DBParameter("@MaterialCenterId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@MaterialCenterGroupId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@CostCenterId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@CostCenterGroupId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@BillSundaryId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@SaleId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@PurcId", "0", DbType.Int32));
+                        paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", string.Empty));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                        System.Data.IDataReader drms =
+                        _dbHelper.ExecuteDataReader("spInsertMasterSeriesGroupDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                        isUpdate = true;
+                    }
+                }
                 UpdateItemBarcodes(objItem.ItemBarcode, objItem.ItemId);
                 if (objItem.SetCriticalLevel)
                 {
@@ -1106,10 +1205,10 @@ namespace eSunSpeed.BusinessLogic
             }
             catch(Exception ex)
             {
-                issaved = false;
+                isUpdate = false;
                 throw ex;
             }
-            return issaved = true;
+            return isUpdate = true;
         }
 
         //Update Critical Level Details
@@ -1271,10 +1370,13 @@ namespace eSunSpeed.BusinessLogic
                                     {
                                         if(DeleteItemSerialNoWiseDetails(id))
                                         {
-                                            string Query = "DELETE FROM itemmaster WHERE ITM_ID=" + id;
-                                            int rowes = _dbHelper.ExecuteNonQuery(Query);
-                                            if (rowes > 0)
-                                                isDelete = true;
+                                            if(DeleteItemMasterSeriesGroup(id))
+                                            {
+                                                string Query = "DELETE FROM itemmaster WHERE ITM_ID=" + id;
+                                                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                                                if (rowes > 0)
+                                                    isDelete = true;
+                                            }                                        
                                         }
                                       
                                     }
@@ -1295,7 +1397,24 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
+        //Delete Item Master Series Popup Details
+        public bool DeleteItemMasterSeriesGroup(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE FROM `masterseriesgrpdetails` WHERE ITM_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
         //Delete Criticle Level Details
         public bool DeleteDefineCriticalLevels(int id)
         {

@@ -131,7 +131,7 @@
     <Compile Include="BillSundry_VoucherModel.cs" />
     <Compile Include="Item_VoucherModel.cs" />
     <Compile Include="SalesVoucherMainModel.cs" />
-    <Compile Include="SaleType.cs" />
+    <Compile Include="SaleTypeModel.cs" />
     <Compile Include="SearchCriteria.cs" />
     <Compile Include="CityModel.cs" />
     <Compile Include="StateModel.cs" />

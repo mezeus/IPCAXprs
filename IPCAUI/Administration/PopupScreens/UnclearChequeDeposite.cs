@@ -36,7 +36,7 @@ namespace IPCAUI.Administration.PopupScreens
                 objDeposite.Date =Convert.ToDateTime(row["Date"].ToString() == null? string.Empty : row["Date"].ToString());
                 objDeposite.Vchno = Convert.ToInt64(row["Vchno"].ToString() == string.Empty?"0": row["Vchno"].ToString());
                 objDeposite.Account = row["Account"].ToString() == null ? string.Empty : row["Account"].ToString();
-                objDeposite.Amount =Convert.ToDecimal(row["Amount"].ToString() == null ? string.Empty : row["Amount"].ToString());
+                objDeposite.Amount =Convert.ToDecimal(row["Amount"].ToString() == string.Empty? string.Empty : row["Amount"].ToString());
                 objDeposite.Shortnarration = row["Shortnarration"].ToString() == null ? string.Empty : row["Shortnarration"].ToString();           
                 if (Account.objAccount.AccountId != 0)
                 {

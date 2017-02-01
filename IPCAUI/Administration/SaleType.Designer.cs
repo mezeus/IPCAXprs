@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration
 {
-    partial class PurchaseType
+    partial class SaleType
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseType));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleType));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnConfiguration = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.rbngrpTranction = new DevExpress.XtraEditors.RadioGroup();
-            this.tbxLedgerAccount = new DevExpress.XtraEditors.TextEdit();
             this.tbxCalculatedtax = new DevExpress.XtraEditors.TextEdit();
             this.tbxInvoiceDescription = new DevExpress.XtraEditors.TextEdit();
             this.tbxInvoiceHeading = new DevExpress.XtraEditors.TextEdit();
@@ -41,7 +40,7 @@
             this.tbxSurchargePer = new DevExpress.XtraEditors.TextEdit();
             this.rbngrpTaxcalculation = new DevExpress.XtraEditors.RadioGroup();
             this.rbngrpTaxation = new DevExpress.XtraEditors.RadioGroup();
-            this.tbxPurcahseType = new DevExpress.XtraEditors.TextEdit();
+            this.tbxSaleType = new DevExpress.XtraEditors.TextEdit();
             this.rbngrpRegion = new DevExpress.XtraEditors.RadioGroup();
             this.rbngrpSalesAcInf = new DevExpress.XtraEditors.RadioGroup();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -50,7 +49,7 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.ListPurcType = new DevExpress.XtraNavBar.NavBarItem();
+            this.ListSaleType = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -159,10 +158,10 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.cbxLedgerAccount = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTranction.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxLedgerAccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtax.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceHeading.Properties)).BeginInit();
@@ -170,7 +169,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxSurchargePer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTaxcalculation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTaxation.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxPurcahseType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpRegion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpSalesAcInf.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -239,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLedgerAccount.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -246,7 +246,6 @@
             this.layoutControl1.Controls.Add(this.btnConfiguration);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.rbngrpTranction);
-            this.layoutControl1.Controls.Add(this.tbxLedgerAccount);
             this.layoutControl1.Controls.Add(this.tbxCalculatedtax);
             this.layoutControl1.Controls.Add(this.tbxInvoiceDescription);
             this.layoutControl1.Controls.Add(this.tbxInvoiceHeading);
@@ -254,7 +253,7 @@
             this.layoutControl1.Controls.Add(this.tbxSurchargePer);
             this.layoutControl1.Controls.Add(this.rbngrpTaxcalculation);
             this.layoutControl1.Controls.Add(this.rbngrpTaxation);
-            this.layoutControl1.Controls.Add(this.tbxPurcahseType);
+            this.layoutControl1.Controls.Add(this.tbxSaleType);
             this.layoutControl1.Controls.Add(this.rbngrpRegion);
             this.layoutControl1.Controls.Add(this.rbngrpSalesAcInf);
             this.layoutControl1.Controls.Add(this.btnDelete);
@@ -276,6 +275,7 @@
             this.layoutControl1.Controls.Add(this.cbxVatreturnCategory);
             this.layoutControl1.Controls.Add(this.cbxFreezeTaxinsale);
             this.layoutControl1.Controls.Add(this.cbxFreezeTaxinSaleReturn);
+            this.layoutControl1.Controls.Add(this.cbxLedgerAccount);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -323,15 +323,6 @@
             this.rbngrpTranction.Size = new System.Drawing.Size(216, 55);
             this.rbngrpTranction.StyleController = this.layoutControl1;
             this.rbngrpTranction.TabIndex = 82;
-            // 
-            // tbxLedgerAccount
-            // 
-            this.tbxLedgerAccount.EnterMoveNextControl = true;
-            this.tbxLedgerAccount.Location = new System.Drawing.Point(476, 66);
-            this.tbxLedgerAccount.Name = "tbxLedgerAccount";
-            this.tbxLedgerAccount.Size = new System.Drawing.Size(141, 20);
-            this.tbxLedgerAccount.StyleController = this.layoutControl1;
-            this.tbxLedgerAccount.TabIndex = 81;
             // 
             // tbxCalculatedtax
             // 
@@ -410,14 +401,14 @@
             this.rbngrpTaxation.StyleController = this.layoutControl1;
             this.rbngrpTaxation.TabIndex = 66;
             // 
-            // tbxPurcahseType
+            // tbxSaleType
             // 
-            this.tbxPurcahseType.EnterMoveNextControl = true;
-            this.tbxPurcahseType.Location = new System.Drawing.Point(274, 12);
-            this.tbxPurcahseType.Name = "tbxPurcahseType";
-            this.tbxPurcahseType.Size = new System.Drawing.Size(355, 20);
-            this.tbxPurcahseType.StyleController = this.layoutControl1;
-            this.tbxPurcahseType.TabIndex = 65;
+            this.tbxSaleType.EnterMoveNextControl = true;
+            this.tbxSaleType.Location = new System.Drawing.Point(274, 12);
+            this.tbxSaleType.Name = "tbxSaleType";
+            this.tbxSaleType.Size = new System.Drawing.Size(355, 20);
+            this.tbxSaleType.StyleController = this.layoutControl1;
+            this.tbxSaleType.TabIndex = 65;
             // 
             // rbngrpRegion
             // 
@@ -507,7 +498,7 @@
             this.navBarItem4,
             this.navBarItem5,
             this.navBarItem6,
-            this.ListPurcType,
+            this.ListSaleType,
             this.navBarItem8,
             this.btnNewEntery,
             this.navbtnSaleTypesettings,
@@ -555,17 +546,17 @@
             this.navBarGroup5.Caption = "Add/Modify";
             this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.ListPurcType),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ListSaleType),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // ListPurcType
+            // ListSaleType
             // 
-            this.ListPurcType.Caption = "List";
-            this.ListPurcType.Name = "ListPurcType";
-            this.ListPurcType.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListPurcType_LinkClicked);
+            this.ListSaleType.Caption = "List";
+            this.ListSaleType.Name = "ListSaleType";
+            this.ListSaleType.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListSaleType_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -1154,11 +1145,11 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.tbxPurcahseType;
+            this.layoutControlItem7.Control = this.tbxSaleType;
             this.layoutControlItem7.Location = new System.Drawing.Point(116, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(505, 24);
-            this.layoutControlItem7.Text = "Purchase Type";
+            this.layoutControlItem7.Text = "Sale Type";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(143, 13);
             // 
             // layoutControlGroup2
@@ -1419,7 +1410,7 @@
             // 
             // layoutControlItem23
             // 
-            this.layoutControlItem23.Control = this.tbxLedgerAccount;
+            this.layoutControlItem23.Control = this.cbxLedgerAccount;
             this.layoutControlItem23.Location = new System.Drawing.Point(336, 0);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(145, 24);
@@ -1550,21 +1541,31 @@
             this.navBarGroup4.Name = "navBarGroup4";
             this.navBarGroup4.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup4.SmallImage")));
             // 
-            // PurchaseType
+            // cbxLedgerAccount
+            // 
+            this.cbxLedgerAccount.EnterMoveNextControl = true;
+            this.cbxLedgerAccount.Location = new System.Drawing.Point(476, 66);
+            this.cbxLedgerAccount.Name = "cbxLedgerAccount";
+            this.cbxLedgerAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxLedgerAccount.Size = new System.Drawing.Size(141, 20);
+            this.cbxLedgerAccount.StyleController = this.layoutControl1;
+            this.cbxLedgerAccount.TabIndex = 81;
+            // 
+            // SaleType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 607);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PurchaseType";
-            this.Text = "PurchaseType";
+            this.Name = "SaleType";
+            this.Text = "SaleType";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.PurchaseType_Load);
+            this.Load += new System.EventHandler(this.SaleType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTranction.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxLedgerAccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtax.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceHeading.Properties)).EndInit();
@@ -1572,7 +1573,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxSurchargePer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTaxcalculation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTaxation.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxPurcahseType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpRegion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpSalesAcInf.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
@@ -1641,6 +1642,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLedgerAccount.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1670,7 +1672,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem6;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem ListPurcType;
+        private DevExpress.XtraNavBar.NavBarItem ListSaleType;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem btnNewEntery;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
@@ -1711,7 +1713,7 @@
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraLayout.LayoutControlItem laCtrlDelete;
         private DevExpress.XtraEditors.RadioGroup rbngrpTaxation;
-        private DevExpress.XtraEditors.TextEdit tbxPurcahseType;
+        private DevExpress.XtraEditors.TextEdit tbxSaleType;
         private DevExpress.XtraEditors.RadioGroup rbngrpRegion;
         private DevExpress.XtraEditors.RadioGroup rbngrpSalesAcInf;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -1740,7 +1742,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraEditors.RadioGroup rbngrpTranction;
-        private DevExpress.XtraEditors.TextEdit tbxLedgerAccount;
         private DevExpress.XtraEditors.TextEdit tbxCalculatedtax;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
@@ -1777,5 +1778,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxVatreturnCategory;
         private DevExpress.XtraEditors.ComboBoxEdit cbxFreezeTaxinsale;
         private DevExpress.XtraEditors.ComboBoxEdit cbxFreezeTaxinSaleReturn;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxLedgerAccount;
     }
 }

@@ -245,15 +245,11 @@
             this.cbxNaturegroup.Name = "cbxNaturegroup";
             this.cbxNaturegroup.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.cbxNaturegroup.Properties.Appearance.Options.UseFont = true;
-            this.cbxNaturegroup.Properties.Items.AddRange(new object[] {
-            "Incomes",
-            "Expences",
-            "Assects",
-            "Libilites"});
             this.cbxNaturegroup.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxNaturegroup.Size = new System.Drawing.Size(152, 20);
             this.cbxNaturegroup.StyleController = this.layoutControl1;
             this.cbxNaturegroup.TabIndex = 9;
+            this.cbxNaturegroup.Enter += new System.EventHandler(this.cbxNaturegroup_Enter);
             // 
             // cbxUndergroup
             // 

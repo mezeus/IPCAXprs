@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     public partial class Accountgroup : Form
     {
         AccountMasterBL objaccbl= new AccountMasterBL();
+        public static AccountGroupModel objAccGroup = new AccountGroupModel();
         public static int groupId = 0;
 
         public Accountgroup()
@@ -35,36 +36,46 @@ namespace IPCAUI.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
             if (tbxGroupName.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Group Name can not be blank!");
                 return;
             }
-
-            eSunSpeedDomain.AccountGroupModel objAccGroup = new eSunSpeedDomain.AccountGroupModel();
-
             objAccGroup.GroupName = tbxGroupName.Text;
             objAccGroup.AliasName = tbxAliasname.Text==null?string.Empty:tbxAliasname.Text.Trim();
-            objAccGroup.Primary = Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString()=="Y"?true:false);
-            objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-            AccountGroupModel objmodel = objaccbl.GetAccountGroupIdByGroupName(objAccGroup.UnderGroup);
-            objAccGroup.UnderGroupId = objmodel.GroupId;
+            objAccGroup.Primary = Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString()=="Y"?true:false);       
             if (cbxPrimarygroup.SelectedItem.ToString().Equals("Y"))
             {
                 objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
+                AccountGroupModel objNg =objaccbl.GetNatureGroupIdByGroupName(cbxNaturegroup.SelectedItem.ToString());
+                objAccGroup.NatureGroupId = objNg.NatureGroupId;
+                objAccGroup.DC = objNg.DC;
+                objAccGroup.UnderGroupId = 0;
             }
-            objAccGroup.NatureGroup = cbxNaturegroup.Text == null ? string.Empty : cbxNaturegroup.Text.Trim();
-            objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
+            else
+            {
+                objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+                AccountGroupModel objUG = objaccbl.GetAccountGroupIdByGroupName(objAccGroup.UnderGroup);
+                objAccGroup.UnderGroupId = objUG.UnderGroupId;
+                objAccGroup.DC = objUG.DC;
+                objAccGroup.NatureGroupId = objUG.NatureGroupId;
+            }
+            //PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            //frmMaster.StartPosition = FormStartPosition.CenterParent;
+            //frmMaster.ShowDialog();
+            //objAccGroup.NatureGroup = cbxNaturegroup.Text == null ? string.Empty : cbxNaturegroup.Text.Trim();
+            //objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
 
             objAccGroup.CreatedBy = "Admin";
 
             string message = string.Empty;
-
             bool isSuccess = objaccbl.SaveAccountGroup(objAccGroup);
 
             if (isSuccess)
-                MessageBox.Show("Saved Successfully!");           
+                MessageBox.Show("Saved Successfully!");
+            LoadGroups();
+
+            ClearControls();
         }
 
         private void tbxGroupName_KeyDown(object sender, KeyEventArgs e)
@@ -130,15 +141,15 @@ namespace IPCAUI.Administration
                 tbxGroupName.Focus();
                 return;
             }
-            AccountGroupModel objMaster = objaccbl.GetAccountGroupByGroupId(groupId);
+            objAccGroup = objaccbl.GetAccountGroupByGroupId(groupId);
 
-            tbxGroupName.Text = objMaster.GroupName;
-            tbxAliasname.Text = objMaster.AliasName;    
-            cbxPrimarygroup.SelectedItem = objMaster.Primary?"Y":"N";
-            cbxUndergroup.SelectedItem = objMaster.UnderGroup;
-            cbxNaturegroup.SelectedItem = objMaster.NatureGroup;
+            tbxGroupName.Text = objAccGroup.GroupName;
+            tbxAliasname.Text = objAccGroup.AliasName;    
+            cbxPrimarygroup.SelectedItem = objAccGroup.Primary?"Y":"N";
+            cbxUndergroup.SelectedItem = objAccGroup.UnderGroup;
+            //cbxNaturegroup.SelectedItem = objAccGroup.NatureGroup;
 
-            chkGrossProfit.Checked = objMaster.IsAffectGrossProfit ? true : false;
+            //chkGrossProfit.Checked = objAccGroup.IsAffectGrossProfit ? true : false;
             lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             btnUpdateCtrl.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -160,25 +171,35 @@ namespace IPCAUI.Administration
             return;
         }
 
-        eSunSpeedDomain.AccountGroupModel objAccGroup = new eSunSpeedDomain.AccountGroupModel();
+            objAccGroup.GroupName = tbxGroupName.Text;
+            objAccGroup.AliasName = tbxAliasname.Text == null ? string.Empty : tbxAliasname.Text.Trim();
+            objAccGroup.Primary = Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false);
+            if (cbxPrimarygroup.SelectedItem.ToString().Equals("Y"))
+            {
+                objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
+                AccountGroupModel objNg = objaccbl.GetNatureGroupIdByGroupName(cbxNaturegroup.SelectedItem.ToString());
+                objAccGroup.NatureGroupId = objNg.NatureGroupId;
+                objAccGroup.DC = objNg.DC;
+                objAccGroup.UnderGroupId = 0;
+            }
+            else
+            {
+                objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
+                AccountGroupModel objUG = objaccbl.GetAccountGroupIdByGroupName(objAccGroup.UnderGroup);
+                objAccGroup.UnderGroupId = objUG.UnderGroupId;
+                objAccGroup.DC = objUG.DC;
+                objAccGroup.NatureGroupId = objUG.NatureGroupId;
+            }
+            //PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            //frmMaster.StartPosition = FormStartPosition.CenterParent;
+            //frmMaster.ShowDialog();
+            //objAccGroup.NatureGroup = cbxNaturegroup.Text == null ? string.Empty : cbxNaturegroup.Text.Trim();
+            //objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
 
-        objAccGroup.GroupName = tbxGroupName.Text;
-
-        objAccGroup.AliasName = tbxAliasname.Text;
-        objAccGroup.Primary =Convert.ToBoolean(cbxPrimarygroup.SelectedItem.ToString());
-
-        objAccGroup.UnderGroup = cbxUndergroup.SelectedItem.ToString();
-        objAccGroup.NatureGroup = cbxNaturegroup.SelectedItem.ToString();
-        objAccGroup.IsAffectGrossProfit = chkGrossProfit.Checked ? true : false;
-
-        objAccGroup.CreatedBy = "Admin";
-
-        objAccGroup.GroupId = groupId;
-
-        string message = string.Empty;
+            objAccGroup.GroupId = groupId;
+            string message = string.Empty;
 
         bool isSuccess = objaccbl.UpdateAccountGroup(objAccGroup);
-
         if (isSuccess)
             MessageBox.Show("Updated Successfully!");
             ClearControls();
@@ -195,22 +216,26 @@ namespace IPCAUI.Administration
             cbxPrimarygroup.SelectedIndex = 1;
             lactrlNatureofGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlAffectGross.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            LodaGroups();
+            LoadGroups();
             lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             emtSpaceGrossProfit.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
         }
-        public void LodaGroups()
+        public void LoadGroups()
         {
-            List<AccountGroupModel> objmodel = objaccbl.GetListofAccountsGroups();
-            //var lstgroups = objmodel
-            //            .Select(i => new { i.GroupName })
-            //            .Distinct()
-            //            .OrderByDescending(i => i.GroupName)
-            //            .ToList();
-            foreach (AccountGroupModel objgroup in objmodel)
+            cbxUndergroup.Properties.Items.Clear();
+            List<AccountGroupModel> lstUnder = objaccbl.GetListofAccountsGroups();
+
+            foreach (AccountGroupModel objUnder in lstUnder)
             {
-                cbxUndergroup.Properties.Items.Add(objgroup.GroupName);
+                cbxUndergroup.Properties.Items.Add(objUnder.GroupName);
+            }
+            cbxNaturegroup.Properties.Items.Clear();
+            List<AccountGroupModel> objNature = objaccbl.GetListofNatureofGroups();
+            foreach (AccountGroupModel objgroup in objNature)
+            {
+                cbxNaturegroup.Properties.Items.Add(objgroup.NatureGroup);
             }
         }
 
@@ -270,6 +295,8 @@ namespace IPCAUI.Administration
             cbxUndergroup.Text = string.Empty;
             cbxNaturegroup.Text = string.Empty;
             chkGrossProfit.Checked = false;
+            groupId = 0;
+            tbxGroupName.Focus();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -289,6 +316,11 @@ namespace IPCAUI.Administration
         private void cbxUndergroup_Enter(object sender, EventArgs e)
         {
             cbxUndergroup.ShowPopup();
+        }
+
+        private void cbxNaturegroup_Enter(object sender, EventArgs e)
+        {
+            cbxNaturegroup.ShowPopup();
         }
     }
 }

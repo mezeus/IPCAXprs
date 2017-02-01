@@ -12,6 +12,7 @@ namespace eSunSpeedDomain
         /// Public variable declaration part
         /// </summary>
         private decimal _ledgerPostingId;
+        private long _ParentId;
         private DateTime _date;
         private decimal _voucherTypeId;
         private string _voucherNo;
@@ -27,6 +28,7 @@ namespace eSunSpeedDomain
         private DateTime _extraDate;
         private string _extra1;
         private string _extra2;
+
         #endregion
         #region properties
         /// <summary>
@@ -37,6 +39,11 @@ namespace eSunSpeedDomain
         {
             get { return _ledgerPostingId; }
             set { _ledgerPostingId = value; }
+        }
+        public long ParentId
+        {
+            get { return _ParentId; }
+            set { _ParentId = value; }
         }
         /// <summary>
         /// Property to get and set Date

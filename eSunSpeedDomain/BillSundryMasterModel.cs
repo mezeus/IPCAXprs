@@ -24,18 +24,22 @@ namespace eSunSpeedDomain
         //Accounting In Sale
         public bool SaleAffectsAccounting { get; set; }
         public bool SaleAdjustInSaleAmount { get; set; }
+        public string SaleSpecifyAccountHere { get; set; }
         public string SaleAccounttoHeadPost { get; set; }
         public bool SaleAdjustInPartyAmount { get; set; }
+        public string SalePartSpecifyAccountHere { get; set; }
         public string SaleAccounttoHeadPostParty { get; set; }
-        public string SalePostOverandAbove { get; set; }
+        public bool SalePostOverandAbove { get; set; }
 
         //Accounting In Purchase
         public bool PurcAffectsAccounting { get; set; }
         public bool PurcAdjustInPurcAmount { get; set; }
+        public string PurcSpecifyAccountHere { get; set; }
         public string PurcAccounttoHeadPost { get; set; }
         public bool PurcAdjustInPartyAmount { get; set; }
+        public string PurcParySpecifyAccountHere { get; set; }
         public string PurcAccounttoHeadPostParty { get; set; }
-        public string PurcPostOverandAbove { get; set; }
+        public bool PurcPostOverandAbove { get; set; }
 
         //This code RadioButtotick of any one in three
         public  bool typeMaterialIssue { get; set; }
@@ -44,7 +48,8 @@ namespace eSunSpeedDomain
 
         public bool AffectAccounting { get; set; }
         public string OtherSide { get; set; }
-        public string AdjustinMC { get; set; }
+        public bool AdjustinMC { get; set; }
+        public string AdjustSpecifyAccountLedger { get; set; }
         public string Accountheadtopost { get; set; }
         public string AccountheadtopostParty { get; set; }
         public bool postoverandabove { get; set; }
@@ -68,8 +73,10 @@ namespace eSunSpeedDomain
         //Groupbox of Bill Sundry(s) Details
         public int NoOfBillSundry { get; set; }
         public bool ConsolidateBillSundriesAmount { get; set; }
+        public string BillSundaryName { get; set; }
 
         public bool roundoffBillsundry { get; set; }
+        public string RoundoffValues { get; set; }
         //This singel GroupBox
         public bool RBSAmt { get; set; }
 

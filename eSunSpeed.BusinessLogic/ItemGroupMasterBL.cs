@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using eSunSpeedDomain;
 using eSunSpeed.DataAccess;
+using System.Data;
 
 namespace eSunSpeed.BusinessLogic
 {
@@ -44,6 +45,7 @@ namespace eSunSpeed.BusinessLogic
                     "@SpecifyBillReferencegrp,@BillReferencegrp,@CrDaysforSale,@CrDaysforPurc,@CreatedBy)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                    SaveIGMasterSeriesGroup(objIGM.IGMasterSeries);
                     isSaved = true;
             }
             catch (Exception ex)
@@ -83,12 +85,59 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@IGM_Id",objIGM.IGM_id));
 
                 Query = "UPDATE ItemGroupMaster SET ItemGroup=@ItemGroup,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,UnderGroup=@UnderGroup,StockAccount=@StockAccount,SalesAccount=@SalesAccount," +
-                   "PurchaseAccount=@PurchaseAccount,`DefaultConfig`=@DefaultConfig,`SeparateConfig`=@SeparateConfig,Parameters=@Parameters,ModifiedBy=@ModifiedBy " +
+                   "PurchaseAccount=@PurchaseAccount,`DefaultConfig`=@DefaultConfig,`SeparateConfig`=@SeparateConfig,Parameters=@Parameters,ModifiedBy=@ModifiedBy," +
                    "SpecifyBillReferencegrp=@SpecifyBillReferencegrp,BillReferencegrp=@BillReferencegrp,CrDaysforSale=@CrDaysforSale,CrDaysforPurc=@CrDaysforPurc " +
                    "WHERE IGM_Id=@IGM_Id";
-                
+
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                {
+                    List<MasterseriesModel> lstSeries = new List<MasterseriesModel>();
+                    foreach (MasterseriesModel objMaster in objIGM.IGMasterSeries)
+                    {
+                        objMaster.ParentId = objIGM.IGM_id;
+                        if (objMaster.MasterId > 0)
+                        {
+                            paramCollection = new DBParameterCollection();
+
+                            paramCollection.Add(new DBParameter("@ParentId", objMaster.ParentId));
+                            paramCollection.Add(new DBParameter("@SeriesId", objMaster.MasterId));
+                            paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                            paramCollection.Add(new DBParameter("@CreatedBy", ""));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                            paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                            System.Data.IDataReader drmg =
+                            _dbHelper.ExecuteDataReader("spUpdateIGMasterSeriesGroup", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                            isUpdate = true;
+                        }
+                        else
+                        {
+                            paramCollection = new DBParameterCollection();
+                            paramCollection.Add(new DBParameter("@AccountId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@AccountGroupId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@ItemId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@ItemGroupId", objMaster.ParentId));
+                            paramCollection.Add(new DBParameter("@MaterialCenterId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@MaterialCenterGroupId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@CostCenterId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@CostCenterGroupId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@BillSundaryId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@SaleId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@PurcId", "0", DbType.Int32));
+                            paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                            paramCollection.Add(new DBParameter("@ModifiedBy", string.Empty));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                            System.Data.IDataReader dr =
+                            _dbHelper.ExecuteDataReader("spInsertMasterSeriesGroupDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                            isUpdate = true;
+                        }
+                    }
                     isUpdate = true;
+                }
             }
             catch (Exception ex)
             {
@@ -144,7 +193,25 @@ namespace eSunSpeed.BusinessLogic
                 objIGM.DefaultConfig =Convert.ToBoolean(dr["DefaultConfig"]);
                 objIGM.SeparateConfig = Convert.ToBoolean(dr["SeparateConfig"]);
                 objIGM.Parameters =Convert.ToInt32(dr["Parameters"].ToString());
-                objIGM.SpecifyBillReferencegrp = Convert.ToBoolean(dr["BillReferencegrp"].ToString());
+                objIGM.SpecifyBillReferencegrp = Convert.ToBoolean(dr["SpecifyBillReferencegrp"].ToString());
+                objIGM.BillReferencegrp = dr["BillReferencegrp"].ToString();
+                objIGM.CrDaysforSale = Convert.ToInt32(dr["CrDaysforSale"].ToString());
+                objIGM.CrDaysforPurc = Convert.ToInt32(dr["CrDaysforPurc"].ToString());
+
+                string MasterQuery = "SELECT * FROM masterseriesgrpdetails WHERE IGM_ID=" +id;
+                System.Data.IDataReader drms = _dbHelper.ExecuteDataReader(MasterQuery, _dbHelper.GetConnObject());
+
+                objIGM.IGMasterSeries = new List<MasterseriesModel>();
+                MasterseriesModel objMaster;
+                while (drms.Read())
+                {
+                    objMaster = new MasterseriesModel();
+                    objMaster.MasterId = Convert.ToInt32(drms["MasterId"]);
+                    objMaster.ParentId = Convert.ToInt32(drms["IGM_ID"]);
+                    objMaster.MasterName = drms["MasterName"].ToString();
+
+                    objIGM.IGMasterSeries.Add(objMaster);
+                }
             }
 
             return objIGM;
@@ -185,7 +252,28 @@ namespace eSunSpeed.BusinessLogic
             bool isDelete = false;
             try
             {
-                string Query = "DELETE FROM itemgroupmaster WHERE IGM_Id=" + id;
+                if(DeleteIGMasterSeriesGroup(id))
+                {
+                    string Query = "DELETE FROM itemgroupmaster WHERE IGM_Id=" + id;
+                    int rowes = _dbHelper.ExecuteNonQuery(Query);
+                    if (rowes > 0)
+                        isDelete = true;
+                }               
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
+        //Delete ItemGroup MasterSeries Details
+        public bool DeleteIGMasterSeriesGroup(int id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE FROM `masterseriesgrpdetails` WHERE IGM_ID=" + id;
                 int rowes = _dbHelper.ExecuteNonQuery(Query);
                 if (rowes > 0)
                     isDelete = true;
@@ -197,7 +285,6 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
         //Is ItemGroup Master Exist or Not
         public bool IsItemGroupExists(string groupName)
         {
@@ -211,6 +298,53 @@ namespace eSunSpeed.BusinessLogic
             else
                 return false;
 
+        }
+        //Get Item Group Id After Item Group Save
+        public int GetItemGroupAfterSaveId()
+        {
+            string Query = "SELECT MAX(IGM_ID) FROM ItemGroupMaster";
+            int id = Convert.ToInt32(_dbHelper.ExecuteScalar(Query));
+            return id;
+        }
+        //Save Item Group Master Series Group Details
+        public bool SaveIGMasterSeriesGroup(List<MasterseriesModel> lstMaster)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (MasterseriesModel objMaster in lstMaster)
+            {
+                objMaster.ParentId = GetItemGroupAfterSaveId();
+                try
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@AccountId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@AccountGroupId","0",DbType.Int32));
+                    paramCollection.Add(new DBParameter("@ItemId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@ItemGroupId",objMaster.ParentId));
+                    paramCollection.Add(new DBParameter("@MaterialCenterId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@MaterialCenterGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@CostCenterId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@CostCenterGroupId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@BillSundaryId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@SaleId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@PurcId", "0", DbType.Int32));
+                    paramCollection.Add(new DBParameter("@MasterName", objMaster.MasterName));
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", string.Empty));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertMasterSeriesGroupDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    throw ex;
+                }
+            }
+            return isSaved;
         }
     }
 }

@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Itemgroup));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.tbxCrDaysforPurc = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCrDaysforSale = new DevExpress.XtraEditors.TextEdit();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.rbnDefaultConfig = new DevExpress.XtraEditors.RadioGroup();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
@@ -92,6 +94,8 @@
             this.cbxStockaccount = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxSalesaccount = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxPurchaseAccount = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxTagBillReference = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxBillReferenceGroup = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -122,14 +126,12 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tbxCrDaysforSale = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tbxCrDaysforPurc = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxTagBillReference = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbxBillReferenceGroup = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforPurc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforSale.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbnDefaultConfig.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParameters.Properties)).BeginInit();
@@ -142,6 +144,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxStockaccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSalesaccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxPurchaseAccount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTagBillReference.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxBillReferenceGroup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -172,12 +176,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforSale.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforPurc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTagBillReference.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxBillReferenceGroup.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -214,12 +214,32 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // tbxCrDaysforPurc
+            // 
+            this.tbxCrDaysforPurc.EditValue = "0";
+            this.tbxCrDaysforPurc.EnterMoveNextControl = true;
+            this.tbxCrDaysforPurc.Location = new System.Drawing.Point(482, 317);
+            this.tbxCrDaysforPurc.Name = "tbxCrDaysforPurc";
+            this.tbxCrDaysforPurc.Size = new System.Drawing.Size(126, 20);
+            this.tbxCrDaysforPurc.StyleController = this.layoutControl1;
+            this.tbxCrDaysforPurc.TabIndex = 67;
+            // 
+            // tbxCrDaysforSale
+            // 
+            this.tbxCrDaysforSale.EditValue = "0";
+            this.tbxCrDaysforSale.EnterMoveNextControl = true;
+            this.tbxCrDaysforSale.Location = new System.Drawing.Point(227, 317);
+            this.tbxCrDaysforSale.Name = "tbxCrDaysforSale";
+            this.tbxCrDaysforSale.Size = new System.Drawing.Size(126, 20);
+            this.tbxCrDaysforSale.StyleController = this.layoutControl1;
+            this.tbxCrDaysforSale.TabIndex = 66;
+            // 
             // btnDelete
             // 
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.Location = new System.Drawing.Point(430, 341);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(76, 24);
+            this.btnDelete.Size = new System.Drawing.Size(76, 27);
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 63;
             this.btnDelete.Text = "Delete";
@@ -243,7 +263,7 @@
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
             this.btnUpdate.Location = new System.Drawing.Point(328, 341);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(74, 24);
+            this.btnUpdate.Size = new System.Drawing.Size(74, 27);
             this.btnUpdate.StyleController = this.layoutControl1;
             this.btnUpdate.TabIndex = 61;
             this.btnUpdate.Text = "Update";
@@ -635,7 +655,7 @@
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
             this.btnQuit.Location = new System.Drawing.Point(520, 341);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(78, 24);
+            this.btnQuit.Size = new System.Drawing.Size(78, 27);
             this.btnQuit.StyleController = this.layoutControl1;
             this.btnQuit.TabIndex = 11;
             this.btnQuit.Text = "Quit";
@@ -646,7 +666,7 @@
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.Location = new System.Drawing.Point(226, 341);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 24);
+            this.btnSave.Size = new System.Drawing.Size(80, 27);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
@@ -783,6 +803,34 @@
             this.cbxPurchaseAccount.TabIndex = 15;
             this.cbxPurchaseAccount.Enter += new System.EventHandler(this.cbxPurchaseAccount_Enter);
             // 
+            // cbxTagBillReference
+            // 
+            this.cbxTagBillReference.EnterMoveNextControl = true;
+            this.cbxTagBillReference.Location = new System.Drawing.Point(227, 269);
+            this.cbxTagBillReference.Name = "cbxTagBillReference";
+            this.cbxTagBillReference.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxTagBillReference.Properties.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.cbxTagBillReference.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbxTagBillReference.Size = new System.Drawing.Size(381, 20);
+            this.cbxTagBillReference.StyleController = this.layoutControl1;
+            this.cbxTagBillReference.TabIndex = 64;
+            // 
+            // cbxBillReferenceGroup
+            // 
+            this.cbxBillReferenceGroup.EnterMoveNextControl = true;
+            this.cbxBillReferenceGroup.Location = new System.Drawing.Point(227, 293);
+            this.cbxBillReferenceGroup.Name = "cbxBillReferenceGroup";
+            this.cbxBillReferenceGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxBillReferenceGroup.Properties.Items.AddRange(new object[] {
+            "Load Reference Group"});
+            this.cbxBillReferenceGroup.Size = new System.Drawing.Size(381, 20);
+            this.cbxBillReferenceGroup.StyleController = this.layoutControl1;
+            this.cbxBillReferenceGroup.TabIndex = 65;
+            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.gridControl2;
@@ -895,8 +943,8 @@
             // 
             this.lblSave.Control = this.btnSave;
             this.lblSave.Location = new System.Drawing.Point(214, 329);
-            this.lblSave.MaxSize = new System.Drawing.Size(84, 28);
-            this.lblSave.MinSize = new System.Drawing.Size(84, 28);
+            this.lblSave.MaxSize = new System.Drawing.Size(84, 31);
+            this.lblSave.MinSize = new System.Drawing.Size(84, 31);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(84, 31);
             this.lblSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -907,8 +955,8 @@
             // 
             this.layoutControlItem9.Control = this.btnQuit;
             this.layoutControlItem9.Location = new System.Drawing.Point(508, 329);
-            this.layoutControlItem9.MaxSize = new System.Drawing.Size(82, 28);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(82, 28);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(82, 31);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(82, 31);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(82, 31);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -1071,8 +1119,8 @@
             // 
             this.lblUpdate.Control = this.btnUpdate;
             this.lblUpdate.Location = new System.Drawing.Point(316, 329);
-            this.lblUpdate.MaxSize = new System.Drawing.Size(78, 28);
-            this.lblUpdate.MinSize = new System.Drawing.Size(78, 28);
+            this.lblUpdate.MaxSize = new System.Drawing.Size(78, 31);
+            this.lblUpdate.MinSize = new System.Drawing.Size(78, 31);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(78, 31);
             this.lblUpdate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -1094,8 +1142,8 @@
             // 
             this.lblDelete.Control = this.btnDelete;
             this.lblDelete.Location = new System.Drawing.Point(418, 329);
-            this.lblDelete.MaxSize = new System.Drawing.Size(80, 28);
-            this.lblDelete.MinSize = new System.Drawing.Size(80, 28);
+            this.lblDelete.MaxSize = new System.Drawing.Size(80, 31);
+            this.lblDelete.MinSize = new System.Drawing.Size(80, 31);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(80, 31);
             this.lblDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -1131,15 +1179,6 @@
             this.layoutControlItem10.Text = "Bill Reference Group";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(122, 13);
             // 
-            // tbxCrDaysforSale
-            // 
-            this.tbxCrDaysforSale.EditValue = "0";
-            this.tbxCrDaysforSale.Location = new System.Drawing.Point(227, 317);
-            this.tbxCrDaysforSale.Name = "tbxCrDaysforSale";
-            this.tbxCrDaysforSale.Size = new System.Drawing.Size(126, 20);
-            this.tbxCrDaysforSale.StyleController = this.layoutControl1;
-            this.tbxCrDaysforSale.TabIndex = 66;
-            // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.tbxCrDaysforSale;
@@ -1149,15 +1188,6 @@
             this.layoutControlItem13.Text = "Credit Days For Sale";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(122, 13);
             // 
-            // tbxCrDaysforPurc
-            // 
-            this.tbxCrDaysforPurc.EditValue = "0";
-            this.tbxCrDaysforPurc.Location = new System.Drawing.Point(482, 317);
-            this.tbxCrDaysforPurc.Name = "tbxCrDaysforPurc";
-            this.tbxCrDaysforPurc.Size = new System.Drawing.Size(126, 20);
-            this.tbxCrDaysforPurc.StyleController = this.layoutControl1;
-            this.tbxCrDaysforPurc.TabIndex = 67;
-            // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.tbxCrDaysforPurc;
@@ -1166,32 +1196,6 @@
             this.layoutControlItem17.Size = new System.Drawing.Size(255, 24);
             this.layoutControlItem17.Text = "Credit Days For Purchase";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(122, 13);
-            // 
-            // cbxTagBillReference
-            // 
-            this.cbxTagBillReference.Location = new System.Drawing.Point(227, 269);
-            this.cbxTagBillReference.Name = "cbxTagBillReference";
-            this.cbxTagBillReference.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxTagBillReference.Properties.Items.AddRange(new object[] {
-            "Y",
-            "N"});
-            this.cbxTagBillReference.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbxTagBillReference.Size = new System.Drawing.Size(381, 20);
-            this.cbxTagBillReference.StyleController = this.layoutControl1;
-            this.cbxTagBillReference.TabIndex = 64;
-            // 
-            // cbxBillReferenceGroup
-            // 
-            this.cbxBillReferenceGroup.Location = new System.Drawing.Point(227, 293);
-            this.cbxBillReferenceGroup.Name = "cbxBillReferenceGroup";
-            this.cbxBillReferenceGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxBillReferenceGroup.Properties.Items.AddRange(new object[] {
-            "Load Reference Group"});
-            this.cbxBillReferenceGroup.Size = new System.Drawing.Size(381, 20);
-            this.cbxBillReferenceGroup.StyleController = this.layoutControl1;
-            this.cbxBillReferenceGroup.TabIndex = 65;
             // 
             // Itemgroup
             // 
@@ -1206,6 +1210,8 @@
             this.Load += new System.EventHandler(this.Itemgroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforPurc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforSale.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbnDefaultConfig.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParameters.Properties)).EndInit();
@@ -1218,6 +1224,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxStockaccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSalesaccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxPurchaseAccount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTagBillReference.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxBillReferenceGroup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1248,12 +1256,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforSale.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCrDaysforPurc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTagBillReference.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxBillReferenceGroup.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

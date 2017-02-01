@@ -30,7 +30,10 @@ namespace eSunSpeedDomain
         public bool TaxInvoice { get; set; }
         public string VatReturnCategory { get; set; }//This is Combobox;
         public bool VatSaleTaxReport { get; set; }
-        
+        public decimal CalculatedTax { get; set; }
+        public string TaxAmount { get; set; }
+        public bool SkipVatorSaleTaxReport { get; set; }
+
         //if Enable MultiTax Will Show on other Information Group
         public bool CalculateTaxonItemMRP { get; set; }
         public bool TaxInclusiveItemPrice { get; set; }
@@ -56,9 +59,20 @@ namespace eSunSpeedDomain
         public bool IssueSTFrom { get; set; }// if Enable This STFrom List ComboBox will Show
         public string FromIssuable { get; set; }
         public bool ReceiveSTForm { get; set; }// if Enable This ReceiveFrom List
+        public string FromReceivable { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public string ModifiedBy { get; set; }
 
-
-
+        //Tax Calculation Group Box
+        public bool SingleTaxRate { get; set; }
+        public bool MultiTaxRate { get; set; }
+        public decimal TaxinPercentage { get; set; }
+        public decimal SurchargeInPercentage { get; set; }
+        public bool freezeTaxinSales { get; set; }
+        public bool freezeTaxinSalesReturn { get; set; }
+        public string InvoiceHeading { get; set; }
+        public string InvoiceDescription { get; set; }
     }
 }
