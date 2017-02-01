@@ -78,6 +78,7 @@ namespace eSunSpeed.BusinessLogic
 
             paramCollection.Add(new DBParameter("@ACC_MultiCurr", objAcctMaster.MultiCurrency ? 1 : 0, System.Data.DbType.Boolean));
             paramCollection.Add(new DBParameter("@ACC_Group", objAcctMaster.Group));
+            paramCollection.Add(new DBParameter("@ACC_AGID", objAcctMaster.AccGroupId));
             paramCollection.Add(new DBParameter("@ACC_OpBal", objAcctMaster.OPBal, DbType.Decimal));
             paramCollection.Add(new DBParameter("@ACC_PrevYearBal", objAcctMaster.PrevYearBal, DbType.Decimal));
             paramCollection.Add(new DBParameter("@ACC_DrCrOpenBal", objAcctMaster.DrCrOpeningBal));
@@ -165,6 +166,7 @@ namespace eSunSpeed.BusinessLogic
             System.Data.IDataReader dr =
                     _dbHelper.ExecuteDataReader("spUpdateAccountMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
             isUpdate = true;
+
             //UPDATE Cost Center Popup Grid
             List<CostcenterPopupModel> lstCost = new List<CostcenterPopupModel>();   
             foreach (CostcenterPopupModel objCost in objAcctMaster.CostcenterDetails)
@@ -402,6 +404,8 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@ACC_MultiCurr", objAcctMaster.MultiCurrency?1:0, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@ACC_Group", objAcctMaster.Group));
+                paramCollection.Add(new DBParameter("@ACC_AGID", objAcctMaster.AccGroupId));
+                //paramCollection.Add(new DBParameter("@ACC_LEDGERID", objAcctMaster.AccGroupId));
                 paramCollection.Add(new DBParameter("@ACC_OpBal", objAcctMaster.OPBal, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ACC_PrevYearBal", objAcctMaster.PrevYearBal, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@ACC_DrCrOpenBal", objAcctMaster.DrCrOpeningBal));
@@ -444,6 +448,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ACC_address2", objAcctMaster.address1));
                 paramCollection.Add(new DBParameter("@ACC_Address3", objAcctMaster.address2));
                 paramCollection.Add(new DBParameter("@ACC_Address4", objAcctMaster.address3));
+                paramCollection.Add(new DBParameter("@ACC_Image", objAcctMaster.ImageData));
                 paramCollection.Add(new DBParameter("@ACC_Area", objAcctMaster.area));
                 paramCollection.Add(new DBParameter("@ACC_State", objAcctMaster.State));
                 paramCollection.Add(new DBParameter("@ACC_TelephoneNumber", objAcctMaster.TelephoneNumber));
@@ -491,11 +496,11 @@ namespace eSunSpeed.BusinessLogic
                
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
-                SaveBillByBillDetails(objAcctMaster.BillbyBillDetails, id);
-                SaveCostCenterDetails(objAcctMaster.CostcenterDetails, id);
-                SaveChequeDepositeDetails(objAcctMaster.ChequesDeposites, id);
-                SaveChequeIssuedDetails(objAcctMaster.ChequesIssued, id);
-                SaveMasterSeriesGroup(objAcctMaster.MasterSeries, id);
+                //SaveBillByBillDetails(objAcctMaster.BillbyBillDetails, id);
+                //SaveCostCenterDetails(objAcctMaster.CostcenterDetails, id);
+                //SaveChequeDepositeDetails(objAcctMaster.ChequesDeposites, id);
+                //SaveChequeIssuedDetails(objAcctMaster.ChequesIssued, id);
+                //SaveMasterSeriesGroup(objAcctMaster.MasterSeries, id);
             }
             catch (Exception ex)
             {
@@ -735,9 +740,6 @@ namespace eSunSpeed.BusinessLogic
         {
             List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
             eSunSpeedDomain.AccountGroupModel accountGroup;
-
-            //StringBuilder _sbQuery = new StringBuilder();
-            //_sbQuery.AppendFormat("SELECT AG_ID FROM `AccountGroups` WHERE Groupname='{0}'", groupname);
             string Query = "SELECT * FROM `accountgroups` WHERE `GroupName`='"+groupname+"'";
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
             while (dr.Read())
@@ -1086,7 +1088,7 @@ namespace eSunSpeed.BusinessLogic
             try
             {
 
-                string Query = "SELECT * from accountmaster1 WHERE Ac_ID='" + id + "'";
+                string Query = "SELECT * from accountmaster WHERE Ac_ID='" + id + "'";
                 System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
                 while (dr.Read())
@@ -1099,6 +1101,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.LedgerType = dr["ACC_LedgerType"].ToString();
                     _acctMaster.MultiCurrency = Convert.ToBoolean(dr["ACC_MultiCurr"]);
                     _acctMaster.Group = dr["ACC_Group"].ToString();
+                    _acctMaster.AccGroupId =Convert.ToInt32(dr["AG_ID"].ToString());
                     _acctMaster.OPBal = dr["ACC_OpBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_OpBal"].ToString());
                     _acctMaster.PrevYearBal = dr["ACC_PrevYearBal"].ToString() == "" ? 0 : Convert.ToDecimal(dr["ACC_PrevYearBal"].ToString());
                     _acctMaster.DrCrOpeningBal = dr["ACC_DrCrOpenBal"].ToString();
@@ -1118,8 +1121,8 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.DefaultSaleType = dr["ACC_DefaultSaleType"].ToString();
                     _acctMaster.FreezeSaleType = Convert.ToBoolean(dr["ACC_FreezeSaleType"]);
                     _acctMaster.SpecifyDefaultPurType = Convert.ToBoolean(dr["ACC_SpecifyDefaultPurType"]);
-                    _acctMaster.DefaultPurcType = dr["ACC_DefaultSaleType"].ToString();
-                    _acctMaster.FreezePurcType = Convert.ToBoolean(dr["ACC_FreezeSaleType"]);
+                    _acctMaster.DefaultPurcType = dr["ACC_DefaultPurcType"].ToString();
+                    _acctMaster.FreezePurcType = Convert.ToBoolean(dr["ACC_FreezePurcType"]);
 
                     _acctMaster.LockSalesType = Convert.ToBoolean(dr["ACC_LockSalesType"]);
                     _acctMaster.LockPurchaseType = Convert.ToBoolean(dr["ACC_LockPurcType"]);
@@ -1127,6 +1130,7 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.address1 = dr["ACC_address2"].ToString();
                     _acctMaster.address2 = dr["ACC_Address3"].ToString();
                     _acctMaster.address3 = dr["ACC_Address4"].ToString();
+                    //_acctMaster.ImageData = Convert.ToByte(dr["ACC_Image"]);
                     _acctMaster.TelephoneNumber = dr["ACC_TelephoneNumber"].ToString();
                     _acctMaster.Fax = dr["ACC_Fax"].ToString();
                     _acctMaster.State = dr["ACC_State"].ToString();
@@ -1143,12 +1147,12 @@ namespace eSunSpeed.BusinessLogic
                     _acctMaster.TIN = dr["ACC_TIN"].ToString();
                     _acctMaster.ServiceTaxNumber = dr["ACC_ServiceTax"].ToString();
                     _acctMaster.LBTNumber = dr["ACC_LBTNumber"].ToString();
-                    _acctMaster.BankAccountNumber = dr["ACC_BankAccountNumber"].ToString();
                     _acctMaster.IECode = dr["ACC_IECode"].ToString();
                     _acctMaster.Ward = dr["ACC_Ward"].ToString();
                     _acctMaster.ChequePrintName = dr["ACC_Cheque_PrintName"].ToString();
                     _acctMaster.DLNO1 = dr["ACC_DLNo"].ToString()==null?string.Empty: dr["ACC_DLNo"].ToString();
                     _acctMaster.No1 = dr["ACC_DLNo1"].ToString()==null?string.Empty: dr["ACC_DLNo1"].ToString();
+                    _acctMaster.BankAccountNumber = Convert.ToInt64(dr["ACC_BankAccNumber"].ToString());
                     _acctMaster.InterestRatePayable =Convert.ToDecimal(dr["ACC_InterestRatePayable"].ToString());
                     _acctMaster.InterestRateReceivable = Convert.ToDecimal(dr["ACC_InterestRateReceivable"].ToString());
                     _acctMaster.SpecifyDefaultSM = Convert.ToBoolean(dr["ACC_SpecifyDefaultSM"]);
@@ -1363,14 +1367,14 @@ namespace eSunSpeed.BusinessLogic
                         if (DeleteChequeDepositDetails(id))
                         {
                             if (DeleteChequeIssuedDetails(id))
-                            {   
-                                if(DeleteMasterSeriesGroup(id))
+                            {
+                                if (DeleteMasterSeriesGroup(id))
                                 {
-                                    string Query = "DELETE FROM accountmaster1 WHERE Ac_ID=" + id;
+                                    string Query = "DELETE FROM accountmaster WHERE Ac_ID=" + id;
                                     int rowes = _dbHelper.ExecuteNonQuery(Query);
                                     if (rowes > 0)
                                         isDelete = true;
-                                }                     
+                                }
                             }
                         }
                     }
@@ -1384,7 +1388,6 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
         //Delete CostCenter Popup Details
         public bool DeleteCostCenterDetails(int id)
         {
@@ -1463,7 +1466,7 @@ namespace eSunSpeed.BusinessLogic
             bool isDelete = true;
             try
             {
-                string Query = "DELETE FROM `accountmasterseriesgrp` WHERE Ac_ID=" + id;
+                string Query = "DELETE FROM `masterseriesgrpdetails` WHERE Ac_ID=" + id;
                 int rowes = _dbHelper.ExecuteNonQuery(Query);
                 if (rowes > 0)
                     isDelete = true;

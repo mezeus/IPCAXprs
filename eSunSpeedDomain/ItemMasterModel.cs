@@ -99,7 +99,7 @@ namespace eSunSpeedDomain
         public string ItemDescription4 { get; set; }
         public string ItemDescription5 { get; set; }
         public string ItemDescription6 { get; set; }
-
+        public byte[] ItemImageData { get; set; }
         public bool SetCriticalLevel { get; set; }
         public bool MaintainRG23D { get; set; }
         public string TariffHeading { get; set; }
@@ -132,6 +132,7 @@ namespace eSunSpeedDomain
         public List<DefineCriticalLevelModel> ItemCriticalLevel { get; set; }
         public List<ItemSerialnoDetailsModel> ItemSerialNo { get; set; }
         public List<ItemMaterialCenterModel> ItemMC{ get; set; }
+        public List<MasterseriesModel> ItemSeriesDetails { get; set; }
         public int SL_ID { get; set; }
         public int parent_Id { get; set; }
         public bool ManualNuber { get; set; }

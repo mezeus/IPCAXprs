@@ -28,52 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.dvgSaletypeList = new DevExpress.XtraGrid.GridControl();
+            this.dvgSaletypeDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dvgSaletypeList = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.salestypeList1 = new IPCAUI.DataSets.SalestypeList();
-            this.salestypeListDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salestypeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salestypeListDtBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.dvgSaletypeList);
             this.layoutControl1.Controls.Add(this.navBarControl1);
-            this.layoutControl1.Controls.Add(this.textEdit4);
-            this.layoutControl1.Controls.Add(this.textEdit3);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -82,6 +67,44 @@
             this.layoutControl1.Size = new System.Drawing.Size(841, 480);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // dvgSaletypeList
+            // 
+            this.dvgSaletypeList.Location = new System.Drawing.Point(162, 12);
+            this.dvgSaletypeList.MainView = this.dvgSaletypeDetails;
+            this.dvgSaletypeList.Name = "dvgSaletypeList";
+            this.dvgSaletypeList.Size = new System.Drawing.Size(667, 456);
+            this.dvgSaletypeList.TabIndex = 9;
+            this.dvgSaletypeList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgSaletypeDetails});
+            this.dvgSaletypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgSaletypeList_KeyDown);
+            // 
+            // dvgSaletypeDetails
+            // 
+            this.dvgSaletypeDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colName,
+            this.gridColumn1});
+            this.dvgSaletypeDetails.GridControl = this.dvgSaletypeList;
+            this.dvgSaletypeDetails.Name = "dvgSaletypeDetails";
+            this.dvgSaletypeDetails.OptionsBehavior.ReadOnly = true;
+            this.dvgSaletypeDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgSaletypeDetails_RowClick);
+            this.dvgSaletypeDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgSaletypeDetails_KeyDown);
+            // 
+            // colName
+            // 
+            this.colName.Caption = "Name";
+            this.colName.FieldName = "SalesType";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Export/Local";
+            this.gridColumn1.FieldName = "Export/Local";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
             // 
             // navBarControl1
             // 
@@ -151,55 +174,17 @@
             this.navBarGroup2.Caption = "navBarGroup2";
             this.navBarGroup2.Name = "navBarGroup2";
             // 
-            // textEdit4
-            // 
-            this.textEdit4.Location = new System.Drawing.Point(258, 12);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(60, 20);
-            this.textEdit4.StyleController = this.layoutControl1;
-            this.textEdit4.TabIndex = 4;
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.Location = new System.Drawing.Point(418, 12);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(411, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 5;
-            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
             this.layoutControlItem5,
             this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(841, 480);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.textEdit4;
-            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(150, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(160, 24);
-            this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(93, 13);
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.textEdit3;
-            this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(310, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(511, 24);
-            this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(93, 13);
             // 
             // layoutControlItem5
             // 
@@ -210,58 +195,14 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // dvgSaletypeList
-            // 
-            this.dvgSaletypeList.DataSource = this.salestypeListDtBindingSource;
-            this.dvgSaletypeList.Location = new System.Drawing.Point(162, 36);
-            this.dvgSaletypeList.MainView = this.gridView1;
-            this.dvgSaletypeList.Name = "dvgSaletypeList";
-            this.dvgSaletypeList.Size = new System.Drawing.Size(667, 432);
-            this.dvgSaletypeList.TabIndex = 9;
-            this.dvgSaletypeList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            this.dvgSaletypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgSaletypeList_KeyDown);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colName,
-            this.gridColumn1});
-            this.gridView1.GridControl = this.dvgSaletypeList;
-            this.gridView1.Name = "gridView1";
-            // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dvgSaletypeList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(150, 24);
+            this.layoutControlItem3.Location = new System.Drawing.Point(150, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(671, 436);
+            this.layoutControlItem3.Size = new System.Drawing.Size(671, 460);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // salestypeList1
-            // 
-            this.salestypeList1.DataSetName = "SalestypeList";
-            this.salestypeList1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // salestypeListDtBindingSource
-            // 
-            this.salestypeListDtBindingSource.DataMember = "SalestypeListDt";
-            this.salestypeListDtBindingSource.DataSource = this.salestypeList1;
-            // 
-            // colName
-            // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.FieldName = "Export/Local";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
             // 
             // SalestypeList
             // 
@@ -275,21 +216,15 @@
             this.Load += new System.EventHandler(this.SalestypeList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgSaletypeList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salestypeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salestypeListDtBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,20 +235,14 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraGrid.GridControl dvgSaletypeList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgSaletypeDetails;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.BindingSource salestypeListDtBindingSource;
-        private DataSets.SalestypeList salestypeList1;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }

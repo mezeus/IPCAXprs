@@ -30,19 +30,23 @@ namespace IPCAUI.Administration.PopupScreens
             MasterseriesModel objSeries;
             Account.objAccount.MasterSeries = new List<MasterseriesModel>();
             Accountgroup.objAccGroup.AGMasterSeries = new List<MasterseriesModel>();
+            Itemgroup.objModel.IGMasterSeries = new List<MasterseriesModel>();
+            ItemMasterNew.objModel.ItemSeriesDetails = new List<MasterseriesModel>();
             //Loop through the grid and get the values
             for (int i = 0; i < dvgmasterSGDetails.DataRowCount; i++)
             {
                 DataRow row = dvgmasterSGDetails.GetDataRow(i);
                 objSeries = new MasterseriesModel();
                 objSeries.MasterName =row["MasterName"].ToString() == null? string.Empty : row["MasterName"].ToString();
-                if (Account.objAccount.AccountId != 0 ||Accountgroup.objAccGroup.GroupId!=0)
+                if (Account.objAccount.AccountId != 0 ||Accountgroup.objAccGroup.GroupId!=0 ||Itemgroup.ItemgrpId!=0||ItemMasterNew.Item_Id!=0)
                 {
                     objSeries.MasterId = Convert.ToInt32(row["MasterId"].ToString() == string.Empty ? "0" : row["MasterId"]);
                     objSeries.ParentId = Convert.ToInt32(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"]);
                 }
                 Account.objAccount.MasterSeries.Add(objSeries);
                 Accountgroup.objAccGroup.AGMasterSeries.Add(objSeries);
+                Itemgroup.objModel.IGMasterSeries.Add(objSeries);
+                ItemMasterNew.objModel.ItemSeriesDetails.Add(objSeries);
             }
             this.Close();
         }
@@ -79,6 +83,36 @@ namespace IPCAUI.Administration.PopupScreens
                 dt.Rows.Clear();
                 DataRow dr;
                 foreach (MasterseriesModel objMaster in Accountgroup.objAccGroup.AGMasterSeries)
+                {
+                    dr = dt.NewRow();
+
+                    dr["MasterName"] = objMaster.MasterName;
+                    dr["MasterId"] = objMaster.MasterId;
+                    dr["ParentId"] = objMaster.ParentId;
+                    dt.Rows.Add(dr);
+                }
+                dvgmasterSG.DataSource = dt;
+            }
+            if (Itemgroup.ItemgrpId != 0)
+            {
+                dt.Rows.Clear();
+                DataRow dr;
+                foreach (MasterseriesModel objMaster in Itemgroup.objModel.IGMasterSeries)
+                {
+                    dr = dt.NewRow();
+
+                    dr["MasterName"] = objMaster.MasterName;
+                    dr["MasterId"] = objMaster.MasterId;
+                    dr["ParentId"] = objMaster.ParentId;
+                    dt.Rows.Add(dr);
+                }
+                dvgmasterSG.DataSource = dt;
+            }
+            if (ItemMasterNew.Item_Id != 0)
+            {
+                dt.Rows.Clear();
+                DataRow dr;
+                foreach (MasterseriesModel objMaster in ItemMasterNew.objModel.ItemSeriesDetails)
                 {
                     dr = dt.NewRow();
 

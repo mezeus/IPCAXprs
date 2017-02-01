@@ -14,6 +14,7 @@ namespace eSunSpeedDomain
         public string PrintName { get; set; }
         public string LedgerType { get; set; }
         public string Group { get; set; }
+        public long AccGroupId { get; set; }
 
         public bool MultiCurrency { get; set; }
         public bool LockSalesType { get; set; }
@@ -43,6 +44,8 @@ namespace eSunSpeedDomain
         public string address1{ get; set; }
         public string address2{ get; set; }
         public string address3 { get; set; }
+        public string FileName { get; set; }
+        public byte[] ImageData { get;set; }
         public string area { get; set; }
         public string State { get; set; }
 
@@ -61,7 +64,7 @@ namespace eSunSpeedDomain
         public string TIN { get; set; }
         public string LBTNumber { get; set; }
 
-        public string BankAccountNumber { get; set; }
+        public long BankAccountNumber { get; set; }
         public string Ward { get; set; }
 
         public string CreditDays { get; set; }

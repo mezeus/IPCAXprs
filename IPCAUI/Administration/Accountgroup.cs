@@ -73,6 +73,8 @@ namespace IPCAUI.Administration
 
             if (isSuccess)
                 MessageBox.Show("Saved Successfully!");
+            LoadGroups();
+
             ClearControls();
         }
 
@@ -222,6 +224,7 @@ namespace IPCAUI.Administration
         }
         public void LoadGroups()
         {
+            cbxUndergroup.Properties.Items.Clear();
             List<AccountGroupModel> lstUnder = objaccbl.GetListofAccountsGroups();
 
             foreach (AccountGroupModel objUnder in lstUnder)

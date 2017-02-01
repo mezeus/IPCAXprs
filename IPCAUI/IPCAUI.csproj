@@ -80,6 +80,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\BillSundaryMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\BillSundaryMaster.Designer.cs">
+      <DependentUpon>BillSundaryMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\PurchaseType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\PurchaseType.Designer.cs">
+      <DependentUpon>PurchaseType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\SaleType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\SaleType.Designer.cs">
+      <DependentUpon>SaleType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\Costcenterlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,18 +505,6 @@
     </Compile>
     <Compile Include="Administration\BillsofMaterial.Designer.cs">
       <DependentUpon>BillsofMaterial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Administration\Purchasetype.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administration\Purchasetype.Designer.cs">
-      <DependentUpon>Purchasetype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Administration\Salestype.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Administration\Salestype.Designer.cs">
-      <DependentUpon>Salestype.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\TDSCategory.cs">
       <SubType>Form</SubType>
@@ -3327,6 +3333,15 @@
     <Compile Include="XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Administration\BillSundaryMaster.resx">
+      <DependentUpon>BillSundaryMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\PurchaseType.resx">
+      <DependentUpon>PurchaseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\SaleType.resx">
+      <DependentUpon>SaleType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\Costcenterlist.resx">
       <DependentUpon>Costcenterlist.cs</DependentUpon>
     </EmbeddedResource>
@@ -3530,12 +3545,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\BillsofMaterial.resx">
       <DependentUpon>BillsofMaterial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administration\Purchasetype.resx">
-      <DependentUpon>Purchasetype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Administration\Salestype.resx">
-      <DependentUpon>Salestype.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\TDSCategory.resx">
       <DependentUpon>TDSCategory.cs</DependentUpon>

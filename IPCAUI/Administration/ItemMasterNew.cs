@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using eSunSpeedDomain;
 using eSunSpeed.BusinessLogic;
 using DevExpress.XtraTab;
+using System.IO;
 
 namespace IPCAUI.Administration
 {
@@ -28,6 +29,7 @@ namespace IPCAUI.Administration
         public static string FormName ="";
         private object xtraTabControl1;
 
+        byte[] ItemLogo = null;
         public ItemMasterNew()
         {
             InitializeComponent();
@@ -41,7 +43,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Item Group Name can not be blank!");
                 return;
             }
-
             objModel.Name = tbxName.Text.Trim();
             objModel.PrintName = tbxPrintname.Text == null ? string.Empty : tbxPrintname.Text;
             objModel.Alias = tbxAlias.Text == null?string.Empty:tbxAlias.Text.Trim();
@@ -70,7 +71,6 @@ namespace IPCAUI.Administration
             objModel.AltPurprice = Convert.ToDecimal(tbxAltPurcPrice.Text.Trim()==null?"0": tbxAltPurcPrice.Text.Trim());
             objModel.AltMinSalePrice = Convert.ToDecimal(tbxAltMinSalesPrice.Text.Trim() == null ? "0.00" : tbxAltMinSalesPrice.Text.Trim());
             objModel.AltMRP = Convert.ToDecimal(tbxAltMRP.Text.Trim() == null ? "0" : tbxAltMRP.Text.Trim());
-
             objModel.DiscountInfo = cbxDiscountInfo.SelectedItem.ToString() == "Y" ? true : false;
             if(objModel.DiscountInfo)
             {
@@ -100,7 +100,7 @@ namespace IPCAUI.Administration
             objModel.ItemDescription2 = tbxItemdesc2.Text.Trim() == null ? string.Empty : tbxItemdesc2.Text.Trim();
             objModel.ItemDescription3 = tbxItemdesc3.Text.Trim() == null ? string.Empty : tbxItemdesc3.Text.Trim();
             objModel.ItemDescription4 = tbxItemdesc4.Text.Trim() == null ? string.Empty : tbxItemdesc4.Text.Trim();
-
+            objModel.ItemImageData = ItemLogo;
             objModel.SetCriticalLevel = cbxCreticallevel.SelectedItem.ToString() == "Y" ? true : false;
             objModel.MaintainRG23D = cbxMaintainRG.SelectedItem.ToString() == "Y" ? true : false;
             objModel.TariffHeading = tbxTariffHeading.Text == null ? string.Empty : tbxTariffHeading.Text.Trim();
@@ -158,11 +158,10 @@ namespace IPCAUI.Administration
             objModel.TotalNumberofAuthors = Convert.ToInt32(tbxAuthors.Text.Trim()==string.Empty?"0":tbxAuthors.Text.Trim());
             objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultVendor = cbxSpecifyDefaultVendor.SelectedItem.ToString() == "Y" ? true : false;
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
 
-            //objModel.SaleCompoundDiscount = Convert.ToDouble(tbxSalesCompDisc.Text.Trim());
-            //objModel.DontMaintainStockBal = Convert.ToDouble(tbxPurcDiscount.Text.Trim());
-
-            
             if (objModel.SpecifySaleDiscStructure)
                 //lblSalesDisAmt.Visible = true;
 
@@ -268,8 +267,7 @@ namespace IPCAUI.Administration
             tbxMainSalesPrice.Text = "0.00";
             tbxMainPurcPrice.Text = "0.00";
             objModel = new ItemMasterModel();
-        }
-      
+        }  
         private void ItemList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.ItemmasterList frmList = new Administration.List.ItemmasterList();
@@ -287,7 +285,6 @@ namespace IPCAUI.Administration
             }
             
         }
-
         private void FillItemMasterInfo()
         {
             objModel = objIMBL.GetAllItemsById(Item_Id);
@@ -574,12 +571,14 @@ namespace IPCAUI.Administration
             objModel.PickItemSizefromDescription = cbxPickitemforsizing.SelectedItem.ToString() == "Y" ? true : false;
             objModel.SpecifyDefaultVendor = cbxSpecifyDefaultVendor.SelectedItem.ToString() == "Y" ? true : false;
 
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
             objModel.ItemId = Item_Id;
 
 
             if (objModel.SpecifySaleDiscStructure)
                 //lblSalesDisAmt.Visible = true;
-
 
                 if (objModel.SpecifySaleDiscStructure)
                     //lblPurDiscAmt.Visible = true;
@@ -1210,6 +1209,50 @@ namespace IPCAUI.Administration
             {
                 cbxCompany.Properties.Items.Add(objcompany.ItemCompany);
             }
+        }
+
+        private void hylblBrowseImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ItemImage = new OpenFileDialog();
+            ItemImage.Filter = "Image Files(*.BMP;*.JPG;*.JPEG;*.PNG)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            //AccImage.FileName = string.Empty;
+            if (DialogResult.OK == ItemImage.ShowDialog())
+            {
+                //textEdit1.Text = AccImage.FileName;
+                if (ItemImage.FileName != string.Empty)
+                {
+                    try
+                    {
+                        ItemLogo = ReadFile(ItemImage.FileName);
+                        MemoryStream ms = new MemoryStream(ItemLogo);
+                        Image newimage = Image.FromStream(ms);
+                        pbxImage.Image = newimage;
+                        pbxImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private byte[] ReadFile(string fileName)
+        {
+            byte[] data = null;
+            try
+            {
+                FileInfo fInfo = new FileInfo(fileName);
+                long numBytes = fInfo.Length;
+                FileStream fStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fStream);
+                data = br.ReadBytes((int)numBytes);
+            }
+            catch (Exception ex)
+            {
+                //formMDI.infoError.ErrorString = "CR4:" + ex.Message;
+            }
+            return data;
         }
     }
 }

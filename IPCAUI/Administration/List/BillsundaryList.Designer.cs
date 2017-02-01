@@ -105,10 +105,12 @@
             this.dvgBillSundryDetails.Name = "dvgBillSundryDetails";
             this.dvgBillSundryDetails.OptionsBehavior.ReadOnly = true;
             this.dvgBillSundryDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgBillSundryDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgBillSundryDetails_RowClick);
             this.dvgBillSundryDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgBillSundryDetails_KeyDown);
             // 
             // colName
             // 
+            this.colName.Caption = "Name";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
@@ -116,6 +118,7 @@
             // 
             // colAlias
             // 
+            this.colAlias.Caption = "Alias";
             this.colAlias.FieldName = "Alias";
             this.colAlias.Name = "colAlias";
             this.colAlias.Visible = true;

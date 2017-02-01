@@ -217,6 +217,7 @@
             // tbxCrDaysforPurc
             // 
             this.tbxCrDaysforPurc.EditValue = "0";
+            this.tbxCrDaysforPurc.EnterMoveNextControl = true;
             this.tbxCrDaysforPurc.Location = new System.Drawing.Point(482, 317);
             this.tbxCrDaysforPurc.Name = "tbxCrDaysforPurc";
             this.tbxCrDaysforPurc.Size = new System.Drawing.Size(126, 20);
@@ -226,6 +227,7 @@
             // tbxCrDaysforSale
             // 
             this.tbxCrDaysforSale.EditValue = "0";
+            this.tbxCrDaysforSale.EnterMoveNextControl = true;
             this.tbxCrDaysforSale.Location = new System.Drawing.Point(227, 317);
             this.tbxCrDaysforSale.Name = "tbxCrDaysforSale";
             this.tbxCrDaysforSale.Size = new System.Drawing.Size(126, 20);
@@ -803,6 +805,7 @@
             // 
             // cbxTagBillReference
             // 
+            this.cbxTagBillReference.EnterMoveNextControl = true;
             this.cbxTagBillReference.Location = new System.Drawing.Point(227, 269);
             this.cbxTagBillReference.Name = "cbxTagBillReference";
             this.cbxTagBillReference.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -817,6 +820,7 @@
             // 
             // cbxBillReferenceGroup
             // 
+            this.cbxBillReferenceGroup.EnterMoveNextControl = true;
             this.cbxBillReferenceGroup.Location = new System.Drawing.Point(227, 293);
             this.cbxBillReferenceGroup.Name = "cbxBillReferenceGroup";
             this.cbxBillReferenceGroup.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

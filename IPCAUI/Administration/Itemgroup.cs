@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     {
         ItemGroupMasterBL objItemBL = new ItemGroupMasterBL();
         ItemMasterBL objItemMasterBl = new ItemMasterBL();
+        public static ItemGroupMasterModel objModel = new ItemGroupMasterModel();
         public static int ItemgrpId = 0;
         public Itemgroup()
         {
@@ -29,8 +30,6 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Group Name can not be blank!");
                 return;
             }
-
-            ItemGroupMasterModel objModel = new ItemGroupMasterModel();
             objModel.ItemGroup = tbxGroupName.Text.Trim();
 
             objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
@@ -58,7 +57,9 @@ namespace IPCAUI.Administration
             objModel.CrDaysforSale = Convert.ToInt32(tbxCrDaysforSale.Text.Trim() == string.Empty ? "0" : tbxCrDaysforSale.Text.Trim());
             objModel.CrDaysforPurc = Convert.ToInt32(tbxCrDaysforPurc.Text.Trim() == string.Empty ? "0" : tbxCrDaysforPurc.Text.Trim());
             objModel.CreatedBy = "Admin";
-
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
             bool isSuccess = objItemBL.SaveIGM(objModel);
             if(isSuccess)
             {
@@ -96,26 +97,28 @@ namespace IPCAUI.Administration
 
         private void FillItemGroupInfo()
         {
-            ItemGroupMasterModel objIGM = objItemBL.GetAllItemGroupById(ItemgrpId);
+            objModel = objItemBL.GetAllItemGroupById(ItemgrpId);
 
-            tbxGroupName.Text = objIGM.ItemGroup;
-            tbxAliasname.Text = objIGM.Alias;
-            cbxPrimarygroup.SelectedItem =Convert.ToString((objIGM.PrimaryGroup)?"Y":"N");
-            cbxUndergroup.SelectedItem=objIGM.UnderGroup;
-            cbxStockaccount.SelectedItem= objIGM.StockAccount;
-            cbxSalesaccount.SelectedItem= objIGM.SalesAccount;
-            cbxPurchaseAccount.SelectedItem= objIGM.PurchaseAccount;
-            if(objIGM.DefaultConfig)
+            tbxGroupName.Text = objModel.ItemGroup;
+            tbxAliasname.Text = objModel.Alias;
+            cbxPrimarygroup.SelectedItem =Convert.ToString((objModel.PrimaryGroup)?"Y":"N");
+            cbxUndergroup.SelectedItem=objModel.UnderGroup;
+            cbxStockaccount.SelectedItem= objModel.StockAccount;
+            cbxSalesaccount.SelectedItem= objModel.SalesAccount;
+            cbxPurchaseAccount.SelectedItem= objModel.PurchaseAccount;
+            if(objModel.DefaultConfig)
             {
                 rbnDefaultConfig.SelectedIndex = 0;
             }
-            if(objIGM.SeparateConfig)
+            if(objModel.SeparateConfig)
             {
                 rbnDefaultConfig.SelectedIndex = 1;
             }
-            //rbnDefaultconfig.Checked =Convert.ToBoolean(objIGM.DefaultConfig?true:false);
-            //rbnSeparteConfig.Checked = Convert.ToBoolean(objIGM.SeparateConfig ? true : false);
-            tbxParameters.Text=Convert.ToString(objIGM.Parameters);
+            cbxTagBillReference.SelectedItem = objModel.SpecifyBillReferencegrp ? "Y" : "N";
+            cbxBillReferenceGroup.SelectedItem = objModel.BillReferencegrp.ToString();
+            tbxCrDaysforSale.Text = objModel.CrDaysforSale.ToString();
+            tbxCrDaysforPurc.Text = objModel.CrDaysforPurc.ToString();
+            tbxParameters.Text=Convert.ToString(objModel.Parameters);
         }
 
 
@@ -157,8 +160,6 @@ namespace IPCAUI.Administration
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ItemGroupMasterModel objModel = new ItemGroupMasterModel();
-
             objModel.ItemGroup = tbxGroupName.Text.Trim();
             objModel.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
             objModel.PrimaryGroup = cbxPrimarygroup.SelectedItem.ToString() == "Y" ? true : false;
@@ -180,7 +181,13 @@ namespace IPCAUI.Administration
                 objModel.SeparateConfig = true;
             }
             objModel.Parameters = Convert.ToInt32(tbxParameters.Text.Trim()==string.Empty?"0": tbxParameters.Text.Trim());
-
+            objModel.SpecifyBillReferencegrp = cbxTagBillReference.SelectedItem.ToString() == "Y" ? true : false;
+            objModel.BillReferencegrp = cbxBillReferenceGroup.Text.Trim() == null ? string.Empty : cbxBillReferenceGroup.Text.Trim();
+            objModel.CrDaysforSale = Convert.ToInt32(tbxCrDaysforSale.Text.Trim() == string.Empty ? "0" : tbxCrDaysforSale.Text.Trim());
+            objModel.CrDaysforPurc = Convert.ToInt32(tbxCrDaysforPurc.Text.Trim() == string.Empty ? "0" : tbxCrDaysforPurc.Text.Trim());
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
             objModel.IGM_id = ItemgrpId;
             objModel.ModifiedBy = "Admin";
 
@@ -263,6 +270,7 @@ namespace IPCAUI.Administration
                 {
                     MessageBox.Show("Delete Successfully!");
                     ClearFormValues();
+                    tbxGroupName.Focus();
                 }
             }
             

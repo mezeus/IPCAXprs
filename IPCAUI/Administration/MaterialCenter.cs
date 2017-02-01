@@ -16,6 +16,7 @@ namespace IPCAUI.Administration
     {
         MaterialCentreMasterBL objmatcenbl = new MaterialCentreMasterBL();
         MaterialCentreGroupMaster objMatGrpBal = new MaterialCentreGroupMaster();
+        public MaterialCentreMasterModel objGroup = new MaterialCentreMasterModel();
         public static int MCId = 0;
         public MaterialCenter()
         {
@@ -67,7 +68,7 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Master Name can not be blank!");
                 return;
             }
-            MaterialCentreMasterModel objGroup = new MaterialCentreMasterModel();
+            
             objGroup.GroupName = tbxGroupName.Text.Trim();
             objGroup.Alias = tbxAliasname.Text.Trim()==null?string.Empty:tbxAliasname.Text.Trim();
             objGroup.PrintName = tbxPrintname.Text.Trim()==null? string.Empty : tbxAliasname.Text.Trim(); ;
@@ -84,6 +85,9 @@ namespace IPCAUI.Administration
             objGroup.Address2 = tbxAddress2.Text == null ? string.Empty : tbxAddress2.Text.Trim();
             objGroup.Address3 = tbxAddress3.Text == null ? string.Empty : tbxAddress3.Text.Trim();
 
+            PopupScreens.MasterSeriesGroup frmMaster = new PopupScreens.MasterSeriesGroup();
+            frmMaster.StartPosition = FormStartPosition.CenterParent;
+            frmMaster.ShowDialog();
             objGroup.CreatedBy = "Admin";
 
             bool isSuccess = objmatcenbl.SaveMaterialMaster(objGroup);

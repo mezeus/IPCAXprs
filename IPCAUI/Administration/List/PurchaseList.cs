@@ -14,7 +14,7 @@ namespace IPCAUI.Administration.List
 {
     public partial class PurchaseList : Form
     {
-        PurchaseTypeBL objpbl = new PurchaseTypeBL();
+        PurchaseTypeBL objpurcbl = new PurchaseTypeBL();
         public PurchaseList()
         {
             InitializeComponent();
@@ -22,13 +22,31 @@ namespace IPCAUI.Administration.List
 
         private void PurchaseList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.PurchaseTypeModel> lstptype = objpbl.GetAllPurchaseType();
+            List<eSunSpeedDomain.PurchaseTypeModel> lstptype = objpurcbl.GetAllPurchaseType();
             dvgPurchaseList.DataSource = lstptype;
         }
 
 
         private void dvgPurchaseList_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyValue == '\r')
+            {
+                PurchaseTypeModel lstPurch;
+
+                lstPurch = (PurchaseTypeModel)dvgPurchaseListDetails.GetRow(dvgPurchaseListDetails.FocusedRowHandle);
+                PurchaseType.PurcId = lstPurch.Purch_Id;
+
+                this.Close();
+            }
+        }
+
+        private void dvgPurchaseListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            PurchaseTypeModel lstPurch;
+
+            lstPurch = (PurchaseTypeModel)dvgPurchaseListDetails.GetRow(dvgPurchaseListDetails.FocusedRowHandle);
+            PurchaseType.PurcId = lstPurch.Purch_Id;
+
             this.Close();
         }
     }

@@ -22,6 +22,7 @@ namespace eSunSpeedDomain
         public string BillReferencegrp { get; set; }
         public int CrDaysforSale { get; set; }
         public int CrDaysforPurc { get; set; }
+        public List<MasterseriesModel> IGMasterSeries { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

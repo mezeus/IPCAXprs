@@ -77,23 +77,22 @@ namespace IPCAUI.Menu
 
             if (keyData == Keys.F3)
             {
-
-                //will be helpful in future to find last active form
-                //var lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1];
-
-                //bool isFocus = Administration.ItemMasterNew.isGroupF3;
-
-                //if(Administration.ItemMasterNew.isGroupF3)
+                
+                //foreach (Form frm in Application.OpenForms)
                 //{
-                //    Administration.Itemgroup frm;
-                //    frm = new Administration.Itemgroup(); //generate new instance 
+                    frm.Owner = this;
+                    frm.TopLevel = false;
 
-                //    frm.Owner = this;
-                //    frm.TopLevel = false;
+                    sptCtrlMastermenu.Panel2.Controls.Add(frm);
+                    frm.Show();
 
-                //    sptCtrlMastermenu.Panel2.Controls.Add(frm);
-                //    frm.Show();
+                    //if (frm.GetType() == typeof(frmLogin))
+                    //{
+                    //    frm.Close();
+                    //    break;
+                    //}
                 //}
+
                 string name = Administration.ItemMasterNew.FormName;
                 switch(name)
                 {
@@ -374,8 +373,8 @@ namespace IPCAUI.Menu
 
         private void barbtnBillsundary_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Billsundary frm;
-            frm = new Administration.Billsundary(); //generate new instance 
+            Administration.BillSundaryMaster frm;
+            frm = new Administration.BillSundaryMaster(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 
@@ -407,8 +406,8 @@ namespace IPCAUI.Menu
 
         private void barbtnSaletype_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Salestype frm;
-            frm = new Administration.Salestype(); //generate new instance 
+            Administration.SaleType frm;
+            frm = new Administration.SaleType(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 
@@ -418,8 +417,8 @@ namespace IPCAUI.Menu
 
         private void barbtnPurchasetype_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Administration.Purchasetype frm;
-            frm = new Administration.Purchasetype(); //generate new instance 
+            Administration.PurchaseType frm;
+            frm = new Administration.PurchaseType(); //generate new instance 
             frm.Owner = this;
             frm.TopLevel = false;
 

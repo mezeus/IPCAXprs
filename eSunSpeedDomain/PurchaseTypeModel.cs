@@ -5,10 +5,10 @@ using System.Text;
 
 namespace eSunSpeedDomain
 {
-  public   class PurchaseTypeModel
+  public class PurchaseTypeModel
     {
-        public int Purchase_Id { get; set; }
-        public string PurchaseType { get; set; }
+        public int Purch_Id { get; set; }
+        public string PurchType { get; set; }
         //this GroupBox for sales Account Information of RadioButton
         public bool typeSpecifyHereSingleAccount { get; set; }//if select button Ledger CoboBoxWillope
         public string LedgerAccountBox { get; set; }
@@ -27,10 +27,13 @@ namespace eSunSpeedDomain
 
         // other Information Group
 
-        public string InputTaxCedit { get; set; }
-        public string CapitalPurchase { get; set; }//This is Combobox;
-        public string TaxReport { get; set; }
-        
+        public bool TaxInvoice { get; set; }
+        public string VatReturnCategory { get; set; }//This is Combobox;
+        public bool VatSaleTaxReport { get; set; }
+        public decimal CalculatedTax { get; set; }
+        public string TaxAmount { get; set; }
+        public bool SkipVatorSaleTaxReport { get; set; }
+
         //if Enable MultiTax Will Show on other Information Group
         public bool CalculateTaxonItemMRP { get; set; }
         public bool TaxInclusiveItemPrice { get; set; }
@@ -38,40 +41,39 @@ namespace eSunSpeedDomain
         public bool AdjustTaxinSaleAccount { get; set; }
         public string TaxAccount { get; set; }
 
-        //Tax Calculation
-        public bool SingleTaxRate { get; set; }
-        public bool MultiTaxRate { get; set; }
-        public int TaxInPercentage { get; set; }
-        public int TaxInSurcharge { get; set; }
-        public string FreezTaxInPurchase { get; set; }
-        public string FreezTaxInPurchaseReturn { get; set; }
-
-        //Printing Documents
-        public string InvoiceHeading { get; set; }
-        public string InvoicDescription { get; set; }
-
         //Region Radio Button GroupBox
 
         public bool TypeLocal { get; set; }
         public bool TypeCentral { get; set; }
-        
-        
+
+
         //Type of Transaction on Region GrupBox Sub
 
         public bool TypeStockTransfer { get; set; }
-        public bool TypeOther { get; set;}
-        public bool ImportNormal { get; set; }
-        
-        public bool PurchaseinTransit { get; set; }
-        public bool ImportHighsea { get; set; }
+        public bool TypeOther { get; set; }
+        public bool ExportNormal { get; set; }
+        public bool SaleinTransit { get; set; }
+        public bool ExportHighsea { get; set; }
 
         // Form Information:if Enabl typeAgainstSTFromT
-        public string IssueSTFrom { get; set; }// if Enable This STFrom List ComboBox will Show
+        public bool IssueSTFrom { get; set; }// if Enable This STFrom List ComboBox will Show
         public string FromIssuable { get; set; }
-        public string ReceiveSTForm { get; set; }// if Enable This ReceiveFrom List
+        public bool ReceiveSTForm { get; set; }// if Enable This ReceiveFrom List
         public string FromReceivable { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public string ModifiedBy { get; set; }
 
+        //Tax Calculation Group Box
+        public bool SingleTaxRate { get; set; }
+        public bool MultiTaxRate { get; set; }
+        public decimal TaxinPercentage { get; set; }
+        public decimal SurchargeInPercentage { get; set; }
+        public bool freezeTaxinSales { get; set; }
+        public bool freezeTaxinSalesReturn { get; set; }
+        public string InvoiceHeading { get; set; }
+        public string InvoiceDescription { get; set; }
 
 
     }

@@ -34,12 +34,35 @@ namespace IPCAUI.Administration.List
 
         private void dvgBillSundryDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                BillSundryMasterModel lstBillsundry;
+
+                lstBillsundry = (BillSundryMasterModel)dvgBillSundryDetails.GetRow(dvgBillSundryDetails.FocusedRowHandle);
+                BillSundaryMaster.BillsId = lstBillsundry.BS_Id;
+
+                this.Close();
+            }
+            
+        }
+
+        private void dvgBillSundryDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             BillSundryMasterModel lstBillsundry;
 
             lstBillsundry = (BillSundryMasterModel)dvgBillSundryDetails.GetRow(dvgBillSundryDetails.FocusedRowHandle);
-            Billsundary.Bill_Id = lstBillsundry.BS_Id;
+            BillSundaryMaster.BillsId = lstBillsundry.BS_Id;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

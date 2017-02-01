@@ -132,7 +132,7 @@ namespace IPCAUI.Administration
             //objbsmod.SaleAccounttoHeadPostParty = cbxSaleAccountHeadpost.Text.ToString();
             if (objbsmod.SaleAdjustInSaleAmount)
             {
-                objbsmod.SalePostOverandAbove = cbxSalePostoverandAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
+                //objbsmod.SalePostOverandAbove = cbxSalePostoverandAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
             }
             
 
@@ -144,7 +144,7 @@ namespace IPCAUI.Administration
             //objbsmod.PurcAccounttoHeadPostParty = cbxPurcAccountHeadPost.Text.ToString();
             if(objbsmod.PurcAdjustInPurcAmount)
             {
-                objbsmod.PurcPostOverandAbove = cbxPurcPostOverAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
+                //objbsmod.PurcPostOverandAbove = cbxPurcPostOverAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
             }
             
             objbsmod.typeMaterialIssue = false;
@@ -350,7 +350,7 @@ namespace IPCAUI.Administration
             //objbsmod.SaleAccounttoHeadPostParty = cbxSaleAccountHeadpost.Text.ToString();
             if (objbsmod.SaleAdjustInSaleAmount)
             {
-                objbsmod.SalePostOverandAbove = cbxSalePostoverandAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
+                //objbsmod.SalePostOverandAbove = cbxSalePostoverandAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
             }
 
 
@@ -362,7 +362,7 @@ namespace IPCAUI.Administration
             //objbsmod.PurcAccounttoHeadPostParty = cbxPurcAccountHeadPost.Text.ToString();
             if (objbsmod.PurcAdjustInPurcAmount)
             {
-                objbsmod.PurcPostOverandAbove = cbxPurcPostOverAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
+                //objbsmod.PurcPostOverandAbove = cbxPurcPostOverAbove.SelectedItem.ToString() == "" ? string.Empty : cbxSalePostoverandAbove.SelectedItem.ToString();
             }
 
             objbsmod.typeMaterialIssue = false;
@@ -481,6 +481,26 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Delete Successfully!");
                 ClearControls();
+            }
+        }
+
+        private void cbxSaleaffectsAcc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxSaleaffectsAcc.SelectedItem.ToString().Equals("N"))
+            {
+                lblAccountHeadtoPostSale.Enabled = false;
+                lblPostOverandAboveSale.Enabled = false;
+                lblAccounttoHeadtoPostSle.Enabled = false;
+                lblAdjustSaleAmountSale.Enabled = false;
+                lblAdjustinPartyAmountSale.Enabled = false;
+            }
+            else
+            {
+                lblAccountHeadtoPostSale.Enabled = true;
+                lblAccounttoHeadtoPostSle.Enabled = true;
+                lblPostOverandAboveSale.Enabled = true;
+                lblAdjustSaleAmountSale.Enabled = true;
+                lblAdjustinPartyAmountSale.Enabled = true;
             }
         }
     }
