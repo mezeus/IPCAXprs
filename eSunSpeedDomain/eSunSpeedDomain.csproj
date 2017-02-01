@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillsofMaterialDetailsModel.cs" />
+    <Compile Include="FinancialYearModel.cs" />
     <Compile Include="CostcenterPopupModel.cs" />
     <Compile Include="CurrencyConversionDetailsModel.cs" />
     <Compile Include="LedgerpostingModel.cs" />

@@ -197,14 +197,17 @@ namespace IPCAUI.Administration
                 decOpeningBalance = Convert.ToDecimal(tbxOpbal.Text.Trim());
                 LedgerPostingBL objBL = new LedgerPostingBL();
                 LedgerPostingModel infoLedgerPosting = new LedgerPostingModel();
-                //FinancialYearSP spFinancialYear = new FinancialYearSP();
-                //FinancialYearInfo infoFinancialYear = new FinancialYearInfo();
-                //infoFinancialYear = spFinancialYear.FinancialYearViewForAccountLedger(1);
 
-                //strfinancialId = infoFinancialYear.FromDate.ToString("dd-MMM-yyyy"); -NEED TO REVIEW AND RELEASE THIS
+                FinancialYeaBL objFinBL = new FinancialYeaBL();
+
+                FinancialYearModel infoFinancialYear = new FinancialYearModel();
+                
+                infoFinancialYear = objFinBL.FinancialYearViewForAccountLedger(1);
+
+                strfinancialId = infoFinancialYear.FromDate.ToString("dd-MMM-yyyy");
 
                 infoLedgerPosting.VoucherTypeId = 1;
-                infoLedgerPosting.Date = Convert.ToDateTime(DateTime.Today.ToString());
+                infoLedgerPosting.Date = Convert.ToDateTime(strfinancialId.ToString());
                 infoLedgerPosting.LedgerId = decLedgerId;
                 infoLedgerPosting.VoucherNo = decLedgerId.ToString();
 
@@ -223,6 +226,7 @@ namespace IPCAUI.Administration
                 infoLedgerPosting.ChequeDate = DateTime.Now;
                 infoLedgerPosting.Extra1 = string.Empty;
                 infoLedgerPosting.Extra2 = string.Empty;
+
                 objBL.LedgerPostingAdd(infoLedgerPosting);
             }
             catch (Exception ex)
