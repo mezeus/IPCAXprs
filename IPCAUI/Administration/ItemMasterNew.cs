@@ -621,19 +621,19 @@ namespace IPCAUI.Administration
             {
                 if (cbxGroup.Focused)
                 {
-                    FormName = "ItemGroup";
+                    FormName = "IPCAUI.Administration.Itemgroup";
                 }
                 if (cbxMainUnit.Focused)
                 {
-                    FormName = "UnitMaster";
+                    FormName = "IPCAUI.Administration.Unitmaster";
                 }
                 if (cbxTaxCat.Focused)
                 {
-                    FormName = "TaxCategory";
+                    FormName = "IPCAUI.Administration.Taxcategory";
                 }
                 if(cbxCompany.Focused)
                 {
-                    FormName = "ItemCompany";
+                    FormName = "IPCAUI.Administration.ItemCompany";
                 }
             }
             else

@@ -15,6 +15,7 @@ namespace IPCAUI.Menu
     {
         XtraForm1 frm;
         public static string Form = string.Empty;
+        
         public MastersMenu(XtraForm1 frm)
         {
             InitializeComponent();
@@ -67,6 +68,30 @@ namespace IPCAUI.Menu
                     break;
             }
         }
+
+        //May be useful for future use
+        //private void ShowForm<T>(T form) where T : Form, new()
+        //{
+        //    if (form == null || form.IsDisposed)
+        //    {
+        //        form = new T();
+
+        //        form.Owner = this;
+        //        form.TopLevel = false;
+
+        //        sptCtrlMastermenu.Panel2.Controls.Add(form);
+        //        form.Show();
+
+        //        //form.MdiParent = this;
+        //        //form.Show();
+        //        //form.WindowState = FormWindowState.Maximized;
+        //    }
+        //    else
+        //    {
+        //        form.Activate();
+        //    }
+        //}
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
        {
             if (keyData == Keys.Escape)
@@ -77,89 +102,85 @@ namespace IPCAUI.Menu
 
             if (keyData == Keys.F3)
             {
-                
-                //foreach (Form frm in Application.OpenForms)
-                //{
-                    frm.Owner = this;
-                    frm.TopLevel = false;
-
-                    sptCtrlMastermenu.Panel2.Controls.Add(frm);
-                    frm.Show();
-
-                    //if (frm.GetType() == typeof(frmLogin))
-                    //{
-                    //    frm.Close();
-                    //    break;
-                    //}
-                //}
 
                 string name = Administration.ItemMasterNew.FormName;
-                switch(name)
+                if (name != "")
                 {
-                    case "ItemGroup":
-                        Administration.Itemgroup frmItem;
-                        frmItem = new Administration.Itemgroup(); //generate new instance 
+                    Form form = (Form)Activator.CreateInstance(Type.GetType(name));                
+                    form.Owner = this;
+                    form.TopLevel = false;
 
-                        frmItem.Owner = this;
-                        frmItem.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmItem);
-                        frmItem.Show();
-                        break;
-                    case "UnitMaster":
-                        Administration.Unitmaster frmUnitMaster;
-                        frmUnitMaster = new Administration.Unitmaster(); //generate new instance 
-
-                        frmUnitMaster.Owner = this;
-                        frmUnitMaster.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmUnitMaster);
-                        frmUnitMaster.Show();
-                        break;
-                    case "TaxCategory":
-                        Administration.Taxcategory frmTaxCat;
-                        frmTaxCat = new Administration.Taxcategory(); //generate new instance 
-
-                        frmTaxCat.Owner = this;
-                        frmTaxCat.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmTaxCat);
-                        frmTaxCat.Show();
-                        break;
-                    case "ItemCompany":
-                        Administration.ItemCompany frmItemCompany;
-                        frmItemCompany = new Administration.ItemCompany(); //generate new instance 
-
-                        frmItemCompany.Owner = this;
-                        frmItemCompany.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmItemCompany);
-                        frmItemCompany.Show();
-                        break;
-                    case "ItemMaster":
-                        Administration.ItemMasterNew frmItemMaster;
-                        frmItemMaster = new Administration.ItemMasterNew(); //generate new instance 
-
-                        frmItemMaster.Owner = this;
-                        frmItemMaster.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmItemMaster);
-                        frmItemMaster.Show();
-                        break;
-                    case "MasterSeriesGroup":
-                        Administration.Masterseriesgroup frmMaster;
-                        frmMaster = new Administration.Masterseriesgroup(); //generate new instance 
-
-                        frmMaster.Owner = this;
-                        frmMaster.TopLevel = false;
-
-                        sptCtrlMastermenu.Panel2.Controls.Add(frmMaster);
-                        frmMaster.Show();
-                        break;
-                    default:
-                        break;
-                        
+                    sptCtrlMastermenu.Panel2.Controls.Add(form);
+                    form.Show();                    
                 }
+
+                //string name = Administration.ItemMasterNew.FormName;
+                //switch(name)
+                //{
+                //    case "ItemGroup":
+                //        Administration.Itemgroup frmItem;
+                //        frmItem = new Administration.Itemgroup(); //generate new instance 
+
+                //        frmItem.Owner = this;
+                //        frmItem.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmItem);
+                //        frmItem.Show();
+                //        break;
+                //    case "UnitMaster":
+                //        Administration.Unitmaster frmUnitMaster;
+                //        frmUnitMaster = new Administration.Unitmaster(); //generate new instance 
+
+                //        frmUnitMaster.Owner = this;
+                //        frmUnitMaster.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmUnitMaster);
+                //        frmUnitMaster.Show();
+                //        break;
+                //    case "TaxCategory":
+                //        Administration.Taxcategory frmTaxCat;
+                //        frmTaxCat = new Administration.Taxcategory(); //generate new instance 
+
+                //        frmTaxCat.Owner = this;
+                //        frmTaxCat.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmTaxCat);
+                //        frmTaxCat.Show();
+                //        break;
+                //    case "ItemCompany":
+                //        Administration.ItemCompany frmItemCompany;
+                //        frmItemCompany = new Administration.ItemCompany(); //generate new instance 
+
+                //        frmItemCompany.Owner = this;
+                //        frmItemCompany.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmItemCompany);
+                //        frmItemCompany.Show();
+                //        break;
+                //    case "ItemMaster":
+                //        Administration.ItemMasterNew frmItemMaster;
+                //        frmItemMaster = new Administration.ItemMasterNew(); //generate new instance 
+
+                //        frmItemMaster.Owner = this;
+                //        frmItemMaster.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmItemMaster);
+                //        frmItemMaster.Show();
+                //        break;
+                //    case "MasterSeriesGroup":
+                //        Administration.Masterseriesgroup frmMaster;
+                //        frmMaster = new Administration.Masterseriesgroup(); //generate new instance 
+
+                //        frmMaster.Owner = this;
+                //        frmMaster.TopLevel = false;
+
+                //        sptCtrlMastermenu.Panel2.Controls.Add(frmMaster);
+                //        frmMaster.Show();
+                //        break;
+                //    default:
+                //        break;
+                        
+                //}
                 return true;
             }
 
