@@ -57,37 +57,37 @@ namespace IPCAUI.Transactions
 
             // Assign the in-place LookupEdit control to the grid's CategoryID column.
             //// Note that the data types of the "ID" and "CategoryID" fields match.
-            gdvItem.Columns["Item"].ColumnEdit = riLookup;
-            gdvItem.BestFitColumns();
+            //gdvItem.Columns["Item"].ColumnEdit = riLookup;
+            //gdvItem.BestFitColumns();
 
-            ////Bill Sundry Lookup Edit
-            gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
-            gridBs.BestFitColumns();
+            //////Bill Sundry Lookup Edit
+            //gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
+            //gridBs.BestFitColumns();
 
             //Series Lookup Edit
             SeriesLookup objSeries = new SeriesLookup();
-            tbxSeries.Properties.DataSource = objSeries.Series;
+            cbxVoucherType.Properties.DataSource = objSeries.Series;
 
             //Purchase Type Lookup Edit
-            tbxPurchaseType.Properties.DataSource = objSeries.Series;
+            cbxPurcType.Properties.DataSource = objSeries.Series;
 
             //Party Lookup Edit
-            tbxParty.Properties.DataSource = acc.Categories;
-            tbxParty.Properties.DisplayMember = "CategoryName";
-            tbxParty.Properties.ValueMember = "CategoryName";
+            cbxParty.Properties.DataSource = acc.Categories;
+            cbxParty.Properties.DisplayMember = "CategoryName";
+            cbxParty.Properties.ValueMember = "CategoryName";
 
             //Mat Centre Lookup Edit
-            tbxMatcenter.Properties.DataSource = acc.Categories;
-            tbxMatcenter.Properties.DisplayMember = "CategoryName";
-            tbxMatcenter.Properties.ValueMember = "CategoryName";
+            cbxMatcenter.Properties.DataSource = acc.Categories;
+            cbxMatcenter.Properties.DisplayMember = "CategoryName";
+            cbxMatcenter.Properties.ValueMember = "CategoryName";
         }
 
         private void gdvItem_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
         {
             if (e.FocusedColumn.FieldName == "Item")
             {
-                gdvItem.ShowEditor();
-                ((LookUpEdit)gdvItem.ActiveEditor).ShowPopup();
+                //gdvItem.ShowEditor();
+                //((LookUpEdit)gdvItem.ActiveEditor).ShowPopup();
             }
         }
 
@@ -126,78 +126,83 @@ namespace IPCAUI.Transactions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            PurchaseVoucherMainModel objPurc = new PurchaseVoucherMainModel();
+            //PurchaseVoucherMainModel objPurc = new PurchaseVoucherMainModel();
 
-            if (tbxVoucherNumber.Text.Trim() == "")
-            {
-                MessageBox.Show("Voucher Number Can Not Be Blank!");
-                return;
-            }
+            //if (tbxVoucherNumber.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Voucher Number Can Not Be Blank!");
+            //    return;
+            //}
 
-            objPurc.PurchaseVoucher_Series = tbxSeries.Text.Trim();
-            objPurc.PurchaseVoucher_PurchaseType = tbxPurchaseType.Text.Trim();
-            objPurc.PurchaseVoucher_Date = Convert.ToDateTime(dtDate.Text);
-            objPurc.PurchaseVoucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
-            objPurc.PurchaseVoucher_Party = tbxParty.Text.Trim();
-            objPurc.PurchaseVoucher_MatCenter = tbxMatcenter.Text.Trim();
-            objPurc.Narration = tbxNarration.Text.Trim();
+            //objPurc.PurchaseVoucher_Series = cbxVoucherType.Text.Trim();
+            //objPurc.PurchaseVoucher_PurchaseType = cbxPurcType.Text.Trim();
+            //objPurc.PurchaseVoucher_Date = Convert.ToDateTime(dtDate.Text);
+            //objPurc.PurchaseVoucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
+            //objPurc.PurchaseVoucher_Party = cbxParty.Text.Trim();
+            //objPurc.PurchaseVoucher_MatCenter = cbxMatcenter.Text.Trim();
+            //objPurc.Narration = tbxNarration.Text.Trim();
 
-            objPurc.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+            //objPurc.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
 
-            //Bill Number and Due date not captured- check with Ravi if these are required
+            ////Bill Number and Due date not captured- check with Ravi if these are required
 
 
-            //Items
-            Item_VoucherModel objItem;
-            List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
+            ////Items
+            //Item_VoucherModel objItem;
+            //List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
 
-            for (int i = 0; i < gdvItem.DataRowCount; i++)
-            {
-                DataRow row = gdvItem.GetDataRow(i);
+            //for (int i = 0; i < gdvItem.DataRowCount; i++)
+            //{
+            //    DataRow row = gdvItem.GetDataRow(i);
 
-                objItem = new Item_VoucherModel();
-                objItem.Item = row["Item"].ToString();
+            //    objItem = new Item_VoucherModel();
+            //    objItem.Item = row["Item"].ToString();
 
-                objItem.Qty = Convert.ToDecimal(row["Qty"]);
-                objItem.Unit = row["Unit"].ToString();
-                objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
-                objItem.Price = Convert.ToDecimal(row["Price"].ToString());
-                lstItems.Add(objItem);
-            }
+            //    objItem.Qty = Convert.ToDecimal(row["Qty"]);
+            //    objItem.Unit = row["Unit"].ToString();
+            //    objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
+            //    objItem.Price = Convert.ToDecimal(row["Price"].ToString());
+            //    lstItems.Add(objItem);
+            //}
 
-            objPurc.PurchaseItem_Voucher = lstItems;
+            //objPurc.PurchaseItem_Voucher = lstItems;
 
-            //Bill Sundry
-            BillSundry_VoucherModel objBS;
-            List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
+            ////Bill Sundry
+            //BillSundry_VoucherModel objBS;
+            //List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
 
-            for (int i = 0; i < gridBs.DataRowCount; i++)
-            {
-                DataRow row = gridBs.GetDataRow(i);
+            //for (int i = 0; i < gridBs.DataRowCount; i++)
+            //{
+            //    DataRow row = gridBs.GetDataRow(i);
 
-                objBS = new BillSundry_VoucherModel();
-                objBS.BillSundry = row["BillSundry"].ToString();
-                objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
-                objBS.Amount = Convert.ToDecimal(row["Amount"]);
-                objBS.Type = row["Extra"].ToString();
+            //    objBS = new BillSundry_VoucherModel();
+            //    objBS.BillSundry = row["BillSundry"].ToString();
+            //    objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
+            //    objBS.Amount = Convert.ToDecimal(row["Amount"]);
+            //    objBS.Type = row["Extra"].ToString();
 
-                lstBS.Add(objBS);
-            }
+            //    lstBS.Add(objBS);
+            //}
 
-            objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
+            //objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
 
-            objPurc.BillSundry_Voucher = lstBS;
+            //objPurc.BillSundry_Voucher = lstBS;
 
-            //objSalesVoucher = new SalesVoucherBL();
+            ////objSalesVoucher = new SalesVoucherBL();
 
-            bool isSuccess = objbl.SavePurchaseVoucher(objPurc);
-            if (isSuccess)
-            {
-                MessageBox.Show("Saved Successfully!");
-                //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-                // d.ShowDialog();
-            }
+            //bool isSuccess = objbl.SavePurchaseVoucher(objPurc);
+            //if (isSuccess)
+            //{
+            //    MessageBox.Show("Saved Successfully!");
+            //    //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
+            //    // d.ShowDialog();
+            //}
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

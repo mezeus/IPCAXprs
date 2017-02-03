@@ -23,96 +23,36 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
+                paramCollection.Add(new DBParameter("@VoucherType", objSales.VoucherType));
+                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Terms", objSales.Terms));
                 paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
-                paramCollection.Add(new DBParameter("@Series", objSales.Series));
-                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate,System.Data.DbType.DateTime));              
-                //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
-                //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
-                paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
+                paramCollection.Add(new DBParameter("@BillNumber", objSales.BillNo));
                 paramCollection.Add(new DBParameter("@Party", objSales.Party));
+                paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
                 paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
-                paramCollection.Add(new DBParameter("@Narration", objSales.Narration));
-                paramCollection.Add(new DBParameter("@ItemTotalAmount", objSales.TotalAmount));
-                paramCollection.Add(new DBParameter("@ItemTotalQty", objSales.TotalQty));              
-                paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount));
+                paramCollection.Add(new DBParameter("@Narration", objSales.Narration));          
+                paramCollection.Add(new DBParameter("@TotalAmount", objSales.TotalAmount, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalQty", objSales.TotalQty, DbType.Decimal));              
+                paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,DbType.DateTime));
                 paramCollection.Add(new DBParameter("@ModifiedBy", ""));
                 paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
                 System.Data.IDataReader dr = 
-                    _dbHelper.ExecuteDataReader("spInsertSalesVoucher", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    _dbHelper.ExecuteDataReader("spInsertSalesVoucherMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 int id = 0;
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
-
                 SaveSalesVoucherItems(objSales.SalesItem_Voucher,id);
                 SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher,id);
             }
             catch (Exception ex)
             {
                 isSaved = false;
-               // throw ex;
-            }
-
-            return isSaved;
-        }
-
-        //Save Sales Order Voucher
-        public bool SaveSalesOrder(TransSalesModel objSales)
-        {
-            string Query = string.Empty;
-            bool isSaved = true;
-
-            try
-            {
-                DBParameterCollection paramCollection = new DBParameterCollection();
-
-                paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
-                paramCollection.Add(new DBParameter("@Series", objSales.Series));
-                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate, System.Data.DbType.DateTime));
-
-                //paramCollection.Add(new DBParameter("@BillNo", objSales.BillNo));
-                //paramCollection.Add(new DBParameter("@DueDate", objSales.DueDate));
-                paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
-                paramCollection.Add(new DBParameter("@Party", objSales.Party));
-                paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
-
-                paramCollection.Add(new DBParameter("@Narration", objSales.Narration));
-                paramCollection.Add(new DBParameter("@ItemTotalAmount", objSales.TotalAmount));
-                paramCollection.Add(new DBParameter("@ItemTotalQty", objSales.TotalQty));
-
-                paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount));
-
-                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-
-
-                System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spInsertSalesVoucher", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-
-                int id = 0;
-                dr.Read();
-                id = Convert.ToInt32(dr[0]);
-
-                SaveSalesVoucherItems(objSales.SalesItem_Voucher, id);
-                SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher, id);
-                //Query = "INSERT INTO Trans_Sales([Series],[SaleDate],[VoucherNumber],[BillNumber],[DueDate],[SalesType],[Party]," +
-                //"[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount],[CreatedBy]) VALUES " +
-                //"(@Series,@SaleDate,@VoucherNumber,@BillNo,@DueDate,@SalesType,@Party,@MatCentre,@Narration,@TotalQty,@TotalAmount,@BSTotalAmount,@CreatedBy)";
-
-                //if (_dbHelper.ExecuteScalar(Query, paramCollection) > 0)
-                //{
-                //    SaveSalesVoucherItems(objSales.SalesItem_Voucher);
-                //    SaveSalesBillSundryVoucher(objSales.SalesBillSundry_Voucher);
-                //    isSaved = true;
-                //}
-
-
-            }
-            catch (Exception ex)
-            {
-                isSaved = false;
-                // throw ex;
+               throw ex;
             }
 
             return isSaved;
@@ -131,18 +71,24 @@ namespace eSunSpeed.BusinessLogic
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
                     paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
-                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
                     paramCollection.Add(new DBParameter("@Item", item.Item));                  
-                    paramCollection.Add(new DBParameter("@Qty", item.Qty));
+                    paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Unit", item.Unit));
-                    paramCollection.Add(new DBParameter("@Price", item.Price));
-                    paramCollection.Add(new DBParameter("@Amount", item.Amount));
+                    paramCollection.Add(new DBParameter("@Per", item.Per));
+                    paramCollection.Add(new DBParameter("@Price", item.Price, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                    paramCollection.Add(new DBParameter("@Free", item.Free, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@BasicAmt", item.BasicAmt, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@DiscountPercentage", item.DiscountPercentage, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@DiscountAmount", item.DiscountAmount, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@TaxAmount", item.TaxAmount, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Amount", item.Amount, DbType.Decimal));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                     paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,System.Data.DbType.DateTime));
                     paramCollection.Add(new DBParameter("@ModifiedBy",""));
                     paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                     System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spInsertSalesVchItemDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    _dbHelper.ExecuteDataReader("spInsertSalesVoucherItemDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -152,80 +98,13 @@ namespace eSunSpeed.BusinessLogic
             }
             return isSaved;
         }
-        //Save Sales Order Items Details
-        public bool SaveSalesOrderItems(List<Item_VoucherModel> lstSales, int ParentId)
-        {
-            string Query = string.Empty;
-            bool isSaved = true;
-            foreach (Item_VoucherModel item in lstSales)
-            {
-                item.ParentId = ParentId;
 
-                try
-                {
-                    DBParameterCollection paramCollection = new DBParameterCollection();
-
-                    paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
-                    paramCollection.Add(new DBParameter("@Batch", item.Batch));
-                    paramCollection.Add(new DBParameter("@Item", item.Item));
-                    paramCollection.Add(new DBParameter("@Qty", item.Qty));
-                    paramCollection.Add(new DBParameter("@Unit", item.Unit));
-                    paramCollection.Add(new DBParameter("@Price", item.Price));
-                    paramCollection.Add(new DBParameter("@Amount", item.Amount));
-                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-
-                    System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spInsertSalesItem", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-                }
-                catch (Exception ex)
-                {
-                    isSaved = false;
-                    throw ex;
-                }
-            }
-            return isSaved;
-        }
         //Save Sales Voucher BillSundary Details
-        public bool SaveSalesVchBillSundry(List<BillSundry_VoucherModel> lstBS, int ParentId)
-        {
-            string Query = string.Empty;
-            bool isSaved = true;
-            foreach (BillSundry_VoucherModel bs in lstBS)
-            {
-                bs.ParentId = ParentId;
-                try
-                {
-                    DBParameterCollection paramCollection = new DBParameterCollection();
-
-                    paramCollection.Add(new DBParameter("@Trans_Sales_Id", bs.ParentId));
-                    paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
-                    paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
-                    paramCollection.Add(new DBParameter("@Amount", bs.Amount));
-                    paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
-                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,DbType.DateTime));
-                    paramCollection.Add(new DBParameter("@ModifiedBy", ""));
-                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
-
-                    System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spInsertBillSundryMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-                }
-                catch (Exception ex)
-                {
-                    isSaved = false;
-                    throw ex;
-                }
-            }
-            return isSaved;
-        }
-        //Save Sales Order BillSundary Details
         public bool SaveSalesBillSundryVoucher(List<BillSundry_VoucherModel> lstBS, int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
 
-            //int ParentId = GetSalesId();
-
             foreach (BillSundry_VoucherModel bs in lstBS)
             {
                 bs.ParentId = ParentId;
@@ -237,19 +116,15 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@Trans_Sales_Id", bs.ParentId));
                     paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
                     paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
+                    paramCollection.Add(new DBParameter("@Extra", bs.Extra));
                     paramCollection.Add(new DBParameter("@Amount", bs.Amount));
-                    paramCollection.Add(new DBParameter("@TotalAmount", bs.TotalAmount));
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
                     System.Data.IDataReader dr =
-                    _dbHelper.ExecuteDataReader("spInsertBillSundryMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
-
-                    //Query = "INSERT INTO Trans_Sales_BS([Trans_Sales_Id],[BillSundry],[Amount]," +
-                    //"[Percentage],[TotalAmount],[CreatedBy]) VALUES " +
-                    //"(@SalesVoucher_ID,@SalesBillSundry_Name,@SalesBillSundry_Amount,@Percentage,@TotalAmount,@CreatedBy)";
-
-                    //if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    //    isSaved = true;
+                    _dbHelper.ExecuteDataReader("spInsertSalesVoucherBS", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                 }
                 catch (Exception ex)
                 {
@@ -301,9 +176,8 @@ namespace eSunSpeed.BusinessLogic
         }
         #endregion
 
-        #region UPDATE SALE VOUCHER
-
-        public bool UpdateSalesVoucher(eSunSpeedDomain.TransSalesModel objSales)
+        //Update Sales Voucher
+        public bool UpdateSalesVoucherMaster(eSunSpeedDomain.TransSalesModel objSales)
         {
             string Query = string.Empty;
             bool isUpdated = true;
@@ -312,36 +186,120 @@ namespace eSunSpeed.BusinessLogic
             {
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objSales.Series));
-                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate));
+                paramCollection.Add(new DBParameter("@VoucherType", objSales.VoucherType));
+                paramCollection.Add(new DBParameter("@SaleDate", objSales.SaleDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Terms", objSales.Terms));
                 paramCollection.Add(new DBParameter("@VoucherNumber", objSales.VoucherNumber));
-                paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
+                paramCollection.Add(new DBParameter("@BillNumber", objSales.BillNo));
                 paramCollection.Add(new DBParameter("@Party", objSales.Party));
+                paramCollection.Add(new DBParameter("@SalesType", objSales.SalesType));
                 paramCollection.Add(new DBParameter("@MatCentre", objSales.MatCentre));
-
                 paramCollection.Add(new DBParameter("@Narration", objSales.Narration));
-                paramCollection.Add(new DBParameter("@TotalQty", objSales.TotalQty, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalAmount", objSales.TotalAmount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount, System.Data.DbType.Decimal));
-
-                paramCollection.Add(new DBParameter("@ModifiedBy", objSales.ModifiedBy));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@SalesVoucher_ID",objSales.Trans_Sales_Id));
-
-                Query = "UPDATE Trans_Sales SET [Series]=@Series,[SaleDate]=@SaleDate," +
-                         "[VoucherNumber]=@VoucherNumber,[SalesType]=@SalesType," +
-                        "[Party]=@Party,[MatCentre]=@MatCentre," +
-                        "[Narration]=@Narration,[TotalQty]=@TotalQty," +
-                        "[TotalAmount]=@TotalAmount,[BSTotalAmount]=@BSTotalAmount," +
-                        "[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                        "WHERE Trans_Sales_Id=@SalesVoucher_ID;";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                paramCollection.Add(new DBParameter("@TotalAmount", objSales.TotalAmount, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalQty", objSales.TotalQty, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Trans_Sales_Id", objSales.Trans_Sales_Id));
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spUpdateSalesVoucherMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                //Update Sale Item Details
+                foreach(Item_VoucherModel item in objSales.SalesItem_Voucher)
                 {
-                    UpdateItemandBS(objSales);
-                    isUpdated = true;
+                    item.ParentId = objSales.Trans_Sales_Id;
+                    if(item.Item_ID>0)
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
+                        paramCollection.Add(new DBParameter("@Item_Id", item.Item_ID));
+                        paramCollection.Add(new DBParameter("@Item", item.Item));
+                        paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Unit", item.Unit));
+                        paramCollection.Add(new DBParameter("@Per", item.Per));
+                        paramCollection.Add(new DBParameter("@Price", item.Price, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                        paramCollection.Add(new DBParameter("@Free", item.Free, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@BasicAmt", item.BasicAmt, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@DiscountPercentage", item.DiscountPercentage, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@DiscountAmount", item.DiscountAmount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@TaxAmount", item.TaxAmount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Amount", item.Amount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        System.Data.IDataReader Idr =
+                        _dbHelper.ExecuteDataReader("spUpdateSalesVoucherItemDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                    else
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
+                        paramCollection.Add(new DBParameter("@Item", item.Item));
+                        paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Unit", item.Unit));
+                        paramCollection.Add(new DBParameter("@Per", item.Per));
+                        paramCollection.Add(new DBParameter("@Price", item.Price, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Batch", item.Batch));
+                        paramCollection.Add(new DBParameter("@Free", item.Free, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@BasicAmt", item.BasicAmt, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@DiscountPercentage", item.DiscountPercentage, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@DiscountAmount", item.DiscountAmount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@TaxAmount", item.TaxAmount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Amount", item.Amount, DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        System.Data.IDataReader Idr =
+                        _dbHelper.ExecuteDataReader("spInsertSalesVoucherItemDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
                 }
-                    
+                //Update Sales Bill Sundary
+                foreach(BillSundry_VoucherModel bs in objSales.SalesBillSundry_Voucher)
+                {
+                    bs.ParentId = objSales.Trans_Sales_Id;
+                    if(bs.BSId>0)
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@Trans_Sales_Id", bs.ParentId));
+                        paramCollection.Add(new DBParameter("@BS_Id", bs.BSId));
+                        paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
+                        paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
+                        paramCollection.Add(new DBParameter("@Extra", bs.Extra));
+                        paramCollection.Add(new DBParameter("@Amount", bs.Amount));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
+
+                        System.Data.IDataReader drbs =
+                        _dbHelper.ExecuteDataReader("spUpdateSalesVoucherBS", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                    else
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@Trans_Sales_Id", bs.ParentId));
+                        paramCollection.Add(new DBParameter("@BillSundry", bs.BillSundry));
+                        paramCollection.Add(new DBParameter("@Percentage", bs.Percentage));
+                        paramCollection.Add(new DBParameter("@Extra", bs.Extra));
+                        paramCollection.Add(new DBParameter("@Amount", bs.Amount));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
+
+                        System.Data.IDataReader drbs =
+                        _dbHelper.ExecuteDataReader("spInsertSalesVoucherBS", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -351,126 +309,7 @@ namespace eSunSpeed.BusinessLogic
 
             return isUpdated;
         }
-       
-        private bool UpdateItemandBS(TransSalesModel objSales)
-        {
-            try
-            {
-                //UPDATE Item voucher -CHILD TABLE UPDATES
-                foreach (Item_VoucherModel item in objSales.SalesItem_Voucher)
-                {
-                    if (item.Item_ID > 0)
-                    {
-                        UpdateSalesVoucherItems(item);
-
-                    }
-                    else
-                    {
-                        //SaveSalesVoucherItem(item);
-                    }
-                }
-
-                //Update Bill Sundry Items
-                foreach (BillSundry_VoucherModel bs in objSales.SalesBillSundry_Voucher)
-                {
-                    if (bs.BSId > 0)
-                    {
-                        UpdateSalesBillSundryVoucher(bs);
-
-                    }
-                    else
-                    {
-                        SaveBillSundryVoucher(bs);
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
-
-            return true;
-        }
-    
-
-        public bool UpdateSalesVoucherItems(Item_VoucherModel objSalesItem)
-        {
-            string Query = string.Empty;
-            bool isUpdated = true;            
-
-            try
-            {
-                DBParameterCollection paramCollection = new DBParameterCollection();
-
-                
-                paramCollection.Add(new DBParameter("@Sales_Item", objSalesItem.Item));
-                paramCollection.Add(new DBParameter("@Sales_Qty", objSalesItem.Qty,System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@Sales_Unit", objSalesItem.Unit));
-                paramCollection.Add(new DBParameter("@Sales_Price", objSalesItem.Price, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@Sales_Amount", objSalesItem.Amount, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalQty", objSalesItem.TotalQty, System.Data.DbType.Decimal));
-                paramCollection.Add(new DBParameter("@TotalAmount", objSalesItem.TotalAmount, System.Data.DbType.Decimal));                
-
-                paramCollection.Add(new DBParameter("@ModifiedBy", objSalesItem.ModifiedBy));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-
-                paramCollection.Add(new DBParameter("@SalesVoucher_ID", objSalesItem.ParentId));
-                paramCollection.Add(new DBParameter("@ItemId", objSalesItem.Item_ID));
-
-                Query = "UPDATE Trans_Sales_Item SET [Item]=@Sales_Item,[Qty]=@Sales_Qty,[Unit]=@Sales_Unit," +
-                "[Price]=@Sales_Price,[Amount]=@Sales_Amount,[TotalQty]=@TotalQty,[TotalAmount]=@TotalAmount,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                "WHERE SalesVoucher_ID=@SalesVoucher_ID AND [ItemId]=@ItemId";
-
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isUpdated = true;
-            }
-            catch (Exception ex)
-            {
-                isUpdated = false;
-                throw ex;
-            }
-
-            return isUpdated;
-        }
-
-        public bool UpdateSalesBillSundryVoucher(BillSundry_VoucherModel objBSVoucher)
-        {
-            string Query = string.Empty;
-            bool isUpdate = true;            
-
-            try
-            {
-                DBParameterCollection paramCollection = new DBParameterCollection();
-
-                
-                paramCollection.Add(new DBParameter("@SalesBillSundry_Name", objBSVoucher.BillSundry));
-                paramCollection.Add(new DBParameter("@SalesBillSundry_Amount", objBSVoucher.Amount));
-                paramCollection.Add(new DBParameter("@Percentage", objBSVoucher.Percentage));
-                paramCollection.Add(new DBParameter("@TotalAmount", objBSVoucher.TotalAmount));
-                paramCollection.Add(new DBParameter("@ModifiedBy", objBSVoucher.ModifiedBy));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                
-                paramCollection.Add(new DBParameter("@SalesBillSundry_ID", objBSVoucher.BSId));
-                paramCollection.Add(new DBParameter("@SalesVoucher_ID", objBSVoucher.ParentId));
-
-                Query = "UPDATE Trans_Sales_BS SET [BillSundry]=@SalesBillSundry_Name,[Amount]=@SalesBillSundry_Amount," +
-                "[Percentage]=@Percentage,[TotalAmount]=@TotalAmount,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                "WHERE [BSId]=@SalesBillSundry_ID AND [Trans_Sales_Id]=@SalesVoucher_ID";
-
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                    isUpdate = true;
-            }
-            catch (Exception ex)
-            {
-                isUpdate = false;
-                throw ex;
-            }
-
-            return isUpdate;
-        }
-        #endregion
-
+  
         public List<TransSalesModel> GetAllSalesVouchers()
         {
             List<TransSalesModel> lstSalesVouchers = new List<TransSalesModel>();
@@ -637,15 +476,16 @@ namespace eSunSpeed.BusinessLogic
             return objsales;
         }
 
-        public List<TransListModel> GetAllSales()
+        //Get List Of Sales Voucher Details In List
+        public List<TransListModel> GetAllSalesVoucherMaster()
         {
             List<TransListModel> lstModel = new List<TransListModel>();
             TransListModel objList;
 
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.Append("SELECT t.trans_sales_id, i.itemid, t.saledate, t.series, t.vouchernumber, t.party, i.item, i.qty, i.unit, i.price, i.amount, i.totalqty, i.totalamount FROM trans_sales AS t ");
-            sbQuery.Append("INNER JOIN trans_sales_item AS i ON t.Trans_Sales_Id=i.Trans_Sales_Id;");
+            sbQuery.Append("SELECT m.SalesVoucher_Id, i.ItemId,m.SaleDate,m.VoucherNumber,m.Party, i.Item, i.Qty, i.Unit FROM salesvoucher_master AS m ");
+            sbQuery.Append("INNER JOIN salesvoucher_itemdetails AS i ON m.SalesVoucher_Id=i.SalesVoucher_Id;");
 
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
@@ -654,58 +494,49 @@ namespace eSunSpeed.BusinessLogic
             {
                 objList = new TransListModel();
 
-                objList.trans_sales_id= Convert.ToInt32(dr["Trans_Sales_Id"]);
-
-                objList.item_id = Convert.ToInt32(dr["itemid"]);
+                objList.trans_sales_id= Convert.ToInt32(dr["SalesVoucher_Id"]);
+                objList.item_id = Convert.ToInt32(dr["ItemId"]);
                 objList.saledate = Convert.ToDateTime(dr["SaleDate"]);
-                objList.series= Convert.ToString(dr["series"]);
                 objList.voucherno = Convert.ToInt32(dr["VoucherNumber"]);
-                objList.party = Convert.ToString(dr["party"]);
-                objList.item = Convert.ToString(dr["item"]);
-                objList.qty= Convert.ToInt32 (dr["qty"]);
-                objList.unit = Convert.ToString(dr["unit"]);
-                objList.price = Convert.ToInt32(dr["price"]);
-                objList.amount = Convert.ToInt32(dr["amount"]);
-                objList.amount = Convert.ToInt32(dr["amount"]);
-                objList.totalqty = Convert.ToInt32((dr["totalqty"]));
-                objList.totalamount = Convert.ToInt32((dr["totalamount"]));
+                objList.party = Convert.ToString(dr["Party"]);
+                objList.item = Convert.ToString(dr["Item"]);
+                objList.qty= Convert.ToInt32 (dr["Qty"]);
+                objList.unit = Convert.ToString(dr["Unit"]);
                 lstModel.Add(objList);
 
             }
             return lstModel;
         }
 
-        public TransSalesModel GetAllSalesbyId(int id)
+        public TransSalesModel GetAllSalesbyId(long id)
         {            
-            TransSalesModel objSales =new TransSalesModel();
+            TransSalesModel objSaleVch =new TransSalesModel();
 
-            string Query = "SELECT * FROM Trans_Sales WHERE trans_sales_Id=" + id;
+            string Query = "SELECT * FROM salesvoucher_master WHERE SalesVoucher_Id=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
+                objSaleVch.Trans_Sales_Id = Convert.ToInt64(dr["SalesVoucher_Id"]);
+                objSaleVch.VoucherType= dr["VoucherType"].ToString();     
+                objSaleVch.SaleDate= DataFormat.GetDateTime(dr["SaleDate"]);
+                objSaleVch.Terms = dr["Terms"].ToString();
+                objSaleVch.VoucherNumber = Convert.ToInt64(dr["VoucherNumber"]);
+                objSaleVch.BillNo =Convert.ToInt64(dr["BillNumber"].ToString());
+                objSaleVch.SalesType = dr["SalesType"].ToString();
+                objSaleVch.Party = dr["party"].ToString();
+                objSaleVch.MatCentre = dr["MatCentre"].ToString();
+                objSaleVch.Narration= dr["Narration"].ToString();
+                objSaleVch.TotalQty =Convert.ToDecimal(dr["TotalQty"]);
+                objSaleVch.TotalAmount =Convert.ToDecimal( dr["TotalAmount"].ToString());
+                objSaleVch.BSTotalAmount =Convert.ToDecimal( dr["BSTotalAmount"]);
+                objSaleVch.PriceList = Convert.ToDecimal(dr["PriceList"].ToString()==string.Empty?string.Empty: dr["PriceList"]);
 
-                objSales.Trans_Sales_Id = Convert.ToInt32(dr["Trans_Sales_Id"]);
-                objSales.Series= dr["series"].ToString();
-                
-                objSales.SaleDate= DataFormat.GetDateTime(dr["SaleDate"]);
-                objSales.VoucherNumber = DataFormat.GetInteger(dr["VoucherNumber"]);
-                objSales.BillNo =Convert.ToInt32(dr["BillNumber"].ToString());
-                objSales.DueDate = Convert.ToDateTime(dr["DueDate"]);
-                objSales.SalesType = dr["SalesType"].ToString();
-                objSales.Party = dr["party"].ToString();
-                objSales.MatCentre = dr["MatCentre"].ToString();
-                objSales.Narration= dr["Narration"].ToString();
-                objSales.TotalQty =Convert.ToDecimal(dr["TotalQty"]);
-                objSales.TotalAmount =Convert.ToDecimal( dr["TotalAmount"].ToString());
-                objSales.BSTotalAmount =Convert.ToDecimal( dr["BSTotalAmount"]);
-
-                //SELECT Credit Note Accounts
-
-                string itemQuery = "SELECT * FROM Trans_Sales_Item WHERE Trans_Sales_Id=" + id;
+                //SELECT Item Details
+                string itemQuery = "SELECT * FROM salesvoucher_itemdetails WHERE SalesVoucher_Id=" + id;
                 System.Data.IDataReader drItems = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
-                objSales.SalesItem_Voucher = new List<Item_VoucherModel>();
+                objSaleVch.SalesItem_Voucher = new List<Item_VoucherModel>();
                 Item_VoucherModel objitem;
 
                 while (drItems.Read())
@@ -713,24 +544,27 @@ namespace eSunSpeed.BusinessLogic
                     objitem = new Item_VoucherModel();
 
                     objitem.Item_ID = Convert.ToInt32(drItems["ItemId"]);
-                    objitem.ParentId = DataFormat.GetInteger(drItems["Trans_Sales_Id"]);
+                    objitem.ParentId = DataFormat.GetInteger(drItems["SalesVoucher_Id"]);
                     objitem.Item = drItems["item"].ToString();
-                    objitem.Batch = drItems["Batch"].ToString();
-                    objitem.Qty =Convert.ToInt32( drItems["qty"].ToString());
-                    objitem.Unit = (drItems["unit"].ToString());
-                    objitem.Price = Convert.ToDecimal(drItems["price"]);
-                    objitem.Amount =Convert.ToInt32(drItems["amount"].ToString());
-                    objitem.TotalAmount = Convert.ToDecimal(drItems["TotalAmount"]);
-                    objitem.TotalQty = Convert.ToInt32(drItems["TotalQty"].ToString());
+                    objitem.Qty = Convert.ToDecimal(drItems["qty"].ToString());
+                    objitem.Unit = (drItems["Unit"].ToString());
+                    objitem.Per = (drItems["Per"].ToString());
+                    objitem.Batch = drItems["Batch"].ToString();                  
+                    objitem.Price = Convert.ToDecimal(drItems["Price"]);
+                    objitem.Amount =Convert.ToDecimal(drItems["Amount"].ToString());
+                    objitem.Free = Convert.ToDecimal(drItems["Free"]);
+                    objitem.BasicAmt = Convert.ToDecimal(drItems["BasicAmt"].ToString());
+                    objitem.DiscountPercentage = Convert.ToDecimal(drItems["DiscountPercentage"].ToString());
+                    objitem.DiscountAmount = Convert.ToDecimal(drItems["DiscountAmount"].ToString());
+                    objitem.TaxAmount = Convert.ToDecimal(drItems["TaxAmount"].ToString());
 
-                    objSales.SalesItem_Voucher.Add(objitem);
-
+                    objSaleVch.SalesItem_Voucher.Add(objitem);
                 }
                 
-                string BSQuery = "SELECT * FROM Trans_Sales_BS WHERE Trans_Sales_Id=" + id;
+                string BSQuery = "SELECT * FROM salesvoucher_bsdetails WHERE SalesVoucher_Id=" + id;
                 System.Data.IDataReader drbs = _dbHelper.ExecuteDataReader(BSQuery, _dbHelper.GetConnObject());
 
-                objSales.SalesBillSundry_Voucher = new List<BillSundry_VoucherModel>();
+                objSaleVch.SalesBillSundry_Voucher = new List<BillSundry_VoucherModel>();
                 BillSundry_VoucherModel objbs;
 
                 while (drbs.Read())
@@ -738,30 +572,29 @@ namespace eSunSpeed.BusinessLogic
                     objbs = new BillSundry_VoucherModel();
 
                     objbs.BSId = Convert.ToInt32(drbs["BSId"]);
-                    objbs.ParentId = DataFormat.GetInteger(drbs["Trans_Sales_Id"]);
+                    objbs.ParentId = DataFormat.GetInteger(drbs["SalesVoucher_Id"]);
                     objbs.BillSundry = drbs["BillSundry"].ToString();
                     objbs.Percentage = Convert.ToDecimal(drbs["Percentage"].ToString());
+                    objbs.Extra = drbs["Extra"].ToString();
                     objbs.Amount =Convert.ToDecimal((drbs["Amount"].ToString()));
-                    objbs.TotalAmount= Convert.ToDecimal(drbs["TotalAmount"].ToString());
 
-                    objSales.SalesBillSundry_Voucher.Add(objbs);
-
+                    objSaleVch.SalesBillSundry_Voucher.Add(objbs);
                 }
 
             }
-            return objSales;
+            return objSaleVch;
         }
-
-        public bool DeleteSalesVoucher(int id)
+        //Delete Sales Voucher With Chaild Tables
+        public bool DeleteSalesVoucher(long id)
         {
             bool isDelete = false;
             try
             {
-                if (DeleteSalesItems(id))
+                if (DeleteSalesVoucherItems(id))
                 {
-                    if (DeleteSalesBS(id))
+                    if (DeleteSalesVoucherBS(id))
                     {
-                        string Query = "DELETE * FROM trans_Sales WHERE trans_Sales_Id=" + id;
+                        string Query = "DELETE FROM `salesvoucher_master` WHERE SalesVoucher_Id=" + id;
                         int rowes = _dbHelper.ExecuteNonQuery(Query);
                         if (rowes > 0)
                             isDelete = true;
@@ -774,13 +607,13 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
-        public bool DeleteSalesItems(int id)
+        //Delete Sales Voucher Item Details
+        public bool DeleteSalesVoucherItems(long id)
         {
-            bool isDelete = false;
+            bool isDelete = true;
             try
             {
-                string Query = "DELETE * FROM Trans_Sales_Item WHERE trans_Sales_Id=" + id;
+                string Query = "DELETE FROM `salesvoucher_itemdetails` WHERE SalesVoucher_Id=" + id;
                 int rowes = _dbHelper.ExecuteNonQuery(Query);
                 if (rowes > 0)
                     isDelete = true;
@@ -791,13 +624,13 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
-        public bool DeleteSalesBS(int id)
+        //Delete Sales Voucher Bill Sundary Details
+        public bool DeleteSalesVoucherBS(long id)
         {
-            bool isDelete = false;
+            bool isDelete = true;
             try
             {
-                string Query = "DELETE * FROM Trans_Sales_BS WHERE trans_Sales_Id=" + id;
+                string Query = "DELETE FROM `salesvoucher_bsdetails` WHERE SalesVoucher_Id=" + id;
                 int rowes = _dbHelper.ExecuteNonQuery(Query);
                 if (rowes > 0)
                     isDelete = true;

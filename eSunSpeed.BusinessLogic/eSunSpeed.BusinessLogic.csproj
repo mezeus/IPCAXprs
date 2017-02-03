@@ -89,6 +89,7 @@
     <Compile Include="ReferenceGroupBL.cs" />
     <Compile Include="Reports\DaybookBL.cs" />
     <Compile Include="SalesQuotationBL.cs" />
+    <Compile Include="SalesOrderBL.cs" />
     <Compile Include="SaleTypeBL.cs" />
     <Compile Include="StockJournalBL.cs" />
     <Compile Include="TaxCategory .cs" />

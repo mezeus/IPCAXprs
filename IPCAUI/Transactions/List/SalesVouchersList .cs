@@ -9,41 +9,45 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
+using IPCAUI.Transactions;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class SalesVouchers : Form
+    public partial class SalesVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public SalesVouchers()
+        SalesVoucherBL objSalebl = new SalesVoucherBL();
+        public SalesVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void SalesVouchers_Load(object sender, EventArgs e)
+        private void SalesVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<eSunSpeedDomain.TransListModel> lstSales = objSalebl.GetAllSalesVoucherMaster();
+            dvgSalesVoucherList.DataSource = lstSales;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgSalesVchListDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                TransListModel lstSales;
+                lstSales = (TransListModel)dvgSalesVchListDetails.GetRow(dvgSalesVchListDetails.FocusedRowHandle);
+                SalesVoucher.SalesId= lstSales.trans_sales_id;
+
+                this.Close();
+            }
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgSalesVchListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            TransListModel lstSales;
+            lstSales = (TransListModel)dvgSalesVchListDetails.GetRow(dvgSalesVchListDetails.FocusedRowHandle);
+            SalesVoucher.SalesId = lstSales.trans_sales_id;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
+            this.Close();
+        }
     }
 }

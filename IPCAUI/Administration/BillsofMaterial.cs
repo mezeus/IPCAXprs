@@ -246,6 +246,7 @@ namespace IPCAUI.Administration
             }
             RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
             riLookup.DataSource = dtItems;
+            riLookup.ValueMember = "Items";
             riLookup.DisplayMember = "Items";
             riLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             riLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;

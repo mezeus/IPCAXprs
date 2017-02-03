@@ -237,15 +237,15 @@ namespace eSunSpeed.BusinessLogic
             while (dr.Read())
             {
 
-                objpurchase.PV_Id = DataFormat.GetInteger(dr["TransPVId"]);
-                objpurchase.Series = dr["series"].ToString();
+                //objpurchase.PV_Id = DataFormat.GetInteger(dr["TransPVId"]);
+                //objpurchase.Series = dr["series"].ToString();
                 
-                objpurchase.PV_Date = DataFormat.GetDateTime(dr["pv_Date"]);
-                objpurchase.Voucher_Number = DataFormat.GetInteger(dr["Voucherno"]);
-                objpurchase.BillNo = DataFormat.GetInteger(dr["BillNo"]);
-                objpurchase.PurchaseType = dr["pv_Type"].ToString();
-                objpurchase.Party = dr["party"].ToString();
-                objpurchase.MatCenter = dr["MatCenter"].ToString();
+                //objpurchase.PV_Date = DataFormat.GetDateTime(dr["pv_Date"]);
+                //objpurchase.Voucher_Number = DataFormat.GetInteger(dr["Voucherno"]);
+                //objpurchase.BillNo = DataFormat.GetInteger(dr["BillNo"]);
+                //objpurchase.PurchaseType = dr["pv_Type"].ToString();
+                //objpurchase.Party = dr["party"].ToString();
+                //objpurchase.MatCenter = dr["MatCenter"].ToString();
                 objpurchase.Narration = dr["Narration"].ToString();
                 //objpurchase.t = Convert.ToDecimal(dr["TotalQty"]);
                 //objpurchase.TotalAmount = Convert.ToDecimal(dr["TotalAmount"].ToString());
@@ -314,13 +314,13 @@ namespace eSunSpeed.BusinessLogic
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@Series", objpv.Series));
-                paramCollection.Add(new DBParameter("@PurchaseType", objpv.PurchaseType));
-                paramCollection.Add(new DBParameter("@PurchaseDate", objpv.PV_Date));
-                paramCollection.Add(new DBParameter("@VoucherNumber", objpv.Voucher_Number));
-                paramCollection.Add(new DBParameter("@BillNumber", objpv.BillNo));
+                //paramCollection.Add(new DBParameter("@PurchaseType", objpv.PurchaseType));
+                //paramCollection.Add(new DBParameter("@PurchaseDate", objpv.PV_Date));
+                //paramCollection.Add(new DBParameter("@VoucherNumber", objpv.Voucher_Number));
+                //paramCollection.Add(new DBParameter("@BillNumber", objpv.BillNo));
 
-                paramCollection.Add(new DBParameter("@Party", objpv.Party));
-                paramCollection.Add(new DBParameter("@MatCentre", objpv.MatCenter));
+                //paramCollection.Add(new DBParameter("@Party", objpv.Party));
+                //paramCollection.Add(new DBParameter("@MatCentre", objpv.MatCenter));
 
                 paramCollection.Add(new DBParameter("@Narration", objpv.Narration));
                 paramCollection.Add(new DBParameter("@TotalQty", objpv.TotalQty, System.Data.DbType.Decimal));
@@ -329,7 +329,7 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
                 //paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@PurchaseVoucher_ID", objpv.PV_Id));
+                //paramCollection.Add(new DBParameter("@PurchaseVoucher_ID", objpv.PV_Id));
 
                 Query = "UPDATE Trans_Purchase_Voucher SET [Series]=@Series,[PV_Type]=@PurchaseType,[PV_Date]=@PurchaseDate," +
                          "[VoucherNo]=@VoucherNumber,[BillNo]=@BillNumber," +

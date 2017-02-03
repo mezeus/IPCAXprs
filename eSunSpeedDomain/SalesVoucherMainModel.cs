@@ -7,12 +7,14 @@ namespace eSunSpeedDomain
 {
     public class TransSalesModel
     {
-        public int Trans_Sales_Id { get; set; }
+        public long Trans_Sales_Id { get; set; }
+        public string VoucherType { get; set; }
         public string Series { get; set; }
         public DateTime SaleDate { get; set; }
         public DateTime DueDate { get; set; }
         public bool IsDeleted { get; set; }
         public long BillNo { get; set; }
+        public decimal PriceList { get; set; }
         public string Terms { get; set; }
         public long VoucherNumber { get; set; }
         public string SalesType { get; set; }
