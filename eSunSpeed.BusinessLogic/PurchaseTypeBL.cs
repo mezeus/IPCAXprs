@@ -263,6 +263,20 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDeleted;
         }
+        //Is Purchase Type Exists
+        public bool IsPurchaseTypeExists(string TypeName)
+        {
+            StringBuilder _sbQuery = new StringBuilder();
+            _sbQuery.AppendFormat("SELECT COUNT(*) FROM purchasetypemaster WHERE PurchaseType='{0}'", TypeName);
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(_sbQuery.ToString(), _dbHelper.GetConnObject());
+            dr.Read();
+            if (Convert.ToInt32(dr[0]) > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 
 }

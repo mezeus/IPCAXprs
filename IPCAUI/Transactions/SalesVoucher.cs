@@ -116,13 +116,14 @@ namespace IPCAUI.Transactions
             }
 
             objSaleVch.Series = tbxSeries.Text.Trim();
-            objSaleVch.SalesType = tbxSaleType.Text.Trim();
             objSaleVch.SaleDate = Convert.ToDateTime(dtDate.Text);
-            objSaleVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim());
+            objSaleVch.Terms = cbxTerms.SelectedItem.ToString();
+            objSaleVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim() == string.Empty ? "0" : tbxVoucherNumber.Text.Trim());
+            objSaleVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
             objSaleVch.Party = tbxParty.Text.Trim();
+            objSaleVch.SalesType = tbxSaleType.Text.Trim();
             objSaleVch.MatCentre = tbxMatcenter.Text.Trim();
-            objSaleVch.Narration = tbxNarration.Text.Trim();
-
+            objSaleVch.Narration = tbxNarration.Text.Trim()==null?string.Empty :tbxNarration.Text.Trim();
             objSaleVch.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
             objSaleVch.TotalQty = Convert.ToDecimal(Qty.SummaryItem.SummaryValue);
             objSaleVch.BSTotalAmount= Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);

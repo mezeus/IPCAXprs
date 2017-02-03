@@ -12,6 +12,7 @@ namespace eSunSpeedDomain
         //this GroupBox for sales Account Information of RadioButton
         public bool typeSpecifyHereSingleAccount { get; set; }//if select button Ledger CoboBoxWillope
         public string LedgerAccountBox { get; set; }
+        public string servicesLedgerBox { get; set; }
         public bool typeDifferentTaxRate { get; set; }//Setting Button will come enable thisRadioButton
         public bool typeSpecifyINVoucher { get; set; }
 

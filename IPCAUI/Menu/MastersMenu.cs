@@ -113,7 +113,16 @@ namespace IPCAUI.Menu
                     sptCtrlMastermenu.Panel2.Controls.Add(form);
                     form.Show();                    
                 }
+                string SaleType = Administration.SaleType.FormName;
+                if(SaleType != "")
+                {
+                    Form form = (Form)Activator.CreateInstance(Type.GetType(SaleType));
+                    form.Owner = this;
+                    form.TopLevel = false;
 
+                    sptCtrlMastermenu.Panel2.Controls.Add(form);
+                    form.Show();
+                }
                 //string name = Administration.ItemMasterNew.FormName;
                 //switch(name)
                 //{

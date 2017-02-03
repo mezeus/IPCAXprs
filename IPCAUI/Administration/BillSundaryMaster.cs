@@ -510,10 +510,26 @@ namespace IPCAUI.Administration
         private void BillSundaryMaster_Load(object sender, EventArgs e)
         {
             tbxName.Focus();
+            DefaultValuesofForm();
             LoadAccountLedger();
             laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+        private void DefaultValuesofForm()
+        {
+            cbxSubtotalheading.SelectedIndex = 0;
+            cbxAffectsthecostofgoodsinsale.SelectedIndex = 1;
+            cbxaffectsthecostofgoodsinpurchase.SelectedIndex = 1;
+            cbxAffecsthecostofgoodsinMaterialissue.SelectedIndex = 1;
+            cbxAffectsthecostofgoodsinmaterialreceipt.SelectedIndex = 1;
+            cbxAffectsthecostofgoodsinstockTransfer.SelectedIndex = 1;
+            cbxSaleaffectsAcc.SelectedIndex = 0;
+            cbxPurcAftAccount.SelectedIndex = 0;
+            lactrlgrpMaterialIssRec.Enabled = true;
+            lactrlgrpPreviousBillSundary.Enabled = false;
+            lactrlgrpBillSundaryCalcu.Enabled = false;
+            cbxAffectAccounting.SelectedIndex = 1;
         }
         private void LoadAccountLedger()
         {
@@ -533,12 +549,323 @@ namespace IPCAUI.Administration
                 cbxPurcAccountHeadPostParty.Properties.Items.Add(objAccounts.AccountName);
                 cbxAccountHeadPost.Properties.Items.Add(objAccounts.AccountName);
                 cbxAccountPost.Properties.Items.Add(objAccounts.AccountName);
+                cbxAccountHeadPost.Properties.Items.Add(objAccounts.AccountName);
             }
 
             List<BillSundryMasterModel> lstBillSundary = objbsBL.GetAllBillSundry();
             foreach(BillSundryMasterModel objBill in lstBillSundary)
             {
                 cbxBillSundary.Properties.Items.Add(objBill.Name);
+            }
+        }
+
+        private void cbxSaleaffectsAcc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void cbxPurcAftAccount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxSaleaffectsAcc.SelectedItem.ToString() == "Y")
+            {
+                lactrlPAdjinPurcAmount.Enabled = true;
+                lactrlPAdjinPartyAmount.Enabled = true;
+                cbxPurcPurchaseAmount.SelectedIndex = 0;
+                cbxPurcPartyAmount.SelectedIndex = 0;
+            }
+            else
+            {
+                cbxPurcPurchaseAmount.Text = "";
+                cbxPurcPartyAmount.Text = "";
+                cbxPurcPostOverAbove.Text = "";
+                lactrlPAdjinPurcAmount.Enabled = false;
+                lactrlSpyAdjPurcAmount.Enabled = false;
+                lactrlPurcAccHeadtoPost.Enabled = false;
+                lactrlPAdjinPartyAmount.Enabled = false;
+                lactrlAdjSpyPartyAmount.Enabled = false;
+                lactrlPAccPartyHeadtoPost.Enabled = false;
+                lactrlPurcPostOverAbove.Enabled = false;
+            }
+        }
+
+        private void cbxSaleaffectsAcc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void cbxSaleAdjustsaleamount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxSaleAdjustsaleamount.SelectedItem.ToString()=="Y")
+            {
+                lactrlSaleAccountSale.Enabled = false;
+                lactrlAccountHeadtoPostSale.Enabled = false;
+                lactrlPostOverandAboveSale.Enabled = false;
+                cbxSalePostoverandAbove.SelectedIndex = -1;
+                cbxSaleAccountLedgerSpecify.Text = "";
+                cbxSaleAccHeadpost.Text = "";
+            }
+            else
+            {
+                lactrlSaleAccountSale.Enabled = true;
+                lactrlAccountHeadtoPostSale.Enabled = false;
+                lactrlPostOverandAboveSale.Enabled = true;              
+                cbxSalePostoverandAbove.SelectedIndex = 1;
+            }
+        }
+
+        private void cbxSaleAdjustsaleamount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void cbxSaleAccountLedgerSpecify_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxSaleAccountLedgerSpecify.SelectedItem.ToString()== "Specify Acc. Here")
+            {
+                lactrlAccountHeadtoPostSale.Enabled = true;
+
+            }
+            else
+            {
+                lactrlAccountHeadtoPostSale.Enabled = false;
+                cbxSaleAccHeadpost.Text = "";
+            }
+        }
+
+        private void cbxSaleAdjustinpartyAmount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSaleAdjustinpartyAmount.SelectedItem.ToString() == "Y")
+            {
+                lactrlAccounttoHeadtoPostSle.Enabled = false;
+                lactrlSaleParty.Enabled = false;
+                cbxPartysaleAccountLedgerSpecify.Text = "";
+                cbxSaleAccHeadpostParty.Text = "";
+            }
+            else
+            {
+                lactrlSaleParty.Enabled = true;
+                lactrlAccounttoHeadtoPostSle.Enabled = false;
+               
+            }
+        }
+
+        private void cbxPartysaleAccountLedgerSpecify_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxPartysaleAccountLedgerSpecify.SelectedItem.ToString() =="Specify Acc. Here")
+            {
+                lactrlAccounttoHeadtoPostSle.Enabled = true;
+            }
+            else
+            {
+                lactrlAccounttoHeadtoPostSle.Enabled = false;
+                cbxSaleAccHeadpostParty.Text = "";
+            }
+        }
+
+        private void cbxSaleaffectsAcc_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxSaleaffectsAcc.SelectedItem.ToString() == "Y")
+            {
+                lactrlSaleAmountSale.Enabled = true;
+                lactrlAdjustinPartyAmountSale.Enabled = true;
+                cbxSaleAdjustsaleamount.SelectedIndex = 0;
+                cbxSaleAdjustinpartyAmount.SelectedIndex = 0;
+            }
+            else
+            {
+                cbxSaleAdjustsaleamount.Text = "";
+                cbxSaleAdjustinpartyAmount.Text ="";
+                cbxSalePostoverandAbove.Text = "";
+                lactrlSaleAmountSale.Enabled = false;
+                lactrlSaleAccountSale.Enabled = false;
+                lactrlAccountHeadtoPostSale.Enabled = false;
+                lactrlAdjustinPartyAmountSale.Enabled = false;
+                lactrlSaleParty.Enabled = false;
+                lactrlAccounttoHeadtoPostSle.Enabled = false;
+                lactrlPostOverandAboveSale.Enabled = false;
+            }
+        }
+
+        private void cbxPurcAftAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbxPurcAftAccount_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxPurcAftAccount.SelectedItem.ToString() == "Y")
+            {
+                lactrlPAdjinPurcAmount.Enabled = true;
+                lactrlPAdjinPartyAmount.Enabled = true;
+                cbxPurcPurchaseAmount.SelectedIndex = 0;
+                cbxPurcPartyAmount.SelectedIndex = 0;
+            }
+            else
+            {
+                cbxPurcPurchaseAmount.Text = "";
+                cbxPurcPartyAmount.Text = "";
+                cbxPurcPostOverAbove.Text = "";
+                lactrlPAdjinPurcAmount.Enabled = false;
+                lactrlSpyAdjPurcAmount.Enabled = false;
+                lactrlPurcAccHeadtoPost.Enabled = false;
+                lactrlPAdjinPartyAmount.Enabled = false;
+                lactrlAdjSpyPartyAmount.Enabled = false;
+                lactrlPAccPartyHeadtoPost.Enabled = false;
+                lactrlPurcPostOverAbove.Enabled = false;
+            }
+        }
+
+        private void cbxPurcPurchaseAmount_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxPurcPurchaseAmount.SelectedItem.ToString() == "Y")
+            {
+                lactrlSpyAdjPurcAmount.Enabled = false;
+                lactrlPurcAccHeadtoPost.Enabled = false;
+                lactrlPurcPostOverAbove.Enabled = false;
+                cbxPurcPostOverAbove.SelectedIndex = -1;
+                cbxPurcAccountLedgerSpecify.Text = "";
+                cbxPurcHeadPost.Text = "";
+            }
+            else
+            {
+                lactrlSpyAdjPurcAmount.Enabled = true;
+                lactrlPurcAccHeadtoPost.Enabled = false;
+                lactrlPurcPostOverAbove.Enabled = true;
+                cbxPurcPostOverAbove.SelectedIndex = 1;
+            }
+        }
+
+        private void cbxPartyPurcAccountLedgerSpecify_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxPartyPurcAccountLedgerSpecify.SelectedItem.ToString() == "Specify Acc. Here")
+            {
+                lactrlPAccPartyHeadtoPost.Enabled = true;
+            }
+            else
+            {
+                lactrlPAccPartyHeadtoPost.Enabled = false;
+                cbxPurcAccountHeadPostParty.Text = "";
+            }
+        }
+
+        private void cbxPurcAccountLedgerSpecify_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxPurcAccountLedgerSpecify.SelectedItem.ToString() == "Specify Acc. Here")
+            {
+                lactrlPurcAccHeadtoPost.Enabled = true;
+            }
+            else
+            {
+                lactrlPurcAccHeadtoPost.Enabled = false;
+                cbxPurcHeadPost.Text = "";
+            }
+        }
+
+        private void cbxPurcPartyAmount_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbxPurcPartyAmount.SelectedItem.ToString() == "Y")
+            {
+                lactrlAdjSpyPartyAmount.Enabled = false;
+                lactrlPAccPartyHeadtoPost.Enabled = false;
+                cbxPartyPurcAccountLedgerSpecify.Text = "";
+                cbxPurcAccountHeadPostParty.Text = "";
+            }
+            else
+            {
+                lactrlAdjSpyPartyAmount.Enabled = true;
+                lactrlPAccPartyHeadtoPost.Enabled = false;
+
+            }
+        }
+
+        private void cbxAffectAccounting_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cbxAffectAccounting.SelectedItem.ToString()=="N")
+            {
+                lactrlOtherSide.Enabled = false;
+                lactrlAccounttoHeadPost.Enabled = false;
+                lactrlAdjinParty.Enabled = false;
+                lactrlSpecifyAccParty.Enabled = false;
+                lactrlPartyAcctoHeadPost.Enabled = false;
+                lactrlPostoverAbove.Enabled = false;
+                cbxAdjustinmc.Text = "";
+                cbxPostoverabove.Text ="";
+            }
+            else
+            {
+                lactrlOtherSide.Enabled = true;
+                lactrlAccounttoHeadPost.Enabled = true;
+                lactrlAdjinParty.Enabled = true;
+                lactrlSpecifyAccParty.Enabled = true;
+                lactrlPartyAcctoHeadPost.Enabled =  true;
+                lactrlPostoverAbove.Enabled = true;
+                cbxAdjustinmc.SelectedIndex = 1;
+                cbxPostoverabove.SelectedIndex = 1;
+            }
+        }
+
+        private void cbxAffectAccounting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxAffectAccounting.SelectedItem.ToString() == "N")
+            {
+                lactrlOtherSide.Enabled = false;
+                lactrlAccounttoHeadPost.Enabled = false;
+                lactrlAdjinParty.Enabled = false;
+                lactrlSpecifyAccParty.Enabled = false;
+                lactrlPartyAcctoHeadPost.Enabled = false;
+                lactrlPostoverAbove.Enabled = false;
+                cbxAdjustinmc.Text = "";
+                cbxPostoverabove.Text = "";
+            }
+            else
+            {
+                lactrlOtherSide.Enabled = true;
+                lactrlAccounttoHeadPost.Enabled = true;
+                lactrlAdjinParty.Enabled = true;
+                lactrlSpecifyAccParty.Enabled = true;
+                lactrlPartyAcctoHeadPost.Enabled = true;
+                lactrlPostoverAbove.Enabled = true;
+                cbxAdjustinmc.SelectedIndex = 1;
+                cbxPostoverabove.SelectedIndex = 1;
+            }
+        }
+
+        private void cbxotherside_Enter(object sender, EventArgs e)
+        {
+            cbxotherside.ShowPopup();
+        }
+
+        private void cbxAccountHeadPost_Enter(object sender, EventArgs e)
+        {
+            cbxAccountHeadPost.ShowPopup();
+        }
+
+        private void cbxAccountAdjustinParty_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cbxAccountAdjustinParty.SelectedItem.ToString()== "Specify Acc. Here")
+            {
+                lactrlPartyAcctoHeadPost.Enabled = true;
+            }
+            else
+            {
+                lactrlPartyAcctoHeadPost.Enabled = false;
+                cbxAccountPost.Text = "";
+            }
+        }
+
+        private void cbxAdjustinmc_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cbxAdjustinmc.SelectedItem.ToString()=="Y")
+            {
+                lactrlSpecifyAccParty.Enabled = false;
+                lactrlPartyAcctoHeadPost.Enabled = false;
+                cbxAccountAdjustinParty.Text = "";
+                cbxAccountPost.Text = "";
+            }
+            else
+            {
+                lactrlSpecifyAccParty.Enabled = true;
+                lactrlPartyAcctoHeadPost.Enabled = false;
             }
         }
     }
