@@ -86,6 +86,12 @@
     <Compile Include="Administration\BillSundaryMaster.Designer.cs">
       <DependentUpon>BillSundaryMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\List\GSTcategoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\List\GSTcategoryList.Designer.cs">
+      <DependentUpon>GSTcategoryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administration\PurchaseType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +511,12 @@
     </Compile>
     <Compile Include="Administration\BillsofMaterial.Designer.cs">
       <DependentUpon>BillsofMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\GSTDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\GSTDetails.Designer.cs">
+      <DependentUpon>GSTDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Administration\TDSCategory.cs">
       <SubType>Form</SubType>
@@ -3336,6 +3348,9 @@
     <EmbeddedResource Include="Administration\BillSundaryMaster.resx">
       <DependentUpon>BillSundaryMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\List\GSTcategoryList.resx">
+      <DependentUpon>GSTcategoryList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administration\PurchaseType.resx">
       <DependentUpon>PurchaseType.cs</DependentUpon>
     </EmbeddedResource>
@@ -3545,6 +3560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\BillsofMaterial.resx">
       <DependentUpon>BillsofMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\GSTDetails.resx">
+      <DependentUpon>GSTDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administration\TDSCategory.resx">
       <DependentUpon>TDSCategory.cs</DependentUpon>

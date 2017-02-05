@@ -29,10 +29,11 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PrimaryGroup", ObjCCG.PrimaryGroup, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@underGroup", ObjCCG.underGroup));
                 paramCollection.Add(new DBParameter("@CreatedBy", ObjCCG.CreatedBy));
+                paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,System.Data.DbType.DateTime));
 
-                Query = "INSERT INTO CostCentreGroupMaster(`GroupName`,`Alias`,`PrimaryGroup`,`underGroup`,`CreatedBy`)" +
+                Query = "INSERT INTO CostCentreGroupMaster(`GroupName`,`Alias`,`PrimaryGroup`,`underGroup`,`CreatedBy`,`CreatedDate`)" +
 
-                    "VALUES(@GroupName,@Alias,@PrimaryGroup,@underGroup,@CreatedBy)";
+                    "VALUES(@GroupName,@Alias,@PrimaryGroup,@underGroup,@CreatedBy,@CreatedDate)";
 
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -61,9 +62,10 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@PrimaryGroup",objCCG.PrimaryGroup, System.Data.DbType.Boolean));
                 paramCollection.Add(new DBParameter("@underGroup", objCCG.underGroup));
                 paramCollection.Add(new DBParameter("@ModifiedBy", objCCG.ModifiedBy));
+                paramCollection.Add(new DBParameter("@ModifiedDate",DateTime.Now,System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@CCG_ID", objCCG.CCG_ID));
 
-                Query = "UPDATE CostCentreGroupMaster SET GroupName=@GroupName,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,underGroup=@underGroup,ModifiedBy=@ModifiedBy " +
+                Query = "UPDATE CostCentreGroupMaster SET GroupName=@GroupName,Alias=@Alias,`PrimaryGroup`=@PrimaryGroup,underGroup=@underGroup,ModifiedBy=@ModifiedBy,ModifiedDate=@ModifiedDate " +
                    "WHERE CCG_ID=@CCG_ID";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)

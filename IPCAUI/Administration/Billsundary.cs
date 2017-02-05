@@ -317,12 +317,12 @@ namespace IPCAUI.Administration
 
         private void cbxBillsundrytype_Enter(object sender, EventArgs e)
         {
-            cbxBillsundrytype.SelectedIndex = 0;
+            cbxBillsundrytype.ShowPopup();
         }
 
         private void cbxBillsundrynature_Enter(object sender, EventArgs e)
         {
-            cbxBillsundrynature.SelectedIndex = 0;
+            cbxBillsundrynature.ShowPopup();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -502,6 +502,16 @@ namespace IPCAUI.Administration
                 lblAdjustSaleAmountSale.Enabled = true;
                 lblAdjustinPartyAmountSale.Enabled = true;
             }
+        }
+
+        private void cbxBillsundrytype_Leave(object sender, EventArgs e)
+        {
+            cbxBillsundrytype.SelectedIndex = 0;
+        }
+
+        private void cbxBillsundrynature_Leave(object sender, EventArgs e)
+        {
+            cbxBillsundrynature.SelectedIndex = 0;
         }
     }
 }

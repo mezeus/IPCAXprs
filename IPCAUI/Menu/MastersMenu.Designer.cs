@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MastersMenu));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -74,13 +74,15 @@
             this.barbtnTdsCategory = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem35 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem37 = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnGSTDetails = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnSalaryCopm = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnContactgroup = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnExecutive = new DevExpress.XtraBars.BarButtonItem();
             this.btnItemCompany = new DevExpress.XtraBars.BarButtonItem();
             this.btnTIN = new DevExpress.XtraBars.BarButtonItem();
             this.btnMarkupStructure = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnRefer = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnReference = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.NewSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.SalesReturn = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -92,6 +94,7 @@
             this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup28 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -132,9 +135,6 @@
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
-            this.barBtnRefer = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup28 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barbtnReference = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -245,7 +245,7 @@
             this.barbtnTdsCategory,
             this.barButtonItem35,
             this.barButtonItem36,
-            this.barButtonItem37,
+            this.barbtnGSTDetails,
             this.barbtnSalaryCopm,
             this.barbtnContactgroup,
             this.barbtnExecutive,
@@ -522,11 +522,12 @@
             this.barButtonItem36.Id = 32;
             this.barButtonItem36.Name = "barButtonItem36";
             // 
-            // barButtonItem37
+            // barbtnGSTDetails
             // 
-            this.barButtonItem37.Caption = "barButtonItem37";
-            this.barButtonItem37.Id = 33;
-            this.barButtonItem37.Name = "barButtonItem37";
+            this.barbtnGSTDetails.Caption = "GST Category";
+            this.barbtnGSTDetails.Id = 33;
+            this.barbtnGSTDetails.Name = "barbtnGSTDetails";
+            this.barbtnGSTDetails.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnGSTDetails_ItemClick);
             // 
             // barbtnSalaryCopm
             // 
@@ -569,6 +570,19 @@
             this.btnMarkupStructure.Name = "btnMarkupStructure";
             this.btnMarkupStructure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMarkupStructure_ItemClick);
             // 
+            // barBtnRefer
+            // 
+            this.barBtnRefer.Caption = "Reference Group";
+            this.barBtnRefer.Id = 42;
+            this.barBtnRefer.Name = "barBtnRefer";
+            // 
+            // barbtnReference
+            // 
+            this.barbtnReference.Caption = "Reference Group";
+            this.barbtnReference.Id = 43;
+            this.barbtnReference.Name = "barbtnReference";
+            this.barbtnReference.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnReference_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -586,12 +600,12 @@
             this.ribbonPage1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage1.Image")));
             this.ribbonPage1.KeyTip = "SA";
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.ButtonGroups;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
             this.ribbonPage1.Text = "Accounts";
             // 
             // NewSales
@@ -656,6 +670,12 @@
             this.ribbonPageGroup18.ItemLinks.Add(this.barbtnMastNarration);
             this.ribbonPageGroup18.Name = "ribbonPageGroup18";
             this.ribbonPageGroup18.Text = "ribbonPageGroup18";
+            // 
+            // ribbonPageGroup28
+            // 
+            this.ribbonPageGroup28.ItemLinks.Add(this.barbtnReference);
+            this.ribbonPageGroup28.Name = "ribbonPageGroup28";
+            this.ribbonPageGroup28.Text = "ribbonPageGroup28";
             // 
             // ribbonPage3
             // 
@@ -790,7 +810,7 @@
             // 
             // ribbonPageGroup29
             // 
-            this.ribbonPageGroup29.ItemLinks.Add(this.barButtonItem37);
+            this.ribbonPageGroup29.ItemLinks.Add(this.barbtnGSTDetails);
             this.ribbonPageGroup29.Name = "ribbonPageGroup29";
             this.ribbonPageGroup29.Text = "ribbonPageGroup29";
             // 
@@ -965,25 +985,6 @@
             this.backstageViewTabItem1.Name = "backstageViewTabItem1";
             this.backstageViewTabItem1.Selected = false;
             // 
-            // barBtnRefer
-            // 
-            this.barBtnRefer.Caption = "Reference Group";
-            this.barBtnRefer.Id = 42;
-            this.barBtnRefer.Name = "barBtnRefer";
-            // 
-            // ribbonPageGroup28
-            // 
-            this.ribbonPageGroup28.ItemLinks.Add(this.barbtnReference);
-            this.ribbonPageGroup28.Name = "ribbonPageGroup28";
-            this.ribbonPageGroup28.Text = "ribbonPageGroup28";
-            // 
-            // barbtnReference
-            // 
-            this.barbtnReference.Caption = "Reference Group";
-            this.barbtnReference.Id = 43;
-            this.barbtnReference.Name = "barbtnReference";
-            this.barbtnReference.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnReference_ItemClick);
-            // 
             // MastersMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1095,7 +1096,7 @@
         private DevExpress.XtraBars.BarButtonItem barbtnTdsCategory;
         private DevExpress.XtraBars.BarButtonItem barButtonItem35;
         private DevExpress.XtraBars.BarButtonItem barButtonItem36;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem37;
+        private DevExpress.XtraBars.BarButtonItem barbtnGSTDetails;
         private DevExpress.XtraBars.BarButtonItem barbtnSalaryCopm;
         private DevExpress.XtraBars.BarButtonItem barbtnContactgroup;
         private DevExpress.XtraBars.BarButtonItem barbtnExecutive;

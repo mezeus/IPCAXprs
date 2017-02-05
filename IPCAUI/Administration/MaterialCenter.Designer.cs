@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialCenter));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.cbxSaleAccount = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxPurchaseAccount = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -187,7 +187,7 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.simpleButton1);
+            this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.cbxSaleAccount);
             this.layoutControl1.Controls.Add(this.cbxPurchaseAccount);
@@ -218,16 +218,16 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // simpleButton1
+            // btnDelete
             // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(492, 427);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(63, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 63;
-            this.simpleButton1.Text = "Delete";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(492, 427);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(63, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 63;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -676,6 +676,8 @@
             this.cbxGroup.StyleController = this.layoutControl1;
             this.cbxGroup.TabIndex = 14;
             this.cbxGroup.Enter += new System.EventHandler(this.cbxGroup_Enter);
+            this.cbxGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxGroup_KeyPress);
+            this.cbxGroup.Leave += new System.EventHandler(this.cbxGroup_Leave);
             // 
             // tbxPrintname
             // 
@@ -1205,7 +1207,7 @@
             // 
             // lblDelete
             // 
-            this.lblDelete.Control = this.simpleButton1;
+            this.lblDelete.Control = this.btnDelete;
             this.lblDelete.Location = new System.Drawing.Point(480, 415);
             this.lblDelete.MaxSize = new System.Drawing.Size(67, 26);
             this.lblDelete.MinSize = new System.Drawing.Size(67, 26);
@@ -1394,7 +1396,7 @@
         private DevExpress.XtraLayout.LayoutControlItem lblUpdate;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private DevExpress.XtraEditors.ComboBoxEdit tbxAccStocktransfer;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraLayout.LayoutControlItem lblDelete;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
     }

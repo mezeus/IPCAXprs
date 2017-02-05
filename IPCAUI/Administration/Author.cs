@@ -25,7 +25,15 @@ namespace IPCAUI.Administration
         {
             this.Close();
         }
-
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         private void AuthorList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Administration.List.AuthorList frmList = new Administration.List.AuthorList();
@@ -33,7 +41,7 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
             FillAuthorInfo();
-            tbxName.Focus();
+            
         }
 
         private void FillAuthorInfo()
@@ -64,16 +72,19 @@ namespace IPCAUI.Administration
             lblupdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxName.Focus();
         }
 
         private void Author_Load(object sender, EventArgs e)
         {
+            tbxName.Focus();
             AuthorId = 0;
             cbxContactwithAccount.SelectedIndex = 1;
             cbxState.SelectedIndex = 0;
             lblupdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+
         }
 
         private void tbxName_KeyPress(object sender, KeyPressEventArgs e)

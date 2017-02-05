@@ -31,12 +31,34 @@ namespace IPCAUI.Administration.List
         
         private void dvgItemcompDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                ItemCompanyMasterModel lstItemsCompanys;
+
+                lstItemsCompanys = (ItemCompanyMasterModel)dvgItemcompDetails.GetRow(dvgItemcompDetails.FocusedRowHandle);
+                ItemCompany.ItemcompId = lstItemsCompanys.ICM_id;
+
+                this.Close();
+            }           
+        }
+
+        private void dvgItemcompDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             ItemCompanyMasterModel lstItemsCompanys;
 
             lstItemsCompanys = (ItemCompanyMasterModel)dvgItemcompDetails.GetRow(dvgItemcompDetails.FocusedRowHandle);
             ItemCompany.ItemcompId = lstItemsCompanys.ICM_id;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

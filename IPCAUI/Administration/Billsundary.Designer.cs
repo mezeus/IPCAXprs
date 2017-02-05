@@ -343,7 +343,7 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(340, 339);
+            this.textEdit1.Location = new System.Drawing.Point(340, 354);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(186, 20);
             this.textEdit1.StyleController = this.layoutControl1;
@@ -352,7 +352,7 @@
             // cbxConsoilatedbillsundariesamt
             // 
             this.cbxConsoilatedbillsundariesamt.EnterMoveNextControl = true;
-            this.cbxConsoilatedbillsundariesamt.Location = new System.Drawing.Point(923, 456);
+            this.cbxConsoilatedbillsundariesamt.Location = new System.Drawing.Point(923, 471);
             this.cbxConsoilatedbillsundariesamt.Name = "cbxConsoilatedbillsundariesamt";
             this.cbxConsoilatedbillsundariesamt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -366,7 +366,7 @@
             // btnDelete
             // 
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(593, 657);
+            this.btnDelete.Location = new System.Drawing.Point(593, 672);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(71, 22);
             this.btnDelete.StyleController = this.layoutControl1;
@@ -376,7 +376,7 @@
             // 
             // rbnBillsundaryCal
             // 
-            this.rbnBillsundaryCal.Location = new System.Drawing.Point(554, 522);
+            this.rbnBillsundaryCal.Location = new System.Drawing.Point(554, 537);
             this.rbnBillsundaryCal.Name = "rbnBillsundaryCal";
             this.rbnBillsundaryCal.Properties.Columns = 2;
             this.rbnBillsundaryCal.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -389,7 +389,7 @@
             // rbnbillsOf
             // 
             this.rbnbillsOf.EnterMoveNextControl = true;
-            this.rbnbillsOf.Location = new System.Drawing.Point(542, 337);
+            this.rbnbillsOf.Location = new System.Drawing.Point(542, 352);
             this.rbnbillsOf.Name = "rbnbillsOf";
             this.rbnbillsOf.Properties.Columns = 2;
             this.rbnbillsOf.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -407,7 +407,7 @@
             // 
             this.tbxPersentage.EditValue = "0.00";
             this.tbxPersentage.EnterMoveNextControl = true;
-            this.tbxPersentage.Location = new System.Drawing.Point(542, 313);
+            this.tbxPersentage.Location = new System.Drawing.Point(542, 328);
             this.tbxPersentage.Name = "tbxPersentage";
             this.tbxPersentage.Size = new System.Drawing.Size(224, 20);
             this.tbxPersentage.StyleController = this.layoutControl1;
@@ -416,7 +416,7 @@
             // rbnAmtBillsundary
             // 
             this.rbnAmtBillsundary.EnterMoveNextControl = true;
-            this.rbnAmtBillsundary.Location = new System.Drawing.Point(542, 264);
+            this.rbnAmtBillsundary.Location = new System.Drawing.Point(542, 279);
             this.rbnAmtBillsundary.Name = "rbnAmtBillsundary";
             this.rbnAmtBillsundary.Properties.Columns = 2;
             this.rbnAmtBillsundary.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -431,7 +431,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(504, 657);
+            this.btnUpdate.Location = new System.Drawing.Point(504, 672);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(70, 22);
             this.btnUpdate.StyleController = this.layoutControl1;
@@ -442,7 +442,7 @@
             // tbxAlias
             // 
             this.tbxAlias.EnterMoveNextControl = true;
-            this.tbxAlias.Location = new System.Drawing.Point(346, 21);
+            this.tbxAlias.Location = new System.Drawing.Point(346, 36);
             this.tbxAlias.Name = "tbxAlias";
             this.tbxAlias.Size = new System.Drawing.Size(192, 20);
             this.tbxAlias.StyleController = this.layoutControl1;
@@ -451,7 +451,7 @@
             // cbxroundoffbillsundryamount
             // 
             this.cbxroundoffbillsundryamount.EnterMoveNextControl = true;
-            this.cbxroundoffbillsundryamount.Location = new System.Drawing.Point(773, 621);
+            this.cbxroundoffbillsundryamount.Location = new System.Drawing.Point(773, 636);
             this.cbxroundoffbillsundryamount.Name = "cbxroundoffbillsundryamount";
             this.cbxroundoffbillsundryamount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -515,7 +515,7 @@
             this.navBarItem38,
             this.navBarItem39,
             this.navBarItem40});
-            this.navBarControl1.Location = new System.Drawing.Point(12, -3);
+            this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 111;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
@@ -824,7 +824,7 @@
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(685, 657);
+            this.btnQuit.Location = new System.Drawing.Point(685, 672);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(68, 22);
             this.btnQuit.StyleController = this.layoutControl1;
@@ -835,7 +835,7 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(412, 657);
+            this.btnSave.Location = new System.Drawing.Point(412, 672);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 22);
             this.btnSave.StyleController = this.layoutControl1;
@@ -846,7 +846,7 @@
             // chkIncludefreequantity
             // 
             this.chkIncludefreequantity.EnterMoveNextControl = true;
-            this.chkIncludefreequantity.Location = new System.Drawing.Point(542, 402);
+            this.chkIncludefreequantity.Location = new System.Drawing.Point(542, 417);
             this.chkIncludefreequantity.Name = "chkIncludefreequantity";
             this.chkIncludefreequantity.Properties.Caption = "Include Free Qty.";
             this.chkIncludefreequantity.Size = new System.Drawing.Size(222, 19);
@@ -856,7 +856,7 @@
             // cbxselectivecalculation
             // 
             this.cbxselectivecalculation.EnterMoveNextControl = true;
-            this.cbxselectivecalculation.Location = new System.Drawing.Point(871, 402);
+            this.cbxselectivecalculation.Location = new System.Drawing.Point(871, 417);
             this.cbxselectivecalculation.Name = "cbxselectivecalculation";
             this.cbxselectivecalculation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -871,7 +871,7 @@
             // 
             this.rbnMaterial.EditValue = true;
             this.rbnMaterial.EnterMoveNextControl = true;
-            this.rbnMaterial.Location = new System.Drawing.Point(554, 27);
+            this.rbnMaterial.Location = new System.Drawing.Point(554, 42);
             this.rbnMaterial.Name = "rbnMaterial";
             this.rbnMaterial.Properties.Columns = 3;
             this.rbnMaterial.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -886,7 +886,7 @@
             // tbxPrintName
             // 
             this.tbxPrintName.EnterMoveNextControl = true;
-            this.tbxPrintName.Location = new System.Drawing.Point(346, 45);
+            this.tbxPrintName.Location = new System.Drawing.Point(346, 60);
             this.tbxPrintName.Name = "tbxPrintName";
             this.tbxPrintName.Size = new System.Drawing.Size(192, 20);
             this.tbxPrintName.StyleController = this.layoutControl1;
@@ -895,7 +895,7 @@
             // tbxName
             // 
             this.tbxName.EnterMoveNextControl = true;
-            this.tbxName.Location = new System.Drawing.Point(346, -3);
+            this.tbxName.Location = new System.Drawing.Point(346, 12);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(192, 20);
             this.tbxName.StyleController = this.layoutControl1;
@@ -906,7 +906,7 @@
             // cbxAffectsthecostofgoodsinsale
             // 
             this.cbxAffectsthecostofgoodsinsale.EnterMoveNextControl = true;
-            this.cbxAffectsthecostofgoodsinsale.Location = new System.Drawing.Point(346, 165);
+            this.cbxAffectsthecostofgoodsinsale.Location = new System.Drawing.Point(346, 180);
             this.cbxAffectsthecostofgoodsinsale.Name = "cbxAffectsthecostofgoodsinsale";
             this.cbxAffectsthecostofgoodsinsale.Properties.Items.AddRange(new object[] {
             "Y",
@@ -918,7 +918,7 @@
             // cbxaffectsthecostofgoodsinpurchase
             // 
             this.cbxaffectsthecostofgoodsinpurchase.EnterMoveNextControl = true;
-            this.cbxaffectsthecostofgoodsinpurchase.Location = new System.Drawing.Point(346, 189);
+            this.cbxaffectsthecostofgoodsinpurchase.Location = new System.Drawing.Point(346, 204);
             this.cbxaffectsthecostofgoodsinpurchase.Name = "cbxaffectsthecostofgoodsinpurchase";
             this.cbxaffectsthecostofgoodsinpurchase.Properties.Items.AddRange(new object[] {
             "Y",
@@ -930,7 +930,7 @@
             // cbxaffecsthecostofgoodsinmaterialissue
             // 
             this.cbxaffecsthecostofgoodsinmaterialissue.EnterMoveNextControl = true;
-            this.cbxaffecsthecostofgoodsinmaterialissue.Location = new System.Drawing.Point(346, 213);
+            this.cbxaffecsthecostofgoodsinmaterialissue.Location = new System.Drawing.Point(346, 228);
             this.cbxaffecsthecostofgoodsinmaterialissue.Name = "cbxaffecsthecostofgoodsinmaterialissue";
             this.cbxaffecsthecostofgoodsinmaterialissue.Properties.Items.AddRange(new object[] {
             "Y",
@@ -942,7 +942,7 @@
             // cbxaffectsthecostofgoodsinmaterialreceipt
             // 
             this.cbxaffectsthecostofgoodsinmaterialreceipt.EnterMoveNextControl = true;
-            this.cbxaffectsthecostofgoodsinmaterialreceipt.Location = new System.Drawing.Point(346, 237);
+            this.cbxaffectsthecostofgoodsinmaterialreceipt.Location = new System.Drawing.Point(346, 252);
             this.cbxaffectsthecostofgoodsinmaterialreceipt.Name = "cbxaffectsthecostofgoodsinmaterialreceipt";
             this.cbxaffectsthecostofgoodsinmaterialreceipt.Properties.Items.AddRange(new object[] {
             "Y",
@@ -954,7 +954,7 @@
             // cbxaffectsthecostofgoodsinstocktransfer
             // 
             this.cbxaffectsthecostofgoodsinstocktransfer.EnterMoveNextControl = true;
-            this.cbxaffectsthecostofgoodsinstocktransfer.Location = new System.Drawing.Point(346, 261);
+            this.cbxaffectsthecostofgoodsinstocktransfer.Location = new System.Drawing.Point(346, 276);
             this.cbxaffectsthecostofgoodsinstocktransfer.Name = "cbxaffectsthecostofgoodsinstocktransfer";
             this.cbxaffectsthecostofgoodsinstocktransfer.Properties.Items.AddRange(new object[] {
             "Y",
@@ -966,7 +966,7 @@
             // cbxSaleaffectsAcc
             // 
             this.cbxSaleaffectsAcc.EnterMoveNextControl = true;
-            this.cbxSaleaffectsAcc.Location = new System.Drawing.Point(256, 315);
+            this.cbxSaleaffectsAcc.Location = new System.Drawing.Point(256, 330);
             this.cbxSaleaffectsAcc.Name = "cbxSaleaffectsAcc";
             this.cbxSaleaffectsAcc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -981,7 +981,7 @@
             // cbxSaleAdjustsaleamount
             // 
             this.cbxSaleAdjustsaleamount.EnterMoveNextControl = true;
-            this.cbxSaleAdjustsaleamount.Location = new System.Drawing.Point(256, 339);
+            this.cbxSaleAdjustsaleamount.Location = new System.Drawing.Point(256, 354);
             this.cbxSaleAdjustsaleamount.Name = "cbxSaleAdjustsaleamount";
             this.cbxSaleAdjustsaleamount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -995,7 +995,7 @@
             // cbxSaleAccHeadpost
             // 
             this.cbxSaleAccHeadpost.EnterMoveNextControl = true;
-            this.cbxSaleAccHeadpost.Location = new System.Drawing.Point(256, 387);
+            this.cbxSaleAccHeadpost.Location = new System.Drawing.Point(256, 402);
             this.cbxSaleAccHeadpost.Name = "cbxSaleAccHeadpost";
             this.cbxSaleAccHeadpost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1009,7 +1009,7 @@
             // cbxSaleAdjustinpartyAmount
             // 
             this.cbxSaleAdjustinpartyAmount.EnterMoveNextControl = true;
-            this.cbxSaleAdjustinpartyAmount.Location = new System.Drawing.Point(255, 411);
+            this.cbxSaleAdjustinpartyAmount.Location = new System.Drawing.Point(255, 426);
             this.cbxSaleAdjustinpartyAmount.Name = "cbxSaleAdjustinpartyAmount";
             this.cbxSaleAdjustinpartyAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1023,7 +1023,7 @@
             // cbxSaleAccountHeadpost
             // 
             this.cbxSaleAccountHeadpost.EnterMoveNextControl = true;
-            this.cbxSaleAccountHeadpost.Location = new System.Drawing.Point(256, 435);
+            this.cbxSaleAccountHeadpost.Location = new System.Drawing.Point(256, 450);
             this.cbxSaleAccountHeadpost.Name = "cbxSaleAccountHeadpost";
             this.cbxSaleAccountHeadpost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1037,7 +1037,7 @@
             // cbxSalePostoverandAbove
             // 
             this.cbxSalePostoverandAbove.EnterMoveNextControl = true;
-            this.cbxSalePostoverandAbove.Location = new System.Drawing.Point(256, 363);
+            this.cbxSalePostoverandAbove.Location = new System.Drawing.Point(256, 378);
             this.cbxSalePostoverandAbove.Name = "cbxSalePostoverandAbove";
             this.cbxSalePostoverandAbove.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1051,7 +1051,7 @@
             // cbxPurcAftAccount
             // 
             this.cbxPurcAftAccount.EnterMoveNextControl = true;
-            this.cbxPurcAftAccount.Location = new System.Drawing.Point(250, 501);
+            this.cbxPurcAftAccount.Location = new System.Drawing.Point(250, 516);
             this.cbxPurcAftAccount.Name = "cbxPurcAftAccount";
             this.cbxPurcAftAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1065,7 +1065,7 @@
             // cbxPurcPurchaseAmount
             // 
             this.cbxPurcPurchaseAmount.EnterMoveNextControl = true;
-            this.cbxPurcPurchaseAmount.Location = new System.Drawing.Point(273, 525);
+            this.cbxPurcPurchaseAmount.Location = new System.Drawing.Point(273, 540);
             this.cbxPurcPurchaseAmount.Name = "cbxPurcPurchaseAmount";
             this.cbxPurcPurchaseAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1079,7 +1079,7 @@
             // cbxPurcHeadPost
             // 
             this.cbxPurcHeadPost.EnterMoveNextControl = true;
-            this.cbxPurcHeadPost.Location = new System.Drawing.Point(250, 573);
+            this.cbxPurcHeadPost.Location = new System.Drawing.Point(250, 588);
             this.cbxPurcHeadPost.Name = "cbxPurcHeadPost";
             this.cbxPurcHeadPost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1093,7 +1093,7 @@
             // cbxPurcPartyAmount
             // 
             this.cbxPurcPartyAmount.EnterMoveNextControl = true;
-            this.cbxPurcPartyAmount.Location = new System.Drawing.Point(273, 549);
+            this.cbxPurcPartyAmount.Location = new System.Drawing.Point(273, 564);
             this.cbxPurcPartyAmount.Name = "cbxPurcPartyAmount";
             this.cbxPurcPartyAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1107,7 +1107,7 @@
             // cbxPurcAccountHeadPost
             // 
             this.cbxPurcAccountHeadPost.EnterMoveNextControl = true;
-            this.cbxPurcAccountHeadPost.Location = new System.Drawing.Point(250, 621);
+            this.cbxPurcAccountHeadPost.Location = new System.Drawing.Point(250, 636);
             this.cbxPurcAccountHeadPost.Name = "cbxPurcAccountHeadPost";
             this.cbxPurcAccountHeadPost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1121,7 +1121,7 @@
             // cbxPurcPostOverAbove
             // 
             this.cbxPurcPostOverAbove.EnterMoveNextControl = true;
-            this.cbxPurcPostOverAbove.Location = new System.Drawing.Point(274, 597);
+            this.cbxPurcPostOverAbove.Location = new System.Drawing.Point(274, 612);
             this.cbxPurcPostOverAbove.Name = "cbxPurcPostOverAbove";
             this.cbxPurcPostOverAbove.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1135,7 +1135,7 @@
             // cbxAffectAccounting
             // 
             this.cbxAffectAccounting.EnterMoveNextControl = true;
-            this.cbxAffectAccounting.Location = new System.Drawing.Point(785, 96);
+            this.cbxAffectAccounting.Location = new System.Drawing.Point(785, 111);
             this.cbxAffectAccounting.Name = "cbxAffectAccounting";
             this.cbxAffectAccounting.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1149,7 +1149,7 @@
             // cbxotherside
             // 
             this.cbxotherside.EnterMoveNextControl = true;
-            this.cbxotherside.Location = new System.Drawing.Point(785, 120);
+            this.cbxotherside.Location = new System.Drawing.Point(785, 135);
             this.cbxotherside.Name = "cbxotherside";
             this.cbxotherside.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1163,7 +1163,7 @@
             // cbxAccountHeadPost
             // 
             this.cbxAccountHeadPost.EnterMoveNextControl = true;
-            this.cbxAccountHeadPost.Location = new System.Drawing.Point(785, 144);
+            this.cbxAccountHeadPost.Location = new System.Drawing.Point(785, 159);
             this.cbxAccountHeadPost.Name = "cbxAccountHeadPost";
             this.cbxAccountHeadPost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1177,7 +1177,7 @@
             // cbxAdjustinmc
             // 
             this.cbxAdjustinmc.EnterMoveNextControl = true;
-            this.cbxAdjustinmc.Location = new System.Drawing.Point(785, 168);
+            this.cbxAdjustinmc.Location = new System.Drawing.Point(785, 183);
             this.cbxAdjustinmc.Name = "cbxAdjustinmc";
             this.cbxAdjustinmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1191,7 +1191,7 @@
             // cbxAccountPost
             // 
             this.cbxAccountPost.EnterMoveNextControl = true;
-            this.cbxAccountPost.Location = new System.Drawing.Point(785, 192);
+            this.cbxAccountPost.Location = new System.Drawing.Point(785, 207);
             this.cbxAccountPost.Name = "cbxAccountPost";
             this.cbxAccountPost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1205,7 +1205,7 @@
             // cbxPostoverabove
             // 
             this.cbxPostoverabove.EnterMoveNextControl = true;
-            this.cbxPostoverabove.Location = new System.Drawing.Point(785, 216);
+            this.cbxPostoverabove.Location = new System.Drawing.Point(785, 231);
             this.cbxPostoverabove.Name = "cbxPostoverabove";
             this.cbxPostoverabove.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1219,7 +1219,7 @@
             // cbxsubtotalheading
             // 
             this.cbxsubtotalheading.EnterMoveNextControl = true;
-            this.cbxsubtotalheading.Location = new System.Drawing.Point(346, 141);
+            this.cbxsubtotalheading.Location = new System.Drawing.Point(346, 156);
             this.cbxsubtotalheading.Name = "cbxsubtotalheading";
             this.cbxsubtotalheading.Properties.Items.AddRange(new object[] {
             "Total"});
@@ -1230,7 +1230,7 @@
             // cbxBillsundrytype
             // 
             this.cbxBillsundrytype.EnterMoveNextControl = true;
-            this.cbxBillsundrytype.Location = new System.Drawing.Point(346, 69);
+            this.cbxBillsundrytype.Location = new System.Drawing.Point(346, 84);
             this.cbxBillsundrytype.Name = "cbxBillsundrytype";
             this.cbxBillsundrytype.Properties.Items.AddRange(new object[] {
             "Additive",
@@ -1239,11 +1239,12 @@
             this.cbxBillsundrytype.StyleController = this.layoutControl1;
             this.cbxBillsundrytype.TabIndex = 10;
             this.cbxBillsundrytype.Enter += new System.EventHandler(this.cbxBillsundrytype_Enter);
+            this.cbxBillsundrytype.Leave += new System.EventHandler(this.cbxBillsundrytype_Leave);
             // 
             // cbxBillsundrynature
             // 
             this.cbxBillsundrynature.EnterMoveNextControl = true;
-            this.cbxBillsundrynature.Location = new System.Drawing.Point(346, 93);
+            this.cbxBillsundrynature.Location = new System.Drawing.Point(346, 108);
             this.cbxBillsundrynature.Name = "cbxBillsundrynature";
             this.cbxBillsundrynature.Properties.Items.AddRange(new object[] {
             "others",
@@ -1255,12 +1256,13 @@
             this.cbxBillsundrynature.StyleController = this.layoutControl1;
             this.cbxBillsundrynature.TabIndex = 11;
             this.cbxBillsundrynature.Enter += new System.EventHandler(this.cbxBillsundrynature_Enter);
+            this.cbxBillsundrynature.Leave += new System.EventHandler(this.cbxBillsundrynature_Leave);
             // 
             // tbxdefaultvalue
             // 
             this.tbxdefaultvalue.EditValue = "0.00";
             this.tbxdefaultvalue.EnterMoveNextControl = true;
-            this.tbxdefaultvalue.Location = new System.Drawing.Point(346, 117);
+            this.tbxdefaultvalue.Location = new System.Drawing.Point(346, 132);
             this.tbxdefaultvalue.Name = "tbxdefaultvalue";
             this.tbxdefaultvalue.Size = new System.Drawing.Size(192, 20);
             this.tbxdefaultvalue.StyleController = this.layoutControl1;
@@ -1270,7 +1272,7 @@
             // 
             this.tbxNofbillsundrys.EditValue = "1";
             this.tbxNofbillsundrys.EnterMoveNextControl = true;
-            this.tbxNofbillsundrys.Location = new System.Drawing.Point(711, 456);
+            this.tbxNofbillsundrys.Location = new System.Drawing.Point(711, 471);
             this.tbxNofbillsundrys.Name = "tbxNofbillsundrys";
             this.tbxNofbillsundrys.Size = new System.Drawing.Size(50, 20);
             this.tbxNofbillsundrys.StyleController = this.layoutControl1;
@@ -1314,7 +1316,7 @@
             this.layoutControlItem32,
             this.layoutControlItem44,
             this.layoutControlItem43});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, -15);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(997, 706);
             this.layoutControlGroup1.TextVisible = false;

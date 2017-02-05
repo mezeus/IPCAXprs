@@ -286,6 +286,7 @@
             this.cbxPurchaseDebited.StyleController = this.layoutControl1;
             this.cbxPurchaseDebited.TabIndex = 65;
             this.cbxPurchaseDebited.Enter += new System.EventHandler(this.cbxPurchaseDebited_Enter);
+            this.cbxPurchaseDebited.Leave += new System.EventHandler(this.cbxPurchaseDebited_Leave);
             // 
             // cbxPurchaseDebitMode
             // 
@@ -319,6 +320,7 @@
             this.cbxSalesDebited.StyleController = this.layoutControl1;
             this.cbxSalesDebited.TabIndex = 63;
             this.cbxSalesDebited.Enter += new System.EventHandler(this.cbxSalesDebited_Enter);
+            this.cbxSalesDebited.Leave += new System.EventHandler(this.cbxSalesDebited_Leave);
             // 
             // cbxSaleDebitMode
             // 
@@ -941,6 +943,7 @@
             this.cbxSalesAccountCredited.StyleController = this.layoutControl1;
             this.cbxSalesAccountCredited.TabIndex = 43;
             this.cbxSalesAccountCredited.Enter += new System.EventHandler(this.cbxSalesAccountCredited_Enter);
+            this.cbxSalesAccountCredited.Leave += new System.EventHandler(this.cbxSalesAccountCredited_Leave);
             // 
             // layoutControlItem8
             // 

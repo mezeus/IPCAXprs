@@ -41,12 +41,12 @@ namespace IPCAUI.Administration.List
 
         private void dvgRefgrpDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            //ReferenceGroupModel lstReference;
+            ReferenceGroupModel lstReference;
 
-            //lstReference = (ReferenceGroupModel)dvgRefgrpDetails.GetRow(dvgRefgrpDetails.FocusedRowHandle);
-            //Referencegroup.RefId = lstReference.ReferenceId;
+            lstReference = (ReferenceGroupModel)dvgRefgrpDetails.GetRow(dvgRefgrpDetails.FocusedRowHandle);
+            Referencegroup.RefId = lstReference.ReferenceId;
 
-            //this.Close();
+            this.Close();
         }
 
         private void dvgRefgrpDetails_KeyDown(object sender, KeyEventArgs e)

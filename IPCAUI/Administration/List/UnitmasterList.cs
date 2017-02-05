@@ -35,12 +35,39 @@ namespace IPCAUI.Administration.List
 
         private void dvgUnitMasterDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
+        }
+
+        private void dvgUnitMasterDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue=='\r')
+            {
+                UnitMasterModel lstUnitmaster;
+
+                lstUnitmaster = (UnitMasterModel)dvgUnitMasterDetails.GetRow(dvgUnitMasterDetails.FocusedRowHandle);
+                Unitmaster.UMId = lstUnitmaster.UM_ID;
+
+                this.Close();
+            }     
+        }
+
+        private void dvgUnitMasterDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             UnitMasterModel lstUnitmaster;
 
             lstUnitmaster = (UnitMasterModel)dvgUnitMasterDetails.GetRow(dvgUnitMasterDetails.FocusedRowHandle);
             Unitmaster.UMId = lstUnitmaster.UM_ID;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

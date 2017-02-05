@@ -10,6 +10,8 @@ namespace eSunSpeed.BusinessLogic
 {
     public class TaxCategory
     {
+        //This BL Used For Tax Category & GST Details    
+
         TaxCategoryModel objtaxmod = new TaxCategoryModel();
         private DBHelper _dbHelper = new DBHelper();
         //Save TaxCategory
@@ -24,7 +26,7 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Name", objTaxCat.Name));
                 paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
-                paramCollection.Add(new DBParameter("@ServiceTax", objTaxCat.ServiceTax));
+                paramCollection.Add(new DBParameter("@ServiceTax", objTaxCat.ServiceTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@RateofTaxLocal",objTaxCat.Local_Tax,System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP,System.Data.DbType.Boolean));
@@ -34,10 +36,11 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@HSNCode", objTaxCat.HSNCode));
                 paramCollection.Add(new DBParameter("@Tax_Desc", objTaxCat.Tax_Desc));
                 paramCollection.Add(new DBParameter("@CreatedBy", objTaxCat.CreatedBy));
+                paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,System.Data.DbType.DateTime));
 
                 Query = "INSERT INTO taxcategory(`Name`,`TaxCat_Type`,`Service_Tax`,`Local_Tax`,`Central_Tax`,`TaxonMRP`,`CalculatedTaxon`,`TaxonMRPMode`,`Taxation_Type`," +
-                        "`HSNCode`,`Tax_Desc`,`CreatedBy`) VALUES " +
-                        "(@Name,@TaxCat_Type,@ServiceTax,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@Taxation_Type,@HSNCode,@Tax_Desc,@CreatedBy)";
+                        "`HSNCode`,`Tax_Desc`,`CreatedBy`,`CreatedDate`) VALUES " +
+                        "(@Name,@TaxCat_Type,@ServiceTax,@RateofTaxLocal,@RateofCentral,@TaxonMRP,@CalculatedTaxon,@TaxonMRPMode,@Taxation_Type,@HSNCode,@Tax_Desc,@CreatedBy,@CreatedDate)";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                 {
@@ -71,20 +74,21 @@ namespace eSunSpeed.BusinessLogic
 
                     paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxRate_Id));
                     paramCollection.Add(new DBParameter("@wef", objTaxRate.wef,System.Data.DbType.DateTime));
-                    paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax));
-                    paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
+                    paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
-                    paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
-                    paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central));
+                    paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central, System.Data.DbType.Decimal));
 
-                    paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax));
-                    paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax));
+                    paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax, System.Data.DbType.Decimal));
 
-                    paramCollection.Add(new DBParameter("@CreatedBy", objTaxRate.CreatedBy));
+                    paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,System.Data.DbType.DateTime));
 
                     Query = "INSERT INTO taxrate(`TaxCat_Id`,`wef`,`Tax_Local`,`Tax_Schg`,`Tax_Type`,`Tax_Central`,`Schg_Central`,`Entry_Tax`," +
-                            "`Service_Tax`,`CreatedBy`) VALUES " +
-                            "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy)";
+                            "`Service_Tax`,`CreatedBy`,`CreatedDate`) VALUES " +
+                            "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy,@CreatedDate)";
 
                     if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                         isSaved = true;
@@ -218,24 +222,22 @@ namespace eSunSpeed.BusinessLogic
 
                 paramCollection.Add(new DBParameter("@Name", objTaxCat.Name));
                 paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
-                paramCollection.Add(new DBParameter("@Service_Tax", objTaxCat.ServiceTax));
-                paramCollection.Add(new DBParameter("@RateofTaxLocal", objTaxCat.Local_Tax));
-                paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax));
+                paramCollection.Add(new DBParameter("@ServiceTax", objTaxCat.ServiceTax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@RateofTaxLocal", objTaxCat.Local_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@RateofCentral", objTaxCat.CentralTax, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP, System.Data.DbType.Boolean));
-                paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon));
+                paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon, System.Data.DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TaxonMRPMode", objTaxCat.TaxonMRPMode));
                 paramCollection.Add(new DBParameter("@Taxation_Type", objTaxCat.Taxation_Type));
                 paramCollection.Add(new DBParameter("@HSNCode", objTaxCat.HSNCode));
                 paramCollection.Add(new DBParameter("@Tax_Desc", objTaxCat.Tax_Desc));
-
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now,System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Id", objTaxCat.TaxCat_Id));
 
-
-                Query = "UPDATE taxcategory SET `Name`=@Name,`TaxCat_Type`=@TaxCat_Type,`Service_Tax`=@Service_Tax,`Local_Tax`=@RateofTaxLocal," +
+                Query = "UPDATE taxcategory SET `Name`=@Name,`TaxCat_Type`=@TaxCat_Type,`Service_Tax`=@ServiceTax,`Local_Tax`=@RateofTaxLocal," +
                         "`Central_Tax`=@RateofCentral,`TaxonMRP`=@TaxonMRP,`CalculatedTaxon`=@CalculatedTaxon,`TaxonMRPMode`=@TaxonMRPMode," +
-                        "`Taxation_Type`=@Taxation_Type,`HSNCode`=@HSNCode,`Tax_Desc`=@Tax_Desc,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
+                        "`Taxation_Type`=@Taxation_Type,`HSNCode`=@HSNCode,`Tax_Desc`=@Tax_Desc,`ModifiedBy`=@ModifiedBy,`ModifiedDate`=@ModifiedDate " +
                         "WHERE TaxCat_Id=@Id;";
 
                 if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -245,29 +247,30 @@ namespace eSunSpeed.BusinessLogic
                     //UPDATE Tax Rates Table
                     foreach (TaxRatesModel objTaxRate in objTaxCat.TaxRates)
                     {
+                        objTaxRate.TaxCat_Id = objTaxCat.TaxCat_Id;
                         if (objTaxRate.TaxRate_Id > 0)
                         {
+                            paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@wef", objTaxRate.wef));
-                            paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax));
-                            paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
+                            paramCollection.Add(new DBParameter("@wef", objTaxRate.wef, System.Data.DbType.DateTime));
+                            paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
-                            paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
-                            paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central));
+                            paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central, System.Data.DbType.Decimal));
 
-                            paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax));
-                            paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax));
+                            paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax, System.Data.DbType.Decimal));
 
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now,System.Data.DbType.DateTime));
 
-                            paramCollection.Add(new DBParameter("@TaxRate_Id", objTaxRate.TaxCat_Id));
-                            paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxRate_Id));
-
-
+                            paramCollection.Add(new DBParameter("@TaxRate_Id", objTaxRate.TaxRate_Id));
+                            paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxCat_Id));
+                          
                             Query = "UPDATE taxrate SET `wef`=@wef,`Tax_Local`=@Tax_Local,`Tax_Schg`=@Tax_Schg,`Tax_Type`=@Tax_Type," +
-                                    "`Tax_Central`=@Tax_Central,`Schg_Central`=@Schg_Central,`Entry_Tax`=@Entry_Tax,`Service_Tax`=@Serivce_Tax " +
-                                    "[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
+                                    "`Tax_Central`=@Tax_Central,`Schg_Central`=@Schg_Central,`Entry_Tax`=@Entry_Tax,`Service_Tax`=@Serivce_Tax," +
+                                    "`ModifiedBy`=@ModifiedBy,`ModifiedDate`=@ModifiedDate " +
                                     "WHERE  TaxRate_Id=@TaxRate_Id AND TaxCat_Id=@TaxCat_Id";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
@@ -281,33 +284,32 @@ namespace eSunSpeed.BusinessLogic
 
                             paramCollection.Add(new DBParameter("@TaxCat_Id", objTaxRate.TaxCat_Id));
                             paramCollection.Add(new DBParameter("@wef", objTaxRate.wef, System.Data.DbType.DateTime));
-                            paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax));
-                            paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg));
+                            paramCollection.Add(new DBParameter("@Tax_Local", objTaxRate.Local_Tax, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Tax_Schg", objTaxRate.Local_Schg, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Tax_Type", objTaxRate.Tax_Type));
-                            paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central));
-                            paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central));
+                            paramCollection.Add(new DBParameter("@Tax_Central", objTaxRate.Tax_Central, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Schg_Central", objTaxRate.Schg_Central, System.Data.DbType.Decimal));
 
-                            paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax));
-                            paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax));
+                            paramCollection.Add(new DBParameter("@Entry_Tax", objTaxRate.Entry_Tax, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@Serivce_Tax", objTaxRate.Service_Tax, System.Data.DbType.Decimal));
 
-                            paramCollection.Add(new DBParameter("@CreatedBy", objTaxRate.CreatedBy));
+                            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                             Query = "INSERT INTO taxrate(`TaxCat_Id`,`wef`,`Tax_Local`,`Tax_Schg`,`Tax_Type`,`Tax_Central`,`Schg_Central`,`Entry_Tax`," +
-                                    "`Service_Tax`,`CreatedBy`) VALUES " +
-                                    "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy)";
+                                    "`Service_Tax`,`CreatedBy`,`CreatedDate`) VALUES " +
+                                    "(@TaxCat_Id,@wef,@Tax_Local,@Tax_Schg,@Tax_Type,@Tax_Central,@Schg_Central,@Entry_Tax,@Serivce_Tax,@CreatedBy,@CreatedDate)";
 
-                            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0) { };
+                            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+                                isUpdated = true;
                         }
                     }
-                }
-                
-                
-                    
+                }   
             }
             catch (Exception ex)
             {
                 isUpdated = false;
-                throw ex;
+                //throw ex;
             }
 
             return isUpdated;
@@ -382,7 +384,7 @@ namespace eSunSpeed.BusinessLogic
         }
         public bool DeleteTaxrates(int id)
         {
-            bool isDelete = false;
+            bool isDelete = true;
             try
             {
                 string Query = "DELETE  FROM taxrate WHERE TaxCat_Id=" + id;
@@ -457,7 +459,7 @@ namespace eSunSpeed.BusinessLogic
 
                 objTax.Name = dr["Name"].ToString();
                 objTax.TaxCat_Type = dr["TaxCat_Type"].ToString();
-                objTax.ServiceTax = Convert.ToDecimal(dr["Service_Tax"]==null?"0":dr["Service_Tax"]);
+                objTax.ServiceTax = Convert.ToDecimal(dr["Service_Tax"].ToString()==string.Empty?"0":dr["Service_Tax"]);
                 objTax.CentralTax = Convert.ToDecimal(dr["Central_Tax"]);
                 objTax.Local_Tax = Convert.ToDecimal(dr["Local_Tax"]);
                 objTax.Taxation_Type = dr["Taxation_Type"].ToString();
@@ -498,6 +500,275 @@ namespace eSunSpeed.BusinessLogic
 
             }
             return lsttaxcate;
+        }
+
+        //Save GST Details
+        public bool SaveGSTDetails(eSunSpeedDomain.TaxCategoryModel objTaxCat)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+
+            try
+            {
+                DBParameterCollection paramCollection = new DBParameterCollection();
+
+                paramCollection.Add(new DBParameter("@GSTName", objTaxCat.GSTName));
+                paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
+                paramCollection.Add(new DBParameter("@CGST_Tax", objTaxCat.CGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@SGST_Tax", objTaxCat.SGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@IGST_Tax", objTaxCat.IGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TaxonMRPMode", objTaxCat.TaxonMRPMode));            
+                paramCollection.Add(new DBParameter("@CreatedBy","Admin"));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy","Admin"));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertGSTDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                long id = 0;
+                dr.Read();
+                id = Convert.ToInt64(dr[0]);
+                SaveGSTTaxRatesDetails(objTaxCat.GSTTaxRates, id);
+            }
+            catch (Exception ex)
+            {
+                isSaved = false;
+                //throw ex;
+            }
+
+            return isSaved;
+        }
+        //Save GST Tax Rate Details
+        public bool SaveGSTTaxRatesDetails(List<TaxRatesModel> lstaxRate,long id)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+            foreach (TaxRatesModel objGTaxRate in lstaxRate)
+            {
+                objGTaxRate.GSTID = id;
+                try
+                {
+
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@GSTID", objGTaxRate.GSTID));
+                    paramCollection.Add(new DBParameter("@wef", objGTaxRate.wef, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@CGST_Tax", objGTaxRate.CGST_Tax, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@SGST_Tax", objGTaxRate.SGST_Tax, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Tax_Type", objGTaxRate.Tax_Type));
+                    paramCollection.Add(new DBParameter("@IGST_Tax", objGTaxRate.IGST_Tax, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@Cess", objGTaxRate.Cess, System.Data.DbType.Decimal));       
+                    paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                    System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spInsertGSTTaxRateDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    isSaved = false;
+                    //throw ex;
+                }
+            }
+            return isSaved;
+        }
+        //Get Total List Of GST Details
+        public List<TaxCategoryModel> GetAllGSTCategories()
+        {
+            List<TaxCategoryModel> lstGSTCategories = new List<TaxCategoryModel>();
+            TaxCategoryModel objGST;
+
+            string Query = "SELECT DISTINCT GST_ID,GSTName FROM gstdetails";
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objGST = new TaxCategoryModel();
+
+                objGST.GST_ID = DataFormat.GetInteger(dr["GST_ID"]);
+                objGST.GSTName = dr["GSTName"].ToString();
+
+                lstGSTCategories.Add(objGST);
+            }
+            return lstGSTCategories;
+        }
+
+        //Get Toatl GST Details With Tax Rates By Id
+        public List<TaxCategoryModel> GetGSTCategoryRatesbyId(long id)
+        {
+            List<TaxCategoryModel> lstgstcate = new List<TaxCategoryModel>();
+            TaxCategoryModel objTax;
+
+            string Query = "SELECT * FROM gstdetails WHERE GST_ID=" + id;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objTax = new TaxCategoryModel();
+
+                objTax.GST_ID = DataFormat.GetInteger(dr["GST_ID"]);
+
+                objTax.GSTName = dr["GSTName"].ToString();
+                objTax.TaxCat_Type = dr["TaxCat_Type"].ToString();
+                objTax.CGST_Tax = Convert.ToDecimal(dr["CGST_Tax"].ToString() == string.Empty ? "0.00" : dr["CGST_Tax"]);
+                objTax.SGST_Tax = Convert.ToDecimal(dr["SGST_Tax"].ToString() == string.Empty ? "0.00" : dr["SGST_Tax"]);
+                objTax.IGST_Tax = Convert.ToDecimal(dr["IGST_Tax"].ToString() == string.Empty ? "0.00" : dr["IGST_Tax"]);
+                objTax.TaxonMRP = Convert.ToBoolean(dr["TaxonMRP"]);
+                objTax.CalculatedTaxon = Convert.ToDecimal(dr["CalculatedTaxon"].ToString() == string.Empty ? "0.00" : dr["CalculatedTaxon"]);
+                objTax.TaxonMRPMode = dr["TaxonMRPMode"].ToString()== null ? string.Empty:dr["TaxonMRPMode"].ToString();
+                //SELECT GST Tax Rates
+
+                string itemQuery = "SELECT * FROM gsttaxratedetails WHERE GST_ID=" + id;
+                System.Data.IDataReader drTax = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
+
+                objTax.TaxRates = new List<TaxRatesModel>();
+                TaxRatesModel objRate;
+                while (drTax.Read())
+                {
+                    objRate = new TaxRatesModel();
+
+                    objRate.GSTID = DataFormat.GetInteger(drTax["GST_ID"]);
+                    objRate.TaxRate_Id = DataFormat.GetInteger(drTax["TaxRate_Id"]);
+                    objRate.wef = Convert.ToDateTime(drTax["wef"].ToString());
+                    objRate.CGST_Tax = Convert.ToDecimal(drTax["CGST_Tax"].ToString() == string.Empty ? "0.00" : drTax["CGST_Tax"]);
+                    objRate.SGST_Tax = Convert.ToDecimal(drTax["SGST_Tax"].ToString() == string.Empty ? "0.00" : drTax["SGST_Tax"]);
+                    objRate.IGST_Tax = Convert.ToDecimal(drTax["IGST_Tax"].ToString() == string.Empty ? "0.00" : drTax["IGST_Tax"]);
+                    objRate.Cess = Convert.ToDecimal(drTax["Cess"].ToString() == string.Empty ? "0.00" : drTax["Cess"]);
+                    objRate.Tax_Type = drTax["Tax_Type"].ToString();
+
+                    objTax.TaxRates.Add(objRate);
+                }
+
+                lstgstcate.Add(objTax);
+
+            }
+            return lstgstcate;
+        }
+
+        //Update GST Details
+        public bool UpdateGSTDetails(eSunSpeedDomain.TaxCategoryModel objTaxCat)
+        {
+            string Query = string.Empty;
+            bool isSaved = true;
+
+            try
+            {
+                DBParameterCollection paramCollection = new DBParameterCollection();
+
+                paramCollection.Add(new DBParameter("@GSTID", objTaxCat.GST_ID));
+                paramCollection.Add(new DBParameter("@GSTName", objTaxCat.GSTName));
+                paramCollection.Add(new DBParameter("@TaxCat_Type", objTaxCat.TaxCat_Type));
+                paramCollection.Add(new DBParameter("@CGST_Tax", objTaxCat.CGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@SGST_Tax", objTaxCat.SGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@IGST_Tax", objTaxCat.IGST_Tax, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TaxonMRP", objTaxCat.TaxonMRP, System.Data.DbType.Boolean));
+                paramCollection.Add(new DBParameter("@CalculatedTaxon", objTaxCat.CalculatedTaxon, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TaxonMRPMode", objTaxCat.TaxonMRPMode));
+                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                System.Data.IDataReader dr =
+                    _dbHelper.ExecuteDataReader("spUpdateGSTDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                //Update GST Rate Details
+                foreach (TaxRatesModel objGTaxRate in objTaxCat.GSTTaxRates)
+                {
+                    objGTaxRate.GSTID = objTaxCat.GST_ID;
+                    if(objGTaxRate.TaxRate_Id>0)
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@GSTID", objGTaxRate.GSTID));
+                        paramCollection.Add(new DBParameter("@TaxRateId", objGTaxRate.TaxRate_Id));
+                        paramCollection.Add(new DBParameter("@wef", objGTaxRate.wef, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@CGST_Tax", objGTaxRate.CGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@SGST_Tax", objGTaxRate.SGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Tax_Type", objGTaxRate.Tax_Type));
+                        paramCollection.Add(new DBParameter("@IGST_Tax", objGTaxRate.IGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Cess", objGTaxRate.Cess, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                        System.Data.IDataReader drGT =
+                        _dbHelper.ExecuteDataReader("spUpdateGSTTaxRateDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+                   else
+                    {
+                        paramCollection = new DBParameterCollection();
+
+                        paramCollection.Add(new DBParameter("@GSTID", objGTaxRate.GSTID));
+                        paramCollection.Add(new DBParameter("@wef", objGTaxRate.wef, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@CGST_Tax", objGTaxRate.CGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@SGST_Tax", objGTaxRate.SGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Tax_Type", objGTaxRate.Tax_Type));
+                        paramCollection.Add(new DBParameter("@IGST_Tax", objGTaxRate.IGST_Tax, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Cess", objGTaxRate.Cess, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+
+                        System.Data.IDataReader drGT =
+                        _dbHelper.ExecuteDataReader("spInsertGSTTaxRateDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                    }
+
+                       
+                }
+            }
+            catch (Exception ex)
+            {
+                isSaved = false;
+                //throw ex;
+            }
+
+            return isSaved;
+        }
+
+        //Delete Single Tax Category
+        public bool DeleteGSTCategorById(long id)
+        {
+            bool isDelete = false;
+            try
+            {
+                if (DeleteGSTRates(id))
+                {
+                    string Query = "DELETE  FROM gstdetails WHERE GST_ID=" + id;
+                    int rowes = _dbHelper.ExecuteNonQuery(Query);
+                    if (rowes > 0)
+                        isDelete = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+                throw ex;
+            }
+            return isDelete;
+        }
+        //Delete GST Tax Rate Details
+        public bool DeleteGSTRates(long id)
+        {
+            bool isDelete = true;
+            try
+            {
+                string Query = "DELETE  FROM gsttaxratedetails WHERE GST_ID=" + id;
+                int rowes = _dbHelper.ExecuteNonQuery(Query);
+                if (rowes > 0)
+                    isDelete = true;
+            }
+            catch (Exception ex)
+            {
+                isDelete = false;
+            }
+            return isDelete;
         }
     }
 }

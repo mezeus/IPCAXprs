@@ -84,9 +84,8 @@ namespace IPCAUI.Administration
         {
             Administration.List.CurrencyList frmList = new Administration.List.CurrencyList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            CurrecyId = 0;
             frmList.ShowDialog();
-            tbxCurrencysymbol.Focus();
 
             FillCurrencyInfo();
         }
@@ -96,6 +95,10 @@ namespace IPCAUI.Administration
             if(CurrecyId==0)
             {
                 tbxCurrencysymbol.Focus();
+                ClearControls();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 return;
             }
             CurrencyMasterModel objCurrecy = objCurr.GetAllCurrencyById(CurrecyId);
@@ -151,7 +154,7 @@ namespace IPCAUI.Administration
             {
                 if (tbxCurrencysymbol.Text.Trim() == "")
                 {
-                    MessageBox.Show("Master Name Can Not Be Blank!");
+                    MessageBox.Show("Currency Symbol Can Not Be Blank!");
                     tbxCurrencysymbol.Focus();
                     return;
                 }
@@ -159,7 +162,7 @@ namespace IPCAUI.Administration
                 {
                     if (objCurr.IsCurrencyExists(tbxCurrencysymbol.Text.Trim()))
                     {
-                        MessageBox.Show("Master Name already Exists!");
+                        MessageBox.Show("Currency Symbol already Exists!");
                         tbxCurrencysymbol.Focus();
                         return;
                     }

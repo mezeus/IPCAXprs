@@ -582,11 +582,12 @@
             "Fixed Assets",
             "Libilites",
             "Income"});
-            this.cbxUndergroup.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxUndergroup.Size = new System.Drawing.Size(364, 20);
             this.cbxUndergroup.StyleController = this.layoutControl1;
             this.cbxUndergroup.TabIndex = 8;
             this.cbxUndergroup.Enter += new System.EventHandler(this.cbxUndergroup_Enter);
+            this.cbxUndergroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxUndergroup_KeyPress);
+            this.cbxUndergroup.Leave += new System.EventHandler(this.cbxUndergroup_Leave);
             // 
             // cbxPrimarygroup
             // 

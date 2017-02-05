@@ -51,25 +51,28 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-
-            if(UMId!=0)
-            {
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-
-                FillUnitMasterInfo();
-            }
-            
+            FillUnitMasterInfo();
         }
 
         private void FillUnitMasterInfo()
         {
+            if(UMId == 0)
+            {
+                tbxUnitName.Focus();
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                return;
+            }
             UnitMasterModel objunit = objunm.GetListofUnitsById(UMId);
 
             tbxUnitName.Text = objunit.UnitName;
             tbxPrintname.Text = objunit.PrintName;
             tbxUnitnameExcise.Text = objunit.ExciseReturn;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxUnitName.Focus();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

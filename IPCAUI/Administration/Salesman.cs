@@ -40,16 +40,16 @@ namespace IPCAUI.Administration
         {
             Administration.List.SalesmanList frmList = new Administration.List.SalesmanList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            SMId = 0;
             frmList.ShowDialog();
             FillSalesManInfo();
-            tbxName.Focus();
         }
         private void FillSalesManInfo()
         {
             if (SMId == 0)
             {
                 tbxName.Focus();
+                ClearControls();
                 lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
@@ -81,6 +81,7 @@ namespace IPCAUI.Administration
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxName.Focus();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -312,6 +313,30 @@ namespace IPCAUI.Administration
         private void cbxPurchaseDebited_Enter(object sender, EventArgs e)
         {
             cbxPurchaseDebited.ShowPopup();
+        }
+
+        private void cbxSalesDebited_Leave(object sender, EventArgs e)
+        {
+            if(cbxSalesDebited.Text=="")
+            {
+                cbxSalesDebited.SelectedIndex = 0;
+            }
+        }
+
+        private void cbxPurchaseDebited_Leave(object sender, EventArgs e)
+        {
+            if (cbxPurchaseDebited.Text == "")
+            {
+                cbxPurchaseDebited.SelectedIndex = 0;
+            }
+        }
+
+        private void cbxSalesAccountCredited_Leave(object sender, EventArgs e)
+        {
+            if(cbxSalesAccountCredited.Text=="")
+            {
+                cbxSalesAccountCredited.SelectedIndex = 0;
+            }
         }
     }
 }

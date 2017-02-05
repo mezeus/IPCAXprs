@@ -578,8 +578,6 @@
             this.tbxCompanyName.TextChanged += new System.EventHandler(this.tbxGroupName_TextChanged);
             this.tbxCompanyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxGroupName_KeyDown);
             this.tbxCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCompanyName_KeyPress);
-            
-            
             // 
             // labelControl1
             // 

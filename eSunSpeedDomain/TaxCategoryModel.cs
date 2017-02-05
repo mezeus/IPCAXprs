@@ -7,6 +7,7 @@ namespace eSunSpeedDomain
 {
     public class TaxCategoryModel
     {
+        //This Model Used For Tax Category & GST Details    
         public int TaxCat_Id { get; set; }
         public string Name { get; set; }
         public string TaxCat_Type { get; set; }
@@ -21,8 +22,13 @@ namespace eSunSpeedDomain
         public string Tax_Desc { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
-
+        //GST Details
+        public long GST_ID { get; set; }
+        public string GSTName { get; set; }
+        public decimal CGST_Tax { get; set; }
+        public decimal SGST_Tax { get; set; }
+        public decimal IGST_Tax { get; set; }
         public List<TaxRatesModel> TaxRates { get; set; }
-
+        public List<TaxRatesModel> GSTTaxRates { get; set; }
     }
 }

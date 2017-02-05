@@ -1,6 +1,6 @@
 ﻿namespace IPCAUI.Administration
 {
-    partial class Taxcategory
+    partial class GSTDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Taxcategory));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GSTDetails));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.tbxServiceTax = new DevExpress.XtraEditors.TextEdit();
-            this.dvgTaxratesList = new DevExpress.XtraGrid.GridControl();
-            this.dvgTaxrateDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.tbxCgstTax = new DevExpress.XtraEditors.TextEdit();
+            this.dvgGSTTaxratesList = new DevExpress.XtraGrid.GridControl();
+            this.dvgGSTTaxrateDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colwef = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.Extra = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTaxType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.BSAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsgst = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.Percentage = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Narration = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCgst = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCess = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIgst = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRateId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.ListTaxcategory = new DevExpress.XtraNavBar.NavBarItem();
+            this.ListGSTcategory = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -96,22 +94,19 @@
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxtaxonmrpmode = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxTaxonmrpmode = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxDescription = new DevExpress.XtraEditors.TextEdit();
-            this.tbxHsn = new DevExpress.XtraEditors.TextEdit();
-            this.tbxcalculatedtaxon = new DevExpress.XtraEditors.TextEdit();
+            this.tbxCalculatedtaxon = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxRateofCenteral = new DevExpress.XtraEditors.TextEdit();
-            this.tbxRateoftaxLocal = new DevExpress.XtraEditors.TextEdit();
-            this.cbxtype = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.tbxIgstTax = new DevExpress.XtraEditors.TextEdit();
+            this.tbxSgstTax = new DevExpress.XtraEditors.TextEdit();
+            this.cbxType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tbxName = new DevExpress.XtraEditors.TextEdit();
-            this.cbxTaxationtype = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxTaxonmrp = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -136,39 +131,39 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblCalculatedtax = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblPerAmt = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblTaxonMrpmode = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem16 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxServiceTax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgTaxratesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgTaxrateDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCgstTax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGSTTaxratesList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGSTTaxrateDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxtaxonmrpmode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxHsn.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxcalculatedtaxon.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxRateofCenteral.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftaxLocal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTaxonmrpmode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtaxon.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxIgstTax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSgstTax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTaxationtype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTaxonmrp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -193,49 +188,49 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCalculatedtax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPerAmt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTaxonMrpmode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.btnDelete);
-            this.layoutControl1.Controls.Add(this.tbxServiceTax);
-            this.layoutControl1.Controls.Add(this.dvgTaxratesList);
+            this.layoutControl1.Controls.Add(this.tbxCgstTax);
+            this.layoutControl1.Controls.Add(this.dvgGSTTaxratesList);
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.labelControl4);
-            this.layoutControl1.Controls.Add(this.cbxtaxonmrpmode);
+            this.layoutControl1.Controls.Add(this.cbxTaxonmrpmode);
             this.layoutControl1.Controls.Add(this.labelControl3);
-            this.layoutControl1.Controls.Add(this.tbxDescription);
-            this.layoutControl1.Controls.Add(this.tbxHsn);
-            this.layoutControl1.Controls.Add(this.tbxcalculatedtaxon);
+            this.layoutControl1.Controls.Add(this.tbxCalculatedtaxon);
             this.layoutControl1.Controls.Add(this.labelControl2);
-            this.layoutControl1.Controls.Add(this.tbxRateofCenteral);
-            this.layoutControl1.Controls.Add(this.tbxRateoftaxLocal);
-            this.layoutControl1.Controls.Add(this.cbxtype);
+            this.layoutControl1.Controls.Add(this.tbxIgstTax);
+            this.layoutControl1.Controls.Add(this.tbxSgstTax);
+            this.layoutControl1.Controls.Add(this.cbxType);
             this.layoutControl1.Controls.Add(this.btnQuit);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.gridControl2);
             this.layoutControl1.Controls.Add(this.tbxName);
-            this.layoutControl1.Controls.Add(this.cbxTaxationtype);
             this.layoutControl1.Controls.Add(this.cbxTaxonmrp);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(360, 0, 537, 406);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(435, 510, 537, 406);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(920, 578);
             this.layoutControl1.TabIndex = 0;
@@ -252,66 +247,64 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // tbxServiceTax
+            // tbxCgstTax
             // 
-            this.tbxServiceTax.EditValue = "0.00";
-            this.tbxServiceTax.EnterMoveNextControl = true;
-            this.tbxServiceTax.Location = new System.Drawing.Point(267, 84);
-            this.tbxServiceTax.Name = "tbxServiceTax";
-            this.tbxServiceTax.Properties.Mask.EditMask = "n2";
-            this.tbxServiceTax.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tbxServiceTax.Size = new System.Drawing.Size(587, 20);
-            this.tbxServiceTax.StyleController = this.layoutControl1;
-            this.tbxServiceTax.TabIndex = 63;
+            this.tbxCgstTax.EditValue = "0.00";
+            this.tbxCgstTax.EnterMoveNextControl = true;
+            this.tbxCgstTax.Location = new System.Drawing.Point(250, 84);
+            this.tbxCgstTax.Name = "tbxCgstTax";
+            this.tbxCgstTax.Properties.Mask.EditMask = "n2";
+            this.tbxCgstTax.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxCgstTax.Size = new System.Drawing.Size(254, 20);
+            this.tbxCgstTax.StyleController = this.layoutControl1;
+            this.tbxCgstTax.TabIndex = 63;
             // 
-            // dvgTaxratesList
+            // dvgGSTTaxratesList
             // 
-            this.dvgTaxratesList.Location = new System.Drawing.Point(146, 281);
-            this.dvgTaxratesList.MainView = this.dvgTaxrateDetails;
-            this.dvgTaxratesList.Name = "dvgTaxratesList";
-            this.dvgTaxratesList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.dvgGSTTaxratesList.Location = new System.Drawing.Point(146, 233);
+            this.dvgGSTTaxratesList.MainView = this.dvgGSTTaxrateDetails;
+            this.dvgGSTTaxratesList.Name = "dvgGSTTaxratesList";
+            this.dvgGSTTaxratesList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit2,
             this.repositoryItemLookUpEdit2,
             this.repositoryItemDateEdit1,
             this.repositoryItemTextEdit1});
-            this.dvgTaxratesList.Size = new System.Drawing.Size(720, 259);
-            this.dvgTaxratesList.TabIndex = 23;
-            this.dvgTaxratesList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dvgTaxrateDetails});
+            this.dvgGSTTaxratesList.Size = new System.Drawing.Size(699, 307);
+            this.dvgGSTTaxratesList.TabIndex = 23;
+            this.dvgGSTTaxratesList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dvgGSTTaxrateDetails});
             // 
-            // dvgTaxrateDetails
+            // dvgGSTTaxrateDetails
             // 
-            this.dvgTaxrateDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.dvgTaxrateDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dvgGSTTaxrateDetails.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.dvgGSTTaxrateDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.colwef,
-            this.Extra,
-            this.BSAmount,
-            this.Percentage,
-            this.Narration,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
+            this.colTaxType,
+            this.colsgst,
+            this.colCgst,
+            this.colCess,
+            this.colIgst,
             this.colParentid,
             this.colRateId});
-            this.dvgTaxrateDetails.GridControl = this.dvgTaxratesList;
-            this.dvgTaxrateDetails.Name = "dvgTaxrateDetails";
-            this.dvgTaxrateDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgTaxrateDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.dvgTaxrateDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
-            this.dvgTaxrateDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgTaxrateDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgTaxrateDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgTaxrateDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.dvgTaxrateDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.dvgTaxrateDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.dvgTaxrateDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.dvgTaxrateDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.dvgTaxrateDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.dvgTaxrateDetails.OptionsView.ShowFooter = true;
-            this.dvgTaxrateDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgTaxrateDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgTaxrateDetails_FocusedColumnChanged);
-            this.dvgTaxrateDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgTaxrateDetails_CustomColumnDisplayText);
+            this.dvgGSTTaxrateDetails.GridControl = this.dvgGSTTaxratesList;
+            this.dvgGSTTaxrateDetails.Name = "dvgGSTTaxrateDetails";
+            this.dvgGSTTaxrateDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgGSTTaxrateDetails.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
+            this.dvgGSTTaxrateDetails.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.dvgGSTTaxrateDetails.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgGSTTaxrateDetails.OptionsEditForm.ShowOnF2Key = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgGSTTaxrateDetails.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgGSTTaxrateDetails.OptionsMenu.DialogFormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.dvgGSTTaxrateDetails.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.dvgGSTTaxrateDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.dvgGSTTaxrateDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.dvgGSTTaxrateDetails.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.dvgGSTTaxrateDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.dvgGSTTaxrateDetails.OptionsView.ShowFooter = true;
+            this.dvgGSTTaxrateDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgGSTTaxrateDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgGSTTaxrateDetails_FocusedColumnChanged);
+            this.dvgGSTTaxrateDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgGSTTaxrateDetails_CustomColumnDisplayText);
             // 
             // gridColumn1
             // 
@@ -342,32 +335,32 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
-            // Extra
+            // colTaxType
             // 
-            this.Extra.Caption = "Tax Type";
-            this.Extra.ColumnEdit = this.repositoryItemTextEdit1;
-            this.Extra.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.Extra.FieldName = "Tax_Type";
-            this.Extra.Name = "Extra";
-            this.Extra.Visible = true;
-            this.Extra.VisibleIndex = 4;
-            this.Extra.Width = 83;
+            this.colTaxType.Caption = "Tax Type";
+            this.colTaxType.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colTaxType.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colTaxType.FieldName = "Tax_Type";
+            this.colTaxType.Name = "colTaxType";
+            this.colTaxType.Visible = true;
+            this.colTaxType.VisibleIndex = 4;
+            this.colTaxType.Width = 83;
             // 
             // repositoryItemTextEdit1
             // 
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
-            // BSAmount
+            // colsgst
             // 
-            this.BSAmount.Caption = "Central-Tax %";
-            this.BSAmount.ColumnEdit = this.repositoryItemTextEdit2;
-            this.BSAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.BSAmount.FieldName = "Tax_Central";
-            this.BSAmount.Name = "BSAmount";
-            this.BSAmount.Visible = true;
-            this.BSAmount.VisibleIndex = 5;
-            this.BSAmount.Width = 81;
+            this.colsgst.Caption = "SGST-Tax %";
+            this.colsgst.ColumnEdit = this.repositoryItemTextEdit2;
+            this.colsgst.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colsgst.FieldName = "SGST_Tax";
+            this.colsgst.Name = "colsgst";
+            this.colsgst.Visible = true;
+            this.colsgst.VisibleIndex = 3;
+            this.colsgst.Width = 81;
             // 
             // repositoryItemTextEdit2
             // 
@@ -377,60 +370,40 @@
             this.repositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
             // 
-            // Percentage
+            // colCgst
             // 
-            this.Percentage.Caption = "Local-Schg. %";
-            this.Percentage.ColumnEdit = this.repositoryItemTextEdit2;
-            this.Percentage.FieldName = "Local_Schg";
-            this.Percentage.Name = "Percentage";
-            this.Percentage.Visible = true;
-            this.Percentage.VisibleIndex = 3;
-            this.Percentage.Width = 78;
+            this.colCgst.Caption = "CGST-Tax %";
+            this.colCgst.ColumnEdit = this.repositoryItemTextEdit2;
+            this.colCgst.FieldName = "CGST_Tax";
+            this.colCgst.Name = "colCgst";
+            this.colCgst.Visible = true;
+            this.colCgst.VisibleIndex = 2;
+            this.colCgst.Width = 85;
             // 
-            // Narration
+            // colCess
             // 
-            this.Narration.Caption = "Local-Tax %";
-            this.Narration.ColumnEdit = this.repositoryItemTextEdit2;
-            this.Narration.FieldName = "Local_Tax";
-            this.Narration.Name = "Narration";
-            this.Narration.Visible = true;
-            this.Narration.VisibleIndex = 2;
-            this.Narration.Width = 85;
+            this.colCess.Caption = "Cess %";
+            this.colCess.ColumnEdit = this.repositoryItemTextEdit2;
+            this.colCess.FieldName = "Cess";
+            this.colCess.Name = "colCess";
+            this.colCess.Visible = true;
+            this.colCess.VisibleIndex = 6;
+            this.colCess.Width = 102;
             // 
-            // gridColumn2
+            // colIgst
             // 
-            this.gridColumn2.Caption = "Entery Tax %";
-            this.gridColumn2.ColumnEdit = this.repositoryItemTextEdit2;
-            this.gridColumn2.FieldName = "Entry_Tax";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 7;
-            this.gridColumn2.Width = 98;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Service Tax %";
-            this.gridColumn3.ColumnEdit = this.repositoryItemTextEdit2;
-            this.gridColumn3.FieldName = "Service_Tax";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 8;
-            this.gridColumn3.Width = 102;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Central-Schg. %";
-            this.gridColumn4.ColumnEdit = this.repositoryItemTextEdit2;
-            this.gridColumn4.FieldName = "Schg_Central";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 6;
-            this.gridColumn4.Width = 99;
+            this.colIgst.Caption = "IGST-Tax %";
+            this.colIgst.ColumnEdit = this.repositoryItemTextEdit2;
+            this.colIgst.FieldName = "IGST_Tax";
+            this.colIgst.Name = "colIgst";
+            this.colIgst.Visible = true;
+            this.colIgst.VisibleIndex = 5;
+            this.colIgst.Width = 99;
             // 
             // colParentid
             // 
             this.colParentid.Caption = "ParentId";
-            this.colParentid.FieldName = "TaxCat_Id";
+            this.colParentid.FieldName = "GSTID";
             this.colParentid.Name = "colParentid";
             // 
             // colRateId
@@ -476,7 +449,7 @@
             this.navBarItem4,
             this.navBarItem5,
             this.navBarItem6,
-            this.ListTaxcategory,
+            this.ListGSTcategory,
             this.navBarItem8,
             this.navBarItem9,
             this.navBarItem10,
@@ -524,18 +497,18 @@
             this.navBarGroup5.Caption = "Add/Modify";
             this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.ListTaxcategory),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ListGSTcategory),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // ListTaxcategory
+            // ListGSTcategory
             // 
-            this.ListTaxcategory.Caption = "List";
-            this.ListTaxcategory.Name = "ListTaxcategory";
-            this.ListTaxcategory.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListTaxcategory.SmallImage")));
-            this.ListTaxcategory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListTaxcategory_LinkClicked);
+            this.ListGSTcategory.Caption = "List";
+            this.ListGSTcategory.Name = "ListGSTcategory";
+            this.ListGSTcategory.SmallImage = ((System.Drawing.Image)(resources.GetObject("ListGSTcategory.SmallImage")));
+            this.ListGSTcategory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ListTaxcategory_LinkClicked);
             // 
             // navBarItem8
             // 
@@ -818,112 +791,96 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(490, 180);
+            this.labelControl4.Location = new System.Drawing.Point(418, 180);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(50, 13);
+            this.labelControl4.Size = new System.Drawing.Size(50, 20);
             this.labelControl4.StyleController = this.layoutControl1;
             this.labelControl4.TabIndex = 30;
             this.labelControl4.Text = "% of Amt.";
             // 
-            // cbxtaxonmrpmode
+            // cbxTaxonmrpmode
             // 
-            this.cbxtaxonmrpmode.EnterMoveNextControl = true;
-            this.cbxtaxonmrpmode.Location = new System.Drawing.Point(653, 180);
-            this.cbxtaxonmrpmode.Name = "cbxtaxonmrpmode";
-            this.cbxtaxonmrpmode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxTaxonmrpmode.EnterMoveNextControl = true;
+            this.cbxTaxonmrpmode.Location = new System.Drawing.Point(564, 180);
+            this.cbxTaxonmrpmode.Name = "cbxTaxonmrpmode";
+            this.cbxTaxonmrpmode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxtaxonmrpmode.Properties.Items.AddRange(new object[] {
+            this.cbxTaxonmrpmode.Properties.Items.AddRange(new object[] {
             "Inclusive",
             "Over and Above"});
-            this.cbxtaxonmrpmode.Size = new System.Drawing.Size(201, 20);
-            this.cbxtaxonmrpmode.StyleController = this.layoutControl1;
-            this.cbxtaxonmrpmode.TabIndex = 29;
+            this.cbxTaxonmrpmode.Size = new System.Drawing.Size(85, 20);
+            this.cbxTaxonmrpmode.StyleController = this.layoutControl1;
+            this.cbxTaxonmrpmode.TabIndex = 29;
+            this.cbxTaxonmrpmode.Leave += new System.EventHandler(this.cbxtaxonmrpmode_Leave);
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(456, 264);
+            this.labelControl3.Location = new System.Drawing.Point(456, 216);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(100, 13);
             this.labelControl3.StyleController = this.layoutControl1;
             this.labelControl3.TabIndex = 27;
             this.labelControl3.Text = "Change in Tax Rates";
             // 
-            // tbxDescription
+            // tbxCalculatedtaxon
             // 
-            this.tbxDescription.EnterMoveNextControl = true;
-            this.tbxDescription.Location = new System.Drawing.Point(267, 228);
-            this.tbxDescription.Name = "tbxDescription";
-            this.tbxDescription.Size = new System.Drawing.Size(587, 20);
-            this.tbxDescription.StyleController = this.layoutControl1;
-            this.tbxDescription.TabIndex = 23;
-            // 
-            // tbxHsn
-            // 
-            this.tbxHsn.EnterMoveNextControl = true;
-            this.tbxHsn.Location = new System.Drawing.Point(267, 204);
-            this.tbxHsn.Name = "tbxHsn";
-            this.tbxHsn.Size = new System.Drawing.Size(587, 20);
-            this.tbxHsn.StyleController = this.layoutControl1;
-            this.tbxHsn.TabIndex = 22;
-            // 
-            // tbxcalculatedtaxon
-            // 
-            this.tbxcalculatedtaxon.EditValue = "0.00";
-            this.tbxcalculatedtaxon.EnterMoveNextControl = true;
-            this.tbxcalculatedtaxon.Location = new System.Drawing.Point(267, 180);
-            this.tbxcalculatedtaxon.Name = "tbxcalculatedtaxon";
-            this.tbxcalculatedtaxon.Properties.Mask.EditMask = "n2";
-            this.tbxcalculatedtaxon.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tbxcalculatedtaxon.Size = new System.Drawing.Size(219, 20);
-            this.tbxcalculatedtaxon.StyleController = this.layoutControl1;
-            this.tbxcalculatedtaxon.TabIndex = 19;
+            this.tbxCalculatedtaxon.EditValue = "0.00";
+            this.tbxCalculatedtaxon.EnterMoveNextControl = true;
+            this.tbxCalculatedtaxon.Location = new System.Drawing.Point(250, 180);
+            this.tbxCalculatedtaxon.Name = "tbxCalculatedtaxon";
+            this.tbxCalculatedtaxon.Properties.Mask.EditMask = "n2";
+            this.tbxCalculatedtaxon.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxCalculatedtaxon.Size = new System.Drawing.Size(164, 20);
+            this.tbxCalculatedtaxon.StyleController = this.layoutControl1;
+            this.tbxCalculatedtaxon.TabIndex = 19;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(713, 156);
+            this.labelControl2.Location = new System.Drawing.Point(508, 156);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(141, 13);
+            this.labelControl2.Size = new System.Drawing.Size(141, 20);
             this.labelControl2.StyleController = this.layoutControl1;
             this.labelControl2.TabIndex = 18;
             this.labelControl2.Text = "(Only for Multi-Tax Vouchers)";
             // 
-            // tbxRateofCenteral
+            // tbxIgstTax
             // 
-            this.tbxRateofCenteral.EditValue = "0.00";
-            this.tbxRateofCenteral.EnterMoveNextControl = true;
-            this.tbxRateofCenteral.Location = new System.Drawing.Point(267, 132);
-            this.tbxRateofCenteral.Name = "tbxRateofCenteral";
-            this.tbxRateofCenteral.Properties.Mask.EditMask = "n2";
-            this.tbxRateofCenteral.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tbxRateofCenteral.Size = new System.Drawing.Size(587, 20);
-            this.tbxRateofCenteral.StyleController = this.layoutControl1;
-            this.tbxRateofCenteral.TabIndex = 16;
+            this.tbxIgstTax.EditValue = "0.00";
+            this.tbxIgstTax.EnterMoveNextControl = true;
+            this.tbxIgstTax.Location = new System.Drawing.Point(250, 132);
+            this.tbxIgstTax.Name = "tbxIgstTax";
+            this.tbxIgstTax.Properties.Mask.EditMask = "n2";
+            this.tbxIgstTax.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxIgstTax.Size = new System.Drawing.Size(254, 20);
+            this.tbxIgstTax.StyleController = this.layoutControl1;
+            this.tbxIgstTax.TabIndex = 16;
             // 
-            // tbxRateoftaxLocal
+            // tbxSgstTax
             // 
-            this.tbxRateoftaxLocal.EditValue = "0.00";
-            this.tbxRateoftaxLocal.EnterMoveNextControl = true;
-            this.tbxRateoftaxLocal.Location = new System.Drawing.Point(267, 108);
-            this.tbxRateoftaxLocal.Name = "tbxRateoftaxLocal";
-            this.tbxRateoftaxLocal.Properties.Mask.EditMask = "n2";
-            this.tbxRateoftaxLocal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tbxRateoftaxLocal.Size = new System.Drawing.Size(197, 20);
-            this.tbxRateoftaxLocal.StyleController = this.layoutControl1;
-            this.tbxRateoftaxLocal.TabIndex = 14;
+            this.tbxSgstTax.EditValue = "0.00";
+            this.tbxSgstTax.EnterMoveNextControl = true;
+            this.tbxSgstTax.Location = new System.Drawing.Point(250, 108);
+            this.tbxSgstTax.Name = "tbxSgstTax";
+            this.tbxSgstTax.Properties.Mask.EditMask = "n2";
+            this.tbxSgstTax.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tbxSgstTax.Size = new System.Drawing.Size(254, 20);
+            this.tbxSgstTax.StyleController = this.layoutControl1;
+            this.tbxSgstTax.TabIndex = 14;
             // 
-            // cbxtype
+            // cbxType
             // 
-            this.cbxtype.EnterMoveNextControl = true;
-            this.cbxtype.Location = new System.Drawing.Point(620, 30);
-            this.cbxtype.Name = "cbxtype";
-            this.cbxtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxType.EnterMoveNextControl = true;
+            this.cbxType.Location = new System.Drawing.Point(524, 30);
+            this.cbxType.Name = "cbxType";
+            this.cbxType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxtype.Properties.Items.AddRange(new object[] {
+            this.cbxType.Properties.Items.AddRange(new object[] {
             "Goods",
             "Services"});
-            this.cbxtype.Size = new System.Drawing.Size(246, 20);
-            this.cbxtype.StyleController = this.layoutControl1;
-            this.cbxtype.TabIndex = 13;
+            this.cbxType.Size = new System.Drawing.Size(135, 20);
+            this.cbxType.StyleController = this.layoutControl1;
+            this.cbxType.TabIndex = 13;
+            this.cbxType.Leave += new System.EventHandler(this.cbxType_Leave);
             // 
             // btnQuit
             // 
@@ -953,10 +910,10 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(386, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(90, 14);
+            this.labelControl1.Size = new System.Drawing.Size(77, 14);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
-            this.labelControl1.Text = "TAX Category";
+            this.labelControl1.Text = "GST Details";
             // 
             // gridControl2
             // 
@@ -976,32 +933,17 @@
             // tbxName
             // 
             this.tbxName.EnterMoveNextControl = true;
-            this.tbxName.Location = new System.Drawing.Point(255, 30);
+            this.tbxName.Location = new System.Drawing.Point(238, 30);
             this.tbxName.Name = "tbxName";
-            this.tbxName.Size = new System.Drawing.Size(252, 20);
+            this.tbxName.Size = new System.Drawing.Size(190, 20);
             this.tbxName.StyleController = this.layoutControl1;
             this.tbxName.TabIndex = 5;
             this.tbxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxName_KeyPress);
             // 
-            // cbxTaxationtype
-            // 
-            this.cbxTaxationtype.EnterMoveNextControl = true;
-            this.cbxTaxationtype.Location = new System.Drawing.Point(577, 108);
-            this.cbxTaxationtype.Name = "cbxTaxationtype";
-            this.cbxTaxationtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxTaxationtype.Properties.Items.AddRange(new object[] {
-            "Exempt",
-            "Taxfree",
-            "Taxpaid"});
-            this.cbxTaxationtype.Size = new System.Drawing.Size(277, 20);
-            this.cbxTaxationtype.StyleController = this.layoutControl1;
-            this.cbxTaxationtype.TabIndex = 15;
-            // 
             // cbxTaxonmrp
             // 
             this.cbxTaxonmrp.EnterMoveNextControl = true;
-            this.cbxTaxonmrp.Location = new System.Drawing.Point(267, 156);
+            this.cbxTaxonmrp.Location = new System.Drawing.Point(250, 156);
             this.cbxTaxonmrp.Name = "cbxTaxonmrp";
             this.cbxTaxonmrp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1009,7 +951,7 @@
             "Y",
             "N"});
             this.cbxTaxonmrp.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbxTaxonmrp.Size = new System.Drawing.Size(442, 20);
+            this.cbxTaxonmrp.Size = new System.Drawing.Size(254, 20);
             this.cbxTaxonmrp.StyleController = this.layoutControl1;
             this.cbxTaxonmrp.TabIndex = 17;
             this.cbxTaxonmrp.SelectedIndexChanged += new System.EventHandler(this.cbxTaxonmrp_SelectedIndexChanged);
@@ -1047,7 +989,8 @@
             this.layoutControlItem4,
             this.layoutControlGroup2,
             this.lblDelete,
-            this.emptySpaceItem8});
+            this.emptySpaceItem8,
+            this.emptySpaceItem11});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(920, 578);
@@ -1058,7 +1001,7 @@
             this.layoutControlItem1.Control = this.labelControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(374, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(94, 18);
+            this.layoutControlItem1.Size = new System.Drawing.Size(81, 18);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -1066,10 +1009,13 @@
             // 
             this.layoutControlItem2.Control = this.tbxName;
             this.layoutControlItem2.Location = new System.Drawing.Point(134, 18);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(286, 24);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(286, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(365, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(286, 24);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(89, 13);
             // 
             // emptySpaceItem1
             // 
@@ -1082,9 +1028,9 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(468, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(455, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(390, 18);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(382, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblSave
@@ -1135,22 +1081,25 @@
             this.emptySpaceItem7.AllowHotTrack = false;
             this.emptySpaceItem7.Location = new System.Drawing.Point(714, 532);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(144, 26);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(123, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.cbxtype;
-            this.layoutControlItem6.Location = new System.Drawing.Point(499, 18);
+            this.layoutControlItem6.Control = this.cbxType;
+            this.layoutControlItem6.Location = new System.Drawing.Point(420, 18);
+            this.layoutControlItem6.MaxSize = new System.Drawing.Size(231, 24);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(231, 24);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(359, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(231, 24);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "Type";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(89, 13);
             // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.labelControl3;
-            this.layoutControlItem22.Location = new System.Drawing.Point(444, 252);
+            this.layoutControlItem22.Location = new System.Drawing.Point(444, 204);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(104, 17);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -1159,7 +1108,7 @@
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(134, 252);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(134, 204);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
             this.emptySpaceItem9.Size = new System.Drawing.Size(310, 17);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
@@ -1167,9 +1116,9 @@
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(548, 252);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(548, 204);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(310, 17);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(289, 17);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem26
@@ -1207,17 +1156,17 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(858, 0);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(837, 0);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(42, 558);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(63, 558);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.dvgTaxratesList;
-            this.layoutControlItem4.Location = new System.Drawing.Point(134, 269);
+            this.layoutControlItem4.Control = this.dvgGSTTaxratesList;
+            this.layoutControlItem4.Location = new System.Drawing.Point(134, 221);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(724, 263);
+            this.layoutControlItem4.Size = new System.Drawing.Size(703, 311);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -1226,53 +1175,55 @@
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5,
             this.layoutControlItem11,
-            this.layoutControlItem10,
             this.layoutControlItem13,
             this.layoutControlItem12,
             this.lblCalculatedtax,
             this.lblPerAmt,
             this.lblTaxonMrpmode,
-            this.layoutControlItem17,
-            this.layoutControlItem18,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.emptySpaceItem12,
+            this.emptySpaceItem13,
+            this.emptySpaceItem14,
+            this.emptySpaceItem15,
+            this.emptySpaceItem16});
             this.layoutControlGroup2.Location = new System.Drawing.Point(134, 42);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(724, 210);
-            this.layoutControlGroup2.Text = "Default VAT/GST Info";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(703, 162);
+            this.layoutControlGroup2.Text = "Default GST Info";
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.tbxRateoftaxLocal;
+            this.layoutControlItem5.Control = this.tbxSgstTax;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(350, 24);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(350, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(310, 24);
-            this.layoutControlItem5.Text = "Rate Of TAX (Local)";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem5.Size = new System.Drawing.Size(350, 24);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.Text = "Tax Rate (SGST)";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(89, 13);
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.tbxRateofCenteral;
+            this.layoutControlItem11.Control = this.tbxIgstTax;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(350, 24);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(350, 24);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(700, 24);
-            this.layoutControlItem11.Text = "Rate Of TAX (Central)";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.cbxTaxationtype;
-            this.layoutControlItem10.Location = new System.Drawing.Point(310, 24);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(390, 24);
-            this.layoutControlItem10.Text = "Taxation Type";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem11.Size = new System.Drawing.Size(350, 24);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem11.Text = "Tax Rate (IGST)";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(89, 13);
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.labelControl2;
-            this.layoutControlItem13.Location = new System.Drawing.Point(555, 72);
+            this.layoutControlItem13.Location = new System.Drawing.Point(350, 72);
+            this.layoutControlItem13.MaxSize = new System.Drawing.Size(145, 24);
+            this.layoutControlItem13.MinSize = new System.Drawing.Size(145, 24);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(145, 24);
+            this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -1280,64 +1231,104 @@
             // 
             this.layoutControlItem12.Control = this.cbxTaxonmrp;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(350, 24);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(350, 24);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(555, 24);
+            this.layoutControlItem12.Size = new System.Drawing.Size(350, 24);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.Text = "TAX On MRP";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(89, 13);
             // 
             // lblCalculatedtax
             // 
-            this.lblCalculatedtax.Control = this.tbxcalculatedtaxon;
+            this.lblCalculatedtax.Control = this.tbxCalculatedtaxon;
             this.lblCalculatedtax.Location = new System.Drawing.Point(0, 96);
+            this.lblCalculatedtax.MaxSize = new System.Drawing.Size(260, 24);
+            this.lblCalculatedtax.MinSize = new System.Drawing.Size(260, 24);
             this.lblCalculatedtax.Name = "lblCalculatedtax";
-            this.lblCalculatedtax.Size = new System.Drawing.Size(332, 24);
+            this.lblCalculatedtax.Size = new System.Drawing.Size(260, 24);
+            this.lblCalculatedtax.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblCalculatedtax.Text = "Calculated TAX on";
-            this.lblCalculatedtax.TextSize = new System.Drawing.Size(106, 13);
+            this.lblCalculatedtax.TextSize = new System.Drawing.Size(89, 13);
             // 
             // lblPerAmt
             // 
             this.lblPerAmt.Control = this.labelControl4;
-            this.lblPerAmt.Location = new System.Drawing.Point(332, 96);
+            this.lblPerAmt.Location = new System.Drawing.Point(260, 96);
+            this.lblPerAmt.MaxSize = new System.Drawing.Size(54, 24);
+            this.lblPerAmt.MinSize = new System.Drawing.Size(54, 24);
             this.lblPerAmt.Name = "lblPerAmt";
             this.lblPerAmt.Size = new System.Drawing.Size(54, 24);
+            this.lblPerAmt.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblPerAmt.TextSize = new System.Drawing.Size(0, 0);
             this.lblPerAmt.TextVisible = false;
             // 
             // lblTaxonMrpmode
             // 
-            this.lblTaxonMrpmode.Control = this.cbxtaxonmrpmode;
-            this.lblTaxonMrpmode.Location = new System.Drawing.Point(386, 96);
+            this.lblTaxonMrpmode.Control = this.cbxTaxonmrpmode;
+            this.lblTaxonMrpmode.Location = new System.Drawing.Point(314, 96);
+            this.lblTaxonMrpmode.MaxSize = new System.Drawing.Size(181, 24);
+            this.lblTaxonMrpmode.MinSize = new System.Drawing.Size(181, 24);
             this.lblTaxonMrpmode.Name = "lblTaxonMrpmode";
-            this.lblTaxonMrpmode.Size = new System.Drawing.Size(314, 24);
+            this.lblTaxonMrpmode.Size = new System.Drawing.Size(181, 24);
+            this.lblTaxonMrpmode.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblTaxonMrpmode.Text = "TAX On MRP Mode";
-            this.lblTaxonMrpmode.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.tbxHsn;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 120);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(700, 24);
-            this.layoutControlItem17.Text = "HSN Code";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // layoutControlItem18
-            // 
-            this.layoutControlItem18.Control = this.tbxDescription;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 144);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(700, 24);
-            this.layoutControlItem18.Text = "Description";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(106, 13);
+            this.lblTaxonMrpmode.TextSize = new System.Drawing.Size(89, 13);
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.tbxServiceTax;
+            this.layoutControlItem7.Control = this.tbxCgstTax;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(350, 24);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(350, 24);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(700, 24);
-            this.layoutControlItem7.Text = "Service Tax Rate";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(106, 13);
+            this.layoutControlItem7.Size = new System.Drawing.Size(350, 24);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.Text = "Tax Rate (CGST)";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(89, 13);
+            // 
+            // emptySpaceItem12
+            // 
+            this.emptySpaceItem12.AllowHotTrack = false;
+            this.emptySpaceItem12.Location = new System.Drawing.Point(350, 0);
+            this.emptySpaceItem12.Name = "emptySpaceItem12";
+            this.emptySpaceItem12.Size = new System.Drawing.Size(329, 24);
+            this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem13
+            // 
+            this.emptySpaceItem13.AllowHotTrack = false;
+            this.emptySpaceItem13.Location = new System.Drawing.Point(350, 24);
+            this.emptySpaceItem13.Name = "emptySpaceItem13";
+            this.emptySpaceItem13.Size = new System.Drawing.Size(329, 24);
+            this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem14
+            // 
+            this.emptySpaceItem14.AllowHotTrack = false;
+            this.emptySpaceItem14.Location = new System.Drawing.Point(350, 48);
+            this.emptySpaceItem14.Name = "emptySpaceItem14";
+            this.emptySpaceItem14.Size = new System.Drawing.Size(329, 24);
+            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem15
+            // 
+            this.emptySpaceItem15.AllowHotTrack = false;
+            this.emptySpaceItem15.Location = new System.Drawing.Point(495, 72);
+            this.emptySpaceItem15.Name = "emptySpaceItem15";
+            this.emptySpaceItem15.Size = new System.Drawing.Size(184, 24);
+            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem16
+            // 
+            this.emptySpaceItem16.AllowHotTrack = false;
+            this.emptySpaceItem16.Location = new System.Drawing.Point(495, 96);
+            this.emptySpaceItem16.MaxSize = new System.Drawing.Size(0, 24);
+            this.emptySpaceItem16.MinSize = new System.Drawing.Size(10, 24);
+            this.emptySpaceItem16.Name = "emptySpaceItem16";
+            this.emptySpaceItem16.Size = new System.Drawing.Size(184, 24);
+            this.emptySpaceItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblDelete
             // 
@@ -1362,39 +1353,44 @@
             this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // Taxcategory
+            // emptySpaceItem11
+            // 
+            this.emptySpaceItem11.AllowHotTrack = false;
+            this.emptySpaceItem11.Location = new System.Drawing.Point(651, 18);
+            this.emptySpaceItem11.Name = "emptySpaceItem11";
+            this.emptySpaceItem11.Size = new System.Drawing.Size(186, 24);
+            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // GSTDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 578);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Taxcategory";
+            this.Name = "GSTDetails";
             this.Text = "SalesVoucher";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Taxcategory_Load);
+            this.Load += new System.EventHandler(this.GSTDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbxServiceTax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgTaxratesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgTaxrateDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCgstTax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGSTTaxratesList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGSTTaxrateDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxtaxonmrpmode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxHsn.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxcalculatedtaxon.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxRateofCenteral.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxRateoftaxLocal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxtype.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTaxonmrpmode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtaxon.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxIgstTax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSgstTax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTaxationtype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTaxonmrp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -1419,17 +1415,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCalculatedtax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPerAmt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTaxonMrpmode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1454,29 +1453,23 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraEditors.TextEdit tbxName;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxtype;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraEditors.TextEdit tbxDescription;
-        private DevExpress.XtraEditors.TextEdit tbxHsn;
-        private DevExpress.XtraEditors.TextEdit tbxcalculatedtaxon;
+        private DevExpress.XtraEditors.TextEdit tbxCalculatedtaxon;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit tbxRateofCenteral;
-        private DevExpress.XtraEditors.TextEdit tbxRateoftaxLocal;
+        private DevExpress.XtraEditors.TextEdit tbxIgstTax;
+        private DevExpress.XtraEditors.TextEdit tbxSgstTax;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem lblCalculatedtax;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxTaxationtype;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxtaxonmrpmode;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxTaxonmrpmode;
         private DevExpress.XtraEditors.ComboBoxEdit cbxTaxonmrp;
         private DevExpress.XtraLayout.LayoutControlItem lblTaxonMrpmode;
         private DevExpress.XtraLayout.LayoutControlItem lblPerAmt;
@@ -1519,7 +1512,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem ListTaxcategory;
+        private DevExpress.XtraNavBar.NavBarItem ListGSTcategory;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem navBarItem9;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
@@ -1530,29 +1523,33 @@
         private DevExpress.XtraLayout.LayoutControlItem lblUpdate;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private DevExpress.XtraGrid.GridControl dvgTaxratesList;
-        private DevExpress.XtraGrid.Views.Grid.GridView dvgTaxrateDetails;
+        private DevExpress.XtraGrid.GridControl dvgGSTTaxratesList;
+        private DevExpress.XtraGrid.Views.Grid.GridView dvgGSTTaxrateDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn colwef;
-        private DevExpress.XtraGrid.Columns.GridColumn Extra;
+        private DevExpress.XtraGrid.Columns.GridColumn colTaxType;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
-        private DevExpress.XtraGrid.Columns.GridColumn BSAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn Percentage;
-        private DevExpress.XtraGrid.Columns.GridColumn Narration;
+        private DevExpress.XtraGrid.Columns.GridColumn colsgst;
+        private DevExpress.XtraGrid.Columns.GridColumn colCgst;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn colCess;
+        private DevExpress.XtraGrid.Columns.GridColumn colIgst;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private DevExpress.XtraEditors.TextEdit tbxServiceTax;
+        private DevExpress.XtraEditors.TextEdit tbxCgstTax;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraGrid.Columns.GridColumn colParentid;
         private DevExpress.XtraGrid.Columns.GridColumn colRateId;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraLayout.LayoutControlItem lblDelete;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem13;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem14;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem15;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem16;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
     }
 }

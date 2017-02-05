@@ -113,6 +113,7 @@
             this.dvgCostcenterDetails.Name = "dvgCostcenterDetails";
             this.dvgCostcenterDetails.OptionsBehavior.ReadOnly = true;
             this.dvgCostcenterDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgCostcenterDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgCostcenterDetails_RowClick);
             this.dvgCostcenterDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgCostcenterDetails_KeyDown);
             this.dvgCostcenterDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgCostcenterDetails_KeyPress);
             this.dvgCostcenterDetails.DoubleClick += new System.EventHandler(this.dvgCostcenterDetails_DoubleClick);

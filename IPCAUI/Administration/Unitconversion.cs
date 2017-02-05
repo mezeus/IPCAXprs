@@ -57,28 +57,29 @@ namespace IPCAUI.Administration
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            if(UCId!=0)
-            {
-                btnSave.Visible = false;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                cbxMainunit.Focus();
-
-                FillUnitConversionInfo();
-
-            }
-
+            FillUnitConversionInfo();
         }
 
         private void FillUnitConversionInfo()
         {
+            if(UCId==0)
+            {
+                cbxMainunit.Focus();
+                ClearControls();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                return;
+            }
             UnitConversionModel objMaster = objunc.GetListofUnitConversionsById(UCId);
 
             cbxMainunit.SelectedItem = objMaster.MainUnit;
             cbxSubunit.SelectedItem = objMaster.SubUnit;
             cbxConfactor.Text =Convert.ToString(objMaster.ConFactor);
-
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            cbxMainunit.Focus();
         }
         public void ClearControls()
         {
@@ -89,11 +90,11 @@ namespace IPCAUI.Administration
 
         private void Unitconversion_Load(object sender, EventArgs e)
         {
-            LodaUnits();
+            LoadUnits();
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
-        public void LodaUnits()
+        public void LoadUnits()
         {
             List<UnitMasterModel> lstUnits = objUnitBl.GetListofUnits();
             foreach (UnitMasterModel objunit in lstUnits)
@@ -119,6 +120,7 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
+                UCId = 0;
                 ClearControls();
                 Administration.List.UnitconversionList frmList = new Administration.List.UnitconversionList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
@@ -130,7 +132,7 @@ namespace IPCAUI.Administration
 
         private void cbxMainunit_Enter(object sender, EventArgs e)
         {
-            LodaUnits();
+            LoadUnits();
             //ComboBox cmb = new ComboBox();
             //cmb.DroppedDown = true;
           
@@ -138,7 +140,7 @@ namespace IPCAUI.Administration
 
         private void cbxSubunit_Enter(object sender, EventArgs e)
         {
-            LodaUnits();
+            LoadUnits();
             cbxSubunit.SelectedIndex = 0;
         }
 
@@ -167,6 +169,7 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Delete Successfully!");
                 ClearControls();
+                UCId = 0;
                 Administration.List.UnitconversionList frmList = new Administration.List.UnitconversionList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
 
@@ -200,6 +203,10 @@ namespace IPCAUI.Administration
                     return;
                 }
             }
+            else
+            {
+                cbxMainunit.ShowPopup();
+            }
 
         }
 
@@ -220,12 +227,12 @@ namespace IPCAUI.Administration
 
         private void cbxMainunit_Leave(object sender, EventArgs e)
         {
-            if (objunc.IsUnitConversionExists(cbxMainunit.Text.Trim()))
-            {
-                MessageBox.Show("Unit Name already Exists!");
-                cbxMainunit.Focus();
-                return;
-            }
+            //if (objunc.IsUnitConversionExists(cbxMainunit.Text.Trim()))
+            //{
+            //    MessageBox.Show("Unit Name already Exists!");
+            //    cbxMainunit.Focus();
+            //    return;
+            //}
         }
     }
 }

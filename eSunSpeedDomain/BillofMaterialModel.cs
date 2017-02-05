@@ -12,6 +12,8 @@ namespace eSunSpeedDomain
         //This is ComboBox
         public string Itemtoproduce { get; set; }
         public decimal Quantity { get; set; }
+        public decimal ICTotalQty { get; set; }
+        public decimal IGTotalQty { get; set; }
         //This is ComboboxofUnitMasterList
         public string ItemUnit { get; set; }
         //This Expenses Used PerUnit

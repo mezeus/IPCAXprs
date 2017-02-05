@@ -830,6 +830,9 @@
             this.cbxBillReferenceGroup.Size = new System.Drawing.Size(381, 20);
             this.cbxBillReferenceGroup.StyleController = this.layoutControl1;
             this.cbxBillReferenceGroup.TabIndex = 65;
+            this.cbxBillReferenceGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxBillReferenceGroup_KeyPress);
+            this.cbxBillReferenceGroup.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxBillReferenceGroup_KeyUp);
+            this.cbxBillReferenceGroup.Leave += new System.EventHandler(this.cbxBillReferenceGroup_Leave);
             // 
             // layoutControlItem8
             // 

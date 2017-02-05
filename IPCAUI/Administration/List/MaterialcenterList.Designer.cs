@@ -156,8 +156,6 @@
             this.dvgMaterialcentList.TabIndex = 9;
             this.dvgMaterialcentList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgMaterialcenterDet});
-            this.dvgMaterialcentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgMaterialcentList_KeyDown_1);
-            this.dvgMaterialcentList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgMaterialcentList_KeyPress);
             // 
             // dvgMaterialcenterDet
             // 
@@ -169,6 +167,8 @@
             this.dvgMaterialcenterDet.Name = "dvgMaterialcenterDet";
             this.dvgMaterialcenterDet.OptionsBehavior.ReadOnly = true;
             this.dvgMaterialcenterDet.OptionsView.ShowGroupPanel = false;
+            this.dvgMaterialcenterDet.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgMaterialcenterDet_RowClick);
+            this.dvgMaterialcenterDet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgMaterialcenterDet_KeyDown);
             // 
             // colName
             // 
