@@ -1688,5 +1688,26 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+
+        //Get Item Id By Item Name
+        public long GetItemIdByItemName(string ItemName)
+        {
+            long id = 0;
+            try
+            {
+                string Query = "SELECT `ITM_ID` FROM `itemmaster` WHERE `ITEM_Name`='" + ItemName + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {
+                    id = Convert.ToInt64(dr["ITM_ID"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                id = 0;
+                //throw ex;
+            }
+            return id;
+        }
     }
 }

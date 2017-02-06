@@ -510,7 +510,26 @@ namespace eSunSpeed.BusinessLogic
 
             return id;
             }
-
+        //Get Ledger Id By AccountMasterName
+        public long GetLedgerIdByAccountName(string ACCname)
+        {
+            long id = 0;
+            try
+            {
+                string Query = "SELECT Ac_ID FROM `accountmaster` WHERE `ACC_NAME`='" + ACCname + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {                
+                    id = Convert.ToInt64(dr["Ac_ID"]);
+                }
+            }
+            catch(Exception ex)
+            {
+                id = 0;
+                //throw ex;
+            }
+            return id;
+        }
         //Save Maintain Bill By Details
         public bool SaveBillByBillDetails(List<MaintainBillbyBillModel> lstBillbyBill, int id)
         {
