@@ -694,7 +694,9 @@ namespace IPCAUI.Administration
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            ClearControls();
+            //ClearControls();
+            Utilities.Utilities.ResetAllControls(this);
+
             
 
     }
