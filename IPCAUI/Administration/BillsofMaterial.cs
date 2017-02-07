@@ -42,9 +42,7 @@ namespace IPCAUI.Administration
 
             frmList.ShowDialog();
 
-            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            
             tbxBomName.Focus();
 
             FillBOMInfo();
@@ -56,12 +54,15 @@ namespace IPCAUI.Administration
             if(BMId==0)
             {
                 tbxBomName.Focus();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 return;
             }
             tbxBomName.Text= objBom.BOMName;
-            cbxItemproduce.Text = objBom.Itemtoproduce;
+            cbxItemproduce.Text = objBom.Itemtoproduce.ToString();
             tbxQuanty.Text=Convert.ToString(objBom.Quantity);
-            cbxUnit.SelectedItem = objBom.ItemUnit;
+            cbxUnit.Text = objBom.ItemUnit;
             tbxExpensespcs.Text=Convert.ToString(objBom.Expenses);
             cbxItemgenerated.SelectedItem= objBom.SpecifyMCGenerated?"Y":"N";
             cbxItemconsumed.SelectedItem=objBom.SpecifyDefaultMCforItemConsumed?"Y":"N";
@@ -99,6 +100,9 @@ namespace IPCAUI.Administration
             }
 
             dvgProductGenerate.DataSource = dtgenerate;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
         }
 
@@ -131,7 +135,8 @@ namespace IPCAUI.Administration
             objBMmodl.SpecifyMCGenerated = Convert.ToBoolean(cbxItemgenerated.SelectedItem.ToString()=="Y"? true : false);
             objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString()=="Y"? true : false);
             objBMmodl.AppMc = string.Empty;
-
+            objBMmodl.ICTotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
+            objBMmodl.IGTotalQty = Convert.ToDecimal(colIgQty.SummaryItem.SummaryValue);
             //Item consumed
             List<BillsofMaterialDetailsModel> lstItemConsumed = new List<BillsofMaterialDetailsModel>();
             BillsofMaterialDetailsModel objConsumed;
@@ -210,7 +215,8 @@ namespace IPCAUI.Administration
         {
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            
+            cbxItemconsumed.SelectedIndex = 1;
+            cbxItemgenerated.SelectedIndex = 1;
             dtgenerate.Columns.Add("ItemName");
             dtgenerate.Columns.Add("Qty");
             dtgenerate.Columns.Add("Unit");
@@ -325,7 +331,8 @@ namespace IPCAUI.Administration
             // objBMmodl.SourceMC = string.Empty;
             objBMmodl.SpecifyDefaultMCforItemConsumed = Convert.ToBoolean(cbxItemconsumed.SelectedItem.ToString()=="Y"? true : false);
             objBMmodl.AppMc = string.Empty;
-
+            objBMmodl.ICTotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
+            objBMmodl.IGTotalQty = Convert.ToDecimal(colIgQty.SummaryItem.SummaryValue);
             //Item consumed
             List<BillsofMaterialDetailsModel> lstItemConsumed = new List<BillsofMaterialDetailsModel>();
             BillsofMaterialDetailsModel objConsumed;
@@ -425,6 +432,23 @@ namespace IPCAUI.Administration
             //{
             //    cbxItemproduce.Properties.Items.Add(objItems.Name);
             //}
+            //string t = cbxItemproduce.Text;
+            //string typedT = t.Substring(0, cbxItemproduce.SelectionStart);
+            //string newT = typedT + e.KeyChar;
+
+            //int i = cbxItemproduce.(newT);
+            //if (i == -1)
+            //{
+            //    e.Handled = true;
+            //}
+            //if (Char.IsLetter(e.KeyChar))
+            //{
+            //    e.KeyChar = Char.ToUpper(e.KeyChar);
+            //}
+            if(e.KeyChar!='\r')
+            {
+                cbxItemproduce.ShowPopup();
+            }           
         }
 
         private void cbxUnit_Enter(object sender, EventArgs e)
@@ -436,6 +460,7 @@ namespace IPCAUI.Administration
                 cbxUnit.Properties.Items.Add(objItems.MainUnit);
                 cbxUnit.Properties.Items.Add(objItems.AltUnit);
             }
+            cbxUnit.ShowPopup();
         }
 
         private void cbxItemproduce_Enter(object sender, EventArgs e)
@@ -482,6 +507,36 @@ namespace IPCAUI.Administration
                 dvgProductGeneratedDet.ShowEditor();
                 ((LookUpEdit)dvgProductGeneratedDet.ActiveEditor).ShowPopup();
 
+            }
+        }
+
+        private void cbxItemgenerated_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //string t = cbxItemgenerated.Text;
+            //string typedT = t.Substring(0, cbxItemgenerated.SelectionStart);
+            //string newT = typedT + e.KeyChar;
+
+            //int i = cbxItemgenerated.Properties.TextEditStyle(newT);
+            //if (i == -1)
+            //{
+            //    e.Handled = true;
+            //}
+            //if (Char.IsLetter(e.KeyChar))
+            //{
+            //    e.KeyChar = Char.ToUpper(e.KeyChar);
+            //}
+        }
+
+        private void dvgMatConsumed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxUnit_Leave(object sender, EventArgs e)
+        {
+            if(cbxUnit.Text.Trim()=="")
+            {
+                cbxUnit.SelectedIndex = 0;
             }
         }
     }

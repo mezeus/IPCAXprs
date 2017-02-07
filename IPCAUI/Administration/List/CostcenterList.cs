@@ -43,12 +43,34 @@ namespace IPCAUI.Administration.List
 
         private void dvgCostcenterDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                CostCentreMasterModel lstItems;
+
+                lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
+                Costcenter.costId = lstItems.CCM_ID;
+
+                this.Close();
+            }       
+        }
+
+        private void dvgCostcenterDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             CostCentreMasterModel lstItems;
 
             lstItems = (CostCentreMasterModel)dvgCostcenterDetails.GetRow(dvgCostcenterDetails.FocusedRowHandle);
             Costcenter.costId = lstItems.CCM_ID;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

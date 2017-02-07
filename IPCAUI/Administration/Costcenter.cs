@@ -42,7 +42,7 @@ namespace IPCAUI.Administration
         {
             if (tbxName.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Name can not be blank!");
+                MessageBox.Show("Cost Center Name can not be blank!");
                 return;
             }
 
@@ -68,16 +68,9 @@ namespace IPCAUI.Administration
         {
             Administration.List.CostcenterList frmList = new Administration.List.CostcenterList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            costId = 0;
             frmList.ShowDialog();
-            if (costId != 0)
-            {
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxName.Focus();
-                FillCostCenterInfo();
-            }
+            FillCostCenterInfo();
         }
 
         private void FillCostCenterInfo()
@@ -86,6 +79,10 @@ namespace IPCAUI.Administration
             if(costId==0)
             {
                 tbxName.Focus();
+                ClearControls();
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 return;
             }
 
@@ -94,6 +91,9 @@ namespace IPCAUI.Administration
             cbxPrimarygroup.SelectedItem = objMaster.Group;
             tbxOpbal.Text = Convert.ToString(objMaster.opBal);
             cbxDrCr.SelectedItem = objMaster.DrCr;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
         }
         public void ClearControls()
@@ -133,6 +133,7 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Update Successfully!");
                 ClearControls();
+                costId = 0;
                 Administration.List.CostcenterList frmList = new Administration.List.CostcenterList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
 
@@ -201,7 +202,7 @@ namespace IPCAUI.Administration
             {
                 if (tbxName.Text.Trim() == "")
                 {
-                    MessageBox.Show("Master Name Can Not Be Blank!");
+                    MessageBox.Show("Cost Center Name can not be blank!");
                     tbxName.Focus();
                     return;
                 }
@@ -209,7 +210,7 @@ namespace IPCAUI.Administration
                 {
                     if (objccm.IsCostMasterExists(tbxName.Text.Trim()))
                     {
-                        MessageBox.Show("Master Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                        MessageBox.Show("Cost Center Name already Exists!");
                         tbxName.Focus();
                         return;
                     }

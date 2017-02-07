@@ -27,18 +27,20 @@ namespace IPCAUI.Administration.List
             dvgUnitconversionList.DataSource = lstunitconversion;
         }
 
-        
-        private void dvgUnitconversionList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void dvgUnitConDetails_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
         private void dvgUnitConDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                UnitConversionModel lstUnitCover;
+
+                lstUnitCover = (UnitConversionModel)dvgUnitConDetails.GetRow(dvgUnitConDetails.FocusedRowHandle);
+                Unitconversion.UCId = lstUnitCover.ID;
+
+                this.Close();
+            }
+        }
+
+        private void dvgUnitConDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             UnitConversionModel lstUnitCover;
 
@@ -46,6 +48,15 @@ namespace IPCAUI.Administration.List
             Unitconversion.UCId = lstUnitCover.ID;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

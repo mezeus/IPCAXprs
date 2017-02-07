@@ -13,7 +13,7 @@ namespace eSunSpeed.BusinessLogic
     {
         BillSundryMasterModel objbsmasmod = new BillSundryMasterModel();
         private DBHelper _dbHelper = new DBHelper();
-
+        //Save Bill Sundry
         public bool SaveBSM(eSunSpeedDomain.BillSundryMasterModel objBSM)
         {
            
@@ -235,7 +235,7 @@ namespace eSunSpeed.BusinessLogic
             return isUpdated;
         }
 
-        //Delet BillSundry By Id
+        //Delete BillSundry By Id
         public bool DeleteBillSundryById(int id)
         {
             bool isDelete = false;
@@ -358,6 +358,27 @@ namespace eSunSpeed.BusinessLogic
             }
 
             return objbsmod;
+        }
+        //Get Bill Sundary Id By Bill Sundary Name
+        //Get Ledger Id By AccountMasterName
+        public long GetBSIdByBSName(string BSname)
+        {
+            long id = 0;
+            try
+            {
+                string Query = "SELECT BS_Id FROM `billsundarymaster` WHERE `Name`='" + BSname + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {
+                    id = Convert.ToInt64(dr["BS_Id"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                id = 0;
+                //throw ex;
+            }
+            return id;
         }
     }
 }

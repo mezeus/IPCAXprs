@@ -40,6 +40,7 @@ namespace IPCAUI.Administration
             if (tbxNarration.Text.Equals(string.Empty))
             {
                 MessageBox.Show("Std.Narration can not be blank!");
+                tbxNarration.Focus();
                 return;
             }
             StdNarrationMasterModel objModel = new StdNarrationMasterModel();
@@ -65,10 +66,9 @@ namespace IPCAUI.Administration
         {
             Administration.List.StdnarrationList frmList = new Administration.List.StdnarrationList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            StdId = 0;
             frmList.ShowDialog();
             FillStdNarrationInfo();
-            cbxVouchertype.Focus();
         }
 
         private void FillStdNarrationInfo()
@@ -76,6 +76,7 @@ namespace IPCAUI.Administration
             if(StdId==0)
             {
                 cbxVouchertype.Focus();
+                ClearControls();
                 lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
@@ -88,22 +89,23 @@ namespace IPCAUI.Administration
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            cbxVouchertype.Focus();
         }
 
         private void StdNarration_Load(object sender, EventArgs e)
         {
             StdId = 0;
+            cbxVouchertype.Focus();
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-            cbxVouchertype.SelectedIndex = 0;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (tbxNarration.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Narration can not be blank!");
+                MessageBox.Show("Std.Narration can not be blank!");
                 return;
             }
             StdNarrationMasterModel objModel = new StdNarrationMasterModel();
@@ -130,12 +132,15 @@ namespace IPCAUI.Administration
 
         private void cbxVouchertype_Enter(object sender, EventArgs e)
         {
-            cbxVouchertype.ShowPopup();
+            
         }
 
         private void cbxVouchertype_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
+            if(e.KeyChar!='\r')
+            {
+                cbxVouchertype.ShowPopup();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -162,6 +167,14 @@ namespace IPCAUI.Administration
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+        }
+
+        private void cbxVouchertype_Leave(object sender, EventArgs e)
+        {
+            if(cbxVouchertype.Text=="")
+            {
+                cbxVouchertype.SelectedIndex = 0;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace IPCAUI.Administration
         {
             if (tbxGroupName.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Group Name can not be blank!");
+                MessageBox.Show("Cost Center Group can not be blank!");
                 return;
             }
             CostCentreGroupModel objModel = new CostCentreGroupModel();
@@ -53,6 +53,7 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Saved Successfully!");
                 ClearControls();
                 tbxGroupName.Focus();
+
             }
         }
 
@@ -67,21 +68,9 @@ namespace IPCAUI.Administration
         {
             Administration.List.CostcentergrpList frmList = new Administration.List.CostcentergrpList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            groupId = 0;
             frmList.ShowDialog();
-            if(groupId!=0)
-            {
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-
-                btnSave.Visible = false;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-                tbxGroupName.Focus();
-
-                FillCostCenterGroupInfo();
-            }
-           
+            FillCostCenterGroupInfo();      
         }
 
         private void FillCostCenterGroupInfo()
@@ -89,6 +78,10 @@ namespace IPCAUI.Administration
             if(groupId==0)
             {
                 tbxGroupName.Focus();
+                ClearControls();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 return;
             }
             CostCentreGroupModel objMaster = objCG.GetAllCostCentreGroupsById(groupId);
@@ -97,6 +90,9 @@ namespace IPCAUI.Administration
             cbxPrimarygroup.SelectedItem = (objMaster.PrimaryGroup)?"Y" : "N";
             cbxUndergroup.SelectedItem = objMaster.underGroup;
 
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }
 
         private void Costcentergroup_Load(object sender, EventArgs e)
@@ -113,7 +109,7 @@ namespace IPCAUI.Administration
             {
                 if (tbxGroupName.Text.Trim() == "")
                 {
-                    MessageBox.Show("Cost Center Name Can Not Be Blank!");
+                    MessageBox.Show("Cost Center Group Can Not Be Blank!");
                     tbxGroupName.Focus();
                     return;
                 }
@@ -121,7 +117,7 @@ namespace IPCAUI.Administration
                 {
                     if (objCG.IsCostCenterGroupExists(tbxGroupName.Text.Trim()))
                     {
-                        MessageBox.Show("Group Name already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
+                        MessageBox.Show("Cost Center Group already Exists!", "SunSpeed", MessageBoxButtons.RetryCancel);
                         tbxGroupName.Focus();
                         return;
                     }
@@ -186,7 +182,7 @@ namespace IPCAUI.Administration
 
         private void cbxUndergroup_Enter(object sender, EventArgs e)
         {
-            cbxUndergroup.SelectedIndex = 0;
+            cbxUndergroup.ShowPopup();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -233,6 +229,22 @@ namespace IPCAUI.Administration
         private void tbxGroupName_TextChanged(object sender, EventArgs e)
         {
             tbxAlias.Text = tbxGroupName.Text.Trim();
+        }
+
+        private void cbxUndergroup_Leave(object sender, EventArgs e)
+        {
+            if(cbxUndergroup.Text=="")
+            {
+                cbxUndergroup.SelectedIndex = 0;
+            }
+        }
+
+        private void cbxUndergroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar!='\r')
+            {
+                cbxUndergroup.ShowPopup();
+            }
         }
     }
 }

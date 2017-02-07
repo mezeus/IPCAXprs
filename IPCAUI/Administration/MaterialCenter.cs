@@ -25,23 +25,25 @@ namespace IPCAUI.Administration
 
         private void ListMaterialcenter_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            MCId= 0;
             Administration.List.MaterialcenterList frmList = new Administration.List.MaterialcenterList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-            if(MCId!=0)
-            {
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-                FillMaterialCenterInfo();
-            }
-            
+            FillMaterialCenterInfo();
         }
 
         private void FillMaterialCenterInfo()
         {
+            if(MCId==0)
+            {
+                tbxGroupName.Focus();
+                ClearControls();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                return;
+            }
             MaterialCentreMasterModel objMaterial = objmatcenbl.GetAllMaterialsById(MCId);
 
             tbxGroupName.Text = objMaterial.GroupName;
@@ -58,6 +60,11 @@ namespace IPCAUI.Administration
             tbxAddress1.Text = objMaterial.Address1;
             tbxAddress2.Text = objMaterial.Address2;
             tbxAddress3.Text = objMaterial.Address3;
+
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxGroupName.Focus();
         }
 
 
@@ -65,7 +72,7 @@ namespace IPCAUI.Administration
         {
             if (tbxGroupName.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Master Name can not be blank!");
+                MessageBox.Show("Material Center can not be blank!");
                 return;
             }
             
@@ -157,24 +164,21 @@ namespace IPCAUI.Administration
             {
                 MessageBox.Show("Update Successfully!");                
                 MCId = 0;
+                ClearControls();
                 Administration.List.MaterialcenterList frmList = new Administration.List.MaterialcenterList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
 
                 frmList.ShowDialog();
-                if (MCId != 0)
-                {
-                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-                    FillMaterialCenterInfo();
-                }
-                ClearControls();
+                FillMaterialCenterInfo();
             }
         }
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            MCId = 0;
             ClearControls();
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
 
         private void tbxGroupName_TextChanged(object sender, EventArgs e)
@@ -185,7 +189,7 @@ namespace IPCAUI.Administration
 
         private void cbxGroup_Enter(object sender, EventArgs e)
         {
-            cbxGroup.SelectedIndex = 0;
+           
         }
 
         private void cbxStockaccount_Properties_Enter(object sender, EventArgs e)
@@ -204,37 +208,27 @@ namespace IPCAUI.Administration
             {
                 if (tbxGroupName.Text.Trim() == "")
                 {
-                    MessageBox.Show("Name Can Not Be Blank!");
+                    MessageBox.Show("Material Center Can Not Be Blank!");
                     tbxGroupName.Focus();
                     return;
                 }
                 if (objmatcenbl.IsMaterialCenterMasterExists(tbxGroupName.Text.Trim()))
                 {
-                    MessageBox.Show("Group Name already Exists!");
+                    MessageBox.Show("Material Center already Exists!");
                     tbxGroupName.Focus();
                     return;
                 }
             }
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            bool isDelete = objmatcenbl.DeleteMaterialCenterById(MCId);
-            if (isDelete)
-            {
-                MessageBox.Show("Delete Successfully!");
-                ClearControls();
-            }
-        }
-
         private void tbxGroupName_Leave(object sender, EventArgs e)
         {
-            if (objmatcenbl.IsMaterialCenterMasterExists(tbxGroupName.Text.Trim()))
-            {
-                MessageBox.Show("Group Name already Exists!");
-                tbxGroupName.Focus();
-                return;
-            }
+            //if (objmatcenbl.IsMaterialCenterMasterExists(tbxGroupName.Text.Trim()))
+            //{
+            //    MessageBox.Show("Group Name already Exists!");
+            //    tbxGroupName.Focus();
+            //    return;
+            //}
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -244,6 +238,35 @@ namespace IPCAUI.Administration
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void cbxGroup_Leave(object sender, EventArgs e)
+        {
+            cbxGroup.SelectedIndex = 0;
+        }
+
+        private void cbxGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar!='\r')
+            {
+                cbxGroup.ShowPopup();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objmatcenbl.DeleteMaterialCenterById(MCId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                MCId = 0;
+                ClearControls();
+                Administration.List.MaterialcenterList frmList = new Administration.List.MaterialcenterList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                frmList.ShowDialog();
+                FillMaterialCenterInfo();
+            }
         }
     }
 }

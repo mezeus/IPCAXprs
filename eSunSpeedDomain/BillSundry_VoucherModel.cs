@@ -9,10 +9,12 @@ namespace eSunSpeedDomain
     {
         
         public long BSId { get; set; }
+        public long Id { get; set; }
         public long ParentId { get; set; } //This should be the parent Id of transaction screen
                                           //Sales, Sales return, purchase, purchase return etc
 
         public string BillSundry { get; set; }
+        public long BS_Id { get; set; }
         public string Narration { get; set; }
         public string Type { get; set; }
         public decimal Percentage { get; set; }

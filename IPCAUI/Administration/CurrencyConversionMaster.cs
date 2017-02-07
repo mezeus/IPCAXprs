@@ -106,7 +106,7 @@ namespace IPCAUI.Administration
         {
             Administration.List.CurrencyconversionList frmList = new Administration.List.CurrencyconversionList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            Con_Id = 0;
             frmList.ShowDialog();
             FillCurrencyConversionInfo();
         }
@@ -115,6 +115,7 @@ namespace IPCAUI.Administration
             if(Con_Id==0)
             {
                 dtDate.Focus();
+                ClearFormValues();
                 lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;

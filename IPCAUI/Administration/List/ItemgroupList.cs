@@ -40,12 +40,34 @@ namespace IPCAUI.Administration.List
 
         private void dvgItemgrpDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                ItemGroupMasterModel lstItemsGroups;
+
+                lstItemsGroups = (ItemGroupMasterModel)dvgItemgrpDetails.GetRow(dvgItemgrpDetails.FocusedRowHandle);
+                Itemgroup.ItemgrpId = lstItemsGroups.IGM_id;
+
+                this.Close();
+            }          
+        }
+
+        private void dvgItemgrpDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             ItemGroupMasterModel lstItemsGroups;
 
             lstItemsGroups = (ItemGroupMasterModel)dvgItemgrpDetails.GetRow(dvgItemgrpDetails.FocusedRowHandle);
             Itemgroup.ItemgrpId = lstItemsGroups.IGM_id;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

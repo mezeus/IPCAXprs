@@ -38,6 +38,25 @@ namespace IPCAUI.Administration.List
 
         private void dvgCCgrpDetails_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+            
+        }
+
+        private void dvgCCgrpDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                CostCentreGroupModel lstGrops;
+
+                lstGrops = (CostCentreGroupModel)dvgCCgrpDetails.GetRow(dvgCCgrpDetails.FocusedRowHandle);
+                Costcentergroup.groupId = lstGrops.CCG_ID;
+
+                this.Close();
+            }
+        }
+
+        private void dvgCCgrpDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             CostCentreGroupModel lstGrops;
 
             lstGrops = (CostCentreGroupModel)dvgCCgrpDetails.GetRow(dvgCCgrpDetails.FocusedRowHandle);
@@ -45,10 +64,14 @@ namespace IPCAUI.Administration.List
 
             this.Close();
         }
-
-        private void dvgCCgrpDetails_KeyDown(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

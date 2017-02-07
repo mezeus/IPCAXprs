@@ -52,7 +52,7 @@ namespace IPCAUI.Administration
         {
             Administration.List.MasterseriesList frmList = new Administration.List.MasterseriesList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            MsGId = 0;
             frmList.ShowDialog();
 
             FillMasterSeriesInfo();
@@ -62,6 +62,7 @@ namespace IPCAUI.Administration
         {
             if(MsGId==0)
             {
+                tbxName.Text = string.Empty;
                 lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;

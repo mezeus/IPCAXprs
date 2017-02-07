@@ -510,7 +510,26 @@ namespace eSunSpeed.BusinessLogic
 
             return id;
             }
-
+        //Get Ledger Id By AccountMasterName
+        public long GetLedgerIdByAccountName(string ACCname)
+        {
+            long id = 0;
+            try
+            {
+                string Query = "SELECT Ac_ID FROM `accountmaster` WHERE `ACC_NAME`='" + ACCname + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {                
+                    id = Convert.ToInt64(dr["Ac_ID"]);
+                }
+            }
+            catch(Exception ex)
+            {
+                id = 0;
+                //throw ex;
+            }
+            return id;
+        }
         //Save Maintain Bill By Details
         public bool SaveBillByBillDetails(List<MaintainBillbyBillModel> lstBillbyBill, int id)
         {
@@ -693,17 +712,23 @@ namespace eSunSpeed.BusinessLogic
         {
             List<eSunSpeedDomain.AccountGroupModel> lstAccountGroups = new List<eSunSpeedDomain.AccountGroupModel>();
             eSunSpeedDomain.AccountGroupModel accountGroup;
+            StringBuilder sbQuery = new StringBuilder();
 
-            string Query = "SELECT DISTINCT AG_ID,GroupName,AliasName,`primary` FROM `AccountGroups`";
-            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+            sbQuery.Append("select a.GroupName,a.AliasName,a.AG_ID, a.`Primary`,b.GroupName as UnderGroup from accountgroups a ");
+            sbQuery.Append("Left Join accountgroups b ");
+            sbQuery.Append("on a.UG_ID= b.AG_ID");
+
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
+
 
             while (dr.Read())
             {
                 accountGroup = new eSunSpeedDomain.AccountGroupModel();
-
-                accountGroup.UnderGroupId = Convert.ToInt32(dr["AG_ID"]);
+                accountGroup.GroupId = Convert.ToInt32(dr["AG_ID"]);
+                //accountGroup.UnderGroupId = Convert.ToInt32(dr["UG_ID"]);
                 accountGroup.GroupName = dr["GroupName"].ToString();
                 accountGroup.AliasName = dr["AliasName"].ToString();
+                accountGroup.UnderGroup = dr["UnderGroup"].ToString();
                 accountGroup.Primary =Convert.ToBoolean(dr["Primary"].ToString());
 
                 lstAccountGroups.Add(accountGroup);

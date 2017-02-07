@@ -38,12 +38,24 @@ namespace IPCAUI.Administration.List
 
         private void dvgTaxcategoryList_KeyDown_1(object sender, KeyEventArgs e)
         {
-            TaxCategoryModel lstTaxcategory;
+            if(e.KeyValue=='\r')
+            {
+                TaxCategoryModel lstTaxcategory;
 
-            lstTaxcategory = (TaxCategoryModel)dvgTaxcatDetails.GetRow(dvgTaxcatDetails.FocusedRowHandle);
-            Taxcategory.Tax_Id = lstTaxcategory.TaxCat_Id;
+                lstTaxcategory = (TaxCategoryModel)dvgTaxcatDetails.GetRow(dvgTaxcatDetails.FocusedRowHandle);
+                Taxcategory.Tax_Id = lstTaxcategory.TaxCat_Id;
 
-            this.Close();
+                this.Close();
+            }  
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

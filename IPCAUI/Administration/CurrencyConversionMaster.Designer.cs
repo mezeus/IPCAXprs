@@ -115,6 +115,7 @@
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -147,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -244,7 +246,8 @@
             this.repositoryItemDateEdit1,
             this.repositoryItemDateEdit2,
             this.repositoryItemLookUpEdit2,
-            this.repositoryItemComboBox1});
+            this.repositoryItemComboBox1,
+            this.repositoryItemTextEdit2});
             this.dvgCurrencyConver.Size = new System.Drawing.Size(530, 468);
             this.dvgCurrencyConver.TabIndex = 69;
             this.dvgCurrencyConver.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -319,6 +322,7 @@
             // 
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Strong;
+            this.repositoryItemTextEdit1.Mask.EditMask = "n2";
             this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
@@ -337,6 +341,7 @@
             // colSellingRate
             // 
             this.colSellingRate.Caption = "Selling Rate";
+            this.colSellingRate.ColumnEdit = this.repositoryItemTextEdit1;
             this.colSellingRate.FieldName = "SellingRate";
             this.colSellingRate.Name = "colSellingRate";
             this.colSellingRate.Visible = true;
@@ -346,6 +351,7 @@
             // colBuyingRate
             // 
             this.colBuyingRate.Caption = "Buying Rate";
+            this.colBuyingRate.ColumnEdit = this.repositoryItemTextEdit1;
             this.colBuyingRate.FieldName = "BuyingRate";
             this.colBuyingRate.Name = "colBuyingRate";
             this.colBuyingRate.Visible = true;
@@ -937,6 +943,11 @@
             this.layoutControlItem5.Text = "Date        ";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(47, 13);
             // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
             // CurrencyConversionMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -979,6 +990,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1071,5 +1083,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn coParentId;
         private DevExpress.XtraEditors.DateEdit dtDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
     }
 }

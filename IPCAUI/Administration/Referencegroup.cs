@@ -25,7 +25,7 @@ namespace IPCAUI.Administration
         {
             Administration.List.ReferencegroupList frmList = new Administration.List.ReferencegroupList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            RefId = 0;
             frmList.ShowDialog();
             FillReferenceGroup();
         }
@@ -37,12 +37,14 @@ namespace IPCAUI.Administration
                 laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
                 laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                return;
             }
             ReferenceGroupModel objReference = objrefbl.GetReferenceDetailsById(RefId);
             tbxName.Text = objReference.Name;
             laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxName.Focus();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -118,12 +120,6 @@ namespace IPCAUI.Administration
                     tbxName.Focus();
                     return;
                 }
-
-                if (this.ActiveControl != null)
-                {
-                    this.SelectNextControl(this.ActiveControl, true, true, true, true);
-
-                }
                 e.Handled = true; // Mark the event as handled
             }
         }
@@ -131,6 +127,15 @@ namespace IPCAUI.Administration
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

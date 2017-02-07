@@ -100,7 +100,6 @@
             this.dvgItemCompList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgItemcompDetails,
             this.cardView1});
-            
             // 
             // dvgItemcompDetails
             // 
@@ -110,8 +109,8 @@
             this.dvgItemcompDetails.Name = "dvgItemcompDetails";
             this.dvgItemcompDetails.OptionsBehavior.ReadOnly = true;
             this.dvgItemcompDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgItemcompDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgItemcompDetails_RowClick);
             this.dvgItemcompDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgItemcompDetails_KeyDown);
-           
             // 
             // colName
             // 

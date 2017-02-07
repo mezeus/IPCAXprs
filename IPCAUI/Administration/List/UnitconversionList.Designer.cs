@@ -156,7 +156,7 @@
             this.dvgUnitconversionList.TabIndex = 9;
             this.dvgUnitconversionList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgUnitConDetails});
-            this.dvgUnitconversionList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgUnitconversionList_KeyDown);
+            
             // 
             // dvgUnitConDetails
             // 
@@ -168,8 +168,9 @@
             this.dvgUnitConDetails.Name = "dvgUnitConDetails";
             this.dvgUnitConDetails.OptionsBehavior.ReadOnly = true;
             this.dvgUnitConDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgUnitConDetails.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dvgUnitConDetails_RowClick);
             this.dvgUnitConDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvgUnitConDetails_KeyDown);
-            this.dvgUnitConDetails.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dvgUnitConDetails_KeyPress);
+            
             // 
             // colMainUnit
             // 

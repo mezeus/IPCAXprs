@@ -17,6 +17,7 @@ namespace IPCAUI.Administration
         ItemGroupMasterBL objItemBL = new ItemGroupMasterBL();
         ItemMasterBL objItemMasterBl = new ItemMasterBL();
         public static ItemGroupMasterModel objModel = new ItemGroupMasterModel();
+        ReferenceGroupBL objRefBL = new ReferenceGroupBL();
         public static int ItemgrpId = 0;
         public Itemgroup()
         {
@@ -78,25 +79,22 @@ namespace IPCAUI.Administration
         {
             Administration.List.ItemgroupList frmList = new Administration.List.ItemgroupList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
-            frmList.ShowDialog();
-            if(ItemgrpId!=0)
-            {
-                layoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-                btnSave.Visible = false;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxGroupName.Focus();
-                FillItemGroupInfo();
-            }
-            
-
+            ItemgrpId = 0;
+            frmList.ShowDialog();      
+            FillItemGroupInfo();        
         }
 
         private void FillItemGroupInfo()
         {
+            if(ItemgrpId==0)
+            {
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                ClearControls();
+                tbxGroupName.Focus();
+                return;
+            }
             objModel = objItemBL.GetAllItemGroupById(ItemgrpId);
 
             tbxGroupName.Text = objModel.ItemGroup;
@@ -115,16 +113,27 @@ namespace IPCAUI.Administration
                 rbnDefaultConfig.SelectedIndex = 1;
             }
             cbxTagBillReference.SelectedItem = objModel.SpecifyBillReferencegrp ? "Y" : "N";
-            cbxBillReferenceGroup.SelectedItem = objModel.BillReferencegrp.ToString();
+            cbxBillReferenceGroup.Text = objModel.BillReferencegrp.ToString();
             tbxCrDaysforSale.Text = objModel.CrDaysforSale.ToString();
             tbxCrDaysforPurc.Text = objModel.CrDaysforPurc.ToString();
             tbxParameters.Text=Convert.ToString(objModel.Parameters);
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxGroupName.Focus();
         }
 
 
         private void Itemgroup_Load(object sender, EventArgs e)
         {
             cbxPrimarygroup.SelectedIndex = 1;
+            cbxTagBillReference.SelectedIndex = 0;
+            cbxBillReferenceGroup.Properties.Items.Clear();
+            List<ReferenceGroupModel> lstRef = objRefBL.GetAllReferenceGroups();
+            foreach (ReferenceGroupModel objref in lstRef)
+            {
+                cbxBillReferenceGroup.Properties.Items.Add(objref.Name);
+            }
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
@@ -195,13 +204,12 @@ namespace IPCAUI.Administration
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
-                ItemgrpId = 0;
                 ClearControls();
+                ItemgrpId = 0;
+                Administration.List.ItemgroupList frmList = new Administration.List.ItemgroupList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
                 
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxGroupName.Focus();
+                frmList.ShowDialog();
                 FillItemGroupInfo();
             }
         }
@@ -269,7 +277,13 @@ namespace IPCAUI.Administration
                 if (isDelete)
                 {
                     MessageBox.Show("Delete Successfully!");
-                    ClearFormValues();
+                    ClearControls();
+                    ItemgrpId = 0;
+                    Administration.List.ItemgroupList frmList = new Administration.List.ItemgroupList();
+                    frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                    frmList.ShowDialog();
+                    FillItemGroupInfo();
                     tbxGroupName.Focus();
                 }
             }
@@ -309,6 +323,32 @@ namespace IPCAUI.Administration
             else
             {
                 lblUndergroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+        }
+
+        private void cbxBillReferenceGroup_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cbxBillReferenceGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+            if(e.KeyChar!='\r')
+            {           
+                cbxBillReferenceGroup.ShowPopup();
+                if (Char.IsLetter(e.KeyChar))
+                {
+                    e.KeyChar = Char.ToUpper(e.KeyChar);
+                }
+            }
+        }
+
+        private void cbxBillReferenceGroup_Leave(object sender, EventArgs e)
+        {
+            if(cbxBillReferenceGroup.Text=="")
+            {
+                cbxBillReferenceGroup.SelectedIndex = 0;
             }
         }
     }

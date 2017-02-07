@@ -45,6 +45,19 @@ namespace IPCAUI.Administration.List
 
         private void dvgBillmaterialDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                BillofMaterialModel lstBillmaterials;
+
+                lstBillmaterials = (BillofMaterialModel)dvgBillmaterialDetails.GetRow(dvgBillmaterialDetails.FocusedRowHandle);
+                BillsofMaterial.BMId = lstBillmaterials.Bom_Id;
+
+                this.Close();
+            }    
+        }
+
+        private void dvgBillmaterialDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             BillofMaterialModel lstBillmaterials;
 
             lstBillmaterials = (BillofMaterialModel)dvgBillmaterialDetails.GetRow(dvgBillmaterialDetails.FocusedRowHandle);

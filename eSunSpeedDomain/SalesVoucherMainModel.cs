@@ -19,10 +19,15 @@ namespace eSunSpeedDomain
         public long VoucherNumber { get; set; }
         public string SalesType { get; set; }
         public string Party { get; set; }
+        public long LedgerId { get; set; }
         public string MatCentre { get; set; }
 
         public string Narration { get; set; }
         public decimal TotalQty { get; set; }
+        public decimal TotalFree { get; set; }
+        public decimal TotalBasicAmount { get; set; }
+        public decimal TotalDisAmount { get; set; }
+        public decimal TotalTaxAmount { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal BSTotalAmount { get; set; }
 

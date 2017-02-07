@@ -26,18 +26,29 @@ namespace IPCAUI.Administration.List
             List<eSunSpeedDomain.MaterialCentreMasterModel> lstMaterial = objmatbl.GetAllMaterials();
             dvgMaterialcentList.DataSource = lstMaterial;
         }
-
-        private void dvgMaterialcentList_KeyDown(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-           
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void dvgMaterialcentList_KeyDown_1(object sender, KeyEventArgs e)
+        private void dvgMaterialcenterDet_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if(e.KeyValue=='\r')
+            {
+                MaterialCentreMasterModel lstMaterial;
+
+                lstMaterial = (MaterialCentreMasterModel)dvgMaterialcenterDet.GetRow(dvgMaterialcenterDet.FocusedRowHandle);
+                MaterialCenter.MCId = lstMaterial.MC_Id;
+                this.Close();
+            }  
         }
 
-        private void dvgMaterialcentList_KeyPress(object sender, KeyPressEventArgs e)
+        private void dvgMaterialcenterDet_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             MaterialCentreMasterModel lstMaterial;
 

@@ -165,7 +165,7 @@ namespace IPCAUI.Administration
             objAccount.address3 = tbxAddress3.Text.Trim() == null ? string.Empty : tbxAddress3.Text.Trim();
             objAccount.ImageData = AccLogo;
             objAccount.State = cbxState.SelectedItem.ToString();
-            objAccount.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
+            //objAccount.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
             objAccount.TelephoneNumber = tbxTelno.Text.Trim() == null ? string.Empty : tbxTelno.Text.Trim();
 
             objAccount.Fax = tbxFax.Text == null ? string.Empty : tbxFax.Text.Trim();
@@ -342,7 +342,7 @@ namespace IPCAUI.Administration
             tbxAddress1.Text = objAccount.address1.ToString();
             tbxAddress2.Text = objAccount.address2.ToString();
             tbxAddress3.Text = objAccount.address3.ToString();
-            tbxArea.Text = objAccount.area.ToString();
+            //tbxArea.Text = objAccount.area.ToString();
             tbxTelno.Text = objAccount.TelephoneNumber.ToString();
             cbxState.SelectedItem = objAccount.State.ToString();
             tbxFax.Text = objAccount.Fax.ToString();
@@ -598,7 +598,7 @@ namespace IPCAUI.Administration
             objAccount.address2 = tbxAddress2.Text.Trim() == null ? string.Empty : tbxAddress2.Text.Trim();
             objAccount.address3 = tbxAddress3.Text.Trim() == null ? string.Empty : tbxAddress3.Text.Trim();
             objAccount.State = cbxState.SelectedItem.ToString();
-            objAccount.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
+            //objAccount.area = tbxArea.Text.Trim() == null ? string.Empty : tbxArea.Text.Trim();
             objAccount.TelephoneNumber = tbxTelno.Text.Trim() == null ? string.Empty : tbxTelno.Text.Trim();
 
             objAccount.Fax = tbxFax.Text == null ? string.Empty : tbxFax.Text.Trim();

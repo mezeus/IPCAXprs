@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using eSunSpeed.BusinessLogic;
+using eSunSpeedDomain;
 
 namespace IPCAUI.Administration.List
 {
@@ -29,7 +30,39 @@ namespace IPCAUI.Administration.List
 
         private void dvgStformList_KeyDown(object sender, KeyEventArgs e)
         {
+           
+        }
+
+        private void dvgStformDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == '\r')
+            {
+                STFormMasterModel lstStform;
+
+                lstStform = (STFormMasterModel)dvgStformDetails.GetRow(dvgStformDetails.FocusedRowHandle);
+                Stformmaster.ST_Id = lstStform.STF_Id;
+
+                this.Close();
+            }
+        }
+
+        private void dvgStformDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            STFormMasterModel lstStform;
+
+            lstStform = (STFormMasterModel)dvgStformDetails.GetRow(dvgStformDetails.FocusedRowHandle);
+            Stformmaster.ST_Id = lstStform.STF_Id;
+
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

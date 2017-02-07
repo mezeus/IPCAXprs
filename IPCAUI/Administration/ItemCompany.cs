@@ -54,12 +54,25 @@ namespace IPCAUI.Administration
         }
         private void FillItemCompanyInfo()
         {
+            if(ItemcompId==0)
+            {
+                tbxCompanyName.Focus();
+                ClearControls();
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                return;
+            }
             ItemCompanyMasterModel objICM = objICBL.GetAllItemCompanyById(ItemcompId);
 
             tbxCompanyName.Text = objICM.ItemCompany;
             cbxStockaccount.SelectedItem= objICM.StockAccount;
             cbxSalesaccount.SelectedItem= objICM.SalesAccount;
             cbxPurchaseAccount.SelectedItem= objICM.PurchaseAccount;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxCompanyName.Focus();
         }
 
 
@@ -105,11 +118,12 @@ namespace IPCAUI.Administration
                 MessageBox.Show("Update Successfully!");
                 ItemcompId = 0;
                 ClearControls();
+                Administration.List.ItemcompanyList frmList = new Administration.List.ItemcompanyList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
 
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxCompanyName.Focus();
+                frmList.ShowDialog();
+                FillItemCompanyInfo();
+
             }
         }
 
@@ -164,6 +178,12 @@ namespace IPCAUI.Administration
                     {
                         MessageBox.Show("Delete Successfully!");
                         ClearControls();
+                        ItemcompId = 0;
+                        Administration.List.ItemcompanyList frmList = new Administration.List.ItemcompanyList();
+                        frmList.StartPosition = FormStartPosition.CenterScreen;
+
+                        frmList.ShowDialog();
+                        FillItemCompanyInfo();
                     }
                 }
                
@@ -183,17 +203,9 @@ namespace IPCAUI.Administration
         {
             Administration.List.ItemcompanyList frmList = new Administration.List.ItemcompanyList();
             frmList.StartPosition = FormStartPosition.CenterScreen;
-
+            ItemcompId = 0;
             frmList.ShowDialog();
-            if (ItemcompId != 0)
-            {
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;            
-                FillItemCompanyInfo();
-                tbxCompanyName.Focus();
-            }
-
+            FillItemCompanyInfo();
         }
 
         private void tbxCompanyName_KeyPress(object sender, KeyPressEventArgs e)
@@ -210,7 +222,7 @@ namespace IPCAUI.Administration
                 {
                     if (objICBL.IsItemCompanyExists(tbxCompanyName.Text.Trim()))
                     {
-                        MessageBox.Show("Group Name already Exists!");
+                        MessageBox.Show("Item Company already Exists!");
                         tbxCompanyName.Focus();
                         return;
                     }

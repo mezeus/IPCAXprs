@@ -592,5 +592,16 @@ namespace IPCAUI.Menu
             sptCtrlMastermenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
+
+        private void barbtnGSTDetails_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Administration.GSTDetails frm;
+            frm = new Administration.GSTDetails(); //generate new instance 
+            frm.Owner = this;
+            frm.TopLevel = false;
+
+            sptCtrlMastermenu.Panel2.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }
