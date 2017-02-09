@@ -3345,6 +3345,7 @@
     <Compile Include="Transactions\VATJournal.Designer.cs">
       <DependentUpon>VATJournal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Utilities.cs" />
     <Compile Include="XtraForm1.cs">
       <SubType>Form</SubType>
     </Compile>
