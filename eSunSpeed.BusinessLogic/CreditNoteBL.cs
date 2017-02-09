@@ -295,7 +295,7 @@ namespace eSunSpeed.BusinessLogic
             return lstModel;
         }
 
-        public List<CreditNoteModel> GetCreditNotebyId(int id)
+        public List<CreditNoteModel> GetCreditNotebyId(long id)
         {
             List<CreditNoteModel> lstCredit = new List<CreditNoteModel>();
             CreditNoteModel objcredit;

@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentVoucher));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.tbxType = new DevExpress.XtraEditors.TextEdit();
             this.gdvMainPayment = new DevExpress.XtraGrid.GridControl();
-            this.paymentVoucherDtBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.paymentVoucherDs = new IPCAUI.DataSets.PaymentVoucherDs();
             this.gdvPayment = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DC = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,24 +48,23 @@
             this.btnQuit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.btnPaymentList = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnModify = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem12 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.btnPaymentList = new DevExpress.XtraNavBar.NavBarItem();
-            this.btnModify = new DevExpress.XtraNavBar.NavBarItem();
-            this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
             this.tbxVchNumber = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
-            this.tbxLongNarration = new DevExpress.XtraEditors.TextEdit();
             this.tbxVoucherSeries = new DevExpress.XtraEditors.LookUpEdit();
             this.dtPDCDate = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -90,19 +86,20 @@
             this.lblDelete = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.tbxLongNarration = new DevExpress.XtraEditors.MemoEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvMainPayment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPDCDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
@@ -124,10 +121,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.tbxType);
@@ -137,9 +139,9 @@
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.tbxVchNumber);
             this.layoutControl1.Controls.Add(this.dtDate);
-            this.layoutControl1.Controls.Add(this.tbxLongNarration);
             this.layoutControl1.Controls.Add(this.tbxVoucherSeries);
             this.layoutControl1.Controls.Add(this.dtPDCDate);
+            this.layoutControl1.Controls.Add(this.tbxLongNarration);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -174,36 +176,25 @@
             // tbxType
             // 
             this.tbxType.EnterMoveNextControl = true;
-            this.tbxType.Location = new System.Drawing.Point(698, 28);
+            this.tbxType.Location = new System.Drawing.Point(760, 28);
             this.tbxType.Name = "tbxType";
-            this.tbxType.Size = new System.Drawing.Size(128, 20);
+            this.tbxType.Size = new System.Drawing.Size(123, 20);
             this.tbxType.StyleController = this.layoutControl1;
             this.tbxType.TabIndex = 28;
             // 
             // gdvMainPayment
             // 
-            this.gdvMainPayment.DataSource = this.paymentVoucherDtBindingSource;
             this.gdvMainPayment.Location = new System.Drawing.Point(147, 52);
             this.gdvMainPayment.MainView = this.gdvPayment;
             this.gdvMainPayment.Name = "gdvMainPayment";
             this.gdvMainPayment.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1});
-            this.gdvMainPayment.Size = new System.Drawing.Size(847, 437);
+            this.gdvMainPayment.Size = new System.Drawing.Size(847, 413);
             this.gdvMainPayment.TabIndex = 26;
             this.gdvMainPayment.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvPayment});
             this.gdvMainPayment.Click += new System.EventHandler(this.gdvMainPayment_Click);
-            // 
-            // paymentVoucherDtBindingSource
-            // 
-            this.paymentVoucherDtBindingSource.DataMember = "PaymentVoucherDt";
-            this.paymentVoucherDtBindingSource.DataSource = this.paymentVoucherDs;
-            // 
-            // paymentVoucherDs
-            // 
-            this.paymentVoucherDs.DataSetName = "PaymentVoucherDs";
-            this.paymentVoucherDs.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gdvPayment
             // 
@@ -263,10 +254,10 @@
             this.colDebit.FieldName = "Debit";
             this.colDebit.Name = "colDebit";
             this.colDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{0:0.##}")});
             this.colDebit.Visible = true;
             this.colDebit.VisibleIndex = 3;
-            this.colDebit.Width = 92;
+            this.colDebit.Width = 98;
             // 
             // repositoryItemTextEdit1
             // 
@@ -283,10 +274,10 @@
             this.colCredit.FieldName = "Credit";
             this.colCredit.Name = "colCredit";
             this.colCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{0:0.##}")});
             this.colCredit.Visible = true;
             this.colCredit.VisibleIndex = 4;
-            this.colCredit.Width = 116;
+            this.colCredit.Width = 113;
             // 
             // colNarration
             // 
@@ -380,26 +371,36 @@
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.NavigationPaneViewInfoRegistrator();
             // 
-            // navBarGroup3
+            // navBarGroup5
             // 
-            this.navBarGroup3.Caption = "Images";
-            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
-            this.navBarGroup3.Name = "navBarGroup3";
-            this.navBarGroup3.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup3.SmallImage")));
+            this.navBarGroup5.Caption = "Add/Modify";
+            this.navBarGroup5.Expanded = true;
+            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnPaymentList),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnModify),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
+            this.navBarGroup5.Name = "navBarGroup5";
+            this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
-            // navBarItem1
+            // btnPaymentList
             // 
-            this.navBarItem1.Caption = "Voucher Image";
-            this.navBarItem1.Name = "navBarItem1";
-            this.navBarItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem1.SmallImage")));
+            this.btnPaymentList.Caption = "List";
+            this.btnPaymentList.Name = "btnPaymentList";
+            this.btnPaymentList.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnPaymentList.SmallImage")));
+            this.btnPaymentList.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnPaymentList_LinkClicked);
             // 
-            // navBarItem2
+            // btnModify
             // 
-            this.navBarItem2.Caption = "ACC Image";
-            this.navBarItem2.Name = "navBarItem2";
-            this.navBarItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem2.SmallImage")));
+            this.btnModify.Caption = "Modify";
+            this.btnModify.Name = "btnModify";
+            this.btnModify.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnModify.SmallImage")));
+            // 
+            // btnNewEntery
+            // 
+            this.btnNewEntery.Caption = "New Entry";
+            this.btnNewEntery.Name = "btnNewEntery";
+            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
+            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -443,6 +444,27 @@
             this.navBarItem16.Name = "navBarItem16";
             this.navBarItem16.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem16.SmallImage")));
             // 
+            // navBarGroup3
+            // 
+            this.navBarGroup3.Caption = "Images";
+            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            this.navBarGroup3.Name = "navBarGroup3";
+            this.navBarGroup3.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup3.SmallImage")));
+            // 
+            // navBarItem1
+            // 
+            this.navBarItem1.Caption = "Voucher Image";
+            this.navBarItem1.Name = "navBarItem1";
+            this.navBarItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem1.SmallImage")));
+            // 
+            // navBarItem2
+            // 
+            this.navBarItem2.Caption = "ACC Image";
+            this.navBarItem2.Name = "navBarItem2";
+            this.navBarItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem2.SmallImage")));
+            // 
             // navBarGroup4
             // 
             this.navBarGroup4.Caption = "Misc";
@@ -457,52 +479,21 @@
             this.navBarItem4.Name = "navBarItem4";
             this.navBarItem4.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem4.SmallImage")));
             // 
-            // navBarGroup5
-            // 
-            this.navBarGroup5.Caption = "Add/Modify";
-            this.navBarGroup5.Expanded = true;
-            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnPaymentList),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnModify),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
-            this.navBarGroup5.Name = "navBarGroup5";
-            this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
-            // 
-            // btnPaymentList
-            // 
-            this.btnPaymentList.Caption = "List";
-            this.btnPaymentList.Name = "btnPaymentList";
-            this.btnPaymentList.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnPaymentList.SmallImage")));
-            this.btnPaymentList.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnPaymentList_LinkClicked);
-            // 
-            // btnModify
-            // 
-            this.btnModify.Caption = "Modify";
-            this.btnModify.Name = "btnModify";
-            this.btnModify.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnModify.SmallImage")));
-            // 
-            // btnNewEntery
-            // 
-            this.btnNewEntery.Caption = "New Entry";
-            this.btnNewEntery.Name = "btnNewEntery";
-            this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
-            this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
-            // 
             // tbxVchNumber
             // 
             this.tbxVchNumber.EnterMoveNextControl = true;
-            this.tbxVchNumber.Location = new System.Drawing.Point(542, 28);
+            this.tbxVchNumber.Location = new System.Drawing.Point(665, 28);
             this.tbxVchNumber.Name = "tbxVchNumber";
             this.tbxVchNumber.Properties.Mask.EditMask = "n0";
             this.tbxVchNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tbxVchNumber.Size = new System.Drawing.Size(152, 20);
+            this.tbxVchNumber.Size = new System.Drawing.Size(91, 20);
             this.tbxVchNumber.StyleController = this.layoutControl1;
             this.tbxVchNumber.TabIndex = 3;
             // 
             // dtDate
             // 
             this.dtDate.EnterMoveNextControl = true;
-            this.dtDate.Location = new System.Drawing.Point(392, 28);
+            this.dtDate.Location = new System.Drawing.Point(533, 28);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.DisplayFormat.FormatString = "d";
             this.dtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -510,35 +501,26 @@
             this.dtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtDate.Properties.Mask.EditMask = "d";
             this.dtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dtDate.Size = new System.Drawing.Size(146, 20);
+            this.dtDate.Size = new System.Drawing.Size(128, 20);
             this.dtDate.StyleController = this.layoutControl1;
             this.dtDate.TabIndex = 2;
-            // 
-            // tbxLongNarration
-            // 
-            this.tbxLongNarration.EnterMoveNextControl = true;
-            this.tbxLongNarration.Location = new System.Drawing.Point(159, 523);
-            this.tbxLongNarration.Name = "tbxLongNarration";
-            this.tbxLongNarration.Size = new System.Drawing.Size(823, 20);
-            this.tbxLongNarration.StyleController = this.layoutControl1;
-            this.tbxLongNarration.TabIndex = 22;
             // 
             // tbxVoucherSeries
             // 
             this.tbxVoucherSeries.EnterMoveNextControl = true;
-            this.tbxVoucherSeries.Location = new System.Drawing.Point(147, 28);
+            this.tbxVoucherSeries.Location = new System.Drawing.Point(414, 28);
             this.tbxVoucherSeries.Name = "tbxVoucherSeries";
             this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxVoucherSeries.Properties.NullText = "";
-            this.tbxVoucherSeries.Size = new System.Drawing.Size(241, 20);
+            this.tbxVoucherSeries.Size = new System.Drawing.Size(115, 20);
             this.tbxVoucherSeries.StyleController = this.layoutControl1;
             this.tbxVoucherSeries.TabIndex = 0;
             // 
             // dtPDCDate
             // 
             this.dtPDCDate.EnterMoveNextControl = true;
-            this.dtPDCDate.Location = new System.Drawing.Point(830, 28);
+            this.dtPDCDate.Location = new System.Drawing.Point(887, 28);
             this.dtPDCDate.Name = "dtPDCDate";
             this.dtPDCDate.Properties.DisplayFormat.FormatString = "d";
             this.dtPDCDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -546,7 +528,7 @@
             this.dtPDCDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtPDCDate.Properties.Mask.EditMask = "d";
             this.dtPDCDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.dtPDCDate.Size = new System.Drawing.Size(164, 20);
+            this.dtPDCDate.Size = new System.Drawing.Size(107, 20);
             this.dtPDCDate.StyleController = this.layoutControl1;
             this.dtPDCDate.TabIndex = 29;
             // 
@@ -576,7 +558,8 @@
             this.lblUpdate,
             this.lblDelete,
             this.emptySpaceItem1,
-            this.emptySpaceItem2});
+            this.emptySpaceItem2,
+            this.layoutControlItem9});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1006, 593);
@@ -585,9 +568,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.tbxVoucherSeries;
-            this.layoutControlItem2.Location = new System.Drawing.Point(135, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(402, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(245, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 40);
             this.layoutControlItem2.Text = "Voucher Series";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(71, 13);
@@ -595,9 +578,9 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.tbxVchNumber;
-            this.layoutControlItem5.Location = new System.Drawing.Point(530, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(653, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(156, 40);
+            this.layoutControlItem5.Size = new System.Drawing.Size(95, 40);
             this.layoutControlItem5.Text = "Vch No.";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(71, 13);
@@ -614,11 +597,9 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dtDate;
-            this.layoutControlItem4.Location = new System.Drawing.Point(380, 0);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(150, 24);
+            this.layoutControlItem4.Location = new System.Drawing.Point(521, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(150, 40);
-            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem4.Size = new System.Drawing.Size(132, 40);
             this.layoutControlItem4.Text = "Date";
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(71, 13);
@@ -635,8 +616,11 @@
             // 
             this.lblSave.Control = this.btnSave;
             this.lblSave.Location = new System.Drawing.Point(653, 547);
+            this.lblSave.MaxSize = new System.Drawing.Size(78, 26);
+            this.lblSave.MinSize = new System.Drawing.Size(78, 26);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(78, 26);
+            this.lblSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblSave.TextSize = new System.Drawing.Size(0, 0);
             this.lblSave.TextVisible = false;
             // 
@@ -644,8 +628,11 @@
             // 
             this.layoutControlItem15.Control = this.btnQuit;
             this.layoutControlItem15.Location = new System.Drawing.Point(918, 547);
+            this.layoutControlItem15.MaxSize = new System.Drawing.Size(68, 26);
+            this.layoutControlItem15.MinSize = new System.Drawing.Size(68, 26);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(68, 26);
+            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -653,8 +640,11 @@
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
             this.emptySpaceItem6.Location = new System.Drawing.Point(908, 547);
+            this.emptySpaceItem6.MaxSize = new System.Drawing.Size(10, 26);
+            this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 26);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(10, 26);
+            this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
@@ -662,7 +652,7 @@
             this.layoutControlItem3.Control = this.gdvMainPayment;
             this.layoutControlItem3.Location = new System.Drawing.Point(135, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(851, 441);
+            this.layoutControlItem3.Size = new System.Drawing.Size(851, 417);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -671,9 +661,9 @@
             this.layoutControlGroup3.CustomizationFormText = "Long Narration";
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(135, 481);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(135, 457);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(851, 66);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(851, 90);
             this.layoutControlGroup3.Text = "Long Narration";
             // 
             // layoutControlItem1
@@ -682,16 +672,16 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(827, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(827, 48);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.tbxType;
-            this.layoutControlItem7.Location = new System.Drawing.Point(686, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(748, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(132, 40);
+            this.layoutControlItem7.Size = new System.Drawing.Size(127, 40);
             this.layoutControlItem7.Text = "Type";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(71, 13);
@@ -699,9 +689,9 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.dtPDCDate;
-            this.layoutControlItem6.Location = new System.Drawing.Point(818, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(875, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(168, 40);
+            this.layoutControlItem6.Size = new System.Drawing.Size(111, 40);
             this.layoutControlItem6.Text = "PDC Date";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(71, 13);
@@ -710,8 +700,11 @@
             // 
             this.lblUpdate.Control = this.btnUpdate;
             this.lblUpdate.Location = new System.Drawing.Point(743, 547);
+            this.lblUpdate.MaxSize = new System.Drawing.Size(82, 26);
+            this.lblUpdate.MinSize = new System.Drawing.Size(82, 26);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(82, 26);
+            this.lblUpdate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblUpdate.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpdate.TextVisible = false;
             // 
@@ -719,8 +712,11 @@
             // 
             this.lblDelete.Control = this.btnDelete;
             this.lblDelete.Location = new System.Drawing.Point(842, 547);
+            this.lblDelete.MaxSize = new System.Drawing.Size(66, 26);
+            this.lblDelete.MinSize = new System.Drawing.Size(66, 26);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(66, 26);
+            this.lblDelete.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lblDelete.TextSize = new System.Drawing.Size(0, 0);
             this.lblDelete.TextVisible = false;
             // 
@@ -728,17 +724,58 @@
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(731, 547);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(12, 26);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(12, 26);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(12, 26);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(825, 547);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(17, 26);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(17, 26);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(17, 26);
+            this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // tbxLongNarration
+            // 
+            this.tbxLongNarration.Location = new System.Drawing.Point(159, 499);
+            this.tbxLongNarration.Name = "tbxLongNarration";
+            this.tbxLongNarration.Size = new System.Drawing.Size(823, 44);
+            this.tbxLongNarration.StyleController = this.layoutControl1;
+            this.tbxLongNarration.TabIndex = 22;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Location = new System.Drawing.Point(147, 12);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(263, 36);
+            this.panelControl1.TabIndex = 32;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.panelControl1;
+            this.layoutControlItem9.Location = new System.Drawing.Point(135, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(267, 40);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(79, 11);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(116, 14);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "Payment Voucher";
             // 
             // PaymentVoucher
             // 
@@ -755,15 +792,12 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvMainPayment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentVoucherDs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVchNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPDCDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
@@ -785,6 +819,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -823,8 +862,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraGrid.GridControl gdvMainPayment;
-        private System.Windows.Forms.BindingSource paymentVoucherDtBindingSource;
-        private DataSets.PaymentVoucherDs paymentVoucherDs;
         private DevExpress.XtraGrid.Views.Grid.GridView gdvPayment;
         private DevExpress.XtraGrid.Columns.GridColumn colSNo;
         private DevExpress.XtraGrid.Columns.GridColumn DC;
@@ -835,7 +872,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Account;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraEditors.TextEdit tbxLongNarration;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.TextEdit tbxType;
@@ -851,5 +887,9 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn colAcId;
+        private DevExpress.XtraEditors.MemoEdit tbxLongNarration;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

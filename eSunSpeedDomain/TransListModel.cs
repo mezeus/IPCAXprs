@@ -12,6 +12,7 @@ namespace eSunSpeedDomain
         public DateTime StockDate { get; set; }
         public int trans_sales_id { get; set; }
         public long PurcVchId { get; set; }
+        public long PurcRetId { get; set; }
         public int MatIssued_id { get; set; }
         public int MatRcvd_id { get; set; }
         public int item_id { get; set; }

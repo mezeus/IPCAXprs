@@ -8,57 +8,57 @@ using System.Text;
 
 namespace eSunSpeed.BusinessLogic
 {
-    public class SalesReturnVoucherBL
+    public class SalesBL
     {
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE SALE RETURN VOUCHER
-        public bool SaveSalesReturnVoucher(SalesReturnVoucherModel objSalesRet)
-        {
-            string Query = string.Empty;
-            bool isSaved = true;
+        //public bool SaveSalesReturnVoucher(TransSalesModel objSalesRet)
+        //{
+        //    string Query = string.Empty;
+        //    bool isSaved = true;
 
-            try
-            {
-                DBParameterCollection paramCollection = new DBParameterCollection();
+        //    try
+        //    {
+        //        DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@SalesReturnVoucher_SalesType", objSalesRet.SalesType));
-                paramCollection.Add(new DBParameter("@SalesReturnVoucher_Series", objSalesRet.Series));
-                paramCollection.Add(new DBParameter("@SalesReturnVoucher_Date", objSalesRet.SR_Date));
-                paramCollection.Add(new DBParameter("@SalesReturnVoucher_Number", objSalesRet.Voucher_Number));
-                paramCollection.Add(new DBParameter("@SRBillNo", objSalesRet.BillNo));
-                paramCollection.Add(new DBParameter("@SRDueDate", objSalesRet.DueDate));
+        //        paramCollection.Add(new DBParameter("@SalesReturnVoucher_SalesType", objSalesRet.SalesType));
+        //        paramCollection.Add(new DBParameter("@SalesReturnVoucher_Series", objSalesRet.Series));
+        //        paramCollection.Add(new DBParameter("@SalesReturnVoucher_Date", objSalesRet.SR_Date));
+        //        paramCollection.Add(new DBParameter("@SalesReturnVoucher_Number", objSalesRet.Voucher_Number));
+        //        paramCollection.Add(new DBParameter("@SRBillNo", objSalesRet.BillNo));
+        //        paramCollection.Add(new DBParameter("@SRDueDate", objSalesRet.DueDate));
                 
-                paramCollection.Add(new DBParameter("@SalesReturnVoucher_Party", objSalesRet.Party));
-                paramCollection.Add(new DBParameter("@SalesVoucher_MatCenter", objSalesRet.MatCenter));
-                paramCollection.Add(new DBParameter("@SRNarration", objSalesRet.Narration));
-                paramCollection.Add(new DBParameter("@SRTotalQty", objSalesRet.TotalQty));
-                paramCollection.Add(new DBParameter("@SRTotalAmount", objSalesRet.TotalAmount));
-                paramCollection.Add(new DBParameter("@SRBSTotal", objSalesRet.BSTotalAmount));
+        //        paramCollection.Add(new DBParameter("@SalesReturnVoucher_Party", objSalesRet.Party));
+        //        paramCollection.Add(new DBParameter("@SalesVoucher_MatCenter", objSalesRet.MatCenter));
+        //        paramCollection.Add(new DBParameter("@SRNarration", objSalesRet.Narration));
+        //        paramCollection.Add(new DBParameter("@SRTotalQty", objSalesRet.TotalQty));
+        //        paramCollection.Add(new DBParameter("@SRTotalAmount", objSalesRet.TotalAmount));
+        //        paramCollection.Add(new DBParameter("@SRBSTotal", objSalesRet.BSTotalAmount));
 
-                paramCollection.Add(new DBParameter("@CreatedBy", objSalesRet.CreatedBy));
+        //        paramCollection.Add(new DBParameter("@CreatedBy", objSalesRet.CreatedBy));
 
 
-                Query = "INSERT INTO Trans_SalesReturn ([SalesType],[Series],[SR_Date],[VoucherNo],[BillNo],[DueDate],[Party],[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount]," +
-                "[CreatedBy]) VALUES " +
-                "(@SalesReturnVoucher_SalesType,@SalesReturnVoucher_Series,@SalesReturnVoucher_Date,@SalesReturnVoucher_Number,@SRBillNo,@SRDueDate," +
-                "@SalesReturnVoucher_Party, @SalesVoucher_MatCenter,@SRTotalQty,@SRNarration,@SRTotalAmount,@SRBSTotal,@CreatedBy)";
+        //        Query = "INSERT INTO Trans_SalesReturn ([SalesType],[Series],[SR_Date],[VoucherNo],[BillNo],[DueDate],[Party],[MatCentre],[Narration],[TotalQty],[TotalAmount],[BSTotalAmount]," +
+        //        "[CreatedBy]) VALUES " +
+        //        "(@SalesReturnVoucher_SalesType,@SalesReturnVoucher_Series,@SalesReturnVoucher_Date,@SalesReturnVoucher_Number,@SRBillNo,@SRDueDate," +
+        //        "@SalesReturnVoucher_Party, @SalesVoucher_MatCenter,@SRTotalQty,@SRNarration,@SRTotalAmount,@SRBSTotal,@CreatedBy)";
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    SaveSRItems(objSalesRet.Item_Voucher);
-                    SaveSRBillSundry(objSalesRet.BillSundry_Voucher);
-                    isSaved = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                isSaved = false;
-                throw ex;
-            }
+        //        if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
+        //        {
+        //            SaveSRItems(objSalesRet.Item_Voucher);
+        //            SaveSRBillSundry(objSalesRet.BillSundry_Voucher);
+        //            isSaved = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        isSaved = false;
+        //        throw ex;
+        //    }
 
-            return isSaved;
-        }
+        //    return isSaved;
+        //}
         
         public bool SaveSRItems(List<Item_VoucherModel> lstSales)
         {

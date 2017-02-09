@@ -19,7 +19,9 @@ namespace IPCAUI.Transactions
     public partial class PaymentVoucher : Form
     {
         PaymentVoucherBL objpaybl = new PaymentVoucherBL();
-        public static int Payid = 0;
+        AccountMasterBL objAccBL = new AccountMasterBL();
+        DataTable dtAcc = new DataTable();
+        public static long Payid = 0;
         public PaymentVoucher()
         {
             InitializeComponent();
@@ -42,6 +44,15 @@ namespace IPCAUI.Transactions
 
         private void PaymentVoucher_Load(object sender, EventArgs e)
         {
+            dtAcc.Columns.Add("S.No");
+            dtAcc.Columns.Add("DC");
+            dtAcc.Columns.Add("Account");
+            dtAcc.Columns.Add("Debit");
+            dtAcc.Columns.Add("Credit");
+            dtAcc.Columns.Add("Narration");
+            dtAcc.Columns.Add("ParentId");
+            dtAcc.Columns.Add("Ac_Id");
+            gdvMainPayment.DataSource = dtAcc;
             Models.AccountLookup acc = new Models.AccountLookup();
 
             //gdvJournal.DataSource = DataSets.JournalDs.;
@@ -132,7 +143,7 @@ namespace IPCAUI.Transactions
             objPayment.Voucher_Series = tbxVoucherSeries.Text.Trim();
             objPayment.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objPayment.Pay_Date = Convert.ToDateTime(dtDate.Text);
-            objPayment.Type = tbxType.Text.Trim() == null ? string.Empty : tbxType.Text.Trim(); ;
+            objPayment.Type = tbxType.Text.Trim() == null ? string.Empty : tbxType.Text.Trim();
             objPayment.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
             objPayment.LongNarration = tbxLongNarration.Text.Trim()==null?string.Empty:tbxLongNarration.Text.Trim();
 
@@ -150,9 +161,10 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString());
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString());
-                objacc.Narration = row["Narration"].ToString();
+                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()==string.Empty?"0.00": row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString()==string.Empty?"0.00": row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString()==null?string.Empty: row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
 
@@ -174,9 +186,7 @@ namespace IPCAUI.Transactions
             frmList.ShowDialog();
             if(Payid!=0)
             {
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                
                 tbxVoucherSeries.Focus();
                 FillPaymentVoucher();
             }
@@ -184,6 +194,14 @@ namespace IPCAUI.Transactions
         }
         private void FillPaymentVoucher()
         {
+            if(Payid==0)
+            {
+                tbxVoucherSeries.Focus();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                return;
+            }
 
             List<PaymentVoucherModel> objPayment = objpaybl.GetPaymentbyId(Payid);
 
@@ -197,7 +215,7 @@ namespace IPCAUI.Transactions
             //objPayment.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);           
 
 
-            paymentVoucherDtBindingSource.DataSource = objPayment.FirstOrDefault().PaymentAccountModel;
+            //paymentVoucherDtBindingSource.DataSource = objPayment.FirstOrDefault().PaymentAccountModel;
            
         }
 
@@ -226,23 +244,20 @@ namespace IPCAUI.Transactions
 
             for (int i = 0; i < gdvPayment.DataRowCount; i++)
             {
-                AccountModel row;
-                row = gdvPayment.GetRow(i) as AccountModel;
+                DataRow row = gdvPayment.GetDataRow(i);
 
                 objacc = new AccountModel();
-
-                objacc.ParentId = Convert.ToInt32(row.ParentId);
-                objacc.AC_Id = Convert.ToInt32(row.AC_Id);
-                objacc.DC = row.DC.ToString();
-                objacc.Account = row.Account.ToString();
-                objacc.Debit = Convert.ToDecimal(row.Debit.ToString());
-                objacc.Credit = Convert.ToDecimal(row.Credit.ToString());
-                objacc.Narration = row.Narration.ToString()==null ?"": row.Narration.ToString();
+                objacc.DC = row["DC"].ToString();
+                objacc.Account = row["Account"].ToString();
+                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"].ToString());
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"].ToString());
+                objacc.Narration = row["Narration"].ToString() == null ? string.Empty : row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
 
             objPayment.PaymentAccountModel = lstAccounts;
-            objPayment.Pay_Id = Payid;
+            objPayment.Pay_Id =Convert.ToInt32(Payid);
 
             bool isSuccess = objpaybl.UpdatePaymentVoucher(objPayment);
             if (isSuccess)

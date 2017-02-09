@@ -3309,6 +3309,12 @@
     <Compile Include="Transactions\SalesQuotation.Designer.cs">
       <DependentUpon>SalesQuotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\SalesReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SalesReturn.Designer.cs">
+      <DependentUpon>SalesReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\SalesVoucher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4841,6 +4847,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\SalesQuotation.resx">
       <DependentUpon>SalesQuotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SalesReturn.resx">
+      <DependentUpon>SalesReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\SalesVoucher.resx">
       <DependentUpon>SalesVoucher.cs</DependentUpon>

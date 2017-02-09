@@ -24,7 +24,6 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@VoucherNumber", objjvmodel.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objjvmodel.Voucher_Series));
                 paramCollection.Add(new DBParameter("@JVDate", objjvmodel.JV_Date, System.Data.DbType.DateTime));
-
                 paramCollection.Add(new DBParameter("@Type", objjvmodel.Type));
                 paramCollection.Add(new DBParameter("@PDCDate", objjvmodel.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objjvmodel.LongNarration));
@@ -32,7 +31,9 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@TotalDebitAmount", objjvmodel.TotalDebitAmt, System.Data.DbType.Decimal));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now,System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                 System.Data.IDataReader dr =
                    _dbHelper.ExecuteDataReader("spInsertJournalMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
@@ -67,12 +68,15 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@JournalId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
                     paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                     System.Data.IDataReader dr =
                    _dbHelper.ExecuteDataReader("spInsertJournalDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
@@ -90,59 +94,60 @@ namespace eSunSpeed.BusinessLogic
 
         #endregion
         //Update Journal Voucher
-        public bool UpdateJournalVoucher(JournalVoucherModel objJV)
+        public bool UpdateJournalVoucher(JournalVoucherModel objjvmodel)
         {
             string Query = string.Empty;
             bool isUpdated = true;
 
             try
-            {
-                //UPDATE CREDIT NOTE TABLE - PARENT TABLE
-
+            { 
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
-                paramCollection.Add(new DBParameter("@Series", objJV.Voucher_Series));
-                paramCollection.Add(new DBParameter("@Date", objJV.JV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objJV.Voucher_Number));
-                paramCollection.Add(new DBParameter("@Type", objJV.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objJV.PDCDate));
-                //paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
-                //paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objjvmodel.Voucher_Number));
+                paramCollection.Add(new DBParameter("@Series", objjvmodel.Voucher_Series));
+                paramCollection.Add(new DBParameter("@JVDate", objjvmodel.JV_Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Type", objjvmodel.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objjvmodel.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@LongNarration", objjvmodel.LongNarration));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objjvmodel.TotalCreditAmt, System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objjvmodel.TotalDebitAmt, System.Data.DbType.Decimal));
 
+                paramCollection.Add(new DBParameter("@CreatedBy", ""));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@id", objJV.JV_Id));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@JournalId", objjvmodel.JV_Id));
 
-                Query = "UPDATE Journal_Voucher SET [Series]=@Series,[JV_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                         "[Type]=@Type,[PDC_Date]=@PDDate,[ModifiedBy]=@ModifiedBy," +
-                        "[ModifiedDate]=@ModifiedDate " +
-                        "WHERE JV_Id=@id";
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spUpdateJournalMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
-                    List<AccountModel> lstAcct = new List<AccountModel>();
+                List<AccountModel> lstAcct = new List<AccountModel>();
 
-                    //UPDATE CREDIT NOTE ACCOUNT -CHILD TABLE UPDATES
-                    foreach (AccountModel act in objJV.JournalAccountModel)
+                    foreach (AccountModel act in objjvmodel.JournalAccountModel)
                     {
+                        act.ParentId = objjvmodel.JV_Id;
                         if (act.AC_Id > 0)
                         {
 
                             paramCollection = new DBParameterCollection();
 
+                            paramCollection.Add(new DBParameter("@ParentId", (act.ParentId)));
+                            paramCollection.Add(new DBParameter("@ACT_ID", (act.AC_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
+                            paramCollection.Add(new DBParameter("@CreatedBy", ""));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                            paramCollection.Add(new DBParameter("@ACT_ID", act.AC_Id));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
-                            Query = "UPDATE Journal_Voucher_Accounts SET [DC]=@DC," +
-                            "[Account]=@Account,[Debit]=@Debit,[Credit]=@Credit,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                            "WHERE [AC_Id]=@ACT_ID";
+                            Query = "UPDATE journal_voucher_details SET `DC`=@DC,`Account`=@Account,`LegderId`=@LegderId,`Debit`=@DebitAmount,`Credit`=@CreditAmount," +
+                            "`Narration`=@Narration,`CreatedBy`=@CreatedBy,`CreatedDate`=@CreatedDate,`ModifiedBy`=@ModifiedBy,`ModifiedDate`=@ModifiedDate " +
+                            "WHERE `AC_Id`=@ACT_ID AND `JV_Id`=@ParentId";
 
                             if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
                             {
@@ -153,32 +158,30 @@ namespace eSunSpeed.BusinessLogic
                         {
                             paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@DN_ID", (act.ParentId)));
+                            paramCollection.Add(new DBParameter("@JournalId", (act.ParentId)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
                             paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                            paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
-
-                            Query = "INSERT INTO Journal_Voucher_Accounts([JV_Id],[DC],[Account],[Debit]," +
-                    "[Credit],[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                    "(@JV_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                                isUpdated= true;
+                            System.Data.IDataReader JAdr =
+                           _dbHelper.ExecuteDataReader("spInsertJournalDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                         }
                     }
-                }
+                
 
             }
             catch (Exception ex)
             {
                 isUpdated = false;
-                throw ex;
+                //throw ex;
             }
 
             return isUpdated;
@@ -237,15 +240,17 @@ namespace eSunSpeed.BusinessLogic
             return lstJournal;
         }
 
-        public bool DeletJournalVoucher(int id)
+        public bool DeletJournalVoucher(long id)
         {
             bool isDelete = false;
             try
             {
-                DeleteJVAccounts(id);
-                string Query = "DELETE * FROM Journal_Voucher WHERE JV_Id=" + id;
-                if (_dbHelper.ExecuteNonQuery(Query) > 0)
-                    isDelete = true;                                   
+                if(DeleteJVAccounts(id));
+                {
+                    string Query = "DELETE FROM journal_voucher_master WHERE JV_Id=" + id;
+                    if (_dbHelper.ExecuteNonQuery(Query) > 0)
+                        isDelete = true;
+                }                                         
             }
             catch (Exception ex)
             {
@@ -256,13 +261,12 @@ namespace eSunSpeed.BusinessLogic
 
         }
 
-        public bool DeleteJVAccounts(int id)
+        public bool DeleteJVAccounts(long id)
         {
-
-            bool isDelete = false;
+            bool isDelete = true;
             try
             {
-                string Query = "DELETE * FROM Journal_Voucher_Accounts WHERE JV_Id=" + id;             
+                string Query = "DELETE FROM journal_voucher_details WHERE JV_Id=" + id;             
                 if (_dbHelper.ExecuteNonQuery(Query) > 0)
                     isDelete = true;
             }
@@ -281,8 +285,8 @@ namespace eSunSpeed.BusinessLogic
 
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.Append("SELECT C.JV_ID, C.JV_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM JOURNAL_VOUCHER C ");
-            sbQuery.Append("INNER JOIN JOURNAL_VOUCHER_ACCOUNTS A ");
+            sbQuery.Append("SELECT C.JV_ID, C.JV_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM journal_voucher_master C ");
+            sbQuery.Append("INNER JOIN journal_voucher_details A ");
             sbQuery.Append("ON A.JV_ID = C.JV_ID WHERE DC='C';");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
@@ -291,7 +295,7 @@ namespace eSunSpeed.BusinessLogic
             {
                 objList = new ListModel();
 
-                objList.Id = Convert.ToInt32(dr["JV_ID"]);
+                objList.Id = Convert.ToInt64(dr["JV_ID"]);
 
                 objList.Date = Convert.ToDateTime(dr["JV_Date"]);
                 objList.VoucherNo = Convert.ToInt32(dr["VOUCHERNO"]);                
@@ -305,12 +309,12 @@ namespace eSunSpeed.BusinessLogic
             return lstModel;
         }
 
-        public List<JournalVoucherModel> GetJournalbyId(int id)
+        public List<JournalVoucherModel> GetJournalbyId(long id)
         {
             List<JournalVoucherModel> lstJournal = new List<JournalVoucherModel>();
             JournalVoucherModel objjvm;
 
-            string Query = "SELECT * FROM Journal_Voucher WHERE JV_Id=" + id;
+            string Query = "SELECT * FROM journal_voucher_master WHERE JV_Id=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
@@ -323,11 +327,10 @@ namespace eSunSpeed.BusinessLogic
                 objjvm.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objjvm.Type = dr["Type"].ToString();
                 if (dr["PDC_Date"].ToString() != "")
-                    objjvm.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objjvm.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objjvm.LongNarration = dr["LongNarration"].ToString();
 
-                //SELECT Credit Note Accounts
-
-                string itemQuery = "SELECT * FROM Journal_Voucher_Accounts WHERE JV_Id=" + objjvm.JV_Id;
+                string itemQuery = "SELECT * FROM journal_voucher_details WHERE JV_Id=" + id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
                 objjvm.JournalAccountModel = new List<AccountModel>();
@@ -342,6 +345,7 @@ namespace eSunSpeed.BusinessLogic
                     objAcc.DC = drAcc["DC"].ToString();
                     objAcc.Account = drAcc["Account"].ToString();
                     objAcc.Debit = Convert.ToDecimal(drAcc["Debit"]);
+                    objAcc.LegderId = Convert.ToInt64(drAcc["LegderId"].ToString());
                     objAcc.Credit = Convert.ToDecimal(drAcc["Credit"]);
                     objAcc.Narration = drAcc["Narration"].ToString();
 

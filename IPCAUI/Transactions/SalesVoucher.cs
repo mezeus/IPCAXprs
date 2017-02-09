@@ -21,6 +21,7 @@ namespace IPCAUI.Transactions
         DataTable dtItem = new DataTable();
         DataTable dtbs = new DataTable();
         DataTable dtParty = new DataTable();
+        DataTable dtParticulars = new DataTable();
         DataTable dtItems = new DataTable();
         SalesVoucherBL objSVBL = new SalesVoucherBL();
         AccountMasterBL objAccBL = new AccountMasterBL();
@@ -28,6 +29,7 @@ namespace IPCAUI.Transactions
         ItemMasterBL objIMBL = new ItemMasterBL();
         SaleTypeBL objStBL = new SaleTypeBL();
         BillSundryMaster objBSBL = new BillSundryMaster();
+        RepositoryItemLookUpEdit UnitsLookup = new RepositoryItemLookUpEdit();
         public static long SalesId = 0;
         public SalesVoucher()
         {
@@ -67,17 +69,17 @@ namespace IPCAUI.Transactions
             
             dtParty.Rows.Clear();
             DataRow drparty;
-            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
-            foreach(AccountMasterModel objAcc in lstAccounts)
-            {
-                drparty = dtParty.NewRow();
-                drparty["Name"]=objAcc.AccountName;
-                drparty["Group"]=objAcc.Group;
-                drparty["Op.Bal"]=objAcc.OPBal;
-                drparty["Address"]=objAcc.address;
-                drparty["Mobile"]=objAcc.MobileNumber;
-                dtParty.Rows.Add(drparty);
-            }
+            //List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccountsByUnderSCSD();
+            //foreach(AccountMasterModel objAcc in lstAccounts)
+            //{
+            //    drparty = dtParty.NewRow();
+            //    drparty["Name"]=objAcc.AccountName;
+            //    drparty["Group"]=objAcc.Group;
+            //    drparty["Op.Bal"]=objAcc.OPBal;
+            //    drparty["Address"]=objAcc.address;
+            //    drparty["Mobile"]=objAcc.MobileNumber;
+            //    dtParty.Rows.Add(drparty);
+            //}
             tbxParty.Properties.DataSource = dtParty;
             tbxParty.Properties.DisplayMember = "Name";
             //tbxParty.Properties.BestFitMode= DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -136,6 +138,22 @@ namespace IPCAUI.Transactions
             //BSLookup.DisplayMember = "BillSundary";
             dvgBsDetails.Columns["BillSundry"].ColumnEdit =BSLookup; 
             dvgBsDetails.BestFitColumns();
+            dvgItemDetails.Columns["Unit"].ColumnEdit = UnitsLookup;
+            dvgItemDetails.BestFitColumns();
+            dvgItemDetails.Columns["Per"].ColumnEdit = UnitsLookup;
+            dvgItemDetails.BestFitColumns();
+            RepositoryItemLookUpEdit PartysLookup = new RepositoryItemLookUpEdit();
+            dtParticulars.Rows.Clear();
+            //DataRow drParticulars;
+            //List<AccountMasterModel> lstAccounts = objAccBL.get();
+            //foreach (ItemMasterModel objItems in lstItems)
+            //{
+            //    drParticulars = dtItems.NewRow();
+            //    drItems["Item"] = objItems.Name;
+            //    drItems["GroupName"] = objItems.Group;
+            //    drItems["Company"] = objItems.Company;
+            //    dtItems.Rows.Add(drItems);
+            //}
         }
         private void LoadTables()
         {
@@ -173,6 +191,12 @@ namespace IPCAUI.Transactions
             dtItems.Columns.Add("Item");
             dtItems.Columns.Add("GroupName");
             dtItems.Columns.Add("Company");
+
+            dtParticulars.Columns.Add("Name");
+            dtParticulars.Columns.Add("Group");
+            dtParticulars.Columns.Add("Op.Bal");
+            dtParticulars.Columns.Add("Address");
+            dtParticulars.Columns.Add("Mobile");
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -189,12 +213,16 @@ namespace IPCAUI.Transactions
             objSaleVch.Terms = cbxTerms.SelectedItem.ToString();
             objSaleVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim() == string.Empty ? "0" : tbxVoucherNumber.Text.Trim());
             objSaleVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
-            objSaleVch.Party = tbxParty.Text.Trim();
+            objSaleVch.LedgerId =objAccBL.GetLedgerIdByAccountName(tbxParty.Text.Trim());
             objSaleVch.SalesType = tbxSaleType.Text.Trim();
             objSaleVch.MatCentre = tbxMatcenter.Text.Trim();
-            objSaleVch.PriceList =Convert.ToDecimal(cbxPriceList.Text.Trim());
+            objSaleVch.PriceList =cbxPriceList.Text.Trim();
             objSaleVch.Narration = tbxNarration.Text.Trim()==null?string.Empty :tbxNarration.Text.Trim();
             objSaleVch.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            objSaleVch.TotalFree = Convert.ToDecimal(colFree.SummaryItem.SummaryValue);
+            objSaleVch.TotalBasicAmount = Convert.ToDecimal(colBasicAmt.SummaryItem.SummaryValue);
+            objSaleVch.TotalDisAmount = Convert.ToDecimal(colDisAmt.SummaryItem.SummaryValue);
+            objSaleVch.TotalTaxAmount = Convert.ToDecimal(colTaxAmont.SummaryItem.SummaryValue);
             objSaleVch.TotalQty = Convert.ToDecimal(Qty.SummaryItem.SummaryValue);
             objSaleVch.BSTotalAmount= Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
 
@@ -207,7 +235,7 @@ namespace IPCAUI.Transactions
                 DataRow row = dvgItemDetails.GetDataRow(i);
 
                 objSaleItem = new Item_VoucherModel();
-                objSaleItem.Item = row["Item"].ToString()==null?string.Empty: row["Item"].ToString();
+                objSaleItem.ITM_Id =objIMBL.GetItemIdByItemName(row["Item"].ToString()==null?string.Empty: row["Item"].ToString());
                 objSaleItem.Qty = Convert.ToDecimal(row["Qty"].ToString()==string.Empty?"0.00": row["Qty"]);
                 objSaleItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
                 objSaleItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
@@ -237,7 +265,7 @@ namespace IPCAUI.Transactions
                 DataRow row = dvgBsDetails.GetDataRow(i);
 
                 objSaleBS = new BillSundry_VoucherModel();
-                objSaleBS.BillSundry = row["BillSundry"].ToString()==null?string.Empty: row["BillSundry"].ToString();
+                objSaleBS.BS_Id =objBSBL.GetBSIdByBSName(row["BillSundry"].ToString()==null?string.Empty: row["BillSundry"].ToString());
                 objSaleBS.Percentage = Convert.ToDecimal(row["Percentage"].ToString()==string.Empty?"0.00":row["Percentage"].ToString());
                 objSaleBS.Extra = row["Extra"].ToString() == null ? string.Empty : row["Extra"].ToString();
                 objSaleBS.Amount = Convert.ToDecimal(row["Amount"].ToString()==string.Empty?"0.00": row["Amount"].ToString());
@@ -251,7 +279,7 @@ namespace IPCAUI.Transactions
             {
                 MessageBox.Show("Saved Successfully!");
                 SalesId = 0;
-                ClearControls();
+                //ClearControls();
             }
         }
         private void ClearControls()
@@ -287,6 +315,12 @@ namespace IPCAUI.Transactions
                 ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
 
             }
+            if (e.FocusedColumn.FieldName == "Unit" || e.FocusedColumn.FieldName == "Per")
+            {
+                dvgItemDetails.ShowEditor();
+                ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
+            }
+
         }
 
         private void dvgBsDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
@@ -386,6 +420,7 @@ namespace IPCAUI.Transactions
                 idr = dtItem.NewRow();
 
                 idr["Item"] = objItems.Item;
+                idr["Particulars"] = objItems.Item;
                 idr["Qty"] = objItems.Qty;
                 idr["Unit"] = objItems.Unit;
                 idr["Per"] = objItems.Per;
@@ -434,12 +469,16 @@ namespace IPCAUI.Transactions
             objSaleVch.Terms = cbxTerms.SelectedItem.ToString();
             objSaleVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim() == string.Empty ? "0" : tbxVoucherNumber.Text.Trim());
             objSaleVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
-            objSaleVch.Party = tbxParty.Text.Trim();
+            objSaleVch.LedgerId =objAccBL.GetLedgerIdByAccountName(tbxParty.Text.Trim());
             objSaleVch.SalesType = tbxSaleType.Text.Trim();
             objSaleVch.MatCentre = tbxMatcenter.Text.Trim();
-            objSaleVch.PriceList = Convert.ToDecimal(cbxPriceList.Text.Trim());
+            objSaleVch.PriceList = cbxPriceList.Text.Trim();
             objSaleVch.Narration = tbxNarration.Text.Trim() == null ? string.Empty : tbxNarration.Text.Trim();
             objSaleVch.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
+            objSaleVch.TotalFree = Convert.ToDecimal(colFree.SummaryItem.SummaryValue);
+            objSaleVch.TotalBasicAmount = Convert.ToDecimal(colBasicAmt.SummaryItem.SummaryValue);
+            objSaleVch.TotalDisAmount = Convert.ToDecimal(colDisAmt.SummaryItem.SummaryValue);
+            objSaleVch.TotalTaxAmount = Convert.ToDecimal(colTaxAmont.SummaryItem.SummaryValue);
             objSaleVch.TotalQty = Convert.ToDecimal(Qty.SummaryItem.SummaryValue);
             objSaleVch.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
 
@@ -452,7 +491,7 @@ namespace IPCAUI.Transactions
                 DataRow row = dvgItemDetails.GetDataRow(i);
 
                 objSaleItem = new Item_VoucherModel();
-                objSaleItem.Item = row["Item"].ToString() == null ? string.Empty : row["Item"].ToString();
+                objSaleItem.ITM_Id =objIMBL.GetItemIdByItemName(row["Item"].ToString() == null ? string.Empty : row["Item"].ToString());
                 objSaleItem.Qty = Convert.ToDecimal(row["Qty"].ToString() == string.Empty ? "0.00" : row["Qty"]);
                 objSaleItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
                 objSaleItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
@@ -480,7 +519,7 @@ namespace IPCAUI.Transactions
                 DataRow row = dvgBsDetails.GetDataRow(i);
 
                 objSaleBS = new BillSundry_VoucherModel();
-                objSaleBS.BillSundry = row["BillSundry"].ToString() == null ? string.Empty : row["BillSundry"].ToString();
+                objSaleBS.BS_Id =objBSBL.GetBSIdByBSName(row["BillSundry"].ToString() == null ? string.Empty : row["BillSundry"].ToString());
                 objSaleBS.Percentage = Convert.ToDecimal(row["Percentage"].ToString() == string.Empty ? "0.00" : row["Percentage"].ToString());
                 objSaleBS.Extra = row["Extra"].ToString() == null ? string.Empty : row["Extra"].ToString();
                 objSaleBS.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
@@ -535,6 +574,83 @@ namespace IPCAUI.Transactions
         private void tbxMatcenter_Enter(object sender, EventArgs e)
         {
             tbxMatcenter.ShowPopup();
+        }
+
+        private void dvgItemDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Caption == "Item")
+            {
+                List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
+                List<string> lstUnits = new List<string>();
+                foreach (ItemMasterModel objUnits in lstItems)
+                {
+                    lstUnits.Add(objUnits.MainUnit);
+                    lstUnits.Add(objUnits.AltUnit);
+                }
+                UnitsLookup.DataSource = lstUnits;
+            }
+        }
+
+        private void dvgItemDetails_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Caption == "Item")
+            {
+                List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
+                List<string> lstUnits = new List<string>();
+                foreach (ItemMasterModel objUnits in lstItems)
+                {
+                    lstUnits.Add(objUnits.MainUnit);
+                    lstUnits.Add(objUnits.AltUnit);
+                }
+                UnitsLookup.DataSource = lstUnits;
+            }
+        }
+
+        private void barbtnAccountsMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            dvgItemDetails.Columns[1].Visible = false;
+
+            //colParty.Visible = true;
+            //colBatch.Visible = false;
+            //Qty.Visible = false;
+            //Unit.Visible = false;
+            //colFree.Visible = false;
+            //Price.Visible = false;
+            //colPer.Visible = false;
+            //colBasicAmt.Visible = true;
+            //colDisPer.Visible = true;
+            //colDisAmt.Visible = true;
+            //colTaxAmont.Visible = true;
+            //Amount.Visible = true;
+            lactrlMatcenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlPriceList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            barbtnAccountsMode.Visible = false;
+            barbtnItemMode.Visible = true;
+            
+            
+        }
+
+        private void barbtnItemMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            //colItem.Visible = true;
+            //colParty.Visible = false;
+            //colBatch.Visible = true;
+            //Qty.Visible = true;
+            //Unit.Visible = true;
+            //colFree.Visible = true;
+            //Price.Visible = true;
+            //colPer.Visible = true;
+            //colBasicAmt.Visible = true;
+            //colDisPer.Visible = true;
+            //colDisAmt.Visible = true;
+            //colTaxAmont.Visible = true;
+            //Amount.Visible = true;
+            lactrlMatcenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlPriceList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            barbtnAccountsMode.Visible = true;
+            barbtnItemMode.Visible = false;
+            
+           
         }
     }
 }

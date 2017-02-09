@@ -19,8 +19,10 @@ namespace IPCAUI.Transactions
     public partial class ReceiptVoucher : Form
     {
         RecieptVoucherBL objRecBL = new RecieptVoucherBL();
-        DataTable dt = new DataTable();
-        public static int Recpt_Id = 0;
+        AccountMasterBL objAccBL = new AccountMasterBL();
+        DataTable dtAcc = new DataTable();
+        DataTable dtLedger = new DataTable();
+        public static long Recpt_Id = 0;
         public ReceiptVoucher()
         {
             InitializeComponent();
@@ -34,43 +36,42 @@ namespace IPCAUI.Transactions
         private void ReceiptVoucher_Load(object sender, EventArgs e)
         {
            
-            dt.Columns.Add("S.No");
-            dt.Columns.Add("DC");
-            dt.Columns.Add("Account");
-            dt.Columns.Add("Debit");
-            dt.Columns.Add("Credit");
-            dt.Columns.Add("Narration");
-            dt.Columns.Add("ParentId");
-            dt.Columns.Add("Ac_Id");
-            gdvMainReceipt.DataSource = dt;
-            InitData();
-            Models.AccountLookup acc = new Models.AccountLookup();
-
-            // Create an in-place LookupEdit control.
-            RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
-            riLookup.DataSource = Categories;
-            riLookup.ValueMember = "ID";
-            riLookup.DisplayMember = "CategoryName";
-
-            // Enable the "best-fit" functionality mode in which columns have proportional widths and the popup window is resized to fit all the columns.
-            riLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            // Specify the dropdown height.
-            riLookup.DropDownRows = Categories.Count;
-
-            // Enable the automatic completion feature. In this mode, when the dropdown is closed, 
-            // the text in the edit box is automatically completed if it matches a DisplayMember field value of one of dropdown rows. 
-            riLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
-            // Specify the column against which an incremental search is performed in SearchMode.AutoComplete and SearchMode.OnlyInPopup modes
-            riLookup.AutoSearchColumnIndex = 1;
-
-            // Optionally hide the Description column in the dropdown.
-            // riLookup.PopulateColumns();
-            // riLookup.Columns["Description"].Visible = false;
-
-            // Assign the in-place LookupEdit control to the grid's CategoryID column.
-            // Note that the data types of the "ID" and "CategoryID" fields match.
-            gdvReceipt.Columns["Account"].ColumnEdit = riLookup;
+            dtAcc.Columns.Add("S.No");
+            dtAcc.Columns.Add("DC");
+            dtAcc.Columns.Add("Account");
+            dtAcc.Columns.Add("Debit");
+            dtAcc.Columns.Add("Credit");
+            dtAcc.Columns.Add("Narration");
+            dtAcc.Columns.Add("ParentId");
+            dtAcc.Columns.Add("Ac_Id");
+            gdvMainReceipt.DataSource = dtAcc;
+            dtLedger.Columns.Add("Name");
+            dtLedger.Columns.Add("Group");
+            dtLedger.Columns.Add("Op.Bal");
+            dtLedger.Columns.Add("Address");
+            dtLedger.Columns.Add("Mobile");
+            dtLedger.Rows.Clear();
+            RepositoryItemLookUpEdit AccLookup = new RepositoryItemLookUpEdit();
+            DataRow drparty;
+            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+            foreach (AccountMasterModel objAcc in lstAccounts)
+            {
+                drparty = dtLedger.NewRow();
+                drparty["Name"] = objAcc.AccountName;
+                drparty["Group"] = objAcc.Group;
+                drparty["Op.Bal"] = objAcc.OPBal;
+                drparty["Address"] = objAcc.address;
+                drparty["Mobile"] = objAcc.MobileNumber;
+                dtLedger.Rows.Add(drparty);
+            }
+            AccLookup.DataSource = dtLedger;
+            AccLookup.ValueMember = "Name";
+            AccLookup.DisplayMember = "Name";
+            AccLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            AccLookup.AutoSearchColumnIndex = 1;
+            gdvReceipt.Columns["Account"].ColumnEdit = AccLookup;
             gdvReceipt.BestFitColumns();
+           
 
             RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
             riDCLookup.DataSource = new string[] { "D", "C" };
@@ -78,60 +79,6 @@ namespace IPCAUI.Transactions
 
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             riDCLookup.AutoSearchColumnIndex = 1;
-
-            //Series Lookup Edit
-            SeriesLookup objSeries = new SeriesLookup();
-            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
-
-            //Party Lookup Edit
-            tbxType.Properties.DataSource = acc.Categories;
-            tbxType.Properties.DisplayMember = "CategoryName";
-            tbxType.Properties.ValueMember = "CategoryName";
-            riDCLookup.DropDownRows = 0;
-
-            //riDCLookup.ValueMember = "ID";
-            //riDCLookup.DisplayMember = "CategoryName";
-        }
-
-        List<Product> Products = new List<Product>();
-        List<Category> Categories = new List<Category>();
-
-        private void InitData()
-        {
-            Products.Add(new Product() { ProductName = "Sir Rodney's Scones", CategoryID = 3, UnitPrice = 10 });
-            Products.Add(new Product() { ProductName = "Gustaf's Knäckebröd", CategoryID = 5, UnitPrice = 21 });
-            Products.Add(new Product() { ProductName = "Tunnbröd", CategoryID = 5, UnitPrice = 9 });
-            Products.Add(new Product() { ProductName = "Guaraná Fantástica", CategoryID = 1, UnitPrice = 4.5m });
-            Products.Add(new Product() { ProductName = "NuNuCa Nuß-Nougat-Creme", CategoryID = 3, UnitPrice = 14 });
-            Products.Add(new Product() { ProductName = "Gumbär Gummibärchen", CategoryID = 3, UnitPrice = 31.23m });
-            Products.Add(new Product() { ProductName = "Rössle Sauerkraut", CategoryID = 7, UnitPrice = 45.6m });
-            Products.Add(new Product() { ProductName = "Thüringer Rostbratwurst", CategoryID = 6, UnitPrice = 123.79m });
-            Products.Add(new Product() { ProductName = "Nord-Ost Matjeshering", CategoryID = 8, UnitPrice = 25.89m });
-            Products.Add(new Product() { ProductName = "Gorgonzola Telino", CategoryID = 4, UnitPrice = 12.5m });
-
-            Categories.Add(new Category() { ID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" });
-            Categories.Add(new Category() { ID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" });
-            Categories.Add(new Category() { ID = 3, CategoryName = "Confections", Description = "Desserts, candies, and sweet breads" });
-            Categories.Add(new Category() { ID = 4, CategoryName = "Dairy Products", Description = "Cheeses" });
-            Categories.Add(new Category() { ID = 5, CategoryName = "Grains/Cereals", Description = "Breads, crackers, pasta, and cereal" });
-            Categories.Add(new Category() { ID = 6, CategoryName = "Meat/Poultry", Description = "Prepared meats" });
-            Categories.Add(new Category() { ID = 7, CategoryName = "Produce", Description = "Dried fruit and bean curd" });
-            Categories.Add(new Category() { ID = 8, CategoryName = "Seafood", Description = "Seaweed and fish" });
-        }
-
-
-        public class Product
-        {
-            public string ProductName { get; set; }
-            public decimal UnitPrice { get; set; }
-            public int CategoryID { get; set; }
-        }
-
-        public class Category
-        {
-            public int ID { get; set; }
-            public string CategoryName { get; set; }
-            public string Description { get; set; }
         }
 
         private void gdvReceipt_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
@@ -186,8 +133,9 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0" : row["Debit"]);
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"]);
+                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"]);
+                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
                 objacc.Narration = row["Narration"].ToString() == string.Empty ? string.Empty : row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
@@ -197,6 +145,8 @@ namespace IPCAUI.Transactions
             if (isSuccess)
             {
                 MessageBox.Show("Saved Successfully!");
+                Recpt_Id = 0;
+                ClearFormValues();
             }
         }
 
@@ -236,6 +186,7 @@ namespace IPCAUI.Transactions
                 objacc.AC_Id = Convert.ToInt32(row["Ac_Id"].ToString() == string.Empty ? "0" : row["Ac_Id"]);
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
+                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
                 objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()== string.Empty ? "0" : row["Debit"]);
                 objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"]);
                 objacc.Narration = row["Narration"].ToString() == string.Empty ?string.Empty : row["Narration"].ToString();
@@ -247,19 +198,13 @@ namespace IPCAUI.Transactions
             if (isSuccess)
             {
                 MessageBox.Show("Update Successfully!");
+                Recpt_Id = 0;
+                ClearFormValues();
                 Transaction.List.ReceiptVouchersList frmList = new Transaction.List.ReceiptVouchersList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
 
-                frmList.ShowDialog();
-
-                if (Recpt_Id != 0)
-                {
-                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    tbxVoucherSeries.Focus();
-                    FillRecieptVoucherInfo();
-                }
+                frmList.ShowDialog();             
+                FillRecieptVoucherInfo();
             }
         }
 
@@ -269,18 +214,19 @@ namespace IPCAUI.Transactions
             frmList.StartPosition = FormStartPosition.CenterScreen;
 
             frmList.ShowDialog();
-
-            if (Recpt_Id != 0)
-            {
-                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                tbxVoucherSeries.Focus();
-                FillRecieptVoucherInfo();
-            }
+            FillRecieptVoucherInfo();
         }
         public void FillRecieptVoucherInfo()
         {
+            if (Recpt_Id == 0)
+            {
+                ClearFormValues();
+                lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                tbxVoucherSeries.Focus();
+                return;
+            }
             List<RecieptVoucherModel> objReciept = objRecBL.GetRecieptbyId(Recpt_Id);
 
             tbxVoucherSeries.Text = objReciept.FirstOrDefault().Voucher_Series.ToString();
@@ -291,14 +237,13 @@ namespace IPCAUI.Transactions
             tbxLongNarration.Text = objReciept.FirstOrDefault().LongNarration.ToString();
             //objReciept.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);
             //objReciept.TotalDebitAmt = Convert.ToDecimal(dr["TotalDebitAmt"]);
-
-            dt.Rows.Clear();
+            dtAcc.Rows.Clear();
 
             DataRow dr;
 
              foreach(AccountModel objmod in objReciept.FirstOrDefault().RecieptAccountModel)
             {
-                 dr = dt.NewRow();
+                 dr = dtAcc.NewRow();
 
                 dr["DC"] = objmod.DC;
                 dr["Account"] = objmod.Account;
@@ -307,11 +252,13 @@ namespace IPCAUI.Transactions
                 dr["Narration"] = objmod.Narration;
                 dr["ParentId"]= objmod.ParentId;
                 dr["Ac_Id"] = objmod.AC_Id;
-                dt.Rows.Add(dr);
+                dtAcc.Rows.Add(dr);
             }
-
-            gdvMainReceipt.DataSource = dt;
-           
+            gdvMainReceipt.DataSource = dtAcc;
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxVoucherSeries.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -321,18 +268,12 @@ namespace IPCAUI.Transactions
             {
                 MessageBox.Show("Delete Successfully!");
                 ClearFormValues();
+                Recpt_Id = 0;
                 Transaction.List.PaymentVouchersList frmList = new Transaction.List.PaymentVouchersList();
                 frmList.StartPosition = FormStartPosition.CenterScreen;
 
                 frmList.ShowDialog();
-                if (Recpt_Id != 0)
-                {
-                    lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
-                    lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    tbxVoucherSeries.Focus();
-                    FillRecieptVoucherInfo();
-                }
+                FillRecieptVoucherInfo();
             }
         }
         public void ClearFormValues()
@@ -344,15 +285,43 @@ namespace IPCAUI.Transactions
             dtPDCDate.Text = string.Empty;
             tbxVoucherSeries.Text = string.Empty;
             Recpt_Id = 0;
-            dt.Rows.Clear();
+            dtAcc.Rows.Clear();
         }
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            Recpt_Id = 0;
             ClearFormValues();
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxVoucherSeries.Focus();
+        }
+
+        private void gdvReceipt_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if(e.Column.Caption=="D/C")
+            {
+                if(e.Value.ToString()=="D")
+                {
+                    colCredit.OptionsColumn.ReadOnly= true;
+                    colDebit.OptionsColumn.ReadOnly = false;
+                }
+                else
+                {
+                    colCredit.OptionsColumn.ReadOnly = false;
+                    colDebit.OptionsColumn.ReadOnly = true;
+                }
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace eSunSpeedDomain
         public DateTime DueDate { get; set; }
         public bool IsDeleted { get; set; }
         public long BillNo { get; set; }
-        public decimal PriceList { get; set; }
+        public string PriceList { get; set; }
         public string Terms { get; set; }
         public long VoucherNumber { get; set; }
         public string SalesType { get; set; }

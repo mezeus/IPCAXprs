@@ -7,7 +7,7 @@ namespace eSunSpeedDomain
 {
     public class RecieptVoucherModel
     {
-        public int RV_Id { get; set; }
+        public long RV_Id { get; set; }
         public int ParentId { get; set; }
         public string Type { get; set; }
         public string Voucher_Series { get; set; }

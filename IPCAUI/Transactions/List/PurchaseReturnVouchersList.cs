@@ -12,38 +12,41 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class PurchaseReturnVouchers : Form
+    public partial class PurchaseReturnVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public PurchaseReturnVouchers()
+        PurchaseReturnVoucherBL objPRBL = new PurchaseReturnVoucherBL();
+        public PurchaseReturnVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void PurchaseReturnVouchers_Load(object sender, EventArgs e)
+        private void PurchaseReturnVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<eSunSpeedDomain.TransListModel> lstPurcRet = objPRBL.GetAllPurchaseReturnDetails();
+            dvgPurcRetList.DataSource = lstPurcRet;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgPurcRetDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                TransListModel lstPurRet;
+
+                lstPurRet = (TransListModel)dvgPurcRetDetails.GetRow(dvgPurcRetDetails.FocusedRowHandle);
+                Transactions.PurhcaseReturnvoucher.PurcRetId = lstPurRet.PurcRetId;
+                this.Close();
+            }
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgPurcRetDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            TransListModel lstPurRet;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
+            lstPurRet = (TransListModel)dvgPurcRetDetails.GetRow(dvgPurcRetDetails.FocusedRowHandle);
+            Transactions.PurhcaseReturnvoucher.PurcRetId = lstPurRet.PurcRetId;
+            this.Close();
+        }
     }
 }

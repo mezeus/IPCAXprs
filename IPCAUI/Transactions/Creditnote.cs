@@ -20,7 +20,7 @@ namespace IPCAUI.Transactions
     public partial class CreditNote : Form
     {
         CreditNoteBL objBl = new CreditNoteBL();
-        public static int CNId;
+        public static long CNId;
 
         public CreditNote()
         {
@@ -188,7 +188,6 @@ namespace IPCAUI.Transactions
                 objacc.DC = row["DC"].ToString();
 
                 objacc.Account = row["Account"].ToString();
-
                 objacc.Debit = row["Debit"].ToString().Length > 0 ? Convert.ToDecimal(row["Debit"].ToString()) : 0;
                 objacc.Credit = row["Credit"].ToString().Length > 0 ? Convert.ToDecimal(row["Credit"].ToString()) : 0;
 

@@ -12,7 +12,7 @@ namespace eSunSpeedDomain
         public decimal Physical_Stock { get; set; }
         public decimal Difference { get; set; }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public DateTime Date { get; set; }
         public string Type { get; set; }

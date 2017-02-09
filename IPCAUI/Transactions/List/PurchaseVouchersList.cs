@@ -12,38 +12,51 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class PurchaseVouchers : Form
+    public partial class PurchaseVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public PurchaseVouchers()
+        PurchaseVoucherBL objPurcBL = new PurchaseVoucherBL();
+        public PurchaseVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void PurchaseVouchers_Load(object sender, EventArgs e)
+        private void PurchaseVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<eSunSpeedDomain.TransListModel> lstPurchase = objPurcBL.GetAllPurchaseVoucherMaster();
+            dvgPurcList.DataSource = lstPurchase;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgPurcListDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                TransListModel lstPurchase;
+
+                lstPurchase = (TransListModel)dvgPurcListDetails.GetRow(dvgPurcListDetails.FocusedRowHandle);
+                Transactions.Purhcasevoucher.PurcId = lstPurchase.PurcVchId;
+                this.Close();
+            }
+            
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgPurcListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            TransListModel lstPurchase;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
+            lstPurchase = (TransListModel)dvgPurcListDetails.GetRow(dvgPurcListDetails.FocusedRowHandle);
+            Transactions.Purhcasevoucher.PurcId = lstPurchase.PurcVchId;
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

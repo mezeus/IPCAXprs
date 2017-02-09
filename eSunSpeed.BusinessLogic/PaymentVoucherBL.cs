@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace eSunSpeed.BusinessLogic
 {
@@ -26,18 +27,18 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@VoucherNumber", objpaymod.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objpaymod.Voucher_Series));
                 paramCollection.Add(new DBParameter("@PayDate", objpaymod.Pay_Date, System.Data.DbType.DateTime));
-
                 paramCollection.Add(new DBParameter("@Type", objpaymod.Type));
                 paramCollection.Add(new DBParameter("@PDCDate", objpaymod.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objpaymod.LongNarration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", objpaymod.TotalCreditAmt));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", objpaymod.TotalDebitAmt));
-
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objpaymod.TotalCreditAmt, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objpaymod.TotalDebitAmt, DbType.DateTime));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
                 System.Data.IDataReader dr =
-                   _dbHelper.ExecuteDataReader("spInsertPaymentMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                                         _dbHelper.ExecuteDataReader("spInsertPaymentMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
                 int id = 0;
                 dr.Read();
@@ -52,18 +53,14 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
-
+        //Save Payment Voucher Details
         public bool SavePaymentAccounts(List<AccountModel> lstAcc,int ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-
-            //int ParentId = GetPaymentId();
-
             foreach (AccountModel Acc in lstAcc)
             {
                 Acc.ParentId = ParentId;
-
                 try
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
@@ -71,12 +68,15 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@PaymentId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now,DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, DbType.DateTime));
 
                     System.Data.IDataReader dr =
                   _dbHelper.ExecuteDataReader("spInsertPaymentDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
@@ -85,20 +85,10 @@ namespace eSunSpeed.BusinessLogic
                 catch (Exception ex)
                 {
                     isSaved = false;
-                    throw ex;
+                    //throw ex;
                 }
             }
             return isSaved;
-        }
-
-
-        public int GetPaymentId()
-        {
-            string Query = "SELECT MAX(Payment_Id) FROM Payment_Voucher";
-
-            int id = Convert.ToInt32(_dbHelper.ExecuteScalar(Query));
-
-            return id;
         }
 
 
@@ -256,7 +246,7 @@ namespace eSunSpeed.BusinessLogic
         //Delete Payment Voucher
 
             //Delete Payment Voucher
-        public bool DeletPaymentVoucher(int id)
+        public bool DeletPaymentVoucher(long id)
         {
 
             bool isDelete = false;
@@ -278,7 +268,7 @@ namespace eSunSpeed.BusinessLogic
             return isDelete;
         }
 
-        public bool DeletePaymentAccounts(int id)
+        public bool DeletePaymentAccounts(long id)
         {
 
             bool isDelete = true;
@@ -327,7 +317,7 @@ namespace eSunSpeed.BusinessLogic
             return lstModel;
         }
 
-        public List<PaymentVoucherModel> GetPaymentbyId(int id)
+        public List<PaymentVoucherModel> GetPaymentbyId(long id)
         {
             List<PaymentVoucherModel> lstPayment = new List<PaymentVoucherModel>();
             PaymentVoucherModel objPayment;

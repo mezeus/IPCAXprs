@@ -239,14 +239,13 @@ namespace IPCAUI.Menu
 
         private void SalesRetVoucher_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            MessageBox.Show("Under Progress........");
-            //Transactions.Purhcasevoucher frm;
-            //frm = new Transactions.Purhcasevoucher(); //generate new instance 
-            //frm.Owner = this;
-            //frm.TopLevel = false;
+            Transactions.SalesReturn frm;
+            frm = new Transactions.SalesReturn(); //generate new instance 
+            frm.Owner = this;
+            frm.TopLevel = false;
 
-            //splitContainerControl1.Panel2.Controls.Add(frm);
-            //frm.Show();
+            splitContainerControl1.Panel2.Controls.Add(frm);
+            frm.Show();
         }
 
         private void PurchaseretVoucher_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -13,6 +13,7 @@ namespace eSunSpeed.BusinessLogic
         private DBHelper _dbHelper = new DBHelper();
 
         #region SAVE CONTRA VOUCHER
+        //Save Contara Voucher main
         public bool SaveContraVoucher(ContraVoucherModel objCon)
         {
             string Query = string.Empty;
@@ -24,20 +25,21 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@VoucherNumber", objCon.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Series", objCon.Voucher_Series));
                 paramCollection.Add(new DBParameter("@CVDate", objCon.CV_Date, System.Data.DbType.DateTime));
-
-                //paramCollection.Add(new DBParameter("@Type", objCon.Type));
-                //paramCollection.Add(new DBParameter("@PDCDate", objCon.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@Type", objCon.Type));
+                paramCollection.Add(new DBParameter("@PDCDate", objCon.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objCon.LongNarration));
-                paramCollection.Add(new DBParameter("@TotalCreditAmount", "0"));
-                paramCollection.Add(new DBParameter("@TotalDebitAmount", "0"));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount",objCon.TotalCreditAmount,System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount",objCon.TotalDebitAmount, System.Data.DbType.Decimal));
 
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                 System.Data.IDataReader dr =
                    _dbHelper.ExecuteDataReader("spInsertContraMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
 
-                int id = 0;
+                long id = 0;
                 dr.Read();
                 id = Convert.ToInt32(dr[0]);
                 SaveContraAcconuts(objCon.ContraAccountModel, id);
@@ -50,29 +52,31 @@ namespace eSunSpeed.BusinessLogic
 
             return isSaved;
         }
-
-        public bool SaveContraAcconuts(List<AccountModel> lstAcc,int ParentId)
+        
+        //Save Contra Voucher Accounts
+        public bool SaveContraAcconuts(List<AccountModel> lstAcc,long ParentId)
         {
             string Query = string.Empty;
             bool isSaved = true;
-            //int ParentId = GetContraId();
             foreach (AccountModel Acc in lstAcc)
             {
-                Acc.ParentId = ParentId;
-
+                Acc.ParentId =Convert.ToInt32(ParentId);
                 try
                 {
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
-                    paramCollection.Add(new DBParameter("@ContraID", (Acc.ParentId)));
+                    paramCollection.Add(new DBParameter("@ContraID",Acc.ParentId));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit));
-                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
+                    paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, System.Data.DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
 
                     paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                    //paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                    paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now,System.Data.DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                    paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                     System.Data.IDataReader dr =
                    _dbHelper.ExecuteDataReader("spInsertContraDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
@@ -85,54 +89,40 @@ namespace eSunSpeed.BusinessLogic
             }
             return isSaved;
         }
-     
-        public int GetContraId()
-        {
-            string Query = "SELECT MAX(Contra_Id) FROM Contra_Voucher";
-
-            int id = Convert.ToInt32(_dbHelper.ExecuteScalar(Query));
-
-            return id;
-        }
-
-
         #endregion
-
+        //Update Contra Voucher
         public bool UpdateContraVoucher(ContraVoucherModel objContra)
         {
             string Query = string.Empty;
             bool isUpdated = true;
-
             try
             {
                 //UPDATE CONTRA TABLE - PARENT TABLE
-
                 DBParameterCollection paramCollection = new DBParameterCollection();
 
                 paramCollection.Add(new DBParameter("@Series", objContra.Voucher_Series));
                 paramCollection.Add(new DBParameter("@Date", objContra.CV_Date));
-                paramCollection.Add(new DBParameter("@Voucher_Number", objContra.Voucher_Number));
+                paramCollection.Add(new DBParameter("@VoucherNumber", objContra.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Type", objContra.Type));
-                paramCollection.Add(new DBParameter("@PDDate", objContra.PDCDate));
-                //paramCollection.Add(new DBParameter("@TotalCreditAmt", "0"));
-                //paramCollection.Add(new DBParameter("@TotalDebitAmt", "0"));
-
+                paramCollection.Add(new DBParameter("@CVDate", objContra.CV_Date, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@PDCDate", objContra.PDCDate, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@TotalCreditAmount", objContra.TotalCreditAmount,System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@TotalDebitAmount", objContra.TotalDebitAmount,System.Data.DbType.Decimal));
+                paramCollection.Add(new DBParameter("@LongNarration", objContra.LongNarration));
                 paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                paramCollection.Add(new DBParameter("@id", objContra.CV_Id));
+                paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                paramCollection.Add(new DBParameter("@ModifiedDate",DateTime.Now, System.Data.DbType.DateTime));
 
-                Query = "UPDATE Contra_Voucher SET [Series]=@Series,[CV_Date]=@Date,[VoucherNo]=@Voucher_Number," +
-                         "[Type]=@Type,[PDC_Date]=@PDDate,[ModifiedBy]=@ModifiedBy," +
-                        "[ModifiedDate]=@ModifiedDate " +
-                        "WHERE Contra_Id=@id";
+                paramCollection.Add(new DBParameter("@ContraId", objContra.CV_Id));
 
-                if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                {
+                System.Data.IDataReader dr =
+                   _dbHelper.ExecuteDataReader("spUpdateContraMaster", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                     List<AccountModel> lstAcct = new List<AccountModel>();
-
-                    //UPDATE CREDIT NOTE ACCOUNT -CHILD TABLE UPDATES
+                    //UPDATE Contra Voucher details
                     foreach (AccountModel act in objContra.ContraAccountModel)
                     {
+                    act.ParentId =Convert.ToInt32(objContra.CV_Id);
                         if (act.AC_Id > 0)
                         {
 
@@ -140,65 +130,63 @@ namespace eSunSpeed.BusinessLogic
 
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
+                            paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
+                            paramCollection.Add(new DBParameter("@CreatedBy", ""));
+                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
 
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now));
-                            paramCollection.Add(new DBParameter("@ACT_ID", act.AC_Id));
+                            paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now,System.Data.DbType.DateTime));
+                            paramCollection.Add(new DBParameter("@AccId", act.AC_Id));
+                            paramCollection.Add(new DBParameter("@ContraId", act.ParentId));
 
-                            Query = "UPDATE Contra_Voucher_Accounts SET [DC]=@DC," +
-                            "[Account]=@Account,[Debit]=@Debit,[Credit]=@Credit,[Narration]=@Narration,[ModifiedBy]=@ModifiedBy,[ModifiedDate]=@ModifiedDate " +
-                            "WHERE [AC_Id]=@ACT_ID";
 
-                            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0)
-                            {
-                                isUpdated = true;
-                            }
-                        }
+                        System.Data.IDataReader acdr =
+                                        _dbHelper.ExecuteDataReader("spUpdateContraDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
+                         }
                         else
                         {
-                            paramCollection = new DBParameterCollection();
+                          paramCollection = new DBParameterCollection();
 
-                            paramCollection.Add(new DBParameter("@CN_ID", (act.ParentId)));
-                            paramCollection.Add(new DBParameter("@DC", (act.DC)));
-                            paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@Debit", act.Debit));
-                            paramCollection.Add(new DBParameter("@Credit", act.Credit));
-                            paramCollection.Add(new DBParameter("@Narration", act.Narration));
+                        paramCollection.Add(new DBParameter("@ContraID", act.ParentId));
+                        paramCollection.Add(new DBParameter("@DC", (act.DC)));
+                        paramCollection.Add(new DBParameter("@Account", act.Account));
+                        paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                        paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
+                        paramCollection.Add(new DBParameter("@Narration", act.Narration));
 
-                            paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
-                            paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now));
+                        paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
+                        paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
+                        paramCollection.Add(new DBParameter("@ModifiedBy", ""));
+                        paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
 
-
-                            Query = "INSERT INTO Contra_Voucher_Accounts([Contra_Id],[DC],[Account],[Debit],[Credit]," +
-                            "[Narration],[CreatedBy],[CreatedDate]) VALUES " +
-                            "(@CN_ID,@DC,@Account,@Debit,@Credit,@Narration,@CreatedBy,@CreatedDate)";
-
-                            if (_dbHelper.ExecuteNonQuery(Query, paramCollection) > 0) { };
-                        }
+                        System.Data.IDataReader acdr =
+                       _dbHelper.ExecuteDataReader("spInsertContraDetails", _dbHelper.GetConnObject(), paramCollection, System.Data.CommandType.StoredProcedure);
                     }
-                }
+                    }
+                
 
             }
             catch (Exception ex)
             {
                 isUpdated = false;
-                throw ex;
+                //throw ex;
             }
 
             return isUpdated;
         }
-
-        public bool DeleteContraVoucher(int id)
+        //Delete Contra Voucher
+        public bool DeleteContraVoucher(long id)
         {
             bool isDelete = false;
             try
             {
                 if (DeleteContraVoucherAccounts(id))
                 {
-                    string Query = "DELETE * FROM Contra_Voucher WHERE Contra_Id=" + id;
+                    string Query = "DELETE FROM contra_vouchermaster WHERE Contra_Id=" + id;
                     int rowes = _dbHelper.ExecuteNonQuery(Query);
                     if (rowes > 0)
                         isDelete = true;
@@ -212,12 +200,12 @@ namespace eSunSpeed.BusinessLogic
             return isDelete;
         }
 
-        public bool DeleteContraVoucherAccounts(int id)
+        public bool DeleteContraVoucherAccounts(long id)
         {
-            bool isDelete = false;
+            bool isDelete = true;
             try
             {
-                string Query = "DELETE * FROM Contra_Voucher_Accounts WHERE Contra_Id=" + id;
+                string Query = "DELETE FROM contra_voucherdetails WHERE Contra_Id=" + id;
                 int rowes = _dbHelper.ExecuteNonQuery(Query);
                 if (rowes > 0)
                     isDelete = true;
@@ -230,7 +218,7 @@ namespace eSunSpeed.BusinessLogic
             return isDelete;
         }
 
-
+        //Get All List Of Contra Vouchers
         public List<ListModel> GetAllContraVoucher()
         {
             List<ListModel> lstModel = new List<ListModel>();
@@ -238,8 +226,8 @@ namespace eSunSpeed.BusinessLogic
 
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.Append("SELECT C.Contra_ID, C.CV_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM CONTRA_VOUCHER C ");
-            sbQuery.Append("INNER JOIN CONTRA_VOUCHER_ACCOUNTS A ");
+            sbQuery.Append("SELECT C.Contra_ID, C.CV_DATE, C.VoucherNo, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM contra_vouchermaster C ");
+            sbQuery.Append("INNER JOIN contra_voucherdetails A ");
             sbQuery.Append("ON A.Contra_ID = C.Contra_ID WHERE DC='C';");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
@@ -249,12 +237,11 @@ namespace eSunSpeed.BusinessLogic
                 objList = new ListModel();
 
                 objList.Id = Convert.ToInt32(dr["Contra_ID"]);
-
                 objList.Date = Convert.ToDateTime(dr["CV_Date"]);
                 objList.VoucherNo = Convert.ToInt32(dr["VOUCHERNO"]);
                 objList.Account = Convert.ToString(dr["ACCOUNT"]);
-                objList.Debit = Convert.ToInt32(dr["DEBIT"]);
-                objList.Credit = Convert.ToInt32(dr["CREDIT"]);
+                objList.Debit = Convert.ToDecimal(dr["DEBIT"]);
+                objList.Credit = Convert.ToDecimal(dr["CREDIT"]);
                 objList.Narration = Convert.ToString(dr["NARRATION"]);
                 lstModel.Add(objList);
 
@@ -262,29 +249,27 @@ namespace eSunSpeed.BusinessLogic
             return lstModel;
         }
 
-        public List<ContraVoucherModel> GetCreditNotebyId(int id)
+        public List<ContraVoucherModel> GetContraVoucherbyId(long id)
         {
             List<ContraVoucherModel> lstCredit = new List<ContraVoucherModel>();
             ContraVoucherModel objcontra;
 
-            string Query = "SELECT * FROM Contra_Voucher WHERE Contra_Id=" + id;
+            string Query = "SELECT * FROM contra_vouchermaster WHERE Contra_Id=" + id;
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
                 objcontra = new ContraVoucherModel();
-
                 objcontra.CV_Id = DataFormat.GetInteger(dr["Contra_ID"]);
                 objcontra.Voucher_Series = dr["Series"].ToString();
                 objcontra.CV_Date = DataFormat.GetDateTime(dr["CV_Date"]);
                 objcontra.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objcontra.Type = dr["Type"].ToString();
-                if (dr["PDC_Date"].ToString() != "")
-                    objcontra.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objcontra.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
+                objcontra.LongNarration = dr["LongNarration"].ToString();
 
-                //SELECT Credit Note Accounts
-
-                string itemQuery = "SELECT * FROM Contra_Voucher_Accounts WHERE Contra_Id=" + objcontra.CV_Id;
+                //SELECT Contara Account Details
+                string itemQuery = "SELECT * FROM contra_voucherdetails WHERE Contra_Id=" +id;
                 System.Data.IDataReader drAcc = _dbHelper.ExecuteDataReader(itemQuery, _dbHelper.GetConnObject());
 
                 objcontra.ContraAccountModel = new List<AccountModel>();
@@ -303,7 +288,6 @@ namespace eSunSpeed.BusinessLogic
                     objAcc.Narration = drAcc["Narration"].ToString();
 
                     objcontra.ContraAccountModel.Add(objAcc);
-
                 }
 
                 lstCredit.Add(objcontra);

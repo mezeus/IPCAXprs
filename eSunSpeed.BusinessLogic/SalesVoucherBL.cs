@@ -542,7 +542,7 @@ namespace eSunSpeed.BusinessLogic
                 objSaleVch.TotalQty =Convert.ToDecimal(dr["TotalQty"]);
                 objSaleVch.TotalAmount =Convert.ToDecimal( dr["TotalAmount"].ToString());
                 objSaleVch.BSTotalAmount =Convert.ToDecimal( dr["BSTotalAmount"]);
-                objSaleVch.PriceList = Convert.ToDecimal(dr["PriceList"].ToString()==string.Empty?string.Empty: dr["PriceList"]);
+                objSaleVch.PriceList = dr["PriceList"].ToString();
 
                 //SELECT Item Details
                 StringBuilder sbitemQuery = new StringBuilder();

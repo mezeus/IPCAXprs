@@ -324,7 +324,7 @@ namespace eSunSpeed.BusinessLogic
             return lstModel;
         }
 
-        public List<DebitNoteModel> GetDebitNotebyId(int id)
+        public List<DebitNoteModel> GetDebitNotebyId(long id)
         {
             List<DebitNoteModel> lstDebit = new List<DebitNoteModel>();
             DebitNoteModel objDebit;

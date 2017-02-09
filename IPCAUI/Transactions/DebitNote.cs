@@ -19,7 +19,7 @@ namespace IPCAUI.Transactions
     public partial class DebitNote : Form
     {
         DebitNoteBL objDNbl = new DebitNoteBL();
-        public static int DNId;
+        public static long DNId;
 
         public DebitNote()
         {
@@ -44,7 +44,7 @@ namespace IPCAUI.Transactions
         {
             InitData();
 
-            int dn = DNId;
+            long dn = DNId;
             // Create an in-place LookupEdit control.
             RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
             riLookup.DataSource = Categories;
@@ -236,7 +236,7 @@ namespace IPCAUI.Transactions
                 return;
             }
 
-            objdebit.DN_Id = DNId;
+            objdebit.DN_Id =Convert.ToInt32( DNId);
             objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
             objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
