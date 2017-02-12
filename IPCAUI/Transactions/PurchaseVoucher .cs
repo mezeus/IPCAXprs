@@ -22,6 +22,7 @@ namespace IPCAUI.Transactions
         DataTable dtbs = new DataTable();
         DataTable dtParty = new DataTable();
         DataTable dtItems = new DataTable();
+        DataTable dtParticulars = new DataTable();
         PurchaseVoucherBL objPurcBL = new PurchaseVoucherBL();
         AccountMasterBL objAccBL = new AccountMasterBL();
         MaterialCentreMasterBL objMcBL = new MaterialCentreMasterBL();
@@ -41,7 +42,7 @@ namespace IPCAUI.Transactions
             cbxTerms.Focus();
             LoadTables();
             LoadGridColumns();
-
+            ItemMode();
             dtParty.Rows.Clear();
             DataRow drparty;
             List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
@@ -75,19 +76,10 @@ namespace IPCAUI.Transactions
             cbxVoucherType.Properties.DataSource = new string[] { "Main" };
            
         }
-
-        private void gdvItem_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
-        {
-            if (e.FocusedColumn.FieldName == "Item")
-            {
-                //gdvItem.ShowEditor();
-                //((LookUpEdit)gdvItem.ActiveEditor).ShowPopup();
-            }
-        }
-
         private void LoadTables()
         {
             dtItem.Columns.Add("Item");
+            dtItem.Columns.Add("Particulars");
             dtItem.Columns.Add("Qty");
             dtItem.Columns.Add("Unit");
             dtItem.Columns.Add("Per");
@@ -121,6 +113,12 @@ namespace IPCAUI.Transactions
             dtItems.Columns.Add("Item");
             dtItems.Columns.Add("GroupName");
             dtItems.Columns.Add("Company");
+
+            dtParticulars.Columns.Add("Name");
+            dtParticulars.Columns.Add("Group");
+            dtParticulars.Columns.Add("Op.Bal");
+            dtParticulars.Columns.Add("Address");
+            dtParticulars.Columns.Add("Mobile");
         }
         private void LoadGridColumns()
         {
@@ -163,6 +161,31 @@ namespace IPCAUI.Transactions
             dvgItemDetails.Columns["Unit"].ColumnEdit = UnitsLookup;
             dvgItemDetails.BestFitColumns();
             dvgItemDetails.Columns["Per"].ColumnEdit = UnitsLookup;
+            dvgItemDetails.BestFitColumns();
+
+            RepositoryItemLookUpEdit PartysLookup = new RepositoryItemLookUpEdit();
+            dtParticulars.Rows.Clear();
+            DataRow drParticulars;
+            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+            foreach (AccountMasterModel objAcc in lstAccounts)
+            {
+                if (objAcc.AccGroupId == 67 || objAcc.AccGroupId == 65)
+                {
+                    drParticulars = dtParticulars.NewRow();
+                    drParticulars["Name"] = objAcc.AccountName;
+                    drParticulars["Group"] = objAcc.Group;
+                    drParticulars["Op.Bal"] = objAcc.OPBal;
+                    drParticulars["Address"] = objAcc.address;
+                    drParticulars["Mobile"] = objAcc.MobileNumber;
+                    dtParticulars.Rows.Add(drParticulars);
+                }
+            }
+            PartysLookup.DataSource = dtParticulars;
+            PartysLookup.ValueMember = "Name";
+            PartysLookup.DisplayMember = "Name";
+            PartysLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            PartysLookup.AutoSearchColumnIndex = 0;
+            dvgItemDetails.Columns["Particulars"].ColumnEdit = PartysLookup;
             dvgItemDetails.BestFitColumns();
         }
         private void gdvItem_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
@@ -215,7 +238,7 @@ namespace IPCAUI.Transactions
             objPurcVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
             objPurcVch.LedgerId =objAccBL.GetLedgerIdByAccountName(cbxParty.Text.Trim());
             objPurcVch.PurcType = cbxPurcType.Text.Trim()==null?string.Empty: cbxPurcType.Text.Trim();
-            objPurcVch.MatCentre = cbxMatcenter.Text.Trim();
+            objPurcVch.MatCentre = cbxMatcenter.Text.Trim()==null?string.Empty: cbxMatcenter.Text.Trim();
             objPurcVch.Narration = tbxNarration.Text.Trim() == null ? string.Empty : tbxNarration.Text.Trim();
             
             objPurcVch.TotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
@@ -236,6 +259,7 @@ namespace IPCAUI.Transactions
 
                 objPurcItem = new Item_VoucherModel();
                 objPurcItem.ITM_Id = objIMBL.GetItemIdByItemName(row["Item"].ToString() == null ? string.Empty : row["Item"].ToString());
+                objPurcItem.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Particulars"].ToString() == null ? string.Empty : row["Particulars"].ToString());
                 objPurcItem.Qty = Convert.ToDecimal(row["Qty"].ToString() == string.Empty ? "0.00" : row["Qty"]);
                 objPurcItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
                 objPurcItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
@@ -305,7 +329,7 @@ namespace IPCAUI.Transactions
             objPurcVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
             objPurcVch.LedgerId = objAccBL.GetLedgerIdByAccountName(cbxParty.Text.Trim());
             objPurcVch.PurcType = cbxPurcType.Text.Trim() == null ? string.Empty : cbxPurcType.Text.Trim();
-            objPurcVch.MatCentre = cbxMatcenter.Text.Trim();
+            objPurcVch.MatCentre = cbxMatcenter.Text.Trim()==null?string.Empty : cbxMatcenter.Text.Trim();
             objPurcVch.Narration = tbxNarration.Text.Trim() == null ? string.Empty : tbxNarration.Text.Trim();
 
             objPurcVch.TotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
@@ -326,6 +350,7 @@ namespace IPCAUI.Transactions
 
                 objPurcItem = new Item_VoucherModel();
                 objPurcItem.ITM_Id = objIMBL.GetItemIdByItemName(row["Item"].ToString() == null ? string.Empty : row["Item"].ToString());
+                objPurcItem.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Particulars"].ToString() == null ? string.Empty : row["Particulars"].ToString());
                 objPurcItem.Qty = Convert.ToDecimal(row["Qty"].ToString() == string.Empty ? "0.00" : row["Qty"]);
                 objPurcItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
                 objPurcItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
@@ -415,6 +440,7 @@ namespace IPCAUI.Transactions
                 idr = dtItem.NewRow();
 
                 idr["Item"] = objItems.Item;
+                idr["Particulars"] = objItems.Particulars;
                 idr["Qty"] = objItems.Qty;
                 idr["Unit"] = objItems.Unit;
                 idr["Per"] = objItems.Per;
@@ -429,6 +455,14 @@ namespace IPCAUI.Transactions
                 idr["Item_ID"] = objItems.Item_ID;
                 idr["ParentId"] = objItems.ParentId;
                 dtItem.Rows.Add(idr);
+                if(objItems.ITM_Id==0)
+                {
+                    AccountMode();
+                }
+                else
+                {
+                    ItemMode();
+                }
             }
             dtbs.Rows.Clear();
             DataRow bsdr;
@@ -587,6 +621,103 @@ namespace IPCAUI.Transactions
                     lstUnits.Add(objUnits.AltUnit);
                 }
                 UnitsLookup.DataSource = lstUnits;
+            }
+        }
+
+        private void btnAccountMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            AccountMode();
+            ClearControls();
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+        }
+        private void ItemMode()
+        {
+            colItem.Visible = true;
+            colItem.VisibleIndex = 1;
+            colParty.Visible = false;
+            colBatch.Visible = true;
+            colBatch.VisibleIndex = 2;
+            colQty.Visible = true;
+            colQty.VisibleIndex = 3;
+            colUnit.Visible = true;
+            colUnit.VisibleIndex = 4;
+            colFree.Visible = true;
+            colFree.VisibleIndex = 5;
+            colPrice.Visible = true;
+            colPrice.VisibleIndex = 6;
+            colPer.Visible = true;
+            colPer.VisibleIndex = 7;
+            colBasicAmt.Visible = true;
+            colBasicAmt.VisibleIndex = 8;
+            colDisPer.Visible = true;
+            colDisPer.VisibleIndex = 9;
+            colDisAmt.Visible = true;
+            colDisAmt.VisibleIndex = 10;
+            colTaxAmt.Visible = true;
+            colTaxAmt.VisibleIndex = 11;
+            colItemAmount.Visible = true;
+            colItemAmount.VisibleIndex = 12;
+            lactrlMatCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;          
+            btnAccountMode.Visible = true;
+            btnItemMode.Visible = false;
+        }
+        private void AccountMode()
+        {
+            colItem.Visible = false;
+            colParty.Visible = true;
+            colParty.VisibleIndex = 1;
+            colBatch.Visible = false;
+            colQty.Visible = false;
+            colUnit.Visible = false;
+            colFree.Visible = false;
+            colPrice.Visible = false;
+            colPer.Visible = false;
+            colBasicAmt.Visible = true;
+            colBasicAmt.VisibleIndex = 2;
+            colDisPer.Visible = true;
+            colDisPer.VisibleIndex = 3;
+            colDisAmt.Visible = true;
+            colDisAmt.VisibleIndex = 4;
+            colTaxAmt.Visible = true;
+            colTaxAmt.VisibleIndex = 5;
+            colItemAmount.Visible = true;
+            colItemAmount.VisibleIndex = 6;
+            lactrlMatCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;          
+            btnAccountMode.Visible = false;
+            btnItemMode.Visible = true;
+        }
+
+        private void btnItemMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ItemMode();
+            ClearControls();
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+        }
+
+        private void cbxTerms_Enter(object sender, EventArgs e)
+        {
+            cbxTerms.ShowPopup();
+        }
+
+        private void dvgBSMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxParty_Enter(object sender, EventArgs e)
+        {
+            cbxParty.ShowPopup();
+        }
+
+        private void cbxPurcType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar=='\r')
+            {
+                cbxPurcType.ShowPopup();
             }
         }
     }

@@ -91,7 +91,7 @@ namespace IPCAUI.Menu
                 frm = new Transactions.PaymentVoucher(); //generate new instance
                 //frm.Owner = this;
                 frm.TopLevel = false;
-                splitContainerControl1.Panel2.Controls.Add(frm);
+                spCtrlTransMenu.Panel2.Controls.Add(frm);
                 frm.Show();
            
             //if (this.ActiveMdiChild != null)
@@ -111,7 +111,20 @@ namespace IPCAUI.Menu
                 this.Close();
                 return true;
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+            if (keyData == Keys.F3)
+            {
+                string SaleVch= Transactions.SalesVoucher.FormName;
+                if (SaleVch != "")
+                {
+                    Form form = (Form)Activator.CreateInstance(Type.GetType(SaleVch));
+                    form.Owner = this;
+                    form.TopLevel = false;
+
+                    spCtrlTransMenu.Panel2.Controls.Add(form);
+                    form.Show();
+                }
+            }
+             return base.ProcessCmdKey(ref msg, keyData);
         }
         private void SalesEntry_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -121,7 +134,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
             //}
             //else
@@ -167,7 +180,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -179,7 +192,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -191,7 +204,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -211,7 +224,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -222,7 +235,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -233,7 +246,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -244,7 +257,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -255,7 +268,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -266,7 +279,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -277,7 +290,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -288,7 +301,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -299,7 +312,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -310,7 +323,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -321,7 +334,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -332,7 +345,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -343,7 +356,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -354,7 +367,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -365,7 +378,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -376,7 +389,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -387,7 +400,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -398,7 +411,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -409,7 +422,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -420,7 +433,7 @@ namespace IPCAUI.Menu
             frm.Owner = this;
             frm.TopLevel = false;
 
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -431,7 +444,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -442,7 +455,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
 
@@ -464,7 +477,7 @@ namespace IPCAUI.Menu
 
             frm.Owner = this;
             frm.TopLevel = false;
-            splitContainerControl1.Panel2.Controls.Add(frm);
+            spCtrlTransMenu.Panel2.Controls.Add(frm);
             frm.Show();
         }
     }

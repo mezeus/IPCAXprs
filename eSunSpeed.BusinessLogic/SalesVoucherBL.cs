@@ -39,7 +39,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@TotalBasicAmount", objSales.TotalBasicAmount, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TotalDisAmount", objSales.TotalDisAmount, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TotalTaxAmount", objSales.TotalTaxAmount, DbType.Decimal));
-                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 paramCollection.Add(new DBParameter("@CreatedDate",DateTime.Now,DbType.DateTime));
                 paramCollection.Add(new DBParameter("@ModifiedBy", ""));
@@ -75,7 +75,8 @@ namespace eSunSpeed.BusinessLogic
                     DBParameterCollection paramCollection = new DBParameterCollection();
 
                     paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
-                    paramCollection.Add(new DBParameter("@ItemId", item.ITM_Id));                  
+                    paramCollection.Add(new DBParameter("@ItemId", item.ITM_Id));
+                    paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                     paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Unit", item.Unit));
                     paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -206,7 +207,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@TotalDisAmount", objSales.TotalDisAmount, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@TotalTaxAmount", objSales.TotalTaxAmount, DbType.Decimal));
                 paramCollection.Add(new DBParameter("@BSTotalAmount", objSales.BSTotalAmount, DbType.Decimal));
-                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList, DbType.Decimal));
+                paramCollection.Add(new DBParameter("@PriceList", objSales.PriceList));
                 paramCollection.Add(new DBParameter("@CreatedBy", "Admin"));
                 paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, DbType.DateTime));
                 paramCollection.Add(new DBParameter("@ModifiedBy", ""));
@@ -225,6 +226,7 @@ namespace eSunSpeed.BusinessLogic
                         paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
                         paramCollection.Add(new DBParameter("@ChalidId", item.Item_ID));
                         paramCollection.Add(new DBParameter("@ItemMastid", item.ITM_Id));
+                        paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                         paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                         paramCollection.Add(new DBParameter("@Unit", item.Unit));
                         paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -249,6 +251,7 @@ namespace eSunSpeed.BusinessLogic
 
                         paramCollection.Add(new DBParameter("@Trans_Sales_Id", item.ParentId));
                         paramCollection.Add(new DBParameter("@Itemid", item.ITM_Id));
+                        paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                         paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                         paramCollection.Add(new DBParameter("@Unit", item.Unit));
                         paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -491,10 +494,10 @@ namespace eSunSpeed.BusinessLogic
             TransListModel objList;
             StringBuilder sbQuery = new StringBuilder();
 
-            sbQuery.AppendLine("SELECT m.SalesVoucher_Id, i.ItemId,m.SaleDate,m.VoucherNumber, i.ITM_ID, i.Qty, i.Unit,im.ITEM_Name,am.ACC_NAME FROM salesvoucher_master AS m");
+            sbQuery.AppendLine("SELECT m.SalesVoucher_Id, i.Id,m.SaleDate,m.VoucherNumber, i.ITM_ID, i.Qty, i.Unit,i.Amount,im.ITEM_Name,am.ACC_NAME FROM salesvoucher_master AS m");
             sbQuery.AppendLine("INNER JOIN salesvoucher_itemdetails AS i ON m.SalesVoucher_Id=i.SalesVoucher_Id");
-            sbQuery.AppendLine("inner join itemmaster as im ON i.itm_id=im.ITM_ID");
-            sbQuery.AppendLine("inner join accountmaster am ON am.Ac_ID = m.LedgerId;");
+            sbQuery.AppendLine("left join itemmaster as im ON i.itm_id=im.ITM_ID");
+            sbQuery.AppendLine("left join accountmaster am ON am.Ac_ID = m.LedgerId;");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -503,13 +506,14 @@ namespace eSunSpeed.BusinessLogic
                 objList = new TransListModel();
 
                 objList.trans_sales_id= Convert.ToInt32(dr["SalesVoucher_Id"]);
-                objList.item_id = Convert.ToInt32(dr["ItemId"]);
+                objList.item_id = Convert.ToInt32(dr["Id"]);
                 objList.saledate = Convert.ToDateTime(dr["SaleDate"]);
                 objList.voucherno = Convert.ToInt32(dr["VoucherNumber"]);
                 objList.party = Convert.ToString(dr["ACC_NAME"]);
-                objList.item = Convert.ToString(dr["ITEM_Name"]);
+                objList.item = Convert.ToString(dr["ITEM_Name"].ToString()==null?string.Empty: dr["ITEM_Name"].ToString());
                 objList.qty= Convert.ToInt32 (dr["Qty"]);
                 objList.unit = Convert.ToString(dr["Unit"]);
+                objList.amount = Convert.ToDecimal(dr["Amount"]);
                 lstModel.Add(objList);
 
             }
@@ -546,8 +550,9 @@ namespace eSunSpeed.BusinessLogic
 
                 //SELECT Item Details
                 StringBuilder sbitemQuery = new StringBuilder();
-                sbitemQuery.AppendLine("SELECT i.*,im.ITEM_Name FROM salesvoucher_itemdetails as i");
-                sbitemQuery.AppendLine("inner join itemmaster as im on i.ITM_ID=im.ITM_ID");
+                sbitemQuery.AppendLine("SELECT i.*,im.ITEM_Name,ia.ACC_NAME FROM salesvoucher_itemdetails as i");
+                sbitemQuery.AppendLine("left join itemmaster as im on i.ITM_ID=im.ITM_ID");
+                sbitemQuery.AppendLine("left join accountmaster as ia on i.LedgerId=ia.AC_ID");
                 sbitemQuery.AppendLine("WHERE SalesVoucher_Id='" + id + "'");
                 System.Data.IDataReader drItems = _dbHelper.ExecuteDataReader(sbitemQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -558,9 +563,12 @@ namespace eSunSpeed.BusinessLogic
                 {
                     objitem = new Item_VoucherModel();
 
-                    objitem.Item_ID = Convert.ToInt32(drItems["ItemId"]);
+                    objitem.Item_ID = Convert.ToInt32(drItems["Id"]);
                     objitem.ParentId = DataFormat.GetInteger(drItems["SalesVoucher_Id"]);
+                    objitem.ITM_Id = Convert.ToInt64(drItems["ITM_ID"].ToString()==string.Empty?"0": drItems["ITM_ID"].ToString());
+                    objitem.LedgerId = Convert.ToInt64(drItems["LedgerId"].ToString()==string.Empty?"0":drItems["LedgerId"].ToString());
                     objitem.Item = drItems["ITEM_Name"].ToString();
+                    objitem.Particulars = drItems["ACC_NAME"].ToString();
                     objitem.Qty = Convert.ToDecimal(drItems["qty"].ToString());
                     objitem.Unit = (drItems["Unit"].ToString());
                     objitem.Per = (drItems["Per"].ToString());

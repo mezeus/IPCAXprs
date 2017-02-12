@@ -161,7 +161,7 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());          
+                objacc.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());          
                 objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()==string.Empty?"0.00": row["Debit"].ToString());
                 objacc.Credit = Convert.ToDecimal(row["Credit"].ToString()==string.Empty?"0.00": row["Credit"].ToString());
                 objacc.Narration = row["Narration"].ToString()==null?string.Empty: row["Narration"].ToString();
@@ -281,7 +281,7 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                objacc.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
                 objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"].ToString());
                 objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"].ToString());
                 objacc.Narration = row["Narration"].ToString() == null ? string.Empty : row["Narration"].ToString();

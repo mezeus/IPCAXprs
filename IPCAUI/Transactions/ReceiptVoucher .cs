@@ -22,6 +22,7 @@ namespace IPCAUI.Transactions
         AccountMasterBL objAccBL = new AccountMasterBL();
         DataTable dtAcc = new DataTable();
         DataTable dtLedger = new DataTable();
+        DataTable dtPaymode = new DataTable();
         public static long Recpt_Id = 0;
         public ReceiptVoucher()
         {
@@ -32,10 +33,8 @@ namespace IPCAUI.Transactions
         {
             this.Close();
         }
-
-        private void ReceiptVoucher_Load(object sender, EventArgs e)
+        private void Loadtables()
         {
-           
             dtAcc.Columns.Add("S.No");
             dtAcc.Columns.Add("DC");
             dtAcc.Columns.Add("Account");
@@ -50,6 +49,18 @@ namespace IPCAUI.Transactions
             dtLedger.Columns.Add("Op.Bal");
             dtLedger.Columns.Add("Address");
             dtLedger.Columns.Add("Mobile");
+            //Payment Mode
+            dtPaymode.Columns.Add("Name");
+            dtPaymode.Columns.Add("Group");
+            dtPaymode.Columns.Add("Op.Bal");
+            dtPaymode.Columns.Add("Address");
+            dtPaymode.Columns.Add("Mobile");
+        }
+
+        private void ReceiptVoucher_Load(object sender, EventArgs e)
+        {
+            
+            Loadtables();
             dtLedger.Rows.Clear();
             RepositoryItemLookUpEdit AccLookup = new RepositoryItemLookUpEdit();
             DataRow drparty;
@@ -79,6 +90,29 @@ namespace IPCAUI.Transactions
 
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             riDCLookup.AutoSearchColumnIndex = 1;
+            dtPaymode.Rows.Clear();
+            DataRow drpay;
+            List<AccountMasterModel> lstAccount = objAccBL.GetListofAccount();
+            foreach(AccountMasterModel objAcc in lstAccount)
+            {
+                if(objAcc.AccGroupId==72||objAcc.AccGroupId==73||objAcc.AccGroupId==74)
+                {
+                    drpay = dtPaymode.NewRow();
+                    drpay["Name"] = objAcc.AccountName;
+                    drpay["Group"] = objAcc.Group;
+                    drpay["Op.Bal"] = objAcc.OPBal;
+                    drpay["Address"] = objAcc.address;
+                    drpay["Mobile"] = objAcc.MobileNumber;
+                    dtPaymode.Rows.Add(drpay);
+                }              
+            }
+            cbxPayMode.Properties.DataSource = dtPaymode;
+            cbxPayMode.Properties.DisplayMember = "Name";
+            SingleEntryMode();
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxVoucherSeries.Focus();
         }
 
         private void gdvReceipt_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
@@ -106,6 +140,7 @@ namespace IPCAUI.Transactions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+           
             RecieptVoucherModel objRecipt = new RecieptVoucherModel();
 
             if (tbxVchNumber.Text.Trim() == "")
@@ -119,8 +154,21 @@ namespace IPCAUI.Transactions
             objRecipt.Type = tbxType.Text.Trim();
             objRecipt.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
             objRecipt.LongNarration = tbxLongNarration.Text.Trim()==string.Empty?string.Empty:tbxLongNarration.Text.Trim();
-            objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
-            objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            objRecipt.LedgerId = objAccBL.GetLedgerIdByAccountName(cbxPayMode.Text.Trim() == null ? string.Empty : cbxPayMode.Text.Trim());
+            if (objRecipt.LedgerId==0)
+            {
+                if (Convert.ToDecimal(colCredit.SummaryItem.SummaryValue) != Convert.ToDecimal(colDebit.SummaryItem.SummaryValue))
+                {
+                    gdvReceipt.Focus();
+                    return;
+                }
+                objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+                objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            }
+            else
+            {
+                objRecipt.TotalDebitAmt= Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            }
 
             //Receipt Account Details
             AccountModel objacc;
@@ -133,9 +181,16 @@ namespace IPCAUI.Transactions
                 objacc = new AccountModel();
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"]);
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
+                objacc.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                if(objRecipt.LedgerId == 0)
+                {
+                    objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"]);
+                    objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
+                }
+                else
+                {
+                    objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
+                }
                 objacc.Narration = row["Narration"].ToString() == string.Empty ? string.Empty : row["Narration"].ToString();
                 lstAccounts.Add(objacc);
             }
@@ -146,7 +201,7 @@ namespace IPCAUI.Transactions
             {
                 MessageBox.Show("Saved Successfully!");
                 Recpt_Id = 0;
-                ClearFormValues();
+                //ClearFormValues();
             }
         }
 
@@ -170,8 +225,15 @@ namespace IPCAUI.Transactions
             objRecipt.Type = tbxType.Text.Trim();
             objRecipt.PDCDate = Convert.ToDateTime(dtPDCDate.Text);
             objRecipt.LongNarration = tbxLongNarration.Text.Trim() == null ? string.Empty : tbxLongNarration.Text.Trim();
-            objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
-            objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            if (objRecipt.LedgerId == 0)
+            {
+                objRecipt.TotalDebitAmt = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
+                objRecipt.TotalCreditAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            }
+            else
+            {
+                objRecipt.TotalDebitAmt = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
+            }
 
             //Receipt Account Details
             AccountModel objacc;
@@ -186,10 +248,18 @@ namespace IPCAUI.Transactions
                 objacc.AC_Id = Convert.ToInt32(row["Ac_Id"].ToString() == string.Empty ? "0" : row["Ac_Id"]);
                 objacc.DC = row["DC"].ToString();
                 objacc.Account = row["Account"].ToString();
-                objacc.LegderId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
-                objacc.Debit = Convert.ToDecimal(row["Debit"].ToString()== string.Empty ? "0" : row["Debit"]);
-                objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0" : row["Credit"]);
+                objacc.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                if (objRecipt.LedgerId == 0)
+                {
+                    objacc.Debit = Convert.ToDecimal(row["Debit"].ToString() == string.Empty ? "0.00" : row["Debit"]);
+                    objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
+                }
+                else
+                {
+                    objacc.Credit = Convert.ToDecimal(row["Credit"].ToString() == string.Empty ? "0.00" : row["Credit"]);
+                }
                 objacc.Narration = row["Narration"].ToString() == string.Empty ?string.Empty : row["Narration"].ToString();
+
                 lstAccounts.Add(objacc);
             }
             objRecipt.RecieptAccountModel = lstAccounts;
@@ -232,6 +302,7 @@ namespace IPCAUI.Transactions
             tbxVoucherSeries.Text = objReciept.FirstOrDefault().Voucher_Series.ToString();
             dtDate.Text = objReciept.FirstOrDefault().RV_Date.ToString();
             tbxVchNumber.Text = objReciept.FirstOrDefault().Voucher_Number.ToString();
+            cbxPayMode.Text = objReciept.FirstOrDefault().Party.ToString();
             tbxType.Text = objReciept.FirstOrDefault().Type.ToString();
             dtPDCDate.Text = objReciept.FirstOrDefault().PDCDate.ToString();
             tbxLongNarration.Text = objReciept.FirstOrDefault().LongNarration.ToString();
@@ -255,6 +326,14 @@ namespace IPCAUI.Transactions
                 dtAcc.Rows.Add(dr);
             }
             gdvMainReceipt.DataSource = dtAcc;
+            if(objReciept.FirstOrDefault().LedgerId==0)
+            {
+                DoubleEntryMode();
+            }
+            else
+            {
+                SingleEntryMode();
+            }
             lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -322,6 +401,60 @@ namespace IPCAUI.Transactions
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnSingleEntry_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            SingleEntryMode();
+            ClearFormValues();
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxVoucherSeries.Focus();
+        }
+        private void SingleEntryMode()
+        {
+            DC.Visible = false;
+            Account.Visible = true;
+            Account.VisibleIndex = 1;
+            colDebit.Visible = false;
+            colCredit.Visible = true;
+            colCredit.Caption = "Amount";
+            colCredit.VisibleIndex = 2;
+            colNarration.Visible = true;
+            colNarration.VisibleIndex = 3;
+            btnSingleEntry.Visible = false;
+            btnDoubleEntry.Visible = true;
+            lactrlPayMode.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;            
+        }
+        private void DoubleEntryMode()
+        {
+            colDebit.VisibleIndex = -1;
+            DC.Visible = true;
+            DC.VisibleIndex = 1;
+            Account.Visible = true;
+            Account.VisibleIndex = 2;
+            //colDebit.Visible = true;
+            colDebit.VisibleIndex = 3;
+            colCredit.Visible = true;
+            colCredit.Caption = "Credit";
+            colCredit.VisibleIndex = 4;
+            colNarration.Visible = true;
+            colNarration.VisibleIndex = 5;
+            btnSingleEntry.Visible = true;
+            btnDoubleEntry.Visible = false;
+            lactrlPayMode.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+           
+        }
+
+        private void btnDoubleEntry_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            DoubleEntryMode();
+             ClearFormValues();          
+            lblSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lblDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lblUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            tbxVoucherSeries.Focus();
         }
     }
 }

@@ -136,21 +136,6 @@ namespace IPCAUI.Transactions
             lactrlUpadet.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-            dtParty.Rows.Clear();
-            DataRow drparty;
-            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
-            foreach (AccountMasterModel objAcc in lstAccounts)
-            {
-                drparty = dtParty.NewRow();
-                drparty["Name"] = objAcc.AccountName;
-                drparty["Group"] = objAcc.Group;
-                drparty["Op.Bal"] = objAcc.OPBal;
-                drparty["Address"] = objAcc.address;
-                drparty["Mobile"] = objAcc.MobileNumber;
-                dtParty.Rows.Add(drparty);
-            }
-            cbxParty.Properties.DataSource = dtParty;
-            cbxParty.Properties.DisplayMember = "Name";
             //tbxParty.Properties.BestFitMode= DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             List<MaterialCentreMasterModel> lstMt = objMcBL.GetAllMaterials();
             List<string> lstMcenters = new List<string>();
@@ -529,6 +514,24 @@ namespace IPCAUI.Transactions
         {
             if (e.KeyChar != '\r')
             {
+                dtParty.Rows.Clear();
+                DataRow drparty;
+                List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+                foreach (AccountMasterModel objAcc in lstAccounts)
+                {
+                    if(objAcc.AccGroupId == 85 || objAcc.AccGroupId == 86)
+                    {
+                        drparty = dtParty.NewRow();
+                        drparty["Name"] = objAcc.AccountName;
+                        drparty["Group"] = objAcc.Group;
+                        drparty["Op.Bal"] = objAcc.OPBal;
+                        drparty["Address"] = objAcc.address;
+                        drparty["Mobile"] = objAcc.MobileNumber;
+                        dtParty.Rows.Add(drparty);
+                    }                 
+                }
+                cbxParty.Properties.DataSource = dtParty;
+                cbxParty.Properties.DisplayMember = "Name";
                 cbxParty.ShowPopup();
             }
         }
@@ -538,6 +541,38 @@ namespace IPCAUI.Transactions
             if (e.KeyChar != '\r')
             {
                 cbxMatCenter.ShowPopup();
+            }
+        }
+
+        private void cbxSaleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxSaleType.ShowPopup();
+            }
+        }
+
+        private void cbxPriceList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxPriceList.ShowPopup();
+            }
+        }
+
+        private void cbxTerms_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxTerms.ShowPopup();
+            }
+        }
+
+        private void cbxVoucherType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxVoucherType.ShowPopup();
             }
         }
     }

@@ -27,7 +27,7 @@ namespace eSunSpeedDomain
         public int qty { get; set; }
         public string unit { get; set; }
         public int price { get; set; }
-        public int amount { get; set; }
+        public decimal amount { get; set; }
         public int totalqty { get; set; }
         public int totalamount { get; set; }
     }

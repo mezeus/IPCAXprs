@@ -12,6 +12,7 @@ namespace eSunSpeed.BusinessLogic
    public class BillSundryMaster
     {
         BillSundryMasterModel objbsmasmod = new BillSundryMasterModel();
+        AccountMasterBL objAccBL = new AccountMasterBL();
         private DBHelper _dbHelper = new DBHelper();
         //Save Bill Sundry
         public bool SaveBSM(eSunSpeedDomain.BillSundryMasterModel objBSM)
@@ -253,7 +254,6 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
-
         //List
         public List<BillSundryMasterModel> GetAllBillSundry()
         {
@@ -360,7 +360,6 @@ namespace eSunSpeed.BusinessLogic
             return objbsmod;
         }
         //Get Bill Sundary Id By Bill Sundary Name
-        //Get Ledger Id By AccountMasterName
         public long GetBSIdByBSName(string BSname)
         {
             long id = 0;
@@ -379,6 +378,107 @@ namespace eSunSpeed.BusinessLogic
                 //throw ex;
             }
             return id;
+        }
+        //Get LedgerId By BillSundary
+        public long GetBSLedgerId(string BSName)
+        {
+            long id = 0;
+            string AccName;
+            try
+            {
+                string Query = "SELECT * FROM `billsundarymaster` WHERE `Name`='" + BSName + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {
+                    AccName = dr["SaleAccounttoHeadPost"].ToString();
+                    id = objAccBL.GetLedgerIdByAccountName(AccName);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return id;
+        }
+        //Get BillSundry Details By Name
+        public BillSundryMasterModel GetAllBillSundryByName(string Name)
+        {
+            BillSundryMasterModel objbsmod = new BillSundryMasterModel();
+
+            string Query = "SELECT * FROM `billsundarymaster` WHERE `Name`=" + Name;
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+
+            while (dr.Read())
+            {
+                objbsmod.Name = dr["Name"].ToString();
+                objbsmod.Alias = dr["Alias"].ToString();
+                objbsmod.PrintName = dr["PrintName"].ToString();
+                objbsmod.BillSundryType = dr["BillSundryType"].ToString();
+                objbsmod.BillSundryNature = dr["BillSundryNature"].ToString();
+                objbsmod.DefaultValue = Convert.ToDecimal(dr["DefaultValue"]);
+                objbsmod.subtotalheading = dr["subtotalheading"].ToString();
+
+                objbsmod.AffectstheCostofGoodsinSale = Convert.ToBoolean(dr["AffectstheCostofGoodsinSale"]);
+                objbsmod.AffectstheCostofGoodsinPurchase = Convert.ToBoolean(dr["AffectstheCostofGoodsinPurchase"]);
+                objbsmod.AffectstheCostofGoodsinMaterialIssue = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialIssue"]);
+                objbsmod.AffectstheCostofGoodsinMaterialReceipt = Convert.ToBoolean(dr["AffectstheCostofGoodsinMaterialReceipt"]);
+                objbsmod.AffectstheCostofGoodsinStockTransfer = Convert.ToBoolean(dr["AffectstheCostofGoodsinStockTransfer"]);
+
+                //Accountin In Sale
+                objbsmod.SaleAffectsAccounting = Convert.ToBoolean(dr["SaleAffectsAccounting"]);
+                objbsmod.SaleAdjustInSaleAmount = Convert.ToBoolean(dr["SaleAdjustInSaleAmount"]);
+                objbsmod.SaleSpecifyAccountHere = dr["SaleSpecifyAccountHere"].ToString();
+                objbsmod.SaleAccounttoHeadPost = dr["SaleAccounttoHeadPost"].ToString();
+                objbsmod.SaleAdjustInPartyAmount = Convert.ToBoolean(dr["SaleAdjustInPartyAmount"]);
+                objbsmod.SalePartSpecifyAccountHere = dr["SalePartSpecifyAccountHere"].ToString();
+                objbsmod.SaleAccounttoHeadPostParty = dr["SaleAccounttoHeadPostParty"].ToString();
+                objbsmod.SalePostOverandAbove = Convert.ToBoolean(dr["SalePostOverandAbove"].ToString());
+
+                // Accountin In Purc
+                objbsmod.PurcAffectsAccounting = Convert.ToBoolean(dr["PurcAffectsAccounting"]);
+                objbsmod.PurcAdjustInPurcAmount = Convert.ToBoolean(dr["PurcAdjustInPurcAmount"]);
+                objbsmod.PurcSpecifyAccountHere = dr["PurcSpecifyAccountHere"].ToString();
+                objbsmod.PurcAccounttoHeadPost = dr["PurcAccounttoHeadPost"].ToString();
+                objbsmod.PurcAdjustInPartyAmount = Convert.ToBoolean(dr["PurcAdjustInPartyAmount"]);
+                objbsmod.PurcParySpecifyAccountHere = dr["PurcParySpecifyAccountHere"].ToString();
+                objbsmod.PurcAccounttoHeadPostParty = dr["PurcAccounttoHeadPostParty"].ToString();
+                objbsmod.PurcPostOverandAbove = Convert.ToBoolean(dr["PurcPostOverandAbove"].ToString());
+
+                objbsmod.typeMaterialIssue = Convert.ToBoolean(dr["typeMaterialIssue"]);
+                objbsmod.typeMaterialReceipt = Convert.ToBoolean(dr["typeMaterialReceipt"]);
+                objbsmod.StockTransfer = Convert.ToBoolean(dr["StockTransfer"]);
+
+                objbsmod.AffectAccounting = Convert.ToBoolean(dr["AffectAccounting"]);
+                objbsmod.OtherSide = dr["OtherSide"].ToString();
+                objbsmod.Accountheadtopost = dr["Accountheadtopost"].ToString();
+                objbsmod.AdjustinMC = Convert.ToBoolean(dr["AdjustinMC"].ToString());
+                objbsmod.AdjustSpecifyAccountLedger = dr["AdjustSpecifyAccountLedger"].ToString();
+                objbsmod.AccountheadtopostParty = dr["AccountheadtopostParty"].ToString();
+                objbsmod.postoverandabove = Convert.ToBoolean(dr["postoverandabove"].ToString());
+
+                objbsmod.typeAbsoluteAmount = Convert.ToBoolean(dr["typeAbsoluteAmount"]);
+                objbsmod.typePercentage = Convert.ToBoolean(dr["typePercentage"]);
+                objbsmod.typePerMainQty = Convert.ToBoolean(dr["typePerMainQty"]);
+                objbsmod.PerAltQty = Convert.ToBoolean(dr["PerAltQty"]);
+                objbsmod.Percentoff = Convert.ToDecimal(dr["Percentoff"]);
+                objbsmod.typeNetBillAmount = Convert.ToBoolean(dr["typeNetBillAmount"]);
+                objbsmod.SelectiveCalculation = Convert.ToBoolean(dr["SelectiveCalculation"]);
+                objbsmod.typeTaxableAmount = Convert.ToBoolean(dr["typeTaxableAmount"]);
+                objbsmod.tyeItemsBasicAmt = Convert.ToBoolean(dr["tyeItemsBasicAmt"]);
+                objbsmod.IncludeFreeQty = Convert.ToBoolean(dr["IncludeFreeQty"]);
+                objbsmod.typeTotalMRPofItems = Convert.ToBoolean(dr["typeTotalMRPofItems"]);
+                objbsmod.typeOtherBillsundry = Convert.ToBoolean(dr["typeOtherBillsundry"]);
+                objbsmod.typePreviousBillSundryAmount = Convert.ToBoolean(dr["typePreviousBillSundryAmount"]);
+                objbsmod.BSAmt = Convert.ToBoolean(dr["BSAmt"]);
+                objbsmod.BSAppOn = Convert.ToBoolean(dr["BSAppOn"]);
+                objbsmod.BillSundaryName = dr["BillSundaryName"].ToString();
+                objbsmod.NoOfBillSundry = Convert.ToInt32(dr["NoOfBillSundry"]);
+                objbsmod.ConsolidateBillSundriesAmount = Convert.ToBoolean(dr["ConsolidateBillSundriesAmount"]);
+                objbsmod.roundoffBillsundry = Convert.ToBoolean(dr["roundoffBillsundry"]);
+                objbsmod.RoundoffValues = dr["RoundoffValues"].ToString();
+            }
+
+            return objbsmod;
         }
     }
 }

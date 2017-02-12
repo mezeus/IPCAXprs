@@ -13,8 +13,8 @@ namespace eSunSpeedDomain
         public string Voucher_Series { get; set; }
         public int Voucher_Number { get; set; }
                 
-        public DateTime DN_Date { get; set; }                                
-        
+        public DateTime DN_Date { get; set; }
+        public DateTime PDC_Date { get; set; }
         public string LongNarration { get; set; }
         public decimal TotalCreditAmount { get; set; }
         public decimal TotalDebitAmount { get; set; }

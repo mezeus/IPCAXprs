@@ -543,5 +543,62 @@ namespace IPCAUI.Transactions
             lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }
 
+        private void cbxParty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar=='\r')
+            {
+                dtParty.Rows.Clear();
+                DataRow drparty;
+                List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+                foreach (AccountMasterModel objAcc in lstAccounts)
+                {
+                    if (objAcc.AccGroupId == 85 || objAcc.AccGroupId == 86)
+                    {
+                        drparty = dtParty.NewRow();
+                        drparty["Name"] = objAcc.AccountName;
+                        drparty["Group"] = objAcc.Group;
+                        drparty["Op.Bal"] = objAcc.OPBal;
+                        drparty["Address"] = objAcc.address;
+                        drparty["Mobile"] = objAcc.MobileNumber;
+                        dtParty.Rows.Add(drparty);
+                    }
+                }
+                cbxParty.Properties.DataSource = dtParty;
+                cbxParty.Properties.DisplayMember = "Name";
+                cbxParty.ShowPopup();
+            }
+        }
+
+        private void cbxTerms_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxTerms.ShowPopup();
+            }
+        }
+
+        private void cbxVoucherType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxVoucherType.ShowPopup();
+            }
+        }
+
+        private void cbxPurcRetType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxPurcRetType.ShowPopup();
+            }
+        }
+
+        private void cbxMatcenter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxMatcenter.ShowPopup();
+            }
+        }
     }
 }

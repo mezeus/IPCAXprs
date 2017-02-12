@@ -26,6 +26,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Series", objReciept.Voucher_Series));
                 paramCollection.Add(new DBParameter("@RecieptDate", objReciept.RV_Date, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Type", objReciept.Type));
+                paramCollection.Add(new DBParameter("@LedgerId", objReciept.LedgerId));
                 paramCollection.Add(new DBParameter("@PDCDate", objReciept.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objReciept.LongNarration));
                 paramCollection.Add(new DBParameter("@TotalCreditAmount", objReciept.TotalCreditAmt,System.Data.DbType.Decimal));
@@ -57,8 +58,6 @@ namespace eSunSpeed.BusinessLogic
         {
             string Query = string.Empty;
             bool isSaved = true;
-            //int ParentId = GetRecieptId();
-
             foreach (AccountModel Acc in lstAcc)
             {
                 Acc.ParentId = ParentId;
@@ -69,7 +68,7 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@RecieptId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LedgerId));
                     paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit,System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
@@ -106,6 +105,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@Date", objRecipt.RV_Date,System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@Voucher_Number", objRecipt.Voucher_Number));
                 paramCollection.Add(new DBParameter("@Type", objRecipt.Type));
+                paramCollection.Add(new DBParameter("@LedgerId", objRecipt.LedgerId));
                 paramCollection.Add(new DBParameter("@PDDate", objRecipt.PDCDate, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@LongNarration", objRecipt.LongNarration));
                 paramCollection.Add(new DBParameter("@TotalCreditAmt",objRecipt.TotalCreditAmt, System.Data.DbType.Decimal));
@@ -117,7 +117,7 @@ namespace eSunSpeed.BusinessLogic
                 paramCollection.Add(new DBParameter("@ModifiedDate", DateTime.Now, System.Data.DbType.DateTime));
                 paramCollection.Add(new DBParameter("@id", objRecipt.RV_Id));
 
-                Query = "UPDATE Reciept_Voucher_Master SET `Series`=@Series,`Reciept_Date`=@Date,`VoucherNo`=@Voucher_Number," +
+                Query = "UPDATE Reciept_Voucher_Master SET `Series`=@Series,`LedgerId`=LedgerId,`Reciept_Date`=@Date,`VoucherNo`=@Voucher_Number," +
                          "`Type`=@Type,`PDC_Date`=@PDDate,`LongNarration`=@LongNarration,`TotalCreditAmt`=@TotalCreditAmt,`TotalDebitAmt`=@TotalDebitAmt,`CreatedBy`=CreatedBy,`CreatedDate`=CreatedDate,`ModifiedBy`=@ModifiedBy," +
                         "`ModifiedDate`=@ModifiedDate " +
                         "WHERE `Reciept_Id`=@id";
@@ -126,7 +126,6 @@ namespace eSunSpeed.BusinessLogic
                 {
                     List<AccountModel> lstAcct = new List<AccountModel>();
 
-                    //UPDATE CREDIT NOTE ACCOUNT -CHILD TABLE UPDATES
                     foreach (AccountModel act in objRecipt.RecieptAccountModel)
                     {
                         act.ParentId = Convert.ToInt32( objRecipt.RV_Id);
@@ -137,7 +136,7 @@ namespace eSunSpeed.BusinessLogic
 
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                             paramCollection.Add(new DBParameter("@Debit", act.Debit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Credit", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
@@ -165,11 +164,10 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@RecieptId", (objRecipt.RV_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                             paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
-
                             paramCollection.Add(new DBParameter("@CreatedBy", ""));
                             paramCollection.Add(new DBParameter("@CreatedDate", DateTime.Now, System.Data.DbType.DateTime));
                             paramCollection.Add(new DBParameter("@ModifiedBy", "Admin"));
@@ -239,7 +237,7 @@ namespace eSunSpeed.BusinessLogic
 
             sbQuery.Append("SELECT C.RECIEPT_ID, C.RECIEPT_DATE, C.VOUCHERNO, A.ACCOUNT,A.DEBIT, A.CREDIT,A.NARRATION FROM RECIEPT_VOUCHER_MASTER C ");
             sbQuery.Append("INNER JOIN RECIEPT_VOUCHER_DETAILS A ");
-            sbQuery.Append("ON A.Reciept_Id = C.Reciept_Id WHERE DC='D';");
+            sbQuery.Append("ON A.Reciept_Id = C.Reciept_Id;");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -265,9 +263,11 @@ namespace eSunSpeed.BusinessLogic
         {
             List<RecieptVoucherModel> lstReciept = new List<RecieptVoucherModel>();
             RecieptVoucherModel objReciept;
-
-            string Query = "SELECT * FROM `Reciept_Voucher_Master` WHERE `Reciept_Id`=" + id;
-            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+            StringBuilder SbQuery = new StringBuilder();
+            SbQuery.AppendLine("SELECT p.*,m.ACC_Name FROM reciept_voucher_master as p");
+            SbQuery.AppendLine("left join accountmaster as m on p.LedgerId=m.Ac_Id");
+            SbQuery.AppendLine("WHERE `Reciept_Id`=" + id);
+            System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(SbQuery.ToString(), _dbHelper.GetConnObject());
 
             while (dr.Read())
             {
@@ -278,6 +278,8 @@ namespace eSunSpeed.BusinessLogic
                 objReciept.RV_Date = DataFormat.GetDateTime(dr["Reciept_Date"]);
                 objReciept.Voucher_Number = DataFormat.GetInteger(dr["VoucherNo"]);
                 objReciept.Type = dr["Type"].ToString();
+                objReciept.LedgerId =Convert.ToInt64(dr["LedgerId"].ToString());
+                objReciept.Party = dr["ACC_Name"].ToString();
                 objReciept.PDCDate = Convert.ToDateTime(dr["PDC_Date"]);
                 objReciept.LongNarration = dr["LongNarration"].ToString();
                 objReciept.TotalCreditAmt = Convert.ToDecimal(dr["TotalCreditAmt"]);

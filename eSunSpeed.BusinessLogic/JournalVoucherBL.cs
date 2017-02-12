@@ -68,7 +68,7 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@JournalId", (Acc.ParentId)));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LedgerId));
                     paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
@@ -135,7 +135,7 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@ACT_ID", (act.AC_Id)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                             paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
@@ -161,7 +161,7 @@ namespace eSunSpeed.BusinessLogic
                             paramCollection.Add(new DBParameter("@JournalId", (act.ParentId)));
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                             paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
@@ -345,7 +345,7 @@ namespace eSunSpeed.BusinessLogic
                     objAcc.DC = drAcc["DC"].ToString();
                     objAcc.Account = drAcc["Account"].ToString();
                     objAcc.Debit = Convert.ToDecimal(drAcc["Debit"]);
-                    objAcc.LegderId = Convert.ToInt64(drAcc["LegderId"].ToString());
+                    objAcc.LedgerId = Convert.ToInt64(drAcc["LegderId"].ToString());
                     objAcc.Credit = Convert.ToDecimal(drAcc["Credit"]);
                     objAcc.Narration = drAcc["Narration"].ToString();
 

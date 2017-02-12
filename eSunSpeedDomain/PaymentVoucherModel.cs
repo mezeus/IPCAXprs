@@ -7,7 +7,7 @@ namespace eSunSpeedDomain
 {
     public class PaymentVoucherModel
     {
-        public int Pay_Id { get; set; }
+        public long Pay_Id { get; set; }
 
         public string Type { get; set; }
         public string Voucher_Series { get; set; }
@@ -20,6 +20,8 @@ namespace eSunSpeedDomain
         public string Party { get; set; }
         public string MatCenter { get; set; }
         public string LongNarration { get; set; }
+        public string PaymentMode { get; set; }
+        public long PaymentModeId { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -27,7 +29,9 @@ namespace eSunSpeedDomain
         public string ModifiedBy { get; set; }
 
         public List<AccountModel> PaymentAccountModel { get; set; }
-        //public List<Item_VoucherModel> Item_Voucher { get; set; }
-        //public List<BillSundry_VoucherModel> BillSundry_Voucher { get; set; }
+        //Ledger Posting Debit/credit
+        public List<LedgerPostingModel> PaymentLPDebit { get; set; }
+        public List<LedgerPostingModel> PaymentLPCredit { get; set; }
+        
     }
 }

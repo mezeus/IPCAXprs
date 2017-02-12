@@ -68,7 +68,7 @@ namespace eSunSpeed.BusinessLogic
                     paramCollection.Add(new DBParameter("@ContraID",Acc.ParentId));
                     paramCollection.Add(new DBParameter("@DC", (Acc.DC)));
                     paramCollection.Add(new DBParameter("@Account", Acc.Account));
-                    paramCollection.Add(new DBParameter("@LegderId", Acc.LegderId));
+                    paramCollection.Add(new DBParameter("@LegderId", Acc.LedgerId));
                     paramCollection.Add(new DBParameter("@DebitAmount", Acc.Debit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@CreditAmount", Acc.Credit, System.Data.DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Narration", Acc.Narration));
@@ -130,7 +130,7 @@ namespace eSunSpeed.BusinessLogic
 
                             paramCollection.Add(new DBParameter("@DC", (act.DC)));
                             paramCollection.Add(new DBParameter("@Account", act.Account));
-                            paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                            paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                             paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                             paramCollection.Add(new DBParameter("@Narration", act.Narration));
@@ -153,7 +153,7 @@ namespace eSunSpeed.BusinessLogic
                         paramCollection.Add(new DBParameter("@ContraID", act.ParentId));
                         paramCollection.Add(new DBParameter("@DC", (act.DC)));
                         paramCollection.Add(new DBParameter("@Account", act.Account));
-                        paramCollection.Add(new DBParameter("@LegderId", act.LegderId));
+                        paramCollection.Add(new DBParameter("@LegderId", act.LedgerId));
                         paramCollection.Add(new DBParameter("@DebitAmount", act.Debit, System.Data.DbType.Decimal));
                         paramCollection.Add(new DBParameter("@CreditAmount", act.Credit, System.Data.DbType.Decimal));
                         paramCollection.Add(new DBParameter("@Narration", act.Narration));

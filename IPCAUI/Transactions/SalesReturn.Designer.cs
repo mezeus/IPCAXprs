@@ -840,6 +840,7 @@
             // 
             // tbxNarration
             // 
+            this.tbxNarration.EnterMoveNextControl = true;
             this.tbxNarration.Location = new System.Drawing.Point(572, 435);
             this.tbxNarration.Name = "tbxNarration";
             this.tbxNarration.Size = new System.Drawing.Size(422, 41);
@@ -859,6 +860,7 @@
             this.cbxTerms.Size = new System.Drawing.Size(90, 20);
             this.cbxTerms.StyleController = this.layoutControl1;
             this.cbxTerms.TabIndex = 27;
+            this.cbxTerms.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxTerms_KeyPress);
             // 
             // tbxBillNo
             // 
@@ -880,6 +882,7 @@
             this.cbxVoucherType.Size = new System.Drawing.Size(84, 20);
             this.cbxVoucherType.StyleController = this.layoutControl1;
             this.cbxVoucherType.TabIndex = 0;
+            this.cbxVoucherType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxVoucherType_KeyPress);
             // 
             // cbxPriceList
             // 
@@ -894,6 +897,7 @@
             this.cbxPriceList.Size = new System.Drawing.Size(77, 20);
             this.cbxPriceList.StyleController = this.layoutControl1;
             this.cbxPriceList.TabIndex = 30;
+            this.cbxPriceList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxPriceList_KeyPress);
             // 
             // cbxMatCenter
             // 
@@ -923,6 +927,7 @@
             // 
             // cbxSaleType
             // 
+            this.cbxSaleType.EnterMoveNextControl = true;
             this.cbxSaleType.Location = new System.Drawing.Point(479, 52);
             this.cbxSaleType.Name = "cbxSaleType";
             this.cbxSaleType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -931,6 +936,7 @@
             this.cbxSaleType.Size = new System.Drawing.Size(100, 20);
             this.cbxSaleType.StyleController = this.layoutControl1;
             this.cbxSaleType.TabIndex = 4;
+            this.cbxSaleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxSaleType_KeyPress);
             // 
             // layoutControlItem8
             // 

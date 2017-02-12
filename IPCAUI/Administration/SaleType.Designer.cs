@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleType));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.cbxServicesAccLedger = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnConfiguration = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.rbngrpTranction = new DevExpress.XtraEditors.RadioGroup();
@@ -149,6 +152,9 @@
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lactrlConfiguration = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lactrlServicesCombo = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lactrlGoods = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lactrlServices = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -159,14 +165,11 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.cbxServicesAccLedger = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.lactrlServicesCombo = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lactrlGoods = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lactrlServices = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.cbxHideItemRateWindow = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxServicesAccLedger.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTranction.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtax.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceDescription.Properties)).BeginInit();
@@ -236,6 +239,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlConfiguration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlServicesCombo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlGoods)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlServices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
@@ -245,10 +251,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxServicesAccLedger.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlServicesCombo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlGoods)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlServices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -289,6 +293,7 @@
             this.layoutControl1.Controls.Add(this.cbxFreezeTaxinsale);
             this.layoutControl1.Controls.Add(this.cbxFreezeTaxinSaleReturn);
             this.layoutControl1.Controls.Add(this.cbxLedgerAccount);
+            this.layoutControl1.Controls.Add(this.cbxHideItemRateWindow);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -299,6 +304,35 @@
             this.layoutControl1.Size = new System.Drawing.Size(1096, 607);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(420, 89);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(43, 13);
+            this.labelControl3.StyleController = this.layoutControl1;
+            this.labelControl3.TabIndex = 91;
+            this.labelControl3.Text = "Services ";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(420, 65);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(42, 13);
+            this.labelControl2.StyleController = this.layoutControl1;
+            this.labelControl2.TabIndex = 90;
+            this.labelControl2.Text = "Goods    ";
+            // 
+            // cbxServicesAccLedger
+            // 
+            this.cbxServicesAccLedger.Location = new System.Drawing.Point(467, 89);
+            this.cbxServicesAccLedger.Name = "cbxServicesAccLedger";
+            this.cbxServicesAccLedger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxServicesAccLedger.Size = new System.Drawing.Size(140, 20);
+            this.cbxServicesAccLedger.StyleController = this.layoutControl1;
+            this.cbxServicesAccLedger.TabIndex = 89;
+            this.cbxServicesAccLedger.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxServicesAccLedger_KeyPress);
             // 
             // btnConfiguration
             // 
@@ -997,7 +1031,7 @@
             this.cbxAdTaxinSaleAmt.Properties.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.cbxAdTaxinSaleAmt.Size = new System.Drawing.Size(323, 20);
+            this.cbxAdTaxinSaleAmt.Size = new System.Drawing.Size(123, 20);
             this.cbxAdTaxinSaleAmt.StyleController = this.layoutControl1;
             this.cbxAdTaxinSaleAmt.TabIndex = 77;
             // 
@@ -1354,7 +1388,8 @@
             this.lactrlCalculatedTaxOn,
             this.lactrlTaxAccount,
             this.layoutControlItem27,
-            this.layoutControlItem28});
+            this.layoutControlItem28,
+            this.layoutControlItem1});
             this.layoutControlGroup5.Location = new System.Drawing.Point(114, 303);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(497, 257);
@@ -1376,7 +1411,7 @@
             this.lactrlTaxinSaleAmount.Control = this.cbxAdTaxinSaleAmt;
             this.lactrlTaxinSaleAmount.Location = new System.Drawing.Point(0, 48);
             this.lactrlTaxinSaleAmount.Name = "lactrlTaxinSaleAmount";
-            this.lactrlTaxinSaleAmount.Size = new System.Drawing.Size(473, 24);
+            this.lactrlTaxinSaleAmount.Size = new System.Drawing.Size(273, 24);
             this.lactrlTaxinSaleAmount.Text = "Adjust Tax in Sales Amount";
             this.lactrlTaxinSaleAmount.TextSize = new System.Drawing.Size(143, 13);
             // 
@@ -1505,6 +1540,33 @@
             this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lactrlServicesCombo
+            // 
+            this.lactrlServicesCombo.Control = this.cbxServicesAccLedger;
+            this.lactrlServicesCombo.Location = new System.Drawing.Point(329, 24);
+            this.lactrlServicesCombo.Name = "lactrlServicesCombo";
+            this.lactrlServicesCombo.Size = new System.Drawing.Size(144, 24);
+            this.lactrlServicesCombo.TextSize = new System.Drawing.Size(0, 0);
+            this.lactrlServicesCombo.TextVisible = false;
+            // 
+            // lactrlGoods
+            // 
+            this.lactrlGoods.Control = this.labelControl2;
+            this.lactrlGoods.Location = new System.Drawing.Point(282, 0);
+            this.lactrlGoods.Name = "lactrlGoods";
+            this.lactrlGoods.Size = new System.Drawing.Size(46, 24);
+            this.lactrlGoods.TextSize = new System.Drawing.Size(0, 0);
+            this.lactrlGoods.TextVisible = false;
+            // 
+            // lactrlServices
+            // 
+            this.lactrlServices.Control = this.labelControl3;
+            this.lactrlServices.Location = new System.Drawing.Point(282, 24);
+            this.lactrlServices.Name = "lactrlServices";
+            this.lactrlServices.Size = new System.Drawing.Size(47, 24);
+            this.lactrlServices.TextSize = new System.Drawing.Size(0, 0);
+            this.lactrlServices.TextVisible = false;
+            // 
             // layoutControlGroup7
             // 
             this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1598,61 +1660,26 @@
             this.navBarGroup4.Name = "navBarGroup4";
             this.navBarGroup4.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup4.SmallImage")));
             // 
-            // cbxServicesAccLedger
+            // layoutControlItem1
             // 
-            this.cbxServicesAccLedger.Location = new System.Drawing.Point(464, 89);
-            this.cbxServicesAccLedger.Name = "cbxServicesAccLedger";
-            this.cbxServicesAccLedger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.layoutControlItem1.Control = this.cbxHideItemRateWindow;
+            this.layoutControlItem1.Location = new System.Drawing.Point(273, 48);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(200, 24);
+            this.layoutControlItem1.Text = "Hide Item Tax Rate Window";
+            this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(134, 13);
+            this.layoutControlItem1.TextToControlDistance = 5;
+            // 
+            // cbxHideItemRateWindow
+            // 
+            this.cbxHideItemRateWindow.Location = new System.Drawing.Point(550, 392);
+            this.cbxHideItemRateWindow.Name = "cbxHideItemRateWindow";
+            this.cbxHideItemRateWindow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxServicesAccLedger.Size = new System.Drawing.Size(143, 20);
-            this.cbxServicesAccLedger.StyleController = this.layoutControl1;
-            this.cbxServicesAccLedger.TabIndex = 89;
-            this.cbxServicesAccLedger.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxServicesAccLedger_KeyPress);
-            // 
-            // lactrlServicesCombo
-            // 
-            this.lactrlServicesCombo.Control = this.cbxServicesAccLedger;
-            this.lactrlServicesCombo.Location = new System.Drawing.Point(326, 24);
-            this.lactrlServicesCombo.Name = "lactrlServicesCombo";
-            this.lactrlServicesCombo.Size = new System.Drawing.Size(147, 24);
-            this.lactrlServicesCombo.TextSize = new System.Drawing.Size(0, 0);
-            this.lactrlServicesCombo.TextVisible = false;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(420, 65);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(42, 13);
-            this.labelControl2.StyleController = this.layoutControl1;
-            this.labelControl2.TabIndex = 90;
-            this.labelControl2.Text = "Goods    ";
-            // 
-            // lactrlGoods
-            // 
-            this.lactrlGoods.Control = this.labelControl2;
-            this.lactrlGoods.Location = new System.Drawing.Point(282, 0);
-            this.lactrlGoods.Name = "lactrlGoods";
-            this.lactrlGoods.Size = new System.Drawing.Size(46, 24);
-            this.lactrlGoods.TextSize = new System.Drawing.Size(0, 0);
-            this.lactrlGoods.TextVisible = false;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(420, 89);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(40, 13);
-            this.labelControl3.StyleController = this.layoutControl1;
-            this.labelControl3.TabIndex = 91;
-            this.labelControl3.Text = "Services";
-            // 
-            // lactrlServices
-            // 
-            this.lactrlServices.Control = this.labelControl3;
-            this.lactrlServices.Location = new System.Drawing.Point(282, 24);
-            this.lactrlServices.Name = "lactrlServices";
-            this.lactrlServices.Size = new System.Drawing.Size(44, 24);
-            this.lactrlServices.TextSize = new System.Drawing.Size(0, 0);
-            this.lactrlServices.TextVisible = false;
+            this.cbxHideItemRateWindow.Size = new System.Drawing.Size(57, 20);
+            this.cbxHideItemRateWindow.StyleController = this.layoutControl1;
+            this.cbxHideItemRateWindow.TabIndex = 92;
             // 
             // SaleType
             // 
@@ -1667,6 +1694,7 @@
             this.Load += new System.EventHandler(this.SaleType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbxServicesAccLedger.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbngrpTranction.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCalculatedtax.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInvoiceDescription.Properties)).EndInit();
@@ -1736,6 +1764,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlConfiguration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlServicesCombo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlGoods)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlServices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
@@ -1745,10 +1776,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxServicesAccLedger.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlServicesCombo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlGoods)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lactrlServices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1891,5 +1920,7 @@
         private DevExpress.XtraLayout.LayoutControlItem lactrlServicesCombo;
         private DevExpress.XtraLayout.LayoutControlItem lactrlGoods;
         private DevExpress.XtraLayout.LayoutControlItem lactrlServices;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxHideItemRateWindow;
     }
 }

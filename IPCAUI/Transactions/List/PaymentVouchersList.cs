@@ -26,10 +26,21 @@ namespace IPCAUI.Transaction.List
             List<ListModel> lstPayment = objPayBl.GetAllPaymentVoucher();
             dvgPaymentList.DataSource = lstPayment;
 
-        }
-              
-      
+        }      
         private void dvgPaymentListDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstPaymet;
+
+                lstPaymet = (ListModel)dvgPaymentListDetails.GetRow(dvgPaymentListDetails.FocusedRowHandle);
+                Transactions.PaymentVoucher.Payid = lstPaymet.Id;
+
+                this.Close();
+            }           
+        }
+
+        private void dvgPaymentListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             ListModel lstPaymet;
 
@@ -37,6 +48,15 @@ namespace IPCAUI.Transaction.List
             Transactions.PaymentVoucher.Payid = lstPaymet.Id;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

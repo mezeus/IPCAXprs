@@ -830,6 +830,7 @@
             this.cbxVoucherType.Size = new System.Drawing.Size(132, 20);
             this.cbxVoucherType.StyleController = this.layoutControl1;
             this.cbxVoucherType.TabIndex = 0;
+            this.cbxVoucherType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxVoucherType_KeyPress);
             // 
             // cbxPurcRetType
             // 
@@ -842,6 +843,7 @@
             this.cbxPurcRetType.Size = new System.Drawing.Size(116, 20);
             this.cbxPurcRetType.StyleController = this.layoutControl1;
             this.cbxPurcRetType.TabIndex = 4;
+            this.cbxPurcRetType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxPurcRetType_KeyPress);
             // 
             // cbxParty
             // 
@@ -855,6 +857,7 @@
             this.cbxParty.Size = new System.Drawing.Size(348, 20);
             this.cbxParty.StyleController = this.layoutControl1;
             this.cbxParty.TabIndex = 5;
+            this.cbxParty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxParty_KeyPress);
             // 
             // cbxMatcenter
             // 
@@ -867,6 +870,7 @@
             this.cbxMatcenter.Size = new System.Drawing.Size(181, 20);
             this.cbxMatcenter.StyleController = this.layoutControl1;
             this.cbxMatcenter.TabIndex = 6;
+            this.cbxMatcenter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxMatcenter_KeyPress);
             // 
             // cbxTerms
             // 
@@ -881,10 +885,12 @@
             this.cbxTerms.Size = new System.Drawing.Size(108, 20);
             this.cbxTerms.StyleController = this.layoutControl1;
             this.cbxTerms.TabIndex = 25;
+            this.cbxTerms.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxTerms_KeyPress);
             // 
             // tbxNarration
             // 
             this.tbxNarration.EditValue = "";
+            this.tbxNarration.EnterMoveNextControl = true;
             this.tbxNarration.Location = new System.Drawing.Point(615, 401);
             this.tbxNarration.Name = "tbxNarration";
             this.tbxNarration.Size = new System.Drawing.Size(379, 48);

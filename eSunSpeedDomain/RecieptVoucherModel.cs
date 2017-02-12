@@ -16,6 +16,8 @@ namespace eSunSpeedDomain
         public DateTime PDCDate { get; set; }        
         public DateTime RV_Date { get; set; }                        
         public string Party { get; set; }
+        public long LedgerId  { get; set; }
+
         public string MatCenter { get; set; }
         public string LongNarration { get; set; }
         public decimal TotalCreditAmt { get; set; }

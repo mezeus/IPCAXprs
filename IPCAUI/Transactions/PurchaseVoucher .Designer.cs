@@ -109,7 +109,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lactrlMatCenter = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -128,6 +128,9 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnAccountMode = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnItemMode = new DevExpress.XtraNavBar.NavBarItem();
+            this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -161,7 +164,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlMatCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -256,6 +259,8 @@
             this.tbxBillNo.EnterMoveNextControl = true;
             this.tbxBillNo.Location = new System.Drawing.Point(894, 28);
             this.tbxBillNo.Name = "tbxBillNo";
+            this.tbxBillNo.Properties.Mask.EditMask = "n0";
+            this.tbxBillNo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tbxBillNo.Size = new System.Drawing.Size(100, 20);
             this.tbxBillNo.StyleController = this.layoutControl1;
             this.tbxBillNo.TabIndex = 26;
@@ -273,6 +278,7 @@
             this.cbxTerms.Size = new System.Drawing.Size(100, 20);
             this.cbxTerms.StyleController = this.layoutControl1;
             this.cbxTerms.TabIndex = 25;
+            this.cbxTerms.Enter += new System.EventHandler(this.cbxTerms_Enter);
             // 
             // btnQuit
             // 
@@ -324,7 +330,9 @@
             this.navBarItem14,
             this.navBarItem15,
             this.navBarItem16,
-            this.navBarItem17});
+            this.navBarItem17,
+            this.btnAccountMode,
+            this.btnItemMode});
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 120;
@@ -341,7 +349,9 @@
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnPurcVchList),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnAccountMode),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnItemMode)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
@@ -510,6 +520,8 @@
             this.tbxVoucherNumber.EnterMoveNextControl = true;
             this.tbxVoucherNumber.Location = new System.Drawing.Point(823, 28);
             this.tbxVoucherNumber.Name = "tbxVoucherNumber";
+            this.tbxVoucherNumber.Properties.Mask.EditMask = "n0";
+            this.tbxVoucherNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tbxVoucherNumber.Size = new System.Drawing.Size(67, 20);
             this.tbxVoucherNumber.StyleController = this.layoutControl1;
             this.tbxVoucherNumber.TabIndex = 3;
@@ -552,6 +564,7 @@
             this.cbxPurcType.Size = new System.Drawing.Size(152, 20);
             this.cbxPurcType.StyleController = this.layoutControl1;
             this.cbxPurcType.TabIndex = 4;
+            this.cbxPurcType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxPurcType_KeyPress);
             // 
             // cbxParty
             // 
@@ -565,6 +578,7 @@
             this.cbxParty.Size = new System.Drawing.Size(339, 20);
             this.cbxParty.StyleController = this.layoutControl1;
             this.cbxParty.TabIndex = 5;
+            this.cbxParty.Enter += new System.EventHandler(this.cbxParty_Enter);
             this.cbxParty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxParty_KeyPress);
             // 
             // cbxMatcenter
@@ -614,7 +628,8 @@
             this.colTaxAmt,
             this.colPer,
             this.gridColumn14,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.colParty});
             this.dvgItemDetails.GridControl = this.dvgItemMain;
             this.dvgItemDetails.Name = "dvgItemDetails";
             this.dvgItemDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -664,7 +679,7 @@
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
             this.colUnit.Visible = true;
-            this.colUnit.VisibleIndex = 4;
+            this.colUnit.VisibleIndex = 5;
             this.colUnit.Width = 39;
             // 
             // repositoryItemTextEdit1
@@ -680,7 +695,7 @@
             this.colPrice.FieldName = "Price";
             this.colPrice.Name = "colPrice";
             this.colPrice.Visible = true;
-            this.colPrice.VisibleIndex = 6;
+            this.colPrice.VisibleIndex = 7;
             this.colPrice.Width = 49;
             // 
             // repositoryItemTextEdit2
@@ -693,25 +708,27 @@
             // colItemAmount
             // 
             this.colItemAmount.Caption = "Amount(Rs.)";
+            this.colItemAmount.ColumnEdit = this.repositoryItemTextEdit2;
             this.colItemAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colItemAmount.FieldName = "Amount";
             this.colItemAmount.Name = "colItemAmount";
             this.colItemAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
             this.colItemAmount.Visible = true;
-            this.colItemAmount.VisibleIndex = 12;
+            this.colItemAmount.VisibleIndex = 13;
             this.colItemAmount.Width = 101;
             // 
             // colQty
             // 
             this.colQty.Caption = "Qty";
+            this.colQty.ColumnEdit = this.repositoryItemTextEdit2;
             this.colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colQty.FieldName = "Qty";
             this.colQty.Name = "colQty";
             this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 3;
+            this.colQty.VisibleIndex = 4;
             this.colQty.Width = 42;
             // 
             // colBatch
@@ -720,60 +737,65 @@
             this.colBatch.FieldName = "Batch";
             this.colBatch.Name = "colBatch";
             this.colBatch.Visible = true;
-            this.colBatch.VisibleIndex = 2;
+            this.colBatch.VisibleIndex = 3;
             this.colBatch.Width = 42;
             // 
             // colFree
             // 
             this.colFree.Caption = "Free";
+            this.colFree.ColumnEdit = this.repositoryItemTextEdit2;
             this.colFree.FieldName = "Free";
             this.colFree.Name = "colFree";
             this.colFree.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Free", "{0:0.##}")});
             this.colFree.Visible = true;
-            this.colFree.VisibleIndex = 5;
+            this.colFree.VisibleIndex = 6;
             this.colFree.Width = 37;
             // 
             // colBasicAmt
             // 
             this.colBasicAmt.Caption = "Basic Amt";
+            this.colBasicAmt.ColumnEdit = this.repositoryItemTextEdit2;
             this.colBasicAmt.FieldName = "BasicAmt";
             this.colBasicAmt.Name = "colBasicAmt";
             this.colBasicAmt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BasicAmt", "{0:0.##}")});
             this.colBasicAmt.Visible = true;
-            this.colBasicAmt.VisibleIndex = 8;
+            this.colBasicAmt.VisibleIndex = 9;
             this.colBasicAmt.Width = 51;
             // 
             // colDisPer
             // 
             this.colDisPer.Caption = "Dis. %";
+            this.colDisPer.ColumnEdit = this.repositoryItemTextEdit2;
             this.colDisPer.FieldName = "DiscountPercentage";
             this.colDisPer.Name = "colDisPer";
             this.colDisPer.Visible = true;
-            this.colDisPer.VisibleIndex = 9;
+            this.colDisPer.VisibleIndex = 10;
             this.colDisPer.Width = 36;
             // 
             // colDisAmt
             // 
             this.colDisAmt.Caption = "Dis. Amt";
+            this.colDisAmt.ColumnEdit = this.repositoryItemTextEdit2;
             this.colDisAmt.FieldName = "DiscountAmount";
             this.colDisAmt.Name = "colDisAmt";
             this.colDisAmt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DiscountAmount", "{0:0.##}")});
             this.colDisAmt.Visible = true;
-            this.colDisAmt.VisibleIndex = 10;
+            this.colDisAmt.VisibleIndex = 11;
             this.colDisAmt.Width = 51;
             // 
             // colTaxAmt
             // 
             this.colTaxAmt.Caption = "Tax Amount";
+            this.colTaxAmt.ColumnEdit = this.repositoryItemTextEdit2;
             this.colTaxAmt.FieldName = "TaxAmount";
             this.colTaxAmt.Name = "colTaxAmt";
             this.colTaxAmt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:0.##}")});
             this.colTaxAmt.Visible = true;
-            this.colTaxAmt.VisibleIndex = 11;
+            this.colTaxAmt.VisibleIndex = 12;
             this.colTaxAmt.Width = 54;
             // 
             // colPer
@@ -782,7 +804,7 @@
             this.colPer.FieldName = "Per";
             this.colPer.Name = "colPer";
             this.colPer.Visible = true;
-            this.colPer.VisibleIndex = 7;
+            this.colPer.VisibleIndex = 8;
             this.colPer.Width = 40;
             // 
             // gridColumn14
@@ -827,6 +849,7 @@
             this.dvgBSMain.TabIndex = 24;
             this.dvgBSMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dvgBSDetails});
+            this.dvgBSMain.Click += new System.EventHandler(this.dvgBSMain_Click);
             // 
             // dvgBSDetails
             // 
@@ -953,6 +976,7 @@
             // 
             // tbxNarration
             // 
+            this.tbxNarration.EnterMoveNextControl = true;
             this.tbxNarration.Location = new System.Drawing.Point(614, 446);
             this.tbxNarration.Name = "tbxNarration";
             this.tbxNarration.Size = new System.Drawing.Size(380, 60);
@@ -974,7 +998,7 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.layoutControlItem5,
-            this.layoutControlItem6,
+            this.lactrlMatCenter,
             this.layoutControlItem11,
             this.layoutControlItem4,
             this.emptySpaceItem1,
@@ -1028,15 +1052,15 @@
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(66, 13);
             // 
-            // layoutControlItem6
+            // lactrlMatCenter
             // 
-            this.layoutControlItem6.Control = this.cbxMatcenter;
-            this.layoutControlItem6.Location = new System.Drawing.Point(761, 40);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(225, 24);
-            this.layoutControlItem6.Text = "Mat. Center";
-            this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(66, 13);
+            this.lactrlMatCenter.Control = this.cbxMatcenter;
+            this.lactrlMatCenter.Location = new System.Drawing.Point(761, 40);
+            this.lactrlMatCenter.Name = "lactrlMatCenter";
+            this.lactrlMatCenter.Size = new System.Drawing.Size(225, 24);
+            this.lactrlMatCenter.Text = "Mat. Center";
+            this.lactrlMatCenter.TextLocation = DevExpress.Utils.Locations.Left;
+            this.lactrlMatCenter.TextSize = new System.Drawing.Size(66, 13);
             // 
             // layoutControlItem11
             // 
@@ -1223,6 +1247,26 @@
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // btnAccountMode
+            // 
+            this.btnAccountMode.Caption = "AccountMode";
+            this.btnAccountMode.Name = "btnAccountMode";
+            this.btnAccountMode.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAccountMode_LinkClicked);
+            // 
+            // btnItemMode
+            // 
+            this.btnItemMode.Caption = "Item Mode";
+            this.btnItemMode.Name = "btnItemMode";
+            this.btnItemMode.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnItemMode_LinkClicked);
+            // 
+            // colParty
+            // 
+            this.colParty.Caption = "Particulars";
+            this.colParty.FieldName = "Particulars";
+            this.colParty.Name = "colParty";
+            this.colParty.Visible = true;
+            this.colParty.VisibleIndex = 2;
+            // 
             // Purhcasevoucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1268,7 +1312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlMatCenter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -1300,7 +1344,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.LayoutControlItem lactrlMatCenter;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
@@ -1392,5 +1436,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraNavBar.NavBarItem btnAccountMode;
+        private DevExpress.XtraNavBar.NavBarItem btnItemMode;
+        private DevExpress.XtraGrid.Columns.GridColumn colParty;
     }
 }

@@ -54,6 +54,8 @@
             this.btnReceiptList = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.btnNewEntery = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnSingleEntry = new DevExpress.XtraNavBar.NavBarItem();
+            this.btnDoubleEntry = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
@@ -73,6 +75,7 @@
             this.tbxLongNarration = new DevExpress.XtraEditors.MemoEdit();
             this.tbxVoucherSeries = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxPayMode = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -93,8 +96,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lactrlPayMode = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -112,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxPayMode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -132,13 +135,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlPayMode)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.textEdit1);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.btnUpdate);
@@ -153,6 +154,7 @@
             this.layoutControl1.Controls.Add(this.tbxLongNarration);
             this.layoutControl1.Controls.Add(this.tbxVoucherSeries);
             this.layoutControl1.Controls.Add(this.tbxType);
+            this.layoutControl1.Controls.Add(this.cbxPayMode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -169,7 +171,7 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Location = new System.Drawing.Point(168, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(231, 36);
+            this.panelControl1.Size = new System.Drawing.Size(277, 36);
             this.panelControl1.TabIndex = 32;
             // 
             // labelControl1
@@ -383,7 +385,9 @@
             this.navBarItem10,
             this.navBarItem11,
             this.navBarItem12,
-            this.navBarItem16});
+            this.navBarItem16,
+            this.btnSingleEntry,
+            this.btnDoubleEntry});
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 152;
@@ -400,7 +404,9 @@
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnReceiptList),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnNewEntery),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnSingleEntry),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnDoubleEntry)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup5.SmallImage")));
             // 
@@ -423,6 +429,18 @@
             this.btnNewEntery.Name = "btnNewEntery";
             this.btnNewEntery.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNewEntery.SmallImage")));
             this.btnNewEntery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnNewEntery_LinkClicked);
+            // 
+            // btnSingleEntry
+            // 
+            this.btnSingleEntry.Caption = "Single Entry  Mode";
+            this.btnSingleEntry.Name = "btnSingleEntry";
+            this.btnSingleEntry.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnSingleEntry_LinkClicked);
+            // 
+            // btnDoubleEntry
+            // 
+            this.btnDoubleEntry.Caption = "Double Entry Mode";
+            this.btnDoubleEntry.Name = "btnDoubleEntry";
+            this.btnDoubleEntry.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnDoubleEntry_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -559,6 +577,7 @@
             // 
             // tbxLongNarration
             // 
+            this.tbxLongNarration.EnterMoveNextControl = true;
             this.tbxLongNarration.Location = new System.Drawing.Point(180, 496);
             this.tbxLongNarration.Name = "tbxLongNarration";
             this.tbxLongNarration.Size = new System.Drawing.Size(802, 47);
@@ -567,29 +586,46 @@
             // 
             // tbxVoucherSeries
             // 
-            this.tbxVoucherSeries.Location = new System.Drawing.Point(403, 28);
+            this.tbxVoucherSeries.EnterMoveNextControl = true;
+            this.tbxVoucherSeries.Location = new System.Drawing.Point(449, 28);
             this.tbxVoucherSeries.Name = "tbxVoucherSeries";
             this.tbxVoucherSeries.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxVoucherSeries.Properties.Items.AddRange(new object[] {
             "Main"});
             this.tbxVoucherSeries.Properties.PopupSizeable = true;
-            this.tbxVoucherSeries.Size = new System.Drawing.Size(143, 20);
+            this.tbxVoucherSeries.Size = new System.Drawing.Size(97, 20);
             this.tbxVoucherSeries.StyleController = this.layoutControl1;
             this.tbxVoucherSeries.TabIndex = 0;
             // 
             // tbxType
             // 
+            this.tbxType.EnterMoveNextControl = true;
             this.tbxType.Location = new System.Drawing.Point(775, 28);
             this.tbxType.Name = "tbxType";
             this.tbxType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbxType.Properties.Items.AddRange(new object[] {
-            "Load Type"});
+            "Regular",
+            "PDC"});
             this.tbxType.Properties.PopupSizeable = true;
             this.tbxType.Size = new System.Drawing.Size(107, 20);
             this.tbxType.StyleController = this.layoutControl1;
             this.tbxType.TabIndex = 28;
+            // 
+            // cbxPayMode
+            // 
+            this.cbxPayMode.EnterMoveNextControl = true;
+            this.cbxPayMode.Location = new System.Drawing.Point(242, 52);
+            this.cbxPayMode.Name = "cbxPayMode";
+            this.cbxPayMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxPayMode.Properties.NullText = "";
+            this.cbxPayMode.Properties.PopupSizeable = false;
+            this.cbxPayMode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cbxPayMode.Size = new System.Drawing.Size(752, 20);
+            this.cbxPayMode.StyleController = this.layoutControl1;
+            this.cbxPayMode.TabIndex = 33;
             // 
             // layoutControlItem8
             // 
@@ -620,7 +656,7 @@
             this.emptySpaceItem1,
             this.emptySpaceItem2,
             this.layoutControlItem9,
-            this.layoutControlItem10});
+            this.lactrlPayMode});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1006, 593);
@@ -629,12 +665,12 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.tbxVoucherSeries;
-            this.layoutControlItem2.Location = new System.Drawing.Point(391, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(437, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(147, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(101, 40);
             this.layoutControlItem2.Text = "Voucher Series";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(99, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(71, 13);
             // 
             // layoutControlItem5
             // 
@@ -644,7 +680,7 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(113, 40);
             this.layoutControlItem5.Text = "Vch No.";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(99, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(71, 13);
             // 
             // layoutControlItem11
             // 
@@ -663,7 +699,7 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(112, 40);
             this.layoutControlItem4.Text = "Date";
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(99, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(71, 13);
             // 
             // emptySpaceItem4
             // 
@@ -743,7 +779,7 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(111, 40);
             this.layoutControlItem6.Text = "Type";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(99, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(71, 13);
             // 
             // layoutControlItem7
             // 
@@ -753,7 +789,7 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(112, 40);
             this.layoutControlItem7.Text = "PDC Date";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(99, 13);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(71, 13);
             // 
             // lblUpdate
             // 
@@ -806,25 +842,18 @@
             this.layoutControlItem9.Control = this.panelControl1;
             this.layoutControlItem9.Location = new System.Drawing.Point(156, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(235, 40);
+            this.layoutControlItem9.Size = new System.Drawing.Size(281, 40);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // textEdit1
+            // lactrlPayMode
             // 
-            this.textEdit1.Location = new System.Drawing.Point(270, 52);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(724, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 33;
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.textEdit1;
-            this.layoutControlItem10.Location = new System.Drawing.Point(156, 40);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(830, 24);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(99, 13);
+            this.lactrlPayMode.Control = this.cbxPayMode;
+            this.lactrlPayMode.Location = new System.Drawing.Point(156, 40);
+            this.lactrlPayMode.Name = "lactrlPayMode";
+            this.lactrlPayMode.Size = new System.Drawing.Size(830, 24);
+            this.lactrlPayMode.Text = "Payment Mode";
+            this.lactrlPayMode.TextSize = new System.Drawing.Size(71, 13);
             // 
             // ReceiptVoucher
             // 
@@ -855,6 +884,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxLongNarration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherSeries.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxPayMode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -875,8 +905,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlPayMode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -946,7 +975,9 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraLayout.LayoutControlItem lactrlPayMode;
+        private DevExpress.XtraNavBar.NavBarItem btnSingleEntry;
+        private DevExpress.XtraNavBar.NavBarItem btnDoubleEntry;
+        private DevExpress.XtraEditors.LookUpEdit cbxPayMode;
     }
 }
