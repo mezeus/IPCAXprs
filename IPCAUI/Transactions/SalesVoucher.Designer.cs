@@ -104,11 +104,11 @@
             this.tbxVoucherNumber = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.TextEdit();
             this.tbxVoucherType = new DevExpress.XtraEditors.LookUpEdit();
-            this.tbxSaleType = new DevExpress.XtraEditors.LookUpEdit();
             this.tbxParty = new DevExpress.XtraEditors.LookUpEdit();
             this.tbxMatcenter = new DevExpress.XtraEditors.LookUpEdit();
             this.cbxTerms = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tbxNarration = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxSaleType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -161,11 +161,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMatcenter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTerms.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxNarration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -212,11 +212,11 @@
             this.layoutControl1.Controls.Add(this.tbxVoucherNumber);
             this.layoutControl1.Controls.Add(this.dtDate);
             this.layoutControl1.Controls.Add(this.tbxVoucherType);
-            this.layoutControl1.Controls.Add(this.tbxSaleType);
             this.layoutControl1.Controls.Add(this.tbxParty);
             this.layoutControl1.Controls.Add(this.tbxMatcenter);
             this.layoutControl1.Controls.Add(this.cbxTerms);
             this.layoutControl1.Controls.Add(this.tbxNarration);
+            this.layoutControl1.Controls.Add(this.tbxSaleType);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8});
@@ -483,6 +483,8 @@
             this.dvgItemDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.dvgItemDetails.OptionsView.ShowFooter = true;
             this.dvgItemDetails.OptionsView.ShowGroupPanel = false;
+            this.dvgItemDetails.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.dvgItemDetails_CustomRowCellEdit);
+            this.dvgItemDetails.ColumnChanged += new System.EventHandler(this.dvgItemDetails_ColumnChanged);
             this.dvgItemDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgItemDetails_FocusedColumnChanged);
             this.dvgItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgItemDetails_CellValueChanged);
             this.dvgItemDetails.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgItemDetails_CellValueChanging);
@@ -967,18 +969,6 @@
             this.tbxVoucherType.Enter += new System.EventHandler(this.tbxSeries_Enter);
             this.tbxVoucherType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxVoucherType_KeyPress);
             // 
-            // tbxSaleType
-            // 
-            this.tbxSaleType.EnterMoveNextControl = true;
-            this.tbxSaleType.Location = new System.Drawing.Point(637, 54);
-            this.tbxSaleType.Name = "tbxSaleType";
-            this.tbxSaleType.Properties.NullText = "";
-            this.tbxSaleType.Size = new System.Drawing.Size(96, 20);
-            this.tbxSaleType.StyleController = this.layoutControl1;
-            this.tbxSaleType.TabIndex = 4;
-            this.tbxSaleType.Enter += new System.EventHandler(this.tbxSaleType_Enter);
-            this.tbxSaleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSaleType_KeyPress);
-            // 
             // tbxParty
             // 
             this.tbxParty.EnterMoveNextControl = true;
@@ -1030,6 +1020,27 @@
             this.tbxNarration.Size = new System.Drawing.Size(379, 67);
             this.tbxNarration.StyleController = this.layoutControl1;
             this.tbxNarration.TabIndex = 7;
+            // 
+            // tbxSaleType
+            // 
+            this.tbxSaleType.Location = new System.Drawing.Point(637, 54);
+            this.tbxSaleType.Name = "tbxSaleType";
+            this.tbxSaleType.Properties.Items.AddRange(new object[] {
+            "VAT Incl",
+            "VAT Exl",
+            "CST Incl",
+            "CST Exl",
+            "LGST Incl",
+            "LGST Exl",
+            "CGST Incl",
+            "CGST Exl"});
+            this.tbxSaleType.Properties.PopupSizeable = true;
+            this.tbxSaleType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.tbxSaleType.Size = new System.Drawing.Size(96, 20);
+            this.tbxSaleType.StyleController = this.layoutControl1;
+            this.tbxSaleType.TabIndex = 4;
+            this.tbxSaleType.Enter += new System.EventHandler(this.tbxSaleType_Enter);
+            this.tbxSaleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSaleType_KeyPress);
             // 
             // layoutControlItem8
             // 
@@ -1381,11 +1392,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxVoucherType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxParty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMatcenter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTerms.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxNarration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSaleType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -1485,7 +1496,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.LookUpEdit tbxVoucherType;
-        private DevExpress.XtraEditors.LookUpEdit tbxSaleType;
         private DevExpress.XtraEditors.LookUpEdit tbxParty;
         private DevExpress.XtraEditors.LookUpEdit tbxMatcenter;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
@@ -1527,5 +1537,6 @@
         private DevExpress.XtraNavBar.NavBarItem barbtnAccountsMode;
         private DevExpress.XtraNavBar.NavBarItem barbtnItemMode;
         private DevExpress.XtraGrid.Columns.GridColumn colParty;
+        private DevExpress.XtraEditors.ComboBoxEdit tbxSaleType;
     }
 }

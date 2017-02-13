@@ -1313,12 +1313,12 @@ namespace eSunSpeed.BusinessLogic
                 objItem.Unit = dr["ITEM_UNIT"].ToString();
                 objItem.MainUnit = dr["ITEM_MAINUNIT"].ToString();
                 objItem.AltUnit = dr["ITEM_ALTUNIT"].ToString();
+                objItem.TaxCategory = dr["ITEM_TAXCATEGORY"].ToString();
                 lstItems.Add(objItem);
             }
             return lstItems;
 
         }
-
         //Delete Multiple Items
         public bool DeleteItemMaster(List<int> lstIds)
         {
@@ -1349,7 +1349,6 @@ namespace eSunSpeed.BusinessLogic
 
             return isDeleted;
         }
-
         //Delete Single Item
         public bool DeleteItemMasterById(int id)
         {

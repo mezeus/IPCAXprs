@@ -86,6 +86,7 @@
     <Compile Include="SessionVariables.cs" />
     <Compile Include="StockItemsModel.cs" />
     <Compile Include="StockJournalModel.cs" />
+    <Compile Include="TaxCalculationModel.cs" />
     <Compile Include="TdsModel.cs" />
     <Compile Include="UnclearedChecqueDetailsModel.cs" />
     <Compile Include="UserInfoModel.cs" />

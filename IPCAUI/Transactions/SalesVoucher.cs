@@ -13,6 +13,8 @@ using DevExpress.XtraGrid.Views.Grid;
 using eSunSpeed.BusinessLogic;
 using eSunSpeedDomain;
 using IPCAUI.Models;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.BandedGrid;
 
 namespace IPCAUI.Transactions
 {
@@ -30,6 +32,7 @@ namespace IPCAUI.Transactions
         ItemMasterBL objIMBL = new ItemMasterBL();
         SaleTypeBL objStBL = new SaleTypeBL();
         BillSundryMaster objBSBL = new BillSundryMaster();
+        SaleTypeTaxCalculation objSTCal = new SaleTypeTaxCalculation();
         RepositoryItemLookUpEdit UnitsLookup = new RepositoryItemLookUpEdit();
         public static long SalesId = 0;
         public static string Mode ="";
@@ -93,7 +96,7 @@ namespace IPCAUI.Transactions
             {
                 lstSales.Add(objSale.SalesType);
             }
-            tbxSaleType.Properties.DataSource = lstSales;
+            //tbxSaleType.Properties.DataSource = lstSales;
             LoadGridColumns();
             tbxVoucherType.Properties.DataSource = new string[] { "Main" };
             
@@ -292,8 +295,7 @@ namespace IPCAUI.Transactions
                 SalesId = 0;
                 //ClearControls();
             }
-        }  
-       
+        }        
         public void ledgerPostingAdd()
         {
 
@@ -377,152 +379,6 @@ namespace IPCAUI.Transactions
                 }
 
             }
-            
-            SessionVariables PublicVariables = new SessionVariables();
-            try
-            {
-
-                //For Sales Voucher VoucherId= "1"
-                
-                
-                //decTotalAmount = TotalNetAmountForLedgerPosting();
-                //decRate = spExchangeRate.ExchangeRateViewByExchangeRateId(Convert.ToDecimal(cmbCurrency.SelectedValue.ToString()));
-                //decTotalAmount = decTotalAmount * decRate;
-               
-                
-
-                
-                //BillSundry_VoucherModel objSaleBS;
-                //for (int i = 0; i < dvgBsDetails.DataRowCount; i++)
-                //{
-                //    DataRow row = dvgBsDetails.GetDataRow(i);
-
-                //    objSaleBS = new BillSundry_VoucherModel();
-                //    objSaleBS.BS_Id = objBSBL.GetBSIdByBSName(row["BillSundry"].ToString() == null ? string.Empty : row["BillSundry"].ToString());
-                //    objSaleBS.Percentage = Convert.ToDecimal(row["Percentage"].ToString() == string.Empty ? "0.00" : row["Percentage"].ToString());
-                //    objSaleBS.Extra = row["Extra"].ToString() == null ? string.Empty : row["Extra"].ToString();
-                //    objSaleBS.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
-
-                //    lstSaleBS.Add(objSaleBS);
-                //}
-                //if (dgvSalesInvoice.Columns["dgvcmbSalesInvoiceTaxName"].Visible)
-                //{
-                //    foreach (DataGridViewRow dgvrow in dgvSalesInvoiceTax.Rows)
-                //    {
-                //        if (dgvrow.Cells["dgvtxtTtaxId"].Value != null && dgvrow.Cells["dgvtxtTtaxId"].Value.ToString() != string.Empty)
-                //        {
-                //            decimal decTaxAmount = 0;
-                //            decTaxAmount = Convert.ToDecimal(dgvrow.Cells["dgvtxtTtaxAmount"].Value.ToString());
-                //            decRate = spExchangeRate.ExchangeRateViewByExchangeRateId(Convert.ToDecimal(cmbCurrency.SelectedValue.ToString()));
-                //            decTaxAmount = decTaxAmount * decRate;
-                //            if (decTaxAmount > 0)
-                //            {
-                //                infoLedgerPosting.Debit = 0;
-                //                infoLedgerPosting.Credit = decTaxAmount;
-                //                infoLedgerPosting.Date = Convert.ToDateTime(txtDate.Text.ToString());
-                //                infoLedgerPosting.VoucherTypeId = DecSalesInvoiceVoucherTypeId;
-                //                infoLedgerPosting.VoucherNo = strVoucherNo;
-                //                infoLedgerPosting.InvoiceNo = txtInvoiceNo.Text.Trim();
-                //                infoLedgerPosting.LedgerId = Convert.ToDecimal(dgvrow.Cells["dgvtxtTaxLedgerId"].Value.ToString());
-                //                infoLedgerPosting.YearId = PublicVariables._decCurrentFinancialYearId;
-                //                infoLedgerPosting.DetailsId = 0;
-                //                infoLedgerPosting.ChequeNo = string.Empty;
-                //                infoLedgerPosting.ChequeDate = DateTime.Now;
-                //                infoLedgerPosting.Extra1 = string.Empty;
-                //                infoLedgerPosting.Extra2 = string.Empty;
-                //                spLedgerPosting.LedgerPostingAdd(infoLedgerPosting);
-                //            }
-                //        }
-                //    }
-                //}
-                //if (cmbCashOrbank.Visible)
-                //{
-                //    foreach (DataGridViewRow dgvrow in dgvSalesInvoiceLedger.Rows)
-                //    {
-                //        if (dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value != null && dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value.ToString() != string.Empty)
-                //        {
-                //            decimal decAmount = 0;
-                //            decAmount = Convert.ToDecimal(dgvrow.Cells["dgvtxtAdditionalCoastledgerAmount"].Value.ToString());
-                //            decRate = spExchangeRate.ExchangeRateViewByExchangeRateId(Convert.ToDecimal(cmbCurrency.SelectedValue.ToString()));
-                //            decAmount = decAmount * decRate;
-                //            if (decAmount > 0)
-                //            {
-                //                infoLedgerPosting.Debit = decAmount;
-                //                infoLedgerPosting.Credit = 0;
-                //                infoLedgerPosting.Date = Convert.ToDateTime(txtDate.Text.ToString());
-                //                infoLedgerPosting.VoucherTypeId = DecSalesInvoiceVoucherTypeId;
-                //                infoLedgerPosting.VoucherNo = strVoucherNo;
-                //                infoLedgerPosting.InvoiceNo = txtInvoiceNo.Text.Trim();
-                //                infoLedgerPosting.LedgerId = Convert.ToDecimal(dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value.ToString());
-                //                infoLedgerPosting.YearId = PublicVariables._decCurrentFinancialYearId;
-                //                infoLedgerPosting.DetailsId = 0;
-                //                infoLedgerPosting.ChequeNo = string.Empty;
-                //                infoLedgerPosting.ChequeDate = DateTime.Now;
-                //                infoLedgerPosting.Extra1 = string.Empty;
-                //                infoLedgerPosting.Extra2 = string.Empty;
-                //                spLedgerPosting.LedgerPostingAdd(infoLedgerPosting);
-                //            }
-                //        }
-                //    }
-                //    decimal decBankOrCashId = 0;
-                //    decBankOrCashId = Convert.ToDecimal(cmbCashOrbank.SelectedValue.ToString());
-                //    decimal decAmountForCr = 0;
-                //    decAmountForCr = Convert.ToDecimal(lblLedgerTotalAmount.Text.ToString());
-                //    decRate = spExchangeRate.ExchangeRateViewByExchangeRateId(Convert.ToDecimal(cmbCurrency.SelectedValue.ToString()));
-                //    decAmountForCr = decAmountForCr * decRate;
-                //    if (decAmountForCr > 0)
-                //    {
-                //        infoLedgerPosting.Debit = 0;
-                //        infoLedgerPosting.Credit = decAmountForCr;
-                //        infoLedgerPosting.Date = Convert.ToDateTime(txtDate.Text.ToString());
-                //        infoLedgerPosting.VoucherTypeId = DecSalesInvoiceVoucherTypeId;
-                //        infoLedgerPosting.VoucherNo = strVoucherNo;
-                //        infoLedgerPosting.InvoiceNo = txtInvoiceNo.Text.Trim();
-                //        infoLedgerPosting.LedgerId = decBankOrCashId;
-                //        infoLedgerPosting.YearId = PublicVariables._decCurrentFinancialYearId;
-                //        infoLedgerPosting.DetailsId = 0;
-                //        infoLedgerPosting.ChequeNo = string.Empty;
-                //        infoLedgerPosting.ChequeDate = DateTime.Now;
-                //        infoLedgerPosting.Extra1 = "AddCash";
-                //        infoLedgerPosting.Extra2 = string.Empty;
-                //        spLedgerPosting.LedgerPostingAdd(infoLedgerPosting);
-                //    }
-                //}
-                //else
-                //{
-                //    foreach (DataGridViewRow dgvrow in dgvSalesInvoiceLedger.Rows)
-                //    {
-                //        if (dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value != null && dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value.ToString() != string.Empty)
-                //        {
-                //            decimal decAmount = 0;
-                //            decAmount = Convert.ToDecimal(dgvrow.Cells["dgvtxtAdditionalCoastledgerAmount"].Value.ToString());
-                //            decRate = spExchangeRate.ExchangeRateViewByExchangeRateId(Convert.ToDecimal(cmbCurrency.SelectedValue.ToString()));
-                //            decAmount = decAmount * decRate;
-                //            if (decAmount > 0)
-                //            {
-                //                infoLedgerPosting.Debit = 0;
-                //                infoLedgerPosting.Credit = decAmount;
-                //                infoLedgerPosting.Date = Convert.ToDateTime(txtDate.Text.ToString());
-                //                infoLedgerPosting.VoucherTypeId = DecSalesInvoiceVoucherTypeId;
-                //                infoLedgerPosting.VoucherNo = strVoucherNo;
-                //                infoLedgerPosting.InvoiceNo = txtInvoiceNo.Text.Trim();
-                //                infoLedgerPosting.LedgerId = Convert.ToDecimal(dgvrow.Cells["dgvCmbAdditionalCostledgerName"].Value.ToString());
-                //                infoLedgerPosting.YearId = PublicVariables._decCurrentFinancialYearId;
-                //                infoLedgerPosting.DetailsId = 0;
-                //                infoLedgerPosting.ChequeNo = string.Empty;
-                //                infoLedgerPosting.ChequeDate = DateTime.Now;
-                //                infoLedgerPosting.Extra1 = string.Empty;
-                //                infoLedgerPosting.Extra2 = string.Empty;
-                //                spLedgerPosting.LedgerPostingAdd(infoLedgerPosting);
-                //            }
-                //        }
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                //formMDI.infoError.ErrorString = "SI73:" + ex.Message;
-            }
         }
         private void ClearControls()
         {
@@ -562,6 +418,9 @@ namespace IPCAUI.Transactions
                 dvgItemDetails.ShowEditor();
                 ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
             }
+
+
+
         }
 
         private void dvgBsDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
@@ -570,7 +429,6 @@ namespace IPCAUI.Transactions
             {
                 dvgBsDetails.ShowEditor();
                 ((LookUpEdit)dvgBsDetails.ActiveEditor).ShowPopup();
-
             }
         }
 
@@ -580,7 +438,6 @@ namespace IPCAUI.Transactions
             {
                 GridView gridView = (GridView)sender;
                 e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
-
                 if (Convert.ToInt32(e.DisplayText) < 0)
                 {
                     e.DisplayText = "";
@@ -761,7 +618,6 @@ namespace IPCAUI.Transactions
                
                 lstSaleItems.Add(objSaleItem);
             }
-
             objSaleVch.SalesItem_Voucher = lstSaleItems;
             //Bill Sundry Details
             BillSundry_VoucherModel objSaleBS;
@@ -831,6 +687,8 @@ namespace IPCAUI.Transactions
 
         private void dvgItemDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
+            
+            List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
             if (e.Column.Caption == "Item")
             {
                 if(e.Value.ToString()==null)
@@ -838,8 +696,7 @@ namespace IPCAUI.Transactions
                     dvgBsDetails.Focus();
                 }
                 else
-                {
-                    List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
+                {                   
                     List<string> lstUnits = new List<string>();
                     foreach (ItemMasterModel objUnits in lstItems)
                     {
@@ -850,12 +707,90 @@ namespace IPCAUI.Transactions
                 }
                 
             }
-            if(e.Column.Caption=="Amount")
+            if(e.Column.Caption == "Qty"|| e.Column.Caption == "Basic Amt")
             {
-               
-            }
-        }
+                GridView view = sender as GridView;
+                decimal Qty =Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString());
+                decimal Price = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString() == string.Empty ? "0.00" : view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString());
+                decimal BasicAmt = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString() == string.Empty ? "0.00" :view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString());
+                decimal TaxSlab = 5;
 
+                if (view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()!=string.Empty&& view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString() != string.Empty)
+                {
+                    if (tbxSaleType.SelectedItem.ToString()== "VAT Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.VATInclusive(Qty,Price,BasicAmt,TaxSlab);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Price"], Math.Round(objTax.Price, 2));
+
+                    }
+                    if(tbxSaleType.SelectedItem.ToString() == "VAT Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.VATExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "LGST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.LGSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "LGST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.LGSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CGST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CGSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CGST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CGSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
+                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                }
+                return;       
+            }
+            //decimal Value;
+            //if (e.Column.Caption == "Basic Amt")
+            //{
+            //    Value = Convert.ToDecimal(e.Value.ToString()) / Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString());
+            //    if (tbxSaleType.SelectedItem.ToString() == "VAT Incl")
+            //    {
+            //        TaxCalculationModel objTax = objSTCal.VATInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(va), 5);
+            //        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+            //        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+            //        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+            //    }
+            //}
+        }
         private void dvgItemDetails_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.Caption == "Item")
@@ -1031,6 +966,16 @@ namespace IPCAUI.Transactions
                 value = Convert.ToDecimal(Amount.SummaryItem.SummaryValue)-Convert.ToDecimal(e.Value.ToString());
 
             }
+        }
+
+        private void dvgItemDetails_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+
+        }
+
+        private void dvgItemDetails_ColumnChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
