@@ -941,6 +941,7 @@
             this.tbxVoucherNumber.StyleController = this.layoutControl1;
             this.tbxVoucherNumber.TabIndex = 3;
             this.tbxVoucherNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxVoucherNumber_KeyPress);
+            this.tbxVoucherNumber.Leave += new System.EventHandler(this.tbxVoucherNumber_Leave);
             // 
             // dtDate
             // 
@@ -1023,6 +1024,7 @@
             // 
             // tbxSaleType
             // 
+            this.tbxSaleType.EnterMoveNextControl = true;
             this.tbxSaleType.Location = new System.Drawing.Point(637, 54);
             this.tbxSaleType.Name = "tbxSaleType";
             this.tbxSaleType.Properties.Items.AddRange(new object[] {
@@ -1084,6 +1086,7 @@
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1006, 593);
             this.layoutControlGroup1.TextVisible = false;
+            this.layoutControlGroup1.Click += new System.EventHandler(this.layoutControlGroup1_Click);
             // 
             // layoutControlItem2
             // 

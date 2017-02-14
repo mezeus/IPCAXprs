@@ -111,6 +111,7 @@
             this.cbxFreezeTaxinsale = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxFreezeTaxinSaleReturn = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxLedgerAccount = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxHideItemRateWindow = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -146,6 +147,7 @@
             this.lactrlTaxAccount = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lactrlTaxRateWindow = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lactrlLedgerAccount = new DevExpress.XtraLayout.LayoutControlItem();
@@ -165,8 +167,6 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cbxHideItemRateWindow = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxServicesAccLedger.Properties)).BeginInit();
@@ -198,6 +198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxFreezeTaxinsale.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxFreezeTaxinSaleReturn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLedgerAccount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
@@ -233,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lactrlTaxAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlTaxRateWindow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlLedgerAccount)).BeginInit();
@@ -251,8 +253,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -307,7 +307,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(420, 89);
+            this.labelControl3.Location = new System.Drawing.Point(420, 90);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(43, 13);
             this.labelControl3.StyleController = this.layoutControl1;
@@ -316,7 +316,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(420, 65);
+            this.labelControl2.Location = new System.Drawing.Point(420, 66);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(42, 13);
             this.labelControl2.StyleController = this.layoutControl1;
@@ -325,7 +325,7 @@
             // 
             // cbxServicesAccLedger
             // 
-            this.cbxServicesAccLedger.Location = new System.Drawing.Point(467, 89);
+            this.cbxServicesAccLedger.Location = new System.Drawing.Point(467, 90);
             this.cbxServicesAccLedger.Name = "cbxServicesAccLedger";
             this.cbxServicesAccLedger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -336,7 +336,7 @@
             // 
             // btnConfiguration
             // 
-            this.btnConfiguration.Location = new System.Drawing.Point(420, 123);
+            this.btnConfiguration.Location = new System.Drawing.Point(420, 124);
             this.btnConfiguration.Name = "btnConfiguration";
             this.btnConfiguration.Size = new System.Drawing.Size(141, 22);
             this.btnConfiguration.StyleController = this.layoutControl1;
@@ -347,7 +347,7 @@
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(192, 297);
+            this.labelControl1.Location = new System.Drawing.Point(192, 298);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(396, 13);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -358,7 +358,7 @@
             // rbngrpTranction
             // 
             this.rbngrpTranction.EnterMoveNextControl = true;
-            this.rbngrpTranction.Location = new System.Drawing.Point(765, 81);
+            this.rbngrpTranction.Location = new System.Drawing.Point(765, 82);
             this.rbngrpTranction.Name = "rbngrpTranction";
             this.rbngrpTranction.Properties.Columns = 2;
             this.rbngrpTranction.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -375,7 +375,7 @@
             // 
             this.tbxCalculatedtax.EditValue = "100.00";
             this.tbxCalculatedtax.EnterMoveNextControl = true;
-            this.tbxCalculatedtax.Location = new System.Drawing.Point(557, 368);
+            this.tbxCalculatedtax.Location = new System.Drawing.Point(557, 369);
             this.tbxCalculatedtax.Name = "tbxCalculatedtax";
             this.tbxCalculatedtax.Size = new System.Drawing.Size(50, 20);
             this.tbxCalculatedtax.StyleController = this.layoutControl1;
@@ -384,7 +384,7 @@
             // tbxInvoiceDescription
             // 
             this.tbxInvoiceDescription.EnterMoveNextControl = true;
-            this.tbxInvoiceDescription.Location = new System.Drawing.Point(781, 535);
+            this.tbxInvoiceDescription.Location = new System.Drawing.Point(781, 536);
             this.tbxInvoiceDescription.Name = "tbxInvoiceDescription";
             this.tbxInvoiceDescription.Size = new System.Drawing.Size(274, 20);
             this.tbxInvoiceDescription.StyleController = this.layoutControl1;
@@ -393,7 +393,7 @@
             // tbxInvoiceHeading
             // 
             this.tbxInvoiceHeading.EnterMoveNextControl = true;
-            this.tbxInvoiceHeading.Location = new System.Drawing.Point(781, 511);
+            this.tbxInvoiceHeading.Location = new System.Drawing.Point(781, 512);
             this.tbxInvoiceHeading.Name = "tbxInvoiceHeading";
             this.tbxInvoiceHeading.Size = new System.Drawing.Size(274, 20);
             this.tbxInvoiceHeading.StyleController = this.layoutControl1;
@@ -403,7 +403,7 @@
             // 
             this.tbxTaxPer.EditValue = "0.00";
             this.tbxTaxPer.EnterMoveNextControl = true;
-            this.tbxTaxPer.Location = new System.Drawing.Point(781, 373);
+            this.tbxTaxPer.Location = new System.Drawing.Point(781, 374);
             this.tbxTaxPer.Name = "tbxTaxPer";
             this.tbxTaxPer.Size = new System.Drawing.Size(274, 20);
             this.tbxTaxPer.StyleController = this.layoutControl1;
@@ -412,7 +412,7 @@
             // tbxSurchargePer
             // 
             this.tbxSurchargePer.EnterMoveNextControl = true;
-            this.tbxSurchargePer.Location = new System.Drawing.Point(781, 397);
+            this.tbxSurchargePer.Location = new System.Drawing.Point(781, 398);
             this.tbxSurchargePer.Name = "tbxSurchargePer";
             this.tbxSurchargePer.Size = new System.Drawing.Size(274, 20);
             this.tbxSurchargePer.StyleController = this.layoutControl1;
@@ -421,7 +421,7 @@
             // rbngrpTaxcalculation
             // 
             this.rbngrpTaxcalculation.EnterMoveNextControl = true;
-            this.rbngrpTaxcalculation.Location = new System.Drawing.Point(635, 344);
+            this.rbngrpTaxcalculation.Location = new System.Drawing.Point(635, 345);
             this.rbngrpTaxcalculation.Name = "rbngrpTaxcalculation";
             this.rbngrpTaxcalculation.Properties.Columns = 2;
             this.rbngrpTaxcalculation.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -435,7 +435,7 @@
             // rbngrpTaxation
             // 
             this.rbngrpTaxation.EnterMoveNextControl = true;
-            this.rbngrpTaxation.Location = new System.Drawing.Point(126, 192);
+            this.rbngrpTaxation.Location = new System.Drawing.Point(126, 193);
             this.rbngrpTaxation.Name = "rbngrpTaxation";
             this.rbngrpTaxation.Properties.Columns = 2;
             this.rbngrpTaxation.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -455,7 +455,7 @@
             // tbxSaleType
             // 
             this.tbxSaleType.EnterMoveNextControl = true;
-            this.tbxSaleType.Location = new System.Drawing.Point(272, 11);
+            this.tbxSaleType.Location = new System.Drawing.Point(272, 12);
             this.tbxSaleType.Name = "tbxSaleType";
             this.tbxSaleType.Size = new System.Drawing.Size(347, 20);
             this.tbxSaleType.StyleController = this.layoutControl1;
@@ -465,7 +465,7 @@
             // rbngrpRegion
             // 
             this.rbngrpRegion.EnterMoveNextControl = true;
-            this.rbngrpRegion.Location = new System.Drawing.Point(635, 65);
+            this.rbngrpRegion.Location = new System.Drawing.Point(635, 66);
             this.rbngrpRegion.Name = "rbngrpRegion";
             this.rbngrpRegion.Properties.Columns = 1;
             this.rbngrpRegion.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -479,7 +479,7 @@
             // rbngrpSalesAcInf
             // 
             this.rbngrpSalesAcInf.EnterMoveNextControl = true;
-            this.rbngrpSalesAcInf.Location = new System.Drawing.Point(138, 65);
+            this.rbngrpSalesAcInf.Location = new System.Drawing.Point(138, 66);
             this.rbngrpSalesAcInf.Name = "rbngrpSalesAcInf";
             this.rbngrpSalesAcInf.Properties.Columns = 1;
             this.rbngrpSalesAcInf.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -493,7 +493,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(600, 571);
+            this.btnDelete.Location = new System.Drawing.Point(600, 572);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(76, 24);
             this.btnDelete.StyleController = this.layoutControl1;
@@ -503,7 +503,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(511, 571);
+            this.btnUpdate.Location = new System.Drawing.Point(511, 572);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 24);
             this.btnUpdate.StyleController = this.layoutControl1;
@@ -514,7 +514,7 @@
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(690, 571);
+            this.btnQuit.Location = new System.Drawing.Point(690, 572);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(91, 24);
             this.btnQuit.StyleController = this.layoutControl1;
@@ -525,7 +525,7 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(404, 571);
+            this.btnSave.Location = new System.Drawing.Point(404, 572);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 24);
             this.btnSave.StyleController = this.layoutControl1;
@@ -586,7 +586,7 @@
             this.navBarItem38,
             this.navBarItem39,
             this.navBarItem40});
-            this.navBarControl1.Location = new System.Drawing.Point(12, 11);
+            this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 110;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
@@ -907,7 +907,7 @@
             // cbxVatorSalesTaxReports
             // 
             this.cbxVatorSalesTaxReports.EnterMoveNextControl = true;
-            this.cbxVatorSalesTaxReports.Location = new System.Drawing.Point(284, 464);
+            this.cbxVatorSalesTaxReports.Location = new System.Drawing.Point(284, 465);
             this.cbxVatorSalesTaxReports.Name = "cbxVatorSalesTaxReports";
             this.cbxVatorSalesTaxReports.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -920,7 +920,7 @@
             // 
             // cbxTaxInvoiceyesno
             // 
-            this.cbxTaxInvoiceyesno.Location = new System.Drawing.Point(284, 344);
+            this.cbxTaxInvoiceyesno.Location = new System.Drawing.Point(284, 345);
             this.cbxTaxInvoiceyesno.Name = "cbxTaxInvoiceyesno";
             this.cbxTaxInvoiceyesno.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -935,7 +935,7 @@
             // cbxIssueSTform
             // 
             this.cbxIssueSTform.EnterMoveNextControl = true;
-            this.cbxIssueSTform.Location = new System.Drawing.Point(781, 206);
+            this.cbxIssueSTform.Location = new System.Drawing.Point(781, 207);
             this.cbxIssueSTform.Name = "cbxIssueSTform";
             this.cbxIssueSTform.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -952,7 +952,7 @@
             // cbxFormIssuable
             // 
             this.cbxFormIssuable.EnterMoveNextControl = true;
-            this.cbxFormIssuable.Location = new System.Drawing.Point(781, 230);
+            this.cbxFormIssuable.Location = new System.Drawing.Point(781, 231);
             this.cbxFormIssuable.Name = "cbxFormIssuable";
             this.cbxFormIssuable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -966,7 +966,7 @@
             // cbxFormReceviable
             // 
             this.cbxFormReceviable.EnterMoveNextControl = true;
-            this.cbxFormReceviable.Location = new System.Drawing.Point(781, 278);
+            this.cbxFormReceviable.Location = new System.Drawing.Point(781, 279);
             this.cbxFormReceviable.Name = "cbxFormReceviable";
             this.cbxFormReceviable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -980,7 +980,7 @@
             // cbxRecevieSTForm
             // 
             this.cbxRecevieSTForm.EnterMoveNextControl = true;
-            this.cbxRecevieSTForm.Location = new System.Drawing.Point(781, 254);
+            this.cbxRecevieSTForm.Location = new System.Drawing.Point(781, 255);
             this.cbxRecevieSTForm.Name = "cbxRecevieSTForm";
             this.cbxRecevieSTForm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -996,7 +996,7 @@
             // 
             // cbxTaxonItemmrp
             // 
-            this.cbxTaxonItemmrp.Location = new System.Drawing.Point(557, 344);
+            this.cbxTaxonItemmrp.Location = new System.Drawing.Point(557, 345);
             this.cbxTaxonItemmrp.Name = "cbxTaxonItemmrp";
             this.cbxTaxonItemmrp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1010,7 +1010,7 @@
             // 
             // cbxTaxInclItemPrice
             // 
-            this.cbxTaxInclItemPrice.Location = new System.Drawing.Point(284, 368);
+            this.cbxTaxInclItemPrice.Location = new System.Drawing.Point(284, 369);
             this.cbxTaxInclItemPrice.Name = "cbxTaxInclItemPrice";
             this.cbxTaxInclItemPrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1024,7 +1024,7 @@
             // 
             // cbxAdTaxinSaleAmt
             // 
-            this.cbxAdTaxinSaleAmt.Location = new System.Drawing.Point(284, 392);
+            this.cbxAdTaxinSaleAmt.Location = new System.Drawing.Point(284, 393);
             this.cbxAdTaxinSaleAmt.Name = "cbxAdTaxinSaleAmt";
             this.cbxAdTaxinSaleAmt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1037,7 +1037,7 @@
             // 
             // cbxTaxAccount
             // 
-            this.cbxTaxAccount.Location = new System.Drawing.Point(284, 416);
+            this.cbxTaxAccount.Location = new System.Drawing.Point(284, 417);
             this.cbxTaxAccount.Name = "cbxTaxAccount";
             this.cbxTaxAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1049,7 +1049,7 @@
             // 
             // cbxVatreturnCategory
             // 
-            this.cbxVatreturnCategory.Location = new System.Drawing.Point(284, 440);
+            this.cbxVatreturnCategory.Location = new System.Drawing.Point(284, 441);
             this.cbxVatreturnCategory.Name = "cbxVatreturnCategory";
             this.cbxVatreturnCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1062,7 +1062,7 @@
             // cbxFreezeTaxinsale
             // 
             this.cbxFreezeTaxinsale.EnterMoveNextControl = true;
-            this.cbxFreezeTaxinsale.Location = new System.Drawing.Point(781, 421);
+            this.cbxFreezeTaxinsale.Location = new System.Drawing.Point(781, 422);
             this.cbxFreezeTaxinsale.Name = "cbxFreezeTaxinsale";
             this.cbxFreezeTaxinsale.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1077,7 +1077,7 @@
             // cbxFreezeTaxinSaleReturn
             // 
             this.cbxFreezeTaxinSaleReturn.EnterMoveNextControl = true;
-            this.cbxFreezeTaxinSaleReturn.Location = new System.Drawing.Point(781, 445);
+            this.cbxFreezeTaxinSaleReturn.Location = new System.Drawing.Point(781, 446);
             this.cbxFreezeTaxinSaleReturn.Name = "cbxFreezeTaxinSaleReturn";
             this.cbxFreezeTaxinSaleReturn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1092,7 +1092,7 @@
             // cbxLedgerAccount
             // 
             this.cbxLedgerAccount.EnterMoveNextControl = true;
-            this.cbxLedgerAccount.Location = new System.Drawing.Point(466, 65);
+            this.cbxLedgerAccount.Location = new System.Drawing.Point(466, 66);
             this.cbxLedgerAccount.Name = "cbxLedgerAccount";
             this.cbxLedgerAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1101,6 +1101,16 @@
             this.cbxLedgerAccount.TabIndex = 81;
             this.cbxLedgerAccount.Enter += new System.EventHandler(this.cbxLedgerAccount_Enter);
             this.cbxLedgerAccount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxLedgerAccount_KeyPress);
+            // 
+            // cbxHideItemRateWindow
+            // 
+            this.cbxHideItemRateWindow.Location = new System.Drawing.Point(550, 393);
+            this.cbxHideItemRateWindow.Name = "cbxHideItemRateWindow";
+            this.cbxHideItemRateWindow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxHideItemRateWindow.Size = new System.Drawing.Size(57, 20);
+            this.cbxHideItemRateWindow.StyleController = this.layoutControl1;
+            this.cbxHideItemRateWindow.TabIndex = 92;
             // 
             // layoutControlItem8
             // 
@@ -1136,7 +1146,7 @@
             this.layoutControlItem25,
             this.emptySpaceItem6,
             this.emptySpaceItem7});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, -1);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1079, 608);
             this.layoutControlGroup1.TextVisible = false;
@@ -1389,7 +1399,7 @@
             this.lactrlTaxAccount,
             this.layoutControlItem27,
             this.layoutControlItem28,
-            this.layoutControlItem1});
+            this.lactrlTaxRateWindow});
             this.layoutControlGroup5.Location = new System.Drawing.Point(114, 303);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(497, 257);
@@ -1468,6 +1478,17 @@
             this.layoutControlItem28.Size = new System.Drawing.Size(473, 95);
             this.layoutControlItem28.Text = "Skip in VAT/Sales Tax Reports";
             this.layoutControlItem28.TextSize = new System.Drawing.Size(143, 13);
+            // 
+            // lactrlTaxRateWindow
+            // 
+            this.lactrlTaxRateWindow.Control = this.cbxHideItemRateWindow;
+            this.lactrlTaxRateWindow.Location = new System.Drawing.Point(273, 48);
+            this.lactrlTaxRateWindow.Name = "lactrlTaxRateWindow";
+            this.lactrlTaxRateWindow.Size = new System.Drawing.Size(200, 24);
+            this.lactrlTaxRateWindow.Text = "Hide Item Tax Rate Window";
+            this.lactrlTaxRateWindow.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.lactrlTaxRateWindow.TextSize = new System.Drawing.Size(134, 13);
+            this.lactrlTaxRateWindow.TextToControlDistance = 5;
             // 
             // layoutControlGroup6
             // 
@@ -1660,27 +1681,6 @@
             this.navBarGroup4.Name = "navBarGroup4";
             this.navBarGroup4.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup4.SmallImage")));
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.cbxHideItemRateWindow;
-            this.layoutControlItem1.Location = new System.Drawing.Point(273, 48);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(200, 24);
-            this.layoutControlItem1.Text = "Hide Item Tax Rate Window";
-            this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(134, 13);
-            this.layoutControlItem1.TextToControlDistance = 5;
-            // 
-            // cbxHideItemRateWindow
-            // 
-            this.cbxHideItemRateWindow.Location = new System.Drawing.Point(550, 392);
-            this.cbxHideItemRateWindow.Name = "cbxHideItemRateWindow";
-            this.cbxHideItemRateWindow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxHideItemRateWindow.Size = new System.Drawing.Size(57, 20);
-            this.cbxHideItemRateWindow.StyleController = this.layoutControl1;
-            this.cbxHideItemRateWindow.TabIndex = 92;
-            // 
             // SaleType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1723,6 +1723,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxFreezeTaxinsale.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxFreezeTaxinSaleReturn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLedgerAccount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
@@ -1758,6 +1759,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lactrlTaxAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lactrlTaxRateWindow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lactrlLedgerAccount)).EndInit();
@@ -1776,8 +1778,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxHideItemRateWindow.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1920,7 +1920,7 @@
         private DevExpress.XtraLayout.LayoutControlItem lactrlServicesCombo;
         private DevExpress.XtraLayout.LayoutControlItem lactrlGoods;
         private DevExpress.XtraLayout.LayoutControlItem lactrlServices;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem lactrlTaxRateWindow;
         private DevExpress.XtraEditors.ComboBoxEdit cbxHideItemRateWindow;
     }
 }

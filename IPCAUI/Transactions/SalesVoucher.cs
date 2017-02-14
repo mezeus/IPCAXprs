@@ -66,6 +66,22 @@ namespace IPCAUI.Transactions
                     
                 }
             }
+            if(keyData==Keys.Tab)
+            {
+                if (tbxVoucherNumber.Text.Trim() == "")
+                {
+                    MessageBox.Show("Voucher Number Can Not Be Blank!");                
+                }
+                tbxVoucherNumber.Focus();
+            }
+            //if (MouseClick)
+            //{
+            //    if (tbxVoucherNumber.Text.Trim() == "")
+            //    {
+            //        MessageBox.Show("Voucher Number Can Not Be Blank!");
+            //    }
+            //    tbxVoucherNumber.Focus();
+            //}
             return base.ProcessCmdKey(ref msg, keyData);
         }
         private void btnQuit_Click(object sender, EventArgs e)
@@ -418,8 +434,98 @@ namespace IPCAUI.Transactions
                 dvgItemDetails.ShowEditor();
                 ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
             }
+            if(e.FocusedColumn.FieldName == "Unit"|| e.FocusedColumn.FieldName == "Per")
+            {
+                GridView view = sender as GridView;
+                decimal Qty = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["Qty"]).ToString()==string.Empty?"0.00":view.GetFocusedRowCellValue(view.Columns["Qty"]).ToString());
+                decimal Price = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["Price"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["Price"]).ToString());
+                decimal BasicAmt = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["BasicAmt"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["BasicAmt"]).ToString());
+                decimal TotalAmt = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["Amount"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["Amount"]).ToString());
+                decimal TaxSlab = 5;
+                if (Qty!=0&&(Price.ToString()!=string.Empty||BasicAmt.ToString()!=string.Empty||TotalAmt.ToString()==string.Empty))
+                {
+                    if (tbxSaleType.SelectedItem.ToString() == "VAT Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.VATInclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Price"], Math.Round(objTax.Price, 2));
 
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "VAT Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.VATExeclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CSTInclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CSTExeclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "LGST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.LGSTInclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "LGST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.LGSTExeclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CGST Incl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CGSTInclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
+                    if (tbxSaleType.SelectedItem.ToString() == "CGST Exl")
+                    {
+                        TaxCalculationModel objTax = objSTCal.CGSTExeclusive(Qty, Price, BasicAmt, TaxSlab);
+                        view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                        view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    }
 
+                }
+            }
+            //if (e.FocusedColumn.FieldName == "DiscountPercentage")
+            //{
+            //    GridView view = sender as GridView;
+            //    decimal Qty = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["Qty"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["Qty"]).ToString());
+            //    decimal Price = 0;
+            //    decimal BasicAmt = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["BasicAmt"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["BasicAmt"]).ToString());
+            //    decimal TotalAmt = Convert.ToDecimal(view.GetFocusedRowCellValue(view.Columns["Amount"]).ToString() == string.Empty ? "0.00" : view.GetFocusedRowCellValue(view.Columns["Amount"]).ToString());
+            //    decimal TaxSlab = 5;
+            //    if (Qty != 0 && (Price.ToString() != string.Empty || BasicAmt.ToString() != string.Empty || TotalAmt.ToString() == string.Empty))
+            //    {
+            //        if (tbxSaleType.SelectedItem.ToString() == "VAT Incl")
+            //        {
+            //            TaxCalculationModel objTax = objSTCal.VATInclusive(Qty, Price, BasicAmt, TaxSlab);
+            //            view.SetFocusedRowCellValue(view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+            //            view.SetFocusedRowCellValue(view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+            //            view.SetFocusedRowCellValue(view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+            //            view.SetFocusedRowCellValue(view.Columns["Price"], Math.Round(objTax.Price, 2));
+
+            //        }
+            //    }
+            //}
 
         }
 
@@ -469,7 +575,6 @@ namespace IPCAUI.Transactions
             {
                 GridView gridView = (GridView)sender;
                 e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
-
                 if (Convert.ToInt32(e.DisplayText) < 0)
                 {
                     e.DisplayText = "";
@@ -653,8 +758,9 @@ namespace IPCAUI.Transactions
 
         private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            ClearAllForm(this);
             SalesId = 0;
-            ClearControls();
+            //ClearControls();
             laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -707,76 +813,28 @@ namespace IPCAUI.Transactions
                 }
                 
             }
-            if(e.Column.Caption == "Qty"|| e.Column.Caption == "Basic Amt")
+            if (e.Column.Caption == "Qty" || e.Column.Caption == "Basic Amt" || e.Column.Caption == "Price(Rs.)")
             {
                 GridView view = sender as GridView;
-                decimal Qty =Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString());
+                decimal Qty = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString());
                 decimal Price = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString() == string.Empty ? "0.00" : view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString());
-                decimal BasicAmt = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString() == string.Empty ? "0.00" :view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString());
+                decimal BasicAmt = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString() == string.Empty ? "0.00" : view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString());
                 decimal TaxSlab = 5;
 
-                if (view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()!=string.Empty&& view.GetRowCellValue(e.RowHandle, view.Columns["BasicAmt"]).ToString() != string.Empty)
+                if (view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString() != string.Empty && view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString() != string.Empty)
                 {
-                    if (tbxSaleType.SelectedItem.ToString()== "VAT Incl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.VATInclusive(Qty,Price,BasicAmt,TaxSlab);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Price"], Math.Round(objTax.Price, 2));
+                    //if (tbxSaleType.SelectedItem.ToString() == "VAT Incl")
+                    //{
+                    //    TaxCalculationModel objTax = objSTCal.VATInclusive(Qty, Price, BasicAmt, TaxSlab);
+                    //    view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
+                    //    view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
+                    //    view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
+                    //    view.SetRowCellValue(e.RowHandle, view.Columns["Price"], Math.Round(objTax.Price, 2));
 
-                    }
-                    if(tbxSaleType.SelectedItem.ToString() == "VAT Exl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.VATExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "CST Incl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.CSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "CST Exl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.CSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "LGST Incl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.LGSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "LGST Exl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.LGSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "CGST Incl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.CGSTInclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                    if (tbxSaleType.SelectedItem.ToString() == "CGST Exl")
-                    {
-                        TaxCalculationModel objTax = objSTCal.CGSTExeclusive(Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Qty"]).ToString()), Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns["Price"]).ToString()), 5);
-                        view.SetRowCellValue(e.RowHandle, view.Columns["BasicAmt"], Math.Round(objTax.BasicAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TaxAmount"], Math.Round(objTax.TaxAmount, 2));
-                        view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], Math.Round(objTax.TotalAmount, 2));
-                    }
-                }
-                return;       
+                    //}
+                    
+              }
+                  
             }
             //decimal Value;
             //if (e.Column.Caption == "Basic Amt")
@@ -969,6 +1027,29 @@ namespace IPCAUI.Transactions
         }
 
         private void dvgItemDetails_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+
+        }
+        //Clear All Values In Form
+        public static void ClearAllForm(Control Ctrl)
+        {
+            foreach (Control ctrl in Ctrl.Controls)
+            {
+                BaseEdit editor = ctrl as BaseEdit;
+                if (editor != null)
+                    editor.EditValue = null;
+
+                ClearAllForm(ctrl);//Recursive
+            }
+
+        }
+
+        private void tbxVoucherNumber_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void layoutControlGroup1_Click(object sender, EventArgs e)
         {
 
         }

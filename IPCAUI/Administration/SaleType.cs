@@ -218,7 +218,7 @@ namespace IPCAUI.Administration
         private void SaleType_Load(object sender, EventArgs e)
         {          
             tbxSaleType.Focus();
-            //DefaultloadForm();
+            DefaultloadForm();
             laCtrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             laCtrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             laCtrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
@@ -662,6 +662,7 @@ namespace IPCAUI.Administration
             lactrlTaxInclItemPrice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlTaxinSaleAmount.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlTaxAccount.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            //lactrlTaxRateWindow.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlGrpFormInfo.Enabled = false;
             lactrlGoods.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlServices.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
