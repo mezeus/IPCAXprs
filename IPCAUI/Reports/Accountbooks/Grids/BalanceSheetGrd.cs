@@ -277,8 +277,9 @@ namespace IPCAUI.Reports.Accountbooks.Grids
             decimal dcOpeninggStock = objBL.StockValueGetOnDate(DateTime.Parse("01-01-2016"), calculationMethod, true, true);
             decimal dcProfit = 0;
             DataSet dsetProfitAndLoss = new DataSet();
-            dsetProfitAndLoss = objBL.ProfitAndLossAnalysisUpToaDateForBalansheet(DateTime.Parse("01-01-2016"), DateTime.Parse("12-12-2016"));
+            dsetProfitAndLoss = objBL.ProfitAndLossAnalysisUpToaDateForBalansheet(DateTime.Parse("01-01-2016"), DateTime.Parse("12-12-2018"));
             DataTable dtblProfit = new DataTable();
+            
             dtblProfit = dsetProfitAndLoss.Tables[0];
             for (int i = 0; i < dsetProfitAndLoss.Tables.Count; ++i)
             {
@@ -305,7 +306,7 @@ namespace IPCAUI.Reports.Accountbooks.Grids
             decCurrentProfitLoss = dcProfit + (dcClosingStock - dcOpeninggStock);
             decimal dcProfitOpening = 0;
             DataSet dsetProfitAndLossOpening = new DataSet();
-            dsetProfitAndLossOpening =objBL.ProfitAndLossAnalysisUpToaDateForPreviousYears(DateTime.Parse("01-01-2016"));
+            dsetProfitAndLossOpening =objBL.ProfitAndLossAnalysisUpToaDateForPreviousYears(DateTime.Parse("01-01-2018"));
             DataTable dtblProfitOpening = new DataTable();
             dtblProfitOpening = dsetProfitAndLossOpening.Tables[0];
             for (int i = 0; i < dsetProfitAndLossOpening.Tables.Count; ++i)

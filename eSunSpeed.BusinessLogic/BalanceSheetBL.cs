@@ -11,7 +11,7 @@ namespace eSunSpeed.BusinessLogic
 
     public class BalanceSheetBL
     {
-        string connString = ConfigurationManager.ConnectionStrings["mySqlConTest"].ToString();
+        string connString = ConfigurationManager.ConnectionStrings["mySqlCon"].ToString();
      
 
         public DataSet BalanceSheet(DateTime fromDate, DateTime toDate)
@@ -25,7 +25,7 @@ namespace eSunSpeed.BusinessLogic
                 {
                     sqlcon.Open();
                 }
-                MySqlDataAdapter sdaadapter = new MySqlDataAdapter("BalanceSheet", sqlcon);
+                MySqlDataAdapter sdaadapter = new MySqlDataAdapter("spBalanceSheet", sqlcon);
                 sdaadapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                 MySqlParameter prm = new MySqlParameter();
                 prm = sdaadapter.SelectCommand.Parameters.Add("?S_fromDate", MySqlDbType.DateTime);
