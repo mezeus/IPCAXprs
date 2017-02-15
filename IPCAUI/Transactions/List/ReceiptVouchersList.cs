@@ -31,12 +31,34 @@ namespace IPCAUI.Transaction.List
 
         private void dvgReceiptDetails_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstReceipt;
+
+                lstReceipt = (ListModel)dvgReceiptDetails.GetRow(dvgReceiptDetails.FocusedRowHandle);
+                Transactions.ReceiptVoucher.Recpt_Id = lstReceipt.Id;
+
+                this.Close();
+            }
+        }
+
+        private void dvgReceiptDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
             ListModel lstReceipt;
 
             lstReceipt = (ListModel)dvgReceiptDetails.GetRow(dvgReceiptDetails.FocusedRowHandle);
             Transactions.ReceiptVoucher.Recpt_Id = lstReceipt.Id;
-       
+
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

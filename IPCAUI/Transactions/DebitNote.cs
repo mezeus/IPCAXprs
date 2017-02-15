@@ -19,7 +19,10 @@ namespace IPCAUI.Transactions
     public partial class DebitNote : Form
     {
         DebitNoteBL objDNbl = new DebitNoteBL();
-        public static int DNId;
+        DataTable dtAcc = new DataTable();
+        DataTable dtLedger = new DataTable();
+        AccountMasterBL objAccBL = new AccountMasterBL();
+        public static long DNId=0;
 
         public DebitNote()
         {
@@ -39,36 +42,46 @@ namespace IPCAUI.Transactions
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
+        private void Loadtables()
+        {
+            dtAcc.Columns.Add("S.No");
+            dtAcc.Columns.Add("DC");
+            dtAcc.Columns.Add("Account");
+            dtAcc.Columns.Add("Debit");
+            dtAcc.Columns.Add("Credit");
+            dtAcc.Columns.Add("Narration");
+            dtAcc.Columns.Add("ParentId");
+            dtAcc.Columns.Add("Ac_Id");
+            gdvDebitMaster.DataSource = dtAcc;
+            dtLedger.Columns.Add("Name");
+            dtLedger.Columns.Add("Group");
+            dtLedger.Columns.Add("Op.Bal");
+            dtLedger.Columns.Add("Address");
+            dtLedger.Columns.Add("Mobile");
+        }
         private void DebitNote_Load(object sender, EventArgs e)
         {
-            InitData();
-
-            int dn = DNId;
-            // Create an in-place LookupEdit control.
-            RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
-            riLookup.DataSource = Categories;
-            riLookup.ValueMember = "ID";
-            riLookup.DisplayMember = "CategoryName";
-
-            // Enable the "best-fit" functionality mode in which columns have proportional widths and the popup window is resized to fit all the columns.
-            riLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            // Specify the dropdown height.
-            riLookup.DropDownRows = Categories.Count;
-
-            // Enable the automatic completion feature. In this mode, when the dropdown is closed, 
-            // the text in the edit box is automatically completed if it matches a DisplayMember field value of one of dropdown rows. 
-            riLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
-            // Specify the column against which an incremental search is performed in SearchMode.AutoComplete and SearchMode.OnlyInPopup modes
-            riLookup.AutoSearchColumnIndex = 1;
-
-            // Optionally hide the Description column in the dropdown.
-            // riLookup.PopulateColumns();
-            // riLookup.Columns["Description"].Visible = false;
-
-            // Assign the in-place LookupEdit control to the grid's CategoryID column.
-            // Note that the data types of the "ID" and "CategoryID" fields match.
-            gdvDebit.Columns["Account"].ColumnEdit = riLookup;
+            Loadtables();
+            dtLedger.Rows.Clear();
+            RepositoryItemLookUpEdit AccLookup = new RepositoryItemLookUpEdit();
+            DataRow drparty;
+            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+            foreach (AccountMasterModel objAcc in lstAccounts)
+            {
+                drparty = dtLedger.NewRow();
+                drparty["Name"] = objAcc.AccountName;
+                drparty["Group"] = objAcc.Group;
+                drparty["Op.Bal"] = objAcc.OPBal;
+                drparty["Address"] = objAcc.address;
+                drparty["Mobile"] = objAcc.MobileNumber;
+                dtLedger.Rows.Add(drparty);
+            }
+            AccLookup.DataSource = dtLedger;
+            AccLookup.ValueMember = "Name";
+            AccLookup.DisplayMember = "Name";
+            AccLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            AccLookup.AutoSearchColumnIndex = 0;
+            gdvDebit.Columns["Account"].ColumnEdit = AccLookup;
             gdvDebit.BestFitColumns();
 
             RepositoryItemLookUpEdit riDCLookup = new RepositoryItemLookUpEdit();
@@ -76,57 +89,12 @@ namespace IPCAUI.Transactions
             gdvDebit.Columns["DC"].ColumnEdit = riDCLookup;
 
             riDCLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-            riDCLookup.AutoSearchColumnIndex = 1;
-            //Series Lookup Edit
-            SeriesLookup objSeries = new SeriesLookup();
-            tbxVoucherSeries.Properties.DataSource = objSeries.Series;
+            riDCLookup.AutoSearchColumnIndex = 0;
 
-            riDCLookup.DropDownRows = 0;
-            //riDCLookup.ValueMember = "ID";
-            //riDCLookup.DisplayMember = "CategoryName";
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
         }
-
-        List<Product> Products = new List<Product>();
-        List<Category> Categories = new List<Category>();
-
-        private void InitData()
-        {
-            Products.Add(new Product() { ProductName = "Sir Rodney's Scones", CategoryID = 3, UnitPrice = 10 });
-            Products.Add(new Product() { ProductName = "Gustaf's Knäckebröd", CategoryID = 5, UnitPrice = 21 });
-            Products.Add(new Product() { ProductName = "Tunnbröd", CategoryID = 5, UnitPrice = 9 });
-            Products.Add(new Product() { ProductName = "Guaraná Fantástica", CategoryID = 1, UnitPrice = 4.5m });
-            Products.Add(new Product() { ProductName = "NuNuCa Nuß-Nougat-Creme", CategoryID = 3, UnitPrice = 14 });
-            Products.Add(new Product() { ProductName = "Gumbär Gummibärchen", CategoryID = 3, UnitPrice = 31.23m });
-            Products.Add(new Product() { ProductName = "Rössle Sauerkraut", CategoryID = 7, UnitPrice = 45.6m });
-            Products.Add(new Product() { ProductName = "Thüringer Rostbratwurst", CategoryID = 6, UnitPrice = 123.79m });
-            Products.Add(new Product() { ProductName = "Nord-Ost Matjeshering", CategoryID = 8, UnitPrice = 25.89m });
-            Products.Add(new Product() { ProductName = "Gorgonzola Telino", CategoryID = 4, UnitPrice = 12.5m });
-
-            Categories.Add(new Category() { ID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" });
-            Categories.Add(new Category() { ID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" });
-            Categories.Add(new Category() { ID = 3, CategoryName = "Confections", Description = "Desserts, candies, and sweet breads" });
-            Categories.Add(new Category() { ID = 4, CategoryName = "Dairy Products", Description = "Cheeses" });
-            Categories.Add(new Category() { ID = 5, CategoryName = "Grains/Cereals", Description = "Breads, crackers, pasta, and cereal" });
-            Categories.Add(new Category() { ID = 6, CategoryName = "Meat/Poultry", Description = "Prepared meats" });
-            Categories.Add(new Category() { ID = 7, CategoryName = "Produce", Description = "Dried fruit and bean curd" });
-            Categories.Add(new Category() { ID = 8, CategoryName = "Seafood", Description = "Seaweed and fish" });
-        }
-
-
-        public class Product
-        {
-            public string ProductName { get; set; }
-            public decimal UnitPrice { get; set; }
-            public int CategoryID { get; set; }
-        }
-
-        public class Category
-        {
-            public int ID { get; set; }
-            public string CategoryName { get; set; }
-            public string Description { get; set; }
-        }
-
         private void gdvDebit_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.Caption == "SNo")
@@ -163,28 +131,26 @@ namespace IPCAUI.Transactions
             objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
             objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objdebit.Type = cbxType.SelectedItem.ToString();
+            objdebit.PDC_Date= Convert.ToDateTime(dtPDC.Text);
+            objdebit.LongNarration = tbxLongNarratin.Text.Trim() == null ? string.Empty : tbxLongNarratin.Text.Trim();
             objdebit.TotalCreditAmount = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
             objdebit.TotalDebitAmount = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
-
-            //Items
+            //Debite Details
             AccountModel objDebit;
 
             List<AccountModel> lstDebitNotes = new List<AccountModel>();
-
             for (int i = 0; i < gdvDebit.DataRowCount; i++)
             {
                 DataRow row = gdvDebit.GetDataRow(i);
 
                 objDebit = new AccountModel();
-
                 objDebit.DC = row["DC"].ToString();
-
-                objDebit.Account = row["Account"].ToString(); /*Convert.ToDecimal(row["Qty"]);*/
-
+                objDebit.Account = row["Account"].ToString();
+                objDebit.LedgerId =objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
                 objDebit.Debit = row["Debit"].ToString().Length > 0 ? Convert.ToDecimal(row["Debit"].ToString()) : 0;
                 objDebit.Credit = row["Credit"].ToString().Length>0 ?  Convert.ToDecimal(row["Credit"].ToString()):0;
-
-                objDebit.Narration = row["Narration"].ToString();
+                objDebit.Narration = row["Narration"].ToString()==null?string.Empty: row["Narration"].ToString();
 
                 lstDebitNotes.Add(objDebit);
             }
@@ -194,7 +160,9 @@ namespace IPCAUI.Transactions
             bool isSuccess = objDNbl.SaveDebitNote(objdebit);
             if (isSuccess)
             {
-                MessageBox.Show("Saved Successfully!");             
+                MessageBox.Show("Saved Successfully!");
+                DNId = 0;
+                ClearControls();            
             }
         }
 
@@ -209,21 +177,42 @@ namespace IPCAUI.Transactions
         }
         private void FillDebitNote()
         {
-            btnUpdate.Visible = true;
-            btnSave.Visible = false;
+            if(DNId==0)
+            {
+                lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                tbxVoucherSeries.Focus();
+                return;
+            }
 
             List<DebitNoteModel> objMaster = objDNbl.GetDebitNotebyId(DNId);
 
             tbxVchNumber.Text = objMaster.FirstOrDefault().Voucher_Number.ToString();
             tbxVoucherSeries.Text = objMaster.FirstOrDefault().Voucher_Series.ToString();
-
-            //Need to map the correct values
-           // tbxLongNarratin.Text = objMaster.FirstOrDefault().LongNarration.ToString();
             dtDate.Text = objMaster.FirstOrDefault().DN_Date.ToString();
-
-            debitDtBindingSource.DataSource= objMaster.FirstOrDefault().DebitAccountModel;
-            //gdvDebitMaster.DataSource = objMaster.FirstOrDefault().DebitAccountModel;
-                       
+            dtPDC.Text = objMaster.FirstOrDefault().PDC_Date.ToString();
+            cbxType.SelectedItem= objMaster.FirstOrDefault().Type.ToString();
+            tbxLongNarratin.Text = objMaster.FirstOrDefault().LongNarration.ToString();
+            dtAcc.Rows.Clear();
+            DataRow drAcc;
+            foreach (AccountModel objAcc in objMaster.FirstOrDefault().DebitAccountModel)
+            {
+                drAcc = dtAcc.NewRow();
+                drAcc["DC"] = objAcc.DC;
+                drAcc["Account"] = objAcc.Account;
+                drAcc["Debit"] = objAcc.Debit;
+                drAcc["Credit"] = objAcc.Credit;
+                drAcc["Narration"] = objAcc.Narration;
+                drAcc["ParentId"] = objAcc.ParentId;
+                drAcc["Ac_Id"] = objAcc.AC_Id;
+                dtAcc.Rows.Add(drAcc);
+            }
+            gdvDebitMaster.DataSource = dtAcc;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxVoucherSeries.Focus();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -236,47 +225,89 @@ namespace IPCAUI.Transactions
                 return;
             }
 
-            objdebit.DN_Id = DNId;
             objdebit.Voucher_Number = Convert.ToInt32(tbxVchNumber.Text.Trim());
             objdebit.DN_Date = Convert.ToDateTime(dtDate.Text);
             objdebit.Voucher_Series = tbxVoucherSeries.Text.Trim();
+            objdebit.Type = cbxType.SelectedItem.ToString();
+            objdebit.PDC_Date = Convert.ToDateTime(dtPDC.Text);
+            objdebit.LongNarration = tbxLongNarratin.Text.Trim() == null ? string.Empty : tbxLongNarratin.Text.Trim();
             objdebit.TotalCreditAmount = Convert.ToDecimal(colCredit.SummaryItem.SummaryValue);
             objdebit.TotalDebitAmount = Convert.ToDecimal(colDebit.SummaryItem.SummaryValue);
-
-            //Items
+            //Debite Details
             AccountModel objDebit;
 
             List<AccountModel> lstDebitNotes = new List<AccountModel>();
-
             for (int i = 0; i < gdvDebit.DataRowCount; i++)
             {
-                AccountModel row;
-                row = gdvDebit.GetRow(i) as AccountModel;
-             
+                DataRow row = gdvDebit.GetDataRow(i);
+
                 objDebit = new AccountModel();
-
-                objDebit.ParentId= Convert.ToInt32(row.ParentId);
-                objDebit.AC_Id = Convert.ToInt32(row.AC_Id);
-                
-                objDebit.DC = row.DC.ToString();
-
-                objDebit.Account = row.Account.ToString(); /*Convert.ToDecimal(row["Qty"]);*/
-
-                objDebit.Debit = row.Debit.ToString().Length > 0 ? Convert.ToDecimal(row.Debit.ToString()) : 0;
-                objDebit.Credit = row.Credit.ToString().Length > 0 ? Convert.ToDecimal(row.Credit.ToString()) : 0;
-
-                //objDebit.Narration = row.Narration.ToString();
-
+                objDebit.DC = row["DC"].ToString();
+                objDebit.Account = row["Account"].ToString();
+                objDebit.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Account"].ToString());
+                objDebit.Debit = row["Debit"].ToString().Length > 0 ? Convert.ToDecimal(row["Debit"].ToString()) : 0;
+                objDebit.Credit = row["Credit"].ToString().Length > 0 ? Convert.ToDecimal(row["Credit"].ToString()) : 0;
+                objDebit.Narration = row["Narration"].ToString() == null ? string.Empty : row["Narration"].ToString();
+                objDebit.AC_Id = Convert.ToInt32(row["Ac_Id"].ToString() == string.Empty ? "0" : row["Ac_Id"].ToString());
+                objDebit.ParentId = Convert.ToInt32(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"].ToString());
                 lstDebitNotes.Add(objDebit);
             }
 
             objdebit.DebitAccountModel = lstDebitNotes;
-
+            objdebit.DN_Id =Convert.ToInt32(DNId);
             bool isSuccess = objDNbl.UpdateDebitNote(objdebit);
             if (isSuccess)
             {
-                MessageBox.Show("Saved Successfully!");
+                MessageBox.Show("Update Successfully!");
+                DNId = 0;
+                ClearControls();
+                Transaction.List.DebitNotesList frmList = new Transaction.List.DebitNotesList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+                frmList.ShowDialog();
+
+                FillDebitNote();
             }
+        }
+
+        private void gdvDebitMaster_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objDNbl.DeletDebitNote(DNId);
+            {
+                MessageBox.Show("Delete Successfully!");
+                DNId = 0;
+                ClearControls();
+                Transaction.List.DebitNotesList frmList = new Transaction.List.DebitNotesList();
+                frmList.StartPosition = FormStartPosition.CenterScreen;
+                frmList.ShowDialog();
+
+                FillDebitNote();
+
+            }
+        }
+        private void ClearControls()
+        {
+            tbxVchNumber.Text = string.Empty;
+            tbxVoucherSeries.Text = string.Empty;
+            cbxType.Text = string.Empty;
+            dtDate.Text = string.Empty;
+            dtPDC.Text = string.Empty;
+            tbxLongNarratin.Text = string.Empty;
+            dtAcc.Rows.Clear();
+        }
+
+        private void btnNewEntery_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            DNId = 0;
+            ClearControls();
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            tbxVoucherSeries.Focus();
         }
     }
 }

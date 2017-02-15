@@ -11,6 +11,7 @@ namespace eSunSpeed.BusinessLogic
     public class SaleTypeBL
     {
         private DBHelper _dbHelper = new DBHelper();
+        AccountMasterBL objAccBL = new AccountMasterBL();
         public bool SaveSalesType(SaleTypeModel objStype)
         {
             string Query = string.Empty;
@@ -278,6 +279,48 @@ namespace eSunSpeed.BusinessLogic
             else
                 return false;
 
+        }
+        //Get The Sale Ledger Id Under Sale Type Name
+        public long GetSaleLedgerId(string TypeName)
+        {
+            long id = 0;
+            string AccName;
+            try
+            {
+                string Query = "SELECT * FROM `saletypemaster` WHERE `SalesType`='" + TypeName + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {
+                    AccName= dr["LedgerAccountBox"].ToString();
+                    id = objAccBL.GetLedgerIdByAccountName(AccName);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return id;
+        }
+        //Get The Tax Ledger Id Under Sale Type Name
+        public long GetTaxLedgerId(string TypeName)
+        {
+            long id = 0;
+            string AccName;
+            try
+            {
+                string Query = "SELECT * FROM `saletypemaster` WHERE `SalesType`='" + TypeName + "'";
+                System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(Query, _dbHelper.GetConnObject());
+                while (dr.Read())
+                {
+                    AccName = dr["TaxAccount"].ToString();
+                    id = objAccBL.GetLedgerIdByAccountName(AccName);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return id;
         }
     }
 }

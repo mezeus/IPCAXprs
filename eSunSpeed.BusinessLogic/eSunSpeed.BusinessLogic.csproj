@@ -88,9 +88,11 @@
     <Compile Include="MatIssuedPartyBL.cs" />
     <Compile Include="ReferenceGroupBL.cs" />
     <Compile Include="Reports\DaybookBL.cs" />
+    <Compile Include="Sales.cs" />
     <Compile Include="SalesQuotationBL.cs" />
     <Compile Include="SalesOrderBL.cs" />
     <Compile Include="SaleTypeBL.cs" />
+    <Compile Include="SaleTypeTaxCalculation.cs" />
     <Compile Include="StockJournalBL.cs" />
     <Compile Include="TaxCategory .cs" />
     <Compile Include="TdsModelBL.cs" />
@@ -126,7 +128,6 @@
     <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportArchitecture.cs" />
-    <Compile Include="Sales.cs" />
     <Compile Include="PurchaseReturnVoucherBL.cs" />
     <Compile Include="SalesReturnVoucherBL.cs" />
     <Compile Include="SalesVoucherBL.cs" />

@@ -12,6 +12,7 @@ namespace eSunSpeedDomain
         public DateTime StockDate { get; set; }
         public int trans_sales_id { get; set; }
         public long PurcVchId { get; set; }
+        public long PurcRetId { get; set; }
         public int MatIssued_id { get; set; }
         public int MatRcvd_id { get; set; }
         public int item_id { get; set; }
@@ -26,7 +27,7 @@ namespace eSunSpeedDomain
         public int qty { get; set; }
         public string unit { get; set; }
         public int price { get; set; }
-        public int amount { get; set; }
+        public decimal amount { get; set; }
         public int totalqty { get; set; }
         public int totalamount { get; set; }
     }

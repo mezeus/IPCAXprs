@@ -22,19 +22,31 @@ namespace IPCAUI.Transaction.List
             InitializeComponent();
         }
 
-        private void DebitNotes_Load(object sender, EventArgs e)
+        private void DebitNotesList_Load(object sender, EventArgs e)
         {
             List<ListModel> lstDebitNotes = objBL.GetAllDebitNote();
             dvgDebitList.DataSource = lstDebitNotes;
-
         }
-                        
-        private void dvgDebitList_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void gdvDebitDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstMasters;
+
+                lstMasters = (ListModel)gdvDebitDetails.GetRow(gdvDebitDetails.FocusedRowHandle);
+                Transactions.DebitNote.DNId = lstMasters.Id;
+
+                this.Close();
+            }           
+        }
+
+        private void gdvDebitDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             ListModel lstMasters;
 
             lstMasters = (ListModel)gdvDebitDetails.GetRow(gdvDebitDetails.FocusedRowHandle);
-            Transactions.DebitNote.DNId= lstMasters.Id;
+            Transactions.DebitNote.DNId = lstMasters.Id;
 
             this.Close();
         }

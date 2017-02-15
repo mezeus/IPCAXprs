@@ -18,7 +18,20 @@ namespace IPCAUI.Transactions
 {
     public partial class Purhcasevoucher : Form
     {
+        DataTable dtItem = new DataTable();
+        DataTable dtbs = new DataTable();
+        DataTable dtParty = new DataTable();
+        DataTable dtItems = new DataTable();
+        DataTable dtParticulars = new DataTable();
+        PurchaseVoucherBL objPurcBL = new PurchaseVoucherBL();
+        AccountMasterBL objAccBL = new AccountMasterBL();
+        MaterialCentreMasterBL objMcBL = new MaterialCentreMasterBL();
+        ItemMasterBL objIMBL = new ItemMasterBL();
+        PurchaseTypeBL objPTBL = new PurchaseTypeBL();
+        BillSundryMaster objBSBL = new BillSundryMaster();
         PurchaseVoucherBL objbl = new PurchaseVoucherBL();
+        RepositoryItemLookUpEdit UnitsLookup = new RepositoryItemLookUpEdit();
+        public static long PurcId = 0;
         public Purhcasevoucher()
         {
             InitializeComponent();
@@ -26,71 +39,155 @@ namespace IPCAUI.Transactions
 
         private void Purhcasevoucher_Load(object sender, EventArgs e)
         {
-            //this.tbxSeries.Enter += new System.EventHandler(this.tbxSeries_Enter);
-
-            Models.AccountLookup acc = new Models.AccountLookup();
-
-
-            // Create an in-place LookupEdit control.
-            RepositoryItemLookUpEdit riLookup = new RepositoryItemLookUpEdit();
-
-            acc.InitData();
-
-            riLookup.DataSource = acc.Categories;
-            riLookup.ValueMember = "ID";
-            riLookup.DisplayMember = "CategoryName";
-
-            // Enable the "best-fit" functionality mode in which columns have proportional widths and the popup window is resized to fit all the columns.
-            riLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            // Specify the dropdown height.
-            riLookup.DropDownRows = acc.Categories.Count;
-
-            // Enable the automatic completion feature. In this mode, when the dropdown is closed, 
-            // the text in the edit box is automatically completed if it matches a DisplayMember field value of one of dropdown rows. 
-            riLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
-            // Specify the column against which an incremental search is performed in SearchMode.AutoComplete and SearchMode.OnlyInPopup modes
-            riLookup.AutoSearchColumnIndex = 1;
-
-            // Optionally hide the Description column in the dropdown.
-            //riLookup.PopulateColumns();
-            // riLookup.Columns["Description"].Visible = false;
-
-            // Assign the in-place LookupEdit control to the grid's CategoryID column.
-            //// Note that the data types of the "ID" and "CategoryID" fields match.
-            //gdvItem.Columns["Item"].ColumnEdit = riLookup;
-            //gdvItem.BestFitColumns();
-
-            //////Bill Sundry Lookup Edit
-            //gridBs.Columns["BillSundry"].ColumnEdit = riLookup;
-            //gridBs.BestFitColumns();
-
-            //Series Lookup Edit
-            SeriesLookup objSeries = new SeriesLookup();
-            cbxVoucherType.Properties.DataSource = objSeries.Series;
-
-            //Purchase Type Lookup Edit
-            cbxPurcType.Properties.DataSource = objSeries.Series;
-
-            //Party Lookup Edit
-            cbxParty.Properties.DataSource = acc.Categories;
-            cbxParty.Properties.DisplayMember = "CategoryName";
-            cbxParty.Properties.ValueMember = "CategoryName";
-
-            //Mat Centre Lookup Edit
-            cbxMatcenter.Properties.DataSource = acc.Categories;
-            cbxMatcenter.Properties.DisplayMember = "CategoryName";
-            cbxMatcenter.Properties.ValueMember = "CategoryName";
-        }
-
-        private void gdvItem_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
-        {
-            if (e.FocusedColumn.FieldName == "Item")
+            cbxTerms.Focus();
+            LoadTables();
+            LoadGridColumns();
+            ItemMode();
+            dtParty.Rows.Clear();
+            DataRow drparty;
+            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+            foreach (AccountMasterModel objAcc in lstAccounts)
             {
-                //gdvItem.ShowEditor();
-                //((LookUpEdit)gdvItem.ActiveEditor).ShowPopup();
+                drparty = dtParty.NewRow();
+                drparty["Name"] = objAcc.AccountName;
+                drparty["Group"] = objAcc.Group;
+                drparty["Op.Bal"] = objAcc.OPBal;
+                drparty["Address"] = objAcc.address;
+                drparty["Mobile"] = objAcc.MobileNumber;
+                dtParty.Rows.Add(drparty);
             }
-        }
+            cbxParty.Properties.DataSource = dtParty;
+            cbxParty.Properties.DisplayMember = "Name";
 
+            List<MaterialCentreMasterModel> lstMt = objMcBL.GetAllMaterials();
+            List<string> lstMcenters = new List<string>();
+            foreach (MaterialCentreMasterModel objMC in lstMt)
+            {
+                lstMcenters.Add(objMC.GroupName);
+            }
+            cbxMatcenter.Properties.DataSource = lstMcenters;
+            List<PurchaseTypeModel> lstPurctypes = objPTBL.GetAllPurchaseType();
+            List<string> lstPurc = new List<string>();
+            foreach (PurchaseTypeModel objPurc in lstPurctypes)
+            {
+                lstPurc.Add(objPurc.PurchType);
+            }
+            cbxPurcType.Properties.DataSource = lstPurc;
+            cbxVoucherType.Properties.DataSource = new string[] { "Main" };
+           
+        }
+        private void LoadTables()
+        {
+            dtItem.Columns.Add("Item");
+            dtItem.Columns.Add("Particulars");
+            dtItem.Columns.Add("Qty");
+            dtItem.Columns.Add("Unit");
+            dtItem.Columns.Add("Per");
+            dtItem.Columns.Add("Price");
+            dtItem.Columns.Add("Batch");
+            dtItem.Columns.Add("Free");
+            dtItem.Columns.Add("BasicAmt");
+            dtItem.Columns.Add("DiscountPercentage");
+            dtItem.Columns.Add("DiscountAmount");
+            dtItem.Columns.Add("TaxAmount");
+            dtItem.Columns.Add("Amount");
+            dtItem.Columns.Add("Item_ID");
+            dtItem.Columns.Add("ParentId");
+            dvgItemMain.DataSource = dtItem;
+
+            dtbs.Columns.Add("BillSundry");
+            dtbs.Columns.Add("Percentage");
+            dtbs.Columns.Add("Extra");
+            dtbs.Columns.Add("Amount");
+            dtbs.Columns.Add("BSId");
+            dtbs.Columns.Add("ParentId");
+            dvgBSMain.DataSource = dtbs;
+
+            dtParty.Columns.Add("Name");
+            dtParty.Columns.Add("Group");
+            dtParty.Columns.Add("Op.Bal");
+            dtParty.Columns.Add("Address");
+            dtParty.Columns.Add("Mobile");
+
+            //Show Items List
+            dtItems.Columns.Add("Item");
+            dtItems.Columns.Add("GroupName");
+            dtItems.Columns.Add("Company");
+
+            dtParticulars.Columns.Add("Name");
+            dtParticulars.Columns.Add("Group");
+            dtParticulars.Columns.Add("Op.Bal");
+            dtParticulars.Columns.Add("Address");
+            dtParticulars.Columns.Add("Mobile");
+        }
+        private void LoadGridColumns()
+        {
+            //Show Items Detais in Grid
+            RepositoryItemLookUpEdit ItemsLookup = new RepositoryItemLookUpEdit();
+            dtItems.Rows.Clear();
+            DataRow drItems;
+            List<ItemMasterModel> lstItems = objIMBL.GetAllItems();
+            foreach (ItemMasterModel objItems in lstItems)
+            {
+                drItems = dtItems.NewRow();
+                drItems["Item"] = objItems.Name;
+                drItems["GroupName"] = objItems.Group;
+                drItems["Company"] = objItems.Company;
+                dtItems.Rows.Add(drItems);
+            }
+            ItemsLookup.DataSource = dtItems;
+            ItemsLookup.ValueMember = "Item";
+            ItemsLookup.DisplayMember = "Item";
+            //ItemsLookup.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            ItemsLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            ItemsLookup.AutoSearchColumnIndex = 1;
+            dvgItemDetails.Columns["Item"].ColumnEdit = ItemsLookup;
+            dvgItemDetails.BestFitColumns();
+            RepositoryItemLookUpEdit BSLookup = new RepositoryItemLookUpEdit();
+            List<BillSundryMasterModel> lstBillSundary = objBSBL.GetAllBillSundry();
+            List<string> lstbs = new List<string>();
+            foreach (BillSundryMasterModel objBS in lstBillSundary)
+            {
+                lstbs.Add(objBS.Name);
+            }
+            BSLookup.DataSource = lstbs;
+            BSLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            BSLookup.AutoSearchColumnIndex = 1;
+            //BSLookup.ValueMember = "BillSundary";
+            //BSLookup.DisplayMember = "BillSundary";
+            dvgBSDetails.Columns["BillSundry"].ColumnEdit = BSLookup;
+            dvgBSDetails.BestFitColumns();
+
+            dvgItemDetails.Columns["Unit"].ColumnEdit = UnitsLookup;
+            dvgItemDetails.BestFitColumns();
+            dvgItemDetails.Columns["Per"].ColumnEdit = UnitsLookup;
+            dvgItemDetails.BestFitColumns();
+
+            RepositoryItemLookUpEdit PartysLookup = new RepositoryItemLookUpEdit();
+            dtParticulars.Rows.Clear();
+            DataRow drParticulars;
+            List<AccountMasterModel> lstAccounts = objAccBL.GetListofAccount();
+            foreach (AccountMasterModel objAcc in lstAccounts)
+            {
+                if (objAcc.AccGroupId == 67 || objAcc.AccGroupId == 65)
+                {
+                    drParticulars = dtParticulars.NewRow();
+                    drParticulars["Name"] = objAcc.AccountName;
+                    drParticulars["Group"] = objAcc.Group;
+                    drParticulars["Op.Bal"] = objAcc.OPBal;
+                    drParticulars["Address"] = objAcc.address;
+                    drParticulars["Mobile"] = objAcc.MobileNumber;
+                    dtParticulars.Rows.Add(drParticulars);
+                }
+            }
+            PartysLookup.DataSource = dtParticulars;
+            PartysLookup.ValueMember = "Name";
+            PartysLookup.DisplayMember = "Name";
+            PartysLookup.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            PartysLookup.AutoSearchColumnIndex = 0;
+            dvgItemDetails.Columns["Particulars"].ColumnEdit = PartysLookup;
+            dvgItemDetails.BestFitColumns();
+        }
         private void gdvItem_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.Caption == "SNo")
@@ -126,83 +223,502 @@ namespace IPCAUI.Transactions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //PurchaseVoucherMainModel objPurc = new PurchaseVoucherMainModel();
+            PurchaseVoucherModel objPurcVch = new PurchaseVoucherModel();
 
-            //if (tbxVoucherNumber.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Voucher Number Can Not Be Blank!");
-            //    return;
-            //}
+            if (tbxVoucherNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
 
-            //objPurc.PurchaseVoucher_Series = cbxVoucherType.Text.Trim();
-            //objPurc.PurchaseVoucher_PurchaseType = cbxPurcType.Text.Trim();
-            //objPurc.PurchaseVoucher_Date = Convert.ToDateTime(dtDate.Text);
-            //objPurc.PurchaseVoucher_Number = Convert.ToInt32(tbxVoucherNumber.Text.Trim());
-            //objPurc.PurchaseVoucher_Party = cbxParty.Text.Trim();
-            //objPurc.PurchaseVoucher_MatCenter = cbxMatcenter.Text.Trim();
-            //objPurc.Narration = tbxNarration.Text.Trim();
+            objPurcVch.VoucherType = cbxVoucherType.Text.Trim();
+            objPurcVch.PurcDate = Convert.ToDateTime(dtDate.Text);
+            objPurcVch.Terms = cbxTerms.SelectedItem.ToString();
+            objPurcVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim() == string.Empty ? "0" : tbxVoucherNumber.Text.Trim());
+            objPurcVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
+            objPurcVch.LedgerId =objAccBL.GetLedgerIdByAccountName(cbxParty.Text.Trim());
+            objPurcVch.PurcType = cbxPurcType.Text.Trim()==null?string.Empty: cbxPurcType.Text.Trim();
+            objPurcVch.MatCentre = cbxMatcenter.Text.Trim()==null?string.Empty: cbxMatcenter.Text.Trim();
+            objPurcVch.Narration = tbxNarration.Text.Trim() == null ? string.Empty : tbxNarration.Text.Trim();
+            
+            objPurcVch.TotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
+            objPurcVch.TotalFree = Convert.ToDecimal(colFree.SummaryItem.SummaryValue);
+            objPurcVch.TotalBasicAmount = Convert.ToDecimal(colBasicAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalDisAmount = Convert.ToDecimal(colDisAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalTaxAmount = Convert.ToDecimal(colTaxAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalAmount = Convert.ToDecimal(colItemAmount.SummaryItem.SummaryValue);
+            objPurcVch.BSTotalAmount = Convert.ToDecimal(colBSAmt.SummaryItem.SummaryValue);
 
-            //objPurc.TotalAmount = Convert.ToDecimal(Amount.SummaryItem.SummaryValue);
-            //objPurc.TotalQty = Convert.ToInt32(Qty.SummaryItem.SummaryValue);
+            //Items Details
+            Item_VoucherModel objPurcItem;
+            List<Item_VoucherModel> lstPurcItems = new List<Item_VoucherModel>();
 
-            ////Bill Number and Due date not captured- check with Ravi if these are required
+            for (int i = 0; i < dvgItemDetails.DataRowCount; i++)
+            {
+                DataRow row = dvgItemDetails.GetDataRow(i);
 
+                objPurcItem = new Item_VoucherModel();
+                objPurcItem.ITM_Id = objIMBL.GetItemIdByItemName(row["Item"].ToString() == null ? string.Empty : row["Item"].ToString());
+                objPurcItem.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Particulars"].ToString() == null ? string.Empty : row["Particulars"].ToString());
+                objPurcItem.Qty = Convert.ToDecimal(row["Qty"].ToString() == string.Empty ? "0.00" : row["Qty"]);
+                objPurcItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
+                objPurcItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
+                objPurcItem.Price = Convert.ToDecimal(row["Price"].ToString() == string.Empty ? "0.00" : row["Price"].ToString());
+                objPurcItem.Batch = row["Batch"].ToString() == null ? string.Empty : row["Batch"].ToString();
+                objPurcItem.Free = Convert.ToDecimal(row["Free"].ToString() == string.Empty ? "0.00" : row["Free"].ToString());
+                objPurcItem.BasicAmt = Convert.ToDecimal(row["BasicAmt"].ToString() == string.Empty ? "0.00" : row["BasicAmt"].ToString());
+                objPurcItem.DiscountPercentage = Convert.ToDecimal(row["DiscountPercentage"].ToString() == string.Empty ? "0.00" : row["DiscountPercentage"].ToString());
+                objPurcItem.DiscountAmount = Convert.ToDecimal(row["DiscountAmount"].ToString() == string.Empty ? "0.00" : row["DiscountAmount"].ToString());
+                objPurcItem.TaxAmount = Convert.ToDecimal(row["TaxAmount"].ToString() == string.Empty ? "0.00" : row["TaxAmount"].ToString());
+                objPurcItem.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
+                if (objPurcVch.Trans_Purc_Id != 0)
+                {
+                    objPurcItem.Item_ID = Convert.ToInt64(row["Item_ID"].ToString() == string.Empty ? "0" : row["Item_ID"].ToString());
+                    objPurcItem.ParentId = Convert.ToInt64(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"].ToString());
+                }
+                lstPurcItems.Add(objPurcItem);
+            }
 
-            ////Items
-            //Item_VoucherModel objItem;
-            //List<Item_VoucherModel> lstItems = new List<Item_VoucherModel>();
+            objPurcVch.Item_Voucher = lstPurcItems;
+            //Bill Sundry Details
+            BillSundry_VoucherModel objPurcBS;
+            List<BillSundry_VoucherModel> lstPurcBS = new List<BillSundry_VoucherModel>();
 
-            //for (int i = 0; i < gdvItem.DataRowCount; i++)
-            //{
-            //    DataRow row = gdvItem.GetDataRow(i);
+            for (int i = 0; i < dvgBSDetails.DataRowCount; i++)
+            {
+                DataRow row = dvgBSDetails.GetDataRow(i);
 
-            //    objItem = new Item_VoucherModel();
-            //    objItem.Item = row["Item"].ToString();
+                objPurcBS = new BillSundry_VoucherModel();
+                objPurcBS.BS_Id = objBSBL.GetBSIdByBSName(row["BillSundry"].ToString() == null ? string.Empty : row["BillSundry"].ToString());
+                objPurcBS.Percentage = Convert.ToDecimal(row["Percentage"].ToString() == string.Empty ? "0.00" : row["Percentage"].ToString());
+                objPurcBS.Extra = row["Extra"].ToString() == null ? string.Empty : row["Extra"].ToString();
+                objPurcBS.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
 
-            //    objItem.Qty = Convert.ToDecimal(row["Qty"]);
-            //    objItem.Unit = row["Unit"].ToString();
-            //    objItem.Amount = Convert.ToDecimal(row["Amount"].ToString());
-            //    objItem.Price = Convert.ToDecimal(row["Price"].ToString());
-            //    lstItems.Add(objItem);
-            //}
+                lstPurcBS.Add(objPurcBS);
+            }
+            objPurcVch.BillSundry_Voucher = lstPurcBS;
 
-            //objPurc.PurchaseItem_Voucher = lstItems;
-
-            ////Bill Sundry
-            //BillSundry_VoucherModel objBS;
-            //List<BillSundry_VoucherModel> lstBS = new List<BillSundry_VoucherModel>();
-
-            //for (int i = 0; i < gridBs.DataRowCount; i++)
-            //{
-            //    DataRow row = gridBs.GetDataRow(i);
-
-            //    objBS = new BillSundry_VoucherModel();
-            //    objBS.BillSundry = row["BillSundry"].ToString();
-            //    objBS.Percentage = Convert.ToDecimal(row["Percentage"]);
-            //    objBS.Amount = Convert.ToDecimal(row["Amount"]);
-            //    objBS.Type = row["Extra"].ToString();
-
-            //    lstBS.Add(objBS);
-            //}
-
-            //objPurc.BSTotalAmount = Convert.ToDecimal(BSAmount.SummaryItem.SummaryValue);
-
-            //objPurc.BillSundry_Voucher = lstBS;
-
-            ////objSalesVoucher = new SalesVoucherBL();
-
-            //bool isSuccess = objbl.SavePurchaseVoucher(objPurc);
-            //if (isSuccess)
-            //{
-            //    MessageBox.Show("Saved Successfully!");
-            //    //   Dialogs.PopUPDialog d = new Dialogs.PopUPDialog("Saved Successfully!");
-            //    // d.ShowDialog();
-            //}
+            bool isSuccess = objPurcBL.SavePurcahseVoucher(objPurcVch);
+            if (isSuccess)
+            {
+                MessageBox.Show("Saved Successfully!");
+                PurcId = 0;
+                ClearControls();
+            }
         }
 
         private void gridControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            PurchaseVoucherModel objPurcVch = new PurchaseVoucherModel();
+
+            if (tbxVoucherNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Voucher Number Can Not Be Blank!");
+                return;
+            }
+
+            objPurcVch.VoucherType = cbxVoucherType.Text.Trim();
+            objPurcVch.PurcDate = Convert.ToDateTime(dtDate.Text);
+            objPurcVch.Terms = cbxTerms.SelectedItem.ToString();
+            objPurcVch.VoucherNumber = Convert.ToInt64(tbxVoucherNumber.Text.Trim() == string.Empty ? "0" : tbxVoucherNumber.Text.Trim());
+            objPurcVch.BillNo = Convert.ToInt64(tbxBillNo.Text.Trim() == string.Empty ? "0" : tbxBillNo.Text.Trim());
+            objPurcVch.LedgerId = objAccBL.GetLedgerIdByAccountName(cbxParty.Text.Trim());
+            objPurcVch.PurcType = cbxPurcType.Text.Trim() == null ? string.Empty : cbxPurcType.Text.Trim();
+            objPurcVch.MatCentre = cbxMatcenter.Text.Trim()==null?string.Empty : cbxMatcenter.Text.Trim();
+            objPurcVch.Narration = tbxNarration.Text.Trim() == null ? string.Empty : tbxNarration.Text.Trim();
+
+            objPurcVch.TotalQty = Convert.ToDecimal(colQty.SummaryItem.SummaryValue);
+            objPurcVch.TotalFree = Convert.ToDecimal(colFree.SummaryItem.SummaryValue);
+            objPurcVch.TotalBasicAmount = Convert.ToDecimal(colBasicAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalDisAmount = Convert.ToDecimal(colDisAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalTaxAmount = Convert.ToDecimal(colTaxAmt.SummaryItem.SummaryValue);
+            objPurcVch.TotalAmount = Convert.ToDecimal(colItemAmount.SummaryItem.SummaryValue);
+            objPurcVch.BSTotalAmount = Convert.ToDecimal(colBSAmt.SummaryItem.SummaryValue);
+
+            //Items Details
+            Item_VoucherModel objPurcItem;
+            List<Item_VoucherModel> lstPurcItems = new List<Item_VoucherModel>();
+
+            for (int i = 0; i < dvgItemDetails.DataRowCount; i++)
+            {
+                DataRow row = dvgItemDetails.GetDataRow(i);
+
+                objPurcItem = new Item_VoucherModel();
+                objPurcItem.ITM_Id = objIMBL.GetItemIdByItemName(row["Item"].ToString() == null ? string.Empty : row["Item"].ToString());
+                objPurcItem.LedgerId = objAccBL.GetLedgerIdByAccountName(row["Particulars"].ToString() == null ? string.Empty : row["Particulars"].ToString());
+                objPurcItem.Qty = Convert.ToDecimal(row["Qty"].ToString() == string.Empty ? "0.00" : row["Qty"]);
+                objPurcItem.Unit = row["Unit"].ToString() == null ? string.Empty : row["Unit"].ToString();
+                objPurcItem.Per = row["Per"].ToString() == null ? string.Empty : row["Per"].ToString();
+                objPurcItem.Price = Convert.ToDecimal(row["Price"].ToString() == string.Empty ? "0.00" : row["Price"].ToString());
+                objPurcItem.Batch = row["Batch"].ToString() == null ? string.Empty : row["Batch"].ToString();
+                objPurcItem.Free = Convert.ToDecimal(row["Free"].ToString() == string.Empty ? "0.00" : row["Free"].ToString());
+                objPurcItem.BasicAmt = Convert.ToDecimal(row["BasicAmt"].ToString() == string.Empty ? "0.00" : row["BasicAmt"].ToString());
+                objPurcItem.DiscountPercentage = Convert.ToDecimal(row["DiscountPercentage"].ToString() == string.Empty ? "0.00" : row["DiscountPercentage"].ToString());
+                objPurcItem.DiscountAmount = Convert.ToDecimal(row["DiscountAmount"].ToString() == string.Empty ? "0.00" : row["DiscountAmount"].ToString());
+                objPurcItem.TaxAmount = Convert.ToDecimal(row["TaxAmount"].ToString() == string.Empty ? "0.00" : row["TaxAmount"].ToString());
+                objPurcItem.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
+                objPurcItem.Item_ID = Convert.ToInt64(row["Item_ID"].ToString() == string.Empty ? "0" : row["Item_ID"].ToString());
+                objPurcItem.ParentId = Convert.ToInt64(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"].ToString());
+                
+                lstPurcItems.Add(objPurcItem);
+            }
+
+            objPurcVch.Item_Voucher = lstPurcItems;
+            //Bill Sundry Details
+            BillSundry_VoucherModel objPurcBS;
+            List<BillSundry_VoucherModel> lstPurcBS = new List<BillSundry_VoucherModel>();
+
+            for (int i = 0; i < dvgBSDetails.DataRowCount; i++)
+            {
+                DataRow row = dvgBSDetails.GetDataRow(i);
+
+                objPurcBS = new BillSundry_VoucherModel();
+                objPurcBS.BS_Id = objBSBL.GetBSIdByBSName(row["BillSundry"].ToString() == null ? string.Empty : row["BillSundry"].ToString());
+                objPurcBS.Percentage = Convert.ToDecimal(row["Percentage"].ToString() == string.Empty ? "0.00" : row["Percentage"].ToString());
+                objPurcBS.Extra = row["Extra"].ToString() == null ? string.Empty : row["Extra"].ToString();
+                objPurcBS.Amount = Convert.ToDecimal(row["Amount"].ToString() == string.Empty ? "0.00" : row["Amount"].ToString());
+                objPurcBS.BSId = Convert.ToInt64(row["BSID"].ToString() == string.Empty ? "0" : row["BSID"].ToString());
+                objPurcBS.ParentId = Convert.ToInt64(row["ParentId"].ToString() == string.Empty ? "0" : row["ParentId"].ToString());
+                lstPurcBS.Add(objPurcBS);
+            }
+            objPurcVch.BillSundry_Voucher = lstPurcBS;
+            objPurcVch.Trans_Purc_Id = PurcId;
+            bool isSuccess = objPurcBL.UpdatePurchaseVoucher(objPurcVch);
+            if (isSuccess)
+            {
+                MessageBox.Show("Update Successfully!");
+                PurcId = 0;
+                ClearControls();
+                Transaction.List.PurchaseVouchersList frmPurcVchList = new Transaction.List.PurchaseVouchersList();
+                frmPurcVchList.StartPosition = FormStartPosition.CenterParent;
+                frmPurcVchList.ShowDialog();
+                FillPurchaseVoucherInfo();
+            }
+        }
+
+        private void btnPurcVchList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            Transaction.List.PurchaseVouchersList frmPurcVchList = new Transaction.List.PurchaseVouchersList();
+            frmPurcVchList.StartPosition = FormStartPosition.CenterParent;
+            frmPurcVchList.ShowDialog();
+            FillPurchaseVoucherInfo();
+        }
+        private void FillPurchaseVoucherInfo()
+        {
+            if (PurcId == 0)
+            {
+                cbxTerms.Focus();
+                lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+                lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                return;
+            }
+            PurchaseVoucherModel objPurcVch = objPurcBL.GetAllPurchaseVchDetailsbyId(PurcId);
+            cbxVoucherType.Text = objPurcVch.VoucherType.ToString();
+            dtDate.Text = objPurcVch.PurcDate.ToString();
+            cbxTerms.SelectedItem = objPurcVch.Terms.ToString();
+            tbxVoucherNumber.Text = objPurcVch.VoucherNumber.ToString();
+            tbxBillNo.Text = objPurcVch.BillNo.ToString();
+            cbxPurcType.Text = objPurcVch.PurcType.ToString();
+            cbxParty.Text = objPurcVch.Party;
+            cbxMatcenter.Text = objPurcVch.MatCentre.ToString();
+            tbxNarration.Text = objPurcVch.Narration.ToString();
+            //Qty.SummaryItem= objSaleVch.TotalQty.ToString();
+            //objSaleVch.TotalAmount = Convert.ToDecimal(dr["TotalAmount"].ToString());
+            //objSaleVch.BSTotalAmount = Convert.ToDecimal(dr["BSTotalAmount"]);
+            //dvgMainItem.DataSource = objSaleVch.SalesItem_Voucher;
+            //dvgBSMain.DataSource = objSaleVch.SalesBillSundry_Voucher;
+            dtItem.Rows.Clear();
+            DataRow idr;
+            foreach (Item_VoucherModel objItems in objPurcVch.Item_Voucher)
+            {
+                idr = dtItem.NewRow();
+
+                idr["Item"] = objItems.Item;
+                idr["Particulars"] = objItems.Particulars;
+                idr["Qty"] = objItems.Qty;
+                idr["Unit"] = objItems.Unit;
+                idr["Per"] = objItems.Per;
+                idr["Price"] = objItems.Price;
+                idr["Batch"] = objItems.Batch;
+                idr["Free"] = objItems.Free;
+                idr["BasicAmt"] = objItems.BasicAmt;
+                idr["DiscountPercentage"] = objItems.DiscountPercentage;
+                idr["DiscountAmount"] = objItems.DiscountAmount;
+                idr["TaxAmount"] = objItems.TaxAmount;
+                idr["Amount"] = objItems.Amount;
+                idr["Item_ID"] = objItems.Item_ID;
+                idr["ParentId"] = objItems.ParentId;
+                dtItem.Rows.Add(idr);
+                if(objItems.ITM_Id==0)
+                {
+                    AccountMode();
+                }
+                else
+                {
+                    ItemMode();
+                }
+            }
+            dtbs.Rows.Clear();
+            DataRow bsdr;
+            foreach (BillSundry_VoucherModel objbs in objPurcVch.BillSundry_Voucher)
+            {
+                bsdr = dtbs.NewRow();
+                bsdr["BillSundry"] = objbs.BillSundry;
+                bsdr["Percentage"] = objbs.Percentage;
+                bsdr["Extra"] = objbs.Extra;
+                bsdr["Amount"] = objbs.Amount;
+                bsdr["BSId"] = objbs.BSId;
+                bsdr["ParentId"] = objbs.ParentId;
+                dtbs.Rows.Add(bsdr);
+            }
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            cbxTerms.Focus();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool isDelete = objPurcBL.DeletePurchaseVoucher(PurcId);
+            if (isDelete)
+            {
+                MessageBox.Show("Delete Successfully!");
+                PurcId = 0;
+                ClearControls();
+                Transaction.List.PurchaseVouchersList frmPurcVchList = new Transaction.List.PurchaseVouchersList();
+                frmPurcVchList.StartPosition = FormStartPosition.CenterParent;
+                frmPurcVchList.ShowDialog();
+                FillPurchaseVoucherInfo();
+            }
+        }
+        private void ClearControls()
+        {
+            cbxVoucherType.Text = string.Empty;
+            dtDate.Text = string.Empty;
+            cbxTerms.SelectedItem = string.Empty;
+            tbxVoucherNumber.Text = string.Empty;
+            tbxBillNo.Text = string.Empty;
+            cbxPurcType.Text = string.Empty;
+            cbxParty.Text = string.Empty;
+            cbxMatcenter.Text = string.Empty;
+            tbxNarration.Text = string.Empty;
+
+            dtItem.Rows.Clear();
+            dtbs.Rows.Clear();
+        }
+        private void dvgItemDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void dvgBSDetails_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "SNo")
+            {
+                GridView gridView = (GridView)sender;
+                e.DisplayText = (gridView.GetRowHandle(e.ListSourceRowIndex) + 1).ToString();
+
+                if (Convert.ToInt32(e.DisplayText) < 0)
+                {
+                    e.DisplayText = "";
+                }
+            }
+        }
+
+        private void dvgItemDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            if (e.FocusedColumn.FieldName == "Item")
+            {
+                dvgItemDetails.ShowEditor();
+                ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
+
+            }
+            if(e.FocusedColumn.FieldName=="Unit" || e.FocusedColumn.FieldName=="Per")
+            {
+                dvgItemDetails.ShowEditor();
+                ((LookUpEdit)dvgItemDetails.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void dvgBSDetails_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            if (e.FocusedColumn.FieldName == "BillSundry")
+            {
+                dvgBSDetails.ShowEditor();
+                ((LookUpEdit)dvgBSDetails.ActiveEditor).ShowPopup();
+            }
+        }
+
+        private void cbxParty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar!='\r')
+            {
+                cbxParty.ShowPopup();
+            }
+        }
+
+        private void cbxMatcenter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\r')
+            {
+                cbxMatcenter.ShowPopup();
+            }
+        }
+
+        private void dvgItemDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if(e.Column.Caption=="Item")
+            {
+                List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
+                List<string> lstUnits = new List<string>();
+                foreach(ItemMasterModel objUnits in lstItems)
+                {
+                    lstUnits.Add(objUnits.MainUnit);
+                    lstUnits.Add(objUnits.AltUnit);
+                }
+                UnitsLookup.DataSource = lstUnits;
+            }
+        }
+
+        private void dvgItemDetails_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Caption == "Item")
+            {
+                List<ItemMasterModel> lstItems = objIMBL.GetItemsByName(e.Value.ToString());
+                List<string> lstUnits = new List<string>();
+                foreach (ItemMasterModel objUnits in lstItems)
+                {
+                    lstUnits.Add(objUnits.MainUnit);
+                    lstUnits.Add(objUnits.AltUnit);
+                }
+                UnitsLookup.DataSource = lstUnits;
+            }
+        }
+
+        private void btnAccountMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            AccountMode();
+            ClearControls();
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+        }
+        private void ItemMode()
+        {
+            colItem.Visible = true;
+            colItem.VisibleIndex = 1;
+            colParty.Visible = false;
+            colBatch.Visible = true;
+            colBatch.VisibleIndex = 2;
+            colQty.Visible = true;
+            colQty.VisibleIndex = 3;
+            colUnit.Visible = true;
+            colUnit.VisibleIndex = 4;
+            colFree.Visible = true;
+            colFree.VisibleIndex = 5;
+            colPrice.Visible = true;
+            colPrice.VisibleIndex = 6;
+            colPer.Visible = true;
+            colPer.VisibleIndex = 7;
+            colBasicAmt.Visible = true;
+            colBasicAmt.VisibleIndex = 8;
+            colDisPer.Visible = true;
+            colDisPer.VisibleIndex = 9;
+            colDisAmt.Visible = true;
+            colDisAmt.VisibleIndex = 10;
+            colTaxAmt.Visible = true;
+            colTaxAmt.VisibleIndex = 11;
+            colItemAmount.Visible = true;
+            colItemAmount.VisibleIndex = 12;
+            lactrlMatCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;          
+            btnAccountMode.Visible = true;
+            btnItemMode.Visible = false;
+        }
+        private void AccountMode()
+        {
+            colItem.Visible = false;
+            colParty.Visible = true;
+            colParty.VisibleIndex = 1;
+            colBatch.Visible = false;
+            colQty.Visible = false;
+            colUnit.Visible = false;
+            colFree.Visible = false;
+            colPrice.Visible = false;
+            colPer.Visible = false;
+            colBasicAmt.Visible = true;
+            colBasicAmt.VisibleIndex = 2;
+            colDisPer.Visible = true;
+            colDisPer.VisibleIndex = 3;
+            colDisAmt.Visible = true;
+            colDisAmt.VisibleIndex = 4;
+            colTaxAmt.Visible = true;
+            colTaxAmt.VisibleIndex = 5;
+            colItemAmount.Visible = true;
+            colItemAmount.VisibleIndex = 6;
+            lactrlMatCenter.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;          
+            btnAccountMode.Visible = false;
+            btnItemMode.Visible = true;
+        }
+
+        private void btnItemMode_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ItemMode();
+            ClearControls();
+            lactrlUpdate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlDelete.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            lactrlSave.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+        }
+
+        private void cbxTerms_Enter(object sender, EventArgs e)
+        {
+            cbxTerms.ShowPopup();
+        }
+
+        private void dvgBSMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxParty_Enter(object sender, EventArgs e)
+        {
+            cbxParty.ShowPopup();
+        }
+
+        private void cbxPurcType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar=='\r')
+            {
+                cbxPurcType.ShowPopup();
+            }
         }
     }
 }

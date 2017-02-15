@@ -13,7 +13,6 @@ namespace eSunSpeed.BusinessLogic
     {
         string connString = ConfigurationManager.ConnectionStrings["mySqlCon"].ToString();
      
-
         public DataSet BalanceSheet(DateTime fromDate, DateTime toDate)
         {
             DataSet dset = new DataSet();

@@ -12,38 +12,40 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class SalesReturnVouchers : Form
+    public partial class SalesReturnVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public SalesReturnVouchers()
+        SalesReturnVoucherBL objSRBL = new SalesReturnVoucherBL();
+        public SalesReturnVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void SalesReturnVouchers_Load(object sender, EventArgs e)
+        private void SalesReturnVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
-
+            List<eSunSpeedDomain.TransListModel> lstSaleRet = objSRBL.GetAllSalesReturnMaster();
+            dvgSaleRetList.DataSource = lstSaleRet;
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgSaleRetListDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == '\r')
+            {
+                TransListModel lstSaleRet;
+
+                lstSaleRet = (TransListModel)dvgSaleRetListDetails.GetRow(dvgSaleRetListDetails.FocusedRowHandle);
+                Transactions.SalesReturn.SalesRetId = lstSaleRet.trans_sales_id;
+                this.Close();
+            }   
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgSaleRetListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            TransListModel lstSaleRet;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
-
-              this.Close();            
-        }        
+            lstSaleRet = (TransListModel)dvgSaleRetListDetails.GetRow(dvgSaleRetListDetails.FocusedRowHandle);
+            Transactions.SalesReturn.SalesRetId = lstSaleRet.trans_sales_id;
+            this.Close();
+        }
     }
 }

@@ -12,38 +12,52 @@ using eSunSpeedDomain;
 
 namespace IPCAUI.Transaction.List
 {
-    public partial class ContraVouchers : Form
+    public partial class ContraVouchersList : Form
     {
-        AccountMasterBL objaccbl = new AccountMasterBL();
-        public ContraVouchers()
+        ContraVoucherBL objCVBL = new ContraVoucherBL();
+        public ContraVouchersList()
         {
           
             InitializeComponent();
         }
 
-        private void ContraVouchers_Load(object sender, EventArgs e)
+        private void ContraVouchersList_Load(object sender, EventArgs e)
         {
-            List<eSunSpeedDomain.AccountGroupModel> lstGroups = objaccbl.GetListofAccountsGroups();
-            dvgAccList.DataSource = lstGroups;
+            List<eSunSpeedDomain.ListModel> lstContra = objCVBL.GetAllContraVoucher();
+            dvgContraList.DataSource = lstContra;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgContraDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstContra;
+
+                lstContra = (ListModel)dvgContraDetails.GetRow(dvgContraDetails.FocusedRowHandle);
+                Transactions.ContraVoucher.Contra_Id = lstContra.Id;
+
+                this.Close();
+            }           
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgContraDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            ListModel lstContra;
 
-            lstItems = (AccountGroupModel)gdvAccGroupDetails.GetRow(gdvAccGroupDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
+            lstContra = (ListModel)dvgContraDetails.GetRow(dvgContraDetails.FocusedRowHandle);
+            Transactions.ContraVoucher.Contra_Id = lstContra.Id;
 
-              this.Close();            
-        }        
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

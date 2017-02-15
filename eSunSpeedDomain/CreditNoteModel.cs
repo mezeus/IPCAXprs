@@ -7,7 +7,7 @@ namespace eSunSpeedDomain
 {
     public class CreditNoteModel
     {
-        public int CN_Id { get; set; }
+        public long CN_Id { get; set; }
 
         public string Type { get; set; }
         public string Voucher_Series { get; set; }

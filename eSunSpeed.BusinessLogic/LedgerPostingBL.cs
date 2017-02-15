@@ -97,5 +97,44 @@ namespace eSunSpeed.BusinessLogic
             }
             return isDelete;
         }
+        //Ledger Posting Add By List
+        public bool LedgerPostingAddByList(List<LedgerPostingModel> ledgerList)
+        {
+            bool isSaved = true;
+            try
+            {
+                foreach(LedgerPostingModel ledgerpostinginfo in ledgerList)
+                {
+                    DBParameterCollection paramCollection = new DBParameterCollection();
+
+                    paramCollection.Add(new DBParameter("@S_date", ledgerpostinginfo.Date, DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@S_voucherTypeId", ledgerpostinginfo.VoucherTypeId));
+                    paramCollection.Add(new DBParameter("@S_voucherNo", ledgerpostinginfo.VoucherNo));
+                    paramCollection.Add(new DBParameter("@S_ledgerId", ledgerpostinginfo.LedgerId));
+                    paramCollection.Add(new DBParameter("@S_debit", ledgerpostinginfo.Debit, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@S_credit", ledgerpostinginfo.Credit, DbType.Decimal));
+                    paramCollection.Add(new DBParameter("@S_detailsId", ledgerpostinginfo.DetailsId));
+                    paramCollection.Add(new DBParameter("@S_yearId", ledgerpostinginfo.YearId));
+                    paramCollection.Add(new DBParameter("@S_invoiceNo", ledgerpostinginfo.InvoiceNo));
+                    paramCollection.Add(new DBParameter("@S_chequeNo", ledgerpostinginfo.ChequeNo));
+                    paramCollection.Add(new DBParameter("@S_chequeDate", ledgerpostinginfo.ChequeDate, DbType.DateTime));
+                    paramCollection.Add(new DBParameter("@S_extra1", ledgerpostinginfo.Extra1));
+                    paramCollection.Add(new DBParameter("@S_extra2", ledgerpostinginfo.Extra2));
+
+                    IDataReader dr = _dbHelper.ExecuteDataReader("spLedgerPostingAdd", _dbHelper.GetConnObject(), paramCollection, CommandType.StoredProcedure);
+                    isSaved = true;
+                }               
+
+            }
+            catch (Exception ex)
+            {
+                isSaved = false;
+            }
+            finally
+            {
+
+            }
+            return isSaved;
+        }
     }
 }

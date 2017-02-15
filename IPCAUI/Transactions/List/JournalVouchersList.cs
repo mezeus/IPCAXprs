@@ -27,23 +27,37 @@ namespace IPCAUI.Transaction.List
             dvgJournalList.DataSource = lstJournal;
 
         }
-                
-        private void gdvAccGroupDetails_DoubleClick(object sender, EventArgs e)
-        {
-            AccountGroupModel lstItems;
 
-            lstItems = (AccountGroupModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
-            string cellValue = lstItems.GroupId.ToString();
+        private void dvgJournalListDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstJournal;
+
+                lstJournal = (ListModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
+                Transactions.JournalVoucher.Journl_Id = lstJournal.Id;
+
+                this.Close();
+            }
         }
-    
-        private void gdvAccGroupDetails_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void dvgJournalListDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            AccountGroupModel lstItems;
+            ListModel lstJournal;
 
-            lstItems = (AccountGroupModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
-          //  Accountgroup.groupId = lstItems.GroupId;
+            lstJournal = (ListModel)dvgJournalListDetails.GetRow(dvgJournalListDetails.FocusedRowHandle);
+            Transactions.JournalVoucher.Journl_Id = lstJournal.Id;
 
-              this.Close();            
-        }        
+            this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

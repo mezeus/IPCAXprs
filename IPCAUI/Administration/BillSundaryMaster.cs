@@ -71,10 +71,10 @@ namespace IPCAUI.Administration
             objbsmod.SaleAffectsAccounting = Convert.ToBoolean(cbxSaleaffectsAcc.Text.ToString() == "Y" ? true : false);
             objbsmod.SaleAdjustInSaleAmount = Convert.ToBoolean(cbxSaleAdjustsaleamount.Text.ToString() == "Y" ? true : false);
             objbsmod.SaleSpecifyAccountHere = cbxSaleAccountLedgerSpecify.SelectedItem.ToString();
-            objbsmod.SaleAccounttoHeadPost = cbxSaleAccHeadpost.SelectedItem.ToString();
+            objbsmod.SaleAccounttoHeadPost = objAccBl.GetLedgerIdByAccountName(cbxSaleAccHeadpost.SelectedItem.ToString()).ToString();
             objbsmod.SaleAdjustInPartyAmount = Convert.ToBoolean(cbxSaleAdjustinpartyAmount.Text.ToString() == "Y" ? true : false);
             objbsmod.SalePartSpecifyAccountHere = cbxPartysaleAccountLedgerSpecify.Text.ToString();
-            objbsmod.SaleAccounttoHeadPostParty = cbxSaleAccHeadpostParty.SelectedItem.ToString();
+            objbsmod.SaleAccounttoHeadPostParty =objAccBl.GetLedgerIdByAccountName(cbxSaleAccHeadpostParty.SelectedItem.ToString()).ToString();
             if (objbsmod.SaleAdjustInSaleAmount)
             {
                 objbsmod.SalePostOverandAbove = cbxSalePostoverandAbove.SelectedItem.ToString()=="Y" ? true : false;
@@ -173,7 +173,7 @@ namespace IPCAUI.Administration
             objbsmod.IncludeFreeQty = Convert.ToBoolean(chkIncludefreequantity.Checked ? true : false);
             objbsmod.NoOfBillSundry = Convert.ToInt32(tbxNofbillsundrys.Text == null ? "0" : tbxNofbillsundrys.Text.Trim());
             objbsmod.ConsolidateBillSundriesAmount = Convert.ToBoolean(cbxConsoilatedbillsundariesamt.SelectedItem.ToString() == "Y" ? true : false);
-            objbsmod.BillSundaryName = cbxBillSundary.SelectedItem.ToString();
+            objbsmod.BillSundaryName = cbxBillSundary.Text.Trim();
             objbsmod.BSAmt = false;
             objbsmod.BSAppOn = false;
             if (rbnBillsundaryCal.SelectedIndex == 0)

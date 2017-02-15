@@ -12,8 +12,10 @@ namespace eSunSpeedDomain
         public long ParentId { get; set; } //This should be the parent Id of transaction screen
                                           //Sales, Sales return, purchase, purchase return etc
 
-        public string Item { get; set; } 
-        public long ITM_Id { get; set; }    
+        public string Item { get; set; }
+        public string Particulars { get; set; }
+        public long ITM_Id { get; set; }  
+        public long LedgerId { get; set; }  
         public decimal Qty { get; set; }
         public string Unit { get; set; }
         public string Per { get; set; }

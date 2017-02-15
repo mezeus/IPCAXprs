@@ -20,12 +20,6 @@ namespace IPCAUI.Transaction.List
           
             InitializeComponent();
         }
-
-        private void CreditNotes_Load(object sender, EventArgs e)
-        {
-         
-
-        }
                 
         private void CreditNotesList_Load(object sender, EventArgs e)
         {
@@ -33,15 +27,20 @@ namespace IPCAUI.Transaction.List
             dvgCreditList.DataSource = lstCredits;
         }
 
-        private void gdvCreditDetails_DoubleClick(object sender, EventArgs e)
+        private void gdvCreditDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            //AccountGroupModel lstItems;
+            if(e.KeyValue=='\r')
+            {
+                ListModel lstMasters;
 
-            //lstItems = (AccountGroupModel)gdvCreditDetails.GetRow(gdvCreditDetails.FocusedRowHandle);
-            //string cellValue = lstItems.GroupId.ToString();
+                lstMasters = (ListModel)gdvCreditDetails.GetRow(gdvCreditDetails.FocusedRowHandle);
+                Transactions.CreditNote.CNId = lstMasters.Id;
+
+                this.Close();
+            }          
         }
 
-        private void gdvCreditDetails_KeyPress(object sender, KeyPressEventArgs e)
+        private void gdvCreditDetails_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             ListModel lstMasters;
 
@@ -49,6 +48,15 @@ namespace IPCAUI.Transaction.List
             Transactions.CreditNote.CNId = lstMasters.Id;
 
             this.Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

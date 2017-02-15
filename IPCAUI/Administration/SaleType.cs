@@ -662,6 +662,7 @@ namespace IPCAUI.Administration
             lactrlTaxInclItemPrice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlTaxinSaleAmount.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlTaxAccount.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
+            //lactrlTaxRateWindow.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlGrpFormInfo.Enabled = false;
             lactrlGoods.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;
             lactrlServices.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.OnlyInCustomization;

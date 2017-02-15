@@ -7,7 +7,7 @@ namespace eSunSpeedDomain
 {
     public class RecieptVoucherModel
     {
-        public int RV_Id { get; set; }
+        public long RV_Id { get; set; }
         public int ParentId { get; set; }
         public string Type { get; set; }
         public string Voucher_Series { get; set; }
@@ -16,6 +16,8 @@ namespace eSunSpeedDomain
         public DateTime PDCDate { get; set; }        
         public DateTime RV_Date { get; set; }                        
         public string Party { get; set; }
+        public long LedgerId  { get; set; }
+
         public string MatCenter { get; set; }
         public string LongNarration { get; set; }
         public decimal TotalCreditAmt { get; set; }

@@ -77,6 +77,7 @@ namespace eSunSpeed.BusinessLogic
 
                     paramCollection.Add(new DBParameter("@ParentId", item.ParentId));
                     paramCollection.Add(new DBParameter("@ITM_Id", item.ITM_Id));
+                    paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                     paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                     paramCollection.Add(new DBParameter("@Unit", item.Unit));
                     paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -147,8 +148,8 @@ namespace eSunSpeed.BusinessLogic
 
             sbQuery.AppendLine("SELECT m.PurcVoucher_Id, i.Id,m.PurcDate,m.VoucherNumber, i.ITM_ID, i.Qty, i.Unit,im.ITEM_Name,am.ACC_NAME FROM purchasevoucher_master AS m");
             sbQuery.AppendLine("INNER JOIN purchasevoucher_itemdetails AS i ON m.PurcVoucher_Id=i.PurcVoucher_Id");
-            sbQuery.AppendLine("inner join itemmaster as im ON i.itm_id=im.ITM_ID");
-            sbQuery.AppendLine("inner join accountmaster am ON am.Ac_ID = m.LedgerId;");
+            sbQuery.AppendLine("left join itemmaster as im ON i.itm_id=im.ITM_ID");
+            sbQuery.AppendLine("left join accountmaster am ON am.Ac_ID = m.LedgerId;");
 
             System.Data.IDataReader dr = _dbHelper.ExecuteDataReader(sbQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -240,7 +241,7 @@ namespace eSunSpeed.BusinessLogic
             }
             return lstModel;
         }
-
+        //Update Purchase Voucher
         public bool UpdatePurchaseVoucher(eSunSpeedDomain.PurchaseVoucherModel objPurc)
         {
             string Query = string.Empty;
@@ -285,6 +286,7 @@ namespace eSunSpeed.BusinessLogic
                         paramCollection.Add(new DBParameter("@ParentId", item.ParentId));
                         paramCollection.Add(new DBParameter("@IId", item.Item_ID));
                         paramCollection.Add(new DBParameter("@ITM_Id", item.ITM_Id));
+                        paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                         paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                         paramCollection.Add(new DBParameter("@Unit", item.Unit));
                         paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -309,6 +311,7 @@ namespace eSunSpeed.BusinessLogic
 
                         paramCollection.Add(new DBParameter("@ParentId", item.ParentId));
                         paramCollection.Add(new DBParameter("@ITM_Id", item.ITM_Id));
+                        paramCollection.Add(new DBParameter("@LedgerId", item.LedgerId));
                         paramCollection.Add(new DBParameter("@Qty", item.Qty, DbType.Decimal));
                         paramCollection.Add(new DBParameter("@Unit", item.Unit));
                         paramCollection.Add(new DBParameter("@Per", item.Per));
@@ -620,8 +623,9 @@ namespace eSunSpeed.BusinessLogic
 
                 //SELECT Item Details
                 StringBuilder sbitemQuery = new StringBuilder();
-                sbitemQuery.AppendLine("SELECT i.*,im.ITEM_Name FROM purchasevoucher_itemdetails as i");
-                sbitemQuery.AppendLine("inner join itemmaster as im on i.ITM_ID=im.ITM_ID");
+                sbitemQuery.AppendLine("SELECT i.*,im.ITEM_Name,ia.ACC_NAME FROM purchasevoucher_itemdetails as i");
+                sbitemQuery.AppendLine("left join itemmaster as im on i.ITM_ID=im.ITM_ID");
+                sbitemQuery.AppendLine("left join accountmaster as ia on i.LedgerId=ia.AC_ID");
                 sbitemQuery.AppendLine("WHERE PurcVoucher_Id='" + id + "'");
                 System.Data.IDataReader drItems = _dbHelper.ExecuteDataReader(sbitemQuery.ToString(), _dbHelper.GetConnObject());
 
@@ -632,9 +636,11 @@ namespace eSunSpeed.BusinessLogic
                 {
                     objitem = new Item_VoucherModel();
 
-                    objitem.Item_ID = Convert.ToInt32(drItems["Id"]);
+                    objitem.Item_ID = Convert.ToInt64(drItems["Id"]);
+                    objitem.ITM_Id = Convert.ToInt64(drItems["ITM_ID"]);
                     objitem.ParentId = DataFormat.GetInteger(drItems["PurcVoucher_Id"]);
                     objitem.Item = drItems["ITEM_Name"].ToString();
+                    objitem.Particulars = drItems["ACC_NAME"].ToString();
                     objitem.Qty = Convert.ToDecimal(drItems["qty"].ToString());
                     objitem.Unit = (drItems["Unit"].ToString());
                     objitem.Per = (drItems["Per"].ToString());
