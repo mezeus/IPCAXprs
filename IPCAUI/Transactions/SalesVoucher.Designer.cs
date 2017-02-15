@@ -333,7 +333,6 @@
             this.dvgBsDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.dvgBsDetails.OptionsView.ShowFooter = true;
             this.dvgBsDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgBsDetails.ColumnChanged += new System.EventHandler(this.dvgBsDetails_ColumnChanged);
             this.dvgBsDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgBsDetails_FocusedColumnChanged);
             this.dvgBsDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgBsDetails_CellValueChanged);
             this.dvgBsDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgBsDetails_CustomColumnDisplayText);
@@ -483,10 +482,7 @@
             this.dvgItemDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.dvgItemDetails.OptionsView.ShowFooter = true;
             this.dvgItemDetails.OptionsView.ShowGroupPanel = false;
-            this.dvgItemDetails.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.dvgItemDetails_CustomRowCellEdit);
-            this.dvgItemDetails.ColumnChanged += new System.EventHandler(this.dvgItemDetails_ColumnChanged);
             this.dvgItemDetails.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.dvgItemDetails_FocusedColumnChanged);
-            this.dvgItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgItemDetails_CellValueChanged);
             this.dvgItemDetails.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dvgItemDetails_CellValueChanging);
             this.dvgItemDetails.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.dvgItemDetails_CustomColumnDisplayText);
             // 
@@ -941,7 +937,6 @@
             this.tbxVoucherNumber.StyleController = this.layoutControl1;
             this.tbxVoucherNumber.TabIndex = 3;
             this.tbxVoucherNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxVoucherNumber_KeyPress);
-            this.tbxVoucherNumber.Leave += new System.EventHandler(this.tbxVoucherNumber_Leave);
             // 
             // dtDate
             // 
@@ -1086,7 +1081,6 @@
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1006, 593);
             this.layoutControlGroup1.TextVisible = false;
-            this.layoutControlGroup1.Click += new System.EventHandler(this.layoutControlGroup1_Click);
             // 
             // layoutControlItem2
             // 
