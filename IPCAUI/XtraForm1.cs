@@ -69,11 +69,20 @@ namespace IPCAUI
         {
             if (keyData == Keys.Escape)
             {
-                MessageBox.Show("Are You Want To Exit IPCAExpress");
-                
-                this.Close();
-                return true;
-            }
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Are You Want To Exit IPCAExpress?";
+                string caption = "Exit IPCAExpress process";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    // Closes the parent form.
+                    this.Close();
+                    return true;
+                }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
